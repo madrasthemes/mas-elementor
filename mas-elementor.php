@@ -1,8 +1,8 @@
 <?php
 /**
  * Plugin Name: MAS Addons for Elementor
- * Description: More power to your Elementor powered website with beautifully designed blocks, templates, widgets, skins and extensions.
- * Plugin URI: https://mas-elementor.madrasthemes.com/
+ * Description: More power to your Elementor powered website with beautifully designed sections, templates, widgets, skins and extensions.
+ * Plugin URI: https://madrasthemes.com/
  * Author: MadrasThemes
  * Version: 0.0.1
  * Elementor tested up to: 3.5.0
@@ -15,7 +15,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
-define( 'MAS_ELEMENTOR_VERSION', '3.5.2' );
+define( 'MAS_ELEMENTOR_VERSION', '0.0.1' );
 
 define( 'MAS_ELEMENTOR__FILE__', __FILE__ );
 define( 'MAS_ELEMENTOR_PLUGIN_BASE', plugin_basename( MAS_ELEMENTOR__FILE__ ) );
@@ -33,31 +33,31 @@ define( 'MAS_ELEMENTOR_MODULES_URL', MAS_ELEMENTOR_URL . 'modules/' );
  *
  * @return void
  */
-function elementor_pro_load_plugin() {
+function mas_elementor_load_plugin() {
 	load_plugin_textdomain( 'mas-elementor' );
 
 	if ( ! did_action( 'elementor/loaded' ) ) {
-		add_action( 'admin_notices', 'elementor_pro_fail_load' );
+		add_action( 'admin_notices', 'mas_elementor_fail_load' );
 
 		return;
 	}
 
 	$elementor_version_required = '3.4.0';
 	if ( ! version_compare( ELEMENTOR_VERSION, $elementor_version_required, '>=' ) ) {
-		add_action( 'admin_notices', 'elementor_pro_fail_load_out_of_date' );
+		add_action( 'admin_notices', 'mas_elementor_fail_load_out_of_date' );
 
 		return;
 	}
 
 	$elementor_version_recommendation = '3.4.0';
 	if ( ! version_compare( ELEMENTOR_VERSION, $elementor_version_recommendation, '>=' ) ) {
-		add_action( 'admin_notices', 'elementor_pro_admin_notice_upgrade_recommendation' );
+		add_action( 'admin_notices', 'mas_elementor_admin_notice_upgrade_recommendation' );
 	}
 
 	require MAS_ELEMENTOR_PATH . 'plugin.php';
 }
 
-add_action( 'plugins_loaded', 'elementor_pro_load_plugin' );
+add_action( 'plugins_loaded', 'mas_elementor_load_plugin' );
 
 function print_error( $message ) {
 	if ( ! $message ) {
@@ -73,7 +73,7 @@ function print_error( $message ) {
  *
  * @return void
  */
-function elementor_pro_fail_load() {
+function mas_elementor_fail_load() {
 	$screen = get_current_screen();
 	if ( isset( $screen->parent_file ) && 'plugins.php' === $screen->parent_file && 'update' === $screen->id ) {
 		return;
@@ -106,7 +106,7 @@ function elementor_pro_fail_load() {
 	print_error( $message );
 }
 
-function elementor_pro_fail_load_out_of_date() {
+function mas_elementor_fail_load_out_of_date() {
 	if ( ! current_user_can( 'update_plugins' ) ) {
 		return;
 	}
@@ -120,7 +120,7 @@ function elementor_pro_fail_load_out_of_date() {
 	print_error( $message );
 }
 
-function elementor_pro_admin_notice_upgrade_recommendation() {
+function mas_elementor_admin_notice_upgrade_recommendation() {
 	if ( ! current_user_can( 'update_plugins' ) ) {
 		return;
 	}
