@@ -61,12 +61,6 @@ class Plugin {
 	 */
 	public $license_admin;
 
-	private $classes_aliases = [
-		'MASElementor\Modules\PanelPostsControl\Module' => 'MASElementor\Modules\QueryControl\Module',
-		'MASElementor\Modules\PanelPostsControl\Controls\Group_Control_Posts' => 'MASElementor\Modules\QueryControl\Controls\Group_Control_Posts',
-		'MASElementor\Modules\PanelPostsControl\Controls\Query' => 'MASElementor\Modules\QueryControl\Controls\Query',
-	];
-
 	/**
 	 * Throw error on object clone
 	 *
@@ -116,15 +110,7 @@ class Plugin {
 			return;
 		}
 
-		$has_class_alias = isset( $this->classes_aliases[ $class ] );
-
-		// Backward Compatibility: Save old class name for set an alias after the new class is loaded
-		if ( $has_class_alias ) {
-			$class_alias_name = $this->classes_aliases[ $class ];
-			$class_to_load = $class_alias_name;
-		} else {
-			$class_to_load = $class;
-		}
+		$class_to_load = $class;
 
 		if ( ! class_exists( $class_to_load ) ) {
 			$filename = strtolower(
@@ -139,10 +125,6 @@ class Plugin {
 			if ( is_readable( $filename ) ) {
 				include( $filename );
 			}
-		}
-
-		if ( $has_class_alias ) {
-			class_alias( $class_alias_name, $class );
 		}
 	}
 
@@ -168,11 +150,6 @@ class Plugin {
 
 	public function on_elementor_init() {
 		$this->modules_manager = new Modules_Manager();
-
-		/** TODO: BC for Elementor v2.4.0 */
-		if ( class_exists( '\Elementor\Core\Upgrade\Manager' ) ) {
-			$this->upgrade = UpgradeManager::instance();
-		}
 
 		/**
 		 * MAS Elementor init.

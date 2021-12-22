@@ -59,7 +59,7 @@ function mas_elementor_load_plugin() {
 
 add_action( 'plugins_loaded', 'mas_elementor_load_plugin' );
 
-function print_error( $message ) {
+function mas_elementor_print_error( $message ) {
 	if ( ! $message ) {
 		return;
 	}
@@ -103,7 +103,7 @@ function mas_elementor_fail_load() {
 		$message .= '<p>' . sprintf( '<a href="%s" class="button-primary">%s</a>', $install_url, esc_html__( 'Install Elementor', 'mas-elementor' ) ) . '</p>';
 	}
 
-	print_error( $message );
+	mas_elementor_print_error( $message );
 }
 
 function mas_elementor_fail_load_out_of_date() {
@@ -117,7 +117,7 @@ function mas_elementor_fail_load_out_of_date() {
 	$message = '<p>' . esc_html__( 'MAS Addons for Elementor is not working because you are using an old version of Elementor.', 'mas-elementor' ) . '</p>';
 	$message .= '<p>' . sprintf( '<a href="%s" class="button-primary">%s</a>', $upgrade_link, esc_html__( 'Update Elementor Now', 'mas-elementor' ) ) . '</p>';
 
-	print_error( $message );
+	mas_elementor_print_error( $message );
 }
 
 function mas_elementor_admin_notice_upgrade_recommendation() {
@@ -131,7 +131,7 @@ function mas_elementor_admin_notice_upgrade_recommendation() {
 	$message = '<p>' . esc_html__( 'A new version of Elementor is available. For better performance and compatibility of MAS Addons for Elementor, we recommend updating to the latest version.', 'mas-elementor' ) . '</p>';
 	$message .= '<p>' . sprintf( '<a href="%s" class="button-primary">%s</a>', $upgrade_link, esc_html__( 'Update Elementor Now', 'mas-elementor' ) ) . '</p>';
 
-	print_error( $message );
+	mas_elementor_print_error( $message );
 }
 
 if ( ! function_exists( '_is_elementor_installed' ) ) {
