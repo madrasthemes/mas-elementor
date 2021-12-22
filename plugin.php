@@ -1,4 +1,10 @@
 <?php
+/**
+ * The MAS Elementor Plugin.
+ *
+ * @package mas-elementor
+ */
+
 namespace MASElementor;
 
 use MASElementor\Core\Admin\Admin;
@@ -13,7 +19,7 @@ use MASElementor\Core\Upgrade\Manager as UpgradeManager;
 use MASElementor\License\API;
 
 if ( ! defined( 'ABSPATH' ) ) {
-	exit; // Exit if accessed directly
+	exit; // Exit if accessed directly.
 }
 
 /**
@@ -22,44 +28,53 @@ if ( ! defined( 'ABSPATH' ) ) {
 class Plugin {
 
 	/**
+	 * The plugin instance.
+	 *
 	 * @var Plugin
 	 */
 	private static $_instance;
 
 	/**
+	 * The Modules Manager.
+	 *
 	 * @var Modules_Manager
 	 */
 	public $modules_manager;
 
 	/**
+	 * The Upgrade Manager.
+	 *
 	 * @var UpgradeManager
 	 */
 	public $upgrade;
 
 	/**
+	 * The Editor.
+	 *
 	 * @var Editor
 	 */
 	public $editor;
 
 	/**
+	 * The Preview.
+	 *
 	 * @var Preview
 	 */
 	public $preview;
 
 	/**
+	 * The Admin.
+	 *
 	 * @var Admin
 	 */
 	public $admin;
 
 	/**
+	 * The App.
+	 *
 	 * @var App
 	 */
 	public $app;
-
-	/**
-	 * @var License\Admin
-	 */
-	public $license_admin;
 
 	/**
 	 * Throw error on object clone
@@ -71,7 +86,7 @@ class Plugin {
 	 * @return void
 	 */
 	public function __clone() {
-		// Cloning instances of the class is forbidden
+		// Cloning instances of the class is forbidden.
 		_doing_it_wrong( __FUNCTION__, esc_html__( 'Something went wrong.', 'mas-elementor' ), '1.0.0' );
 	}
 
@@ -82,19 +97,22 @@ class Plugin {
 	 * @return void
 	 */
 	public function __wakeup() {
-		// Unserializing instances of the class is forbidden
+		// Unserializing instances of the class is forbidden.
 		_doing_it_wrong( __FUNCTION__, esc_html__( 'Something went wrong.', 'mas-elementor' ), '1.0.0' );
 	}
 
 	/**
+	 * The Elementor instance.
+	 *
 	 * @return \Elementor\Plugin
 	 */
-
 	public static function elementor() {
 		return \Elementor\Plugin::$instance;
 	}
 
 	/**
+	 * The Plugin instance.
+	 *
 	 * @return Plugin
 	 */
 	public static function instance() {
@@ -105,6 +123,11 @@ class Plugin {
 		return self::$_instance;
 	}
 
+	/**
+	 * Autoload class.
+	 *
+	 * @param mixed $class The class that needs to be autoloaded.
+	 */
 	public function autoload( $class ) {
 		if ( 0 !== strpos( $class, __NAMESPACE__ ) ) {
 			return;
@@ -115,39 +138,42 @@ class Plugin {
 		if ( ! class_exists( $class_to_load ) ) {
 			$filename = strtolower(
 				preg_replace(
-					[ '/^' . __NAMESPACE__ . '\\\/', '/([a-z])([A-Z])/', '/_/', '/\\\/' ],
-					[ '', '$1-$2', '-', DIRECTORY_SEPARATOR ],
+					array( '/^' . __NAMESPACE__ . '\\\/', '/([a-z])([A-Z])/', '/_/', '/\\\/' ),
+					array( '', '$1-$2', '-', DIRECTORY_SEPARATOR ),
 					$class_to_load
 				)
 			);
 			$filename = MAS_ELEMENTOR_PATH . $filename . '.php';
 
 			if ( is_readable( $filename ) ) {
-				include( $filename );
+				include $filename;
 			}
 		}
 	}
 
+	/**
+	 * Enqueue styles used by the plugin.
+	 */
 	public function enqueue_styles() {}
 
+	/**
+	 * Enqueue frontend scripts used by the plugin.
+	 */
 	public function enqueue_frontend_scripts() {}
 
+	/**
+	 * Register frontend scripts used by the plugin.
+	 */
 	public function register_frontend_scripts() {}
 
+	/**
+	 * Register preview scripts used by the plugin.
+	 */
 	public function register_preview_scripts() {}
 
-	public function get_responsive_stylesheet_templates( $templates ) {
-		$templates_paths = glob( $this->get_responsive_templates_path() . '*.css' );
-
-		foreach ( $templates_paths as $template_path ) {
-			$file_name = 'custom-pro-' . basename( $template_path );
-
-			$templates[ $file_name ] = $template_path;
-		}
-
-		return $templates;
-	}
-
+	/**
+	 * Run on elementor init.
+	 */
 	public function on_elementor_init() {
 		$this->modules_manager = new Modules_Manager();
 
@@ -163,69 +189,56 @@ class Plugin {
 	}
 
 	/**
-	 * @param \Elementor\Core\Base\Document $document
+	 * Add meta information to the documentation about MAS Elementor.
+	 *
+	 * @param \Elementor\Core\Base\Document $document The Elementor document instance.
 	 */
 	public function on_document_save_version( $document ) {
 		$document->update_meta( '_mas_elementor_version', MAS_ELEMENTOR_VERSION );
 	}
 
-	private function get_frontend_depends() {
-		$frontend_depends = [
-			'mas-elementor-webpack-runtime',
-			'elementor-frontend-modules',
-		];
-
-		if ( ! $this->is_assets_loader_exist() ) {
-			$frontend_depends[] = 'elementor-sticky';
-		}
-
-		return $frontend_depends;
-	}
-
-	private function get_responsive_templates_path() {
-		return MAS_ELEMENTOR_ASSETS_PATH . 'css/templates/';
-	}
-
-	private function add_subscription_template_access_level_to_settings( $settings ) {
-		// Core >= 3.2.0
-		if ( isset( $settings['library_connect']['current_access_level'] ) ) {
-			$settings['library_connect']['current_access_level'] = API::get_library_access_level();
-		}
-
-		return $settings;
-	}
-
+	/**
+	 * Setup hooks.
+	 */
 	private function setup_hooks() {
-		add_action( 'elementor/init', [ $this, 'on_elementor_init' ] );
+		add_action( 'elementor/init', array( $this, 'on_elementor_init' ) );
 
-		add_action( 'elementor/frontend/before_register_scripts', [ $this, 'register_frontend_scripts' ] );
-		add_action( 'elementor/preview/enqueue_scripts', [ $this, 'register_preview_scripts' ] );
+		add_action( 'elementor/frontend/before_register_scripts', array( $this, 'register_frontend_scripts' ) );
+		add_action( 'elementor/preview/enqueue_scripts', array( $this, 'register_preview_scripts' ) );
 
-		add_action( 'elementor/frontend/before_enqueue_scripts', [ $this, 'enqueue_frontend_scripts' ] );
-		add_action( 'elementor/frontend/after_enqueue_styles', [ $this, 'enqueue_styles' ] );
+		add_action( 'elementor/frontend/before_enqueue_scripts', array( $this, 'enqueue_frontend_scripts' ) );
+		add_action( 'elementor/frontend/after_enqueue_styles', array( $this, 'enqueue_styles' ) );
 
-		add_filter( 'elementor/core/responsive/get_stylesheet_templates', [ $this, 'get_responsive_stylesheet_templates' ] );
-		add_action( 'elementor/document/save_version', [ $this, 'on_document_save_version' ] );
-
-		add_filter( 'elementor/editor/localize_settings', function ( $settings ) {
-			return $this->add_subscription_template_access_level_to_settings( $settings );
-		}, 11 /** After Elementor Core (Library) */ );
+		add_action( 'elementor/document/save_version', array( $this, 'on_document_save_version' ) );
 	}
 
+	/**
+	 * Check if optimized CSS mode is enabled
+	 *
+	 * @return bool
+	 */
 	private function is_optimized_css_mode() {
 		$is_optimized_css_loading = self::elementor()->experiments->is_feature_active( 'e_optimized_css_loading' );
 
 		return ! Utils::is_script_debug() && $is_optimized_css_loading && ! self::elementor()->preview->is_preview_mode();
 	}
 
+	/**
+	 * Get the assets
+	 *
+	 * @return array
+	 */
 	private function get_assets() {
 		$suffix = $this->get_assets_suffix();
 
-		return [
-			'scripts' => [],
-		];
+		return array(
+			'scripts' => array(),
+		);
 	}
 
+	/**
+	 * Register the assets.
+	 */
 	private function register_assets() {
 		$assets = $this->get_assets();
 
@@ -234,6 +247,11 @@ class Plugin {
 		}
 	}
 
+	/**
+	 * Does assets loader exists.
+	 *
+	 * @return bool|Assets_Loader
+	 */
 	private function is_assets_loader_exist() {
 		return ! ! self::elementor()->assets_loader;
 	}
@@ -242,25 +260,25 @@ class Plugin {
 	 * Plugin constructor.
 	 */
 	private function __construct() {
-		spl_autoload_register( [ $this, 'autoload' ] );
+		spl_autoload_register( array( $this, 'autoload' ) );
 
 		$this->setup_hooks();
-
-		$this->editor = new Editor();
-
-		$this->preview = new Preview();
-
-		$this->app = new App();
-
-		if ( is_admin() ) {
-			$this->admin = new Admin();
-		}
 	}
 
+	/**
+	 * Get assets suffix.
+	 *
+	 * @return string
+	 */
 	private function get_assets_suffix() {
 		return defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
 	}
 
+	/**
+	 * Get the title
+	 *
+	 * @return string
+	 */
 	final public static function get_title() {
 		return esc_html__( 'MAS Elementor', 'mas-elementor' );
 	}

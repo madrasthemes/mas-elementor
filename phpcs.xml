@@ -12,6 +12,12 @@
 	<exclude-pattern>includes/libraries/</exclude-pattern>
 	<exclude-pattern>tests/*.php</exclude-pattern>
 
+	<!-- Rules -->
+	<rule ref="WooCommerce-Core" />
+	<rule ref="WordPress-Extra">
+		<exclude name="WordPress.Files.FileName.InvalidClassFileName" />
+	</rule>
+
 	<rule ref="WordPress.WP.DeprecatedFunctions">
 		<properties>
 			<property name="minimum_supported_version" value="4.7" />
