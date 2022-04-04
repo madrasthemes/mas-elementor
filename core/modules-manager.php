@@ -29,7 +29,9 @@ final class Modules_Manager {
 	 * Instantiate the class.
 	 */
 	public function __construct() {
-		$modules = array();
+		$modules = array(
+			'multipurpose-text',
+		);
 
 		foreach ( $modules as $module_name ) {
 			$class_name = str_replace( '-', ' ', $module_name );
