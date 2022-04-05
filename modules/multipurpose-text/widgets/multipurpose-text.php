@@ -411,28 +411,6 @@ class Multipurpose_Text extends Base_Widget {
 	}
 
 	/**
-	 * Render Icon.
-	 *
-	 * @param array $settings the widget settings.
-	 * @return void
-	 */
-	protected function render_icon( $settings ) {
-
-		$has_icon = ! empty( $settings['icon'] );
-
-		if ( ! $has_icon && ! empty( $settings['selected_icon']['value'] ) ) {
-			$has_icon = true;
-		}
-
-		if ( $has_icon ) : ?>
-			<span class="elementor-icon-box-icon">
-				<?php Icons_Manager::render_icon( $settings['selected_icon'], array( 'aria-hidden' => 'true' ) ); ?>
-			</span>
-			<?php
-		endif;
-	}
-
-	/**
 	 * Render.
 	 *
 	 * @return void

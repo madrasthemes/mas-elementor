@@ -31,7 +31,7 @@ abstract class Skin_Base extends Elementor_Skin_Base {
 	 *
 	 * @var string
 	 */
-	protected $current_permalink;
+	public $current_permalink;
 
 	/**
 	 * Register control actions
@@ -60,23 +60,23 @@ abstract class Skin_Base extends Elementor_Skin_Base {
 	public function register_controls( Widget_Base $widget ) {
 		$this->parent = $widget;
 
-		$this->register_columns_controls();
+		// $this->register_columns_controls();
 		$this->register_post_count_control();
-		$this->register_thumbnail_controls();
-		$this->register_title_controls();
-		$this->register_excerpt_controls();
-		$this->register_meta_data_controls();
-		$this->register_read_more_controls();
-		$this->register_link_controls();
+		// $this->register_thumbnail_controls();
+		// $this->register_title_controls();
+		// $this->register_excerpt_controls();
+		// $this->register_meta_data_controls();
+		// $this->register_read_more_controls();
+		// $this->register_link_controls();
 	}
 
 	/**
 	 * Register Design controls for the skin.
 	 */
 	public function register_design_controls() {
-		$this->register_design_layout_controls();
-		$this->register_design_image_controls();
-		$this->register_design_content_controls();
+		// $this->register_design_layout_controls();
+		// $this->register_design_image_controls();
+		// $this->register_design_content_controls();
 	}
 
 	/**
@@ -228,6 +228,20 @@ abstract class Skin_Base extends Elementor_Skin_Base {
 	 * Register Post Count controls for the skin.
 	 */
 	protected function register_post_count_control() {
+
+		$this->add_control(
+			'skin_template',
+			array(
+				'label'   => __( 'Styles', 'mas-elementor' ),
+				'type'    => Controls_Manager::SELECT,
+				'options' => array(
+					'post-classic' => 'Post Classic',
+					'post-grid'    => 'Post Grid',
+				),
+				'default' => 'post-classic',
+			)
+		);
+
 		$this->add_control(
 			'posts_per_page',
 			array(
@@ -860,7 +874,7 @@ abstract class Skin_Base extends Elementor_Skin_Base {
 			return;
 		}
 
-		$this->render_loop_header();
+		echo $this->render_loop_header(); //phpcs:ignore
 
 		// It's the global `wp_query` it self. and the loop was started from the theme.
 		if ( $query->in_the_loop ) {
@@ -877,8 +891,8 @@ abstract class Skin_Base extends Elementor_Skin_Base {
 
 		wp_reset_postdata();
 
-		$this->render_loop_footer();
-
+		echo $this->render_loop_footer(); //phpcs:ignore
+		$this->render_mas_pagination();
 	}
 
 	/**
@@ -905,136 +919,9 @@ abstract class Skin_Base extends Elementor_Skin_Base {
 	}
 
 	/**
-	 * Render Thumbnail.
-	 */
-	protected function render_thumbnail() {
-		$thumbnail = $this->get_instance_value( 'thumbnail' );
-
-		if ( 'none' === $thumbnail && ! Plugin::elementor()->editor->is_edit_mode() ) {
-			return;
-		}
-
-		$settings                 = $this->parent->get_settings();
-		$setting_key              = $this->get_instance_value( 'thumbnail_size' );
-		$settings[ $setting_key ] = array(
-			'id' => get_post_thumbnail_id(),
-		);
-		$thumbnail_html           = Group_Control_Image_Size::get_attachment_image_html( $settings, $setting_key );
-
-		if ( empty( $thumbnail_html ) ) {
-			return;
-		}
-
-		$optional_attributes_html = $this->get_optional_link_attributes_html();
-
-		?>
-		<a class="elementor-post__thumbnail__link" href="<?php echo esc_url( $this->current_permalink ); ?>" <?php echo esc_attr( $optional_attributes_html ); ?>>
-			<div class="elementor-post__thumbnail"><?php echo wp_kses_post( $thumbnail_html ); ?></div>
-		</a>
-		<?php
-	}
-
-	/**
-	 * Render Title.
-	 */
-	protected function render_title() {
-		if ( ! $this->get_instance_value( 'show_title' ) ) {
-			return;
-		}
-
-		$optional_attributes_html = $this->get_optional_link_attributes_html();
-
-		$tag = $this->get_instance_value( 'title_tag' );
-		?>
-		<<?php echo esc_html( $tag ); ?> class="elementor-post__title">
-			<a href="<?php echo esc_url( $this->current_permalink ); ?>" <?php echo esc_attr( $optional_attributes_html ); ?>>
-				<?php the_title(); ?>
-			</a>
-		</<?php echo esc_html( $tag ); ?>>
-		<?php
-	}
-
-	/**
-	 * Render Excerpt.
-	 */
-	protected function render_excerpt() {
-		add_filter( 'excerpt_more', array( $this, 'filter_excerpt_more' ), 20 );
-		add_filter( 'excerpt_length', array( $this, 'filter_excerpt_length' ), 20 );
-
-		if ( ! $this->get_instance_value( 'show_excerpt' ) ) {
-			return;
-		}
-
-		add_filter( 'excerpt_more', array( $this, 'filter_excerpt_more' ), 20 );
-		add_filter( 'excerpt_length', array( $this, 'filter_excerpt_length' ), 20 );
-
-		?>
-		<div class="elementor-post__excerpt">
-			<?php the_excerpt(); ?>
-		</div>
-		<?php
-
-		remove_filter( 'excerpt_length', array( $this, 'filter_excerpt_length' ), 20 );
-		remove_filter( 'excerpt_more', array( $this, 'filter_excerpt_more' ), 20 );
-	}
-
-	/**
-	 * Render Read More.
-	 */
-	protected function render_read_more() {
-		if ( ! $this->get_instance_value( 'show_read_more' ) ) {
-			return;
-		}
-
-		$optional_attributes_html = $this->get_optional_link_attributes_html();
-
-		?>
-			<a class="elementor-post__read-more" href="<?php echo esc_url( $this->current_permalink ); ?>" <?php echo esc_attr( $optional_attributes_html ); ?>>
-				<?php echo wp_kses_post( $this->get_instance_value( 'read_more_text' ) ); ?>
-			</a>
-		<?php
-	}
-
-	/**
-	 * Render Post Header.
-	 */
-	protected function render_post_header() {
-		?>
-		<article <?php post_class( array( 'elementor-post elementor-grid-item' ) ); ?>>
-		<?php
-	}
-
-	/**
-	 * Render Post Footer.
-	 */
-	protected function render_post_footer() {
-		?>
-		</article>
-		<?php
-	}
-
-	/**
-	 * Render Text Header.
-	 */
-	protected function render_text_header() {
-		?>
-		<div class="elementor-post__text">
-		<?php
-	}
-
-	/**
-	 * Render Text Footer.
-	 */
-	protected function render_text_footer() {
-		?>
-		</div>
-		<?php
-	}
-
-	/**
 	 * Render Loop Header.
 	 */
-	protected function render_loop_header() {
+	public function render_loop_header() {
 		$classes = array(
 			'elementor-posts-container',
 			'elementor-posts',
@@ -1055,19 +942,23 @@ abstract class Skin_Base extends Elementor_Skin_Base {
 			)
 		);
 
-		?>
-		<div <?php $this->parent->print_render_attribute_string( 'container' ); ?>>
-		<?php
+		return '<div ' . $this->parent->get_render_attribute_string( 'container' ) . '>';
+
 	}
 
 	/**
 	 * Render Loop Footer.
 	 */
-	protected function render_loop_footer() {
-		?>
-		</div>
-		<?php
+	public function render_loop_footer() {
 
+		return apply_filters( 'post_classic_template_loop_after', '</div>' );
+
+	}
+
+	/**
+	 * Render Post.
+	 */
+	public function render_mas_pagination() {
 		$parent_settings = $this->parent->get_settings();
 		if ( '' === $parent_settings['pagination_type'] ) {
 			return;
@@ -1126,115 +1017,29 @@ abstract class Skin_Base extends Elementor_Skin_Base {
 	}
 
 	/**
-	 * Render Meta Data.
-	 */
-	protected function render_meta_data() {
-		$settings = $this->get_instance_value( 'meta_data' );
-		if ( empty( $settings ) ) {
-			return;
-		}
-		?>
-		<div class="elementor-post__meta-data">
-			<?php
-			if ( in_array( 'author', $settings, true ) ) {
-				$this->render_author();
-			}
-
-			if ( in_array( 'date', $settings, true ) ) {
-				$this->render_date_by_type();
-			}
-
-			if ( in_array( 'time', $settings, true ) ) {
-				$this->render_time();
-			}
-
-			if ( in_array( 'comments', $settings, true ) ) {
-				$this->render_comments();
-			}
-			if ( in_array( 'modified', $settings, true ) ) {
-				$this->render_date_by_type( 'modified' );
-			}
-			?>
-		</div>
-		<?php
-	}
-
-	/**
-	 * Render Author.
-	 */
-	protected function render_author() {
-		?>
-		<span class="elementor-post-author">
-			<?php the_author(); ?>
-		</span>
-		<?php
-	}
-
-	/**
-	 * Render Date
-	 */
-	protected function render_date() {
-		$this->render_date_by_type();
-	}
-
-	/**
-	 * Render Date By Type.
-	 *
-	 * @param string $type type.
-	 */
-	protected function render_date_by_type( $type = 'publish' ) {
-		?>
-		<span class="elementor-post-date">
-			<?php
-			switch ( $type ) :
-				case 'modified':
-					$date = get_the_modified_date();
-					break;
-				default:
-					$date = get_the_date();
-			endswitch;
-			/** This filter is documented in wp-includes/general-template.php */
-			echo apply_filters( 'the_date', $date, get_option( 'date_format' ), '', '' ); //phpcs:ignore
-			?>
-		</span>
-		<?php
-	}
-
-	/**
-	 * Render Time.
-	 */
-	protected function render_time() {
-		?>
-		<span class="elementor-post-time">
-			<?php the_time(); ?>
-		</span>
-		<?php
-	}
-
-	/**
-	 * Render Comments.
-	 */
-	protected function render_comments() {
-		?>
-		<span class="elementor-post-avatar">
-			<?php comments_number(); ?>
-		</span>
-		<?php
-	}
-
-	/**
 	 * Render Post.
 	 */
-	protected function render_post() {
-		$this->render_post_header();
-		$this->render_thumbnail();
-		$this->render_text_header();
-		$this->render_title();
-		$this->render_meta_data();
-		$this->render_excerpt();
-		$this->render_read_more();
-		$this->render_text_footer();
-		$this->render_post_footer();
+	public function render_post() {
+		// $this->render_post_header();
+		// $this->render_thumbnail();
+		// $this->render_text_header();
+		// $this->render_title();
+		// $this->render_meta_data();
+		// $this->render_excerpt();
+		// $this->render_read_more();
+		// $this->render_text_footer();
+		// $this->render_post_footer();
+		$template       = $this->get_instance_value( 'skin_template' );
+		$template_hooks = str_replace( '-', '_', $template );
+		$filter         = $template_hooks . '_template_args';
+		$args           = apply_filters(
+			$filter,
+			array(
+				'widget' => $this->parent,
+				'skin'   => $this,
+			)
+		);
+		mas_elementor_get_template( 'widgets/' . $template . '.php', $args );
 	}
 
 	/**
