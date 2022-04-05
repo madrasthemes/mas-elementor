@@ -31,6 +31,8 @@ final class Modules_Manager {
 	public function __construct() {
 		$modules = array(
 			'multipurpose-text',
+			'posts',
+			'query-control',
 		);
 
 		foreach ( $modules as $module_name ) {

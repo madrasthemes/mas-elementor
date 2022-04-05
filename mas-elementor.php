@@ -1,5 +1,11 @@
 <?php
 /**
+ * The MAS Elementor Plugin.
+ *
+ * @package mas-elementor
+ */
+
+/**
  * Plugin Name: MAS Addons for Elementor
  * Description: More power to your Elementor powered website with beautifully designed sections, templates, widgets, skins and extensions.
  * Plugin URI: https://madrasthemes.com/
@@ -59,11 +65,20 @@ function mas_elementor_load_plugin() {
 
 add_action( 'plugins_loaded', 'mas_elementor_load_plugin' );
 
+/**
+ * Print Error.
+ *
+ * @since 1.0.0
+ *
+ * @param string $message Message.
+ *
+ * @return void
+ */
 function mas_elementor_print_error( $message ) {
 	if ( ! $message ) {
 		return;
 	}
-	// PHPCS - $message should not be escaped
+	// PHPCS - $message should not be escaped.
 	echo '<div class="error">' . $message . '</div>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 }
 /**
@@ -88,7 +103,7 @@ function mas_elementor_fail_load() {
 
 		$activation_url = wp_nonce_url( 'plugins.php?action=activate&amp;plugin=' . $plugin . '&amp;plugin_status=all&amp;paged=1&amp;s', 'activate-plugin_' . $plugin );
 
-		$message = '<h3>' . esc_html__( 'Activate the Elementor Plugin', 'mas-elementor' ) . '</h3>';
+		$message  = '<h3>' . esc_html__( 'Activate the Elementor Plugin', 'mas-elementor' ) . '</h3>';
 		$message .= '<p>' . esc_html__( 'Before you can use all the features of MAS Addons for Elementor, you need to activate the Elementor plugin first.', 'mas-elementor' ) . '</p>';
 		$message .= '<p>' . sprintf( '<a href="%s" class="button-primary">%s</a>', $activation_url, esc_html__( 'Activate Now', 'mas-elementor' ) ) . '</p>';
 	} else {
@@ -98,7 +113,7 @@ function mas_elementor_fail_load() {
 
 		$install_url = wp_nonce_url( self_admin_url( 'update.php?action=install-plugin&plugin=elementor' ), 'install-plugin_elementor' );
 
-		$message = '<h3>' . esc_html__( 'Install and Activate the Elementor Plugin', 'mas-elementor' ) . '</h3>';
+		$message  = '<h3>' . esc_html__( 'Install and Activate the Elementor Plugin', 'mas-elementor' ) . '</h3>';
 		$message .= '<p>' . esc_html__( 'Before you can use all the features of MAS Addons for Elementor, you need to install and activate the Elementor plugin first.', 'mas-elementor' ) . '</p>';
 		$message .= '<p>' . sprintf( '<a href="%s" class="button-primary">%s</a>', $install_url, esc_html__( 'Install Elementor', 'mas-elementor' ) ) . '</p>';
 	}
@@ -106,6 +121,13 @@ function mas_elementor_fail_load() {
 	mas_elementor_print_error( $message );
 }
 
+/**
+ * Fail Out of Date.
+ *
+ * @since 1.0.0
+ *
+ * @return void
+ */
 function mas_elementor_fail_load_out_of_date() {
 	if ( ! current_user_can( 'update_plugins' ) ) {
 		return;
@@ -114,12 +136,19 @@ function mas_elementor_fail_load_out_of_date() {
 	$file_path = 'elementor/elementor.php';
 
 	$upgrade_link = wp_nonce_url( self_admin_url( 'update.php?action=upgrade-plugin&plugin=' ) . $file_path, 'upgrade-plugin_' . $file_path );
-	$message = '<p>' . esc_html__( 'MAS Addons for Elementor is not working because you are using an old version of Elementor.', 'mas-elementor' ) . '</p>';
-	$message .= '<p>' . sprintf( '<a href="%s" class="button-primary">%s</a>', $upgrade_link, esc_html__( 'Update Elementor Now', 'mas-elementor' ) ) . '</p>';
+	$message      = '<p>' . esc_html__( 'MAS Addons for Elementor is not working because you are using an old version of Elementor.', 'mas-elementor' ) . '</p>';
+	$message     .= '<p>' . sprintf( '<a href="%s" class="button-primary">%s</a>', $upgrade_link, esc_html__( 'Update Elementor Now', 'mas-elementor' ) ) . '</p>';
 
 	mas_elementor_print_error( $message );
 }
 
+/**
+ * Upgrade Recommendation.
+ *
+ * @since 1.0.0
+ *
+ * @return void
+ */
 function mas_elementor_admin_notice_upgrade_recommendation() {
 	if ( ! current_user_can( 'update_plugins' ) ) {
 		return;
@@ -128,18 +157,144 @@ function mas_elementor_admin_notice_upgrade_recommendation() {
 	$file_path = 'elementor/elementor.php';
 
 	$upgrade_link = wp_nonce_url( self_admin_url( 'update.php?action=upgrade-plugin&plugin=' ) . $file_path, 'upgrade-plugin_' . $file_path );
-	$message = '<p>' . esc_html__( 'A new version of Elementor is available. For better performance and compatibility of MAS Addons for Elementor, we recommend updating to the latest version.', 'mas-elementor' ) . '</p>';
-	$message .= '<p>' . sprintf( '<a href="%s" class="button-primary">%s</a>', $upgrade_link, esc_html__( 'Update Elementor Now', 'mas-elementor' ) ) . '</p>';
+	$message      = '<p>' . esc_html__( 'A new version of Elementor is available. For better performance and compatibility of MAS Addons for Elementor, we recommend updating to the latest version.', 'mas-elementor' ) . '</p>';
+	$message     .= '<p>' . sprintf( '<a href="%s" class="button-primary">%s</a>', $upgrade_link, esc_html__( 'Update Elementor Now', 'mas-elementor' ) ) . '</p>';
 
 	mas_elementor_print_error( $message );
 }
 
 if ( ! function_exists( '_is_elementor_installed' ) ) {
 
+	/**
+	 * Elementor Install Check.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @return string
+	 */
 	function _is_elementor_installed() {
-		$file_path = 'elementor/elementor.php';
+		$file_path         = 'elementor/elementor.php';
 		$installed_plugins = get_plugins();
 
 		return isset( $installed_plugins[ $file_path ] );
 	}
+}
+
+/**
+ * Get other templates (e.g. product attributes) passing attributes and including the file.
+ *
+ * @param string $template_name Template name.
+ * @param array  $args          Arguments. (default: array).
+ * @param string $template_path Template path. (default: '').
+ * @param string $default_path  Default path. (default: '').
+ */
+function mas_elementor_elementor_get_template( $template_name, $args = array(), $template_path = '', $default_path = '' ) {
+	global $mas_elementor_version;
+	$cache_key = sanitize_key( implode( '-', array( 'template', $template_name, $template_path, $default_path, $mas_elementor_version ) ) );
+	$template  = (string) wp_cache_get( $cache_key, 'mas-elementor' );
+
+	if ( ! $template ) {
+		$template = mas_elementor_locate_template( $template_name, $template_path, $default_path );
+
+		// Don't cache the absolute path so that it can be shared between web servers with different paths.
+		$cache_path = mas_elementor_tokenize_path( $template, mas_elementor_get_path_define_tokens() );
+
+		mas_elementor_set_template_cache( $cache_key, $cache_path );
+	} else {
+		// Make sure that the absolute path to the template is resolved.
+		$template = mas_elementor_untokenize_path( $template, mas_elementor_get_path_define_tokens() );
+	}
+
+	// Allow 3rd party plugin filter template file from their plugin.
+	$filter_template = apply_filters( 'mas_elementor_get_template', $template, $template_name, $args, $template_path, $default_path );
+
+	if ( $filter_template !== $template ) {
+		if ( ! file_exists( $filter_template ) ) {
+			/* translators: %s template */
+			_doing_it_wrong( __FUNCTION__, sprintf( esc_html__( '%s does not exist.', 'mas-elementor' ), '<code>' . esc_html( $filter_template ) . '</code>' ), '2.1' );
+			return;
+		}
+		$template = $filter_template;
+	}
+
+	$action_args = array(
+		'template_name' => $template_name,
+		'template_path' => $template_path,
+		'located'       => $template,
+		'args'          => $args,
+	);
+
+	if ( ! empty( $args ) && is_array( $args ) ) {
+		if ( isset( $args['action_args'] ) ) {
+			_doing_it_wrong(
+				__FUNCTION__,
+				esc_html__( 'action_args should not be overwritten when calling mas_elementor_get_template.', 'mas-elementor' ),
+				'3.6.0'
+			);
+			unset( $args['action_args'] );
+		}
+		extract( $args ); // @codingStandardsIgnoreLine
+	}
+
+	do_action( 'mas_elementor_before_template_part', $action_args['template_name'], $action_args['template_path'], $action_args['located'], $action_args['args'] );
+
+	include $action_args['located'];
+
+	do_action( 'mas_elementor_after_template_part', $action_args['template_name'], $action_args['template_path'], $action_args['located'], $action_args['args'] );
+}
+
+/**
+ * Locate a template and return the path for inclusion.
+ *
+ * This is the load order:
+ *
+ * yourtheme/$template_path/$template_name
+ * yourtheme/$template_name
+ * $default_path/$template_name
+ *
+ * @param string $template_name Template name.
+ * @param string $template_path Template path. (default: '').
+ * @param string $default_path  Default path. (default: '').
+ * @return string
+ */
+function mas_elementor_locate_template( $template_name, $template_path = '', $default_path = '' ) {
+	if ( ! $template_path ) {
+		$template_path = 'templates/';
+	}
+
+	if ( ! $default_path ) {
+		$default_path = 'templates/';
+	}
+
+	// Look within passed path within the theme - this is priority.
+	if ( false !== strpos( $template_name, 'product_cat' ) || false !== strpos( $template_name, 'product_tag' ) ) {
+		$cs_template = str_replace( '_', '-', $template_name );
+		$template    = locate_template(
+			array(
+				trailingslashit( $template_path ) . $cs_template,
+				$cs_template,
+			)
+		);
+	}
+
+	if ( empty( $template ) ) {
+		$template = locate_template(
+			array(
+				trailingslashit( $template_path ) . $template_name,
+				$template_name,
+			)
+		);
+	}
+
+	// Get default template/.
+	if ( ! $template ) {
+		if ( empty( $cs_template ) ) {
+			$template = $default_path . $template_name;
+		} else {
+			$template = $default_path . $cs_template;
+		}
+	}
+
+	// Return what we found.
+	return apply_filters( 'mas_elementor_locate_template', $template, $template_name, $template_path );
 }
