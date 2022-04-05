@@ -188,7 +188,7 @@ if ( ! function_exists( '_is_elementor_installed' ) ) {
  * @param string $template_path Template path. (default: '').
  * @param string $default_path  Default path. (default: '').
  */
-function mas_elementor_elementor_get_template( $template_name, $args = array(), $template_path = '', $default_path = '' ) {
+function mas_elementor_get_template( $template_name, $args = array(), $template_path = '', $default_path = '' ) {
 	global $mas_elementor_version;
 	$cache_key = sanitize_key( implode( '-', array( 'template', $template_name, $template_path, $default_path, $mas_elementor_version ) ) );
 	$template  = (string) wp_cache_get( $cache_key, 'mas-elementor' );
@@ -298,3 +298,101 @@ function mas_elementor_locate_template( $template_name, $template_path = '', $de
 	// Return what we found.
 	return apply_filters( 'mas_elementor_locate_template', $template, $template_name, $template_path );
 }
+
+/**
+ * Given a tokenized path, this will expand the tokens to their full path.
+ *
+ * @param string $path The absolute path to expand.
+ * @param array  $path_tokens An array keyed with the token, containing paths that should be expanded.
+ * @return string The absolute path.
+ */
+function mas_elementor_untokenize_path( $path, $path_tokens ) {
+	foreach ( $path_tokens as $token => $token_path ) {
+		$path = str_replace( '{{' . $token . '}}', $token_path, $path );
+	}
+
+	return $path;
+}
+
+/**
+ * Given a path, this will convert any of the subpaths into their corresponding tokens.
+ *
+ * @param string $path The absolute path to tokenize.
+ * @param array  $path_tokens An array keyed with the token, containing paths that should be replaced.
+ * @return string The tokenized path.
+ */
+function mas_elementor_tokenize_path( $path, $path_tokens ) {
+	// Order most to least specific so that the token can encompass as much of the path as possible.
+	uasort(
+		$path_tokens,
+		function ( $a, $b ) {
+			$a = strlen( $a );
+			$b = strlen( $b );
+
+			if ( $a > $b ) {
+				return -1;
+			}
+
+			if ( $b > $a ) {
+				return 1;
+			}
+
+			return 0;
+		}
+	);
+
+	foreach ( $path_tokens as $token => $token_path ) {
+		if ( 0 !== strpos( $path, $token_path ) ) {
+			continue;
+		}
+
+		$path = str_replace( $token_path, '{{' . $token . '}}', $path );
+	}
+
+	return $path;
+}
+
+/**
+ * Fetches an array containing all of the configurable path constants to be used in tokenization.
+ *
+ * @return array The key is the define and the path is the constant.
+ */
+function mas_elementor_get_path_define_tokens() {
+	$defines = array(
+		'ABSPATH',
+		'WP_CONTENT_DIR',
+		'WP_PLUGIN_DIR',
+		'WPMU_PLUGIN_DIR',
+		// 'PLUGINDIR',
+		'WP_THEME_DIR',
+	);
+
+	$path_tokens = array();
+	foreach ( $defines as $define ) {
+		if ( defined( $define ) ) {
+			$path_tokens[ $define ] = constant( $define );
+		}
+	}
+
+	return apply_filters( 'mas_elementor_get_path_define_tokens', $path_tokens );
+}
+
+/**
+ * Add a template to the template cache.
+ *
+ * @param string $cache_key Object cache key.
+ * @param string $template Located template.
+ */
+function mas_elementor_set_template_cache( $cache_key, $template ) {
+	wp_cache_set( $cache_key, $template, 'mas_elementor' );
+
+	$cached_templates = wp_cache_get( 'cached_templates', 'mas_elementor' );
+	if ( is_array( $cached_templates ) ) {
+		$cached_templates[] = $cache_key;
+	} else {
+		$cached_templates = array( $cache_key );
+	}
+
+	wp_cache_set( 'cached_templates', $cached_templates, 'mas_elementor' );
+}
+
