@@ -438,67 +438,6 @@ class Multipurpose_Text extends Base_Widget {
 	 * @return void
 	 */
 	protected function render() {
-		$settings = $this->get_settings_for_display();
-
-		if ( '' === $settings['highlighted_text'] && '' === $settings['before_title'] ) {
-			return;
-		}
-
-		$this->add_render_attribute( 'title', 'class', 'mas-elementor-multipurpose-text__title' );
-
-		if ( ! empty( $settings['title_css'] ) ) {
-			$this->add_render_attribute( 'title', 'class', $settings['title_css'] );
-		}
-
-		$this->add_render_attribute( 'highlight', 'class', 'mas-elementor-multipurpose-text__highlighted-text' );
-
-		if ( ! empty( $settings['highlighted_css'] ) ) {
-			$this->add_render_attribute( 'highlight', 'class', $settings['highlighted_css'] );
-		}
-
-		if ( ! empty( $settings['highlighted_text'] ) ) {
-			$highlighted_text = '<span ' . $this->get_render_attribute_string( 'highlight' ) . '>' . $settings['highlighted_text'] . '</span>';
-		} else {
-			$highlighted_text = '';
-		}
-
-		/**
-		 * Wrap before text.
-		 */
-		$before_text = '';
-		$this->add_render_attribute( 'before_text', 'class', 'mas-multipurpose-text__before' );
-		if ( ! empty( $settings['before_css'] ) ) {
-			$this->add_render_attribute( 'before_text', 'class', $settings['before_css'] );
-		}
-
-		if ( ! empty( $settings['before_title'] ) ) {
-			$before_text = '<span ' . $this->get_render_attribute_string( 'before_text' ) . '>' . $settings['before_title'] . '</span>';
-		}
-
-		/**
-		 * Wrap After text.
-		 */
-		$after_text = '';
-		$this->add_render_attribute( 'after_text', 'class', 'mas-multipurpose-text__before' );
-		if ( ! empty( $settings['after_css'] ) ) {
-			$this->add_render_attribute( 'after_text', 'class', $settings['after_css'] );
-		}
-
-		if ( ! empty( $settings['after_title'] ) ) {
-			$after_text = '<span ' . $this->get_render_attribute_string( 'after_text' ) . '>' . $settings['after_title'] . '</span>';
-		}
-
-		$title = $before_text . $highlighted_text . $after_text;
-
-		if ( ! empty( $settings['link']['url'] ) ) {
-			$this->add_link_attributes( 'url', $settings['link'] );
-			$this->add_render_attribute( 'url', 'class', array( 'text-decoration-none', $settings['link_css'] ) );
-
-			$title = sprintf( '<a %1$s>%2$s</a>', $this->get_render_attribute_string( 'url' ), $title );
-		}
-
-		$title_html = sprintf( '<%1$s %2$s>%3$s</%1$s>', $settings['header_size'], $this->get_render_attribute_string( 'title' ), $title );
-
-		echo wp_kses_post( $title_html );
+		mas_elementor_get_template( 'widgets/multipurpose-text.php', array( 'widget' => $this ) );
 	}
 }
