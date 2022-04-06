@@ -230,19 +230,6 @@ abstract class Skin_Base extends Elementor_Skin_Base {
 	protected function register_post_count_control() {
 
 		$this->add_control(
-			'skin_template',
-			array(
-				'label'   => __( 'Styles', 'mas-elementor' ),
-				'type'    => Controls_Manager::SELECT,
-				'options' => array(
-					'post-classic' => 'Post Classic',
-					'post-grid'    => 'Post Grid',
-				),
-				'default' => 'post-classic',
-			)
-		);
-
-		$this->add_control(
 			'posts_per_page',
 			array(
 				'label'   => __( 'Posts Per Page', 'mas-elementor' ),
@@ -1020,17 +1007,9 @@ abstract class Skin_Base extends Elementor_Skin_Base {
 	 * Render Post.
 	 */
 	public function render_post() {
-		// $this->render_post_header();
-		// $this->render_thumbnail();
-		// $this->render_text_header();
-		// $this->render_title();
-		// $this->render_meta_data();
-		// $this->render_excerpt();
-		// $this->render_read_more();
-		// $this->render_text_footer();
-		// $this->render_post_footer();
-		$template       = $this->get_instance_value( 'skin_template' );
-		$template_hooks = str_replace( '-', '_', $template );
+		$settings       = $this->parent->get_settings_for_display();
+		$skin_name      = $settings['_skin'];
+		$template_hooks = str_replace( '-', '_', $skin_name );
 		$filter         = $template_hooks . '_template_args';
 		$args           = apply_filters(
 			$filter,
@@ -1039,7 +1018,7 @@ abstract class Skin_Base extends Elementor_Skin_Base {
 				'skin'   => $this,
 			)
 		);
-		mas_elementor_get_template( 'widgets/' . $template . '.php', $args );
+		mas_elementor_get_template( 'widgets/post-classic.php', $args );
 	}
 
 	/**

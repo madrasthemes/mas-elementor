@@ -17,7 +17,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Skin Classic
  */
-class Skin_Classic extends Skin_Base {
+class Skin_Grid extends Skin_Base {
 
 	/**
 	 * Get the id of the skin.
@@ -25,7 +25,7 @@ class Skin_Classic extends Skin_Base {
 	 * @return string
 	 */
 	public function get_id() {
-		return 'classic';
+		return 'mas-post-grid';
 	}
 
 	/**
@@ -34,7 +34,7 @@ class Skin_Classic extends Skin_Base {
 	 * @return string
 	 */
 	public function get_title() {
-		return __( 'Classic', 'mas-elementor' );
+		return __( 'Grid', 'mas-elementor' );
 	}
 
 	/**
@@ -52,7 +52,7 @@ class Skin_Classic extends Skin_Base {
 				'skin'   => $this,
 			)
 		);
-		mas_elementor_get_template( 'widgets/post-classic.php', $args );
+		mas_elementor_get_template( 'widgets/post-grid.php', $args );
 	}
 
 }
