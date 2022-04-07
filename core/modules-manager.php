@@ -33,6 +33,7 @@ final class Modules_Manager {
 			'multipurpose-text',
 			'posts',
 			'query-control',
+			'woocommerce',
 		);
 
 		foreach ( $modules as $module_name ) {
