@@ -34,6 +34,7 @@ final class Modules_Manager {
 			'posts',
 			'query-control',
 			'woocommerce',
+			// 'products'
 		);
 
 		foreach ( $modules as $module_name ) {

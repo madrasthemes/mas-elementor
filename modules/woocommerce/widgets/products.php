@@ -289,7 +289,7 @@ class Products extends Products_Base {
 
 		$this->register_query_controls();
 
-		parent::register_controls();
+		// parent::register_controls();.
 	}
 
 	/**
@@ -297,39 +297,13 @@ class Products extends Products_Base {
 	 *
 	 * @param array $settings settings of the widget.
 	 */
-	protected function get_shortcode_object( $settings ) {
+	public function get_shortcode_object( $settings ) {
 		if ( 'current_query' === $settings[ Products_Renderer::QUERY_CONTROL_NAME . '_post_type' ] ) {
 			$type = 'current_query';
 			return new Current_Query_Renderer( $settings, $type );
 		}
 		$type = 'products';
 		return new Products_Renderer( $settings, $type );
-	}
-
-	/**
-	 * Render
-	 */
-	protected function render() {
-		if ( WC()->session ) {
-			wc_print_notices();
-		}
-
-		// For Products_Renderer.
-		if ( ! isset( $GLOBALS['post'] ) ) {
-			$GLOBALS['post'] = null; // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
-		}
-
-		$settings = $this->get_settings();
-
-		$shortcode = $this->get_shortcode_object( $settings );
-
-		$content = $shortcode->get_content();
-
-		if ( $content ) {
-			echo $content; //phpcs:ignore
-		} elseif ( $this->get_settings( 'nothing_found_message' ) ) {
-			echo '<div class="elementor-nothing-found elementor-products-nothing-found">' . esc_html( $this->get_settings( 'nothing_found_message' ) ) . '</div>'; //phpcs:ignore
-		}
 	}
 
 	/**

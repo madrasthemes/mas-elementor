@@ -8,7 +8,6 @@
 namespace MASElementor\Modules\Woocommerce\Skins;
 
 use Elementor\Controls_Manager;
-use Elementor\Skin_Base;
 use Elementor\Widget_Base;
 use MASElementor\Modules\Woocommerce\Module;
 use MASElementor\Modules\Woocommerce\Widgets\Products;
@@ -41,42 +40,30 @@ class Skin_Classic extends Skin_Base {
 	}
 
 	/**
-	 * Render.
+	 * Render
 	 */
 	public function render() {
-		$this->parent->query_posts();
-
-		$query = $this->parent->get_query();
-
-		if ( ! $query->have_posts() ) {
-			return;
+		$widget = $this->parent;
+		if ( WC()->session ) {
+			wc_print_notices();
 		}
 
-		global $woocommerce_loop;
-
-		$woocommerce_loop['columns'] = (int) $this->get_instance_value( 'columns' );
-
-		Module::instance()->add_products_post_class_filter();
-
-		echo '<div class="woocommerce columns-' . $woocommerce_loop['columns'] . '">'; //phpcs:ignore
-
-		woocommerce_product_loop_start();
-
-		while ( $query->have_posts() ) {
-			$query->the_post();
-
-			wc_get_template_part( 'templates/contents/content', 'product-list' );
+		// For Products_Renderer.
+		if ( ! isset( $GLOBALS['post'] ) ) {
+			$GLOBALS['post'] = null; // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
 		}
 
-		woocommerce_product_loop_end();
+		$settings = $widget->get_settings();
 
-		woocommerce_reset_loop();
+		$shortcode = $widget->get_shortcode_object( $settings );
 
-		wp_reset_postdata();
+		$content = $shortcode->mas_product_classic();
 
-		echo '</div>';
-
-		Module::instance()->remove_products_post_class_filter();
+		if ( $content ) {
+			echo $content; //phpcs:ignore
+		} elseif ( $widget->get_settings( 'nothing_found_message' ) ) {
+			echo '<div class="elementor-nothing-found elementor-products-nothing-found">' . esc_html( $widget->get_settings( 'nothing_found_message' ) ) . '</div>'; //phpcs:ignore
+		}
 	}
 
 	/**

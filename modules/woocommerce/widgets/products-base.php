@@ -1046,4 +1046,31 @@ abstract class Products_Base extends Base_Widget {
 
 		$this->end_controls_section();
 	}
+
+	/**
+	 * Render
+	 */
+	protected function render() {
+		if ( WC()->session ) {
+			wc_print_notices();
+		}
+
+		// For Products_Renderer.
+		if ( ! isset( $GLOBALS['post'] ) ) {
+			$GLOBALS['post'] = null; // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
+		}
+
+		$settings = $this->get_settings();
+
+		$shortcode = $this->get_shortcode_object( $settings );
+
+		$content = $shortcode->get_content();
+
+		if ( $content ) {
+			echo $content; //phpcs:ignore
+		} elseif ( $this->get_settings( 'nothing_found_message' ) ) {
+			echo '<div class="elementor-nothing-found elementor-products-nothing-found">' . esc_html( $this->get_settings( 'nothing_found_message' ) ) . '</div>'; //phpcs:ignore
+		}
+	}
+
 }
