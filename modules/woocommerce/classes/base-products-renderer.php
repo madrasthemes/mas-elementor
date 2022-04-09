@@ -88,7 +88,7 @@ abstract class Base_Products_Renderer extends \WC_Shortcode_Products {
 
 					// Render product template.
 					// wc_get_template_part( 'content', 'product' );.
-					mas_elementor_get_template( 'widgets/post-classic.php' );
+					mas_elementor_get_template( 'widgets/product-classic.php' );
 
 					// Restore product visibility.
 					remove_action( 'woocommerce_product_is_visible', array( $this, 'set_product_as_visible' ) );
