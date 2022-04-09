@@ -43,7 +43,7 @@ class Module extends Module_Base {
 	 * @return bool
 	 */
 	public static function is_active() {
-		return class_exists( 'woocommerce' );
+		return class_exists( 'Woocommerce' );
 	}
 
 	/**
