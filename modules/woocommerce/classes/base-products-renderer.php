@@ -39,7 +39,7 @@ abstract class Base_Products_Renderer extends \WC_Shortcode_Products {
 	 * @since  3.2.0
 	 * @return string
 	 */
-	public function mas_product_classic() {
+	public function mas_product_content() {
 		$columns  = absint( $this->attributes['columns'] );
 		$classes  = $this->get_wrapper_classes( $columns );
 		$products = $this->get_query_results();
@@ -88,7 +88,8 @@ abstract class Base_Products_Renderer extends \WC_Shortcode_Products {
 
 					// Render product template.
 					// wc_get_template_part( 'content', 'product' );.
-					mas_elementor_get_template( 'widgets/product-classic.php' );
+					$tem_path = apply_filters( 'mas_skin_template', 'widgets/product-classic.php' );
+					mas_elementor_get_template( $tem_path );
 
 					// Restore product visibility.
 					remove_action( 'woocommerce_product_is_visible', array( $this, 'set_product_as_visible' ) );

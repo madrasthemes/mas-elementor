@@ -57,7 +57,7 @@ class Skin_Classic extends Skin_Base {
 
 		$shortcode = $widget->get_shortcode_object( $settings );
 
-		$content = $shortcode->mas_product_classic();
+		$content = $shortcode->mas_product_content();
 
 		if ( $content ) {
 			echo $content; //phpcs:ignore
@@ -66,10 +66,4 @@ class Skin_Classic extends Skin_Base {
 		}
 	}
 
-	/**
-	 * Render amp.
-	 */
-	public function render_amp() {
-
-	}
 }
