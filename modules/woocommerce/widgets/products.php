@@ -31,7 +31,7 @@ class Products extends Products_Base {
 	 * @return string
 	 */
 	public function get_name() {
-		return 'woocommerce-products';
+		return 'mas-woocommerce-products';
 	}
 
 	/**
