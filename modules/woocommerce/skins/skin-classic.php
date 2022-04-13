@@ -55,7 +55,9 @@ class Skin_Classic extends Skin_Base {
 
 		$settings = $widget->get_settings();
 
-		$shortcode = $widget->get_shortcode_object( $settings );
+		$template = $this->mas_template_path();
+
+		$shortcode = $this->get_shortcode_object( $settings, $template );
 
 		$content = $shortcode->mas_product_content();
 
@@ -64,6 +66,20 @@ class Skin_Classic extends Skin_Base {
 		} elseif ( $widget->get_settings( 'nothing_found_message' ) ) {
 			echo '<div class="elementor-nothing-found elementor-products-nothing-found">' . esc_html( $widget->get_settings( 'nothing_found_message' ) ) . '</div>'; //phpcs:ignore
 		}
+	}
+
+	/**
+	 * MAS Elementor Template Path.
+	 */
+	public function mas_template_path() {
+		$args = array(
+			'widget' => $this->parent,
+			'skin'   => $this,
+		);
+		return array(
+			'path' => 'widgets/post-classic.php',
+			'args' => $args,
+		);
 	}
 
 }

@@ -13,6 +13,8 @@ use Elementor\Core\Kits\Documents\Tabs\Global_Typography;
 use Elementor\Group_Control_Border;
 use Elementor\Group_Control_Box_Shadow;
 use Elementor\Group_Control_Typography;
+use MASElementor\Modules\Woocommerce\Classes\Products_Renderer;
+use MASElementor\Modules\Woocommerce\Classes\Current_Query_Renderer;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
@@ -1045,6 +1047,20 @@ abstract class Products_Base extends Base_Widget {
 		);
 
 		$this->end_controls_section();
+	}
+
+	/**
+	 * Get shortcode object
+	 *
+	 * @param array $settings settings of the widget.
+	 */
+	public function get_shortcode_object( $settings ) {
+		if ( 'current_query' === $settings[ Products_Renderer::QUERY_CONTROL_NAME . '_post_type' ] ) {
+			$type = 'current_query';
+			return new Current_Query_Renderer( $settings, $type );
+		}
+		$type = 'products';
+		return new Products_Renderer( $settings, $type );
 	}
 
 	/**

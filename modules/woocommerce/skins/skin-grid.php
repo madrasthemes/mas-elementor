@@ -11,6 +11,8 @@ use Elementor\Controls_Manager;
 use Elementor\Widget_Base;
 use MASElementor\Modules\Woocommerce\Module;
 use MASElementor\Modules\Woocommerce\Widgets\Products;
+use MASElementor\Modules\Woocommerce\Classes\Products_Renderer;
+use MASElementor\Modules\Woocommerce\Classes\Current_Query_Renderer;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
@@ -40,19 +42,11 @@ class Skin_Grid extends Skin_Base {
 	}
 
 	/**
-	 * Get the title of the skin.
-	 *
-	 * @return string
-	 */
-	public function mas_template_path() {
-		return 'widgets/post-classic.php';
-	}
-
-	/**
 	 * Render
 	 */
 	public function render() {
-		$widget = $this->parent;
+		$widget   = $this->parent;
+		$settings = $widget->get_settings_for_display();
 		if ( WC()->session ) {
 			wc_print_notices();
 		}
@@ -63,9 +57,10 @@ class Skin_Grid extends Skin_Base {
 		}
 
 		$settings = $widget->get_settings();
-		add_filter( 'mas_skin_template', array( $this, 'mas_template_path' ) );
 
-		$shortcode = $widget->get_shortcode_object( $settings );
+		$template = $this->mas_template_path();
+
+		$shortcode = $this->get_shortcode_object( $settings, $template );
 
 		$content = $shortcode->mas_product_content();
 
@@ -74,6 +69,20 @@ class Skin_Grid extends Skin_Base {
 		} elseif ( $widget->get_settings( 'nothing_found_message' ) ) {
 			echo '<div class="elementor-nothing-found elementor-products-nothing-found">' . esc_html( $widget->get_settings( 'nothing_found_message' ) ) . '</div>'; //phpcs:ignore
 		}
+	}
+
+	/**
+	 * MAS Elementor Template Path.
+	 */
+	public function mas_template_path() {
+		$args = array(
+			'widget' => $this->parent,
+			'skin'   => $this,
+		);
+		return array(
+			'path' => 'widgets/product-classic.php',
+			'args' => $args,
+		);
 	}
 
 }

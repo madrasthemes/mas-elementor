@@ -49,8 +49,12 @@ class Products_Renderer extends Base_Products_Renderer {
 	 *
 	 * @param array  $settings the settings.
 	 * @param string $type post type.
+	 * @param array  $tem_path template path and args.
 	 */
-	public function __construct( $settings = array(), $type = 'products' ) {
+	public function __construct( $settings = array(), $type = 'products', $tem_path = array(
+		'path' => 'widgets/product-classic.php',
+		'args' => array(),
+	) ) {
 		$this->settings   = $settings;
 		$this->type       = $type;
 		$this->attributes = $this->parse_attributes(
@@ -62,6 +66,8 @@ class Products_Renderer extends Base_Products_Renderer {
 			)
 		);
 		$this->query_args = $this->parse_query_args();
+		$this->tem_path   = $tem_path['path'];
+		$this->tem_args   = $tem_path['args'];
 	}
 
 	/**

@@ -294,20 +294,6 @@ class Products extends Products_Base {
 	}
 
 	/**
-	 * Get shortcode object
-	 *
-	 * @param array $settings settings of the widget.
-	 */
-	public function get_shortcode_object( $settings ) {
-		if ( 'current_query' === $settings[ Products_Renderer::QUERY_CONTROL_NAME . '_post_type' ] ) {
-			$type = 'current_query';
-			return new Current_Query_Renderer( $settings, $type );
-		}
-		$type = 'products';
-		return new Products_Renderer( $settings, $type );
-	}
-
-	/**
 	 * Render Plain Content
 	 */
 	public function render_plain_content() {}

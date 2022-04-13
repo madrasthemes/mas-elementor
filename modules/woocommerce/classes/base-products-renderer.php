@@ -7,7 +7,7 @@
 
 namespace MASElementor\Modules\Woocommerce\Classes;
 
-use MASElementor\Modules\Woocommerce\Widgets\Products as Product;
+use MASElementor\Modules\Woocommerce\Widgets\Products;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
@@ -17,6 +17,22 @@ if ( ! defined( 'ABSPATH' ) ) {
  * The Base Products Renderer class
  */
 abstract class Base_Products_Renderer extends \WC_Shortcode_Products {
+
+	/**
+	 * Base Products Renderer constructor.
+	 *
+	 * @param array  $settings the settings.
+	 * @param string $type post type.
+	 * @param array  $tem_path template path and args.
+	 */
+	public function __construct( $settings = array(), $type = 'products', $tem_path = array(
+		'path' => 'widgets/product-classic.php',
+		'args' => array(),
+	) ) {
+		$this->settings = $settings;
+		$this->tem_path = $tem_path['path'];
+		$this->tem_args = $tem_path['args'];
+	}
 
 	/**
 	 * Override original `get_content` that returns an HTML wrapper even if no results found.
@@ -40,6 +56,7 @@ abstract class Base_Products_Renderer extends \WC_Shortcode_Products {
 	 * @return string
 	 */
 	public function mas_product_content() {
+
 		$columns  = absint( $this->attributes['columns'] );
 		$classes  = $this->get_wrapper_classes( $columns );
 		$products = $this->get_query_results();
@@ -88,8 +105,7 @@ abstract class Base_Products_Renderer extends \WC_Shortcode_Products {
 
 					// Render product template.
 					// wc_get_template_part( 'content', 'product' );.
-					$tem_path = apply_filters( 'mas_skin_template', 'widgets/product-classic.php' );
-					mas_elementor_get_template( $tem_path );
+					$this->skin_template_path();
 
 					// Restore product visibility.
 					remove_action( 'woocommerce_product_is_visible', array( $this, 'set_product_as_visible' ) );
@@ -113,6 +129,18 @@ abstract class Base_Products_Renderer extends \WC_Shortcode_Products {
 		}
 
 		return '<div class="' . esc_attr( implode( ' ', $classes ) ) . '">' . ob_get_clean() . '</div>';
+	}
+
+	/**
+	 * Skin Template Path.
+	 */
+	public function skin_template_path() {
+
+		$path = &$this->tem_path;
+		$args = &$this->tem_args;
+
+		mas_elementor_get_template( $path, $args );
+
 	}
 
 
