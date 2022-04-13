@@ -161,6 +161,38 @@ class Module extends Module_Base {
 	}
 
 	/**
+	 * Register Woocommerce Hooks.
+	 *
+	 * @param Settings $settings settings.
+	 */
+	public function register_admin_fields( Settings $settings ) {
+		$settings->add_section(
+			Settings::TAB_INTEGRATIONS,
+			'woocommerce',
+			array(
+				'callback' => function() {
+					echo '<hr><h2>' . esc_html__( 'WooCommerce', 'mas-elementor' ) . '</h2>';
+				},
+				'fields'   => array(
+					self::OPTION_NAME_USE_MINI_CART => array(
+						'label'      => esc_html__( 'Mini Cart Template', 'mas-elementor' ),
+						'field_args' => array(
+							'type'    => 'select',
+							'std'     => 'initial',
+							'options' => array(
+								'initial' => '', // Relevant until either menu-cart widget is used or option is explicitly set to 'no'.
+								'no'      => esc_html__( 'Disable', 'mas-elementor' ),
+								'yes'     => esc_html__( 'Enable', 'mas-elementor' ),
+							),
+							'desc'    => esc_html__( 'Set to `Disable` in order to use your Theme\'s or WooCommerce\'s mini-cart template instead of Elementor\'s.', 'mas-elementor' ),
+						),
+					),
+				),
+			)
+		);
+	}
+
+	/**
 	 * Render Menu cart toggle button.
 	 *
 	 * @return void
