@@ -36,6 +36,7 @@ final class Modules_Manager {
 			'woocommerce',
 			'section',
 			'column',
+			'carousel-attributes',
 		);
 
 		foreach ( $modules as $module_name ) {
