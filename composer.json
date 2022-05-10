@@ -41,5 +41,10 @@
 		"phpcbf": [
 			"phpcbf --extensions=php -p"
 		]
+	},
+	"config": {
+		"allow-plugins": {
+			"dealerdirect/phpcodesniffer-composer-installer": true
+		}
 	}
 }
