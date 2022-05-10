@@ -30,4 +30,3 @@ if ( ! defined( 'ABSPATH' ) ) {
 			</a>
 	</div>
 </article>
-<?php
