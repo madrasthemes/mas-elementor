@@ -11,7 +11,7 @@ use Elementor\Controls_Stack;
 use Elementor\Controls_Manager;
 use Elementor\Element_Base;
 use MASElementor\Base\Module_Base;
-use MASElementor\Plugin;
+use Elementor\Plugin;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
@@ -129,6 +129,21 @@ class Module extends Module_Base {
 				'default'            => 1,
 				'tablet_default'     => 1,
 				'mobile_default'     => 1,
+				'frontend_available' => true,
+			)
+		);
+
+		$element->add_control(
+			'center_slides',
+			array(
+				'type'               => Controls_Manager::SWITCHER,
+				'label'              => esc_html__( 'Center Slides', 'mas-elementor' ),
+				'default'            => 'no',
+				'label_off'          => esc_html__( 'Hide', 'mas-elementor' ),
+				'label_on'           => esc_html__( 'Show', 'mas-elementor' ),
+				'condition'          => array(
+					'enable_carousel' => 'yes',
+				),
 				'frontend_available' => true,
 			)
 		);
@@ -295,6 +310,17 @@ class Module extends Module_Base {
 			$swiper_settings['breakpoints']['500']['slidesPerView']  = isset( $settings['slides_per_view_tablet'] ) ? $settings['slides_per_view_tablet'] : 3;
 			$swiper_settings['breakpoints']['0']['slidesPerView']    = isset( $settings['slides_per_view_mobile'] ) ? $settings['slides_per_view_mobile'] : 1;
 
+		}
+
+		$swiper_settings = array(
+			'pagination' => array(
+				'el' => '.swiper-pagination',
+			),
+
+		);
+
+		if ( $settings['center_slides'] ) {
+			$swiper_settings['centeredSlides'] = 'true';
 		}
 
 		if ( $settings['loop'] ) {
