@@ -312,13 +312,6 @@ class Module extends Module_Base {
 
 		}
 
-		$swiper_settings = array(
-			'pagination' => array(
-				'el' => '.swiper-pagination',
-			),
-
-		);
-
 		if ( $settings['center_slides'] ) {
 			$swiper_settings['centeredSlides'] = 'true';
 		}
