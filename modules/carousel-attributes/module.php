@@ -283,17 +283,16 @@ class Module extends Module_Base {
 	 */
 	public function get_swiper_carousel_options( array $settings ) {
 
-		$swiper_settings         = array();
-		$swiper_settings['tabs'] = true;
+		$swiper_settings = array();
 
 		if ( 'fade' === $settings['carousel_effect'] ) {
-			$swiper_settings['carousel_effect']         = 'fade';
+			$swiper_settings['effect']                  = 'fade';
 			$swiper_settings['fadeEffect']['crossFade'] = true;
 		}
 		if ( 'slide' === $settings['carousel_effect'] ) {
 			$swiper_settings['breakpoints']['1440']['slidesPerView'] = isset( $settings['slides_per_view'] ) ? $settings['slides_per_view'] : 3;
 			$swiper_settings['breakpoints']['1024']['slidesPerView'] = isset( $settings['slides_per_view'] ) ? $settings['slides_per_view'] : 3;
-			$swiper_settings['breakpoints']['768']['slidesPerView']  = isset( $settings['slides_per_view_tablet'] ) ? $settings['slides_per_view_tablet'] : 3;
+			$swiper_settings['breakpoints']['500']['slidesPerView']  = isset( $settings['slides_per_view_tablet'] ) ? $settings['slides_per_view_tablet'] : 3;
 			$swiper_settings['breakpoints']['0']['slidesPerView']    = isset( $settings['slides_per_view_mobile'] ) ? $settings['slides_per_view_mobile'] : 1;
 
 		}
@@ -349,10 +348,9 @@ class Module extends Module_Base {
 		parent::__construct();
 		$this->add_actions();
 
-		// add_action( 'elementor/frontend/before_register_scripts', [ $this, 'register_frontend_scripts' ] );.
+		add_action( 'elementor/frontend/before_register_scripts', array( $this, 'register_frontend_scripts' ) );
+		add_action( 'elementor/frontend/before_register_styles', array( $this, 'register_frontend_styles' ) );
 
-		wp_enqueue_script( 'swiper-script', MAS_ELEMENTOR_MODULES_URL . 'carousel-attributes/assets/js/swiper.js', array( 'elementor-frontend-modules' ), MAS_ELEMENTOR_VERSION, true );
-		wp_enqueue_style( 'swiper-stylesheet', MAS_ELEMENTOR_MODULES_URL . 'carousel-attributes/assets/css/swiper-bundle.min.css', array( 'elementor-frontend-modules' ), MAS_ELEMENTOR_VERSION );
 	}
 
 	/**
@@ -361,10 +359,31 @@ class Module extends Module_Base {
 	public function register_frontend_scripts() {
 		wp_enqueue_script(
 			'swiper-script',
-			MAS_ELEMENTOR_MODULES_URL . 'carousel-attributes/assets/js/swiper.js',
-			array( 'elementor-frontend-modules' ),
+			MAS_ELEMENTOR_MODULES_URL . 'carousel-attributes/assets/js/swiper-bundle.min.js',
+			array(),
 			MAS_ELEMENTOR_VERSION,
 			true
+		);
+		wp_enqueue_script(
+			'swiper-init-script',
+			MAS_ELEMENTOR_MODULES_URL . 'carousel-attributes/assets/js/carousel.js',
+			array(),
+			MAS_ELEMENTOR_VERSION,
+			true
+		);
+
+	}
+
+	/**
+	 * Register frontend styles.
+	 */
+	public function register_frontend_styles() {
+		wp_enqueue_style(
+			'swiper-stylesheet',
+			MAS_ELEMENTOR_MODULES_URL . 'carousel-attributes/assets/css/swiper-bundle.css',
+			array(),
+			MAS_ELEMENTOR_VERSION,
+			'all'
 		);
 	}
 }

@@ -24,7 +24,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 define( 'MAS_ELEMENTOR_VERSION', '0.0.1' );
 
 define( 'MAS_ELEMENTOR__FILE__', __FILE__ );
-define( 'MAS_ELEMENTOR_PLUGIN_BASE', plugin_basename( MAS_ELEMENTOR__FILE__ ) );
+define( '_PLUGIN_BASE', plugin_basename( MAS_ELEMENTOR__FILE__ ) );
 define( 'MAS_ELEMENTOR_PATH', plugin_dir_path( MAS_ELEMENTOR__FILE__ ) );
 define( 'MAS_ELEMENTOR_ASSETS_PATH', MAS_ELEMENTOR_PATH . 'assets/' );
 define( 'MAS_ELEMENTOR_MODULES_PATH', MAS_ELEMENTOR_PATH . 'modules/' );

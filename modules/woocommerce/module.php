@@ -376,9 +376,10 @@ class Module extends Module_Base {
 	public function __construct() {
 		parent::__construct();
 
-		if ( is_admin() ) {
-			add_action( 'elementor/admin/after_create_settings/' . Settings::PAGE_ID, array( $this, 'register_admin_fields' ), 15 );
-		}
+		// $this->use_mini_cart_template = 'yes' === get_option( 'elementor_' . self::OPTION_NAME_USE_MINI_CART, 'no' );
+		// if ( is_admin() ) {
+		// add_action( 'elementor/admin/after_create_settings/' . Settings::PAGE_ID, array( $this, 'register_admin_fields' ), 15 );
+		// }
 
 		add_action( 'elementor/theme/register_conditions', array( $this, 'register_conditions' ) );
 
