@@ -294,6 +294,123 @@ class Module extends Module_Base {
 
 		$element->end_controls_section();
 		$element->end_injection();
+
+		$element->start_controls_section(
+			'section_navigation',
+			array(
+				'label' => esc_html__( 'Navigation', 'mas-elementor' ),
+				'tab'   => Controls_Manager::TAB_STYLE,
+			)
+		);
+
+		$element->add_control(
+			'heading_arrows',
+			array(
+				'label'     => esc_html__( 'Arrows', 'mas-elementor' ),
+				'type'      => Controls_Manager::HEADING,
+				'separator' => 'none',
+				'condition' => array(
+					'show_arrows' => 'yes',
+				),
+			)
+		);
+
+		$element->add_control(
+			'arrows_size',
+			array(
+				'label'     => esc_html__( 'Size', 'mas-elementor' ),
+				'type'      => Controls_Manager::SLIDER,
+				'default'   => array(
+					'size' => 20,
+				),
+				'range'     => array(
+					'px' => array(
+						'min' => 10,
+						'max' => 40,
+					),
+				),
+				'selectors' => array(
+					// '{{WRAPPER}} .sn-elementor-swiper-button' => 'width: {{SIZE}}{{UNIT}} !important;',
+					// '{{WRAPPER}} .sn-elementor-swiper-button' => 'height: {{SIZE}}{{UNIT}} !important;',
+					'{{WRAPPER}} .sn-elementor-swiper-icon' => 'font-size: {{SIZE}}{{UNIT}} !important;',
+				),
+				'condition' => array(
+					'show_arrows' => 'yes',
+				),
+			)
+		);
+
+		$element->add_control(
+			'arrows_color',
+			array(
+				'label'     => esc_html__( 'Color', 'mas-elementor' ),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => array(
+					'{{WRAPPER}} .sn-elementor-swiper-icon' => 'color: {{VALUE}}',
+					'{{WRAPPER}} .sn-elementor-swiper-button svg' => 'fill: {{VALUE}}',
+				),
+				'condition' => array(
+					'show_arrows' => 'yes',
+				),
+			)
+		);
+
+		$element->add_control(
+			'arrows_hover_color',
+			array(
+				'label'     => esc_html__( 'Background Hover Color', 'mas-elementor' ),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => array(
+					'{{WRAPPER}} .btn-prev:hover, {{WRAPPER}} .btn-prev:focus' => 'background-color: {{VALUE}} !important;',
+					'{{WRAPPER}} .btn-prev:hover svg path, {{WRAPPER}} .btn-prev:focus svg path' => 'fill: {{VALUE}} !important;',
+					'{{WRAPPER}} .btn-next:hover, {{WRAPPER}} .btn-next:focus' => 'background-color: {{VALUE}} !important;',
+					'{{WRAPPER}} .btn-next:hover svg path, {{WRAPPER}} .btn-next:focus svg path' => 'fill: {{VALUE}} !important;',
+				),
+				'condition' => array(
+					'show_arrows' => 'yes',
+				),
+			)
+		);
+
+		$element->add_control(
+			'heading_pagination',
+			array(
+				'label' => esc_html__( 'Pagination', 'mas-elementor' ),
+				'type'  => Controls_Manager::HEADING,
+			)
+		);
+
+		$element->add_control(
+			'pagination_size',
+			array(
+				'label'     => esc_html__( 'Size', 'mas-elementor' ),
+				'type'      => Controls_Manager::SLIDER,
+				'range'     => array(
+					'px' => array(
+						'max' => 20,
+					),
+				),
+				'selectors' => array(
+					'{{WRAPPER}} .swiper-pagination-bullet' => 'height: {{SIZE}}{{UNIT}}; width: {{SIZE}}{{UNIT}}',
+					'{{WRAPPER}} .swiper-container-horizontal .swiper-pagination-progressbar' => 'height: {{SIZE}}{{UNIT}}',
+					'{{WRAPPER}} .swiper-pagination-fraction' => 'font-size: {{SIZE}}{{UNIT}}',
+				),
+			)
+		);
+
+		$element->add_control(
+			'pagination_color',
+			array(
+				'label'     => esc_html__( 'Color', 'mas-elementor' ),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => array(
+					'{{WRAPPER}} .swiper-pagination-bullet-active, {{WRAPPER}} .swiper-pagination-progressbar-fill' => 'background-color: {{VALUE}}',
+					'{{WRAPPER}} .swiper-pagination-fraction' => 'color: {{VALUE}}',
+				),
+			)
+		);
+
+		$element->end_controls_section();
 	}
 
 	/**
@@ -324,6 +441,7 @@ class Module extends Module_Base {
 
 		$settings = $element->get_settings();
 		$json     = wp_json_encode( $this->get_swiper_carousel_options( $settings ) );
+		$id       = $element->get_id();
 		if ( 'yes' === $settings['enable_carousel'] ) {
 			$element->add_render_attribute( '_wrapper', 'class', 'swiper' );
 			$element->add_render_attribute( '_wrapper', 'data-swiper-options', $json );
@@ -375,8 +493,8 @@ class Module extends Module_Base {
 				$next_id = ! empty( $settings['next_arrow_id'] ) ? $settings['next_arrow_id'] : '';
 				?>
 				<!-- If we need navigation buttons -->
-				<div id ="<?php echo esc_attr( $prev_id ); ?>" class="swiper-button-prev"></div>
-				<div id ="<?php echo esc_attr( $next_id ); ?>" class="swiper-button-next"></div>
+				<div id ="<?php echo esc_attr( $prev_id ); ?>" class="swiper-button-prev mas-elementor-swiper-arrow"></div>
+				<div id ="<?php echo esc_attr( $next_id ); ?>" class="swiper-button-next mas-elementor-swiper-arrow"></div>
 				<?php
 			endif;
 			?>
@@ -531,7 +649,6 @@ class Module extends Module_Base {
 			MAS_ELEMENTOR_MODULES_URL . 'carousel-attributes/assets/css/swiper-bundle.min.css',
 			array(),
 			MAS_ELEMENTOR_VERSION,
-			'all'
 		);
 	}
 }
