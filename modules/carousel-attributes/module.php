@@ -149,6 +149,48 @@ class Module extends Module_Base {
 		);
 
 		$element->add_control(
+			'show_arrows',
+			array(
+				'type'      => Controls_Manager::SWITCHER,
+				'label'     => esc_html__( 'Arrows', 'mas-elementor' ),
+				'default'   => 'yes',
+				'label_off' => esc_html__( 'Hide', 'mas-elementor' ),
+				'label_on'  => esc_html__( 'Show', 'mas-elementor' ),
+				'condition' => array(
+					'enable_carousel' => 'yes',
+				),
+			)
+		);
+
+		$element->add_control(
+			'prev_arrow_id',
+			array(
+				'label'       => esc_html__( 'Prev Arrow ID', 'mas-elementor' ),
+				'type'        => Controls_Manager::TEXT,
+				'default'     => 'prev-arrow',
+				'description' => esc_html__( 'Enter ID for Previous Button', 'mas-elementor' ),
+				'condition'   => array(
+					'show_arrows'     => 'yes',
+					'enable_carousel' => 'yes',
+				),
+			)
+		);
+
+		$element->add_control(
+			'next_arrow_id',
+			array(
+				'label'       => esc_html__( 'Next Arrow ID', 'mas-elementor' ),
+				'type'        => Controls_Manager::TEXT,
+				'default'     => 'next-arrow',
+				'description' => esc_html__( 'Enter ID for Next Button', 'mas-elementor' ),
+				'condition'   => array(
+					'show_arrows'     => 'yes',
+					'enable_carousel' => 'yes',
+				),
+			)
+		);
+
+		$element->add_control(
 			'speed',
 			array(
 				'label'              => esc_html__( 'Transition Duration', 'mas-elementor' ),
@@ -221,6 +263,35 @@ class Module extends Module_Base {
 			)
 		);
 
+		$element->add_control(
+			'show_pagination',
+			array(
+				'type'               => Controls_Manager::SWITCHER,
+				'label'              => esc_html__( 'Enable Pagination', 'mas-elementor' ),
+				'default'            => 'yes',
+				'label_off'          => esc_html__( 'Hide', 'mas-elementor' ),
+				'label_on'           => esc_html__( 'Show', 'mas-elementor' ),
+				'condition'          => array(
+					'enable_carousel' => 'yes',
+				),
+				'frontend_available' => true,
+			)
+		);
+
+		$element->add_control(
+			'pag_id',
+			array(
+				'label'       => esc_html__( 'Pagination ID', 'mas-elementor' ),
+				'type'        => Controls_Manager::TEXT,
+				'description' => esc_html__( 'Enter ID for Pagination', 'mas-elementor' ),
+				'condition'   => array(
+					'enable_carousel' => 'yes',
+					'show_pagination' => 'yes',
+				),
+				'default'     => 'swiper-pagination',
+			)
+		);
+
 		$element->end_controls_section();
 		$element->end_injection();
 	}
@@ -256,6 +327,12 @@ class Module extends Module_Base {
 		if ( 'yes' === $settings['enable_carousel'] ) {
 			$element->add_render_attribute( '_wrapper', 'class', 'swiper' );
 			$element->add_render_attribute( '_wrapper', 'data-swiper-options', $json );
+			$element->add_render_attribute( 'section_carousel', 'class', 'mas-swiper-wrapper' );
+			$element->add_render_attribute( 'section_carousel', 'style', 'position: relative;' );
+			// $element->add_render_attribute( 'section_carousel', 'data-swiper-options', $json );
+			?>
+			<div <?php $element->print_render_attribute_string( 'section_carousel' ); ?>>
+			<?php
 		}
 
 		$container_class = $settings['gap'];
@@ -272,6 +349,40 @@ class Module extends Module_Base {
 			$element->set_settings( 'gap', $container_class );
 		}
 
+	}
+
+	/**
+	 * After Render.
+	 *
+	 * @param array $element The widget.
+	 *
+	 * @return void
+	 */
+	public function after_render_section( $element ) {
+		$settings = $element->get_settings();
+		if ( 'yes' === $settings['enable_carousel'] ) {
+			if ( ! empty( $settings['pag_id'] && 'yes' === $settings['show_pagination'] ) ) {
+				$element->add_render_attribute( 'swiper-pagination', 'id', $settings['pag_id'] );
+			}
+			$element->add_render_attribute( 'swiper-pagination', 'class', 'swiper-pagination' );
+			if ( 'yes' === $settings['show_pagination'] ) :
+				?>
+			<div <?php $element->print_render_attribute_string( 'swiper-pagination' ); ?>></div>
+				<?php
+			endif;
+			if ( 'yes' === $settings['show_arrows'] ) :
+				$prev_id = ! empty( $settings['prev_arrow_id'] ) ? $settings['prev_arrow_id'] : '';
+				$next_id = ! empty( $settings['next_arrow_id'] ) ? $settings['next_arrow_id'] : '';
+				?>
+				<!-- If we need navigation buttons -->
+				<div id ="<?php echo esc_attr( $prev_id ); ?>" class="swiper-button-prev"></div>
+				<div id ="<?php echo esc_attr( $next_id ); ?>" class="swiper-button-next"></div>
+				<?php
+			endif;
+			?>
+			</div>
+			<?php
+		}
 	}
 
 	/**
@@ -299,6 +410,13 @@ class Module extends Module_Base {
 	public function get_swiper_carousel_options( array $settings ) {
 
 		$swiper_settings = array();
+		if ( 'yes' === $settings['show_pagination'] ) {
+			$swiper_settings['pagination'] = array(
+				'el'        => '#' . $settings['pag_id'],
+				'clickable' => true,
+
+			);
+		}
 
 		if ( 'fade' === $settings['carousel_effect'] ) {
 			$swiper_settings['effect']                  = 'fade';
@@ -310,6 +428,16 @@ class Module extends Module_Base {
 			$swiper_settings['breakpoints']['500']['slidesPerView']  = isset( $settings['slides_per_view_tablet'] ) ? $settings['slides_per_view_tablet'] : 3;
 			$swiper_settings['breakpoints']['0']['slidesPerView']    = isset( $settings['slides_per_view_mobile'] ) ? $settings['slides_per_view_mobile'] : 1;
 
+		}
+
+		$prev_id = ! empty( $settings['prev_arrow_id'] ) ? $settings['prev_arrow_id'] : '';
+		$next_id = ! empty( $settings['next_arrow_id'] ) ? $settings['next_arrow_id'] : '';
+		if ( 'yes' === $settings['show_arrows'] ) {
+			$swiper_settings['navigation'] = array(
+				'prevEl' => '#' . $prev_id,
+				'nextEl' => '#' . $next_id,
+
+			);
 		}
 
 		if ( $settings['center_slides'] ) {
@@ -339,6 +467,7 @@ class Module extends Module_Base {
 	protected function add_actions() {
 		add_action( 'elementor/element/after_section_end', array( $this, 'register_controls' ), 10, 2 );
 		add_action( 'elementor/frontend/section/before_render', array( $this, 'before_render_section' ), 15 );
+		add_action( 'elementor/frontend/section/after_render', array( $this, 'after_render_section' ), 15 );
 		add_action( 'elementor/frontend/column/before_render', array( $this, 'before_render_column' ), 5 );
 		add_action( 'elementor/element/column/section_advanced/before_section_end', array( $this, 'add_column_wrapper_controls' ) );
 	}
@@ -399,7 +528,7 @@ class Module extends Module_Base {
 	public function register_frontend_styles() {
 		wp_enqueue_style(
 			'swiper-stylesheet',
-			MAS_ELEMENTOR_MODULES_URL . 'carousel-attributes/assets/css/swiper-bundle.css',
+			MAS_ELEMENTOR_MODULES_URL . 'carousel-attributes/assets/css/swiper-bundle.min.css',
 			array(),
 			MAS_ELEMENTOR_VERSION,
 			'all'
