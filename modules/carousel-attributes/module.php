@@ -27,9 +27,9 @@ class Module extends Module_Base {
 	 *
 	 * @return string
 	 */
-	public static function is_active() {
-		return ! class_exists( 'ElementorPro\Plugin' );
-	}
+	// public static function is_active() {.
+	// return ! class_exists( 'ElementorPro\Plugin' );
+	// }.
 
 	/**
 	 * Return the script dependencies of the module.
@@ -163,34 +163,6 @@ class Module extends Module_Base {
 		);
 
 		$element->add_control(
-			'prev_arrow_id',
-			array(
-				'label'       => esc_html__( 'Prev Arrow ID', 'mas-elementor' ),
-				'type'        => Controls_Manager::TEXT,
-				'default'     => 'prev-arrow',
-				'description' => esc_html__( 'Enter ID for Previous Button', 'mas-elementor' ),
-				'condition'   => array(
-					'show_arrows'     => 'yes',
-					'enable_carousel' => 'yes',
-				),
-			)
-		);
-
-		$element->add_control(
-			'next_arrow_id',
-			array(
-				'label'       => esc_html__( 'Next Arrow ID', 'mas-elementor' ),
-				'type'        => Controls_Manager::TEXT,
-				'default'     => 'next-arrow',
-				'description' => esc_html__( 'Enter ID for Next Button', 'mas-elementor' ),
-				'condition'   => array(
-					'show_arrows'     => 'yes',
-					'enable_carousel' => 'yes',
-				),
-			)
-		);
-
-		$element->add_control(
 			'speed',
 			array(
 				'label'              => esc_html__( 'Transition Duration', 'mas-elementor' ),
@@ -275,20 +247,6 @@ class Module extends Module_Base {
 					'enable_carousel' => 'yes',
 				),
 				'frontend_available' => true,
-			)
-		);
-
-		$element->add_control(
-			'pag_id',
-			array(
-				'label'       => esc_html__( 'Pagination ID', 'mas-elementor' ),
-				'type'        => Controls_Manager::TEXT,
-				'description' => esc_html__( 'Enter ID for Pagination', 'mas-elementor' ),
-				'condition'   => array(
-					'enable_carousel' => 'yes',
-					'show_pagination' => 'yes',
-				),
-				'default'     => 'swiper-pagination',
 			)
 		);
 
@@ -391,9 +349,43 @@ class Module extends Module_Base {
 					),
 				),
 				'selectors' => array(
-					'{{WRAPPER}} .swiper-pagination-bullet' => 'height: {{SIZE}}{{UNIT}}; width: {{SIZE}}{{UNIT}}',
-					'{{WRAPPER}} .swiper-container-horizontal .swiper-pagination-progressbar' => 'height: {{SIZE}}{{UNIT}}',
-					'{{WRAPPER}} .swiper-pagination-fraction' => 'font-size: {{SIZE}}{{UNIT}}',
+					'{{WRAPPER}} + .swiper-pagination .swiper-pagination-bullet' => 'width: {{SIZE}}{{UNIT}}!important;',
+					'{{WRAPPER}} + .swiper-pagination .swiper-container-horizontal .swiper-pagination-progressbar' => 'height: {{SIZE}}{{UNIT}}',
+					'{{WRAPPER}} + .swiper-pagination .swiper-pagination-fraction' => 'font-size: {{SIZE}}{{UNIT}}',
+				),
+			)
+		);
+
+		$element->add_control(
+			'dots_border_radius',
+			array(
+				'label'      => esc_html__( 'Border Radius', 'mas-elementor' ),
+				'type'       => Controls_Manager::SLIDER,
+				'size_units' => array( 'px', '%' ),
+				'range'      => array(
+					'%' => array(
+						'max' => 50,
+					),
+				),
+				'selectors'  => array(
+					'{{WRAPPER}} + .swiper-pagination .swiper-pagination-bullet' => 'border-radius: {{SIZE}}{{UNIT}} !important;',
+				),
+
+			)
+		);
+
+		$element->add_control(
+			'dots_height',
+			array(
+				'label'     => esc_html__( 'Dots Height', 'mas-elementor' ),
+				'type'      => Controls_Manager::SLIDER,
+				'range'     => array(
+					'px' => array(
+						'max' => 20,
+					),
+				),
+				'selectors' => array(
+					'{{WRAPPER}} + .swiper-pagination .swiper-pagination-bullet' => 'height: {{SIZE}}{{UNIT}}!important;',
 				),
 			)
 		);
@@ -404,8 +396,8 @@ class Module extends Module_Base {
 				'label'     => esc_html__( 'Color', 'mas-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
-					'{{WRAPPER}} .swiper-pagination-bullet-active, {{WRAPPER}} .swiper-pagination-progressbar-fill' => 'background-color: {{VALUE}}',
-					'{{WRAPPER}} .swiper-pagination-fraction' => 'color: {{VALUE}}',
+					'{{WRAPPER}} + .swiper-pagination .swiper-pagination-bullet-active, {{WRAPPER}} + .swiper-pagination .swiper-pagination-progressbar-fill' => 'background-color: {{VALUE}}',
+					'{{WRAPPER}} + .swiper-pagination .swiper-pagination-fraction' => 'color: {{VALUE}}',
 				),
 			)
 		);
@@ -440,7 +432,7 @@ class Module extends Module_Base {
 	public function before_render_section( $element ) {
 
 		$settings = $element->get_settings();
-		$json     = wp_json_encode( $this->get_swiper_carousel_options( $settings ) );
+		$json     = wp_json_encode( $this->get_swiper_carousel_options( $settings, $element ) );
 		$id       = $element->get_id();
 		if ( 'yes' === $settings['enable_carousel'] ) {
 			$element->add_render_attribute( '_wrapper', 'class', 'swiper' );
@@ -477,10 +469,11 @@ class Module extends Module_Base {
 	 * @return void
 	 */
 	public function after_render_section( $element ) {
-		$settings = $element->get_settings();
+		$settings   = $element->get_settings();
+		$section_id = $element->get_id();
 		if ( 'yes' === $settings['enable_carousel'] ) {
 			if ( ! empty( $settings['pag_id'] && 'yes' === $settings['show_pagination'] ) ) {
-				$element->add_render_attribute( 'swiper-pagination', 'id', $settings['pag_id'] );
+				$element->add_render_attribute( 'swiper-pagination', 'id', 'pagination-' . $section_id );
 			}
 			$element->add_render_attribute( 'swiper-pagination', 'class', 'swiper-pagination' );
 			if ( 'yes' === $settings['show_pagination'] ) :
@@ -489,8 +482,8 @@ class Module extends Module_Base {
 				<?php
 			endif;
 			if ( 'yes' === $settings['show_arrows'] ) :
-				$prev_id = ! empty( $settings['prev_arrow_id'] ) ? $settings['prev_arrow_id'] : '';
-				$next_id = ! empty( $settings['next_arrow_id'] ) ? $settings['next_arrow_id'] : '';
+				$prev_id = ! empty( $section_id ) ? 'prev-' . $section_id : '';
+				$next_id = ! empty( $section_id ) ? 'next-' . $section_id : '';
 				?>
 				<!-- If we need navigation buttons -->
 				<div id ="<?php echo esc_attr( $prev_id ); ?>" class="swiper-button-prev mas-elementor-swiper-arrow"></div>
@@ -522,15 +515,16 @@ class Module extends Module_Base {
 	/**
 	 * Get carousel settings
 	 *
-	 * @param array $settings The widget settings.
+	 * @param array        $settings The widget settings.
+	 * @param Element_Base $element The element settings.
 	 * @return array
 	 */
-	public function get_swiper_carousel_options( array $settings ) {
-
+	public function get_swiper_carousel_options( array $settings, $element ) {
+		$section_id      = $element->get_id();
 		$swiper_settings = array();
 		if ( 'yes' === $settings['show_pagination'] ) {
 			$swiper_settings['pagination'] = array(
-				'el'        => '#' . $settings['pag_id'],
+				'el'        => '#pagination-' . $section_id,
 				'clickable' => true,
 
 			);
@@ -548,8 +542,8 @@ class Module extends Module_Base {
 
 		}
 
-		$prev_id = ! empty( $settings['prev_arrow_id'] ) ? $settings['prev_arrow_id'] : '';
-		$next_id = ! empty( $settings['next_arrow_id'] ) ? $settings['next_arrow_id'] : '';
+		$prev_id = ! empty( $section_id ) ? 'prev-' . $section_id : '';
+		$next_id = ! empty( $section_id ) ? 'next-' . $section_id : '';
 		if ( 'yes' === $settings['show_arrows'] ) {
 			$swiper_settings['navigation'] = array(
 				'prevEl' => '#' . $prev_id,

@@ -381,11 +381,11 @@ class Module extends Module_Base {
 		// add_action( 'elementor/admin/after_create_settings/' . Settings::PAGE_ID, array( $this, 'register_admin_fields' ), 15 );
 		// }
 
-		add_action( 'elementor/theme/register_conditions', array( $this, 'register_conditions' ) );
+		// add_action( 'elementor/theme/register_conditions', array( $this, 'register_conditions' ) );.
 
 		add_filter( 'elementor/theme/need_override_location', array( $this, 'theme_template_include' ), 10, 2 );
 
-		add_filter( 'elementor_pro/frontend/localize_settings', array( $this, 'localized_settings_frontend' ) );
+		// add_filter( 'elementor_pro/frontend/localize_settings', array( $this, 'localized_settings_frontend' ) );.
 
 		// On Editor - Register WooCommerce frontend hooks before the Editor init.
 		// Priority = 5, in order to allow plugins remove/add their wc hooks on init.
