@@ -153,7 +153,7 @@ class Module extends Module_Base {
 			array(
 				'type'      => Controls_Manager::SWITCHER,
 				'label'     => esc_html__( 'Arrows', 'mas-elementor' ),
-				'default'   => 'yes',
+				'default'   => 'no',
 				'label_off' => esc_html__( 'Hide', 'mas-elementor' ),
 				'label_on'  => esc_html__( 'Show', 'mas-elementor' ),
 				'condition' => array(
@@ -250,6 +250,24 @@ class Module extends Module_Base {
 			)
 		);
 
+		$element->add_control(
+			'pagination',
+			array(
+				'label'     => esc_html__( 'Pagination', 'mas-elementor' ),
+				'type'      => Controls_Manager::SELECT,
+				'default'   => 'bullets',
+				'options'   => array(
+					'bullets'     => esc_html__( 'Dots', 'mas-elementor' ),
+					'fraction'    => esc_html__( 'Fraction', 'mas-elementor' ),
+					'progressbar' => esc_html__( 'Progress', 'mas-elementor' ),
+				),
+				'condition' => array(
+					'enable_carousel' => 'yes',
+					'show_pagination' => 'yes',
+				),
+			)
+		);
+
 		$element->end_controls_section();
 		$element->end_injection();
 
@@ -333,25 +351,38 @@ class Module extends Module_Base {
 		$element->add_control(
 			'heading_pagination',
 			array(
-				'label' => esc_html__( 'Pagination', 'mas-elementor' ),
-				'type'  => Controls_Manager::HEADING,
+				'label'     => esc_html__( 'Pagination', 'mas-elementor' ),
+				'type'      => Controls_Manager::HEADING,
+				'condition' => array(
+					'enable_carousel' => 'yes',
+					'show_pagination' => 'yes',
+				),
 			)
 		);
 
 		$element->add_control(
 			'pagination_size',
 			array(
-				'label'     => esc_html__( 'Size', 'mas-elementor' ),
-				'type'      => Controls_Manager::SLIDER,
-				'range'     => array(
+				'label'      => esc_html__( 'Size', 'mas-elementor' ),
+				'type'       => Controls_Manager::SLIDER,
+				'size_units' => array( 'px', '%' ),
+				'range'      => array(
 					'px' => array(
-						'max' => 20,
+						'max' => 100,
 					),
 				),
-				'selectors' => array(
+				'selectors'  => array(
 					'{{WRAPPER}} + .swiper-pagination .swiper-pagination-bullet' => 'width: {{SIZE}}{{UNIT}}!important;',
 					'{{WRAPPER}} + .swiper-pagination .swiper-container-horizontal .swiper-pagination-progressbar' => 'height: {{SIZE}}{{UNIT}}',
-					'{{WRAPPER}} + .swiper-pagination .swiper-pagination-fraction' => 'font-size: {{SIZE}}{{UNIT}}',
+					'{{WRAPPER}} + .swiper-pagination.swiper-pagination-fraction' => 'font-size: {{SIZE}}{{UNIT}}',
+
+					// '{{WRAPPER}} + .swiper-pagination-progressbar.swiper-pagination-horizontal' => 'width: {{SIZE}}{{UNIT}}!important;',
+					// '{{WRAPPER}} + .swiper-pagination .swiper-container-horizontal .swiper-pagination-progressbar' => 'height: {{SIZE}}{{UNIT}}',
+				),
+				'condition'  => array(
+					'enable_carousel' => 'yes',
+					'show_pagination' => 'yes',
+					// 'pagination!' => 'fraction',
 				),
 			)
 		);
@@ -364,11 +395,16 @@ class Module extends Module_Base {
 				'size_units' => array( 'px', '%' ),
 				'range'      => array(
 					'%' => array(
-						'max' => 50,
+						'max' => 100,
 					),
 				),
 				'selectors'  => array(
 					'{{WRAPPER}} + .swiper-pagination .swiper-pagination-bullet' => 'border-radius: {{SIZE}}{{UNIT}} !important;',
+				),
+				'condition'  => array(
+					'enable_carousel' => 'yes',
+					'show_pagination' => 'yes',
+					'pagination'      => 'bullets',
 				),
 
 			)
@@ -377,15 +413,21 @@ class Module extends Module_Base {
 		$element->add_control(
 			'dots_height',
 			array(
-				'label'     => esc_html__( 'Dots Height', 'mas-elementor' ),
-				'type'      => Controls_Manager::SLIDER,
-				'range'     => array(
+				'label'      => esc_html__( 'Dots Height', 'mas-elementor' ),
+				'type'       => Controls_Manager::SLIDER,
+				'size_units' => array( 'px', '%' ),
+				'range'      => array(
 					'px' => array(
-						'max' => 20,
+						'max' => 100,
 					),
 				),
-				'selectors' => array(
+				'selectors'  => array(
 					'{{WRAPPER}} + .swiper-pagination .swiper-pagination-bullet' => 'height: {{SIZE}}{{UNIT}}!important;',
+				),
+				'condition'  => array(
+					'enable_carousel' => 'yes',
+					'show_pagination' => 'yes',
+					'pagination'      => 'bullets',
 				),
 			)
 		);
@@ -397,7 +439,64 @@ class Module extends Module_Base {
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
 					'{{WRAPPER}} + .swiper-pagination .swiper-pagination-bullet-active, {{WRAPPER}} + .swiper-pagination .swiper-pagination-progressbar-fill' => 'background-color: {{VALUE}}',
-					'{{WRAPPER}} + .swiper-pagination .swiper-pagination-fraction' => 'color: {{VALUE}}',
+					'{{WRAPPER}} + .swiper-pagination.swiper-pagination-fraction' => 'color: {{VALUE}}',
+				),
+				'condition' => array(
+					'enable_carousel' => 'yes',
+					'show_pagination' => 'yes',
+				),
+			)
+		);
+
+		$element->add_control(
+			'vertical_pagination_position',
+			array(
+				'label'     => esc_html__( 'Vertical Position', 'mas-elementor' ),
+				'type'      => Controls_Manager::SLIDER,
+				'default'   => array(
+					'size' => 100,
+				),
+				'range'     => array(
+					'%' => array(
+						'min' => 0,
+						'max' => 100,
+					),
+				),
+				'selectors' => array(
+					'{{WRAPPER}} + .swiper-pagination.swiper-pagination-bullets' => 'top: {{SIZE}}% !important;',
+					'{{WRAPPER}} + .swiper-pagination-progressbar.swiper-pagination-horizontal' => 'top: {{SIZE}}% !important;',
+					'{{WRAPPER}} + .swiper-pagination.swiper-pagination-fraction' => 'top: {{SIZE}}% !important;',
+				),
+				'condition' => array(
+					'enable_carousel' => 'yes',
+					'show_pagination' => 'yes',
+				),
+			)
+		);
+
+		$element->add_control(
+			'pagination_spacing',
+			array(
+				'label'      => esc_html__( 'Spacing', 'mas-elementor' ),
+				'type'       => Controls_Manager::SLIDER,
+				'default'    => array(
+					'size' => 0,
+				),
+				'size_units' => array( 'px', '%', 'rem' ),
+				'range'      => array(
+					'%' => array(
+						'min' => 0,
+						'max' => 100,
+					),
+				),
+				'selectors'  => array(
+					'{{WRAPPER}} + .swiper-pagination.swiper-pagination-bullets' => 'margin-top: {{SIZE}}{{UNIT}} !important;',
+					'{{WRAPPER}} + .swiper-pagination-progressbar.swiper-pagination-horizontal' => 'margin-top: {{SIZE}}{{UNIT}} !important;',
+					'{{WRAPPER}} + .swiper-pagination.swiper-pagination-fraction' => 'margin-top: {{SIZE}}{{UNIT}} !important;',
+				),
+				'condition'  => array(
+					'enable_carousel' => 'yes',
+					'show_pagination' => 'yes',
 				),
 			)
 		);
@@ -437,7 +536,7 @@ class Module extends Module_Base {
 		if ( 'yes' === $settings['enable_carousel'] ) {
 			$element->add_render_attribute( '_wrapper', 'class', 'swiper' );
 			$element->add_render_attribute( '_wrapper', 'data-swiper-options', $json );
-			$element->add_render_attribute( 'section_carousel', 'class', 'mas-swiper-wrapper' );
+			$element->add_render_attribute( 'section_carousel', 'class', 'mas-swiper-wrapper elementor-element' );
 			$element->add_render_attribute( 'section_carousel', 'style', 'position: relative;' );
 			// $element->add_render_attribute( 'section_carousel', 'data-swiper-options', $json );
 			?>
@@ -472,7 +571,7 @@ class Module extends Module_Base {
 		$settings   = $element->get_settings();
 		$section_id = $element->get_id();
 		if ( 'yes' === $settings['enable_carousel'] ) {
-			if ( ! empty( $settings['pag_id'] && 'yes' === $settings['show_pagination'] ) ) {
+			if ( ! empty( $section_id ) && 'yes' === $settings['show_pagination'] ) {
 				$element->add_render_attribute( 'swiper-pagination', 'id', 'pagination-' . $section_id );
 			}
 			$element->add_render_attribute( 'swiper-pagination', 'class', 'swiper-pagination' );
@@ -524,10 +623,19 @@ class Module extends Module_Base {
 		$swiper_settings = array();
 		if ( 'yes' === $settings['show_pagination'] ) {
 			$swiper_settings['pagination'] = array(
-				'el'        => '#pagination-' . $section_id,
-				'clickable' => true,
-
+				'el' => '#pagination-' . $section_id,
 			);
+		}
+
+		if ( 'bullets' === $settings['pagination'] ) {
+			$swiper_settings['pagination']['type']      = 'bullets';
+			$swiper_settings['pagination']['clickable'] = true;
+		}
+		if ( 'fraction' === $settings['pagination'] ) {
+			$swiper_settings['pagination']['type'] = 'fraction';
+		}
+		if ( 'progressbar' === $settings['pagination'] ) {
+			$swiper_settings['pagination']['type'] = 'progressbar';
 		}
 
 		if ( 'fade' === $settings['carousel_effect'] ) {
@@ -644,5 +752,67 @@ class Module extends Module_Base {
 			array(),
 			MAS_ELEMENTOR_VERSION,
 		);
+	}
+
+	/**
+	 * Render script in the editor.
+	 */
+	public function render_script() {
+		if ( Plugin::$instance->editor->is_edit_mode() ) :
+			?>
+			<script type="text/javascript">
+			var carousel = (() => {
+				// forEach function
+				let forEach = (array, callback, scope) => {
+				for (let i = 0; i < array.length; i++) {
+					callback.call(scope, i, array[i]); // passes back stuff we need
+				}
+				};
+
+				// Carousel initialisation
+				let carousels = document.querySelectorAll('.swiper');
+				forEach(carousels, (index, value) => {
+					let userOptions,
+					pagerOptions;
+				if(value.dataset.swiperOptions != undefined) userOptions = JSON.parse(value.dataset.swiperOptions);
+
+
+				// Pager
+				if(userOptions.pager) {
+					pagerOptions = {
+					pagination: {
+						el: userOptions.pager,
+						clickable: true,
+						bulletActiveClass: 'active',
+						bulletClass: 'page-item',
+						renderBullet: function (index, className) {
+						return '<li class="' + className + '"><a href="#" class="page-link btn-icon btn-sm">' + (index + 1) + '</a></li>';
+						}
+					}
+					}
+				}
+
+				// Slider init
+				let options = {...userOptions, ...pagerOptions};
+				let swiper = new Swiper(value, options);
+
+				// Tabs (linked content)
+				if(userOptions.tabs) {
+
+					swiper.on('activeIndexChange', (e) => {
+					let targetTab = document.querySelector(e.slides[e.activeIndex].dataset.swiperTab),
+						previousTab = document.querySelector(e.slides[e.previousIndex].dataset.swiperTab);
+
+					previousTab.classList.remove('active');
+					targetTab.classList.add('active');
+					});
+				}
+
+				});
+
+				})();
+			</script>
+			<?php
+		endif;
 	}
 }
