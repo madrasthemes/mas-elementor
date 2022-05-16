@@ -306,9 +306,9 @@ class Module extends Module_Base {
 					),
 				),
 				'selectors' => array(
-					// '{{WRAPPER}} .sn-elementor-swiper-button' => 'width: {{SIZE}}{{UNIT}} !important;',
-					// '{{WRAPPER}} .sn-elementor-swiper-button' => 'height: {{SIZE}}{{UNIT}} !important;',
-					'{{WRAPPER}} .sn-elementor-swiper-icon' => 'font-size: {{SIZE}}{{UNIT}} !important;',
+					'{{WRAPPER}} ~ .mas-elementor-swiper-arrow' => 'width: {{SIZE}}{{UNIT}} !important;',
+					'{{WRAPPER}} ~ .mas-elementor-swiper-arrow' => 'height: {{SIZE}}{{UNIT}} !important;',
+					'{{WRAPPER}} ~ .mas-elementor-swiper-arrow' => 'font-size: {{SIZE}}{{UNIT}} !important;',
 				),
 				'condition' => array(
 					'show_arrows' => 'yes',
@@ -322,8 +322,10 @@ class Module extends Module_Base {
 				'label'     => esc_html__( 'Color', 'mas-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
-					'{{WRAPPER}} .sn-elementor-swiper-icon' => 'color: {{VALUE}}',
-					'{{WRAPPER}} .sn-elementor-swiper-button svg' => 'fill: {{VALUE}}',
+					// '{{WRAPPER}} .sn-elementor-swiper-icon' => 'color: {{VALUE}}',
+					// '{{WRAPPER}} .sn-elementor-swiper-button svg' => 'fill: {{VALUE}}',
+					'{{WRAPPER}} ~ .mas-elementor-swiper-arrow' => 'color: {{VALUE}} !important;',
+					'{{WRAPPER}} ~ .mas-elementor-swiper-arrow svg' => 'fill: {{VALUE}}',
 				),
 				'condition' => array(
 					'show_arrows' => 'yes',
@@ -332,19 +334,60 @@ class Module extends Module_Base {
 		);
 
 		$element->add_control(
-			'arrows_hover_color',
+			'arrows_bg_color',
 			array(
-				'label'     => esc_html__( 'Background Hover Color', 'mas-elementor' ),
+				'label'     => esc_html__( 'Background Color', 'mas-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
-					'{{WRAPPER}} .btn-prev:hover, {{WRAPPER}} .btn-prev:focus' => 'background-color: {{VALUE}} !important;',
-					'{{WRAPPER}} .btn-prev:hover svg path, {{WRAPPER}} .btn-prev:focus svg path' => 'fill: {{VALUE}} !important;',
-					'{{WRAPPER}} .btn-next:hover, {{WRAPPER}} .btn-next:focus' => 'background-color: {{VALUE}} !important;',
-					'{{WRAPPER}} .btn-next:hover svg path, {{WRAPPER}} .btn-next:focus svg path' => 'fill: {{VALUE}} !important;',
+					// '{{WRAPPER}} .btn-prev:hover, {{WRAPPER}} .btn-prev:focus' => 'background-color: {{VALUE}} !important;',
+					// '{{WRAPPER}} .btn-prev:hover svg path, {{WRAPPER}} .btn-prev:focus svg path' => 'fill: {{VALUE}} !important;',
+					// '{{WRAPPER}} .btn-next:hover, {{WRAPPER}} .btn-next:focus' => 'background-color: {{VALUE}} !important;',
+					// '{{WRAPPER}} .btn-next:hover svg path, {{WRAPPER}} .btn-next:focus svg path' => 'fill: {{VALUE}} !important;',
+					'{{WRAPPER}} ~ .mas-elementor-swiper-arrow' => 'background-color: {{VALUE}}',
 				),
 				'condition' => array(
 					'show_arrows' => 'yes',
 				),
+			)
+		);
+
+		$element->add_control(
+			'arrows_bg_hover_color',
+			array(
+				'label'     => esc_html__( 'Background Hover Color', 'mas-elementor' ),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => array(
+					// '{{WRAPPER}} .btn-prev:hover, {{WRAPPER}} .btn-prev:focus' => 'background-color: {{VALUE}} !important;',
+					// '{{WRAPPER}} .btn-prev:hover svg path, {{WRAPPER}} .btn-prev:focus svg path' => 'fill: {{VALUE}} !important;',
+					// '{{WRAPPER}} .btn-next:hover, {{WRAPPER}} .btn-next:focus' => 'background-color: {{VALUE}} !important;',
+					// '{{WRAPPER}} .btn-next:hover svg path, {{WRAPPER}} .btn-next:focus svg path' => 'fill: {{VALUE}} !important;',
+					'{{WRAPPER}} ~ .mas-elementor-swiper-arrow:hover' => 'background-color: {{VALUE}}',
+				),
+				'condition' => array(
+					'show_arrows' => 'yes',
+				),
+			)
+		);
+
+		$element->add_control(
+			'arrows_border_radius',
+			array(
+				'label'      => esc_html__( 'Border Radius', 'mas-elementor' ),
+				'type'       => Controls_Manager::SLIDER,
+				'size_units' => array( 'px', '%' ),
+				'range'      => array(
+					'%' => array(
+						'max' => 100,
+					),
+				),
+				'selectors'  => array(
+					'{{WRAPPER}} ~ .mas-elementor-swiper-arrow' => 'border-radius: {{SIZE}}{{UNIT}} !important;',
+				),
+				'condition'  => array(
+					'enable_carousel' => 'yes',
+					'show_arrows' => 'yes',
+				),
+
 			)
 		);
 
