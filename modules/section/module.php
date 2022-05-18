@@ -61,7 +61,7 @@ class Module extends Module_Base {
 	 */
 	public function add_section_controls( $element, $args ) {
 		$element->add_control(
-			'container_class',
+			'mas_container_class',
 			array(
 				'label'       => esc_html__( 'Container CSS Classes', 'mas-elementor' ),
 				'type'        => Controls_Manager::TEXT,
@@ -86,8 +86,8 @@ class Module extends Module_Base {
 			$container_class = $settings['gap'] . ' no-gutters';
 		}
 
-		if ( isset( $settings['container_class'] ) && ! empty( $settings['container_class'] ) ) {
-			$container_class .= ' ' . $settings['container_class'];
+		if ( isset( $settings['mas_container_class'] ) && ! empty( $settings['mas_container_class'] ) ) {
+			$container_class .= ' ' . $settings['mas_container_class'];
 		}
 
 		if ( ! empty( $container_class ) ) {

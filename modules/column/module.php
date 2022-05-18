@@ -56,7 +56,7 @@ class Module extends Module_Base {
 	public function add_widget_wrap_controls( $element ) {
 
 		$element->add_control(
-			'widget_wrapper_css',
+			'mas_widget_wrapper_css',
 			array(
 				'label'       => esc_html__( 'CSS Classes', 'mas-elementor' ),
 				'type'        => Controls_Manager::TEXT,
@@ -81,8 +81,8 @@ class Module extends Module_Base {
 		if ( 'column' === $element->get_name() ) {
 			$settings = $element->get_settings_for_display();
 
-			if ( ! empty( $settings['widget_wrapper_css'] ) ) {
-				$element->add_render_attribute( '_widget_wrapper', 'class', $settings['widget_wrapper_css'] );
+			if ( ! empty( $settings['mas_widget_wrapper_css'] ) ) {
+				$element->add_render_attribute( '_widget_wrapper', 'class', $settings['mas_widget_wrapper_css'] );
 			}
 		}
 	}

@@ -383,15 +383,15 @@ class Module extends Module_Base {
 
 		// add_action( 'elementor/theme/register_conditions', array( $this, 'register_conditions' ) );.
 
-		add_filter( 'elementor/theme/need_override_location', array( $this, 'theme_template_include' ), 10, 2 );
+		// add_filter( 'elementor/theme/need_override_location', array( $this, 'theme_template_include' ), 10, 2 );.
 
 		// add_filter( 'elementor_pro/frontend/localize_settings', array( $this, 'localized_settings_frontend' ) );.
 
 		// On Editor - Register WooCommerce frontend hooks before the Editor init.
 		// Priority = 5, in order to allow plugins remove/add their wc hooks on init.
-		if ( ! empty( $_REQUEST['action'] ) && 'elementor' === $_REQUEST['action'] && is_admin() ) {
-			add_action( 'init', array( $this, 'register_wc_hooks' ), 5 );
-		}
+		// if ( ! empty( $_REQUEST['action'] ) && 'elementor' === $_REQUEST['action'] && is_admin() ) {
+		// add_action( 'init', array( $this, 'register_wc_hooks' ), 5 );.
+		// }.
 
 		if ( $this->use_mini_cart_template ) {
 			add_filter( 'woocommerce_add_to_cart_fragments', array( $this, 'menu_cart_fragments' ) );
