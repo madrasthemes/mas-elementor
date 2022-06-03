@@ -1,0 +1,304 @@
+<?php
+/**
+ * Accordion.
+ *
+ * @package MASElementor\Modules\Accordion
+ */
+
+namespace MASElementor\Modules\Accordion;
+
+use MASElementor\Base\Module_Base;
+use Elementor\Controls_Manager;
+use Elementor\Plugin;
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+
+/**
+ * Class Module
+ */
+class Module extends Module_Base {
+
+	/**
+	 * Constructor.
+	 *
+	 * @return void
+	 */
+	public function __construct() {
+		parent::__construct();
+
+		$this->add_actions();
+	}
+
+	/**
+	 * Get Name.
+	 *
+	 * @return string
+	 */
+	public function get_name() {
+		return 'accordion';
+	}
+
+    /**
+	 * Add Action.
+	 *
+	 * @return void
+	 */
+	public function add_actions() {
+        add_action( 'elementor/widget/accordion/before_render_content', [ $this, 'before_render' ], 20 );
+        add_action( 'elementor/element/accordion/section_toggle_style_icon/before_section_end', array( $this, 'add_icon_style_controls' ), 10 );
+        add_action( 'elementor/element/accordion/section_title_style/before_section_end', array( $this, 'add_accordion_style_controls' ), 10 );
+        add_action( 'elementor/element/accordion/section_toggle_style_title/before_section_end', array( $this, 'add_title_style_controls' ), 10 );
+        add_action( 'elementor/element/accordion/section_toggle_style_content/before_section_end', array( $this, 'add_content_style_controls' ), 10 );
+		//add_filter( 'elementor/section/print_template', array( $this, 'print_template' ) );
+
+	}
+
+    /**
+	 * Add wrap controls to the column element.
+	 *
+	 * @param Element_Column $element The Column element object.
+	 */
+	public function add_icon_style_controls( $element ) {
+
+		$element->add_responsive_control(
+			'mas_accordion_icon_size',
+			array(
+				'label'       => esc_html__( 'Icon Size', 'mas-elementor' ),
+				'type'        => Controls_Manager::SLIDER,
+                'range' => [
+					'px' => [
+						'min' => 6,
+						'max' => 300,
+					],
+				],
+				'selectors' => [
+					'{{WRAPPER}} .elementor-accordion-icon i' => 'font-size: {{SIZE}}{{UNIT}};',
+				],
+			)
+		);
+
+        $element->add_responsive_control(
+			'mas_accordion_icon_padding',
+			[
+				'label' => esc_html__( 'Padding', 'mas-elementorelementor' ),
+				'type' => Controls_Manager::DIMENSIONS,
+				'size_units' => [ 'px', 'em', '%', 'rem' ],
+				'selectors' => [
+					'{{WRAPPER}} .elementor-accordion-icon i' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				],
+			]
+		);
+
+        $element->add_responsive_control(
+			'mas_accordion_icon_margin',
+			[
+				'label' => esc_html__( 'Margin', 'mas-elementor' ),
+				'type' => Controls_Manager::DIMENSIONS,
+				'size_units' => [ 'px', 'em', '%', 'rem' ],
+				'selectors' => [
+					'{{WRAPPER}} .elementor-accordion-icon i' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				],
+			]
+		);
+	}
+
+    /**
+	 * Add wrap controls to the column element.
+	 *
+	 * @param Element_Column $element The Column element object.
+	 */
+	public function add_accordion_style_controls( $element ) {
+
+        $element->add_responsive_control(
+            'mas_accordion_space_between',
+            [
+                'label' => esc_html__( 'Space Between', 'mas-elementor' ),
+                'type' => Controls_Manager::SLIDER,
+                'range' => [
+                    'px' => [
+                        'min' => 0,
+                        'max' => 100,
+                    ],
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .elementor-accordion-item:not(:last-child)' => 'margin-bottom: {{SIZE}}{{UNIT}}',
+                ],
+            ]
+        );
+
+        $element->add_control(
+			'mas_accordion_border_bottom',
+			[
+				'type'      => Controls_Manager::SLIDER,
+				'label'     => esc_html__( 'Border Bottom', 'mas-elementor' ),
+				'range' => [
+					'px' => [
+						'min' => 0,
+						'max' => 10,
+					],
+				],
+				'selectors' => [
+					'{{WRAPPER}} .elementor-accordion .elementor-accordion-item:not(:last-child)' => 'border-bottom-width: {{SIZE}}{{UNIT}};',
+					
+				],
+			]
+		);
+
+    }
+
+     /**
+	 * Add wrap controls to the column element.
+	 *
+	 * @param Element_Column $element The Column element object.
+	 */
+	public function add_title_style_controls( $element ) {
+
+        $element->add_control(
+			'content_background',
+			[
+				'label' => esc_html__( 'Background Active Color', 'mas-elementor' ),
+				'type' => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .elementor-accordion .elementor-tab-title.elementor-active' => 'background-color: {{VALUE}};',
+				],
+			]
+		);
+
+        $element->add_control(
+			'mas_accordion_title_border_radius',
+			[
+				'type'      => Controls_Manager::DIMENSIONS,
+				'label'     => esc_html__( 'Border Radius', 'mas-elementor' ),
+                'size_units' => [ 'px', '%' ],
+                'selectors' => [
+					'{{WRAPPER}} .elementor-accordion .elementor-accordion-item .elementor-tab-title' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				],
+            ]
+        );
+    }
+
+     /**
+	 * Add wrap controls to the column element.
+	 *
+	 * @param Element_Column $element The Column element object.
+	 */
+	public function add_content_style_controls( $element ) {
+        $element->add_control(
+			'mas_accordion_content_border_radius',
+			[
+				'type'      => Controls_Manager::DIMENSIONS,
+				'label'     => esc_html__( 'Border Radius', 'mas-elementor' ),
+                'size_units' => [ 'px', '%' ],
+                'selectors' => [
+                    '{{WRAPPER}} .elementor-accordion .elementor-tab-content' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				],
+            ]
+        );
+
+        $element->add_responsive_control(
+			'mas_accordion_content_margin',
+			[
+				'label' => esc_html__( 'Margin', 'mas-elementor' ),
+				'type' => Controls_Manager::DIMENSIONS,
+				'size_units' => [ 'px', 'em', '%', 'rem' ],
+				'selectors' => [
+					'{{WRAPPER}} .elementor-tab-content' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				],
+			]
+		);
+    }
+    /**
+	 * Before Render.
+	 *
+	 * @param array $widget The widget.
+	 * @return void
+	 */
+	public function before_render( $widget ) {
+
+		$settings = $widget->get_settings();
+
+    }
+
+    /**
+	 * Print Template.
+	 *
+	 * @return string
+	 */
+	public function print_template() {
+		ob_start();
+			$this->content_template();
+		return ob_get_clean();
+	}
+
+    /**
+	 * Render accordion widget output in the editor.
+	 *
+	 * Written as a Backbone JavaScript template and used to generate the live preview.
+	 *
+	 * @since 2.9.0
+	 * @access protected
+	 */
+	protected function content_template() {
+		?>
+		<div class="elementor-accordion" role="tablist">
+			<#
+			if ( settings.tabs ) {
+				var tabindex = view.getIDInt().toString().substr( 0, 3 ),
+					iconHTML = elementor.helpers.renderIcon( view, settings.selected_icon, {}, 'i' , 'object' ),
+					iconActiveHTML = elementor.helpers.renderIcon( view, settings.selected_active_icon, {}, 'i' , 'object' ),
+					migrated = elementor.helpers.isIconMigrated( settings, 'selected_icon' );
+
+				_.each( settings.tabs, function( item, index ) {
+					var tabCount = index + 1,
+						tabTitleKey = view.getRepeaterSettingKey( 'tab_title', 'tabs', index ),
+						tabContentKey = view.getRepeaterSettingKey( 'tab_content', 'tabs', index );
+
+					view.addRenderAttribute( tabTitleKey, {
+						'id': 'elementor-tab-title-' + tabindex + tabCount,
+						'class': [ 'elementor-tab-title' ],
+						'tabindex': tabindex + tabCount,
+						'data-tab': tabCount,
+						'role': 'tab',
+						'aria-controls': 'elementor-tab-content-' + tabindex + tabCount,
+						'aria-expanded': 'false',
+					} );
+
+					view.addRenderAttribute( tabContentKey, {
+						'id': 'elementor-tab-content-' + tabindex + tabCount,
+						'class': [ 'elementor-tab-content', 'elementor-clearfix' ],
+						'data-tab': tabCount,
+						'role': 'tabpanel',
+						'aria-labelledby': 'elementor-tab-title-' + tabindex + tabCount
+					} );
+
+					view.addInlineEditingAttributes( tabContentKey, 'advanced' );
+
+					var titleHTMLTag = elementor.helpers.validateHTMLTag( settings.title_html_tag );
+					#>
+					<div class="elementor-accordion-item">
+						<{{{ titleHTMLTag }}} {{{ view.getRenderAttributeString( tabTitleKey ) }}}>
+							<# if ( settings.icon || settings.selected_icon ) { #>
+							<span class="elementor-accordion-icon elementor-accordion-icon-{{ settings.icon_align }}" aria-hidden="true">
+								<# if ( iconHTML && iconHTML.rendered && ( ! settings.icon || migrated ) ) { #>
+									<span class="elementor-accordion-icon-closed">{{{ iconHTML.value }}}</span>
+									<span class="elementor-accordion-icon-opened">{{{ iconActiveHTML.value }}}</span>
+								<# } else { #>
+									<i class="elementor-accordion-icon-closed {{ settings.icon }}"></i>
+									<i class="elementor-accordion-icon-opened {{ settings.icon_active }}"></i>
+								<# } #>
+							</span>
+							<# } #>
+							<a class="elementor-accordion-title" href="">{{{ item.tab_title }}}</a>
+						</{{{ titleHTMLTag }}}>
+						<div {{{ view.getRenderAttributeString( tabContentKey ) }}}>{{{ item.tab_content }}}</div>
+					</div>
+					<#
+				} );
+			} #>
+		</div>
+		<?php
+	}
+    
+}
