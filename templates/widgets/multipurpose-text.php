@@ -11,6 +11,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 $settings = $widget->get_settings_for_display();
 
+$animation_typed_text_array = explode( "\n", $settings[ 'typing_text' ] );
+
+$animation_typed_text = array(
+			'strings' => $animation_typed_text_array
+		);
+
 if ( '' === $settings['highlighted_text'] && '' === $settings['before_title'] ) {
 	return;
 }
