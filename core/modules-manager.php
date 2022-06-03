@@ -31,6 +31,7 @@ final class Modules_Manager {
 	public function __construct() {
 		$modules = array(
 			'multipurpose-text',
+			'countdown',
 			'posts',
 			'query-control',
 			'woocommerce',
