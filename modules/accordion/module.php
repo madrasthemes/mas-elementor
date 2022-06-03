@@ -40,22 +40,21 @@ class Module extends Module_Base {
 		return 'accordion';
 	}
 
-    /**
+	/**
 	 * Add Action.
 	 *
 	 * @return void
 	 */
 	public function add_actions() {
-        add_action( 'elementor/widget/accordion/before_render_content', [ $this, 'before_render' ], 20 );
-        add_action( 'elementor/element/accordion/section_toggle_style_icon/before_section_end', array( $this, 'add_icon_style_controls' ), 10 );
-        add_action( 'elementor/element/accordion/section_title_style/before_section_end', array( $this, 'add_accordion_style_controls' ), 10 );
-        add_action( 'elementor/element/accordion/section_toggle_style_title/before_section_end', array( $this, 'add_title_style_controls' ), 10 );
-        add_action( 'elementor/element/accordion/section_toggle_style_content/before_section_end', array( $this, 'add_content_style_controls' ), 10 );
-		//add_filter( 'elementor/section/print_template', array( $this, 'print_template' ) );
-
+		add_action( 'elementor/widget/accordion/before_render_content', array( $this, 'before_render' ), 20 );
+		add_action( 'elementor/element/accordion/section_toggle_style_icon/before_section_end', array( $this, 'add_icon_style_controls' ), 10 );
+		add_action( 'elementor/element/accordion/section_title_style/before_section_end', array( $this, 'add_accordion_style_controls' ), 10 );
+		add_action( 'elementor/element/accordion/section_toggle_style_title/before_section_end', array( $this, 'add_title_style_controls' ), 10 );
+		add_action( 'elementor/element/accordion/section_toggle_style_content/before_section_end', array( $this, 'add_content_style_controls' ), 10 );
+		add_filter( 'elementor/section/print_template', array( $this, 'print_template' ) );
 	}
 
-    /**
+	/**
 	 * Add wrap controls to the column element.
 	 *
 	 * @param Element_Column $element The Column element object.
@@ -65,151 +64,151 @@ class Module extends Module_Base {
 		$element->add_responsive_control(
 			'mas_accordion_icon_size',
 			array(
-				'label'       => esc_html__( 'Icon Size', 'mas-elementor' ),
-				'type'        => Controls_Manager::SLIDER,
-                'range' => [
-					'px' => [
+				'label'     => esc_html__( 'Icon Size', 'mas-elementor' ),
+				'type'      => Controls_Manager::SLIDER,
+				'range'     => array(
+					'px' => array(
 						'min' => 6,
 						'max' => 300,
-					],
-				],
-				'selectors' => [
+					),
+				),
+				'selectors' => array(
 					'{{WRAPPER}} .elementor-accordion-icon i' => 'font-size: {{SIZE}}{{UNIT}};',
-				],
+				),
 			)
 		);
 
-        $element->add_responsive_control(
+		$element->add_responsive_control(
 			'mas_accordion_icon_padding',
-			[
-				'label' => esc_html__( 'Padding', 'mas-elementorelementor' ),
-				'type' => Controls_Manager::DIMENSIONS,
-				'size_units' => [ 'px', 'em', '%', 'rem' ],
-				'selectors' => [
+			array(
+				'label'      => esc_html__( 'Padding', 'mas-elementor' ),
+				'type'       => Controls_Manager::DIMENSIONS,
+				'size_units' => array( 'px', 'em', '%', 'rem' ),
+				'selectors'  => array(
 					'{{WRAPPER}} .elementor-accordion-icon i' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-				],
-			]
+				),
+			)
 		);
 
-        $element->add_responsive_control(
+		$element->add_responsive_control(
 			'mas_accordion_icon_margin',
-			[
-				'label' => esc_html__( 'Margin', 'mas-elementor' ),
-				'type' => Controls_Manager::DIMENSIONS,
-				'size_units' => [ 'px', 'em', '%', 'rem' ],
-				'selectors' => [
+			array(
+				'label'      => esc_html__( 'Margin', 'mas-elementor' ),
+				'type'       => Controls_Manager::DIMENSIONS,
+				'size_units' => array( 'px', 'em', '%', 'rem' ),
+				'selectors'  => array(
 					'{{WRAPPER}} .elementor-accordion-icon i' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-				],
-			]
+				),
+			)
 		);
 	}
 
-    /**
+	/**
 	 * Add wrap controls to the column element.
 	 *
 	 * @param Element_Column $element The Column element object.
 	 */
 	public function add_accordion_style_controls( $element ) {
 
-        $element->add_responsive_control(
-            'mas_accordion_space_between',
-            [
-                'label' => esc_html__( 'Space Between', 'mas-elementor' ),
-                'type' => Controls_Manager::SLIDER,
-                'range' => [
-                    'px' => [
-                        'min' => 0,
-                        'max' => 100,
-                    ],
-                ],
-                'selectors' => [
-                    '{{WRAPPER}} .elementor-accordion-item:not(:last-child)' => 'margin-bottom: {{SIZE}}{{UNIT}}',
-                ],
-            ]
-        );
-
-        $element->add_control(
-			'mas_accordion_border_bottom',
-			[
+		$element->add_responsive_control(
+			'mas_accordion_space_between',
+			array(
+				'label'     => esc_html__( 'Space Between', 'mas-elementor' ),
 				'type'      => Controls_Manager::SLIDER,
-				'label'     => esc_html__( 'Border Bottom', 'mas-elementor' ),
-				'range' => [
-					'px' => [
+				'range'     => array(
+					'px' => array(
 						'min' => 0,
-						'max' => 10,
-					],
-				],
-				'selectors' => [
-					'{{WRAPPER}} .elementor-accordion .elementor-accordion-item:not(:last-child)' => 'border-bottom-width: {{SIZE}}{{UNIT}};',
-					
-				],
-			]
+						'max' => 100,
+					),
+				),
+				'selectors' => array(
+					'{{WRAPPER}} .elementor-accordion-item:not(:last-child)' => 'margin-bottom: {{SIZE}}{{UNIT}}',
+				),
+			)
 		);
 
-    }
+		$element->add_control(
+			'mas_accordion_border_bottom',
+			array(
+				'type'      => Controls_Manager::SLIDER,
+				'label'     => esc_html__( 'Border Bottom', 'mas-elementor' ),
+				'range'     => array(
+					'px' => array(
+						'min' => 0,
+						'max' => 10,
+					),
+				),
+				'selectors' => array(
+					'{{WRAPPER}} .elementor-accordion .elementor-accordion-item:not(:last-child)' => 'border-bottom-width: {{SIZE}}{{UNIT}};',
 
-     /**
+				),
+			)
+		);
+
+	}
+
+	/**
 	 * Add wrap controls to the column element.
 	 *
 	 * @param Element_Column $element The Column element object.
 	 */
 	public function add_title_style_controls( $element ) {
 
-        $element->add_control(
+		$element->add_control(
 			'content_background',
-			[
-				'label' => esc_html__( 'Background Active Color', 'mas-elementor' ),
-				'type' => Controls_Manager::COLOR,
-				'selectors' => [
+			array(
+				'label'     => esc_html__( 'Background Active Color', 'mas-elementor' ),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => array(
 					'{{WRAPPER}} .elementor-accordion .elementor-tab-title.elementor-active' => 'background-color: {{VALUE}};',
-				],
-			]
+				),
+			)
 		);
 
-        $element->add_control(
+		$element->add_control(
 			'mas_accordion_title_border_radius',
-			[
-				'type'      => Controls_Manager::DIMENSIONS,
-				'label'     => esc_html__( 'Border Radius', 'mas-elementor' ),
-                'size_units' => [ 'px', '%' ],
-                'selectors' => [
+			array(
+				'type'       => Controls_Manager::DIMENSIONS,
+				'label'      => esc_html__( 'Border Radius', 'mas-elementor' ),
+				'size_units' => array( 'px', '%' ),
+				'selectors'  => array(
 					'{{WRAPPER}} .elementor-accordion .elementor-accordion-item .elementor-tab-title' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-				],
-            ]
-        );
-    }
+				),
+			)
+		);
+	}
 
-     /**
+	/**
 	 * Add wrap controls to the column element.
 	 *
 	 * @param Element_Column $element The Column element object.
 	 */
 	public function add_content_style_controls( $element ) {
-        $element->add_control(
+		$element->add_control(
 			'mas_accordion_content_border_radius',
-			[
-				'type'      => Controls_Manager::DIMENSIONS,
-				'label'     => esc_html__( 'Border Radius', 'mas-elementor' ),
-                'size_units' => [ 'px', '%' ],
-                'selectors' => [
-                    '{{WRAPPER}} .elementor-accordion .elementor-tab-content' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-				],
-            ]
-        );
-
-        $element->add_responsive_control(
-			'mas_accordion_content_margin',
-			[
-				'label' => esc_html__( 'Margin', 'mas-elementor' ),
-				'type' => Controls_Manager::DIMENSIONS,
-				'size_units' => [ 'px', 'em', '%', 'rem' ],
-				'selectors' => [
-					'{{WRAPPER}} .elementor-tab-content' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-				],
-			]
+			array(
+				'type'       => Controls_Manager::DIMENSIONS,
+				'label'      => esc_html__( 'Border Radius', 'mas-elementor' ),
+				'size_units' => array( 'px', '%' ),
+				'selectors'  => array(
+					'{{WRAPPER}} .elementor-accordion .elementor-tab-content' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				),
+			)
 		);
-    }
-    /**
+
+		$element->add_responsive_control(
+			'mas_accordion_content_margin',
+			array(
+				'label'      => esc_html__( 'Margin', 'mas-elementor' ),
+				'type'       => Controls_Manager::DIMENSIONS,
+				'size_units' => array( 'px', 'em', '%', 'rem' ),
+				'selectors'  => array(
+					'{{WRAPPER}} .elementor-tab-content' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				),
+			)
+		);
+	}
+	/**
 	 * Before Render.
 	 *
 	 * @param array $widget The widget.
@@ -219,9 +218,9 @@ class Module extends Module_Base {
 
 		$settings = $widget->get_settings();
 
-    }
+	}
 
-    /**
+	/**
 	 * Print Template.
 	 *
 	 * @return string
@@ -232,13 +231,12 @@ class Module extends Module_Base {
 		return ob_get_clean();
 	}
 
-    /**
+	/**
 	 * Render accordion widget output in the editor.
 	 *
 	 * Written as a Backbone JavaScript template and used to generate the live preview.
 	 *
 	 * @since 2.9.0
-	 * @access protected
 	 */
 	protected function content_template() {
 		?>
@@ -300,5 +298,5 @@ class Module extends Module_Base {
 		</div>
 		<?php
 	}
-    
+
 }
