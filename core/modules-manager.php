@@ -38,6 +38,7 @@ final class Modules_Manager {
 			'column',
 			'carousel-attributes',
 			'accordion',
+			'icon',
 		);
 
 		foreach ( $modules as $module_name ) {
