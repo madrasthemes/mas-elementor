@@ -39,6 +39,7 @@ final class Modules_Manager {
 			'carousel-attributes',
 			'mas-nav-menu',
 			'accordion',
+			'icon',
 		);
 
 		foreach ( $modules as $module_name ) {
