@@ -349,9 +349,11 @@ class Multipurpose_Text extends Base_Widget {
 				'label' => esc_html__( 'Underline Color', 'mas-elementor' ),
 				'type' => Controls_Manager::COLOR,
 				'selectors' => [
-					'{{WRAPPER}} .mas-elementor-headline-dynamic-text' => 'color: {{VALUE}}',
+					'{{WRAPPER}} .mas-elementor-headline-dynamic-text_underline' => 'border-bottom-color: {{VALUE}}; border-bottom-width: 12px; border-bottom-style: solid;',
+					//'{{WRAPPER}} .mas-elementor-headline-dynamic-text_underline' => 'border-bottom-width: 12px !important;',
+					//'{{WRAPPER}} .mas-elementor-headline-dynamic-text_underline' => 'border-bottom-style: solid !important;',
 				],
-				'default' => '#42BA96',
+				'default' => '#fae4cc',
 			]
 		);
 
