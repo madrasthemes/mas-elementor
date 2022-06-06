@@ -31,6 +31,15 @@ class Module extends Module_Base {
 	}
 
 	/**
+	 * Return the script dependencies of the module.
+	 *
+	 * @return array
+	 */
+	public function get_script_depends() {
+		return array( 'scrollspy-script', 'sticky-block-script' );
+	}
+
+	/**
 	 * Return the name of the module.
 	 *
 	 * @return string
@@ -170,6 +179,22 @@ class Module extends Module_Base {
 			MAS_ELEMENTOR_VERSION,
 			true
 		);
+
+		wp_enqueue_script(
+			'sticky-block-script',
+			MAS_ELEMENTOR_MODULES_URL . 'column/assets/js/sticky-block.min.js',
+			array(),
+			MAS_ELEMENTOR_VERSION,
+			true
+		);
+
+		wp_enqueue_script(
+			'scrollspy-init-script',
+			MAS_ELEMENTOR_MODULES_URL . 'column/assets/js/scroll-init.js',
+			array(),
+			MAS_ELEMENTOR_VERSION,
+			true
+		);
 		
 
 	}
@@ -247,4 +272,5 @@ class Module extends Module_Base {
 		</div>
 		<?php
 	}
+	
 }

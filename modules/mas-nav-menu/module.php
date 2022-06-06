@@ -1,5 +1,5 @@
 <?php
-namespace MASElementor\Modules\NavMenu;
+namespace MASElementor\Modules\MasNavMenu;
 
 use MASElementor\Base\Module_Base;
 
@@ -19,7 +19,7 @@ class Module extends Module_Base {
 	 */
 	public function get_widgets() {
 		return array(
-			'Nav_Menu',
+			'Mas_Nav_Menu',
         );
 	}
 
@@ -29,6 +29,6 @@ class Module extends Module_Base {
 	 * @return string
 	 */
 	public function get_name() {
-		return 'nav-menu';
+		return 'mas-nav-menu';
 	}
 }
