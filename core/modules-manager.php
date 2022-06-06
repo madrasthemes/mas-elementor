@@ -37,7 +37,8 @@ final class Modules_Manager {
 			'section',
 			'column',
 			'carousel-attributes',
-			//'nav-menu',
+			'nav-menu',
+			'accordion',
 		);
 
 		foreach ( $modules as $module_name ) {

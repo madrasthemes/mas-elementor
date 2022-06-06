@@ -793,7 +793,7 @@ class Module extends Module_Base {
 			'swiper-stylesheet',
 			MAS_ELEMENTOR_MODULES_URL . 'carousel-attributes/assets/css/swiper-bundle.min.css',
 			array(),
-			MAS_ELEMENTOR_VERSION,
+			MAS_ELEMENTOR_VERSION
 		);
 	}
 
