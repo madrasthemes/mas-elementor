@@ -51,7 +51,7 @@ class Module extends Module_Base {
 		add_action( 'elementor/element/accordion/section_title_style/before_section_end', array( $this, 'add_accordion_style_controls' ), 10 );
 		add_action( 'elementor/element/accordion/section_toggle_style_title/before_section_end', array( $this, 'add_title_style_controls' ), 10 );
 		add_action( 'elementor/element/accordion/section_toggle_style_content/before_section_end', array( $this, 'add_content_style_controls' ), 10 );
-		add_filter( 'elementor/section/print_template', array( $this, 'print_template' ) );
+		add_filter( 'elementor/accordion/print_template', array( $this, 'print_template' ) );
 	}
 
 	/**
