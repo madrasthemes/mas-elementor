@@ -37,7 +37,7 @@ final class Modules_Manager {
 			'section',
 			'column',
 			'carousel-attributes',
-			'nav-menu',
+			'mas-nav-menu',
 			'accordion',
 			'icon',
 			'divider',
