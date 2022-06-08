@@ -40,6 +40,7 @@ final class Modules_Manager {
 			'nav-menu',
 			'accordion',
 			'icon',
+			'divider',
 		);
 
 		foreach ( $modules as $module_name ) {
