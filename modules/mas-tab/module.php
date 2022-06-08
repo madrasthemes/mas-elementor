@@ -32,23 +32,23 @@ class Module extends Module_Base {
 	// return ! class_exists( 'ElementorPro\Plugin' );
 	// }.
 
-	// /**
-	//  * Return the script dependencies of the module.
-	//  *
-	//  * @return array
-	//  */
-	// public function get_script_depends() {
-	// 	return array( 'swiper-script' );
-	// }
+	/**
+	 * Return the script dependencies of the module.
+	 *
+	 * @return array
+	 */
+	public function get_script_depends() {
+		return array( 'tab-script' );
+	}
 
-	// /**
-	//  * Return the style dependencies of the module.
-	//  *
-	//  * @return array
-	//  */
-	// public function get_style_depends() {
-	// 	return array( 'swiper-stylesheet' );
-	// }
+	/**
+	 * Return the style dependencies of the module.
+	 *
+	 * @return array
+	 */
+	public function get_style_depends() {
+		return array( 'tab-stylesheet' );
+	}
 
 	/**
 	 * Return the name of the module.
@@ -109,8 +109,9 @@ class Module extends Module_Base {
 	public function before_render_column( $element ) {
 
 		$settings = $element->get_settings_for_display();
-		if ( 'yes' === $settings['enable_slide'] ) {
-			$element->add_render_attribute( '_wrapper', 'class', 'swiper-slide' );
+		
+		if ( 'yes' === $settings['enable_tab'] ) {
+			$element->add_render_attribute( '_widget_wrapper', 'class', 'tab' );
 		}
 
 	}
@@ -120,8 +121,8 @@ class Module extends Module_Base {
 	 */
 	public function register_frontend_scripts() {
 		wp_enqueue_script(
-			'swiper-script',
-			MAS_ELEMENTOR_MODULES_URL . 'mas-tab/assets/js/swiper-bundle.min.js',
+			'tab-script',
+			MAS_ELEMENTOR_MODULES_URL . 'mas-tab/assets/js/dynamic-tab.js',
 			array(),
 			MAS_ELEMENTOR_VERSION,
 			true
@@ -134,72 +135,11 @@ class Module extends Module_Base {
 	 */
 	public function register_frontend_styles() {
 		wp_enqueue_style(
-			'swiper-stylesheet',
-			MAS_ELEMENTOR_MODULES_URL . 'mas-tab/assets/css/swiper-bundle.min.css',
+			'tab-stylesheet',
+			MAS_ELEMENTOR_MODULES_URL . 'mas-tab/assets/css/dynamic-tab.css',
 			array(),
 			MAS_ELEMENTOR_VERSION
 		);
 	}
 
-	/**
-	 * Render script in the editor.
-	 */
-	public function render_script() {
-		if ( Plugin::$instance->editor->is_edit_mode() ) :
-			?>
-			<script type="text/javascript">
-			var carousel = (() => {
-				// forEach function
-				let forEach = (array, callback, scope) => {
-				for (let i = 0; i < array.length; i++) {
-					callback.call(scope, i, array[i]); // passes back stuff we need
-				}
-				};
-
-				// Carousel initialisation
-				let carousels = document.querySelectorAll('.swiper');
-				forEach(carousels, (index, value) => {
-					let userOptions,
-					pagerOptions;
-				if(value.dataset.swiperOptions != undefined) userOptions = JSON.parse(value.dataset.swiperOptions);
-
-
-				// Pager
-				if(userOptions.pager) {
-					pagerOptions = {
-					pagination: {
-						el: userOptions.pager,
-						clickable: true,
-						bulletActiveClass: 'active',
-						bulletClass: 'page-item',
-						renderBullet: function (index, className) {
-						return '<li class="' + className + '"><a href="#" class="page-link btn-icon btn-sm">' + (index + 1) + '</a></li>';
-						}
-					}
-					}
-				}
-
-				// Slider init
-				let options = {...userOptions, ...pagerOptions};
-				let swiper = new Swiper(value, options);
-
-				// Tabs (linked content)
-				if(userOptions.tabs) {
-
-					swiper.on('activeIndexChange', (e) => {
-					let targetTab = document.querySelector(e.slides[e.activeIndex].dataset.swiperTab),
-						previousTab = document.querySelector(e.slides[e.previousIndex].dataset.swiperTab);
-
-					previousTab.classList.remove('active');
-					targetTab.classList.add('active');
-					});
-				}
-
-				});
-
-				})();
-			</script>
-			<?php
-		endif;
-	}
 }
