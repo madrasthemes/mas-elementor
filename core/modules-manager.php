@@ -41,6 +41,7 @@ final class Modules_Manager {
 			'accordion',
 			'icon',
 			'divider',
+			'mas-tab'
 		);
 
 		foreach ( $modules as $module_name ) {
