@@ -111,7 +111,7 @@ class Module extends Module_Base {
 		$settings = $element->get_settings_for_display();
 
 		if ( 'yes' === $settings['enable_tab'] ) {
-			$element->add_render_attribute( '_widget_wrapper', 'class', 'tab' );
+			$element->add_render_attribute( '_widget_wrapper', 'class', 'tab-content' );
 		}
 
 	}
