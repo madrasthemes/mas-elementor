@@ -11,7 +11,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 $instance = $widget->get_settings_for_display();
 $due_date = $instance['due_date'];
-$string   = $widget->get_strftime( $instance );
+$string = $widget->get_strftime( $instance );
 
 if ( 'evergreen' === $instance['countdown_type'] ) {
     $widget->add_render_attribute( 'div', 'data-evergreen-interval', $widget->get_evergreen_interval( $instance ) );
