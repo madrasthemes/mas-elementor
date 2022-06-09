@@ -11,6 +11,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 $settings = $widget->get_settings_for_display();
 
+$animation_typed_text_array = explode( "\n", $settings['typing_text'] );
+
+$animation_typed_text = array(
+	'strings' => $animation_typed_text_array,
+);
+
 if ( '' === $settings['highlighted_text'] && '' === $settings['before_title'] ) {
 	return;
 }
@@ -34,10 +40,28 @@ if ( ! empty( $settings['highlighted_text'] ) ) {
 }
 
 /**
+ * Typed Text.
+ */
+
+$typing_text = '';
+
+$widget->add_render_attribute( 'typing_text', 'class', array( 'mas-elementor-headline-dynamic-text', 'mas-elementor-headline-dynamic-text_underline' ) );
+
+if ( ! empty( $settings['typing_text_classes'] ) ) {
+			$widget->add_render_attribute( 'typing_text', 'class', $settings['typing_text_classes'] );
+}
+
+if ( ! empty( $settings['typing_text'] ) ) {
+	 $typing_text = '<span ' . $widget->get_render_attribute_string( 'typing_text' ) . '>' . $settings['typing_text'] . '</span>';
+
+}
+
+
+/**
  * Wrap before text.
  */
 $before_text = '';
-$widget->add_render_attribute( 'before_text', 'class', 'mas-multipurpose-text__before' );
+
 if ( ! empty( $settings['before_css'] ) ) {
 	$widget->add_render_attribute( 'before_text', 'class', $settings['before_css'] );
 }
@@ -59,7 +83,7 @@ if ( ! empty( $settings['after_title'] ) ) {
 	$after_text = '<span ' . $widget->get_render_attribute_string( 'after_text' ) . '>' . $settings['after_title'] . '</span>';
 }
 
-$title_text = $before_text . $highlighted_text . $after_text;
+$title_text = $before_text . $highlighted_text . $typing_text . $after_text;
 
 if ( ! empty( $settings['link']['url'] ) ) {
 	$widget->add_link_attributes( 'url', $settings['link'] );
