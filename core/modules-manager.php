@@ -42,6 +42,7 @@ final class Modules_Manager {
 			'icon',
 			'divider',
 			'mas-tab',
+			'countdown',
 		);
 
 		foreach ( $modules as $module_name ) {
