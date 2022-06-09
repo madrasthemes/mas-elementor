@@ -103,6 +103,19 @@ class Multipurpose_Text extends Base_Widget {
 		);
 
 		$this->add_control(
+			'typing_text',
+			array(
+				'label'              => esc_html__( 'Typing Text', 'mas-elementor' ),
+				'description'        => esc_html__( 'Enter each word in a separate line', 'mas-elementor' ),
+				'type'               => Controls_Manager::TEXTAREA,
+				'placeholder'        => esc_html__( 'Enter Typing Text', 'mas-elementor' ),
+				'separator'          => 'none',
+				'default'            => "startup.\nfuture.\nsuccess.",
+				'frontend_available' => true,
+			)
+		);
+
+		$this->add_control(
 			'after_title',
 			array(
 				'label'       => esc_html__( 'After Highlighted Text', 'mas-elementor' ),
@@ -299,6 +312,65 @@ class Multipurpose_Text extends Base_Widget {
 		);
 
 		$this->end_controls_section();
+
+		$this->start_controls_section(
+			'heading_words_style',
+			array(
+				'label' => esc_html__( 'Typed Text', 'mas-elementor' ),
+				'tab'   => Controls_Manager::TAB_STYLE,
+			)
+		);
+
+		$this->add_control(
+			'words_color',
+			array(
+				'label'     => esc_html__( 'Text Color', 'mas-elementor' ),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => array(
+					'{{WRAPPER}} .mas-elementor-headline-dynamic-text' => 'color: {{VALUE}}',
+				),
+				'default'   => '#42BA96',
+			)
+		);
+
+		$this->add_group_control(
+			Group_Control_Typography::get_type(),
+			array(
+				'name'     => 'words_typography',
+				'selector' => '{{WRAPPER}} .mas-elementor-headline-dynamic-text',
+				'exclude'  => array( 'font_size' ),
+			)
+		);
+
+		$this->add_control(
+			'words_color_underline',
+			array(
+				'label'     => esc_html__( 'Underline Color', 'mas-elementor' ),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => array(
+					'{{WRAPPER}} .mas-elementor-headline-dynamic-text_underline' => 'border-bottom-color: {{VALUE}}; border-bottom-width: 12px; border-bottom-style: solid;',
+					// '{{WRAPPER}} .mas-elementor-headline-dynamic-text_underline' => 'border-bottom-width: 12px !important;',
+					// '{{WRAPPER}} .mas-elementor-headline-dynamic-text_underline' => 'border-bottom-style: solid !important;',
+				),
+				'default'   => '#fae4cc',
+			)
+		);
+
+		$this->add_control(
+			'typing_text_classes',
+			array(
+				'label'       => esc_html__( 'Typed Text CSS Classes', 'mas-elementor' ),
+				'type'        => Controls_Manager::TEXT,
+				'label_block' => true,
+				'dynamic'     => array(
+					'active' => true,
+				),
+				'title'       => esc_html__( 'Add your custom class WITHOUT the dot. e.g: my-class', 'mas-elementor' ),
+			)
+		);
+
+		$this->end_controls_section();
+
 		$this->start_controls_section(
 			'section_style_heading',
 			array(
