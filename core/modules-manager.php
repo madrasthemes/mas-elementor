@@ -43,6 +43,7 @@ final class Modules_Manager {
 			'testimonial',
 			'divider',
 			'mas-tab',
+			'countdown',
 		);
 
 		foreach ( $modules as $module_name ) {

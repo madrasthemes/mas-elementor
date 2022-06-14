@@ -1,7 +1,11 @@
 (function() {
       // INITIALIZATION OF COUNTDOWN
       // =======================================================
-      const oneYearFromNow = new Date()
+      var el = document.querySelector('.mas-elementor-countdown-wrapper');
+      var dated = el.dataset.date;
+      var countDownDate = new Date( dated ).getTime();
+      // const oneYearFromNow = new Date()
+      console.log(el);
 
       document.querySelectorAll('.js-countdown').forEach(item => {
         const days = item.querySelector('.js-cd-days'),
@@ -9,8 +13,7 @@
           minutes = item.querySelector('.js-cd-minutes'),
           seconds = item.querySelector('.js-cd-seconds')
 
-        countdown(oneYearFromNow.setFullYear(
-          oneYearFromNow.getFullYear() + 1),
+        countdown(countDownDate,
           ts => {
             days.innerHTML = ts.days
             hours.innerHTML = ts.hours
@@ -20,4 +23,4 @@
           countdown.DAYS | countdown.HOURS | countdown.MINUTES | countdown.SECONDS
         )
       })
-    })
+    })()
