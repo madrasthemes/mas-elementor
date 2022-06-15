@@ -42,7 +42,7 @@ final class Modules_Manager {
 			'icon',
 			'testimonial',
 			'divider',
-			'mas-tab',
+			'mas-overflow',
 			'countdown',
 		);
 
