@@ -110,7 +110,7 @@ class Module extends Module_Base {
 
 		if ( isset( $settings['enable_overflow'] ) &&  'yes' === $settings['enable_overflow'] ) {
 			$container_class .= ' nowrap';
-			$element->add_render_attribute( '_wrapper', 'style', 'overflow-y:scroll !important;');
+			$element->add_render_attribute( '_wrapper', 'class', 'enable-overflow');
 		}
 
 		if ( ! empty( $container_class ) ) {
