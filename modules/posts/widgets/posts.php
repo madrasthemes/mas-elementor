@@ -115,21 +115,18 @@ class Posts extends Posts_Base {
 				),
 			)
 		);
-
+			$ksdj	 =  MAS_ELEMENTOR_PATH . '/templates/widgets';
 		
+		$layout = list_files($ksdj);
+		print_r($layout);
+		echo "test";
 		$this->add_control(
 			'heading_tag',
 			[
 				'label'   => esc_html__( 'Layout', 'mas-elementor' ),
 				'type'    => Controls_Manager::SELECT,
-				'options' => [
-					'h2' => 'H2',
-					'h3' => 'H3',
-					'h4' => 'H4',
-					'h5' => 'H5',
-					'h6' => 'H6',
-				],
-				'default' => 'h3',
+				'options' => $layout,
+				// 'default' => 'h3',
 			]
 		);
 
