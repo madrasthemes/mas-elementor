@@ -65,7 +65,7 @@ class Posts extends Posts_Base {
 	 * Register the skins for the widget.
 	 */
 	protected function register_skins() {
-		$this->add_skin( new Skins\Skin_Classic( $this ) );
+		// $this->add_skin( new Skins\Skin_Classic( $this ) );
 		// $this->add_skin( new Skins\Skin_Grid( $this ) );
 	}
 
@@ -85,7 +85,7 @@ class Posts extends Posts_Base {
 	public function query_posts() {
 
 		$query_args = array(
-			'posts_per_page' => $this->get_current_skin()->get_instance_value( 'posts_per_page' ),
+			// 'posts_per_page' => $this->get_current_skin()->get_instance_value( 'posts_per_page' ),
 			'paged'          => $this->get_current_page(),
 		);
 
@@ -116,7 +116,75 @@ class Posts extends Posts_Base {
 			)
 		);
 
+		
+		$this->add_control(
+			'heading_tag',
+			[
+				'label'   => esc_html__( 'Layout', 'mas-elementor' ),
+				'type'    => Controls_Manager::SELECT,
+				'options' => [
+					'h2' => 'H2',
+					'h3' => 'H3',
+					'h4' => 'H4',
+					'h5' => 'H5',
+					'h6' => 'H6',
+				],
+				'default' => 'h3',
+			]
+		);
+
 		$this->end_controls_section();
+	}
+
+	/**
+	 * Render.
+	 */
+	public function render() {
+		$this->query_posts();
+
+		$query = $this->get_query();
+
+		if ( ! $query->found_posts ) {
+			return;
+		}
+
+		// echo $this->render_loop_header(); //phpcs:ignore
+
+		// It's the global `wp_query` it self. and the loop was started from the theme.
+		if ( $query->in_the_loop ) {
+			$this->current_permalink = get_permalink();
+			$this->render_post();
+		} else {
+			while ( $query->have_posts() ) {
+				$query->the_post();
+
+				$this->current_permalink = get_permalink();
+				$this->render_post();
+			}
+		}
+
+		wp_reset_postdata();
+
+		// echo $this->render_loop_footer(); //phpcs:ignore
+		// $this->render_mas_pagination();
+	}
+
+	/**
+	 * Render Post.
+	 */
+	public function render_post() {
+		$settings       = $this->get_settings_for_display();
+		// $skin_name      = $settings['_skin'];
+		$template_hooks = str_replace( '-', '_','_' );
+		$filter         = $template_hooks . '_template_args';
+		$args           = apply_filters(
+			$filter,
+			array(
+				'widget' => $this,
+				'skin'   => $this,
+			)
+		);
+		mas_elementor_get_template( 'widgets/post-classic.php', $args );
 	}
 
 }
