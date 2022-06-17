@@ -117,17 +117,15 @@ class Posts extends Posts_Base {
 			)
 		);
 		
-		$dir     = MAS_ELEMENTOR_PATH . 'templates/widgets';
+		$dir     = MAS_ELEMENTOR_PATH . 'templates/widgets/posts/';
 		$templates = Utils::get_mas_post_templates($dir);
-		echo "<pre>";
-		var_dump($templates);
-		echo "</pre>";
+
 		$this->add_control(
 			'heading_tag',
 			[
 				'label'   => esc_html__( 'Layout', 'mas-elementor' ),
 				'type'    => Controls_Manager::SELECT,
-				'options' => $templates
+				'options' => [ 'default.php' => __( 'Default', 'mas-elementor' ) ] + $templates
 			]
 		);
 
@@ -172,7 +170,6 @@ class Posts extends Posts_Base {
 	 */
 	public function render_post() {
 		$settings       = $this->get_settings_for_display();
-		// $skin_name      = $settings['_skin'];
 		$template_hooks = str_replace( '-', '_','_' );
 		$filter         = $template_hooks . '_template_args';
 		$args           = apply_filters(
@@ -182,7 +179,7 @@ class Posts extends Posts_Base {
 				'skin'   => $this,
 			)
 		);
-		mas_elementor_get_template( 'widgets/post-classic.php', $args );
+		mas_elementor_get_template( 'widgets/posts/' . $settings['heading_tag'] , $args );
 	}
 
 }
