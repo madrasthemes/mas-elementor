@@ -359,21 +359,48 @@ class Utils {
 	 *
 	 * @return array
 	 */
-	public static function get_mas_post_templates() {
+	// public static function get_mas_post_templates( $dir ) {
 
-		$dir     = MAS_ELEMENTOR_PATH . 'templates/widgets';
-		$layouts = array_diff(scandir($dir), array('..', '.'));
-		
-		foreach ($layouts as &$item) {
-			$item = $dir . $item;
-		  }
-		  unset($item);
-		  foreach ($layouts as $item) {
-			if (is_dir($item)) {
-			 $layouts = array_merge($layouts, listAllFiles($item . DIRECTORY_SEPARATOR));
+	// 	$layouts = array_diff(scandir($dir), array('..', '.'));
+
+	// 	foreach ($layouts as &$item) {
+	// 		$item = $dir . $item;
+	// 	  }
+	// 	  unset($item);
+	// 	  foreach ($layouts as $item) {
+	// 		if (is_dir($item)) {
+	// 		 $layouts = array_merge($layouts, get_mas_post_templates($item . DIRECTORY_SEPARATOR));
+	// 		}
+	// 	}
+	// 	return $layouts;
+	// }
+
+	/**
+	 * Get Mas post widget templates.
+	 *
+	 * @return array
+	 */
+	public static function get_mas_post_templates( $dir ) {
+
+		$result = array();
+		 
+		$cdir = scandir($dir);
+		print_r($cdir);
+		foreach ($cdir as $key => $value)
+		{
+			if (!in_array($value,array(".","..")))
+			{
+				if (is_dir($dir . DIRECTORY_SEPARATOR . $value))
+				{
+					$result[$value] = get_mas_post_templates($dir . DIRECTORY_SEPARATOR . $value);
+				}
+				else
+				{
+					$result[] = $value;
+				}
 			}
 		}
-		return $layouts;
+		return $result;
 	}
 
 }

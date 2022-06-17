@@ -31,6 +31,7 @@ define( 'MAS_ELEMENTOR_MODULES_PATH', MAS_ELEMENTOR_PATH . 'modules/' );
 define( 'MAS_ELEMENTOR_URL', plugins_url( '/', MAS_ELEMENTOR__FILE__ ) );
 define( 'MAS_ELEMENTOR_ASSETS_URL', MAS_ELEMENTOR_URL . 'assets/' );
 define( 'MAS_ELEMENTOR_MODULES_URL', MAS_ELEMENTOR_URL . 'modules/' );
+// define( 'MAS_ELEMENTOR_TEMPLATES_PATH', 'templates/' );
 
 /**
  * Load gettext translate for our text domain.

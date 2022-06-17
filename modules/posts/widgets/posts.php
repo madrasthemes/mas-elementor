@@ -116,7 +116,9 @@ class Posts extends Posts_Base {
 				),
 			)
 		);
-		$templates = Utils::get_mas_post_templates();
+		
+		$dir     = MAS_ELEMENTOR_PATH . 'templates/widgets';
+		$templates = Utils::get_mas_post_templates($dir);
 		echo "<pre>";
 		var_dump($templates);
 		echo "</pre>";
