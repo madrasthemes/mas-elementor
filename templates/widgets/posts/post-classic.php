@@ -2,7 +2,7 @@
 /**
  * Template for displaying Post Classic widget.
  *
- * @package MASElementor/Templates
+ * @package MASElementor/Templates/Posts
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -26,7 +26,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 			<p><?php the_excerpt(); ?></p>
 		</div>
 		<a class="elementor-post__read-more" href="<?php echo esc_url( get_permalink() ); ?>">
-				<?php echo esc_html( apply_filters( 'read_more_text', 'Read More >>' ) ); ?>
-			</a>
+			<?php echo esc_html( apply_filters( 'read_more_text', 'Read More >>' ) ); ?>
+		</a>
 	</div>
 </article>
