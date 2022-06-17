@@ -354,4 +354,26 @@ class Utils {
 		return $path;
 	}
 
+	/**
+	 * Get Mas post widget templates.
+	 *
+	 * @return array
+	 */
+	public static function get_mas_post_templates() {
+
+		$dir     = MAS_ELEMENTOR_PATH . 'templates/widgets';
+		$layouts = array_diff(scandir($dir), array('..', '.'));
+		
+		foreach ($layouts as &$item) {
+			$item = $dir . $item;
+		  }
+		  unset($item);
+		  foreach ($layouts as $item) {
+			if (is_dir($item)) {
+			 $layouts = array_merge($layouts, listAllFiles($item . DIRECTORY_SEPARATOR));
+			}
+		}
+		return $layouts;
+	}
+
 }

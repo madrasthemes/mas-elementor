@@ -11,6 +11,7 @@ use Elementor\Controls_Manager;
 use MASElementor\Modules\QueryControl\Module as Module_Query;
 use MASElementor\Modules\QueryControl\Controls\Group_Control_Related;
 use MASElementor\Modules\Posts\Skins;
+use MASElementor\Core\Utils;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
@@ -115,18 +116,16 @@ class Posts extends Posts_Base {
 				),
 			)
 		);
-			$ksdj	 =  MAS_ELEMENTOR_PATH . '/templates/widgets';
-		
-		$layout = list_files($ksdj);
-		print_r($layout);
-		echo "test";
+		$templates = Utils::get_mas_post_templates();
+		echo "<pre>";
+		var_dump($templates);
+		echo "</pre>";
 		$this->add_control(
 			'heading_tag',
 			[
 				'label'   => esc_html__( 'Layout', 'mas-elementor' ),
 				'type'    => Controls_Manager::SELECT,
-				'options' => $layout,
-				// 'default' => 'h3',
+				'options' => $templates
 			]
 		);
 
