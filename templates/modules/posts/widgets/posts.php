@@ -10,7 +10,6 @@ namespace MASElementor\Modules\Posts\Widgets;
 use Elementor\Controls_Manager;
 use MASElementor\Modules\QueryControl\Module as Module_Query;
 use MASElementor\Modules\QueryControl\Controls\Group_Control_Related;
-use MASElementor\Modules\Posts\Skins;
 use MASElementor\Core\Utils;
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -63,14 +62,6 @@ class Posts extends Posts_Base {
 	}
 
 	/**
-	 * Register the skins for the widget.
-	 */
-	protected function register_skins() {
-		// $this->add_skin( new Skins\Skin_Classic( $this ) );
-		// $this->add_skin( new Skins\Skin_Grid( $this ) );
-	}
-
-	/**
 	 * Register controls for this widget.
 	 */
 	protected function register_controls() {
@@ -86,7 +77,6 @@ class Posts extends Posts_Base {
 	public function query_posts() {
 
 		$query_args = array(
-			// 'posts_per_page' => $this->get_current_skin()->get_instance_value( 'posts_per_page' ),
 			'paged'          => $this->get_current_page(),
 		);
 
