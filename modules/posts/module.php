@@ -114,6 +114,29 @@ class Module extends Module_Base {
 		parent::__construct();
 
 		add_filter( 'pre_handle_404', array( $this, 'allow_posts_widget_pagination' ), 10, 2 );
+		add_action( 'elementor/frontend/before_register_styles', array( $this, 'register_frontend_styles' ) );
+	}
+
+	/**
+	 * Return the style dependencies of the module.
+	 *
+	 * @return array
+	 */
+	public function get_style_depends() {
+		return array( 'post-stylesheet' );
+	}
+
+
+	/**
+	 * Register frontend styles.
+	 */
+	public function register_frontend_styles() {
+		wp_enqueue_style(
+			'post-stylesheet',
+			MAS_ELEMENTOR_MODULES_URL . 'posts/assets/css/post-style.css',
+			array(),
+			MAS_ELEMENTOR_VERSION
+		);
 	}
 
 }

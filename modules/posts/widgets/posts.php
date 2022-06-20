@@ -61,21 +61,14 @@ class Posts extends Posts_Base {
 
 		return $element;
 	}
-
-	/**
-	 * Register the skins for the widget.
-	 */
-	protected function register_skins() {
-		// $this->add_skin( new Skins\Skin_Classic( $this ) );
-		// $this->add_skin( new Skins\Skin_Grid( $this ) );
-	}
-
+	
 	/**
 	 * Register controls for this widget.
 	 */
 	protected function register_controls() {
 		parent::register_controls();
 
+		$this->register_layout_section_controls();
 		$this->register_query_section_controls();
 		$this->register_pagination_section_controls();
 	}
@@ -86,13 +79,41 @@ class Posts extends Posts_Base {
 	public function query_posts() {
 
 		$query_args = array(
-			// 'posts_per_page' => $this->get_current_skin()->get_instance_value( 'posts_per_page' ),
 			'paged'          => $this->get_current_page(),
 		);
 
 		$elementor_query = Module_Query::instance();
 		$this->query     = $elementor_query->get_query( $this, 'posts', $query_args, array() );
 	}
+
+	/**
+	 * Register Controls in Layout Section.
+	 */
+	protected function register_layout_section_controls() {
+		$this->start_controls_section(
+			'section_layout',
+			array(
+				'label' => __( 'Layout', 'mas-elementor' ),
+				'tab'   => Controls_Manager::TAB_CONTENT,
+			)
+		);
+
+		$dir     = MAS_ELEMENTOR_PATH . 'templates/widgets/posts/';
+		$templates = Utils::get_mas_post_templates($dir);
+
+		$this->add_control(
+			'select_template',
+			[
+				'label'   => esc_html__( 'Mas Templates', 'mas-elementor' ),
+				'type'    => Controls_Manager::SELECT,
+				'options' => $templates,
+				'default' => array_key_first($templates),
+			]
+		);
+
+		$this->end_controls_section();
+	}
+
 
 	/**
 	 * Register controls in the Query Section
@@ -115,19 +136,6 @@ class Posts extends Posts_Base {
 					'posts_per_page', // use the one from Layout section.
 				),
 			)
-		);
-		
-		$dir     = MAS_ELEMENTOR_PATH . 'templates/widgets/posts/';
-		$templates = Utils::get_mas_post_templates($dir);
-
-		$this->add_control(
-			'select_template',
-			[
-				'label'   => esc_html__( 'Layout', 'mas-elementor' ),
-				'type'    => Controls_Manager::SELECT,
-				'options' => $templates,
-				'default' => array_key_first($templates),
-			]
 		);
 
 		$this->end_controls_section();
@@ -162,8 +170,6 @@ class Posts extends Posts_Base {
 
 		wp_reset_postdata();
 
-		// echo $this->render_loop_footer(); //phpcs:ignore
-		// $this->render_mas_pagination();
 	}
 
 	/**
