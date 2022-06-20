@@ -1,0 +1,23 @@
+{
+	"name": "mas-elementor",
+	"version": "0.0.1",
+	"description": "More power to your Elementor powered website with beautifully designed sections, templates, widgets, skins and extensions.",
+	"main": "index.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"wp-env": "wp-env"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/madrasthemes/mas-elementor.git"
+	},
+	"author": "MadrasThemes",
+	"license": "GPL-3.0",
+	"bugs": {
+		"url": "https://github.com/madrasthemes/mas-elementor/issues"
+	},
+	"homepage": "https://github.com/madrasthemes/mas-elementor#readme",
+	"devDependencies": {
+		"@wordpress/env": "^4.3.1"
+	}
+}
