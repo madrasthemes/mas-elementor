@@ -385,7 +385,7 @@ class Utils {
 
 		foreach ( $result as $key => $template ) {
 
-			$values[$template] = 'Template-' . $count;
+			$values[$template] = 'Style ' . $count;
 			$count++;
 
 		}

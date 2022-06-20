@@ -121,11 +121,12 @@ class Posts extends Posts_Base {
 		$templates = Utils::get_mas_post_templates($dir);
 
 		$this->add_control(
-			'heading_tag',
+			'select_template',
 			[
 				'label'   => esc_html__( 'Layout', 'mas-elementor' ),
 				'type'    => Controls_Manager::SELECT,
-				'options' => [ 'default.php' => __( 'Default', 'mas-elementor' ) ] + $templates
+				'options' => $templates,
+				'default' => array_key_first($templates),
 			]
 		);
 
@@ -179,7 +180,7 @@ class Posts extends Posts_Base {
 				'skin'   => $this,
 			)
 		);
-		mas_elementor_get_template( 'widgets/posts/' . $settings['heading_tag'] , $args );
+		mas_elementor_get_template( 'widgets/posts/' . $settings['select_template'] , $args );
 	}
 
 }
