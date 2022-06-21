@@ -25,12 +25,12 @@ if ( ! defined( 'ABSPATH' ) ) {
         </div>
         
         <div class="card-body">
-            <h4><?php the_title(); ?></h4>
-            <p class="card-text"><?php the_excerpt(); ?></p>
+            <h4 class="mas-post-title"><?php the_title(); ?></h4>
+            <p class="card-text mas-post-excerpt"><?php echo  get_the_excerpt(); ?></p>
         </div>
 
         <div class="card-footer">
-            <span class="card-link"><?php echo esc_html( apply_filters( 'prefix_text', 'Explore' ) ); ?> <?php the_title(); ?></span>
+            <span class="card-link mas-post-action-text"><?php echo esc_html( apply_filters( 'prefix_text', 'Explore' ) ); ?> <?php the_title(); ?></span>
         </div>
     </a>
     <!-- End Card -->

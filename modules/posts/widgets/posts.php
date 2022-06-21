@@ -12,6 +12,11 @@ use MASElementor\Modules\QueryControl\Module as Module_Query;
 use MASElementor\Modules\QueryControl\Controls\Group_Control_Related;
 use MASElementor\Modules\Posts\Skins;
 use MASElementor\Core\Utils;
+use Elementor\Core\Kits\Documents\Tabs\Global_Colors;
+use Elementor\Core\Kits\Documents\Tabs\Global_Typography;
+use Elementor\Group_Control_Border;
+use Elementor\Group_Control_Typography;
+
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
@@ -70,6 +75,7 @@ class Posts extends Posts_Base {
 
 		$this->register_layout_section_controls();
 		$this->register_query_section_controls();
+		$this->register_post_section_controls();
 		$this->register_pagination_section_controls();
 	}
 
@@ -114,6 +120,90 @@ class Posts extends Posts_Base {
 		$this->end_controls_section();
 	}
 
+	/**
+	* Register Controls in post section in style tab.
+	*/
+	protected function register_post_section_controls() {
+		// Title style controls for post title.
+		$this->start_controls_section(
+			'post-style',
+			[
+				'label'     => esc_html__( 'Post', 'mas-elementor' ),
+				'tab'       => Controls_Manager::TAB_STYLE,
+			]
+		);
+
+		$this->add_group_control(
+			Group_Control_Typography::get_type(),
+			[
+				'name'     => 'mas_title_typography',
+				'label'    => __( 'Title', 'mas-elementor' ),
+				'global'   => [
+					'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
+				],
+				'selector' => '{{WRAPPER}} .mas-post-title',
+			]
+		);
+
+		$this->add_control(
+			'post_title_color',
+			[
+				'label'     => esc_html__( 'Title Color', 'mas-elementor' ),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .mas-post-title' => 'color: {{VALUE}} !important;',
+				],
+			]
+		);
+
+		$this->add_group_control(
+			Group_Control_Typography::get_type(),
+			[
+				'name'     => 'mas_post_excerpt_typography',
+				'label'    => __( 'Excerpt', 'mas-elementor' ),
+				'global'   => [
+					'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
+				],
+				'selector' => '{{WRAPPER}} .mas-post-excerpt',
+			]
+		);
+
+		$this->add_control(
+			'post_excerpt_color',
+			[
+				'label'     => esc_html__( 'Excerpt Color', 'mas-elementor' ),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .mas-post-excerpt' => 'color: {{VALUE}} !important;',
+				],
+			]
+		);
+
+		$this->add_group_control(
+			Group_Control_Typography::get_type(),
+			[
+				'name'     => 'mas_post_action_text_typography',
+				'label'    => __( 'Action Text', 'mas-elementor' ),
+				'global'   => [
+					'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
+				],
+				'selector' => '{{WRAPPER}} .mas-post-action-text',
+			]
+		);
+
+		$this->add_control(
+			'post_action_text_color',
+			[
+				'label'     => esc_html__( 'Action Text Color', 'mas-elementor' ),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .mas-post-action-text' => 'color: {{VALUE}} !important;',
+				],
+			]
+		);
+
+		$this->end_controls_section();
+	}
 
 	/**
 	 * Register controls in the Query Section
@@ -146,33 +236,7 @@ class Posts extends Posts_Base {
 	 */
 	public function render() {
 		$settings       = $this->get_settings_for_display();
-		$args           = apply_filters(
-			'mas_post_object',
-			array(
-				'widget' => $this,
-				// 'skin'   => $this,
-			)
-		);
+		$args           = apply_filters( 'mas_post_object', array( 'widget' => $this, ) );
 		mas_elementor_get_template( 'widgets/posts/' . $settings['select_template'] , $args );
-		
-
 	}
-
-	/**
-	 * Render Post.
-	 */
-	// public function render_post() {
-	// 	$settings       = $this->get_settings_for_display();
-	// 	$template_hooks = str_replace( '-', '_','_' );
-	// 	$filter         = $template_hooks . '_template_args';
-	// 	$args           = apply_filters(
-	// 		$filter,
-	// 		array(
-	// 			'widget' => $this,
-	// 			// 'skin'   => $this,
-	// 		)
-	// 	);
-	// 	mas_elementor_get_template( 'widgets/posts/' . $settings['select_template'] , $args );
-	// }
-
 }
