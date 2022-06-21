@@ -44,6 +44,7 @@ final class Modules_Manager {
 			'divider',
 			'mas-overflow',
 			'countdown',
+			'video',
 		);
 
 		foreach ( $modules as $module_name ) {
