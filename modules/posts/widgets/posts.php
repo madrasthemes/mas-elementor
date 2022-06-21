@@ -133,11 +133,19 @@ class Posts extends Posts_Base {
 			]
 		);
 
+		$this->add_control(
+			'post_title_heading_style',
+			[
+				'label'     => esc_html__( 'Title', 'mas-elementor' ),
+				'type'      => Controls_Manager::HEADING,
+			]
+		);
+
 		$this->add_group_control(
 			Group_Control_Typography::get_type(),
 			[
 				'name'     => 'mas_title_typography',
-				'label'    => __( 'Title', 'mas-elementor' ),
+				'label'    => __( 'Typography', 'mas-elementor' ),
 				'global'   => [
 					'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
 				],
@@ -148,7 +156,7 @@ class Posts extends Posts_Base {
 		$this->add_control(
 			'post_title_color',
 			[
-				'label'     => esc_html__( 'Title Color', 'mas-elementor' ),
+				'label'     => esc_html__( 'Color', 'mas-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .mas-post-title' => 'color: {{VALUE}} !important;',
@@ -156,11 +164,52 @@ class Posts extends Posts_Base {
 			]
 		);
 
+		$this->add_control(
+			'post_category_heading_style',
+			[
+				'label'     => esc_html__( 'Category', 'mas-elementor' ),
+				'type'      => Controls_Manager::HEADING,
+				'separator' => 'before',
+			]
+		);
+
+		$this->add_group_control(
+			Group_Control_Typography::get_type(),
+			[
+				'name'     => 'mas_category_typography',
+				'label'    => __( 'Typography', 'mas-elementor' ),
+				'global'   => [
+					'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
+				],
+				'selector' => '{{WRAPPER}} .mas-post-category',
+			]
+		);
+
+		$this->add_control(
+			'post_category_color',
+			[
+				'label'     => esc_html__( 'Color', 'mas-elementor' ),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .mas-post-category' => 'color: {{VALUE}} !important;',
+				],
+			]
+		);
+
+		$this->add_control(
+			'post_excerpt_heading_style',
+			[
+				'label'     => esc_html__( 'Excerpt', 'mas-elementor' ),
+				'type'      => Controls_Manager::HEADING,
+				'separator' => 'before',
+			]
+		);
+
 		$this->add_group_control(
 			Group_Control_Typography::get_type(),
 			[
 				'name'     => 'mas_post_excerpt_typography',
-				'label'    => __( 'Excerpt', 'mas-elementor' ),
+				'label'    => __( 'Typography', 'mas-elementor' ),
 				'global'   => [
 					'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
 				],
@@ -171,7 +220,7 @@ class Posts extends Posts_Base {
 		$this->add_control(
 			'post_excerpt_color',
 			[
-				'label'     => esc_html__( 'Excerpt Color', 'mas-elementor' ),
+				'label'     => esc_html__( 'Color', 'mas-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .mas-post-excerpt' => 'color: {{VALUE}} !important;',
@@ -179,11 +228,20 @@ class Posts extends Posts_Base {
 			]
 		);
 
+		$this->add_control(
+			'post_action_text_heading_style',
+			[
+				'label'     => esc_html__( 'Action Text', 'mas-elementor' ),
+				'type'      => Controls_Manager::HEADING,
+				'separator' => 'before',
+			]
+		);
+
 		$this->add_group_control(
 			Group_Control_Typography::get_type(),
 			[
 				'name'     => 'mas_post_action_text_typography',
-				'label'    => __( 'Action Text', 'mas-elementor' ),
+				'label'    => __( 'Typography', 'mas-elementor' ),
 				'global'   => [
 					'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
 				],
@@ -194,11 +252,23 @@ class Posts extends Posts_Base {
 		$this->add_control(
 			'post_action_text_color',
 			[
-				'label'     => esc_html__( 'Action Text Color', 'mas-elementor' ),
+				'label'     => esc_html__( 'Color', 'mas-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => [
 					'{{WRAPPER}} .mas-post-action-text' => 'color: {{VALUE}} !important;',
 				],
+			]
+		);
+
+		$this->add_control(
+			'post_action_text_hover_color',
+			[
+				'label'     => esc_html__( 'Hover Color', 'mas-elementor' ),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .mas-post-action-text:hover,{{WRAPPER}}' => 'color: {{VALUE}} !important;',
+				],
+				'default'   => '#07853a',
 			]
 		);
 

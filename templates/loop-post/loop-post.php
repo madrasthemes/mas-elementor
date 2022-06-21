@@ -1,8 +1,8 @@
 <?php
 /**
- * Template for displaying Post loop.
+ * Template for displaying loop post.
  *
- * @package MASElementor/Templates/Posts
+ * @package MASElementor/Templates/loop-post/loop-post.php
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -17,9 +17,9 @@ if ( ! defined( 'ABSPATH' ) ) {
         <div class="card-pinned card-transition-zoom-item">
             <?php the_post_thumbnail( 'full', array( 'class' => 'card-img' ) ); ?>
             <?php
-            $category_detail = get_the_category();
-            foreach( $category_detail as $cd ) {
-                ?><span class="badge bg-dark text-white card-pinned-top-end"><?php echo $cd->cat_name; ?></span><?php
+            $category_list = get_the_category();
+            foreach( $category_list as $item ) {
+                ?><span class="badge bg-dark text-white card-pinned-top-end mas-post-category"><?php echo $item->cat_name; ?></span><?php
             }
             ?>
         </div>
@@ -29,7 +29,7 @@ if ( ! defined( 'ABSPATH' ) ) {
             <p class="card-text mas-post-excerpt"><?php echo  get_the_excerpt(); ?></p>
         </div>
 
-        <div class="card-footer">
+        <div class="card-footer" style="margin-top: -2px;">
             <span class="card-link mas-post-action-text"><?php echo esc_html( apply_filters( 'prefix_text', 'Explore' ) ); ?> <?php the_title(); ?></span>
         </div>
     </a>
