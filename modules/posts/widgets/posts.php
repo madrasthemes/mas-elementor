@@ -145,48 +145,34 @@ class Posts extends Posts_Base {
 	 * Render.
 	 */
 	public function render() {
-		$this->query_posts();
-
-		$query = $this->get_query();
-
-		if ( ! $query->found_posts ) {
-			return;
-		}
-
-		// echo $this->render_loop_header(); //phpcs:ignore
-
-		// It's the global `wp_query` it self. and the loop was started from the theme.
-		if ( $query->in_the_loop ) {
-			$this->current_permalink = get_permalink();
-			$this->render_post();
-		} else {
-			while ( $query->have_posts() ) {
-				$query->the_post();
-
-				$this->current_permalink = get_permalink();
-				$this->render_post();
-			}
-		}
-
-		wp_reset_postdata();
+		$settings       = $this->get_settings_for_display();
+		$args           = apply_filters(
+			'mas_post_object',
+			array(
+				'widget' => $this,
+				// 'skin'   => $this,
+			)
+		);
+		mas_elementor_get_template( 'widgets/posts/' . $settings['select_template'] , $args );
+		
 
 	}
 
 	/**
 	 * Render Post.
 	 */
-	public function render_post() {
-		$settings       = $this->get_settings_for_display();
-		$template_hooks = str_replace( '-', '_','_' );
-		$filter         = $template_hooks . '_template_args';
-		$args           = apply_filters(
-			$filter,
-			array(
-				'widget' => $this,
-				'skin'   => $this,
-			)
-		);
-		mas_elementor_get_template( 'widgets/posts/' . $settings['select_template'] , $args );
-	}
+	// public function render_post() {
+	// 	$settings       = $this->get_settings_for_display();
+	// 	$template_hooks = str_replace( '-', '_','_' );
+	// 	$filter         = $template_hooks . '_template_args';
+	// 	$args           = apply_filters(
+	// 		$filter,
+	// 		array(
+	// 			'widget' => $this,
+	// 			// 'skin'   => $this,
+	// 		)
+	// 	);
+	// 	mas_elementor_get_template( 'widgets/posts/' . $settings['select_template'] , $args );
+	// }
 
 }
