@@ -114,8 +114,19 @@ class Module extends Module_Base {
 		parent::__construct();
 
 		add_filter( 'pre_handle_404', array( $this, 'allow_posts_widget_pagination' ), 10, 2 );
+		add_action( 'elementor/frontend/before_register_scripts', array( $this, 'register_frontend_scripts' ) );
 		add_action( 'elementor/frontend/before_register_styles', array( $this, 'register_frontend_styles' ) );
 	}
+
+	/**
+	 * Return the script dependencies of the module.
+	 *
+	 * @return array
+	 */
+	public function get_script_depends() {
+		return array( 'post-swiper-script' );
+	}
+
 
 	/**
 	 * Return the style dependencies of the module.
@@ -126,11 +137,38 @@ class Module extends Module_Base {
 		return array( 'post-stylesheet' );
 	}
 
+	/**
+	 * Register frontend script.
+	 */
+	public function register_frontend_scripts() {
+		wp_enqueue_script(
+			'swiper-script',
+			MAS_ELEMENTOR_MODULES_URL . 'posts/assets/js/swiper-bundle.min.js',
+			array(),
+			MAS_ELEMENTOR_VERSION,
+			true
+		);
+		wp_enqueue_script(
+			'swiper-init-script',
+			MAS_ELEMENTOR_MODULES_URL . 'posts/assets/js/swiper.js',
+			array(),
+			MAS_ELEMENTOR_VERSION,
+			true
+		);
+
+	}
+
 
 	/**
 	 * Register frontend styles.
 	 */
 	public function register_frontend_styles() {
+		wp_enqueue_style(
+			'post-swiper-stylesheet',
+			MAS_ELEMENTOR_MODULES_URL . 'posts/assets/css/swiper-bundle.min.css',
+			array(),
+			MAS_ELEMENTOR_VERSION
+		);
 		wp_enqueue_style(
 			'post-stylesheet',
 			MAS_ELEMENTOR_MODULES_URL . 'posts/assets/css/post-style.css',
