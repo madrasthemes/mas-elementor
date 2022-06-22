@@ -132,7 +132,7 @@ class Posts extends Posts_Base {
 				'tab'       => Controls_Manager::TAB_STYLE,
 			]
 		);
-
+		// Title cotrols.
 		$this->add_control(
 			'post_title_heading_style',
 			[
@@ -172,7 +172,7 @@ class Posts extends Posts_Base {
 				'separator' => 'before',
 			]
 		);
-
+		// Category cotrols.
 		$this->add_group_control(
 			Group_Control_Typography::get_type(),
 			[
@@ -195,7 +195,7 @@ class Posts extends Posts_Base {
 				],
 			]
 		);
-
+		// Excerpt cotrols.
 		$this->add_control(
 			'post_excerpt_heading_style',
 			[
@@ -236,7 +236,7 @@ class Posts extends Posts_Base {
 				'separator' => 'before',
 			]
 		);
-
+		// Action text cotrols.
 		$this->add_group_control(
 			Group_Control_Typography::get_type(),
 			[
