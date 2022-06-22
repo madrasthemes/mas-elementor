@@ -12,7 +12,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 $widget->query_posts();
 
 $query = $widget->get_query();
-
 if ( ! $query->found_posts ) {
 	return;
 }
@@ -50,11 +49,11 @@ if ( ! $query->found_posts ) {
         <div class="js-swiper-card-grid-button-next swiper-button-next swiper-static-button-next"></div>
 
         <!-- Preloader -->
-        <div class="js-swiper-preloader swiper-preloader">
+        <!-- <div class="js-swiper-preloader swiper-preloader">
             <div class="spinner-border text-primary" role="status">
                 <span class="visually-hidden">Loading...</span>
             </div>
-        </div>
+        </div>  -->
         <!-- End Preloader -->
     </div>
 </div>

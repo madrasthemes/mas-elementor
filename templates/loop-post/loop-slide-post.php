@@ -10,7 +10,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 ?>
-<!-- Slide -->
 <div class="swiper-slide pt-4 pb-8">
     <a class="card card-transition" href="<?php echo esc_url( get_permalink() ); ?>">
         <div class="card-pinned">
@@ -41,5 +40,4 @@ if ( ! defined( 'ABSPATH' ) ) {
         </div>
     </a> -->
 </div>
-<!-- End Slide -->
     
