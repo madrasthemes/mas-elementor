@@ -124,7 +124,7 @@ class Posts extends Posts_Base {
 	* Register Controls in post section in style tab.
 	*/
 	protected function register_post_section_controls() {
-		// Title style controls for post title.
+		// Post style controls in STYLE TAB.
 		$this->start_controls_section(
 			'post-style',
 			[
