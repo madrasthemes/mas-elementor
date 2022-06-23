@@ -2,7 +2,7 @@
 /**
  * Template for displaying loop slide post.
  *
- * @package MASElementor/Templates/loop-post/loop-slide-post.php
+ * @package MASElementor/Templates/loop-post/loop-slide-post-1.php
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -29,15 +29,5 @@ if ( ! defined( 'ABSPATH' ) ) {
             <span class="card-link mas-post-action-text"><?php echo esc_html( apply_filters( 'prefix_text', 'Read more' ) ); ?></span>
         </div>
     </a>
-
-    <!-- <a class="card card-transition bg-primary" href="#" style="background-image: url(./assets/svg/components/wave-pattern-light.svg);">
-        <div class="card-body">
-            <span class="card-subtitle text-white mb-3">Product</span>
-            <h3 class="card-title text-white lh-base">Assessing Constraints: Making Products for all Users</h3>
-        </div>
-        <div class="card-footer pt-0">
-            <span class="card-link link-light">Read more</span>
-        </div>
-    </a> -->
 </div>
     

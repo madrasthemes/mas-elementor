@@ -134,7 +134,7 @@ class Module extends Module_Base {
 	 * @return array
 	 */
 	public function get_style_depends() {
-		return array( 'post-stylesheet' );
+		return array( 'post-stylesheet', 'post-swiper-stylesheet' );
 	}
 
 	/**
@@ -142,15 +142,15 @@ class Module extends Module_Base {
 	 */
 	public function register_frontend_scripts() {
 		wp_enqueue_script(
-			'swiper-script',
-			MAS_ELEMENTOR_MODULES_URL . 'posts/assets/js/swiper-bundle.min.js',
+			'post-swiper-script',
+			MAS_ELEMENTOR_MODULES_URL . 'posts/assets/js/post-swiper-bundle.min.js',
 			array(),
 			MAS_ELEMENTOR_VERSION,
 			true
 		);
 		wp_enqueue_script(
-			'swiper-init-script',
-			MAS_ELEMENTOR_MODULES_URL . 'posts/assets/js/swiper.js',
+			'post-swiper-init-script',
+			MAS_ELEMENTOR_MODULES_URL . 'posts/assets/js/post-swiper.js',
 			array(),
 			MAS_ELEMENTOR_VERSION,
 			true
@@ -165,7 +165,7 @@ class Module extends Module_Base {
 	public function register_frontend_styles() {
 		wp_enqueue_style(
 			'post-swiper-stylesheet',
-			MAS_ELEMENTOR_MODULES_URL . 'posts/assets/css/swiper-bundle.min.css',
+			MAS_ELEMENTOR_MODULES_URL . 'posts/assets/css/post-swiper-bundle.min.css',
 			array(),
 			MAS_ELEMENTOR_VERSION
 		);

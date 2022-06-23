@@ -26,17 +26,21 @@ if ( ! $query->found_posts ) {
 
             // It's the global `wp_query` it self. and the loop was started from the theme.
             if ( $query->in_the_loop ) {
-
-                $widget->current_permalink = get_permalink();
-                mas_elementor_get_template( 'loop-post/loop-slide-post.php');
-
+                    $widget->current_permalink = get_permalink();
+                    mas_elementor_get_template( 'loop-post/loop-slide-post-1.php');
             } else {
-
+                $i = 0;
                 while ( $query->have_posts() ) {
                     $query->the_post();
 
                     $widget->current_permalink = get_permalink();
-                    mas_elementor_get_template( 'loop-post/loop-slide-post.php');
+                    if ( 0 === $i % 2 ) {
+                        mas_elementor_get_template( 'loop-post/loop-slide-post-1.php');
+                    }
+                    if (  0 !== $i % 2 ) {
+                        mas_elementor_get_template( 'loop-post/loop-slide-post-2.php');
+                    }
+                    $i++;
                 }
             }
             wp_reset_postdata();
@@ -49,11 +53,11 @@ if ( ! $query->found_posts ) {
         <div class="js-swiper-card-grid-button-next swiper-button-next swiper-static-button-next"></div>
 
         <!-- Preloader -->
-        <!-- <div class="js-swiper-preloader swiper-preloader">
+        <div class="js-swiper-preloader swiper-preloader">
             <div class="spinner-border text-primary" role="status">
                 <span class="visually-hidden">Loading...</span>
             </div>
-        </div>  -->
+        </div> 
         <!-- End Preloader -->
     </div>
 </div>
