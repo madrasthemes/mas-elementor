@@ -292,9 +292,9 @@ class Posts extends Posts_Base {
 			array(
 				'name'    => $this->get_name(),
 				'presets' => array( 'full' ),
-				'exclude' => array(
-					'posts_per_page', // use the one from Layout section.
-				),
+				// 'exclude' => array(
+				// 	'posts_per_page', // use the one from Layout section.
+				// ),
 			)
 		);
 

@@ -134,7 +134,7 @@ class Module extends Module_Base {
 	 * @return array
 	 */
 	public function get_style_depends() {
-		return array( 'post-stylesheet', 'post-swiper-stylesheet' );
+		return array( 'post-stylesheet', 'post-swiper-stylesheet','post-front-stylesheet' );
 	}
 
 	/**
@@ -172,6 +172,12 @@ class Module extends Module_Base {
 		wp_enqueue_style(
 			'post-stylesheet',
 			MAS_ELEMENTOR_MODULES_URL . 'posts/assets/css/post-style.css',
+			array(),
+			MAS_ELEMENTOR_VERSION
+		);
+		wp_enqueue_style(
+			'post-front-stylesheet',
+			MAS_ELEMENTOR_MODULES_URL . 'posts/assets/css/post-front-style.css',
 			array(),
 			MAS_ELEMENTOR_VERSION
 		);
