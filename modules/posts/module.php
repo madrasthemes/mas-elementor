@@ -114,8 +114,8 @@ class Module extends Module_Base {
 		parent::__construct();
 
 		add_filter( 'pre_handle_404', array( $this, 'allow_posts_widget_pagination' ), 10, 2 );
-		add_action( 'elementor/frontend/before_register_scripts', array( $this, 'register_frontend_scripts' ) );
-		add_action( 'elementor/frontend/before_register_styles', array( $this, 'register_frontend_styles' ) );
+		// add_action( 'elementor/frontend/before_register_scripts', array( $this, 'register_frontend_scripts' ) );
+		// add_action( 'elementor/frontend/before_register_styles', array( $this, 'register_frontend_styles' ) );
 	}
 
 	/**
