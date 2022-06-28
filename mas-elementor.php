@@ -4,6 +4,7 @@
  *
  * @package mas-elementor
  */
+use Elementor\Plugin;
 
 /**
  * Plugin Name: MAS Addons for Elementor
@@ -394,5 +395,54 @@ function mas_elementor_set_template_cache( $cache_key, $template ) {
 	}
 
 	wp_cache_set( 'cached_templates', $cached_templates, 'mas_elementor' );
+}
+
+function silicon_static_content_options() {
+	// if ( silicon_is_mas_static_content_activated() ) {
+		$static_block = array();
+		$args         = array(
+			'post_type'      => 'mas_static_content',
+			'post_status'    => 'publish',
+			'limit'          => '-1',
+			'posts_per_page' => '-1',
+		);
+
+		$static_blocks = get_posts( $args );
+
+		if ( ! empty( $static_blocks ) ) {
+			$options = array( '' => esc_html__( '— Select —', 'silicon' ) );
+			foreach ( $static_blocks as $static_block ) {
+				$options[ $static_block->ID ] = $static_block->post_title;
+			}
+		} else {
+			$options = array( '' => esc_html__( 'No Static Content Found', 'silicon' ) );
+		}
+
+		return $options;
+	// }
+}
+
+if ( ! function_exists( 'silicon_render_content' ) ) {
+	/**
+	 * Silicon render content.
+	 *
+	 * @param array $post_id  post ID.
+	 * @param bool  $echo  echo.
+	 */
+	function silicon_render_content( $post_id, $echo = false ) {
+		if ( did_action( 'elementor/loaded' ) ) {
+			$content = Plugin::instance()->frontend->get_builder_content_for_display( $post_id );
+		} else {
+			$content = get_the_content( null, false, $post_id );
+			$content = apply_filters( 'the_content', $content );
+			$content = str_replace( ']]>', ']]&gt;', $content );
+		}
+
+		if ( $echo ) {
+			echo wp_kses_post( $content );
+		} else {
+			return $content;
+		}
+	}
 }
 

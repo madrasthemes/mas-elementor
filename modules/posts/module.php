@@ -26,7 +26,7 @@ class Module extends Module_Base {
 	 * @return string
 	 */
 	public function get_name() {
-		return 'posts';
+		return 'mas-posts';
 	}
 
 	/**

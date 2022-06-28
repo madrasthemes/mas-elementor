@@ -16,7 +16,7 @@ use Elementor\Core\Kits\Documents\Tabs\Global_Colors;
 use Elementor\Core\Kits\Documents\Tabs\Global_Typography;
 use Elementor\Group_Control_Border;
 use Elementor\Group_Control_Typography;
-
+use Elementor\Plugin;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
@@ -33,7 +33,7 @@ class Posts extends Posts_Base {
 	 * @return string
 	 */
 	public function get_name() {
-		return 'posts';
+		return 'mas-posts';
 	}
 
 	/**
@@ -55,6 +55,13 @@ class Posts extends Posts_Base {
 	}
 
 	/**
+	 * Static Content
+	 *
+	 * @var Plugin
+	 */
+	protected $static_contents = [];
+
+	/**
 	 * Called on import to override.
 	 *
 	 * @param array $element The element being imported.
@@ -66,6 +73,7 @@ class Posts extends Posts_Base {
 
 		return $element;
 	}
+
 	
 	/**
 	 * Register controls for this widget.
@@ -104,8 +112,10 @@ class Posts extends Posts_Base {
 			)
 		);
 
-		$dir     = MAS_ELEMENTOR_PATH . 'templates/widgets/posts/';
-		$templates = Utils::get_mas_post_templates($dir);
+		// $dir     = MAS_ELEMENTOR_PATH . 'templates/widgets/posts/';
+		// $templates = Utils::get_mas_post_templates($dir);
+		$templates = function_exists( 'silicon_static_content_options' ) ? silicon_static_content_options() : [];
+		// print_r($templates);
 
 		$this->add_control(
 			'select_template',
@@ -113,7 +123,7 @@ class Posts extends Posts_Base {
 				'label'   => esc_html__( 'Mas Templates', 'mas-elementor' ),
 				'type'    => Controls_Manager::SELECT,
 				'options' => $templates,
-				'default' => array_key_first($templates),
+				// 'default' => array_key_first($templates),
 			]
 		);
 
@@ -304,6 +314,6 @@ class Posts extends Posts_Base {
 	public function render() {
 		$settings       = $this->get_settings_for_display();
 		$args           = apply_filters( 'mas_post_object', array( 'widget' => $this, ) );
-		mas_elementor_get_template( 'widgets/posts/' . $settings['select_template'] , $args );
+		mas_elementor_get_template( 'widgets/posts/post-grid.php' , $args );
 	}
 }
