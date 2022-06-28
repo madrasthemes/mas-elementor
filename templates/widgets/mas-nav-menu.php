@@ -9,7 +9,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
     $settings = $widget->get_settings_for_display();
-
+    require plugin_dir_path( MAS_ELEMENTOR__FILE__ )  . 'classes/class-wp-bootstrap-navwalker.php';
+    
     $available_menus = $widget->get_available_menus();
 
     if ( ! $available_menus ) {
@@ -21,7 +22,7 @@ if ( ! defined( 'ABSPATH' ) ) {
     if ( ! empty( $settings['menu'] ) ) {
         $widget->add_render_attribute( 'main-menu', 'class', 'mas-elementor-mas-nav-menu' );
     }
-    //$walker = new WP_Bootstrap_Navwalker();    
+    $walker = new MAS_Bootstrap_Navwalker();    
     $args = [
         'echo'         => false,
         'menu'         => $settings['menu'],
@@ -32,10 +33,10 @@ if ( ! defined( 'ABSPATH' ) ) {
         'container'    => '',
     
     ];
-    // if ('bootstrap' === $settings[ 'walker' ] ){
-    //     $args['walker'] =  $walker;
-    // }
-
+    if ('bootstrap' === $settings[ 'walker' ] ){
+        $args['walker'] =  apply_filters( 'mas_nav_menu_walker', $walker );
+    }
+        
     // General Menu.
     $menu_html = wp_nav_menu( $args );
 
