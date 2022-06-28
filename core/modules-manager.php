@@ -40,6 +40,11 @@ final class Modules_Manager {
 			'mas-nav-menu',
 			'accordion',
 			'icon',
+			'testimonial',
+			'divider',
+			'mas-overflow',
+			'countdown',
+			'video',
 		);
 
 		foreach ( $modules as $module_name ) {

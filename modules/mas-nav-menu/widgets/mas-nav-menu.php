@@ -97,7 +97,7 @@ class Mas_Nav_Menu extends Base_Widget {
 	 * @return string Widget keywords.
 	 */
 	public function get_keywords() {
-		return [ 'menu', 'nav', 'button', 'mas' ];
+		return array( 'menu', 'nav', 'button', 'mas' );
 	}
 
 	/**
@@ -110,7 +110,7 @@ class Mas_Nav_Menu extends Base_Widget {
 	 * @return string Widget depends.
 	 */
 	public function get_script_depends() {
-		return [ 'smartmenus' ];
+		return array( 'smartmenus' );
 	}
 
 	/**
@@ -149,7 +149,7 @@ class Mas_Nav_Menu extends Base_Widget {
 	public function get_available_menus() {
 		$menus = wp_get_nav_menus();
 
-		$options = [];
+		$options = array();
 
 		foreach ( $menus as $menu ) {
 			$options[ $menu->slug ] = $menu->name;
@@ -167,9 +167,9 @@ class Mas_Nav_Menu extends Base_Widget {
 
 		$this->start_controls_section(
 			'section_layout',
-			[
+			array(
 				'label' => __( 'Nav Menu', 'mas-elementor' ),
-			]
+			)
 		);
 
 		$menus = $this->get_available_menus();
@@ -177,7 +177,7 @@ class Mas_Nav_Menu extends Base_Widget {
 		if ( ! empty( $menus ) ) {
 			$this->add_control(
 				'menu',
-				[
+				array(
 					'label'        => __( 'Menu', 'mas-elementor' ),
 					'type'         => Controls_Manager::SELECT,
 					'options'      => $menus,
@@ -185,21 +185,20 @@ class Mas_Nav_Menu extends Base_Widget {
 					'save_default' => true,
 					'separator'    => 'after',
 					'description'  => sprintf( /* translators: %1$s: Link to Menu Link. */ __( 'Go to the <a href="%s" target="_blank">Menus screen</a> to manage your menus.', 'mas-elementor' ), admin_url( 'nav-menus.php' ) ),
-				]
+				)
 			);
 		} else {
 			$this->add_control(
 				'menu',
-				[
+				array(
 					'type'            => Controls_Manager::RAW_HTML,
 					'raw'             => '<strong>' . __( 'There are no menus in your site.', 'mas-elementor' ) . '</strong><br>' . sprintf( /* translators: %1$s: Link to Menu Link. */__( 'Go to the <a href="%s" target="_blank">Menus screen</a> to create one.', 'mas-elementor' ), admin_url( 'nav-menus.php?action=edit&menu=0' ) ),
 					'separator'       => 'after',
 					'content_classes' => 'elementor-panel-alert elementor-panel-alert-info',
-				]
+				)
 			);
 		}
 
-		
 		$this->add_control(
 			'walker',
 			array(
@@ -213,109 +212,109 @@ class Mas_Nav_Menu extends Base_Widget {
 			)
 		);
 		// $this->add_control(
-		// 	'view',
-		// 	[
-		// 		'label'          => esc_html__( 'Layout', 'mas-elementor' ),
-		// 		'type'           => Controls_Manager::CHOOSE,
-		// 		'default'        => 'traditional',
-		// 		'options'        => [
-		// 			'traditional' => [
-		// 				'title' => esc_html__( 'Default', 'mas-elementor' ),
-		// 				'icon'  => 'eicon-editor-list-ul',
-		// 			],
-		// 			'inline'      => [
-		// 				'title' => esc_html__( 'Inline', 'mas-elementor' ),
-		// 				'icon'  => 'eicon-ellipsis-h',
-		// 			],
-		// 		],
-		// 	]
+		// 'view',
+		// [
+		// 'label'          => esc_html__( 'Layout', 'mas-elementor' ),
+		// 'type'           => Controls_Manager::CHOOSE,
+		// 'default'        => 'traditional',
+		// 'options'        => [
+		// 'traditional' => [
+		// 'title' => esc_html__( 'Default', 'mas-elementor' ),
+		// 'icon'  => 'eicon-editor-list-ul',
+		// ],
+		// 'inline'      => [
+		// 'title' => esc_html__( 'Inline', 'mas-elementor' ),
+		// 'icon'  => 'eicon-ellipsis-h',
+		// ],
+		// ],
+		// ]
 		// );
 
 		$this->end_controls_section();
 		$this->start_controls_section(
 			'section_style_main-menu',
-			[
+			array(
 				'label' => esc_html__( 'Main Menu', 'mas-elementor' ),
-				'tab' => Controls_Manager::TAB_STYLE,
-			]
+				'tab'   => Controls_Manager::TAB_STYLE,
+			)
 		);
 
 		$this->add_group_control(
 			Group_Control_Typography::get_type(),
-			[
-				'name' => 'menu_typography',
-				'global' => [
+			array(
+				'name'     => 'menu_typography',
+				'global'   => array(
 					'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
-				],
+				),
 				'selector' => '{{WRAPPER}} .mas-elementor-nav-menu .menu-item a',
-			]
+			)
 		);
 
 		$this->start_controls_tabs( 'tabs_menu_item_style' );
 
 		$this->start_controls_tab(
 			'tab_menu_item_normal',
-			[
+			array(
 				'label' => esc_html__( 'Normal', 'mas-elementor' ),
-			]
+			)
 		);
 
 		$this->add_control(
 			'color_menu_item',
-			[
-				'label' => esc_html__( 'Text Color', 'mas-elementor' ),
-				'type' => Controls_Manager::COLOR,
-				'global' => [
+			array(
+				'label'     => esc_html__( 'Text Color', 'mas-elementor' ),
+				'type'      => Controls_Manager::COLOR,
+				'global'    => array(
 					'default' => Global_Colors::COLOR_TEXT,
-				],
-				'default' => '',
-				'selectors' => [
+				),
+				'default'   => '',
+				'selectors' => array(
 					'{{WRAPPER}} .mas-elementor-nav-menu .menu-item a' => 'color: {{VALUE}}; fill: {{VALUE}};',
-				],
-			]
+				),
+			)
 		);
 
 		$this->end_controls_tab();
 
 		$this->start_controls_tab(
 			'tab_menu_item_hover',
-			[
+			array(
 				'label' => esc_html__( 'Hover', 'mas-elementor' ),
-			]
+			)
 		);
 
 		$this->add_control(
 			'color_menu_item_hover',
-			[
-				'label' => esc_html__( 'Text Color', 'mas-elementor' ),
-				'type' => Controls_Manager::COLOR,
-				'global' => [
+			array(
+				'label'     => esc_html__( 'Text Color', 'mas-elementor' ),
+				'type'      => Controls_Manager::COLOR,
+				'global'    => array(
 					'default' => Global_Colors::COLOR_ACCENT,
-				],
-				'selectors' => [
+				),
+				'selectors' => array(
 					'{{WRAPPER}} .mas-elementor-nav-menu .menu-item a:hover' => 'color: {{VALUE}}; fill: {{VALUE}};',
-				],
-			]
+				),
+			)
 		);
 		$this->end_controls_tab();
 
 		$this->start_controls_tab(
 			'tab_menu_item_active',
-			[
+			array(
 				'label' => esc_html__( 'Active', 'mas-elementor' ),
-			]
+			)
 		);
 
 		$this->add_control(
 			'color_menu_item_active',
-			[
-				'label' => esc_html__( 'Text Color', 'mas-elementor' ),
-				'type' => Controls_Manager::COLOR,
-				'default' => '',
-				'selectors' => [
+			array(
+				'label'     => esc_html__( 'Text Color', 'mas-elementor' ),
+				'type'      => Controls_Manager::COLOR,
+				'default'   => '',
+				'selectors' => array(
 					'{{WRAPPER}} .mas-elementor-nav-menu .menu-item a:active' => 'color: {{VALUE}}',
-				],
-			]
+				),
+			)
 		);
 
 		$this->end_controls_tab();
@@ -323,7 +322,7 @@ class Mas_Nav_Menu extends Base_Widget {
 		$this->end_controls_tabs();
 	}
 
-    /**
+	/**
 	 * Render.
 	 *
 	 * @return void

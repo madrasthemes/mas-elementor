@@ -1,4 +1,10 @@
 <?php
+/**
+ * MAS Nav Menu Module.
+ *
+ * @package mas-elementor
+ */
+
 namespace MASElementor\Modules\MasNavMenu;
 
 use MASElementor\Base\Module_Base;
@@ -20,7 +26,7 @@ class Module extends Module_Base {
 	public function get_widgets() {
 		return array(
 			'Mas_Nav_Menu',
-        );
+		);
 	}
 
 	/**

@@ -27,7 +27,7 @@ class Module extends Module_Base {
 		parent::__construct();
 
 		$this->add_actions();
-		
+
 	}
 
 	/**
@@ -35,9 +35,9 @@ class Module extends Module_Base {
 	 *
 	 * @return array
 	 */
-	public function get_script_depends() {
+	/*public function get_script_depends() {
 		return array( 'scrollspy-script', 'sticky-block-script' );
-	}
+	}*/
 
 	/**
 	 * Return the name of the module.
@@ -56,9 +56,8 @@ class Module extends Module_Base {
 		add_action( 'elementor/element/column/section_advanced/before_section_end', array( $this, 'add_widget_wrap_controls' ) );
 		add_action( 'elementor/element/after_add_attributes', array( $this, 'modify_attributes' ), 20 );
 		add_filter( 'elementor/column/print_template', array( $this, 'print_template' ) );
-		add_action( 'elementor/frontend/before_register_scripts', array( $this, 'register_frontend_scripts' ) );
-		//add_action( 'elementor/frontend/before_register_styles', array( $this, 'register_frontend_styles' ) );
-
+		//add_action( 'elementor/frontend/before_register_scripts', array( $this, 'register_frontend_scripts' ) );
+		// add_action( 'elementor/frontend/before_register_styles', array( $this, 'register_frontend_styles' ) );.
 	}
 
 	/**
@@ -79,93 +78,93 @@ class Module extends Module_Base {
 
 		$element->add_control(
 			'scrollspy',
-			[
+			array(
 				'type'      => Controls_Manager::SWITCHER,
 				'label'     => esc_html__( 'Enable Scrollspy ?', 'mas-elementor' ),
 				'default'   => 'no',
 				'label_off' => esc_html__( 'No', 'mas-elementor' ),
 				'label_on'  => esc_html__( 'Yes', 'mas-elementor' ),
-			]
+			)
 		);
 
 		$element->add_control(
 			'parent_id',
 			array(
-				'label'       => esc_html__( 'Parent ID', 'mas-elementor' ),
-				'type'        => Controls_Manager::TEXT,
-				'condition'   => [
+				'label'     => esc_html__( 'Parent ID', 'mas-elementor' ),
+				'type'      => Controls_Manager::TEXT,
+				'condition' => array(
 					'scrollspy' => 'yes',
-				],
+				),
 			)
 		);
 
 		$element->add_control(
 			'target_id',
 			array(
-				'label'       => esc_html__( 'Data Target ID', 'mas-elementor' ),
-				'type'        => Controls_Manager::TEXT,
-				'condition'   => [
+				'label'     => esc_html__( 'Data Target ID', 'mas-elementor' ),
+				'type'      => Controls_Manager::TEXT,
+				'condition' => array(
 					'scrollspy' => 'yes',
-				],
+				),
 			)
 		);
 
 		$element->add_control(
 			'breakpoint',
 			array(
-				'label'   => esc_html__( 'Breakpoint', 'mas-elementor' ),
-				'type'    => Controls_Manager::SELECT,
-				'options' => array(
-					'xs'    => 'XS',
-					'sm'    => 'SM',
-					'md'    => 'MD',
-					'lg'    => 'LG',
+				'label'     => esc_html__( 'Breakpoint', 'mas-elementor' ),
+				'type'      => Controls_Manager::SELECT,
+				'options'   => array(
+					'xs' => 'XS',
+					'sm' => 'SM',
+					'md' => 'MD',
+					'lg' => 'LG',
 				),
-				'default' => 'md',
-				'condition'   => [
+				'default'   => 'md',
+				'condition' => array(
 					'scrollspy' => 'yes',
-				],
+				),
 			)
 		);
 
 		$element->add_control(
 			'start_point_id',
 			array(
-				'label'       => esc_html__( 'Startpoint ID', 'mas-elementor' ),
-				'type'        => Controls_Manager::TEXT,
-				'condition'   => [
+				'label'     => esc_html__( 'Startpoint ID', 'mas-elementor' ),
+				'type'      => Controls_Manager::TEXT,
+				'condition' => array(
 					'scrollspy' => 'yes',
-				],
+				),
 			)
 		);
 
 		$element->add_control(
 			'end_point_id',
 			array(
-				'label'       => esc_html__( 'Endpoint ID', 'mas-elementor' ),
-				'type'        => Controls_Manager::TEXT,
-				'condition'   => [
+				'label'     => esc_html__( 'Endpoint ID', 'mas-elementor' ),
+				'type'      => Controls_Manager::TEXT,
+				'condition' => array(
 					'scrollspy' => 'yes',
-				],
+				),
 			)
 		);
 
 		$element->add_control(
-            'offset',
-            [
-                'label'       => esc_html__( 'Offset', 'finder-elementor' ),
-                'type'        => Controls_Manager::SLIDER,
-                'range'  => [
-                    'px' => [
-                        'min' => 0,
-                        'max' => 100,
-                    ],
-                ],
-				'condition'   => [
+			'offset',
+			array(
+				'label'     => esc_html__( 'Offset', 'mas-elementor' ),
+				'type'      => Controls_Manager::SLIDER,
+				'range'     => array(
+					'px' => array(
+						'min' => 0,
+						'max' => 100,
+					),
+				),
+				'condition' => array(
 					'scrollspy' => 'yes',
-				],
-            ]
-        );
+				),
+			)
+		);
 	}
 
 	/**
@@ -195,7 +194,6 @@ class Module extends Module_Base {
 			MAS_ELEMENTOR_VERSION,
 			true
 		);
-		
 
 	}
 
@@ -220,21 +218,24 @@ class Module extends Module_Base {
 				$element->add_render_attribute( '_widget_wrapper', 'class', $settings['mas_widget_wrapper_css'] );
 			}
 
-			$args = [
-				'parentSelector' => $settings['parent_id'],
-				'targetSelector' => $settings['target_id'],
-				'breakpoint' => $settings['breakpoint'],
-				'startPoint' => $settings['start_point_id'],
-				'endPoint' => $settings['end_point_id'],
+			$args = array(
+				'parentSelector'  => $settings['parent_id'],
+				'targetSelector'  => $settings['target_id'],
+				'breakpoint'      => $settings['breakpoint'],
+				'startPoint'      => $settings['start_point_id'],
+				'endPoint'        => $settings['end_point_id'],
 				'stickyOffsetTop' => $settings['offset']['size'],
-			];
+			);
 
-			if ( 'yes' ===  $settings['scrollspy'] )  {
-				$element->add_render_attribute( '_widget_wrapper', [
-					'class' => 'js-sticky-block js-scrollspy',
-					'data-hs-sticky-block-options' => wp_json_encode( $args )
-				]);
-		
+			if ( 'yes' === $settings['scrollspy'] ) {
+				$element->add_render_attribute(
+					'_widget_wrapper',
+					array(
+						'class'                        => 'js-sticky-block js-scrollspy',
+						'data-hs-sticky-block-options' => wp_json_encode( $args ),
+					)
+				);
+
 			}
 		}
 	}
@@ -272,5 +273,5 @@ class Module extends Module_Base {
 		</div>
 		<?php
 	}
-	
+
 }

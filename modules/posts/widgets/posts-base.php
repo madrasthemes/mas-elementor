@@ -178,143 +178,143 @@ abstract class Posts_Base extends Base_Widget {
 
 		$this->end_controls_section();
 
-		// $this->start_controls_section(
-		// 'section_pagination_style',
-		// array(
-		// 'label'     => __( 'Pagination', 'mas-elementor' ),
-		// 'tab'       => Controls_Manager::TAB_STYLE,
-		// 'condition' => array(
-		// 'pagination_type!' => '',
-		// ),
-		// )
-		// );
+		$this->start_controls_section(
+		'section_pagination_style',
+		array(
+		'label'     => __( 'Pagination', 'mas-elementor' ),
+		'tab'       => Controls_Manager::TAB_STYLE,
+		'condition' => array(
+		'pagination_type!' => '',
+		),
+		)
+		);
 
-		// $this->add_group_control(
-		// Group_Control_Typography::get_type(),
-		// array(
-		// 'name'     => 'pagination_typography',
-		// 'selector' => '{{WRAPPER}} .elementor-pagination',
-		// 'global'   => array(
-		// 'default' => Global_Typography::TYPOGRAPHY_SECONDARY,
-		// ),
-		// )
-		// );
+		$this->add_group_control(
+		Group_Control_Typography::get_type(),
+		array(
+		'name'     => 'pagination_typography',
+		'selector' => '{{WRAPPER}} .elementor-pagination',
+		'global'   => array(
+		'default' => Global_Typography::TYPOGRAPHY_SECONDARY,
+		),
+		)
+		);
 
-		// $this->add_control(
-		// 'pagination_color_heading',
-		// array(
-		// 'label'     => __( 'Colors', 'mas-elementor' ),
-		// 'type'      => Controls_Manager::HEADING,
-		// 'separator' => 'before',
-		// )
-		// );
+		$this->add_control(
+		'pagination_color_heading',
+		array(
+		'label'     => __( 'Colors', 'mas-elementor' ),
+		'type'      => Controls_Manager::HEADING,
+		'separator' => 'before',
+		)
+		);
 
-		// $this->start_controls_tabs( 'pagination_colors' );
+		$this->start_controls_tabs( 'pagination_colors' );
 
-		// $this->start_controls_tab(
-		// 'pagination_color_normal',
-		// array(
-		// 'label' => __( 'Normal', 'mas-elementor' ),
-		// )
-		// );
+		$this->start_controls_tab(
+		'pagination_color_normal',
+		array(
+		'label' => __( 'Normal', 'mas-elementor' ),
+		)
+		);
 
-		// $this->add_control(
-		// 'pagination_color',
-		// array(
-		// 'label'     => __( 'Color', 'mas-elementor' ),
-		// 'type'      => Controls_Manager::COLOR,
-		// 'selectors' => array(
-		// '{{WRAPPER}} .elementor-pagination .page-numbers:not(.dots)' => 'color: {{VALUE}};',
-		// ),
-		// )
-		// );
+		$this->add_control(
+		'pagination_color',
+		array(
+		'label'     => __( 'Color', 'mas-elementor' ),
+		'type'      => Controls_Manager::COLOR,
+		'selectors' => array(
+		'{{WRAPPER}} .elementor-pagination .page-numbers:not(.dots)' => 'color: {{VALUE}};',
+		),
+		)
+		);
 
-		// $this->end_controls_tab();
+		$this->end_controls_tab();
 
-		// $this->start_controls_tab(
-		// 'pagination_color_hover',
-		// array(
-		// 'label' => __( 'Hover', 'mas-elementor' ),
-		// )
-		// );
+		$this->start_controls_tab(
+		'pagination_color_hover',
+		array(
+		'label' => __( 'Hover', 'mas-elementor' ),
+		)
+		);
 
-		// $this->add_control(
-		// 'pagination_hover_color',
-		// array(
-		// 'label'     => __( 'Color', 'mas-elementor' ),
-		// 'type'      => Controls_Manager::COLOR,
-		// 'selectors' => array(
-		// '{{WRAPPER}} .elementor-pagination a.page-numbers:hover' => 'color: {{VALUE}};',
-		// ),
-		// )
-		// );
+		$this->add_control(
+		'pagination_hover_color',
+		array(
+		'label'     => __( 'Color', 'mas-elementor' ),
+		'type'      => Controls_Manager::COLOR,
+		'selectors' => array(
+		'{{WRAPPER}} .elementor-pagination a.page-numbers:hover' => 'color: {{VALUE}};',
+		),
+		)
+		);
 
-		// $this->end_controls_tab();
+		$this->end_controls_tab();
 
-		// $this->start_controls_tab(
-		// 'pagination_color_active',
-		// array(
-		// 'label' => __( 'Active', 'mas-elementor' ),
-		// )
-		// );
+		$this->start_controls_tab(
+		'pagination_color_active',
+		array(
+		'label' => __( 'Active', 'mas-elementor' ),
+		)
+		);
 
-		// $this->add_control(
-		// 'pagination_active_color',
-		// array(
-		// 'label'     => __( 'Color', 'mas-elementor' ),
-		// 'type'      => Controls_Manager::COLOR,
-		// 'selectors' => array(
-		// '{{WRAPPER}} .elementor-pagination .page-numbers.current' => 'color: {{VALUE}};',
-		// ),
-		// )
-		// );
+		$this->add_control(
+		'pagination_active_color',
+		array(
+		'label'     => __( 'Color', 'mas-elementor' ),
+		'type'      => Controls_Manager::COLOR,
+		'selectors' => array(
+		'{{WRAPPER}} .elementor-pagination .page-numbers.current' => 'color: {{VALUE}};',
+		),
+		)
+		);
 
-		// $this->end_controls_tab();
+		$this->end_controls_tab();
 
-		// $this->end_controls_tabs();
+		$this->end_controls_tabs();
 
-		// $this->add_responsive_control(
-		// 'pagination_spacing',
-		// array(
-		// 'label'     => __( 'Space Between', 'mas-elementor' ),
-		// 'type'      => Controls_Manager::SLIDER,
-		// 'separator' => 'before',
-		// 'default'   => array(
-		// 'size' => 10,
-		// ),
-		// 'range'     => array(
-		// 'px' => array(
-		// 'min' => 0,
-		// 'max' => 100,
-		// ),
-		// ),
-		// 'selectors' => array(
-		// 'body:not(.rtl) {{WRAPPER}} .elementor-pagination .page-numbers:not(:first-child)' => 'margin-left: calc( {{SIZE}}{{UNIT}}/2 );',
-		// 'body:not(.rtl) {{WRAPPER}} .elementor-pagination .page-numbers:not(:last-child)' => 'margin-right: calc( {{SIZE}}{{UNIT}}/2 );',
-		// 'body.rtl {{WRAPPER}} .elementor-pagination .page-numbers:not(:first-child)' => 'margin-right: calc( {{SIZE}}{{UNIT}}/2 );',
-		// 'body.rtl {{WRAPPER}} .elementor-pagination .page-numbers:not(:last-child)' => 'margin-left: calc( {{SIZE}}{{UNIT}}/2 );',
-		// ),
-		// )
-		// );
+		$this->add_responsive_control(
+		'pagination_spacing',
+		array(
+		'label'     => __( 'Space Between', 'mas-elementor' ),
+		'type'      => Controls_Manager::SLIDER,
+		'separator' => 'before',
+		'default'   => array(
+		'size' => 10,
+		),
+		'range'     => array(
+		'px' => array(
+		'min' => 0,
+		'max' => 100,
+		),
+		),
+		'selectors' => array(
+		'body:not(.rtl) {{WRAPPER}} .elementor-pagination .page-numbers:not(:first-child)' => 'margin-left: calc( {{SIZE}}{{UNIT}}/2 );',
+		'body:not(.rtl) {{WRAPPER}} .elementor-pagination .page-numbers:not(:last-child)' => 'margin-right: calc( {{SIZE}}{{UNIT}}/2 );',
+		'body.rtl {{WRAPPER}} .elementor-pagination .page-numbers:not(:first-child)' => 'margin-right: calc( {{SIZE}}{{UNIT}}/2 );',
+		'body.rtl {{WRAPPER}} .elementor-pagination .page-numbers:not(:last-child)' => 'margin-left: calc( {{SIZE}}{{UNIT}}/2 );',
+		),
+		)
+		);
 
-		// $this->add_responsive_control(
-		// 'pagination_spacing_top',
-		// array(
-		// 'label'     => __( 'Spacing', 'mas-elementor' ),
-		// 'type'      => Controls_Manager::SLIDER,
-		// 'range'     => array(
-		// 'px' => array(
-		// 'min' => 0,
-		// 'max' => 100,
-		// ),
-		// ),
-		// 'selectors' => array(
-		// '{{WRAPPER}} .elementor-pagination' => 'margin-top: {{SIZE}}{{UNIT}}',
-		// ),
-		// )
-		// );
+		$this->add_responsive_control(
+		'pagination_spacing_top',
+		array(
+		'label'     => __( 'Spacing', 'mas-elementor' ),
+		'type'      => Controls_Manager::SLIDER,
+		'range'     => array(
+		'px' => array(
+		'min' => 0,
+		'max' => 100,
+		),
+		),
+		'selectors' => array(
+		'{{WRAPPER}} .elementor-pagination' => 'margin-top: {{SIZE}}{{UNIT}}',
+		),
+		)
+		);
 
-		// $this->end_controls_section();
+		$this->end_controls_section();
 	}
 
 	/**
@@ -412,21 +412,6 @@ abstract class Posts_Base extends Base_Widget {
 		}
 
 		return $return;
-	}
-
-	/**
-	 * Register controls
-	 */
-	protected function register_controls() {
-		$this->start_controls_section(
-			'section_layout',
-			array(
-				'label' => __( 'Layout', 'mas-elementor' ),
-				'tab'   => Controls_Manager::TAB_CONTENT,
-			)
-		);
-
-		$this->end_controls_section();
 	}
 
 	/**

@@ -10,6 +10,8 @@ namespace MASElementor\Modules\icon;
 use MASElementor\Base\Module_Base;
 use Elementor\Controls_Manager;
 use Elementor\Plugin;
+use Elementor\Group_Control_Box_Shadow;
+
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
@@ -80,6 +82,13 @@ class Module extends Module_Base {
 				),
 			)
 		);
+		$element->add_group_control(
+			Group_Control_Box_Shadow::get_type(),
+			array(
+				'name'     => 'box_shadow',
+				'selector' => '{{WRAPPER}} .elementor-icon',
+			)
+		);
 
 		$element->end_controls_tab();
 
@@ -105,6 +114,15 @@ class Module extends Module_Base {
 				),
 			)
 		);
+
+		$element->add_group_control(
+			Group_Control_Box_Shadow::get_type(),
+			array(
+				'name'     => 'box_shadow_hover',
+				'selector' => '{{WRAPPER}} .elementor-icon:hover',
+			)
+		);
+
 		$element->end_controls_tab();
 
 		$element->end_controls_tabs();
