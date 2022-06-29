@@ -16,12 +16,13 @@ $query = $widget->get_query();
 if ( ! $query->found_posts ) {
 	return;
 }
-echo "S1";
+
 // It's the global `wp_query` it self. and the loop was started from the theme.
 if ( $query->in_the_loop ) {
 
 	$widget->current_permalink = get_permalink();
-	mas_elementor_get_template( 'loop-post/loop-post.php');
+	mas_elementor_get_template( 'loop-post/loop-post.php', ['widget' => $widget] );
+	wp_reset_postdata();
 
 } else {
 
@@ -29,7 +30,8 @@ if ( $query->in_the_loop ) {
 		$query->the_post();
 
 		$widget->current_permalink = get_permalink();
-		mas_elementor_get_template( 'loop-post/loop-post.php');
+		mas_elementor_get_template( 'loop-post/loop-post.php', ['widget' => $widget] );
 	}
+	wp_reset_postdata();
 }
 wp_reset_postdata();

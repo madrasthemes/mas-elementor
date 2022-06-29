@@ -32,7 +32,7 @@ class Posts extends Posts_Base {
 	 * @return string
 	 */
 	public function get_name() {
-		return 'posts';
+		return 'mas-posts';
 	}
 
 	/**
@@ -104,15 +104,14 @@ class Posts extends Posts_Base {
 			)
 		);
 
-		$dir     = MAS_ELEMENTOR_PATH . 'templates/widgets/posts/';
-		$templates = Utils::get_mas_post_templates($dir);
+		$templates = function_exists( 'mas_template_options' ) ? mas_template_options() : [];
 		$this->add_control(
 			'select_template',
 			[
 				'label'   => esc_html__( 'Mas Templates', 'mas-elementor' ),
 				'type'    => Controls_Manager::SELECT,
 				'options' => $templates,
-				'default' => array_key_first($templates),
+				// 'default' => array_key_first($templates),
 			]
 		);
 
@@ -303,6 +302,6 @@ class Posts extends Posts_Base {
 	public function render() {
 		$settings       = $this->get_settings_for_display();
 		$args           = apply_filters( 'mas_post_object', array( 'widget' => $this, ) );
-		mas_elementor_get_template( 'widgets/posts/' . $settings['select_template'] , $args );
+		mas_elementor_get_template( 'widgets/posts/post-grid.php' , $args );
 	}
 }
