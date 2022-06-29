@@ -4,8 +4,8 @@
  *
  * @package mas-elementor
  */
-use Elementor\Plugin;
 
+ 
 /**
  * Plugin Name: MAS Addons for Elementor
  * Description: More power to your Elementor powered website with beautifully designed sections, templates, widgets, skins and extensions.
@@ -397,51 +397,51 @@ function mas_elementor_set_template_cache( $cache_key, $template ) {
 	wp_cache_set( 'cached_templates', $cached_templates, 'mas_elementor' );
 }
 
-function mas_post_template_options() {
+// function mas_post_template_options() {
 
-	$mas_post_template = array();
-	$args         = array(
-		'post_type'      => 'mas_static_content',
-		'post_status'    => 'publish',
-		'limit'          => '-1',
-		'posts_per_page' => '-1',
-	);
+// 	$mas_post_template = array();
+// 	$args         = array(
+// 		'post_type'      => 'mas_static_content',
+// 		'post_status'    => 'publish',
+// 		'limit'          => '-1',
+// 		'posts_per_page' => '-1',
+// 	);
 
-	$mas_post_templates = get_posts( $args );
+// 	$mas_post_templates = get_posts( $args );
 
-	if ( ! empty( $mas_post_templates ) ) {
-		$options = array( '' => esc_html__( '— Select —', 'mas_elementor' ) );
-		foreach ( $mas_post_templates as $mas_post_template ) {
-			$options[ $mas_post_template->ID ] = $mas_post_template->post_title;
-		}
-	} else {
-		$options = array( '' => esc_html__( 'No Templates Found', 'mas_elementor' ) );
-	}
+// 	if ( ! empty( $mas_post_templates ) ) {
+// 		$options = array( '' => esc_html__( '— Select —', 'mas_elementor' ) );
+// 		foreach ( $mas_post_templates as $mas_post_template ) {
+// 			$options[ $mas_post_template->ID ] = $mas_post_template->post_title;
+// 		}
+// 	} else {
+// 		$options = array( '' => esc_html__( 'No Templates Found', 'mas_elementor' ) );
+// 	}
 
-	return $options;
-}
+// 	return $options;
+// }
 
-if ( ! function_exists( 'mas_template_render' ) ) {
-	/**
-	 * Mas template render.
-	 *
-	 * @param array $post_id  post ID.
-	 * @param bool  $echo  echo.
-	 */
-	function mas_template_render( $post_id, $echo = false ) {
-		if ( did_action( 'elementor/loaded' ) ) {
-			$content = Plugin::instance()->frontend->get_builder_content_for_display( $post_id );
-		} else {
-			$content = get_the_content( null, false, $post_id );
-			$content = apply_filters( 'the_content', $content );
-			$content = str_replace( ']]>', ']]&gt;', $content );
-		}
+// if ( ! function_exists( 'mas_template_render' ) ) {
+// 	/**
+// 	 * Mas template render.
+// 	 *
+// 	 * @param array $post_id  post ID.
+// 	 * @param bool  $echo  echo.
+// 	 */
+// 	function mas_template_render( $post_id, $echo = false ) {
+// 		if ( did_action( 'elementor/loaded' ) ) {
+// 			$content = Plugin::instance()->frontend->get_builder_content_for_display( $post_id );
+// 		} else {
+// 			$content = get_the_content( null, false, $post_id );
+// 			$content = apply_filters( 'the_content', $content );
+// 			$content = str_replace( ']]>', ']]&gt;', $content );
+// 		}
 
-		if ( $echo ) {
-			echo wp_kses_post( $content );
-		} else {
-			return $content;
-		}
-	}
-}
+// 		if ( $echo ) {
+// 			echo wp_kses_post( $content );
+// 		} else {
+// 			return $content;
+// 		}
+// 	}
+// }
 
