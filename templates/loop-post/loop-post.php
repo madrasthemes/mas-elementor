@@ -9,10 +9,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
-// $temp = $widget->get_settings_for_display();
-// print( silicon_render_content( $temp['select_template'], false ) );
-
-echo 'amsdkf.m';
+$temp = $widget->get_settings_for_display();
+print( mas_template_render( $temp['select_template'], false ) );
 ?>
 
 

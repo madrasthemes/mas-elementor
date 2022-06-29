@@ -114,9 +114,7 @@ class Posts extends Posts_Base {
 
 		// $dir     = MAS_ELEMENTOR_PATH . 'templates/widgets/posts/';
 		// $templates = Utils::get_mas_post_templates($dir);
-		$templates = function_exists( 'silicon_static_content_options' ) ? silicon_static_content_options() : [];
-		// print_r($templates);
-
+		$templates = function_exists( 'mas_post_template_options' ) ? mas_post_template_options() : [];
 		$this->add_control(
 			'select_template',
 			[

@@ -397,39 +397,38 @@ function mas_elementor_set_template_cache( $cache_key, $template ) {
 	wp_cache_set( 'cached_templates', $cached_templates, 'mas_elementor' );
 }
 
-function silicon_static_content_options() {
-	// if ( silicon_is_mas_static_content_activated() ) {
-		$static_block = array();
-		$args         = array(
-			'post_type'      => 'mas_static_content',
-			'post_status'    => 'publish',
-			'limit'          => '-1',
-			'posts_per_page' => '-1',
-		);
+function mas_post_template_options() {
 
-		$static_blocks = get_posts( $args );
+	$mas_post_template = array();
+	$args         = array(
+		'post_type'      => 'mas_static_content',
+		'post_status'    => 'publish',
+		'limit'          => '-1',
+		'posts_per_page' => '-1',
+	);
 
-		if ( ! empty( $static_blocks ) ) {
-			$options = array( '' => esc_html__( '— Select —', 'silicon' ) );
-			foreach ( $static_blocks as $static_block ) {
-				$options[ $static_block->ID ] = $static_block->post_title;
-			}
-		} else {
-			$options = array( '' => esc_html__( 'No Static Content Found', 'silicon' ) );
+	$mas_post_templates = get_posts( $args );
+
+	if ( ! empty( $mas_post_templates ) ) {
+		$options = array( '' => esc_html__( '— Select —', 'mas_elementor' ) );
+		foreach ( $mas_post_templates as $mas_post_template ) {
+			$options[ $mas_post_template->ID ] = $mas_post_template->post_title;
 		}
+	} else {
+		$options = array( '' => esc_html__( 'No Templates Found', 'mas_elementor' ) );
+	}
 
-		return $options;
-	// }
+	return $options;
 }
 
-if ( ! function_exists( 'silicon_render_content' ) ) {
+if ( ! function_exists( 'mas_template_render' ) ) {
 	/**
-	 * Silicon render content.
+	 * Mas template render.
 	 *
 	 * @param array $post_id  post ID.
 	 * @param bool  $echo  echo.
 	 */
-	function silicon_render_content( $post_id, $echo = false ) {
+	function mas_template_render( $post_id, $echo = false ) {
 		if ( did_action( 'elementor/loaded' ) ) {
 			$content = Plugin::instance()->frontend->get_builder_content_for_display( $post_id );
 		} else {
