@@ -4,7 +4,8 @@
  *
  * @package mas-elementor
  */
-
+use Elementor\plugin;
+ 
 /**
  * Plugin Name: MAS Addons for Elementor
  * Description: More power to your Elementor powered website with beautifully designed sections, templates, widgets, skins and extensions.
@@ -394,5 +395,54 @@ function mas_elementor_set_template_cache( $cache_key, $template ) {
 	}
 
 	wp_cache_set( 'cached_templates', $cached_templates, 'mas_elementor' );
+}
+
+function mas_template_options( $type = 'section' ) {
+
+	$mas_template = array();
+	$args         = array(
+		'post_type'      => 'elementor_library',
+		'post_status'    => 'publish',
+		'limit'          => '-1',
+		'posts_per_page' => '-1',
+		'elementor_library_type' => $type,
+	);
+
+	$mas_templates = get_posts( $args );
+
+	if ( ! empty( $mas_templates ) ) {
+		$options = array( '' => esc_html__( '— Select —', 'mas_elementor' ) );
+		foreach ( $mas_templates as $mas_template ) {
+			$options[ $mas_template->ID ] = $mas_template->post_title;
+		}
+	} else {
+		$options = array( '' => esc_html__( 'No Templates Found', 'silicon' ) );
+	}
+
+	return $options;
+}
+
+if ( ! function_exists( 'mas_render_template' ) ) {
+	/**
+	 * Mas Template Render.
+	 *
+	 * @param array $post_id  post ID.
+	 * @param bool  $echo  echo.
+	 */
+	function mas_render_template( $post_id, $echo = false ) {
+		if ( did_action( 'elementor/loaded' ) ) {
+			$content = Plugin::instance()->frontend->get_builder_content_for_display( $post_id );
+		} else {
+			$content = get_the_content( null, false, $post_id );
+			$content = apply_filters( 'the_content', $content );
+			$content = str_replace( ']]>', ']]&gt;', $content );
+		}
+
+		if ( $echo ) {
+			echo wp_kses_post( $content );
+		} else {
+			return $content;
+		}
+	}
 }
 

@@ -11,6 +11,11 @@ use Elementor\Controls_Manager;
 use MASElementor\Modules\QueryControl\Module as Module_Query;
 use MASElementor\Modules\QueryControl\Controls\Group_Control_Related;
 use MASElementor\Modules\Posts\Skins;
+use MASElementor\Core\Utils;
+use Elementor\Core\Kits\Documents\Tabs\Global_Colors;
+use Elementor\Core\Kits\Documents\Tabs\Global_Typography;
+use Elementor\Group_Control_Border;
+use Elementor\Group_Control_Typography;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
@@ -27,7 +32,7 @@ class Posts extends Posts_Base {
 	 * @return string
 	 */
 	public function get_name() {
-		return 'posts';
+		return 'mas-posts';
 	}
 
 	/**
@@ -61,21 +66,16 @@ class Posts extends Posts_Base {
 		return $element;
 	}
 
-	/**
-	 * Register the skins for the widget.
-	 */
-	protected function register_skins() {
-		$this->add_skin( new Skins\Skin_Classic( $this ) );
-		// $this->add_skin( new Skins\Skin_Grid( $this ) );
-	}
-
+	
 	/**
 	 * Register controls for this widget.
 	 */
 	protected function register_controls() {
 		parent::register_controls();
 
+		$this->register_layout_section_controls();
 		$this->register_query_section_controls();
+		$this->register_post_section_controls();
 		$this->register_pagination_section_controls();
 	}
 
@@ -85,12 +85,192 @@ class Posts extends Posts_Base {
 	public function query_posts() {
 
 		$query_args = array(
-			'posts_per_page' => $this->get_current_skin()->get_instance_value( 'posts_per_page' ),
 			'paged'          => $this->get_current_page(),
 		);
 
 		$elementor_query = Module_Query::instance();
 		$this->query     = $elementor_query->get_query( $this, 'posts', $query_args, array() );
+	}
+
+	/**
+	 * Register Controls in Layout Section.
+	 */
+	protected function register_layout_section_controls() {
+		$this->start_controls_section(
+			'section_layout',
+			array(
+				'label' => __( 'Layout', 'mas-elementor' ),
+				'tab'   => Controls_Manager::TAB_CONTENT,
+			)
+		);
+
+		$templates = function_exists( 'mas_template_options' ) ? mas_template_options() : [];
+		$this->add_control(
+			'select_template',
+			[
+				'label'   => esc_html__( 'Mas Templates', 'mas-elementor' ),
+				'type'    => Controls_Manager::SELECT,
+				'options' => $templates,
+				// 'default' => array_key_first($templates),
+			]
+		);
+
+		$this->end_controls_section();
+	}
+
+	/**
+	* Register Controls in post section in style tab.
+	*/
+	protected function register_post_section_controls() {
+		// Post style controls in STYLE TAB.
+		$this->start_controls_section(
+			'post-style',
+			[
+				'label'     => esc_html__( 'Post', 'mas-elementor' ),
+				'tab'       => Controls_Manager::TAB_STYLE,
+			]
+		);
+		// Title controls.
+		$this->add_control(
+			'post_title_heading_style',
+			[
+				'label'     => esc_html__( 'Title', 'mas-elementor' ),
+				'type'      => Controls_Manager::HEADING,
+			]
+		);
+
+		$this->add_group_control(
+			Group_Control_Typography::get_type(),
+			[
+				'name'     => 'mas_title_typography',
+				'label'    => __( 'Typography', 'mas-elementor' ),
+				'global'   => [
+					'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
+				],
+				'selector' => '{{WRAPPER}} .mas-post-title',
+			]
+		);
+
+		$this->add_control(
+			'post_title_color',
+			[
+				'label'     => esc_html__( 'Color', 'mas-elementor' ),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .mas-post-title' => 'color: {{VALUE}} !important;',
+				],
+			]
+		);
+
+		$this->add_control(
+			'post_category_heading_style',
+			[
+				'label'     => esc_html__( 'Category', 'mas-elementor' ),
+				'type'      => Controls_Manager::HEADING,
+				'separator' => 'before',
+			]
+		);
+		// Category controls.
+		$this->add_group_control(
+			Group_Control_Typography::get_type(),
+			[
+				'name'     => 'mas_category_typography',
+				'label'    => __( 'Typography', 'mas-elementor' ),
+				'global'   => [
+					'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
+				],
+				'selector' => '{{WRAPPER}} .mas-post-category',
+			]
+		);
+
+		$this->add_control(
+			'post_category_color',
+			[
+				'label'     => esc_html__( 'Color', 'mas-elementor' ),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .mas-post-category' => 'color: {{VALUE}} !important;',
+				],
+			]
+		);
+		// Excerpt controls.
+		$this->add_control(
+			'post_excerpt_heading_style',
+			[
+				'label'     => esc_html__( 'Excerpt', 'mas-elementor' ),
+				'type'      => Controls_Manager::HEADING,
+				'separator' => 'before',
+			]
+		);
+
+		$this->add_group_control(
+			Group_Control_Typography::get_type(),
+			[
+				'name'     => 'mas_post_excerpt_typography',
+				'label'    => __( 'Typography', 'mas-elementor' ),
+				'global'   => [
+					'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
+				],
+				'selector' => '{{WRAPPER}} .mas-post-excerpt',
+			]
+		);
+
+		$this->add_control(
+			'post_excerpt_color',
+			[
+				'label'     => esc_html__( 'Color', 'mas-elementor' ),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .mas-post-excerpt' => 'color: {{VALUE}} !important;',
+				],
+			]
+		);
+
+		$this->add_control(
+			'post_action_text_heading_style',
+			[
+				'label'     => esc_html__( 'Action Text', 'mas-elementor' ),
+				'type'      => Controls_Manager::HEADING,
+				'separator' => 'before',
+			]
+		);
+		// Action text controls.
+		$this->add_group_control(
+			Group_Control_Typography::get_type(),
+			[
+				'name'     => 'mas_post_action_text_typography',
+				'label'    => __( 'Typography', 'mas-elementor' ),
+				'global'   => [
+					'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
+				],
+				'selector' => '{{WRAPPER}} .mas-post-action-text',
+			]
+		);
+
+		$this->add_control(
+			'post_action_text_color',
+			[
+				'label'     => esc_html__( 'Color', 'mas-elementor' ),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .mas-post-action-text' => 'color: {{VALUE}} !important;',
+				],
+			]
+		);
+
+		$this->add_control(
+			'post_action_text_hover_color',
+			[
+				'label'     => esc_html__( 'Hover Color', 'mas-elementor' ),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .mas-post-action-text:hover,{{WRAPPER}}' => 'color: {{VALUE}} !important;',
+				],
+				'default'   => '#07853a',
+			]
+		);
+
+		$this->end_controls_section();
 	}
 
 	/**
@@ -110,13 +290,18 @@ class Posts extends Posts_Base {
 			array(
 				'name'    => $this->get_name(),
 				'presets' => array( 'full' ),
-				'exclude' => array(
-					'posts_per_page', // use the one from Layout section.
-				),
 			)
 		);
 
 		$this->end_controls_section();
 	}
 
+	/**
+	 * Widget render.
+	 */
+	public function render() {
+		$settings       = $this->get_settings_for_display();
+		$args           = apply_filters( 'mas_post_object', array( 'widget' => $this, ) );
+		mas_elementor_get_template( 'widgets/posts/post-grid.php' , $args );
+	}
 }

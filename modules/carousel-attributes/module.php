@@ -134,6 +134,41 @@ class Module extends Module_Base {
 		);
 
 		$element->add_control(
+			'enable_space_between',
+			array(
+				'type'      => Controls_Manager::SWITCHER,
+				'label'     => esc_html__( 'Enable Space Between', 'mas-elementor' ),
+				'default'   => 'yes',
+				'label_off' => esc_html__( 'Hide', 'mas-elementor' ),
+				'label_on'  => esc_html__( 'Show', 'mas-elementor' ),
+				'condition'          => array(
+					'carousel_effect' => 'slide',
+					'enable_carousel' => 'yes',
+				),
+			)
+		);
+
+		$element->add_responsive_control(
+			'space_between',
+			array(
+				'type'           => Controls_Manager::NUMBER,
+				'label'          => esc_html__( 'Space Between', 'mas-elementor' ),
+				'description'    => esc_html__( 'Set Space between each Slides', 'mas-elementor' ),
+				'min'            => 0,
+				'max'            => 100,
+				'devices'        => array( 'desktop', 'tablet', 'mobile' ),
+				'default'        => 0,
+				'tablet_default' => 0,
+				'mobile_default' => 0,
+				'condition'      => array(
+					'carousel_effect' => 'slide',
+					'enable_carousel' => 'yes',
+					'enable_space_between' => 'yes',
+				),
+			)
+		);
+
+		$element->add_control(
 			'center_slides',
 			array(
 				'type'               => Controls_Manager::SWITCHER,
@@ -142,6 +177,7 @@ class Module extends Module_Base {
 				'label_off'          => esc_html__( 'Hide', 'mas-elementor' ),
 				'label_on'           => esc_html__( 'Show', 'mas-elementor' ),
 				'condition'          => array(
+					'carousel_effect' => 'slide',
 					'enable_carousel' => 'yes',
 				),
 				'frontend_available' => true,
@@ -691,6 +727,13 @@ class Module extends Module_Base {
 			$swiper_settings['breakpoints']['500']['slidesPerView']  = isset( $settings['slides_per_view_tablet'] ) ? $settings['slides_per_view_tablet'] : 3;
 			$swiper_settings['breakpoints']['0']['slidesPerView']    = isset( $settings['slides_per_view_mobile'] ) ? $settings['slides_per_view_mobile'] : 1;
 
+		}
+
+		if ( 'yes' === $settings['enable_space_between'] ) {
+			$swiper_settings['breakpoints']['1440']['spaceBetween'] = isset( $settings['space_between'] ) ? $settings['space_between'] : 8;
+			$swiper_settings['breakpoints']['1024']['spaceBetween'] = isset( $settings['space_between_tablet'] ) ? $settings['space_between_tablet'] : 8;
+			$swiper_settings['breakpoints']['500']['spaceBetween']  = isset( $settings['space_between_tablet'] ) ? $settings['space_between_tablet'] : 8;
+			$swiper_settings['breakpoints']['0']['spaceBetween']    = isset( $settings['space_between_mobile'] ) ? $settings['space_between_mobile'] : 8;
 		}
 
 		$prev_id = ! empty( $section_id ) ? 'prev-' . $section_id : '';

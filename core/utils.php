@@ -354,4 +354,43 @@ class Utils {
 		return $path;
 	}
 
+	// /**
+	//  * Get Mas post widget templates.
+	//  *
+	//  * @return array
+	//  */
+	// public static function get_mas_post_templates( $dir ) {
+
+	// 	$result = array();
+		 
+	// 	$cdir = scandir($dir);
+
+	// 	foreach ($cdir as $key => $value)
+	// 	{
+	// 		if (!in_array($value,array(".","..")))
+	// 		{
+	// 			if (is_dir($dir . DIRECTORY_SEPARATOR . $value))
+	// 			{
+	// 				$result[$value] = Utils::get_mas_post_templates($dir . DIRECTORY_SEPARATOR . $value);
+	// 			}
+	// 			else
+	// 			{
+	// 				$result[] = $value;
+	// 			}
+	// 		}
+	// 	}
+
+	// 	$values = array();
+	// 	$count = 1;
+
+	// 	foreach ( $result as $key => $template ) {
+
+	// 		$values[$template] = 'Style ' . $count;
+	// 		$count++;
+
+	// 	}
+
+	// 	return $values;
+	// }
+
 }
