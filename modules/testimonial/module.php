@@ -64,7 +64,7 @@ class Module extends Module_Base {
 				'at' => 'before',
 			]
 		);
-		$element->add_control(
+		$element->add_responsive_control(
 			'mas_description_padding',
 			[
 				'label' => esc_html__( 'Padding', 'mas-elementor' ),
