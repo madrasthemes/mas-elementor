@@ -194,6 +194,48 @@ class Module extends Module_Base {
 				'label_on'  => esc_html__( 'Show', 'mas-elementor' ),
 				'condition' => array(
 					'enable_carousel' => 'yes',
+					'show_custom_arrows!' => 'yes',
+				),
+			)
+		);
+
+		$element->add_control(
+			'show_custom_arrows',
+			array(
+				'type'      => Controls_Manager::SWITCHER,
+				'label'     => esc_html__( 'Custom Arrows', 'mas-elementor' ),
+				'default'   => 'no',
+				'label_off' => esc_html__( 'Hide', 'mas-elementor' ),
+				'label_on'  => esc_html__( 'Show', 'mas-elementor' ),
+				'condition' => array(
+					'enable_carousel' => 'yes',
+					'show_arrows!' => 'yes',
+				),
+			)
+		);
+
+		$element->add_control(
+			'custom_prev_id',
+			array(
+				'label'       => esc_html__( 'Previous Arrow ID', 'mas-elementor' ),
+				'type'        => Controls_Manager::TEXT,
+				'condition' => array(
+					'enable_carousel' => 'yes',
+					'show_arrows!' => 'yes',
+					'show_custom_arrows' => 'yes',
+				),
+			)
+		);
+
+		$element->add_control(
+			'custom_next_id',
+			array(
+				'label'       => __( 'Next Arrow ID', 'mas-elementor' ),
+				'type'        => Controls_Manager::TEXT,
+				'condition' => array(
+					'enable_carousel' => 'yes',
+					'show_arrows!' => 'yes',
+					'show_custom_arrows' => 'yes',
 				),
 			)
 		);
@@ -765,10 +807,17 @@ class Module extends Module_Base {
 
 		$prev_id = ! empty( $section_id ) ? 'prev-' . $section_id : '';
 		$next_id = ! empty( $section_id ) ? 'next-' . $section_id : '';
-		if ( 'yes' === $settings['show_arrows'] ) {
+		if ( 'yes' === $settings['show_arrows'] && 'yes' !== $settings['show_custom_arrows'] ) {
 			$swiper_settings['navigation'] = array(
 				'prevEl' => '#' . $prev_id,
 				'nextEl' => '#' . $next_id,
+
+			);
+		}
+		if ( 'yes' === $settings['show_custom_arrows'] && 'yes' !== $settings['show_arrows'] ) {
+			$swiper_settings['navigation'] = array(
+				'prevEl' => '#' . $settings['custom_prev_id'],
+				'nextEl' => '#' . $settings['custom_next_id'],
 
 			);
 		}
