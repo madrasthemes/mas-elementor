@@ -554,9 +554,9 @@ class Module extends Module_Base {
 		);
 
 		$element->add_control(
-			'pagination_spacing',
+			'pagination_spacing_top',
 			array(
-				'label'      => esc_html__( 'Spacing', 'mas-elementor' ),
+				'label'      => esc_html__( 'Top Spacing', 'mas-elementor' ),
 				'type'       => Controls_Manager::SLIDER,
 				'default'    => array(
 					'size' => 0,
@@ -572,6 +572,33 @@ class Module extends Module_Base {
 					'{{WRAPPER}} + .swiper-pagination.swiper-pagination-bullets' => 'margin-top: {{SIZE}}{{UNIT}} !important;',
 					'{{WRAPPER}} + .swiper-pagination-progressbar.swiper-pagination-horizontal' => 'margin-top: {{SIZE}}{{UNIT}} !important;',
 					'{{WRAPPER}} + .swiper-pagination.swiper-pagination-fraction' => 'margin-top: {{SIZE}}{{UNIT}} !important;',
+				),
+				'condition'  => array(
+					'enable_carousel' => 'yes',
+					'show_pagination' => 'yes',
+				),
+			)
+		);
+
+		$element->add_control(
+			'pagination_spacing_bottom',
+			array(
+				'label'      => esc_html__( 'Bottom Spacing', 'mas-elementor' ),
+				'type'       => Controls_Manager::SLIDER,
+				'default'    => array(
+					'size' => 0,
+				),
+				'size_units' => array( 'px', '%', 'rem' ),
+				'range'      => array(
+					'%' => array(
+						'min' => 0,
+						'max' => 100,
+					),
+				),
+				'selectors'  => array(
+					'{{WRAPPER}} + .swiper-pagination.swiper-pagination-bullets' => 'margin-bottom: {{SIZE}}{{UNIT}} !important;',
+					'{{WRAPPER}} + .swiper-pagination-progressbar.swiper-pagination-horizontal' => 'margin-bottom: {{SIZE}}{{UNIT}} !important;',
+					'{{WRAPPER}} + .swiper-pagination.swiper-pagination-fraction' => 'margin-bottom: {{SIZE}}{{UNIT}} !important;',
 				),
 				'condition'  => array(
 					'enable_carousel' => 'yes',
