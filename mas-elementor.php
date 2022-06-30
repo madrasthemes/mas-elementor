@@ -397,15 +397,15 @@ function mas_elementor_set_template_cache( $cache_key, $template ) {
 	wp_cache_set( 'cached_templates', $cached_templates, 'mas_elementor' );
 }
 
-function mas_template_options( $type = 'section' ) {
+function mas_template_options() {
 
 	$mas_template = array();
 	$args         = array(
-		'post_type'      => 'elementor_library',
+		'post_type'      => 'e-post-temp',
 		'post_status'    => 'publish',
 		'limit'          => '-1',
 		'posts_per_page' => '-1',
-		'elementor_library_type' => $type,
+		// 'elementor_library_type' => $type,
 	);
 
 	$mas_templates = get_posts( $args );
