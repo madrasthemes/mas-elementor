@@ -21,7 +21,7 @@ if ( ! $available_menus ) {
 if ( ! empty( $settings['menu'] ) ) {
 	$widget->add_render_attribute( 'main-menu', 'class', 'mas-elementor-mas-nav-menu' );
 }
-	// $walker = new WP_Bootstrap_Navwalker();
+	$walker = new WP_Bootstrap_Navwalker();
 	$args = array(
 		'echo'        => false,
 		'menu'        => $settings['menu'],
@@ -32,9 +32,9 @@ if ( ! empty( $settings['menu'] ) ) {
 		'container'   => '',
 
 	);
-	// if ('bootstrap' === $settings[ 'walker' ] ){
-	// $args['walker'] =  $walker;
-	// }.
+	if ('bootstrap' === $settings[ 'walker' ] ){
+	 	$args['walker'] =  $walker;
+	}
 
 	// General Menu.
 	$menu_html = wp_nav_menu( $args );
