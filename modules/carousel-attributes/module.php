@@ -134,6 +134,41 @@ class Module extends Module_Base {
 		);
 
 		$element->add_control(
+			'enable_space_between',
+			array(
+				'type'      => Controls_Manager::SWITCHER,
+				'label'     => esc_html__( 'Enable Space Between', 'mas-elementor' ),
+				'default'   => 'yes',
+				'label_off' => esc_html__( 'Hide', 'mas-elementor' ),
+				'label_on'  => esc_html__( 'Show', 'mas-elementor' ),
+				'condition'          => array(
+					'carousel_effect' => 'slide',
+					'enable_carousel' => 'yes',
+				),
+			)
+		);
+
+		$element->add_responsive_control(
+			'space_between',
+			array(
+				'type'           => Controls_Manager::NUMBER,
+				'label'          => esc_html__( 'Space Between', 'mas-elementor' ),
+				'description'    => esc_html__( 'Set Space between each Slides', 'mas-elementor' ),
+				'min'            => 0,
+				'max'            => 100,
+				'devices'        => array( 'desktop', 'tablet', 'mobile' ),
+				'default'        => 0,
+				'tablet_default' => 0,
+				'mobile_default' => 0,
+				'condition'      => array(
+					'carousel_effect' => 'slide',
+					'enable_carousel' => 'yes',
+					'enable_space_between' => 'yes',
+				),
+			)
+		);
+
+		$element->add_control(
 			'center_slides',
 			array(
 				'type'               => Controls_Manager::SWITCHER,
@@ -142,6 +177,7 @@ class Module extends Module_Base {
 				'label_off'          => esc_html__( 'Hide', 'mas-elementor' ),
 				'label_on'           => esc_html__( 'Show', 'mas-elementor' ),
 				'condition'          => array(
+					'carousel_effect' => 'slide',
 					'enable_carousel' => 'yes',
 				),
 				'frontend_available' => true,
@@ -158,6 +194,48 @@ class Module extends Module_Base {
 				'label_on'  => esc_html__( 'Show', 'mas-elementor' ),
 				'condition' => array(
 					'enable_carousel' => 'yes',
+					'show_custom_arrows!' => 'yes',
+				),
+			)
+		);
+
+		$element->add_control(
+			'show_custom_arrows',
+			array(
+				'type'      => Controls_Manager::SWITCHER,
+				'label'     => esc_html__( 'Custom Arrows', 'mas-elementor' ),
+				'default'   => 'no',
+				'label_off' => esc_html__( 'Hide', 'mas-elementor' ),
+				'label_on'  => esc_html__( 'Show', 'mas-elementor' ),
+				'condition' => array(
+					'enable_carousel' => 'yes',
+					'show_arrows!' => 'yes',
+				),
+			)
+		);
+
+		$element->add_control(
+			'custom_prev_id',
+			array(
+				'label'       => esc_html__( 'Previous Arrow ID', 'mas-elementor' ),
+				'type'        => Controls_Manager::TEXT,
+				'condition' => array(
+					'enable_carousel' => 'yes',
+					'show_arrows!' => 'yes',
+					'show_custom_arrows' => 'yes',
+				),
+			)
+		);
+
+		$element->add_control(
+			'custom_next_id',
+			array(
+				'label'       => __( 'Next Arrow ID', 'mas-elementor' ),
+				'type'        => Controls_Manager::TEXT,
+				'condition' => array(
+					'enable_carousel' => 'yes',
+					'show_arrows!' => 'yes',
+					'show_custom_arrows' => 'yes',
 				),
 			)
 		);
@@ -518,9 +596,9 @@ class Module extends Module_Base {
 		);
 
 		$element->add_control(
-			'pagination_spacing',
+			'pagination_spacing_top',
 			array(
-				'label'      => esc_html__( 'Spacing', 'mas-elementor' ),
+				'label'      => esc_html__( 'Top Spacing', 'mas-elementor' ),
 				'type'       => Controls_Manager::SLIDER,
 				'default'    => array(
 					'size' => 0,
@@ -536,6 +614,33 @@ class Module extends Module_Base {
 					'{{WRAPPER}} + .swiper-pagination.swiper-pagination-bullets' => 'margin-top: {{SIZE}}{{UNIT}} !important;',
 					'{{WRAPPER}} + .swiper-pagination-progressbar.swiper-pagination-horizontal' => 'margin-top: {{SIZE}}{{UNIT}} !important;',
 					'{{WRAPPER}} + .swiper-pagination.swiper-pagination-fraction' => 'margin-top: {{SIZE}}{{UNIT}} !important;',
+				),
+				'condition'  => array(
+					'enable_carousel' => 'yes',
+					'show_pagination' => 'yes',
+				),
+			)
+		);
+
+		$element->add_control(
+			'pagination_spacing_bottom',
+			array(
+				'label'      => esc_html__( 'Bottom Spacing', 'mas-elementor' ),
+				'type'       => Controls_Manager::SLIDER,
+				'default'    => array(
+					'size' => 0,
+				),
+				'size_units' => array( 'px', '%', 'rem' ),
+				'range'      => array(
+					'%' => array(
+						'min' => 0,
+						'max' => 100,
+					),
+				),
+				'selectors'  => array(
+					'{{WRAPPER}} + .swiper-pagination.swiper-pagination-bullets' => 'margin-bottom: {{SIZE}}{{UNIT}} !important;',
+					'{{WRAPPER}} + .swiper-pagination-progressbar.swiper-pagination-horizontal' => 'margin-bottom: {{SIZE}}{{UNIT}} !important;',
+					'{{WRAPPER}} + .swiper-pagination.swiper-pagination-fraction' => 'margin-bottom: {{SIZE}}{{UNIT}} !important;',
 				),
 				'condition'  => array(
 					'enable_carousel' => 'yes',
@@ -693,12 +798,26 @@ class Module extends Module_Base {
 
 		}
 
+		if ( 'yes' === $settings['enable_space_between'] ) {
+			$swiper_settings['breakpoints']['1440']['spaceBetween'] = isset( $settings['space_between'] ) ? $settings['space_between'] : 8;
+			$swiper_settings['breakpoints']['1024']['spaceBetween'] = isset( $settings['space_between_tablet'] ) ? $settings['space_between_tablet'] : 8;
+			$swiper_settings['breakpoints']['500']['spaceBetween']  = isset( $settings['space_between_tablet'] ) ? $settings['space_between_tablet'] : 8;
+			$swiper_settings['breakpoints']['0']['spaceBetween']    = isset( $settings['space_between_mobile'] ) ? $settings['space_between_mobile'] : 8;
+		}
+
 		$prev_id = ! empty( $section_id ) ? 'prev-' . $section_id : '';
 		$next_id = ! empty( $section_id ) ? 'next-' . $section_id : '';
-		if ( 'yes' === $settings['show_arrows'] ) {
+		if ( 'yes' === $settings['show_arrows'] && 'yes' !== $settings['show_custom_arrows'] ) {
 			$swiper_settings['navigation'] = array(
 				'prevEl' => '#' . $prev_id,
 				'nextEl' => '#' . $next_id,
+
+			);
+		}
+		if ( 'yes' === $settings['show_custom_arrows'] && 'yes' !== $settings['show_arrows'] ) {
+			$swiper_settings['navigation'] = array(
+				'prevEl' => '#' . $settings['custom_prev_id'],
+				'nextEl' => '#' . $settings['custom_next_id'],
 
 			);
 		}
