@@ -30,6 +30,7 @@ final class Modules_Manager {
 	 */
 	public function __construct() {
 		$modules = array(
+			'dynamic-tags',
 			'mas-templatetypes',
 			'multipurpose-text',
 			'posts',

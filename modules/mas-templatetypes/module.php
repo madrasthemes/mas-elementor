@@ -280,7 +280,7 @@ class Module extends BaseModule {
 	 */
 	private function register_post_temp_cpt() {
 		$labels = [
-			'name' => esc_html__( 'Mas Templates Type', 'elementor' ),
+			'name' => esc_html__( 'Mas Templates', 'elementor' ),
 			'singular_name' => esc_html__( 'Landing Page', 'elementor' ),
 			'add_new' => esc_html__( 'Add New', 'elementor' ),
 			'add_new_item' => esc_html__( 'Add New Landing Page', 'elementor' ),
@@ -299,9 +299,9 @@ class Module extends BaseModule {
 			'labels' => $labels,
 			'public' => true,
 			'show_in_menu' => 'edit.php?post_type=elementor_library&tabs_group=library',
-			'capability_type' => 'page',
+			'capability_type' => 'post',
 			'taxonomies' => [ Source_Local::TAXONOMY_TYPE_SLUG ],
-			'supports' => [ 'title', 'editor', 'comments', 'revisions', 'trackbacks', 'author', 'excerpt', 'page-attributes', 'thumbnail', 'custom-fields', 'post-formats', 'elementor' ],
+			'supports' => [ 'title', 'editor', 'comments', 'revisions', 'author', 'excerpt', 'post-attributes', 'thumbnail', 'post-formats', 'elementor' ],
 		];
 
 		register_post_type( self::CPT, $args );
