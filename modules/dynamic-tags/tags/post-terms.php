@@ -1,22 +1,22 @@
 <?php
-namespace ElementorPro\Modules\DynamicTags\Tags;
+namespace MASElementor\Modules\DynamicTags\Tags;
 
 use Elementor\Controls_Manager;
-use ElementorPro\Modules\DynamicTags\Tags\Base\Tag;
-use ElementorPro\Modules\DynamicTags\Module;
-use ElementorPro\Core\Utils;
+use MASElementor\Modules\DynamicTags\Tags\Base\Tag;
+use MASElementor\Modules\DynamicTags\Module;
+use MASElementor\Core\Utils;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly
 }
 
-class Post_Terms extends Tag {
+class Post_Terms extends \Elementor\Core\DynamicTags\Tag {
 	public function get_name() {
 		return 'post-terms';
 	}
 
 	public function get_title() {
-		return esc_html__( 'Post Terms', 'elementor-pro' );
+		return esc_html__( 'Post Terms', 'mas-elementor' );
 	}
 
 	public function get_group() {
@@ -30,7 +30,7 @@ class Post_Terms extends Tag {
 	protected function register_controls() {
 		$taxonomy_filter_args = [
 			'show_in_nav_menus' => true,
-			'object_type' => [ get_post_type() ],
+			// 'object_type' => [ get_post_type() ],
 		];
 
 		/**
@@ -45,7 +45,7 @@ class Post_Terms extends Tag {
 		 *                                    match against the taxonomy objects inside
 		 *                                    the `get_taxonomies()` function.
 		 */
-		$taxonomy_filter_args = apply_filters( 'elementor_pro/dynamic_tags/post_terms/taxonomy_args', $taxonomy_filter_args );
+		// $taxonomy_filter_args = apply_filters( 'elementor_pro/dynamic_tags/post_terms/taxonomy_args', $taxonomy_filter_args );
 
 		$taxonomies = Utils::get_taxonomies( $taxonomy_filter_args, 'objects' );
 
@@ -58,7 +58,7 @@ class Post_Terms extends Tag {
 		$this->add_control(
 			'taxonomy',
 			[
-				'label' => esc_html__( 'Taxonomy', 'elementor-pro' ),
+				'label' => esc_html__( 'Taxonomy', 'mas-elementor' ),
 				'type' => Controls_Manager::SELECT,
 				'options' => $options,
 				'default' => 'post_tag',
@@ -68,7 +68,7 @@ class Post_Terms extends Tag {
 		$this->add_control(
 			'separator',
 			[
-				'label' => esc_html__( 'Separator', 'elementor-pro' ),
+				'label' => esc_html__( 'Separator', 'mas-elementor' ),
 				'type' => Controls_Manager::TEXT,
 				'default' => ', ',
 			]
@@ -77,7 +77,7 @@ class Post_Terms extends Tag {
 		$this->add_control(
 			'link',
 			[
-				'label' => esc_html__( 'Link', 'elementor-pro' ),
+				'label' => esc_html__( 'Link', 'mas-elementor' ),
 				'type' => Controls_Manager::SWITCHER,
 				'default' => 'yes',
 			]

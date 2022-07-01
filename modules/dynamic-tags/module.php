@@ -51,7 +51,7 @@ class Module extends TagsModule {
 			'Post_Featured_Image',
 			// 'Post_Gallery',
 			// 'Post_ID',
-			// 'Post_Terms',
+			'Post_Terms',
 			'Post_Time',
 			'Post_Title',
 			'Post_URL',
