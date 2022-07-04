@@ -1,4 +1,10 @@
 <?php
+/**
+ * MasTemplateTypes.
+ *
+ * @package MASElementor\Modules\MasTemplateTypes
+ */
+
 namespace MASElementor\Modules\MasTemplatetypes;
 
 use Elementor\Core\Admin\Menu\Main as MainMenu;
@@ -14,18 +20,42 @@ use Elementor\Utils;
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
-
+/**
+ * The mas template type ( elementor-library-type ) module class
+ */
 class Module extends BaseModule {
 
-	const DOCUMENT_TYPE = 'post-temp';
-	const CPT = 'e-post-temp';
+	const DOCUMENT_TYPE   = 'post-temp';
+	const CPT             = 'e-post-temp';
 	const ADMIN_PAGE_SLUG = 'edit.php?post_type=' . self::CPT;
 
+	/**
+	 * Post variable.
+	 *
+	 * @var $posts post.
+	 */
 	private $posts;
+	/**
+	 * Trashed post variable.
+	 *
+	 * @var $trashed_posts trashed_post.
+	 */
 	private $trashed_posts;
+	/**
+	 * New mastemplate type url.
+	 *
+	 * @var $trashed_posts trashed_post.
+	 */
 	private $new_lp_url;
+	/**
+	 * New mastemplate type permalink_structure.
+	 *
+	 * @var $permalink_structure permalink_structure.
+	 */
 	private $permalink_structure;
-
+	/**
+	 * Get post names.
+	 */
 	public function get_name() {
 		return 'post-temps';
 	}
@@ -40,17 +70,17 @@ class Module extends BaseModule {
 	 * @return array
 	 */
 	public static function get_experimental_data() {
-		return [
-			'name' => 'post-temps',
-			'title' => esc_html__( 'Mas Templates Type', 'elementor' ),
-			'description' => esc_html__( 'Adds a new Elementor content type that allows creating beautiful mas templates type instantly in a streamlined workflow.', 'elementor' ),
+		return array(
+			'name'           => 'post-temps',
+			'title'          => esc_html__( 'Mas Templates Type', 'mas-elementor' ),
+			'description'    => esc_html__( 'Adds a new Elementor content type that allows creating beautiful mas templates type instantly in a streamlined workflow.', 'mas-elementor' ),
 			'release_status' => Experiments_Manager::RELEASE_STATUS_STABLE,
-			'default' => Experiments_Manager::STATE_ACTIVE,
-			'new_site' => [
-				'default_active' => true,
+			'default'        => Experiments_Manager::STATE_ACTIVE,
+			'new_site'       => array(
+				'default_active'               => true,
 				'minimum_installation_version' => '3.1.0-beta',
-			],
-		];
+			),
+		);
 	}
 
 	/**
@@ -68,14 +98,16 @@ class Module extends BaseModule {
 		}
 
 		// `'posts_per_page' => 1` is because this is only used as an indicator to whether there are any trashed mas templates type.
-		$trashed_posts_query = new \WP_Query( [
-			'no_found_rows' => true,
-			'post_type' => self::CPT,
-			'post_status' => 'trash',
-			'posts_per_page' => 1,
-			'meta_key' => '_elementor_template_type',
-			'meta_value' => self::DOCUMENT_TYPE,
-		] );
+		$trashed_posts_query = new \WP_Query(
+			array(
+				'no_found_rows'  => true,
+				'post_type'      => self::CPT,
+				'post_status'    => 'trash',
+				'posts_per_page' => 1,
+				'meta_key'       => '_elementor_template_type',
+				'meta_value'     => self::DOCUMENT_TYPE,
+			)
+		);
 
 		$this->trashed_posts = $trashed_posts_query->posts;
 
@@ -97,14 +129,16 @@ class Module extends BaseModule {
 		}
 
 		// `'posts_per_page' => 1` is because this is only used as an indicator to whether there are any mas templates type.
-		$posts_query = new \WP_Query( [
-			'no_found_rows' => true,
-			'post_type' => self::CPT,
-			'post_status' => 'any',
-			'posts_per_page' => 1,
-			'meta_key' => '_elementor_template_type',
-			'meta_value' => self::DOCUMENT_TYPE,
-		] );
+		$posts_query = new \WP_Query(
+			array(
+				'no_found_rows'  => true,
+				'post_type'      => self::CPT,
+				'post_status'    => 'any',
+				'posts_per_page' => 1,
+				'meta_key'       => '_elementor_template_type',
+				'meta_value'     => self::DOCUMENT_TYPE,
+			)
+		);
 
 		$this->posts = $posts_query->posts;
 
@@ -117,16 +151,17 @@ class Module extends BaseModule {
 	 * Check whether the post is an Elementor Landing Page.
 	 *
 	 * @since 3.1.0
-	 * @access public
 	 *
-	 * @param \WP_Post $post Post Object
+	 * @param array \WP_Post $post Post Object.
 	 *
 	 * @return bool Whether the post was built with Elementor.
 	 */
 	public function is_elementor_post_temp( $post ) {
 		return self::CPT === $post->post_type;
 	}
-
+	/**
+	 * Getting menu arguments.
+	 */
 	private function get_menu_args() {
 		$posts = $this->get_post_temp_posts();
 
@@ -134,26 +169,29 @@ class Module extends BaseModule {
 		// If there are, show the pages table.
 		if ( ! empty( $posts ) ) {
 			$menu_slug = self::ADMIN_PAGE_SLUG;
-			$function = null;
+			$function  = null;
 		} else {
 			$menu_slug = self::CPT;
-			$function = [ $this, 'print_empty_post_temps_page' ];
+			$function  = array( $this, 'print_empty_post_temps_page' );
 		}
 
-		return [
+		return array(
 			'menu_slug' => $menu_slug,
-			'function' => $function,
-		];
+			'function'  => $function,
+		);
 	}
-
+	// PHPCS:ignore.
 	private function register_admin_menu( MainMenu $menu ) {
-		$post_temps_title = esc_html__( 'MAS Temps', 'elementor' );
+		$post_temps_title = esc_html__( 'MAS Temps', 'mas-elementor' );
 
-		$menu_args = array_merge( $this->get_menu_args(), [
-			'page_title' => $post_temps_title,
-			'menu_title' => $post_temps_title,
-			'index' => 20,
-		] );
+		$menu_args = array_merge(
+			$this->get_menu_args(),
+			array(
+				'page_title' => $post_temps_title,
+				'menu_title' => $post_temps_title,
+				'index'      => 20,
+			)
+		);
 
 		$menu->add_submenu( $menu_args );
 	}
@@ -166,7 +204,7 @@ class Module extends BaseModule {
 	 * @since 3.1.0
 	 */
 	private function register_admin_menu_legacy() {
-		$post_temps_title = esc_html__( 'Posts Templates', 'elementor' );
+		$post_temps_title = esc_html__( 'Posts Templates', 'mas-elementor' );
 
 		$menu_args = $this->get_menu_args();
 
@@ -208,21 +246,26 @@ class Module extends BaseModule {
 	 */
 	public function print_empty_post_temps_page() {
 		$template_sources = Plugin::$instance->templates_manager->get_registered_sources();
-		$source_local = $template_sources['local'];
-		$trashed_posts = $this->get_trashed_post_temp_posts();
+		$source_local     = $template_sources['local'];
+		$trashed_posts    = $this->get_trashed_post_temp_posts();
 
 		?>
 		<div class="e-post-temps-empty">
 		<?php
-		/** @var Source_Local $source_local */
-		$source_local->print_blank_state_template( esc_html__( 'Landing Page', 'elementor' ), $this->get_add_new_post_temp_url(), esc_html__( 'Build Effective Mas Templates Type for your business\' marketing campaigns.', 'elementor' ) );
+		/**
+		 * Mas template type.
+		 *
+		 * @var Source_Local $source_local.
+		 */
+		$source_local->print_blank_state_template( esc_html__( 'Landing Page', 'mas-elementor' ), $this->get_add_new_post_temp_url(), esc_html__( 'Build Effective Mas Templates Type for your business\' marketing campaigns.', 'mas-elementor' ) );
 
-		if ( ! empty( $trashed_posts ) ) : ?>
+		if ( ! empty( $trashed_posts ) ) :
+			?>
 			<div class="e-trashed-items">
 				<?php
 					printf(
 						/* translators: %1$s Link open tag, %2$s: Link close tag. */
-						esc_html__( 'Or view %1$sTrashed Items%1$s', 'elementor' ),
+						esc_html__( 'Or view %1$sTrashed Items%1$s', 'mas-elementor' ),
 						'<a href="' . esc_url( admin_url( 'edit.php?post_status=trash&post_type=' . self::CPT ) ) . '">',
 						'</a>'
 					);
@@ -256,19 +299,19 @@ class Module extends BaseModule {
 	 *
 	 * @since 3.1.0
 	 *
-	 * @param $settings
+	 * @param array $settings settings.
 	 * @return array|null
 	 */
 	private function admin_localize_settings( $settings ) {
-		$additional_settings = [
-			'urls' => [
+		$additional_settings = array(
+			'urls'         => array(
 				'addNewLandingPageUrl' => $this->get_add_new_post_temp_url(),
-			],
-			'landingPages' => [
-				'landingPagesHasPages' => [] !== $this->get_post_temp_posts(),
+			),
+			'landingPages' => array(
+				'landingPagesHasPages'   => array() !== $this->get_post_temp_posts(),
 				'isLandingPageAdminEdit' => $this->is_post_temp_admin_edit(),
-			],
-		];
+			),
+		);
 
 		return array_replace_recursive( $settings, $additional_settings );
 	}
@@ -279,30 +322,30 @@ class Module extends BaseModule {
 	 * @since 3.1.0
 	 */
 	private function register_post_temp_cpt() {
-		$labels = [
-			'name' => esc_html__( 'Mas Templates', 'elementor' ),
-			'singular_name' => esc_html__( 'Landing Page', 'elementor' ),
-			'add_new' => esc_html__( 'Add New', 'elementor' ),
-			'add_new_item' => esc_html__( 'Add New Landing Page', 'elementor' ),
-			'edit_item' => esc_html__( 'Edit Landing Page', 'elementor' ),
-			'new_item' => esc_html__( 'New Landing Page', 'elementor' ),
-			'all_items' => esc_html__( 'All Mas Templates Type', 'elementor' ),
-			'view_item' => esc_html__( 'View Landing Page', 'elementor' ),
-			'search_items' => esc_html__( 'Search Mas Templates Type', 'elementor' ),
-			'not_found' => esc_html__( 'No mas templates type found', 'elementor' ),
-			'not_found_in_trash' => esc_html__( 'No mas templates type found in trash', 'elementor' ),
-			'parent_item_colon' => '',
-			'menu_name' => esc_html__( 'Mas Templates Type', 'elementor' ),
-		];
+		$labels = array(
+			'name'               => esc_html__( 'Mas Templates', 'mas-elementor' ),
+			'singular_name'      => esc_html__( 'Landing Page', 'mas-elementor' ),
+			'add_new'            => esc_html__( 'Add New', 'mas-elementor' ),
+			'add_new_item'       => esc_html__( 'Add New Landing Page', 'mas-elementor' ),
+			'edit_item'          => esc_html__( 'Edit Landing Page', 'mas-elementor' ),
+			'new_item'           => esc_html__( 'New Landing Page', 'mas-elementor' ),
+			'all_items'          => esc_html__( 'All Mas Templates Type', 'mas-elementor' ),
+			'view_item'          => esc_html__( 'View Landing Page', 'mas-elementor' ),
+			'search_items'       => esc_html__( 'Search Mas Templates Type', 'mas-elementor' ),
+			'not_found'          => esc_html__( 'No mas templates type found', 'mas-elementor' ),
+			'not_found_in_trash' => esc_html__( 'No mas templates type found in trash', 'mas-elementor' ),
+			'parent_item_colon'  => '',
+			'menu_name'          => esc_html__( 'Mas Templates Type', 'mas-elementor' ),
+		);
 
-		$args = [
-			'labels' => $labels,
-			'public' => true,
-			'show_in_menu' => 'edit.php?post_type=elementor_library&tabs_group=library',
+		$args = array(
+			'labels'          => $labels,
+			'public'          => true,
+			'show_in_menu'    => 'edit.php?post_type=elementor_library&tabs_group=library',
 			'capability_type' => 'post',
-			'taxonomies' => [ Source_Local::TAXONOMY_TYPE_SLUG ],
-			'supports' => [ 'title', 'editor', 'comments', 'revisions', 'author', 'excerpt', 'post-attributes', 'thumbnail', 'post-formats', 'elementor' ],
-		];
+			'taxonomies'      => array( Source_Local::TAXONOMY_TYPE_SLUG ),
+			'supports'        => array( 'title', 'editor', 'comments', 'revisions', 'author', 'excerpt', 'post-attributes', 'thumbnail', 'post-formats', 'elementor' ),
+		);
 
 		register_post_type( self::CPT, $args );
 	}
@@ -319,9 +362,9 @@ class Module extends BaseModule {
 	 *
 	 * @since 3.1.0
 	 *
-	 * @param $post_link
-	 * @param $post
-	 * @param $leavename
+	 * @param array $post_link current value.
+	 * @param array $post current query.
+	 * @param array $leavename leave name.
 	 * @return string|string[]
 	 */
 	private function remove_post_type_slug( $post_link, $post, $leavename ) {
@@ -344,7 +387,7 @@ class Module extends BaseModule {
 	 *
 	 * @since 3.1.0
 	 *
-	 * @param \WP_Query $query
+	 * @param \WP_Query $query query.
 	 */
 	private function adjust_post_temp_query( \WP_Query $query ) {
 		// Only handle actual pages.
@@ -362,7 +405,7 @@ class Module extends BaseModule {
 		}
 
 		// Create the post types property as an array and include the mas templates type CPT in it.
-		$query_post_types = [ 'post', 'page', self::CPT ];
+		$query_post_types = array( 'post', 'page', self::CPT );
 
 		// Since WordPress determined this is supposed to be a page, we'll pre-set the post_type query arg to make sure
 		// it includes the Landing Page CPT, so when the query is parsed, our CPT will be a legitimate match to the
@@ -374,11 +417,14 @@ class Module extends BaseModule {
 			$query->set( 'post_type', $query_post_types );
 
 			// We also need to set the name query var since redirect_guess_404_permalink() relies on it.
-			add_filter( 'pre_redirect_guess_404_permalink', function( $value ) use ( $query ) {
-				set_query_var( 'name', $query->query['pagename'] );
+			add_filter(
+				'pre_redirect_guess_404_permalink',
+				function( $value ) use ( $query ) {
+					set_query_var( 'name', $query->query['pagename'] );
 
-				return $value;
-			} );
+					return $value;
+				}
+			);
 		}
 	}
 
@@ -398,8 +444,8 @@ class Module extends BaseModule {
 	 * run a query for a Landing Page post with the passed slug ($query->query['category_name']. If a Landing Page
 	 * with the passed slug is found, we override the global $wp_query with the new, correct query.
 	 *
-	 * @param $current_value
-	 * @param $query
+	 * @param array $current_value current value.
+	 * @param array $query current query.
 	 * @return false
 	 */
 	private function handle_404( $current_value, $query ) {
@@ -426,11 +472,13 @@ class Module extends BaseModule {
 		}
 
 		// Search for a Landing Page with the same name passed as the 'category name'.
-		$possible_new_query = new \WP_Query( [
-			'no_found_rows' => true,
-			'post_type' => self::CPT,
-			'name' => $query->query['category_name'],
-		] );
+		$possible_new_query = new \WP_Query(
+			array(
+				'no_found_rows' => true,
+				'post_type'     => self::CPT,
+				'name'          => $query->query['category_name'],
+			)
+		);
 
 		// Only if such a Landing Page is found, override the query to fetch the correct page.
 		if ( ! empty( $possible_new_query->posts ) ) {
@@ -439,7 +487,9 @@ class Module extends BaseModule {
 
 		return false;
 	}
-
+	/**
+	 * Template library local source constructor.
+	 */
 	public function __construct() {
 		$this->permalink_structure = get_option( 'permalink_structure' );
 
@@ -450,75 +500,124 @@ class Module extends BaseModule {
 		if ( '' !== $this->permalink_structure ) {
 			// Mas Templates Type' post link needs to be modified to be identical to the pages permalink structure. This
 			// needs to happen in both the admin and the front end, since post links are also used in the admin pages.
-			add_filter( 'post_type_link', function( $post_link, $post, $leavename ) {
-				return $this->remove_post_type_slug( $post_link, $post, $leavename );
-			}, 10, 3 );
+			add_filter(
+				'post_type_link',
+				function( $post_link, $post, $leavename ) {
+					return $this->remove_post_type_slug( $post_link, $post, $leavename );
+				},
+				10,
+				3
+			);
 
 			// The query itself only has to be manipulated when pages are viewed in the front end.
 			if ( ! is_admin() || wp_doing_ajax() ) {
-				add_action( 'pre_get_posts', function ( $query ) {
-					$this->adjust_post_temp_query( $query );
-				} );
+				add_action(
+					'pre_get_posts',
+					function ( $query ) {
+						$this->adjust_post_temp_query( $query );
+					}
+				);
 
 				// Handle cases where visiting a Landing Page's URL returns 404.
-				add_filter( 'pre_handle_404', function ( $value, $query ) {
-					return $this->handle_404( $value, $query );
-				}, 10, 2 );
+				add_filter(
+					'pre_handle_404',
+					function ( $value, $query ) {
+						return $this->handle_404( $value, $query );
+					},
+					10,
+					2
+				);
 			}
 		}
 
-		add_action( 'elementor/documents/register', function( Documents_Manager $documents_manager ) {
-			$documents_manager->register_document_type( self::DOCUMENT_TYPE, Post_Temp::get_class_full_name() );
-		} );
+		add_action(
+			'elementor/documents/register',
+			function( Documents_Manager $documents_manager ) {
+				$documents_manager->register_document_type( self::DOCUMENT_TYPE, Post_Temp::get_class_full_name() );
+			}
+		);
 
 		if ( Plugin::$instance->experiments->is_feature_active( 'admin_menu_rearrangement' ) ) {
-			add_action( 'elementor/admin/menu_registered/elementor', function( MainMenu $menu ) {
-				$this->register_admin_menu( $menu );
-			} );
+			add_action(
+				'elementor/admin/menu_registered/elementor',
+				function( MainMenu $menu ) {
+					$this->register_admin_menu( $menu );
+				}
+			);
 		} else {
-			add_action( 'admin_menu', function() {
-				$this->register_admin_menu_legacy();
-			}, 30 );
+			add_action(
+				'admin_menu',
+				function() {
+					$this->register_admin_menu_legacy();
+				},
+				30
+			);
 		}
 
 		// Add the custom 'Add New' link for Mas Templates Type into Elementor's admin config.
-		add_action( 'elementor/admin/localize_settings', function( array $settings ) {
-			return $this->admin_localize_settings( $settings );
-		} );
+		add_action(
+			'elementor/admin/localize_settings',
+			function( array $settings ) {
+				return $this->admin_localize_settings( $settings );
+			}
+		);
 
-		add_filter( 'elementor/template_library/sources/local/register_taxonomy_cpts', function( array $cpts ) {
-			$cpts[] = self::CPT;
+		add_filter(
+			'elementor/template_library/sources/local/register_taxonomy_cpts',
+			function( array $cpts ) {
+				$cpts[] = self::CPT;
 
-			return $cpts;
-		} );
+				return $cpts;
+			}
+		);
 
 		// In the Mas Templates Type Admin Table page - Overwrite Template type column header title.
-		add_action( 'manage_' . Mas_Templatetypes_Module::CPT . '_posts_columns', function( $posts_columns ) {
-			/** @var Source_Local $source_local */
-			$source_local = Plugin::$instance->templates_manager->get_source( 'local' );
+		add_action(
+			'manage_' . Mas_Templatetypes_Module::CPT . '_posts_columns',
+			function( $posts_columns ) {
+				/**
+				 * Mas template type.
+				 *
+				 * @var Source_Local $source_local.
+				 */
+				$source_local = Plugin::$instance->templates_manager->get_source( 'local' );
 
-			return $source_local->admin_columns_headers( $posts_columns );
-		} );
+				return $source_local->admin_columns_headers( $posts_columns );
+			}
+		);
 
 		// In the Mas Templates Type Admin Table page - Overwrite Template type column row values.
-		add_action( 'manage_' . Mas_Templatetypes_Module::CPT . '_posts_custom_column', function( $column_name, $post_id ) {
-			/** @var Post_Temp $document */
-			$document = Plugin::$instance->documents->get( $post_id );
+		add_action(
+			'manage_' . Mas_Templatetypes_Module::CPT . '_posts_custom_column',
+			function( $column_name, $post_id ) {
+				/**
+				 * Mas template type column name.
+				 *
+				 * @var Post_Temp $document.
+				 */
+				$document = Plugin::$instance->documents->get( $post_id );
 
-			$document->admin_columns_content( $column_name );
-		}, 10, 2 );
+				$document->admin_columns_content( $column_name );
+			},
+			10,
+			2
+		);
 
 		// Overwrite the Admin Bar's 'New +' Landing Page URL with the link that creates the new LP in Elementor
 		// with the Template Library modal open.
-		add_action( 'admin_bar_menu', function( $admin_bar ) {
-			// Get the Landing Page menu node.
-			$new_post_temp_node = $admin_bar->get_node( 'new-e-post-temp' );
+		add_action(
+			'admin_bar_menu',
+			function( $admin_bar ) {
+				// Get the Landing Page menu node.
+				$new_post_temp_node = $admin_bar->get_node( 'new-e-post-temp' );
 
-			if ( $new_post_temp_node ) {
-				$new_post_temp_node->href = $this->get_add_new_post_temp_url();
+				if ( $new_post_temp_node ) {
+					$new_post_temp_node->href = $this->get_add_new_post_temp_url();
 
-				$admin_bar->add_node( $new_post_temp_node );
-			}
-		}, 100 );
+					$admin_bar->add_node( $new_post_temp_node );
+				}
+			},
+			100
+		);
 	}
 }

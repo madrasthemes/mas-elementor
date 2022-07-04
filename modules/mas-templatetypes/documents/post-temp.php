@@ -1,4 +1,10 @@
 <?php
+/**
+ * Mas template type documents.
+ *
+ * @package MASElementor\Modules\MasTemplateTypes\documents\post-temp.php
+ */
+
 namespace MASElementor\Modules\MasTemplatetypes\Documents;
 
 use Elementor\Core\DocumentTypes\PageBase;
@@ -9,52 +15,58 @@ use Elementor\Plugin;
 use Elementor\TemplateLibrary\Source_Local;
 
 if ( ! defined( 'ABSPATH' ) ) {
-	exit; // Exit if accessed directly
+	exit; // Exit if accessed directly.
 }
 
+/**
+ * The Post Template class.
+ */
 class Post_Temp extends PageBase {
 
-	// Library Document Trait
+	// Library Document Trait.
 	use Library;
-
+	/**
+	 * Get template properties.
+	 */
 	public static function get_properties() {
 		$properties = parent::get_properties();
-        
-        // $properties['admin_tab_group'] = '';
-		$properties['support_kit'] = true;
+
+		$properties['support_kit']     = true;
 		$properties['show_in_library'] = true;
-		$properties['cpt'] = [ Mas_Templatetypes_Module::CPT ];
+		$properties['cpt']             = array( Mas_Templatetypes_Module::CPT );
 
 		return $properties;
 	}
-
+	/**
+	 * Get the template type.
+	 */
 	public static function get_type() {
 		return Mas_Templatetypes_Module::DOCUMENT_TYPE;
 	}
 
 	/**
-	 * @access public
+	 * Get the name.
 	 */
 	public function get_name() {
 		return Mas_Templatetypes_Module::DOCUMENT_TYPE;
 	}
 
 	/**
-	 * @access public
-	 * @static
+	 * Get the title.
 	 */
 	public static function get_title() {
-		return esc_html__( 'MAS Temp', 'elementor' );
+		return esc_html__( 'MAS Temp', 'mas-elementor' );
 	}
 
 	/**
-	 * @access public
-	 * @static
+	 * Get plural title.
 	 */
 	public static function get_plural_title() {
-		return __( 'MAS Temps', 'elementor' );
+		return __( 'MAS Temps', 'mas-elementor' );
 	}
-
+	/**
+	 * Create new url.
+	 */
 	public static function get_create_url() {
 		return parent::get_create_url() . '#library';
 	}
@@ -65,9 +77,8 @@ class Post_Temp extends PageBase {
 	 * Save an Elementor document.
 	 *
 	 * @since 3.1.0
-	 * @access public
 	 *
-	 * @param $data
+	 * @param array $data data.
 	 *
 	 * @return bool
 	 */
@@ -86,21 +97,22 @@ class Post_Temp extends PageBase {
 	 *
 	 * @since 3.1.0
 	 *
-	 * @param $column_name
-	 * @access public
+	 * @param array $column_name column.
 	 */
 	public function admin_columns_content( $column_name ) {
 		if ( 'elementor_library_type' === $column_name ) {
 			$this->print_admin_column_type();
 		}
 	}
-
+	/**
+	 * Get configuration for remote libraries.
+	 */
 	protected function get_remote_library_config() {
-		$config = [
-			'type' => 'lp',
-			'default_route' => 'templates/mas-templatetypes',
+		$config = array(
+			'type'               => 'lp',
+			'default_route'      => 'templates/mas-templatetypes',
 			'autoImportSettings' => true,
-		];
+		);
 
 		return array_replace_recursive( parent::get_remote_library_config(), $config );
 	}
