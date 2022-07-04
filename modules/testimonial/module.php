@@ -2,7 +2,7 @@
 /**
  * Testimonial.
  *
- * @package MASElementor\Modules\testimonial 
+ * @package MASElementor\Modules\testimonial
  */
 
 namespace MASElementor\Modules\testimonial;
@@ -57,23 +57,23 @@ class Module extends Module_Base {
 	 * @param Element_Column $element The Column element object.
 	 */
 	public function add_testimonial_style_controls( $element ) {
-	
+
 		$element->start_injection(
-			[
+			array(
 				'of' => 'content_shadow',
 				'at' => 'before',
-			]
+			)
 		);
 		$element->add_responsive_control(
 			'mas_description_padding',
-			[
-				'label' => esc_html__( 'Padding', 'mas-elementor' ),
-				'type' => Controls_Manager::DIMENSIONS,
-				'size_units' => [ 'px', '%' ],
-				'selectors' => [
+			array(
+				'label'      => esc_html__( 'Padding', 'mas-elementor' ),
+				'type'       => Controls_Manager::DIMENSIONS,
+				'size_units' => array( 'px', '%' ),
+				'selectors'  => array(
 					'{{WRAPPER}} .elementor-testimonial-content' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-				],
-			]
+				),
+			)
 		);
 
 		$element->end_injection();

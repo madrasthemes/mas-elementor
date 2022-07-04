@@ -20,81 +20,81 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 class Module extends Module_Base {
 
-    /**
-     * Constructor.
-     *
-     * @return void
-     */
-    public function __construct() {
-        parent::__construct();
+	/**
+	 * Constructor.
+	 *
+	 * @return void
+	 */
+	public function __construct() {
+		parent::__construct();
 
-        $this->add_actions();
-    }
+		$this->add_actions();
+	}
 
-    /**
-     * Get Name.
-     *
-     * @return string
-     */
-    public function get_name() {
-        return 'video';
-    }
+	/**
+	 * Get Name.
+	 *
+	 * @return string
+	 */
+	public function get_name() {
+		return 'video';
+	}
 
-    /**
-     * Add Action.
-     *
-     * @return void
-     */
-    public function add_actions() {
-        add_action( 'elementor/element/video/section_video/before_section_end', array( $this, 'add_video_style_controls' ), 15 );
-    }
+	/**
+	 * Add Action.
+	 *
+	 * @return void
+	 */
+	public function add_actions() {
+		add_action( 'elementor/element/video/section_video/before_section_end', array( $this, 'add_video_style_controls' ), 15 );
+	}
 
-    /**
-     * Add wrap controls to the column element.
-     *
-     * @param Element_Column $element The Column element object.
-     */
-    public function add_video_style_controls( $element ) {
+	/**
+	 * Add wrap controls to the column element.
+	 *
+	 * @param Element_Column $element The Column element object.
+	 */
+	public function add_video_style_controls( $element ) {
 
-        $element->add_control(
-            'mas_elementor_video_height_enable',
-            array(
-                'type'      => Controls_Manager::SWITCHER,
-                'label'     => esc_html__( 'Enable Height?', 'mas-elementor' ),
-                'default'   => 'no',
-                'label_off' => esc_html__( 'Show', 'mas-elementor' ),
-                'label_on'  => esc_html__( 'Hide', 'mas-elementor' ),
-            )
-        );
+		$element->add_control(
+			'mas_elementor_video_height_enable',
+			array(
+				'type'      => Controls_Manager::SWITCHER,
+				'label'     => esc_html__( 'Enable Height?', 'mas-elementor' ),
+				'default'   => 'no',
+				'label_off' => esc_html__( 'Show', 'mas-elementor' ),
+				'label_on'  => esc_html__( 'Hide', 'mas-elementor' ),
+			)
+		);
 
-        $element->add_responsive_control(
-            'mas_elementor_video_height',
-            array(
-                'label'          => esc_html__( 'Height', 'mas-elementor' ),
-                'type'           => Controls_Manager::SLIDER,
-                'size_units'     => array( '%', 'px' ),
-                'range'          => array(
-                    'px' => array(
-                        'max' => 1000,
-                    ),
-                ),
-                'default'        => array(
-                    'size' => 100,
-                    'unit' => '%',
-                ),
-                'tablet_default' => array(
-                    'unit' => '%',
-                ),
-                'mobile_default' => array(
-                    'unit' => '%',
-                ),
-                'selectors'      => array(
-                    '{{WRAPPER}} .elementor-video' => 'height: {{SIZE}}{{UNIT}};',
-                ),
-                'condition'      => array(
-                    'mas_elementor_video_height_enable' => 'yes',
-                ),
-            )
-        );
-    }
+		$element->add_responsive_control(
+			'mas_elementor_video_height',
+			array(
+				'label'          => esc_html__( 'Height', 'mas-elementor' ),
+				'type'           => Controls_Manager::SLIDER,
+				'size_units'     => array( '%', 'px' ),
+				'range'          => array(
+					'px' => array(
+						'max' => 1000,
+					),
+				),
+				'default'        => array(
+					'size' => 100,
+					'unit' => '%',
+				),
+				'tablet_default' => array(
+					'unit' => '%',
+				),
+				'mobile_default' => array(
+					'unit' => '%',
+				),
+				'selectors'      => array(
+					'{{WRAPPER}} .elementor-video' => 'height: {{SIZE}}{{UNIT}};',
+				),
+				'condition'      => array(
+					'mas_elementor_video_height_enable' => 'yes',
+				),
+			)
+		);
+	}
 }

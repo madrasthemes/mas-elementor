@@ -23,15 +23,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 class Module extends Module_Base {
 
 	/**
-	 * Return the activation of the elementor-pro.
-	 *
-	 * @return string
-	 */
-	// public static function is_active() {.
-	// return ! class_exists( 'ElementorPro\Plugin' );
-	// }.
-
-	/**
 	 * Return the script dependencies of the module.
 	 *
 	 * @return array
@@ -141,7 +132,7 @@ class Module extends Module_Base {
 				'default'   => 'yes',
 				'label_off' => esc_html__( 'Hide', 'mas-elementor' ),
 				'label_on'  => esc_html__( 'Show', 'mas-elementor' ),
-				'condition'          => array(
+				'condition' => array(
 					'carousel_effect' => 'slide',
 					'enable_carousel' => 'yes',
 				),
@@ -161,8 +152,8 @@ class Module extends Module_Base {
 				'tablet_default' => 0,
 				'mobile_default' => 0,
 				'condition'      => array(
-					'carousel_effect' => 'slide',
-					'enable_carousel' => 'yes',
+					'carousel_effect'      => 'slide',
+					'enable_carousel'      => 'yes',
 					'enable_space_between' => 'yes',
 				),
 			)
@@ -193,7 +184,7 @@ class Module extends Module_Base {
 				'label_off' => esc_html__( 'Hide', 'mas-elementor' ),
 				'label_on'  => esc_html__( 'Show', 'mas-elementor' ),
 				'condition' => array(
-					'enable_carousel' => 'yes',
+					'enable_carousel'     => 'yes',
 					'show_custom_arrows!' => 'yes',
 				),
 			)
@@ -209,7 +200,7 @@ class Module extends Module_Base {
 				'label_on'  => esc_html__( 'Show', 'mas-elementor' ),
 				'condition' => array(
 					'enable_carousel' => 'yes',
-					'show_arrows!' => 'yes',
+					'show_arrows!'    => 'yes',
 				),
 			)
 		);
@@ -217,11 +208,11 @@ class Module extends Module_Base {
 		$element->add_control(
 			'custom_prev_id',
 			array(
-				'label'       => esc_html__( 'Previous Arrow ID', 'mas-elementor' ),
-				'type'        => Controls_Manager::TEXT,
+				'label'     => esc_html__( 'Previous Arrow ID', 'mas-elementor' ),
+				'type'      => Controls_Manager::TEXT,
 				'condition' => array(
-					'enable_carousel' => 'yes',
-					'show_arrows!' => 'yes',
+					'enable_carousel'    => 'yes',
+					'show_arrows!'       => 'yes',
 					'show_custom_arrows' => 'yes',
 				),
 			)
@@ -230,11 +221,11 @@ class Module extends Module_Base {
 		$element->add_control(
 			'custom_next_id',
 			array(
-				'label'       => __( 'Next Arrow ID', 'mas-elementor' ),
-				'type'        => Controls_Manager::TEXT,
+				'label'     => __( 'Next Arrow ID', 'mas-elementor' ),
+				'type'      => Controls_Manager::TEXT,
 				'condition' => array(
-					'enable_carousel' => 'yes',
-					'show_arrows!' => 'yes',
+					'enable_carousel'    => 'yes',
+					'show_arrows!'       => 'yes',
 					'show_custom_arrows' => 'yes',
 				),
 			)
@@ -400,8 +391,6 @@ class Module extends Module_Base {
 				'label'     => esc_html__( 'Color', 'mas-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
-					// '{{WRAPPER}} .sn-elementor-swiper-icon' => 'color: {{VALUE}}',
-					// '{{WRAPPER}} .sn-elementor-swiper-button svg' => 'fill: {{VALUE}}',
 					'{{WRAPPER}} ~ .mas-elementor-swiper-arrow' => 'color: {{VALUE}} !important;',
 					'{{WRAPPER}} ~ .mas-elementor-swiper-arrow svg' => 'fill: {{VALUE}}',
 				),
@@ -417,10 +406,6 @@ class Module extends Module_Base {
 				'label'     => esc_html__( 'Background Color', 'mas-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
-					// '{{WRAPPER}} .btn-prev:hover, {{WRAPPER}} .btn-prev:focus' => 'background-color: {{VALUE}} !important;',
-					// '{{WRAPPER}} .btn-prev:hover svg path, {{WRAPPER}} .btn-prev:focus svg path' => 'fill: {{VALUE}} !important;',
-					// '{{WRAPPER}} .btn-next:hover, {{WRAPPER}} .btn-next:focus' => 'background-color: {{VALUE}} !important;',
-					// '{{WRAPPER}} .btn-next:hover svg path, {{WRAPPER}} .btn-next:focus svg path' => 'fill: {{VALUE}} !important;',
 					'{{WRAPPER}} ~ .mas-elementor-swiper-arrow' => 'background-color: {{VALUE}}',
 				),
 				'condition' => array(
@@ -435,10 +420,6 @@ class Module extends Module_Base {
 				'label'     => esc_html__( 'Background Hover Color', 'mas-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
-					// '{{WRAPPER}} .btn-prev:hover, {{WRAPPER}} .btn-prev:focus' => 'background-color: {{VALUE}} !important;',
-					// '{{WRAPPER}} .btn-prev:hover svg path, {{WRAPPER}} .btn-prev:focus svg path' => 'fill: {{VALUE}} !important;',
-					// '{{WRAPPER}} .btn-next:hover, {{WRAPPER}} .btn-next:focus' => 'background-color: {{VALUE}} !important;',
-					// '{{WRAPPER}} .btn-next:hover svg path, {{WRAPPER}} .btn-next:focus svg path' => 'fill: {{VALUE}} !important;',
 					'{{WRAPPER}} ~ .mas-elementor-swiper-arrow:hover' => 'background-color: {{VALUE}}',
 				),
 				'condition' => array(
@@ -463,7 +444,7 @@ class Module extends Module_Base {
 				),
 				'condition'  => array(
 					'enable_carousel' => 'yes',
-					'show_arrows' => 'yes',
+					'show_arrows'     => 'yes',
 				),
 
 			)
@@ -496,14 +477,10 @@ class Module extends Module_Base {
 					'{{WRAPPER}} + .swiper-pagination .swiper-pagination-bullet' => 'width: {{SIZE}}{{UNIT}}!important;',
 					'{{WRAPPER}} + .swiper-pagination .swiper-container-horizontal .swiper-pagination-progressbar' => 'height: {{SIZE}}{{UNIT}}',
 					'{{WRAPPER}} + .swiper-pagination.swiper-pagination-fraction' => 'font-size: {{SIZE}}{{UNIT}}',
-
-					// '{{WRAPPER}} + .swiper-pagination-progressbar.swiper-pagination-horizontal' => 'width: {{SIZE}}{{UNIT}}!important;',
-					// '{{WRAPPER}} + .swiper-pagination .swiper-container-horizontal .swiper-pagination-progressbar' => 'height: {{SIZE}}{{UNIT}}',
 				),
 				'condition'  => array(
 					'enable_carousel' => 'yes',
 					'show_pagination' => 'yes',
-					// 'pagination!' => 'fraction',
 				),
 			)
 		);
@@ -686,7 +663,6 @@ class Module extends Module_Base {
 			$element->add_render_attribute( '_wrapper', 'data-swiper-options', $json );
 			$element->add_render_attribute( 'section_carousel', 'class', 'mas-swiper-wrapper elementor-element' );
 			$element->add_render_attribute( 'section_carousel', 'style', 'position: relative;' );
-			// $element->add_render_attribute( 'section_carousel', 'data-swiper-options', $json );
 			?>
 			<div <?php $element->print_render_attribute_string( 'section_carousel' ); ?>>
 			<?php

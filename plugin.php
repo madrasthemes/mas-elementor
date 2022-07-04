@@ -32,7 +32,7 @@ class Plugin {
 	 *
 	 * @var Plugin
 	 */
-	private static $_instance;
+	private static $_instance;// PHPCS:ignore.
 
 	/**
 	 * The Modules Manager.

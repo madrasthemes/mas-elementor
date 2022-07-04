@@ -349,8 +349,6 @@ class Multipurpose_Text extends Base_Widget {
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
 					'{{WRAPPER}} .mas-elementor-headline-dynamic-text_underline' => 'border-bottom-color: {{VALUE}}; border-bottom-width: 12px; border-bottom-style: solid;',
-					// '{{WRAPPER}} .mas-elementor-headline-dynamic-text_underline' => 'border-bottom-width: 12px !important;',
-					// '{{WRAPPER}} .mas-elementor-headline-dynamic-text_underline' => 'border-bottom-style: solid !important;',
 				),
 				'default'   => '#fae4cc',
 			)

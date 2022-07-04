@@ -123,7 +123,7 @@ class Group_Control_Related extends Group_Control_Query {
 			foreach ( $taxonomies as $key => $tax ) {
 				if ( ! array_key_exists( $key, $supported_taxonomies ) ) {
 					$label = $tax->label;
-					if ( in_array( $tax->label, $supported_taxonomies ) ) {
+					if ( in_array( $tax->label, $supported_taxonomies, true ) ) {
 						$label = $tax->label . ' (' . $tax->name . ')';
 					}
 					$supported_taxonomies[ $key ] = $label;

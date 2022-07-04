@@ -23,16 +23,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 class Module extends Module_Base {
 
 	/**
-	 * Return the activation of the elementor-pro.
-	 *
-	 * @return string
-	 */
-
-	// public static function is_active() {.
-	// return ! class_exists( 'ElementorPro\Plugin' );
-	// }
-
-	/**
 	 * Return the style dependencies of the module.
 	 *
 	 * @return array
@@ -108,9 +98,9 @@ class Module extends Module_Base {
 			$container_class = $settings['gap'] . ' no-gutters';
 		}
 
-		if ( isset( $settings['enable_overflow'] ) &&  'yes' === $settings['enable_overflow'] ) {
+		if ( isset( $settings['enable_overflow'] ) && 'yes' === $settings['enable_overflow'] ) {
 			$container_class .= ' nowrap';
-			$element->add_render_attribute( '_wrapper', 'class', 'enable-overflow');
+			$element->add_render_attribute( '_wrapper', 'class', 'enable-overflow' );
 		}
 
 		if ( ! empty( $container_class ) ) {

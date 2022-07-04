@@ -239,7 +239,7 @@ class Utils {
 			$title = esc_html__( 'Archives', 'mas-elementor' );
 		} elseif ( is_404() ) {
 			$title = esc_html__( 'Page Not Found', 'mas-elementor' );
-		} // End if().
+		}
 
 		/**
 		 * The archive title.
@@ -347,7 +347,7 @@ class Utils {
 		foreach ( $files as $file ) {
 			if ( ! file_exists( trailingslashit( $path ) . $file['file'] ) ) {
 				$content = implode( PHP_EOL, $file['content'] );
-				@ file_put_contents( trailingslashit( $path ) . $file['file'], $content );
+				@ file_put_contents( trailingslashit( $path ) . $file['file'], $content ); //PHPCS:ignore
 			}
 		}
 
@@ -357,8 +357,8 @@ class Utils {
 	/**
 	 * Remove words from a sentence.
 	 *
-	 * @param string  $text
-	 * @param integer $length
+	 * @param string  $text text.
+	 * @param integer $length length.
 	 *
 	 * @return string
 	 */
@@ -371,44 +371,5 @@ class Utils {
 
 		return $text;
 	}
-
-	// /**
-	//  * Get Mas post widget templates.
-	//  *
-	//  * @return array
-	//  */
-	// public static function get_mas_post_templates( $dir ) {
-
-	// 	$result = array();
-		 
-	// 	$cdir = scandir($dir);
-
-	// 	foreach ($cdir as $key => $value)
-	// 	{
-	// 		if (!in_array($value,array(".","..")))
-	// 		{
-	// 			if (is_dir($dir . DIRECTORY_SEPARATOR . $value))
-	// 			{
-	// 				$result[$value] = Utils::get_mas_post_templates($dir . DIRECTORY_SEPARATOR . $value);
-	// 			}
-	// 			else
-	// 			{
-	// 				$result[] = $value;
-	// 			}
-	// 		}
-	// 	}
-
-	// 	$values = array();
-	// 	$count = 1;
-
-	// 	foreach ( $result as $key => $template ) {
-
-	// 		$values[$template] = 'Style ' . $count;
-	// 		$count++;
-
-	// 	}
-
-	// 	return $values;
-	// }
 
 }

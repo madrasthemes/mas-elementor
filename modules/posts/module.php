@@ -114,8 +114,8 @@ class Module extends Module_Base {
 		parent::__construct();
 
 		add_filter( 'pre_handle_404', array( $this, 'allow_posts_widget_pagination' ), 10, 2 );
-		// add_action( 'elementor/frontend/before_register_scripts', array( $this, 'register_frontend_scripts' ) );
-		// add_action( 'elementor/frontend/before_register_styles', array( $this, 'register_frontend_styles' ) );
+		// //PHPCS:ignore add_action( 'elementor/frontend/before_register_scripts', array( $this, 'register_frontend_scripts' ) );
+		// //PHPCS:ignore add_action( 'elementor/frontend/before_register_styles', array( $this, 'register_frontend_styles' ) );
 	}
 
 	/**
@@ -134,7 +134,7 @@ class Module extends Module_Base {
 	 * @return array
 	 */
 	public function get_style_depends() {
-		return array( 'post-stylesheet', 'post-swiper-stylesheet','post-front-stylesheet' );
+		return array( 'post-stylesheet', 'post-swiper-stylesheet', 'post-front-stylesheet' );
 	}
 
 	/**

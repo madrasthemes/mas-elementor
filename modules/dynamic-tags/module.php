@@ -1,12 +1,20 @@
 <?php
+/**
+ * Dynamic Tags.
+ *
+ * @package MASElementor\Modules\DynamicTags
+ */
+
 namespace MASElementor\Modules\DynamicTags;
 
 use Elementor\Modules\DynamicTags\Module as TagsModule;
 
 if ( ! defined( 'ABSPATH' ) ) {
-	exit; // Exit if accessed directly
+	exit; // Exit if accessed directly.
 }
-
+/**
+ * The Dynamic Tag module class
+ */
 class Module extends TagsModule {
 
 	const AUTHOR_GROUP = 'author';
@@ -23,77 +31,54 @@ class Module extends TagsModule {
 
 	const ACTION_GROUP = 'action';
 
-	public function __construct() {
+	public function __construct() { //PHPCS:ignore.
 		parent::__construct();
 	}
-
+	/**
+	 * Get tag name.
+	 */
 	public function get_name() {
 		return 'tags';
 	}
-
+	/**
+	 * Get tag class name.
+	 */
 	public function get_tag_classes_names() {
-		return [
-			// 'Archive_Description',
-			// 'Archive_Meta',
-			// 'Archive_Title',
-			// 'Archive_URL',
-			// 'Author_Info',
-			// 'Author_Meta',
-			// 'Author_Name',
-			// 'Author_Profile_Picture',
-			// 'Author_URL',
-			// 'Comments_Number',
-			// 'Comments_URL',
-			// 'Page_Title',
-			// 'Post_Custom_Field',
-			// 'Post_Date',
+		return array(
 			'Post_Excerpt',
 			'Post_Featured_Image',
-			// 'Post_Gallery',
-			// 'Post_ID',
 			'Post_Terms',
 			'Post_Time',
 			'Post_Title',
 			'Post_URL',
-			// 'Site_Logo',
-			// 'Site_Tagline',
-			// 'Site_Title',
-			// 'Site_URL',
-			// 'Internal_URL',
-			// 'Current_Date_Time',
-			// 'Request_Parameter',
-			// 'Lightbox',
-			// 'Featured_Image_Data',
-			// 'Shortcode',
-			// 'Contact_URL',
-			// 'User_Info',
-			// 'User_Profile_Picture',
-		];
+		);
 	}
-
+	/**
+	 * Get groups.
+	 */
 	public function get_groups() {
-		return [
-			self::POST_GROUP => [
+		return array(
+			self::POST_GROUP     => array(
 				'title' => esc_html__( 'Post', 'mas-elementor' ),
-			],
-			self::ARCHIVE_GROUP => [
+			),
+			self::ARCHIVE_GROUP  => array(
 				'title' => esc_html__( 'Archive', 'mas-elementor' ),
-			],
-			self::SITE_GROUP => [
+			),
+			self::SITE_GROUP     => array(
 				'title' => esc_html__( 'Site', 'mas-elementor' ),
-			],
-			self::MEDIA_GROUP => [
+			),
+			self::MEDIA_GROUP    => array(
 				'title' => esc_html__( 'Media', 'mas-elementor' ),
-			],
-			self::ACTION_GROUP => [
+			),
+			self::ACTION_GROUP   => array(
 				'title' => esc_html__( 'Actions', 'mas-elementor' ),
-			],
-			self::AUTHOR_GROUP => [
+			),
+			self::AUTHOR_GROUP   => array(
 				'title' => esc_html__( 'Author', 'mas-elementor' ),
-			],
-			self::COMMENTS_GROUP => [
+			),
+			self::COMMENTS_GROUP => array(
 				'title' => esc_html__( 'Comments', 'mas-elementor' ),
-			],
-		];
+			),
+		);
 	}
 }
