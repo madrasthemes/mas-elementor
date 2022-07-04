@@ -55,14 +55,14 @@ class Post_Temp extends PageBase {
 	 * Get the title.
 	 */
 	public static function get_title() {
-		return esc_html__( 'MAS Temp', 'mas-elementor' );
+		return esc_html__( 'mas post template', 'mas-elementor' );
 	}
 
 	/**
 	 * Get plural title.
 	 */
 	public static function get_plural_title() {
-		return __( 'MAS Temps', 'mas-elementor' );
+		return __( 'mas post templates', 'mas-elementor' );
 	}
 	/**
 	 * Create new url.
@@ -83,7 +83,7 @@ class Post_Temp extends PageBase {
 	 * @return bool
 	 */
 	public function save( $data ) {
-		// This is for the first time a Landing Page is created. It is done in order to load a new Landing Page with
+		// This is for the first time a Mas post template is created. It is done in order to load a new Mas post template with
 		// 'Canvas' as the default page template.
 		if ( empty( $data['settings']['template'] ) ) {
 			$data['settings']['template'] = Page_Templates_Module::TEMPLATE_CANVAS;

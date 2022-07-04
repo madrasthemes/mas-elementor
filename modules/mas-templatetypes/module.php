@@ -42,13 +42,13 @@ class Module extends BaseModule {
 	 */
 	private $trashed_posts;
 	/**
-	 * New mastemplate type url.
+	 * New mas-template type url.
 	 *
 	 * @var $trashed_posts trashed_post.
 	 */
 	private $new_lp_url;
 	/**
-	 * New mastemplate type permalink_structure.
+	 * New mas-template type permalink_structure.
 	 *
 	 * @var $permalink_structure permalink_structure.
 	 */
@@ -73,7 +73,7 @@ class Module extends BaseModule {
 		return array(
 			'name'           => 'post-temps',
 			'title'          => esc_html__( 'Mas Templates Type', 'mas-elementor' ),
-			'description'    => esc_html__( 'Adds a new Elementor content type that allows creating beautiful mas templates type instantly in a streamlined workflow.', 'mas-elementor' ),
+			'description'    => esc_html__( 'Add templates and reuse them across your website. Easily export and import them to any other project, for an optimized workflow.', 'mas-elementor' ),
 			'release_status' => Experiments_Manager::RELEASE_STATUS_STABLE,
 			'default'        => Experiments_Manager::STATE_ACTIVE,
 			'new_site'       => array(
@@ -146,9 +146,9 @@ class Module extends BaseModule {
 	}
 
 	/**
-	 * Is Elementor Landing Page.
+	 * Is Elementor Mas post templates.
 	 *
-	 * Check whether the post is an Elementor Landing Page.
+	 * Check whether the post is an Elementor Mas post templates.
 	 *
 	 * @since 3.1.0
 	 *
@@ -165,7 +165,7 @@ class Module extends BaseModule {
 	private function get_menu_args() {
 		$posts = $this->get_post_temp_posts();
 
-		// If there are no Mas Templates Type, show the "Create Your First Landing Page" page.
+		// If there are no Mas Templates Type, show the "Create Your First Mas post template" page.
 		// If there are, show the pages table.
 		if ( ! empty( $posts ) ) {
 			$menu_slug = self::ADMIN_PAGE_SLUG;
@@ -219,7 +219,7 @@ class Module extends BaseModule {
 	}
 
 	/**
-	 * Get 'Add New' Landing Page URL
+	 * Get 'Add New' Mas post templates URL
 	 *
 	 * Retrieves the custom URL for the admin dashboard's 'Add New' button in the Mas Templates Type admin screen. This URL
 	 * creates a new Mas Templates Type and directly opens the Elementor Editor with the Template Library modal open on the
@@ -257,7 +257,7 @@ class Module extends BaseModule {
 		 *
 		 * @var Source_Local $source_local.
 		 */
-		$source_local->print_blank_state_template( esc_html__( 'Landing Page', 'mas-elementor' ), $this->get_add_new_post_temp_url(), esc_html__( 'Build Effective Mas Templates Type for your business\' marketing campaigns.', 'mas-elementor' ) );
+		$source_local->print_blank_state_template( esc_html__( 'Mas post Templates', 'mas-elementor' ), $this->get_add_new_post_temp_url(), esc_html__( 'Build Effective Mas Templates Type for your business\' marketing campaigns.', 'mas-elementor' ) );
 
 		if ( ! empty( $trashed_posts ) ) :
 			?>
@@ -277,9 +277,9 @@ class Module extends BaseModule {
 	}
 
 	/**
-	 * Is Current Admin Page Edit LP
+	 * Is Current Admin Page Edit MAS-TEMPLATES
 	 *
-	 * Checks whether the current page is a native WordPress edit page for a landing page.
+	 * Checks whether the current page is a native WordPress edit page for a mas post templates.
 	 */
 	private function is_post_temp_admin_edit() {
 		$screen = get_current_screen();
@@ -324,13 +324,13 @@ class Module extends BaseModule {
 	private function register_post_temp_cpt() {
 		$labels = array(
 			'name'               => esc_html__( 'Mas Templates', 'mas-elementor' ),
-			'singular_name'      => esc_html__( 'Landing Page', 'mas-elementor' ),
+			'singular_name'      => esc_html__( 'Mas Template', 'mas-elementor' ),
 			'add_new'            => esc_html__( 'Add New', 'mas-elementor' ),
-			'add_new_item'       => esc_html__( 'Add New Landing Page', 'mas-elementor' ),
-			'edit_item'          => esc_html__( 'Edit Landing Page', 'mas-elementor' ),
-			'new_item'           => esc_html__( 'New Landing Page', 'mas-elementor' ),
+			'add_new_item'       => esc_html__( 'Add New Mas Template', 'mas-elementor' ),
+			'edit_item'          => esc_html__( 'Edit Mas Template', 'mas-elementor' ),
+			'new_item'           => esc_html__( 'New Mas Template', 'mas-elementor' ),
 			'all_items'          => esc_html__( 'All Mas Templates Type', 'mas-elementor' ),
-			'view_item'          => esc_html__( 'View Landing Page', 'mas-elementor' ),
+			'view_item'          => esc_html__( 'View Mas Template', 'mas-elementor' ),
 			'search_items'       => esc_html__( 'Search Mas Templates Type', 'mas-elementor' ),
 			'not_found'          => esc_html__( 'No mas templates type found', 'mas-elementor' ),
 			'not_found_in_trash' => esc_html__( 'No mas templates type found in trash', 'mas-elementor' ),
@@ -354,7 +354,7 @@ class Module extends BaseModule {
 	 * Remove Post Type Slug
 	 *
 	 * Mas Templates Type are supposed to act exactly like pages. This includes their URLs being directly under the site's
-	 * domain name. Since "Mas Templates Type" is a CPT, WordPress automatically adds the landing page slug as a prefix to
+	 * domain name. Since "Mas Templates Type" is a CPT, WordPress automatically adds the mas post templates page slug as a prefix to
 	 * it's posts' permalinks. This method checks if the post's post type is Mas Templates Type, and if it is, it removes
 	 * the CPT slug from the requested post URL.
 	 *
@@ -368,7 +368,7 @@ class Module extends BaseModule {
 	 * @return string|string[]
 	 */
 	private function remove_post_type_slug( $post_link, $post, $leavename ) {
-		// Only try to modify the permalink if the post is a Landing Page.
+		// Only try to modify the permalink if the post is a mas post template.
 		if ( self::CPT !== $post->post_type || 'publish' !== $post->post_status ) {
 			return $post_link;
 		}
