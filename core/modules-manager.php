@@ -30,8 +30,9 @@ final class Modules_Manager {
 	 */
 	public function __construct() {
 		$modules = array(
+			'mas-library',
 			'dynamic-tags',
-			'mas-templatetypes',
+			// //PHPCS:ignore 'mas-templatetypes',
 			'multipurpose-text',
 			'posts',
 			'query-control',

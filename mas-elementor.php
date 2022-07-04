@@ -410,10 +410,11 @@ if ( ! function_exists( 'mas_template_options' ) ) {
 
 		$mas_template = array();
 		$args         = array(
-			'post_type'      => 'e-post-temp',
+			'post_type'      => 'elementor_library',
 			'post_status'    => 'publish',
 			'limit'          => '-1',
 			'posts_per_page' => '-1',
+			'elementor_library_type' => 'mas-post',
 		);
 
 		$mas_templates = get_posts( $args );
