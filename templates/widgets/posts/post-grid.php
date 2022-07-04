@@ -21,7 +21,7 @@ if ( ! $query->found_posts ) {
 if ( $query->in_the_loop ) {
 
 	$widget->current_permalink = get_permalink();
-	mas_elementor_get_template( 'loop-post/loop-post.php', ['widget' => $widget] );
+	mas_elementor_get_template( 'loop-post/loop-post.php', array( 'widget' => $widget ) );
 	wp_reset_postdata();
 
 } else {
@@ -30,7 +30,7 @@ if ( $query->in_the_loop ) {
 		$query->the_post();
 
 		$widget->current_permalink = get_permalink();
-		mas_elementor_get_template( 'loop-post/loop-post.php', ['widget' => $widget] );
+		mas_elementor_get_template( 'loop-post/loop-post.php', array( 'widget' => $widget ) );
 	}
 	wp_reset_postdata();
 }

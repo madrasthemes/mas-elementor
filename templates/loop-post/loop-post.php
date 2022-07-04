@@ -10,6 +10,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 $temp = $widget->get_settings_for_display();
-print( mas_render_template( $temp['select_template'], false ) );
+print( mas_render_template( $temp['select_template'], false ) );//phpcs:ignore
 
-?>
+

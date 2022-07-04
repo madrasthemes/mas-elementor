@@ -52,7 +52,7 @@ if ( ! empty( $settings['typing_text_classes'] ) ) {
 }
 
 if ( ! empty( $settings['typing_text'] ) ) {
-	 $typing_text = '<span ' . $widget->get_render_attribute_string( 'typing_text' ) . '>' . $settings['typing_text'] . '</span>';
+	$typing_text = '<span ' . $widget->get_render_attribute_string( 'typing_text' ) . '>' . $settings['typing_text'] . '</span>';
 
 }
 
