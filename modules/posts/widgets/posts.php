@@ -111,7 +111,6 @@ class Posts extends Posts_Base {
 				'label'   => esc_html__( 'Mas Templates', 'mas-elementor' ),
 				'type'    => Controls_Manager::SELECT,
 				'options' => $templates,
-				// 'default' => array_key_first($templates),
 			)
 		);
 
