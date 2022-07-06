@@ -65,18 +65,18 @@ class ACF_Image extends \Elementor\Core\DynamicTags\Data_Tag {
 			switch ( $field['return_format'] ) {
 				case 'object':
 				case 'array':
-					$value = $field['value'];
+					$value = get_field( $field['key'] );
 					break;
 				case 'url':
 					$value = array(
 						'id'  => 0,
-						'url' => $field['value'],
+						'url' => get_field( $field['key'] ),
 					);
 					break;
 				case 'id':
-					$src   = wp_get_attachment_image_src( $field['value'], $field['preview_size'] );
+					$src   = wp_get_attachment_image_src( get_field( $field['key'] ), $field['preview_size'] );
 					$value = array(
-						'id'  => $field['value'],
+						'id'  => get_field( $field['key'] ),
 						'url' => $src[0],
 					);
 					break;
