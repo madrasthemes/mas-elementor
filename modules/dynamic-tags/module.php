@@ -8,6 +8,7 @@
 namespace MASElementor\Modules\DynamicTags;
 
 use Elementor\Modules\DynamicTags\Module as TagsModule;
+use MASElementor\Modules\DynamicTags\ACF;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
@@ -33,6 +34,11 @@ class Module extends TagsModule {
 
 	public function __construct() { //PHPCS:ignore.
 		parent::__construct();
+
+		// ACF 5 and up.
+		if ( class_exists( '\acf' ) && function_exists( 'acf_get_field_groups' ) ) {
+			$this->add_component( 'acf', new ACF\Module() );
+		}
 	}
 	/**
 	 * Get tag name.
