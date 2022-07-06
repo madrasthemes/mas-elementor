@@ -32,7 +32,6 @@ final class Modules_Manager {
 		$modules = array(
 			'mas-library',
 			'dynamic-tags',
-			// //PHPCS:ignore 'mas-templatetypes',
 			'multipurpose-text',
 			'posts',
 			'query-control',
