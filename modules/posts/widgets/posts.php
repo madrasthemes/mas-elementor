@@ -85,7 +85,8 @@ class Posts extends Posts_Base {
 	public function query_posts() {
 
 		$query_args = array(
-			'paged' => $this->get_current_page(),
+			'posts_per_page' => $this->get_settings_for_display( 'posts_per_page' ),
+			'paged'          => $this->get_current_page(),
 		);
 
 		$elementor_query = Module_Query::instance();
@@ -111,6 +112,15 @@ class Posts extends Posts_Base {
 				'label'   => esc_html__( 'Mas Templates', 'mas-elementor' ),
 				'type'    => Controls_Manager::SELECT,
 				'options' => $templates,
+			)
+		);
+
+		$this->add_control(
+			'posts_per_page',
+			array(
+				'label'   => esc_html__( 'Posts Per Page', 'mas-elementor' ),
+				'type'    => Controls_Manager::NUMBER,
+				'default' => 3,
 			)
 		);
 
@@ -289,6 +299,9 @@ class Posts extends Posts_Base {
 			array(
 				'name'    => $this->get_name(),
 				'presets' => array( 'full' ),
+				'exclude' => array(
+					'posts_per_page', // use the one from Layout section.
+				),
 			)
 		);
 
