@@ -90,7 +90,7 @@ class Posts extends Posts_Base {
 		);
 
 		$elementor_query = Module_Query::instance();
-		$this->query     = $elementor_query->get_query( $this, 'posts', $query_args, array() );
+		$this->query     = $elementor_query->get_query( $this, 'mas-posts', $query_args, array() );
 	}
 
 	/**
