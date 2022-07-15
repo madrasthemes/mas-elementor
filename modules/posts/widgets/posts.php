@@ -90,7 +90,7 @@ class Posts extends Posts_Base {
 		);
 
 		$elementor_query = Module_Query::instance();
-		$this->query     = $elementor_query->get_query( $this, 'mas-posts', $query_args, array() );
+		$this->query     = $elementor_query->get_query( $this, $this->get_name(), $query_args, array() );
 	}
 
 	/**
@@ -315,5 +315,6 @@ class Posts extends Posts_Base {
 		$settings = $this->get_settings_for_display();
 		$args     = apply_filters( 'mas_post_object', array( 'widget' => $this ) );
 		mas_elementor_get_template( 'widgets/posts/post-grid.php', $args );
+		$this->render_loop_footer();
 	}
 }
