@@ -114,8 +114,6 @@ class Module extends Module_Base {
 		parent::__construct();
 
 		add_filter( 'pre_handle_404', array( $this, 'allow_posts_widget_pagination' ), 10, 2 );
-		// //PHPCS:ignore add_action( 'elementor/frontend/before_register_scripts', array( $this, 'register_frontend_scripts' ) );
-		// //PHPCS:ignore add_action( 'elementor/frontend/before_register_styles', array( $this, 'register_frontend_styles' ) );
 	}
 
 	/**
@@ -135,52 +133,6 @@ class Module extends Module_Base {
 	 */
 	public function get_style_depends() {
 		return array( 'post-stylesheet', 'post-swiper-stylesheet', 'post-front-stylesheet' );
-	}
-
-	/**
-	 * Register frontend script.
-	 */
-	public function register_frontend_scripts() {
-		wp_enqueue_script(
-			'post-swiper-script',
-			MAS_ELEMENTOR_MODULES_URL . 'posts/assets/js/post-swiper-bundle.min.js',
-			array(),
-			MAS_ELEMENTOR_VERSION,
-			true
-		);
-		wp_enqueue_script(
-			'post-swiper-init-script',
-			MAS_ELEMENTOR_MODULES_URL . 'posts/assets/js/post-swiper.js',
-			array(),
-			MAS_ELEMENTOR_VERSION,
-			true
-		);
-
-	}
-
-
-	/**
-	 * Register frontend styles.
-	 */
-	public function register_frontend_styles() {
-		wp_enqueue_style(
-			'post-swiper-stylesheet',
-			MAS_ELEMENTOR_MODULES_URL . 'posts/assets/css/post-swiper-bundle.min.css',
-			array(),
-			MAS_ELEMENTOR_VERSION
-		);
-		wp_enqueue_style(
-			'post-stylesheet',
-			MAS_ELEMENTOR_MODULES_URL . 'posts/assets/css/post-style.css',
-			array(),
-			MAS_ELEMENTOR_VERSION
-		);
-		wp_enqueue_style(
-			'post-front-stylesheet',
-			MAS_ELEMENTOR_MODULES_URL . 'posts/assets/css/post-front-style.css',
-			array(),
-			MAS_ELEMENTOR_VERSION
-		);
 	}
 
 }
