@@ -115,6 +115,28 @@ class Posts extends Posts_Base {
 			)
 		);
 
+		$this->add_responsive_control(
+			'columns',
+			array(
+				'label'          => esc_html__( 'Columns', 'mas-elementor' ),
+				'type'           => Controls_Manager::SELECT,
+				'default'        => '3',
+				'tablet_default' => '2',
+				'mobile_default' => '1',
+				'options'        => array(
+					'1' => '1',
+					'2' => '2',
+					'3' => '3',
+					'4' => '4',
+					'5' => '5',
+					'6' => '6',
+				),
+				'selectors'      => array(
+					'{{WRAPPER}}.elementor-widget-mas-posts .elementor-widget-container .elementor' => 'width: calc( 100% / {{SIZE}} )',
+				),
+			)
+		);
+
 		$this->add_control(
 			'posts_per_page',
 			array(
