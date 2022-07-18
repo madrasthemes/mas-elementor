@@ -137,7 +137,7 @@ class Posts extends Posts_Base {
 			)
 		);
 
-		$loop = range( 1, 10 );
+		$loop = range( 1, 12 );
 		$loop = array_combine( $loop, $loop );
 
 		$this->add_control(
