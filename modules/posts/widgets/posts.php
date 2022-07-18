@@ -124,6 +124,48 @@ class Posts extends Posts_Base {
 			)
 		);
 
+		$this->add_control(
+			'enable_loop_selection',
+			array(
+				'type'      => Controls_Manager::SWITCHER,
+				'label'     => esc_html__( 'Enable Loop Selection', 'mas-elementor' ),
+				'default'   => 'no',
+				'separator' => 'before',
+				'condition' => array(
+					'select_template!' => '',
+				),
+			)
+		);
+
+		$loop = range( 1, 10 );
+		$loop = array_combine( $loop, $loop );
+
+		$this->add_control(
+			'select_loop',
+			array(
+				'label'     => esc_html__( 'Select Loop', 'mas-elementor' ),
+				'type'      => \Elementor\Controls_Manager::SELECT2,
+				'multiple'  => true,
+				'options'   => array() + $loop,
+				'condition' => array(
+					'enable_loop_selection' => 'yes',
+				),
+			)
+		);
+
+		$this->add_control(
+			'select_loop_template',
+			array(
+				'label'       => esc_html__( 'Mas Select Templates', 'mas-elementor' ),
+				'type'        => Controls_Manager::SELECT,
+				'options'     => $templates,
+				'description' => esc_html__( 'Select Templates for the above selected posts series', 'mas-elementor' ),
+				'condition'   => array(
+					'enable_loop_selection' => 'yes',
+				),
+			)
+		);
+
 		$this->end_controls_section();
 	}
 
@@ -313,7 +355,13 @@ class Posts extends Posts_Base {
 	 */
 	public function render() {
 		$settings = $this->get_settings_for_display();
-		$args     = apply_filters( 'mas_post_object', array( 'widget' => $this ) );
+		$args     = apply_filters(
+			'mas_post_object',
+			array(
+				'widget'   => $this,
+				'settings' => $settings,
+			)
+		);
 		mas_elementor_get_template( 'widgets/posts/post-grid.php', $args );
 		$this->render_loop_footer();
 	}

@@ -25,12 +25,18 @@ if ( $query->in_the_loop ) {
 	wp_reset_postdata();
 
 } else {
-
+	$count = 1;
 	while ( $query->have_posts() ) {
 		$query->the_post();
 
 		$widget->current_permalink = get_permalink();
-		mas_elementor_get_template( 'loop-post/loop-post.php', array( 'widget' => $widget ) );
+		if ( ! empty( $settings['select_loop'] ) && in_array( $count, $settings['select_loop'] ) ) {
+			mas_elementor_get_template( 'loop-post/selected-post.php', array( 'widget' => $widget ) );
+		} else {
+			mas_elementor_get_template( 'loop-post/loop-post.php', array( 'widget' => $widget ) );
+		}
+
+		$count ++;
 	}
 	wp_reset_postdata();
 }

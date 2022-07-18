@@ -420,7 +420,7 @@ if ( ! function_exists( 'mas_template_options' ) ) {
 		$mas_templates = get_posts( $args );
 
 		if ( ! empty( $mas_templates ) ) {
-			$options = array( '' => esc_html__( '— Select —', 'mas-elementor' ) );
+			$options = array( '' => esc_html__( '— None —', 'mas-elementor' ) );
 			foreach ( $mas_templates as $mas_template ) {
 				$options[ $mas_template->ID ] = $mas_template->post_title;
 			}
