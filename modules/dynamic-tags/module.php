@@ -57,6 +57,11 @@ class Module extends TagsModule {
 			'Post_Time',
 			'Post_Title',
 			'Post_URL',
+			'Author_Info',
+			'Author_Meta',
+			'Author_Name',
+			'Author_Profile_Picture',
+			'Author_URL',
 		);
 	}
 	/**
