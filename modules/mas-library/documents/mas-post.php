@@ -8,6 +8,7 @@
 namespace MASElementor\Modules\MasLibrary\Documents;
 
 use MASElementor\Modules\MasLibrary\Module as Mas_Library_Module;
+use Elementor\Modules\Library\Documents\Library_Document;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
