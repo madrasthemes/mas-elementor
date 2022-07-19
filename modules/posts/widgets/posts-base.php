@@ -436,7 +436,6 @@ abstract class Posts_Base extends Base_Widget {
 			true
 		);
 		?>
-		</div>
 
 
 		<?php if ( $using_ajax_pagination && ! empty( $parent_settings['load_more_spinner']['value'] ) ) : ?>
