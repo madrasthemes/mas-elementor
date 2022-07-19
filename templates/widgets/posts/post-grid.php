@@ -40,4 +40,3 @@ if ( $query->in_the_loop ) {
 	}
 	wp_reset_postdata();
 }
-wp_reset_postdata();
