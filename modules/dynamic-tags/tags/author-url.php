@@ -8,7 +8,7 @@
 namespace MASElementor\Modules\DynamicTags\Tags;
 
 use Elementor\Controls_Manager;
-
+use  MASElementor\Modules\DynamicTags\Tags\Base\Data_Tag;
 use MASElementor\Modules\DynamicTags\Module;
 
 if ( ! defined( 'ABSPATH' ) ) {
