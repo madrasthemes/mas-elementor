@@ -57,6 +57,7 @@ class Module extends TagsModule {
 			'Post_Time',
 			'Post_Title',
 			'Post_URL',
+			'Post_Date',
 			'Author_Info',
 			'Author_Meta',
 			'Author_Name',
