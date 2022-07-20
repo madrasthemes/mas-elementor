@@ -23,7 +23,7 @@ class Author_Meta extends Tag {
 	 * Get tag name.
 	 */
 	public function get_name() {
-		return 'mas-author-meta';
+		return 'author-meta';
 	}
 
 	/**

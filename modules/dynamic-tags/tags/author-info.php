@@ -24,7 +24,7 @@ class Author_Info extends Tag {
 	 * Get tag name.
 	 */
 	public function get_name() {
-		return 'mas-author-info';
+		return 'author-info';
 	}
 
 	/**

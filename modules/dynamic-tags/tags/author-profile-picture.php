@@ -24,7 +24,7 @@ class Author_Profile_Picture extends Data_Tag {
 	 * Get tag name.
 	 */
 	public function get_name() {
-		return 'mas-author-profile-picture';
+		return 'author-profile-picture';
 	}
 
 	/**
