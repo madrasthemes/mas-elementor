@@ -377,13 +377,13 @@ class Posts extends Posts_Base {
 	 */
 	public function render() {
 		$settings = $this->get_settings_for_display();
-		$args     = apply_filters(
-			'mas_post_object',
-			array(
-				'widget'   => $this,
-				'settings' => $settings,
-			)
-		);
+		// $args     = apply_filters(
+		// 'mas_post_object',
+		// array(
+		// 'widget'   => $this,
+		// 'settings' => $settings,
+		// )
+		// );
 		$this->query_posts();
 
 		$query = $this->get_query();
@@ -396,7 +396,7 @@ class Posts extends Posts_Base {
 		if ( $query->in_the_loop ) {
 
 			$this->current_permalink = get_permalink();
-			mas_elementor_get_template( 'loop-post/loop-post.php', array( 'widget' => $this ) );
+			print( mas_render_template( $settings['select_template'], false ) );//phpcs:ignore
 			wp_reset_postdata();
 
 		} else {
@@ -406,9 +406,9 @@ class Posts extends Posts_Base {
 
 				$this->current_permalink = get_permalink();
 				if ( ! empty( $settings['select_loop'] ) && in_array( $count, $settings['select_loop'] ) ) {
-					mas_elementor_get_template( 'loop-post/selected-post.php', array( 'widget' => $this ) );
+					print( mas_render_template( $settings['select_loop_template'], false ) );//phpcs:ignore
 				} else {
-					mas_elementor_get_template( 'loop-post/loop-post.php', array( 'widget' => $this ) );
+					print( mas_render_template( $settings['select_template'], false ) );//phpcs:ignore
 				}
 
 				$count ++;
