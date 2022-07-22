@@ -384,7 +384,38 @@ class Posts extends Posts_Base {
 				'settings' => $settings,
 			)
 		);
-		mas_elementor_get_template( 'widgets/posts/post-grid.php', $args );
+		$this->query_posts();
+
+		$query = $this->get_query();
+
+		if ( ! $query->found_posts ) {
+			return;
+		}
+
+		// It's the global `wp_query` it self. and the loop was started from the theme.
+		if ( $query->in_the_loop ) {
+
+			$this->current_permalink = get_permalink();
+			mas_elementor_get_template( 'loop-post/loop-post.php', array( 'widget' => $this ) );
+			wp_reset_postdata();
+
+		} else {
+			$count = 1;
+			while ( $query->have_posts() ) {
+				$query->the_post();
+
+				$this->current_permalink = get_permalink();
+				if ( ! empty( $settings['select_loop'] ) && in_array( $count, $settings['select_loop'] ) ) {
+					mas_elementor_get_template( 'loop-post/selected-post.php', array( 'widget' => $this ) );
+				} else {
+					mas_elementor_get_template( 'loop-post/loop-post.php', array( 'widget' => $this ) );
+				}
+
+				$count ++;
+			}
+			wp_reset_postdata();
+		}
+
 		$this->render_loop_footer();
 	}
 }
