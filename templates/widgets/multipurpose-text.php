@@ -89,7 +89,7 @@ if ( ! empty( $settings['link']['url'] ) ) {
 	$widget->add_link_attributes( 'url', $settings['link'] );
 	$widget->add_render_attribute( 'url', 'class', array( 'text-decoration-none', $settings['link_css'] ) );
 
-	$title_text = sprintf( '<a %1$s>%2$s</a>', $widget->get_render_attribute_string( 'url' ), $title );
+	$title_text = sprintf( '<a %1$s>%2$s</a>', $widget->get_render_attribute_string( 'url' ), $title_text );
 }
 
 $title_html = sprintf( '<%1$s %2$s>%3$s</%1$s>', $settings['header_size'], $widget->get_render_attribute_string( 'title' ), $title_text );
