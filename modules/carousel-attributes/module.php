@@ -856,6 +856,29 @@ class Module extends Module_Base {
 
 		add_action( 'elementor/frontend/before_register_scripts', array( $this, 'register_frontend_scripts' ) );
 		add_action( 'elementor/frontend/before_register_styles', array( $this, 'register_frontend_styles' ) );
+		// add_action( 'elementor/editor/footer', array( $this, 'register_frontend_scripts' ) );.
+		// add_action( 'elementor/editor/wp_head', array( $this, 'register_frontend_styles' ) );.
+		// add_filter( 'elementor/section/print_template', array( $this, 'testing' ), 10, 2 );.
+	}
+
+	/**
+	 * Add wrap controls to the column element.
+	 *
+	 * @param string $content content.
+	 * @param array  $instance object.
+	 */
+	public function testing( $content, $instance ) {
+
+		if ( $instance->get_name() !== 'section' ) {
+			return $content;
+		}
+
+		// Doing a simple find and replace on the template.
+		// I know it's not ideal but I didn't want to duplicate the whole template .
+		// and this seems like it shouldn't change often...
+		// Note: in $tpl, I don't have access to the very top level section tag :(.
+		$content = str_replace( 'class="elementor-container', 'class="elementor-container swiper-wrapper', $content );
+		return $content;
 
 	}
 
