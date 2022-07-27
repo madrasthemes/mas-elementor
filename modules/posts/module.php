@@ -116,23 +116,4 @@ class Module extends Module_Base {
 		add_filter( 'pre_handle_404', array( $this, 'allow_posts_widget_pagination' ), 10, 2 );
 	}
 
-	/**
-	 * Return the script dependencies of the module.
-	 *
-	 * @return array
-	 */
-	public function get_script_depends() {
-		return array( 'post-swiper-script' );
-	}
-
-
-	/**
-	 * Return the style dependencies of the module.
-	 *
-	 * @return array
-	 */
-	public function get_style_depends() {
-		return array( 'post-stylesheet', 'post-swiper-stylesheet', 'post-front-stylesheet' );
-	}
-
 }
