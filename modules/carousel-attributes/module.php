@@ -824,7 +824,7 @@ class Module extends Module_Base {
 	 */
 	protected function add_actions() {
 		add_action( 'elementor/element/after_section_end', array( $this, 'register_controls' ), 10, 2 );
-		add_action( 'elementor/frontend/section/before_render', array( $this, 'before_render_section' ), 15 );
+		add_action( 'elementor/frontend/section/before_render', array( $this, 'before_render_section' ), 10 );
 		add_action( 'elementor/frontend/section/after_render', array( $this, 'after_render_section' ), 15 );
 		add_action( 'elementor/frontend/column/before_render', array( $this, 'before_render_column' ), 5 );
 		add_action( 'elementor/element/column/section_advanced/before_section_end', array( $this, 'add_column_wrapper_controls' ) );
