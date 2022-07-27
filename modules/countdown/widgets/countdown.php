@@ -45,6 +45,15 @@ class Countdown extends Base_Widget {
 	}
 
 	/**
+	 * Get the script dependencies for this widget.
+	 *
+	 * @return array
+	 */
+	public function get_script_depends() {
+		return array( 'count-script', 'countdown-script' );
+	}
+
+	/**
 	 * Get the name of the icon.
 	 *
 	 * @return string
@@ -572,7 +581,6 @@ class Countdown extends Base_Widget {
 				var dated = el.dataset.date;
 				var countDownDate = new Date( dated ).getTime();
 				// const oneYearFromNow = new Date()
-				console.log(el);
 
 				document.querySelectorAll('.js-countdown').forEach(item => {
 					const days = item.querySelector('.js-cd-days'),
