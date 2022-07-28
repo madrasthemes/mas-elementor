@@ -113,7 +113,19 @@ class Module extends Module_Base {
 	public function __construct() {
 		parent::__construct();
 
+		add_filter( 'mas_elementor/utils/get_public_post_types', array( $this, 'post_widget_post_types' ), 10, 1 );
 		add_filter( 'pre_handle_404', array( $this, 'allow_posts_widget_pagination' ), 10, 2 );
+	}
+
+	/**
+	 * Post widget post types to adding thrd party plugins.
+	 *
+	 * @param array $post_types post type.
+	 */
+	public function post_widget_post_types( $post_types ) {
+		$post_types['job_listing'] = 'Job Listings';
+		$post_types['jersdka;']    = 'MAS Portfolio';
+		return $post_types;
 	}
 
 }
