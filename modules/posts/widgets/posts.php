@@ -71,10 +71,9 @@ class Posts extends Posts_Base {
 	 * Register controls for this widget.
 	 */
 	protected function register_controls() {
-		parent::register_controls();
 
 		$this->register_layout_section_controls();
-		$this->register_query_section_controls();
+		parent::register_controls();
 		$this->register_pagination_section_controls();
 	}
 
@@ -133,6 +132,9 @@ class Posts extends Posts_Base {
 				'selectors'      => array(
 					'{{WRAPPER}}.elementor-widget-mas-posts .elementor-widget-container .elementor' => 'width: calc( 100% / {{SIZE}} )',
 				),
+				'condition'      => array(
+					'enable_carousel!' => 'yes',
+				),
 			)
 		);
 
@@ -187,33 +189,71 @@ class Posts extends Posts_Base {
 			)
 		);
 
+		$this->add_control(
+			'enable_carousel',
+			array(
+				'type'    => Controls_Manager::SWITCHER,
+				'label'   => esc_html__( 'Enable Carousel', 'mas-elementor' ),
+				'default' => 'no',
+			)
+		);
+
 		$this->end_controls_section();
 	}
 
 	/**
-	 * Register controls in the Query Section
+	 * Carousel Loop Header.
+	 *
+	 * @param array $settings Settings of this widget.
 	 */
-	protected function register_query_section_controls() {
-		$this->start_controls_section(
-			'section_query',
-			array(
-				'label' => __( 'Query', 'mas-elementor' ),
-				'tab'   => Controls_Manager::TAB_CONTENT,
-			)
-		);
+	public function carousel_loop_header( array $settings = array() ) {
 
-		$this->add_group_control(
-			Group_Control_Related::get_type(),
-			array(
-				'name'    => $this->get_name(),
-				'presets' => array( 'full' ),
-				'exclude' => array(
-					'posts_per_page', // use the one from Layout section.
-				),
-			)
-		);
+		if ( 'yes' === $settings['enable_carousel'] ) {
+			$json = wp_json_encode( $this->get_swiper_carousel_options( $settings ) );
+			$this->add_render_attribute( 'post_swiper', 'class', 'swiper-' . $this->get_id() );
+			$this->add_render_attribute( 'post_swiper', 'class', 'swiper' );
+			$this->add_render_attribute( 'post_swiper', 'data-swiper-options', $json );
+			?>
+			<div <?php $this->print_render_attribute_string( 'post_swiper' ); ?>>
+				<div class="swiper-wrapper">
+			<?php
+		}
 
-		$this->end_controls_section();
+	}
+
+	/**
+	 * Carousel Loop Footer.
+	 *
+	 * @param array $settings Settings of this widget.
+	 */
+	public function carousel_loop_footer( array $settings = array() ) {
+		if ( 'yes' === $settings['enable_carousel'] ) {
+			?>
+			</div>
+			<?php
+			$widget_id = $this->get_id();
+			if ( ! empty( $widget_id ) && 'yes' === $settings['show_pagination'] ) {
+				$this->add_render_attribute( 'swiper-pagination', 'id', 'pagination-' . $widget_id );
+			}
+			$this->add_render_attribute( 'swiper-pagination', 'class', 'swiper-pagination' );
+			if ( 'yes' === $settings['show_pagination'] ) :
+				?>
+			<div <?php $this->print_render_attribute_string( 'swiper-pagination' ); ?>></div>
+				<?php
+			endif;
+			if ( 'yes' === $settings['show_arrows'] ) :
+				$prev_id = ! empty( $widget_id ) ? 'prev-' . $widget_id : '';
+				$next_id = ! empty( $widget_id ) ? 'next-' . $widget_id : '';
+				?>
+				<!-- If we need navigation buttons -->
+				<div id ="<?php echo esc_attr( $prev_id ); ?>" class="swiper-button-prev mas-elementor-swiper-arrow"></div>
+				<div id ="<?php echo esc_attr( $next_id ); ?>" class="swiper-button-next mas-elementor-swiper-arrow"></div>
+				<?php
+			endif;
+			?>
+			</div>
+			<?php
+		}
 	}
 
 	/**
@@ -221,13 +261,6 @@ class Posts extends Posts_Base {
 	 */
 	public function render() {
 		$settings = $this->get_settings_for_display();
-		// $args     = apply_filters(
-		// 'mas_post_object',
-		// array(
-		// 'widget'   => $this,
-		// 'settings' => $settings,
-		// )
-		// );
 		$this->query_posts();
 
 		$query = $this->get_query();
@@ -235,6 +268,8 @@ class Posts extends Posts_Base {
 		if ( ! $query->found_posts ) {
 			return;
 		}
+
+		$this->carousel_loop_header( $settings );
 
 		// It's the global `wp_query` it self. and the loop was started from the theme.
 		if ( $query->in_the_loop ) {
@@ -247,19 +282,33 @@ class Posts extends Posts_Base {
 			$count = 1;
 			while ( $query->have_posts() ) {
 				$query->the_post();
+				if ( 'yes' === $settings['enable_carousel'] ) {
+					?>
+					<div class="swiper-slide">
+					<?php
+				}
 
 				$this->current_permalink = get_permalink();
-				if ( ! empty( $settings['select_loop'] ) && in_array( $count, $settings['select_loop'] ) ) {
+				if ( ! empty( $settings['select_loop'] ) && in_array( $count, $settings['select_loop'], true ) ) {
 					print( mas_render_template( $settings['select_loop_template'], false ) );//phpcs:ignore
 				} else {
 					print( mas_render_template( $settings['select_template'], false ) );//phpcs:ignore
+				}
+
+				if ( 'yes' === $settings['enable_carousel'] ) {
+					?>
+					</div>
+					<?php
 				}
 
 				$count ++;
 			}
 			wp_reset_postdata();
 		}
+		$this->carousel_loop_footer( $settings );
 
 		$this->render_loop_footer();
+
+		$this->render_script( 'swiper-' . $this->get_id() );
 	}
 }
