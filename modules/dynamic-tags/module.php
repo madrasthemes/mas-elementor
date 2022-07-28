@@ -63,6 +63,10 @@ class Module extends TagsModule {
 			'Author_Name',
 			'Author_Profile_Picture',
 			'Author_URL',
+			'Job_Company',
+			'Job_Location',
+			'Job_Terms',
+			'Job_Expiration',
 		);
 	}
 	/**
