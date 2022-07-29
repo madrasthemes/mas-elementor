@@ -268,7 +268,7 @@ class Posts extends Posts_Base {
 		if ( ! $query->found_posts ) {
 			return;
 		}
-		// \Elementor\Plugin::instance()->files_manager->clear_cache();
+
 		$this->carousel_loop_header( $settings );
 
 		// It's the global `wp_query` it self. and the loop was started from the theme.
@@ -305,6 +305,12 @@ class Posts extends Posts_Base {
 				$count ++;
 			}
 			wp_reset_postdata();
+		}
+
+		// Make sure that Elementor loaded and the hook fired.
+		if ( did_action( 'elementor/template-library/after_save_template' ) ) {
+			// Automatically purge and regenerate the Elementor CSS cache.
+			\Elementor\Plugin::instance()->files_manager->clear_cache();
 		}
 		$this->carousel_loop_footer( $settings );
 
