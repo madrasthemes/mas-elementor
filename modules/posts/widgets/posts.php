@@ -268,7 +268,7 @@ class Posts extends Posts_Base {
 		if ( ! $query->found_posts ) {
 			return;
 		}
-
+		\Elementor\Plugin::instance()->files_manager->clear_cache();
 		$this->carousel_loop_header( $settings );
 
 		// It's the global `wp_query` it self. and the loop was started from the theme.
@@ -281,6 +281,7 @@ class Posts extends Posts_Base {
 		} else {
 			$count = 1;
 			while ( $query->have_posts() ) {
+
 				$query->the_post();
 				if ( 'yes' === $settings['enable_carousel'] ) {
 					?>
@@ -310,5 +311,6 @@ class Posts extends Posts_Base {
 		$this->render_loop_footer();
 
 		$this->render_script( 'swiper-' . $this->get_id() );
+
 	}
 }
