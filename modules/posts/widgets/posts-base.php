@@ -341,7 +341,7 @@ abstract class Posts_Base extends Base_Widget {
 				'label'     => __( 'Carousel', 'mas-elementor' ),
 				'tab'       => Controls_Manager::TAB_CONTENT,
 				'condition' => array( 'enable_carousel' => 'yes' ),
-			),
+			)
 		);
 
 		$this->add_control(
