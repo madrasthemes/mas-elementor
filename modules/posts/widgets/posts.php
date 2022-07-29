@@ -308,7 +308,9 @@ class Posts extends Posts_Base {
 		}
 		$this->carousel_loop_footer( $settings );
 
-		$this->render_loop_footer();
+		if ( 'yes' !== $settings['enable_carousel'] ) {
+			$this->render_loop_footer();
+		}
 
 		$this->render_script( 'swiper-' . $this->get_id() );
 
