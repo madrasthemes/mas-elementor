@@ -775,10 +775,19 @@ class Module extends Module_Base {
 		}
 
 		if ( 'yes' === $settings['enable_space_between'] ) {
-			$swiper_settings['breakpoints']['1440']['spaceBetween'] = isset( $settings['space_between'] ) ? $settings['space_between'] : 8;
-			$swiper_settings['breakpoints']['1024']['spaceBetween'] = isset( $settings['space_between_tablet'] ) ? $settings['space_between_tablet'] : 8;
-			$swiper_settings['breakpoints']['500']['spaceBetween']  = isset( $settings['space_between_tablet'] ) ? $settings['space_between_tablet'] : 8;
-			$swiper_settings['breakpoints']['0']['spaceBetween']    = isset( $settings['space_between_mobile'] ) ? $settings['space_between_mobile'] : 8;
+			if ( ! empty( $settings['space_between'] ) ) {
+				$swiper_settings['breakpoints']['1440']['spaceBetween'] = $settings['space_between'];
+
+			}
+			if ( ! empty( $settings['space_between_tablet'] ) ) {
+				$swiper_settings['breakpoints']['1024']['spaceBetween'] = $settings['space_between_tablet'];
+				$swiper_settings['breakpoints']['500']['spaceBetween']  = $settings['space_between_tablet'];
+
+			}
+			if ( ! empty( $settings['space_between_mobile'] ) ) {
+				$swiper_settings['breakpoints']['0']['spaceBetween'] = $settings['space_between_mobile'];
+
+			}
 		}
 
 		$prev_id = ! empty( $section_id ) ? 'prev-' . $section_id : '';
