@@ -255,7 +255,7 @@ class Multipurpose_Text extends Base_Widget {
 			$this->start_controls_tab(
 				'hover',
 				array(
-					'label' => esc_html__( 'Normal', 'mas-elementor' ),
+					'label' => esc_html__( 'Hover', 'mas-elementor' ),
 				)
 			);
 
