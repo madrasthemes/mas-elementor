@@ -86,4 +86,3 @@ if ( ! empty( $settings['menu'] ) ) {
 	?>
 	<?php echo wp_kses_post( $menu_html ); ?>
 	<?php
->>>>>>> 298f06eb816be91ff4faebf098aed9b718e6f5ca
