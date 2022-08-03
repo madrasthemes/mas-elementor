@@ -1,31 +1,3 @@
-Skip to content
-Search or jump to…
-Pull requests
-Issues
-Marketplace
-Explore
- 
-@subaida77 
-madrasthemes
-/
-mas-elementor
-Private
-Code
-Issues
-13
-Pull requests
-Actions
-Projects
-Security
-Insights
-mas-elementor/classes/class-wp-bootstrap-navwalker.php /
-@malicksm
-malicksm Nav-menu
-Latest commit 383bcb7 2 days ago
- History
- 1 contributor
-608 lines (553 sloc)  21.6 KB
-
 <?php
 /**
  * WP Bootstrap Navwalker
