@@ -58,14 +58,14 @@ class Module extends Module_Base {
 	 * Register frontend script.
 	 */
 	public function register_frontend_scripts() {
-		wp_enqueue_script(
+		wp_register_script(
 			'count-script',
 			MAS_ELEMENTOR_MODULES_URL . 'countdown/assets/js/count.min.js',
 			array(),
 			MAS_ELEMENTOR_VERSION,
 			true
 		);
-		wp_enqueue_script(
+		wp_register_script(
 			'countdown-script',
 			MAS_ELEMENTOR_MODULES_URL . 'countdown/assets/js/countdown.js',
 			array(),

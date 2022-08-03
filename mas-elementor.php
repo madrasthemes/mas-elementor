@@ -4,8 +4,9 @@
  *
  * @package mas-elementor
  */
+
 use Elementor\plugin;
- 
+
 /**
  * Plugin Name: MAS Addons for Elementor
  * Description: More power to your Elementor powered website with beautifully designed sections, templates, widgets, skins and extensions.
@@ -397,29 +398,38 @@ function mas_elementor_set_template_cache( $cache_key, $template ) {
 	wp_cache_set( 'cached_templates', $cached_templates, 'mas_elementor' );
 }
 
-function mas_template_options( $type = 'section' ) {
+if ( ! function_exists( 'mas_template_options' ) ) {
+	/**
+	 * Get local templates.
+	 *
+	 * Retrieve local templates saved by the user on his site.
+	 *
+	 * @return array Local templates.
+	 */
+	function mas_template_options() {
 
-	$mas_template = array();
-	$args         = array(
-		'post_type'      => 'elementor_library',
-		'post_status'    => 'publish',
-		'limit'          => '-1',
-		'posts_per_page' => '-1',
-		'elementor_library_type' => $type,
-	);
+		$mas_template = array();
+		$args         = array(
+			'post_type'      => 'elementor_library',
+			'post_status'    => 'publish',
+			'limit'          => '-1',
+			'posts_per_page' => '-1',
+			'elementor_library_type' => 'mas-post',
+		);
 
-	$mas_templates = get_posts( $args );
+		$mas_templates = get_posts( $args );
 
-	if ( ! empty( $mas_templates ) ) {
-		$options = array( '' => esc_html__( '— Select —', 'mas_elementor' ) );
-		foreach ( $mas_templates as $mas_template ) {
-			$options[ $mas_template->ID ] = $mas_template->post_title;
+		if ( ! empty( $mas_templates ) ) {
+			$options = array( '' => esc_html__( '— None —', 'mas-elementor' ) );
+			foreach ( $mas_templates as $mas_template ) {
+				$options[ $mas_template->ID ] = $mas_template->post_title;
+			}
+		} else {
+			$options = array( '' => esc_html__( 'No Templates Found', 'mas-elementor' ) );
 		}
-	} else {
-		$options = array( '' => esc_html__( 'No Templates Found', 'silicon' ) );
-	}
 
-	return $options;
+		return $options;
+	}
 }
 
 if ( ! function_exists( 'mas_render_template' ) ) {

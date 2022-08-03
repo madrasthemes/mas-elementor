@@ -32,7 +32,7 @@ if ( ! MASPlugin::elementor()->editor->is_edit_mode() ) {
 }
 
 if ( $actions ) {
-	$widget->add_render_attribute( 'div', 'data-expire-actions', json_encode( $actions ) );
+	$widget->add_render_attribute( 'div', 'data-expire-actions', wp_json_encode( $actions ) );
 }
 
 $widget->add_render_attribute(

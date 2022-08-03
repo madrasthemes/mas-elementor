@@ -5,7 +5,6 @@
       var dated = el.dataset.date;
       var countDownDate = new Date( dated ).getTime();
       // const oneYearFromNow = new Date()
-      console.log(el);
 
       document.querySelectorAll('.js-countdown').forEach(item => {
         const days = item.querySelector('.js-cd-days'),

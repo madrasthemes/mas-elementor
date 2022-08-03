@@ -166,7 +166,7 @@ class Group_Control_Posts extends Group_Control_Base {
 		if ( ! empty( $args['post_type'] ) ) {
 			foreach ( $taxonomies as $taxonomy => $obj ) {
 				$tax_array = (array) $obj;
-				if ( in_array( $args['post_type'], $tax_array['object_type'] ) ) {
+				if ( in_array( $args['post_type'], $tax_array['object_type'], true ) ) {
 					$filtered_taxonomies[ $taxonomy ] = $obj;
 				}
 			}

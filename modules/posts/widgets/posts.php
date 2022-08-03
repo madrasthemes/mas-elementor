@@ -66,16 +66,14 @@ class Posts extends Posts_Base {
 		return $element;
 	}
 
-	
+
 	/**
 	 * Register controls for this widget.
 	 */
 	protected function register_controls() {
-		parent::register_controls();
 
 		$this->register_layout_section_controls();
-		$this->register_query_section_controls();
-		$this->register_post_section_controls();
+		parent::register_controls();
 		$this->register_pagination_section_controls();
 	}
 
@@ -85,11 +83,12 @@ class Posts extends Posts_Base {
 	public function query_posts() {
 
 		$query_args = array(
+			'posts_per_page' => $this->get_settings_for_display( 'posts_per_page' ),
 			'paged'          => $this->get_current_page(),
 		);
 
 		$elementor_query = Module_Query::instance();
-		$this->query     = $elementor_query->get_query( $this, 'posts', $query_args, array() );
+		$this->query     = $elementor_query->get_query( $this, $this->get_name(), $query_args, array() );
 	}
 
 	/**
@@ -104,204 +103,222 @@ class Posts extends Posts_Base {
 			)
 		);
 
-		$templates = function_exists( 'mas_template_options' ) ? mas_template_options() : [];
+		$templates = function_exists( 'mas_template_options' ) ? mas_template_options() : array();
 		$this->add_control(
 			'select_template',
-			[
+			array(
 				'label'   => esc_html__( 'Mas Templates', 'mas-elementor' ),
 				'type'    => Controls_Manager::SELECT,
 				'options' => $templates,
-				// 'default' => array_key_first($templates),
-			]
+			)
+		);
+
+		$this->add_responsive_control(
+			'columns',
+			array(
+				'label'          => esc_html__( 'Columns', 'mas-elementor' ),
+				'type'           => Controls_Manager::SELECT,
+				'default'        => '3',
+				'tablet_default' => '2',
+				'mobile_default' => '1',
+				'options'        => array(
+					'1' => '1',
+					'2' => '2',
+					'3' => '3',
+					'4' => '4',
+					'5' => '5',
+					'6' => '6',
+				),
+				'selectors'      => array(
+					'{{WRAPPER}}.elementor-widget-mas-posts .elementor-widget-container .elementor' => 'width: calc( 100% / {{SIZE}} )',
+				),
+				'condition'      => array(
+					'enable_carousel!' => 'yes',
+				),
+			)
+		);
+
+		$this->add_control(
+			'posts_per_page',
+			array(
+				'label'   => esc_html__( 'Posts Per Page', 'mas-elementor' ),
+				'type'    => Controls_Manager::NUMBER,
+				'default' => 3,
+			)
+		);
+
+		$this->add_control(
+			'enable_loop_selection',
+			array(
+				'type'      => Controls_Manager::SWITCHER,
+				'label'     => esc_html__( 'Enable Loop Selection', 'mas-elementor' ),
+				'default'   => 'no',
+				'separator' => 'before',
+				'condition' => array(
+					'select_template!' => '',
+				),
+			)
+		);
+
+		$loop = range( 1, 12 );
+		$loop = array_combine( $loop, $loop );
+
+		$this->add_control(
+			'select_loop',
+			array(
+				'label'     => esc_html__( 'Select Loop', 'mas-elementor' ),
+				'type'      => \Elementor\Controls_Manager::SELECT2,
+				'multiple'  => true,
+				'options'   => array() + $loop,
+				'condition' => array(
+					'enable_loop_selection' => 'yes',
+				),
+			)
+		);
+
+		$this->add_control(
+			'select_loop_template',
+			array(
+				'label'       => esc_html__( 'Mas Select Templates', 'mas-elementor' ),
+				'type'        => Controls_Manager::SELECT,
+				'options'     => $templates,
+				'description' => esc_html__( 'Select Templates for the above selected posts series', 'mas-elementor' ),
+				'condition'   => array(
+					'enable_loop_selection' => 'yes',
+				),
+			)
+		);
+
+		$this->add_control(
+			'enable_carousel',
+			array(
+				'type'    => Controls_Manager::SWITCHER,
+				'label'   => esc_html__( 'Enable Carousel', 'mas-elementor' ),
+				'default' => 'no',
+			)
 		);
 
 		$this->end_controls_section();
 	}
 
 	/**
-	* Register Controls in post section in style tab.
-	*/
-	protected function register_post_section_controls() {
-		// Post style controls in STYLE TAB.
-		$this->start_controls_section(
-			'post-style',
-			[
-				'label'     => esc_html__( 'Post', 'mas-elementor' ),
-				'tab'       => Controls_Manager::TAB_STYLE,
-			]
-		);
-		// Title controls.
-		$this->add_control(
-			'post_title_heading_style',
-			[
-				'label'     => esc_html__( 'Title', 'mas-elementor' ),
-				'type'      => Controls_Manager::HEADING,
-			]
-		);
-
-		$this->add_group_control(
-			Group_Control_Typography::get_type(),
-			[
-				'name'     => 'mas_title_typography',
-				'label'    => __( 'Typography', 'mas-elementor' ),
-				'global'   => [
-					'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
-				],
-				'selector' => '{{WRAPPER}} .mas-post-title',
-			]
-		);
-
-		$this->add_control(
-			'post_title_color',
-			[
-				'label'     => esc_html__( 'Color', 'mas-elementor' ),
-				'type'      => Controls_Manager::COLOR,
-				'selectors' => [
-					'{{WRAPPER}} .mas-post-title' => 'color: {{VALUE}} !important;',
-				],
-			]
-		);
-
-		$this->add_control(
-			'post_category_heading_style',
-			[
-				'label'     => esc_html__( 'Category', 'mas-elementor' ),
-				'type'      => Controls_Manager::HEADING,
-				'separator' => 'before',
-			]
-		);
-		// Category controls.
-		$this->add_group_control(
-			Group_Control_Typography::get_type(),
-			[
-				'name'     => 'mas_category_typography',
-				'label'    => __( 'Typography', 'mas-elementor' ),
-				'global'   => [
-					'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
-				],
-				'selector' => '{{WRAPPER}} .mas-post-category',
-			]
-		);
-
-		$this->add_control(
-			'post_category_color',
-			[
-				'label'     => esc_html__( 'Color', 'mas-elementor' ),
-				'type'      => Controls_Manager::COLOR,
-				'selectors' => [
-					'{{WRAPPER}} .mas-post-category' => 'color: {{VALUE}} !important;',
-				],
-			]
-		);
-		// Excerpt controls.
-		$this->add_control(
-			'post_excerpt_heading_style',
-			[
-				'label'     => esc_html__( 'Excerpt', 'mas-elementor' ),
-				'type'      => Controls_Manager::HEADING,
-				'separator' => 'before',
-			]
-		);
-
-		$this->add_group_control(
-			Group_Control_Typography::get_type(),
-			[
-				'name'     => 'mas_post_excerpt_typography',
-				'label'    => __( 'Typography', 'mas-elementor' ),
-				'global'   => [
-					'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
-				],
-				'selector' => '{{WRAPPER}} .mas-post-excerpt',
-			]
-		);
-
-		$this->add_control(
-			'post_excerpt_color',
-			[
-				'label'     => esc_html__( 'Color', 'mas-elementor' ),
-				'type'      => Controls_Manager::COLOR,
-				'selectors' => [
-					'{{WRAPPER}} .mas-post-excerpt' => 'color: {{VALUE}} !important;',
-				],
-			]
-		);
-
-		$this->add_control(
-			'post_action_text_heading_style',
-			[
-				'label'     => esc_html__( 'Action Text', 'mas-elementor' ),
-				'type'      => Controls_Manager::HEADING,
-				'separator' => 'before',
-			]
-		);
-		// Action text controls.
-		$this->add_group_control(
-			Group_Control_Typography::get_type(),
-			[
-				'name'     => 'mas_post_action_text_typography',
-				'label'    => __( 'Typography', 'mas-elementor' ),
-				'global'   => [
-					'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
-				],
-				'selector' => '{{WRAPPER}} .mas-post-action-text',
-			]
-		);
-
-		$this->add_control(
-			'post_action_text_color',
-			[
-				'label'     => esc_html__( 'Color', 'mas-elementor' ),
-				'type'      => Controls_Manager::COLOR,
-				'selectors' => [
-					'{{WRAPPER}} .mas-post-action-text' => 'color: {{VALUE}} !important;',
-				],
-			]
-		);
-
-		$this->add_control(
-			'post_action_text_hover_color',
-			[
-				'label'     => esc_html__( 'Hover Color', 'mas-elementor' ),
-				'type'      => Controls_Manager::COLOR,
-				'selectors' => [
-					'{{WRAPPER}} .mas-post-action-text:hover,{{WRAPPER}}' => 'color: {{VALUE}} !important;',
-				],
-				'default'   => '#07853a',
-			]
-		);
-
-		$this->end_controls_section();
-	}
-
-	/**
-	 * Register controls in the Query Section
+	 * Carousel Loop Header.
+	 *
+	 * @param array $settings Settings of this widget.
 	 */
-	protected function register_query_section_controls() {
-		$this->start_controls_section(
-			'section_query',
-			array(
-				'label' => __( 'Query', 'mas-elementor' ),
-				'tab'   => Controls_Manager::TAB_CONTENT,
-			)
-		);
+	public function carousel_loop_header( array $settings = array() ) {
 
-		$this->add_group_control(
-			Group_Control_Related::get_type(),
-			array(
-				'name'    => $this->get_name(),
-				'presets' => array( 'full' ),
-			)
-		);
+		if ( 'yes' === $settings['enable_carousel'] ) {
+			$json = wp_json_encode( $this->get_swiper_carousel_options( $settings ) );
+			$this->add_render_attribute( 'post_swiper', 'class', 'swiper-' . $this->get_id() );
+			$this->add_render_attribute( 'post_swiper', 'class', 'swiper' );
+			$this->add_render_attribute( 'post_swiper', 'data-swiper-options', $json );
+			?>
+			<div <?php $this->print_render_attribute_string( 'post_swiper' ); ?>>
+				<div class="swiper-wrapper">
+			<?php
+		}
 
-		$this->end_controls_section();
+	}
+
+	/**
+	 * Carousel Loop Footer.
+	 *
+	 * @param array $settings Settings of this widget.
+	 */
+	public function carousel_loop_footer( array $settings = array() ) {
+		if ( 'yes' === $settings['enable_carousel'] ) {
+			?>
+			</div>
+			<?php
+			$widget_id = $this->get_id();
+			if ( ! empty( $widget_id ) && 'yes' === $settings['show_pagination'] ) {
+				$this->add_render_attribute( 'swiper-pagination', 'id', 'pagination-' . $widget_id );
+			}
+			$this->add_render_attribute( 'swiper-pagination', 'class', 'swiper-pagination' );
+			if ( 'yes' === $settings['show_pagination'] ) :
+				?>
+			<div <?php $this->print_render_attribute_string( 'swiper-pagination' ); ?>></div>
+				<?php
+			endif;
+			if ( 'yes' === $settings['show_arrows'] ) :
+				$prev_id = ! empty( $widget_id ) ? 'prev-' . $widget_id : '';
+				$next_id = ! empty( $widget_id ) ? 'next-' . $widget_id : '';
+				?>
+				<!-- If we need navigation buttons -->
+				<div id ="<?php echo esc_attr( $prev_id ); ?>" class="swiper-button-prev mas-elementor-swiper-arrow"></div>
+				<div id ="<?php echo esc_attr( $next_id ); ?>" class="swiper-button-next mas-elementor-swiper-arrow"></div>
+				<?php
+			endif;
+			?>
+			</div>
+			<?php
+		}
 	}
 
 	/**
 	 * Widget render.
 	 */
 	public function render() {
-		$settings       = $this->get_settings_for_display();
-		$args           = apply_filters( 'mas_post_object', array( 'widget' => $this, ) );
-		mas_elementor_get_template( 'widgets/posts/post-grid.php' , $args );
+		$settings = $this->get_settings_for_display();
+		$this->query_posts();
+
+		$query = $this->get_query();
+
+		if ( ! $query->found_posts ) {
+			return;
+		}
+
+		$this->carousel_loop_header( $settings );
+
+		// It's the global `wp_query` it self. and the loop was started from the theme.
+		if ( $query->in_the_loop ) {
+
+			$this->current_permalink = get_permalink();
+			print( mas_render_template( $settings['select_template'], false ) );//phpcs:ignore
+			wp_reset_postdata();
+
+		} else {
+			$count = 1;
+			while ( $query->have_posts() ) {
+
+				$query->the_post();
+				if ( 'yes' === $settings['enable_carousel'] ) {
+					?>
+					<div class="swiper-slide">
+					<?php
+				}
+
+				$this->current_permalink = get_permalink();
+				if ( ! empty( $settings['select_loop'] ) && in_array( $count, $settings['select_loop'], true ) ) {
+					print( mas_render_template( $settings['select_loop_template'], false ) );//phpcs:ignore
+				} else {
+					print( mas_render_template( $settings['select_template'], false ) );//phpcs:ignore
+				}
+
+				if ( 'yes' === $settings['enable_carousel'] ) {
+					?>
+					</div>
+					<?php
+				}
+
+				$count ++;
+			}
+			wp_reset_postdata();
+		}
+
+		// Make sure that Elementor loaded and the hook fired.
+		if ( did_action( 'elementor/template-library/after_save_template' ) ) {
+			// Automatically purge and regenerate the Elementor CSS cache.
+			\Elementor\Plugin::instance()->files_manager->clear_cache();
+		}
+		$this->carousel_loop_footer( $settings );
+
+		if ( 'yes' !== $settings['enable_carousel'] ) {
+			$this->render_loop_footer();
+		}
+
+		$this->render_script( 'swiper-' . $this->get_id() );
+
 	}
 }
