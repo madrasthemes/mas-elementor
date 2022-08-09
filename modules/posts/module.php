@@ -115,6 +115,7 @@ class Module extends Module_Base {
 
 		add_filter( 'mas_elementor/utils/get_public_post_types', array( $this, 'post_widget_post_types' ), 10, 1 );
 		add_filter( 'pre_handle_404', array( $this, 'allow_posts_widget_pagination' ), 10, 2 );
+		add_action( 'elementor/editor/after_save', array( $this, 'clear_elementor_cache' ), 15 );
 	}
 
 	/**
@@ -128,4 +129,14 @@ class Module extends Module_Base {
 		return $post_types;
 	}
 
+	/**
+	 * Clear elementor cache.
+	 */
+	public function clear_elementor_cache() {
+		// Make sure that Elementor loaded and the hook fired.
+		if ( did_action( 'elementor/loaded' ) ) {
+			// Automatically purge and regenerate the Elementor CSS cache.
+			\Elementor\Plugin::instance()->files_manager->clear_cache();
+		}
+	}
 }
