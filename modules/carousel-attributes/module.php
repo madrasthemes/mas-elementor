@@ -462,33 +462,33 @@ class Module extends Module_Base {
 			)
 		);
 
-		$element->add_control(
-			'pagination_size',
-			array(
-				'label'      => esc_html__( 'Size', 'mas-elementor' ),
-				'type'       => Controls_Manager::SLIDER,
-				'size_units' => array( 'px', '%' ),
-				'range'      => array(
-					'px' => array(
-						'max' => 100,
-					),
-				),
-				'selectors'  => array(
-					'{{WRAPPER}} + .swiper-pagination .swiper-pagination-bullet' => 'width: {{SIZE}}{{UNIT}}!important;',
-					'{{WRAPPER}} + .swiper-pagination .swiper-container-horizontal .swiper-pagination-progressbar' => 'height: {{SIZE}}{{UNIT}}',
-					'{{WRAPPER}} + .swiper-pagination.swiper-pagination-fraction' => 'font-size: {{SIZE}}{{UNIT}}',
-				),
-				'condition'  => array(
-					'enable_carousel' => 'yes',
-					'show_pagination' => 'yes',
-				),
-			)
-		);
+		// $element->add_control(
+		// 'pagination_size',
+		// array(
+		// 'label'      => esc_html__( 'Size', 'mas-elementor' ),
+		// 'type'       => Controls_Manager::SLIDER,
+		// 'size_units' => array( 'px', '%' ),
+		// 'range'      => array(
+		// 'px' => array(
+		// 'max' => 100,
+		// ),
+		// ),
+		// 'selectors'  => array(
+		// '{{WRAPPER}} + .swiper-pagination .swiper-pagination-bullet' => 'width: {{SIZE}}{{UNIT}}!important;',
+		// '{{WRAPPER}} + .swiper-pagination .swiper-container-horizontal .swiper-pagination-progressbar' => 'height: {{SIZE}}{{UNIT}}',
+		// '{{WRAPPER}} + .swiper-pagination.swiper-pagination-fraction' => 'font-size: {{SIZE}}{{UNIT}}',
+		// ),
+		// 'condition'  => array(
+		// 'enable_carousel' => 'yes',
+		// 'show_pagination' => 'yes',
+		// ),
+		// )
+		// );
 
 		$element->add_control(
-			'dots_border_radius',
+			'dots_width',
 			array(
-				'label'      => esc_html__( 'Border Radius', 'mas-elementor' ),
+				'label'      => esc_html__( 'Width', 'mas-elementor' ),
 				'type'       => Controls_Manager::SLIDER,
 				'size_units' => array( 'px', '%' ),
 				'range'      => array(
@@ -497,16 +497,38 @@ class Module extends Module_Base {
 					),
 				),
 				'selectors'  => array(
-					'{{WRAPPER}} + .swiper-pagination .swiper-pagination-bullet' => 'border-radius: {{SIZE}}{{UNIT}} !important;',
+					'{{WRAPPER}} + .swiper-pagination .swiper-pagination-bullet' => 'width: {{SIZE}}{{UNIT}}!important;',
 				),
 				'condition'  => array(
 					'enable_carousel' => 'yes',
 					'show_pagination' => 'yes',
-					'pagination'      => 'bullets',
 				),
 
 			)
 		);
+
+		// $element->add_control(
+		// 'dots_border_radius',
+		// array(
+		// 'label'      => esc_html__( 'Border Radius', 'mas-elementor' ),
+		// 'type'       => Controls_Manager::SLIDER,
+		// 'size_units' => array( 'px', '%' ),
+		// 'range'      => array(
+		// '%' => array(
+		// 'max' => 100,
+		// ),
+		// ),
+		// 'selectors'  => array(
+		// '{{WRAPPER}} + .swiper-pagination .swiper-pagination-bullet' => 'border-radius: {{SIZE}}{{UNIT}} !important;',
+		// ),
+		// 'condition'  => array(
+		// 'enable_carousel' => 'yes',
+		// 'show_pagination' => 'yes',
+		// 'pagination'      => 'bullets',
+		// ),
+
+		// )
+		// );
 
 		$element->add_control(
 			'dots_height',
@@ -530,14 +552,72 @@ class Module extends Module_Base {
 			)
 		);
 
+		// $element->add_control(
+		// 'pagination_color',
+		// array(
+		// 'label'     => esc_html__( 'Color', 'mas-elementor' ),
+		// 'type'      => Controls_Manager::COLOR,
+		// 'selectors' => array(
+		// '{WRAPPER}} + .swiper-pagination .swiper-pagination-bullet' => 'background-color: {{VALUE}}',
+		// ),
+		// 'condition' => array(
+		// 'enable_carousel' => 'yes',
+		// 'show_pagination' => 'yes',
+		// ),
+		// )
+		// );
+
+		$element->add_group_control(
+			\Elementor\Group_Control_Border::get_type(),
+			array(
+				'name'     => 'mas_swiper_border',
+				'selector' => '{{WRAPPER}} + .swiper-pagination .swiper-pagination-bullet',
+			)
+		);
+
 		$element->add_control(
-			'pagination_color',
+			'mas_swiper_border_radius',
+			array(
+				'label'      => __( 'Border Radius', 'mas-elementor' ),
+				'type'       => Controls_Manager::DIMENSIONS,
+				'size_units' => array( 'px', '%' ),
+				'selectors'  => array(
+					'{{WRAPPER}} + .swiper-pagination .swiper-pagination-bullet' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}}',
+				),
+			)
+		);
+
+		$element->add_group_control(
+			\Elementor\Group_Control_Box_Shadow::get_type(),
+			array(
+				'name'     => 'mas_swiper_box_shadow',
+				'label'    => esc_html__( 'Box Shadow', 'mas-elementor' ),
+				'selector' => '{{WRAPPER}} + .swiper-pagination .swiper-pagination-bullet',
+			)
+		);
+
+		$element->add_control(
+			'mas_swiper_dots_background_color',
 			array(
 				'label'     => esc_html__( 'Color', 'mas-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
-					'{{WRAPPER}} + .swiper-pagination .swiper-pagination-bullet-active, {{WRAPPER}} + .swiper-pagination .swiper-pagination-progressbar-fill' => 'background-color: {{VALUE}}',
-					'{{WRAPPER}} + .swiper-pagination.swiper-pagination-fraction' => 'color: {{VALUE}}',
+					'{{WRAPPER}} + .swiper-pagination .swiper-pagination-bullet' => 'background-color: {{VALUE}}!important',
+				),
+				'condition' => array(
+					'enable_carousel' => 'yes',
+					'show_pagination' => 'yes',
+				),
+			)
+		);
+
+		$element->add_control(
+			'mas_swiper_dots_active_background_color',
+			array(
+				'label'     => esc_html__( 'Active Color', 'mas-elementor' ),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => array(
+					'{{WRAPPER}} + .swiper-pagination .swiper-pagination-bullet-active' => 'background-color: {{VALUE}}!important',
 				),
 				'condition' => array(
 					'enable_carousel' => 'yes',
