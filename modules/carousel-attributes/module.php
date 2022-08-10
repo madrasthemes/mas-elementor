@@ -124,6 +124,26 @@ class Module extends Module_Base {
 			)
 		);
 
+		$element->add_responsive_control(
+			'slides_to_scroll',
+			array(
+				'type'               => Controls_Manager::NUMBER,
+				'label'              => esc_html__( 'Slides To Scroll', 'mas-elementor' ),
+				'min'                => 1,
+				'max'                => 10,
+				'default'            => 1,
+				'condition'          => array(
+					'carousel_effect' => 'slide',
+					'enable_carousel' => 'yes',
+				),
+				'devices'            => array( 'desktop', 'tablet', 'mobile' ),
+				'default'            => 1,
+				'tablet_default'     => 1,
+				'mobile_default'     => 1,
+				'frontend_available' => true,
+			)
+		);
+
 		$element->add_control(
 			'enable_space_between',
 			array(
@@ -496,6 +516,10 @@ class Module extends Module_Base {
 						'max' => 100,
 					),
 				),
+				'default'    => array(
+					'unit' => 'px',
+					'size' => 15,
+				),
 				'selectors'  => array(
 					'{{WRAPPER}} + .swiper-pagination .swiper-pagination-bullet' => 'width: {{SIZE}}{{UNIT}}!important;',
 				),
@@ -540,6 +564,10 @@ class Module extends Module_Base {
 					'px' => array(
 						'max' => 100,
 					),
+				),
+				'default'    => array(
+					'unit' => 'px',
+					'size' => 15,
 				),
 				'selectors'  => array(
 					'{{WRAPPER}} + .swiper-pagination .swiper-pagination-bullet' => 'height: {{SIZE}}{{UNIT}}!important;',
@@ -851,6 +879,14 @@ class Module extends Module_Base {
 			$swiper_settings['breakpoints']['1024']['slidesPerView'] = isset( $settings['slides_per_view'] ) ? $settings['slides_per_view'] : 3;
 			$swiper_settings['breakpoints']['500']['slidesPerView']  = isset( $settings['slides_per_view_tablet'] ) ? $settings['slides_per_view_tablet'] : 3;
 			$swiper_settings['breakpoints']['0']['slidesPerView']    = isset( $settings['slides_per_view_mobile'] ) ? $settings['slides_per_view_mobile'] : 1;
+
+		}
+
+		if ( 'slide' === $settings['carousel_effect'] ) {
+			$swiper_settings['breakpoints']['1440']['slidesPerGroup'] = isset( $settings['slides_to_scroll'] ) ? $settings['slides_to_scroll'] : 1;
+			$swiper_settings['breakpoints']['1024']['slidesPerGroup'] = isset( $settings['slides_to_scroll'] ) ? $settings['slides_to_scroll'] : 1;
+			$swiper_settings['breakpoints']['500']['slidesPerGroup']  = isset( $settings['slides_to_scroll_tablet'] ) ? $settings['slides_to_scroll_tablet'] : 1;
+			$swiper_settings['breakpoints']['0']['slidesPerGroup']    = isset( $settings['slides_to_scroll_mobile'] ) ? $settings['slides_to_scroll_mobile'] : 1;
 
 		}
 
