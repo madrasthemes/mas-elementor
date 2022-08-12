@@ -12,6 +12,7 @@ use Elementor\Controls_Manager;
 use Elementor\Element_Base;
 use MASElementor\Base\Module_Base;
 use Elementor\Plugin;
+use MASElementor\Modules\CarouselAttributes\Traits\Button_Widget_Trait;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
@@ -21,6 +22,8 @@ if ( ! defined( 'ABSPATH' ) ) {
  * The Carousel Attributes module class
  */
 class Module extends Module_Base {
+
+	use Button_Widget_Trait;
 
 	/**
 	 * Return the script dependencies of the module.
@@ -816,9 +819,12 @@ class Module extends Module_Base {
 				$prev_id = ! empty( $section_id ) ? 'prev-' . $section_id : '';
 				$next_id = ! empty( $section_id ) ? 'next-' . $section_id : '';
 				?>
+				<div class="d-flex mas-swiper-arrows">
+				<?php
+				$this->render_button( $element, $prev_id, $next_id );
+				?>
+				</div>
 				<!-- If we need navigation buttons -->
-				<div id ="<?php echo esc_attr( $prev_id ); ?>" class="swiper-button-prev mas-elementor-swiper-arrow"></div>
-				<div id ="<?php echo esc_attr( $next_id ); ?>" class="swiper-button-next mas-elementor-swiper-arrow"></div>
 				<?php
 			endif;
 			?>
@@ -924,11 +930,11 @@ class Module extends Module_Base {
 		}
 
 		if ( $settings['center_slides'] ) {
-			$swiper_settings['centeredSlides'] = 'true';
+			$swiper_settings['centeredSlides'] = true;
 		}
 
 		if ( $settings['loop'] ) {
-			$swiper_settings['loop'] = 'true';
+			$swiper_settings['loop'] = true;
 		}
 		if ( $settings['autoplay'] && $settings['autoplay_speed'] ) {
 			$swiper_settings['autoplay']['delay'] = $settings['autoplay_speed'];
@@ -953,6 +959,8 @@ class Module extends Module_Base {
 		add_action( 'elementor/frontend/section/after_render', array( $this, 'after_render_section' ), 15 );
 		add_action( 'elementor/frontend/column/before_render', array( $this, 'before_render_column' ), 5 );
 		add_action( 'elementor/element/column/section_advanced/before_section_end', array( $this, 'add_column_wrapper_controls' ) );
+		add_action( 'elementor/element/section/section_layout/after_section_end', array( $this, 'register_button_content_controls' ) );
+		add_action( 'elementor/element/section/section_navigation/after_section_end', array( $this, 'register_button_style_controls' ) );
 	}
 
 	/**
