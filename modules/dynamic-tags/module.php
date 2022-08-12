@@ -51,6 +51,8 @@ class Module extends TagsModule {
 	 */
 	public function get_tag_classes_names() {
 		return array(
+			'Comments_Number',
+			'Comments_URL',
 			'Post_Excerpt',
 			'Post_Featured_Image',
 			'Post_Terms',

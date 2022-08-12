@@ -92,14 +92,6 @@ class Job_Terms extends \Elementor\Core\DynamicTags\Tag {
 			)
 		);
 
-		$this->add_control(
-			'link',
-			array(
-				'label'   => esc_html__( 'Link', 'mas-elementor' ),
-				'type'    => Controls_Manager::SWITCHER,
-				'default' => 'yes',
-			)
-		);
 	}
 	/**
 	 * Render for post-terms tag.
@@ -107,23 +99,19 @@ class Job_Terms extends \Elementor\Core\DynamicTags\Tag {
 	public function render() {
 		$settings = $this->get_settings();
 
-		if ( 'yes' === $settings['link'] ) {
-			$value = get_the_term_list( get_the_ID(), $settings['taxonomy'], '', $settings['separator'] );
-		} else {
-			$terms = get_the_terms( get_the_ID(), $settings['taxonomy'] );
+		$terms = get_the_terms( get_the_ID(), $settings['taxonomy'] );
 
-			if ( is_wp_error( $terms ) || empty( $terms ) ) {
-				return '';
-			}
-
-			$term_names = array();
-
-			foreach ( $terms as $term ) {
-				$term_names[] = '<span>' . $term->name . '</span>';
-			}
-
-			$value = implode( $settings['separator'], $term_names );
+		if ( is_wp_error( $terms ) || empty( $terms ) ) {
+			return '';
 		}
+
+		$term_names = array();
+
+		foreach ( $terms as $term ) {
+			$term_names[] = '<span>' . $term->name . '</span>';
+		}
+
+		$value = implode( $settings['separator'], $term_names );
 
 		echo wp_kses_post( $value );
 	}
