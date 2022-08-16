@@ -43,7 +43,6 @@ class Module extends BaseModule {
 	 */
 	public function __construct() {
 		Plugin::$instance->documents
-		->register_document_type( 'mas-post', Documents\Mas_Post::get_class_full_name() )
-		->register_document_type( 'mas-single-post', Documents\Mas_Single_Post::get_class_full_name() );
+		->register_document_type( 'mas-post', Documents\Mas_Post::get_class_full_name() );
 	}
 }

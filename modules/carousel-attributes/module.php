@@ -12,6 +12,7 @@ use Elementor\Controls_Manager;
 use Elementor\Element_Base;
 use MASElementor\Base\Module_Base;
 use Elementor\Plugin;
+use MASElementor\Modules\CarouselAttributes\Traits\Button_Widget_Trait;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
@@ -21,6 +22,8 @@ if ( ! defined( 'ABSPATH' ) ) {
  * The Carousel Attributes module class
  */
 class Module extends Module_Base {
+
+	use Button_Widget_Trait;
 
 	/**
 	 * Return the script dependencies of the module.
@@ -109,6 +112,26 @@ class Module extends Module_Base {
 			array(
 				'type'               => Controls_Manager::NUMBER,
 				'label'              => esc_html__( 'Slides Per View', 'mas-elementor' ),
+				'min'                => 1,
+				'max'                => 10,
+				'default'            => 1,
+				'condition'          => array(
+					'carousel_effect' => 'slide',
+					'enable_carousel' => 'yes',
+				),
+				'devices'            => array( 'desktop', 'tablet', 'mobile' ),
+				'default'            => 1,
+				'tablet_default'     => 1,
+				'mobile_default'     => 1,
+				'frontend_available' => true,
+			)
+		);
+
+		$element->add_responsive_control(
+			'slides_to_scroll',
+			array(
+				'type'               => Controls_Manager::NUMBER,
+				'label'              => esc_html__( 'Slides To Scroll', 'mas-elementor' ),
 				'min'                => 1,
 				'max'                => 10,
 				'default'            => 1,
@@ -462,33 +485,33 @@ class Module extends Module_Base {
 			)
 		);
 
-		$element->add_control(
-			'pagination_size',
-			array(
-				'label'      => esc_html__( 'Size', 'mas-elementor' ),
-				'type'       => Controls_Manager::SLIDER,
-				'size_units' => array( 'px', '%' ),
-				'range'      => array(
-					'px' => array(
-						'max' => 100,
-					),
-				),
-				'selectors'  => array(
-					'{{WRAPPER}} + .swiper-pagination .swiper-pagination-bullet' => 'width: {{SIZE}}{{UNIT}}!important;',
-					'{{WRAPPER}} + .swiper-pagination .swiper-container-horizontal .swiper-pagination-progressbar' => 'height: {{SIZE}}{{UNIT}}',
-					'{{WRAPPER}} + .swiper-pagination.swiper-pagination-fraction' => 'font-size: {{SIZE}}{{UNIT}}',
-				),
-				'condition'  => array(
-					'enable_carousel' => 'yes',
-					'show_pagination' => 'yes',
-				),
-			)
-		);
+		// $element->add_control(
+		// 'pagination_size',
+		// array(
+		// 'label'      => esc_html__( 'Size', 'mas-elementor' ),
+		// 'type'       => Controls_Manager::SLIDER,
+		// 'size_units' => array( 'px', '%' ),
+		// 'range'      => array(
+		// 'px' => array(
+		// 'max' => 100,
+		// ),
+		// ),
+		// 'selectors'  => array(
+		// '{{WRAPPER}} + .swiper-pagination .swiper-pagination-bullet' => 'width: {{SIZE}}{{UNIT}}!important;',
+		// '{{WRAPPER}} + .swiper-pagination .swiper-container-horizontal .swiper-pagination-progressbar' => 'height: {{SIZE}}{{UNIT}}',
+		// '{{WRAPPER}} + .swiper-pagination.swiper-pagination-fraction' => 'font-size: {{SIZE}}{{UNIT}}',
+		// ),
+		// 'condition'  => array(
+		// 'enable_carousel' => 'yes',
+		// 'show_pagination' => 'yes',
+		// ),
+		// )
+		// );
 
 		$element->add_control(
-			'dots_border_radius',
+			'dots_width',
 			array(
-				'label'      => esc_html__( 'Border Radius', 'mas-elementor' ),
+				'label'      => esc_html__( 'Width', 'mas-elementor' ),
 				'type'       => Controls_Manager::SLIDER,
 				'size_units' => array( 'px', '%' ),
 				'range'      => array(
@@ -496,17 +519,43 @@ class Module extends Module_Base {
 						'max' => 100,
 					),
 				),
+				'default'    => array(
+					'unit' => 'px',
+					'size' => 15,
+				),
 				'selectors'  => array(
-					'{{WRAPPER}} + .swiper-pagination .swiper-pagination-bullet' => 'border-radius: {{SIZE}}{{UNIT}} !important;',
+					'{{WRAPPER}} + .swiper-pagination .swiper-pagination-bullet' => 'width: {{SIZE}}{{UNIT}}!important;',
 				),
 				'condition'  => array(
 					'enable_carousel' => 'yes',
 					'show_pagination' => 'yes',
-					'pagination'      => 'bullets',
 				),
 
 			)
 		);
+
+		// $element->add_control(
+		// 'dots_border_radius',
+		// array(
+		// 'label'      => esc_html__( 'Border Radius', 'mas-elementor' ),
+		// 'type'       => Controls_Manager::SLIDER,
+		// 'size_units' => array( 'px', '%' ),
+		// 'range'      => array(
+		// '%' => array(
+		// 'max' => 100,
+		// ),
+		// ),
+		// 'selectors'  => array(
+		// '{{WRAPPER}} + .swiper-pagination .swiper-pagination-bullet' => 'border-radius: {{SIZE}}{{UNIT}} !important;',
+		// ),
+		// 'condition'  => array(
+		// 'enable_carousel' => 'yes',
+		// 'show_pagination' => 'yes',
+		// 'pagination'      => 'bullets',
+		// ),
+
+		// )
+		// );
 
 		$element->add_control(
 			'dots_height',
@@ -519,6 +568,10 @@ class Module extends Module_Base {
 						'max' => 100,
 					),
 				),
+				'default'    => array(
+					'unit' => 'px',
+					'size' => 15,
+				),
 				'selectors'  => array(
 					'{{WRAPPER}} + .swiper-pagination .swiper-pagination-bullet' => 'height: {{SIZE}}{{UNIT}}!important;',
 				),
@@ -530,14 +583,72 @@ class Module extends Module_Base {
 			)
 		);
 
+		// $element->add_control(
+		// 'pagination_color',
+		// array(
+		// 'label'     => esc_html__( 'Color', 'mas-elementor' ),
+		// 'type'      => Controls_Manager::COLOR,
+		// 'selectors' => array(
+		// '{WRAPPER}} + .swiper-pagination .swiper-pagination-bullet' => 'background-color: {{VALUE}}',
+		// ),
+		// 'condition' => array(
+		// 'enable_carousel' => 'yes',
+		// 'show_pagination' => 'yes',
+		// ),
+		// )
+		// );
+
+		$element->add_group_control(
+			\Elementor\Group_Control_Border::get_type(),
+			array(
+				'name'     => 'mas_swiper_border',
+				'selector' => '{{WRAPPER}} + .swiper-pagination .swiper-pagination-bullet',
+			)
+		);
+
 		$element->add_control(
-			'pagination_color',
+			'mas_swiper_border_radius',
+			array(
+				'label'      => __( 'Border Radius', 'mas-elementor' ),
+				'type'       => Controls_Manager::DIMENSIONS,
+				'size_units' => array( 'px', '%' ),
+				'selectors'  => array(
+					'{{WRAPPER}} + .swiper-pagination .swiper-pagination-bullet' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}}',
+				),
+			)
+		);
+
+		$element->add_group_control(
+			\Elementor\Group_Control_Box_Shadow::get_type(),
+			array(
+				'name'     => 'mas_swiper_box_shadow',
+				'label'    => esc_html__( 'Box Shadow', 'mas-elementor' ),
+				'selector' => '{{WRAPPER}} + .swiper-pagination .swiper-pagination-bullet',
+			)
+		);
+
+		$element->add_control(
+			'mas_swiper_dots_background_color',
 			array(
 				'label'     => esc_html__( 'Color', 'mas-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
-					'{{WRAPPER}} + .swiper-pagination .swiper-pagination-bullet-active, {{WRAPPER}} + .swiper-pagination .swiper-pagination-progressbar-fill' => 'background-color: {{VALUE}}',
-					'{{WRAPPER}} + .swiper-pagination.swiper-pagination-fraction' => 'color: {{VALUE}}',
+					'{{WRAPPER}} + .swiper-pagination .swiper-pagination-bullet' => 'background-color: {{VALUE}}!important',
+				),
+				'condition' => array(
+					'enable_carousel' => 'yes',
+					'show_pagination' => 'yes',
+				),
+			)
+		);
+
+		$element->add_control(
+			'mas_swiper_dots_active_background_color',
+			array(
+				'label'     => esc_html__( 'Active Color', 'mas-elementor' ),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => array(
+					'{{WRAPPER}} + .swiper-pagination .swiper-pagination-bullet-active' => 'background-color: {{VALUE}}!important',
 				),
 				'condition' => array(
 					'enable_carousel' => 'yes',
@@ -708,9 +819,12 @@ class Module extends Module_Base {
 				$prev_id = ! empty( $section_id ) ? 'prev-' . $section_id : '';
 				$next_id = ! empty( $section_id ) ? 'next-' . $section_id : '';
 				?>
+				<div class="d-flex mas-swiper-arrows">
+				<?php
+				$this->render_button( $element, $prev_id, $next_id );
+				?>
+				</div>
 				<!-- If we need navigation buttons -->
-				<div id ="<?php echo esc_attr( $prev_id ); ?>" class="swiper-button-prev mas-elementor-swiper-arrow"></div>
-				<div id ="<?php echo esc_attr( $next_id ); ?>" class="swiper-button-next mas-elementor-swiper-arrow"></div>
 				<?php
 			endif;
 			?>
@@ -774,6 +888,14 @@ class Module extends Module_Base {
 
 		}
 
+		if ( 'slide' === $settings['carousel_effect'] ) {
+			$swiper_settings['breakpoints']['1440']['slidesPerGroup'] = isset( $settings['slides_to_scroll'] ) ? $settings['slides_to_scroll'] : 1;
+			$swiper_settings['breakpoints']['1024']['slidesPerGroup'] = isset( $settings['slides_to_scroll'] ) ? $settings['slides_to_scroll'] : 1;
+			$swiper_settings['breakpoints']['500']['slidesPerGroup']  = isset( $settings['slides_to_scroll_tablet'] ) ? $settings['slides_to_scroll_tablet'] : 1;
+			$swiper_settings['breakpoints']['0']['slidesPerGroup']    = isset( $settings['slides_to_scroll_mobile'] ) ? $settings['slides_to_scroll_mobile'] : 1;
+
+		}
+
 		if ( 'yes' === $settings['enable_space_between'] ) {
 			if ( ! empty( $settings['space_between'] ) ) {
 				$swiper_settings['breakpoints']['1440']['spaceBetween'] = $settings['space_between'];
@@ -808,11 +930,11 @@ class Module extends Module_Base {
 		}
 
 		if ( $settings['center_slides'] ) {
-			$swiper_settings['centeredSlides'] = 'true';
+			$swiper_settings['centeredSlides'] = true;
 		}
 
 		if ( $settings['loop'] ) {
-			$swiper_settings['loop'] = 'true';
+			$swiper_settings['loop'] = true;
 		}
 		if ( $settings['autoplay'] && $settings['autoplay_speed'] ) {
 			$swiper_settings['autoplay']['delay'] = $settings['autoplay_speed'];
@@ -837,6 +959,8 @@ class Module extends Module_Base {
 		add_action( 'elementor/frontend/section/after_render', array( $this, 'after_render_section' ), 15 );
 		add_action( 'elementor/frontend/column/before_render', array( $this, 'before_render_column' ), 5 );
 		add_action( 'elementor/element/column/section_advanced/before_section_end', array( $this, 'add_column_wrapper_controls' ) );
+		add_action( 'elementor/element/section/section_layout/after_section_end', array( $this, 'register_button_content_controls' ) );
+		add_action( 'elementor/element/section/section_navigation/after_section_end', array( $this, 'register_button_style_controls' ) );
 	}
 
 	/**
