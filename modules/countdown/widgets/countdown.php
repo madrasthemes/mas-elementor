@@ -95,6 +95,25 @@ class Countdown extends Base_Widget {
 		);
 
 		$this->add_control(
+			'view',
+			[
+				'label' => esc_html__( 'Layout', 'elementor' ),
+				'type' => Controls_Manager::CHOOSE,
+				'default' => 'traditional',
+				'options' => [
+					'traditional' => [
+						'title' => esc_html__( 'Default', 'elementor' ),
+						'icon' => 'eicon-editor-list-ul',
+					],
+					'inline' => [
+						'title' => esc_html__( 'Inline', 'elementor' ),
+						'icon' => 'eicon-ellipsis-h',
+					],
+				],
+			]
+		);
+
+		$this->add_control(
 			'due_date',
 			array(
 				'label'       => __( 'Due Date', 'mas-elementor' ),
@@ -477,7 +496,14 @@ class Countdown extends Base_Widget {
 		if ( $instance['show_seconds'] ) {
 			$string .= $this->render_countdown_item( $instance, 'label_seconds', 'js-cd-seconds' );
 		}
-		$a = '<div class="js-countdown row">' . $string . '</div>';
+		
+		$this->add_render_attribute( 'view', 'class', 'js-countdown' );
+
+		if ( 'inline' === $instance['view'] ) {
+
+			$this->add_render_attribute( 'view', 'style', 'display: flex;' );
+		}
+		$a = '<div '. $this->get_render_attribute_string( 'view' ).' >' . $string . '</div>';
 		return $a;
 	}
 	/**
