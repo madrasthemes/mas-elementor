@@ -30,6 +30,7 @@ final class Modules_Manager {
 	 */
 	public function __construct() {
 		$modules = array(
+			'mas-tab',
 			'mas-library',
 			'dynamic-tags',
 			'multipurpose-text',

@@ -162,7 +162,7 @@ class Plugin {
 	public function enqueue_frontend_scripts() {
 		wp_enqueue_script(
 			'mas-bootstrap-bundle',
-			MAS_ELEMENTOR_ASSETS_URL . 'js/bootstrap.bundle.min.js',
+			MAS_ELEMENTOR_ASSETS_URL . 'js/bootstrap.bundle.js',
 			array(),
 			MAS_ELEMENTOR_VERSION,
 			true
