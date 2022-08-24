@@ -474,7 +474,7 @@ class Mas_Nav_Tabs extends Base_Widget {
 			Group_Control_Typography::get_type(),
 			array(
 				'name'     => 'list_title_typography',
-				'selector' => '{{WRAPPER}} .mas-elementor-nav-tab .nav-item',
+				'selector' => '{{WRAPPER}} .mas-elementor-nav-tab .mas-nav-link',
 
 			)
 		);
@@ -668,7 +668,7 @@ class Mas_Nav_Tabs extends Base_Widget {
 				$this->add_render_attribute(
 					'list_link' . $count,
 					array(
-						'class'          => array( 'nav-link', $active ),
+						'class'          => array( 'nav-link', 'mas-nav-link', $active ),
 						'id'             => 'mas-' . $item['content_id'],
 						'data-bs-toggle' => 'tab',
 						'data-bs-target' => '#' . $item['content_id'],
