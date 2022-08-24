@@ -83,36 +83,43 @@ class Mas_Nav_Tabs extends Base_Widget {
 		$repeater->add_control(
 			'list',
 			array(
-				'label'       => esc_html__( 'List Item', 'mas-elementor' ),
+				'label'       => esc_html__( 'Tab Title', 'mas-elementor' ),
 				'type'        => Controls_Manager::TEXT,
-				'placeholder' => esc_html__( 'List Item', 'mas-elementor' ),
-				'default'     => esc_html__( 'List Item', 'mas-elementor' ),
+				'placeholder' => esc_html__( 'Tab Title', 'mas-elementor' ),
+				'default'     => esc_html__( 'Tab Title', 'mas-elementor' ),
 			)
 		);
 
 		$repeater->add_control(
-			'enable_link',
+			'title_tag',
 			array(
-				'type'      => Controls_Manager::SWITCHER,
-				'label'     => esc_html__( 'Enable Link?', 'mas-elementor' ),
-				'default'   => 'no',
-				'label_off' => esc_html__( 'Show', 'mas-elementor' ),
-				'label_on'  => esc_html__( 'Hide', 'mas-elementor' ),
+				'label'   => esc_html__( 'Title Tag', 'mas-elementor' ),
+				'type'    => Controls_Manager::SELECT,
+				'options' => array(
+					'h1'    => 'H1',
+					'h2'    => 'H2',
+					'h3'    => 'H3',
+					'h4'    => 'H4',
+					'h5'    => 'H5',
+					'h6'    => 'H6',
+					'div'   => 'div',
+					'span'  => 'span',
+					'small' => 'small',
+					'p'     => 'p',
+				),
+				'default' => 'div',
 			)
 		);
 
 		$repeater->add_control(
 			'list_url',
 			array(
-				'label'       => esc_html__( 'List Link', 'mas-elementor' ),
+				'label'       => esc_html__( 'Link', 'mas-elementor' ),
 				'default'     => array(
 					'url' => esc_url( '#', 'mas-elementor' ),
 				),
 				'placeholder' => esc_html__( 'https://your-link.com', 'mas-elementor' ),
 				'type'        => Controls_Manager::URL,
-				'condition'   => array(
-					'enable_link' => 'yes',
-				),
 			)
 		);
 
@@ -122,42 +129,18 @@ class Mas_Nav_Tabs extends Base_Widget {
 				'label'       => esc_html__( 'Tab Content ID', 'mas-elementor' ),
 				'type'        => Controls_Manager::TEXT,
 				'placeholder' => esc_html__( 'Tab Content Id', 'mas-elementor' ),
-				'condition'   => array(
-					'enable_link!' => 'yes',
-				),
-			)
-		);
-
-		$repeater->add_control(
-			'icon',
-			array(
-				'label'   => esc_html__( 'Icon', 'mas-elementor' ),
-				'type'    => Controls_Manager::ICONS,
-				'default' => array(
-					'value'   => 'bx bx-star ',
-					'library' => 'solid',
-				),
-			)
-		);
-
-		$repeater->add_control(
-			'icon_class',
-			array(
-				'label'       => esc_html__( 'Icon Class', 'mas-elementor' ),
-				'type'        => Controls_Manager::TEXT,
-				'placeholder' => esc_html__( 'Enter Your Icon Class', 'mas-elementor' ),
 			)
 		);
 
 		$repeater->add_control(
 			'description_text',
 			array(
-				'label'       => esc_html__( 'Desciption', 'mas-elementor' ),
+				'label'       => esc_html__( 'Tab Desciption', 'mas-elementor' ),
 				'type'        => Controls_Manager::TEXTAREA,
 				'dynamic'     => array(
 					'active' => true,
 				),
-				'default'     => esc_html__( 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.', 'mas-elementor' ),
+				'default'     => esc_html__( 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.', 'mas-elementor' ),
 				'placeholder' => esc_html__( 'Enter your description', 'mas-elementor' ),
 				'rows'        => 10,
 				'separator'   => 'none',
@@ -213,7 +196,7 @@ class Mas_Nav_Tabs extends Base_Widget {
 		$this->start_controls_section(
 			'list_section',
 			array(
-				'label' => esc_html__( 'UL', 'mas-elementor' ),
+				'label' => esc_html__( 'UL Element', 'mas-elementor' ),
 				'tab'   => Controls_Manager::TAB_STYLE,
 			)
 		);
@@ -225,6 +208,16 @@ class Mas_Nav_Tabs extends Base_Widget {
 				'type'        => Controls_Manager::TEXT,
 				'placeholder' => esc_html__( 'Enter Your Wrap Class', 'mas-elementor' ),
 				'default'     => 'nav nav-tabs',
+			)
+		);
+
+		$this->start_controls_tabs( 'tabs_ul' );
+
+		// Spacing Tab.
+		$this->start_controls_tab(
+			'tab_spacing',
+			array(
+				'label' => esc_html__( 'Spacing', 'mas-elementor' ),
 			)
 		);
 
@@ -251,6 +244,16 @@ class Mas_Nav_Tabs extends Base_Widget {
 				'selectors'  => array(
 					'{{WRAPPER}} .mas-elementor-nav-tab' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				),
+			)
+		);
+
+		$this->end_controls_tab();
+
+		// Border Tab.
+		$this->start_controls_tab(
+			'tab_border',
+			array(
+				'label' => esc_html__( 'Border', 'mas-elementor' ),
 			)
 		);
 
@@ -286,13 +289,17 @@ class Mas_Nav_Tabs extends Base_Widget {
 			)
 		);
 
+		$this->end_controls_tab();
+
+		$this->end_controls_tabs();
+
 		$this->end_controls_section();
 
 		// Section for List Item Controls in STYLE Tab.
 		$this->start_controls_section(
 			'list_item_section',
 			array(
-				'label' => esc_html__( 'LI', 'mas-elementor' ),
+				'label' => esc_html__( 'LI Element', 'mas-elementor' ),
 				'tab'   => Controls_Manager::TAB_STYLE,
 			)
 		);
@@ -576,6 +583,8 @@ class Mas_Nav_Tabs extends Base_Widget {
 				$active   = '';
 				$selected = 'false';
 
+				$heading_tag = $item['title_tag'];
+
 				$this->add_render_attribute(
 					'list_item' . $count,
 					array(
@@ -598,7 +607,13 @@ class Mas_Nav_Tabs extends Base_Widget {
 				$this->add_render_attribute(
 					'list_link_item' . $count,
 					array(
-						'class' => array( 'mas-nav-link', $active, $settings['anchor_wrap'] ),
+						'class'          => array( 'mas-nav-link', $active, $settings['anchor_wrap'] ),
+						'id'             => 'mas-' . $item['content_id'],
+						'data-bs-toggle' => 'tab',
+						'data-bs-target' => '#' . $item['content_id'],
+						'role'           => 'tab',
+						'aria-controls'  => $item['content_id'],
+						'aria-selected'  => $selected,
 					)
 				);
 
@@ -608,57 +623,22 @@ class Mas_Nav_Tabs extends Base_Widget {
 					$this->add_render_attribute( 'list_item' . $count, 'class' );
 				}
 
-				$this->add_render_attribute(
-					'list_link' . $count,
-					array(
-						'class'          => array( 'mas-nav-link', $active, $settings['anchor_wrap'] ),
-						'id'             => 'mas-' . $item['content_id'],
-						'data-bs-toggle' => 'tab',
-						'data-bs-target' => '#' . $item['content_id'],
-						'type'           => 'button',
-						'role'           => 'tab',
-						'aria-controls'  => $item['content_id'],
-						'aria-selected'  => $selected,
-					)
-				);
-
-				$icon_class = $item['icon_class'];
-
-				$icon = array( $icon_class, 'mas-nav__icon' );
-
-				if ( $item['icon']['value'] ) {
-					$icon[] = $item['icon']['value'];
-				}
-
-				$this->add_render_attribute(
-					'list_icon' . $count,
-					array(
-						'class' => $icon,
-					)
-				);
-
 				?>
 				<li <?php $this->print_render_attribute_string( 'list_item' . $count ); ?>>
 					<?php if ( isset( $item['list_url']['url'] ) ) : ?>
 						<a  <?php $this->print_render_attribute_string( 'list_link_item' . $count ); ?>>
-							<?php if ( ! empty( $item['icon_class'] ) ) : ?>
-								<i <?php $this->print_render_attribute_string( 'list_icon' . $count ); ?>></i>
-							<?php endif; ?>
-							<?php echo esc_html( $item['list'] ); ?>
-							<?php if ( ! empty( $item['description_text'] ) ) : ?>
-								<p <?php $this->print_render_attribute_string( 'description_text' ); ?>><?php echo esc_html( $item['description_text'] ); ?></p>
-							<?php endif; ?>
+							<div style="display: flex">
+								<!-- <i class="bi-app-indicator fs-2 text-success"></i> -->
+								<div style="flex-grow: 1">
+									<<?php echo esc_html( $heading_tag ); ?> <?php $this->print_render_attribute_string( 'heading_class' ); ?>>
+										<?php echo esc_html( $item['list'] ); ?>
+									</<?php echo esc_html( $heading_tag ); ?>>
+									<?php if ( ! empty( $item['description_text'] ) ) : ?>
+										<p <?php $this->print_render_attribute_string( 'description_text' ); ?>><?php echo esc_html( $item['description_text'] ); ?></p>
+									<?php endif; ?>
+								</div>
+							</div>
 						</a>
-						<?php
-					else :
-						?>
-						<button <?php $this->print_render_attribute_string( 'list_link' . $count ); ?>>
-							<i <?php $this->print_render_attribute_string( 'list_icon' . $count ); ?>></i>
-							<?php echo esc_html( $item['list'] ); ?>
-							<?php if ( ! empty( $item['description_text'] ) ) : ?>
-								<p <?php $this->print_render_attribute_string( 'description_text' ); ?>><?php echo esc_html( $item['description_text'] ); ?></p>
-							<?php endif; ?>
-						</button>
 					<?php endif; ?>
 				</li>
 				<?php
