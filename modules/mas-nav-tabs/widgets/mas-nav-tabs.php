@@ -148,6 +148,19 @@ class Mas_Nav_Tabs extends Base_Widget {
 			)
 		);
 
+		$repeater->add_control(
+			'tab_icon',
+			array(
+				'label'            => esc_html__( 'Icon', 'mas-elementor' ),
+				'type'             => Controls_Manager::ICONS,
+				'default'          => array(
+					'value'   => 'fas fa-check',
+					'library' => 'fa-solid',
+				),
+				'fa4compatibility' => 'icon',
+			)
+		);
+
 		$this->add_control(
 			'nav_tabs',
 			array(
@@ -156,22 +169,21 @@ class Mas_Nav_Tabs extends Base_Widget {
 				'fields'      => $repeater->get_controls(),
 				'default'     => array(
 					array(
-						'title' => esc_html__( 'Featured Jobs', 'mas-elementor' ),
+						'title'    => esc_html__( 'Featured Jobs', 'mas-elementor' ),
+						'tab_icon' => array(
+							'value'   => 'fas fa-check',
+							'library' => 'fa-solid',
+						),
 					),
 					array(
-						'title' => esc_html__( 'Recent Jobs', 'mas-elementor' ),
+						'title'    => esc_html__( 'Recent Jobs', 'mas-elementor' ),
+						'tab_icon' => array(
+							'value'   => 'fas fa-times',
+							'library' => 'fa-solid',
+						),
 					),
 				),
 				'title_field' => '{{{ list }}}',
-			)
-		);
-
-		$this->add_control(
-			'view',
-			array(
-				'label'   => esc_html__( 'View', 'mas-elementor' ),
-				'type'    => Controls_Manager::HIDDEN,
-				'default' => 'traditional',
 			)
 		);
 
@@ -225,7 +237,7 @@ class Mas_Nav_Tabs extends Base_Widget {
 		$this->add_responsive_control(
 			'mas_nav_tab_ul_padding',
 			array(
-				'label'      => esc_html__( 'UL Padding', 'mas-elementor' ),
+				'label'      => esc_html__( 'Padding', 'mas-elementor' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', 'em', '%', 'rem' ),
 				'selectors'  => array(
@@ -238,7 +250,7 @@ class Mas_Nav_Tabs extends Base_Widget {
 		$this->add_responsive_control(
 			'mas_nav_tab_ul_margin',
 			array(
-				'label'      => esc_html__( 'UL Margin', 'mas-elementor' ),
+				'label'      => esc_html__( 'Margin', 'mas-elementor' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', 'em', '%', 'rem' ),
 				'selectors'  => array(
@@ -261,9 +273,8 @@ class Mas_Nav_Tabs extends Base_Widget {
 		$this->add_group_control(
 			Group_Control_Border::get_type(),
 			array(
-				'name'      => 'mas_nav_tab_ul_border',
-				'selector'  => '{{WRAPPER}} .mas-elementor-nav-tab',
-				'separator' => 'before',
+				'name'     => 'mas_nav_tab_ul_border',
+				'selector' => '{{WRAPPER}} .mas-elementor-nav-tab',
 			)
 		);
 
@@ -314,11 +325,21 @@ class Mas_Nav_Tabs extends Base_Widget {
 			)
 		);
 
-		// Padding Controls.
+		$this->start_controls_tabs( 'tabs_li' );
+
+		// LI Spacing Tab.
+		$this->start_controls_tab(
+			'tab_li_spacing',
+			array(
+				'label' => esc_html__( 'Spacing', 'mas-elementor' ),
+			)
+		);
+
+		// LI Padding Controls.
 		$this->add_responsive_control(
 			'mas_nav_tab_li_padding',
 			array(
-				'label'      => esc_html__( 'LI Padding', 'mas-elementor' ),
+				'label'      => esc_html__( 'Padding', 'mas-elementor' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', 'em', '%', 'rem' ),
 				'selectors'  => array(
@@ -327,11 +348,11 @@ class Mas_Nav_Tabs extends Base_Widget {
 			)
 		);
 
-		// Margin Controls.
+		// LI Margin Controls.
 		$this->add_responsive_control(
 			'mas_nav_tab_li_margin',
 			array(
-				'label'      => esc_html__( 'LI Margin', 'mas-elementor' ),
+				'label'      => esc_html__( 'Margin', 'mas-elementor' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', 'em', '%', 'rem' ),
 				'selectors'  => array(
@@ -340,17 +361,25 @@ class Mas_Nav_Tabs extends Base_Widget {
 			)
 		);
 
-		// Border Controls.
-		$this->add_group_control(
-			Group_Control_Border::get_type(),
+		$this->end_controls_tab();
+
+		$this->start_controls_tab(
+			'tab_li_Border',
 			array(
-				'name'      => 'mas_nav_tab_li_border',
-				'selector'  => '{{WRAPPER}} .mas-elementor-nav-tab-li',
-				'separator' => 'before',
+				'label' => esc_html__( 'Border', 'mas-elementor' ),
 			)
 		);
 
-		// Border Radius Controls.
+		// LI Border Controls.
+		$this->add_group_control(
+			Group_Control_Border::get_type(),
+			array(
+				'name'     => 'mas_nav_tab_li_border',
+				'selector' => '{{WRAPPER}} .mas-elementor-nav-tab-li',
+			)
+		);
+
+		// LI Border Radius Controls.
 		$this->add_responsive_control(
 			'mas_nav_tab_li_border_radius',
 			array(
@@ -363,7 +392,7 @@ class Mas_Nav_Tabs extends Base_Widget {
 			)
 		);
 
-		// Box Shadow Controls.
+		// LI Box Shadow Controls.
 		$this->add_group_control(
 			Group_Control_Box_Shadow::get_type(),
 			array(
@@ -371,6 +400,10 @@ class Mas_Nav_Tabs extends Base_Widget {
 				'selector' => '{{WRAPPER}} .mas-elementor-nav-tab-li',
 			)
 		);
+
+		$this->end_controls_tab();
+
+		$this->end_controls_tabs();
 
 		$this->end_controls_section();
 
@@ -393,11 +426,21 @@ class Mas_Nav_Tabs extends Base_Widget {
 			)
 		);
 
-		// Padding Controls.
+		$this->start_controls_tabs( 'tabs_anchor' );
+
+		// Anchor Spacing Tab.
+		$this->start_controls_tab(
+			'tab_anchor_normal',
+			array(
+				'label' => esc_html__( 'Normal', 'mas-elementor' ),
+			)
+		);
+
+		// Anchor Padding Controls.
 		$this->add_responsive_control(
 			'mas_nav_link_padding',
 			array(
-				'label'      => esc_html__( 'Anchor Padding', 'mas-elementor' ),
+				'label'      => esc_html__( 'Padding', 'mas-elementor' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', 'em', '%', 'rem' ),
 				'selectors'  => array(
@@ -406,11 +449,11 @@ class Mas_Nav_Tabs extends Base_Widget {
 			)
 		);
 
-		// Margin Controls.
+		// Anchor Margin Controls.
 		$this->add_responsive_control(
 			'mas_nav_link_margin',
 			array(
-				'label'      => esc_html__( 'Anchor Margin', 'mas-elementor' ),
+				'label'      => esc_html__( 'Margin', 'mas-elementor' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', 'em', '%', 'rem' ),
 				'selectors'  => array(
@@ -423,9 +466,8 @@ class Mas_Nav_Tabs extends Base_Widget {
 		$this->add_group_control(
 			Group_Control_Border::get_type(),
 			array(
-				'name'      => 'mas_nav_link_border',
-				'selector'  => '{{WRAPPER}} .mas-nav-link',
-				'separator' => 'before',
+				'name'     => 'mas_nav_link_border',
+				'selector' => '{{WRAPPER}} .mas-nav-link',
 			)
 		);
 
@@ -451,25 +493,244 @@ class Mas_Nav_Tabs extends Base_Widget {
 			)
 		);
 
-		$this->start_controls_tabs( 'tabs_style' );
-
-		// Normal Tab Controls.
-		$this->start_controls_tab(
-			'tab_normal',
-			array(
-				'label' => esc_html__( 'Normal', 'mas-elementor' ),
-			)
-		);
-
-		// Background Color Controls.
+		// Background Controls.
 		$this->add_control(
-			'normal_bg_color',
+			'mas_nav_link_background',
 			array(
 				'label'     => esc_html__( 'Background Color', 'mas-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
-					'{{WRAPPER}} .mas-elementor-nav-tab .nav-link' => 'background-color: {{VALUE}};',
+					'{{WRAPPER}} .mas-nav-link' => 'background-color: {{VALUE}};',
 				),
+			)
+		);
+
+		$this->end_controls_tab();
+
+		// Active Anchor Spacing Tab.
+		$this->start_controls_tab(
+			'tab_anchor_active',
+			array(
+				'label' => esc_html__( 'Active', 'mas-elementor' ),
+			)
+		);
+
+		// Active Anchor Padding Controls.
+		$this->add_responsive_control(
+			'mas_nav_link_active_padding',
+			array(
+				'label'      => esc_html__( 'Padding', 'mas-elementor' ),
+				'type'       => Controls_Manager::DIMENSIONS,
+				'size_units' => array( 'px', 'em', '%', 'rem' ),
+				'selectors'  => array(
+					'{{WRAPPER}} .mas-nav-link.active' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				),
+			)
+		);
+
+		// Active Anchor Margin Controls.
+		$this->add_responsive_control(
+			'mas_nav_link_active_margin',
+			array(
+				'label'      => esc_html__( 'Margin', 'mas-elementor' ),
+				'type'       => Controls_Manager::DIMENSIONS,
+				'size_units' => array( 'px', 'em', '%', 'rem' ),
+				'selectors'  => array(
+					'{{WRAPPER}} .mas-nav-link.active' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				),
+			)
+		);
+
+		// Active Border Controls.
+		$this->add_group_control(
+			Group_Control_Border::get_type(),
+			array(
+				'name'     => 'mas_nav_link_active_border',
+				'selector' => '{{WRAPPER}} .mas-nav-link.active',
+			)
+		);
+
+		// Active Border Radius Controls.
+		$this->add_responsive_control(
+			'mas_nav_link_active_border_radius',
+			array(
+				'label'      => esc_html__( 'Border Radius', 'mas-elementor' ),
+				'type'       => Controls_Manager::DIMENSIONS,
+				'size_units' => array( 'px', '%', 'em' ),
+				'selectors'  => array(
+					'{{WRAPPER}} .mas-nav-link.active' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				),
+			)
+		);
+
+		// Box Shadow Controls.
+		$this->add_group_control(
+			Group_Control_Box_Shadow::get_type(),
+			array(
+				'name'     => 'mas_nav_linkactive__box_shadow',
+				'selector' => '{{WRAPPER}} .mas-nav-link.active',
+			)
+		);
+
+		// Background Controls.
+		$this->add_control(
+			'mas_nav_link_active_background',
+			array(
+				'label'     => esc_html__( 'Background Color', 'mas-elementor' ),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => array(
+					'{{WRAPPER}} .mas-nav-link.active' => 'background-color: {{VALUE}};',
+				),
+			)
+		);
+
+		$this->end_controls_tab();
+
+		$this->end_controls_tabs();
+
+		$this->end_controls_section();
+
+		// Section for Icon Controls in STYLE Tab.
+		$this->start_controls_section(
+			'tab_icon_style',
+			array(
+				'label' => esc_html__( 'Icon', 'mas-elementor' ),
+				'tab'   => Controls_Manager::TAB_STYLE,
+			)
+		);
+
+		$this->add_control(
+			'icon_color',
+			array(
+				'label'     => esc_html__( 'Color', 'mas-elementor' ),
+				'type'      => Controls_Manager::COLOR,
+				'default'   => '',
+				'selectors' => array(
+					'{{WRAPPER}} .elementor-icon-list-icon i' => 'color: {{VALUE}};',
+					'{{WRAPPER}} .elementor-icon-list-icon svg' => 'fill: {{VALUE}};',
+				),
+				'global'    => array(
+					'default' => Global_Colors::COLOR_PRIMARY,
+				),
+			)
+		);
+
+		$this->add_responsive_control(
+			'icon_size',
+			array(
+				'label'     => esc_html__( 'Size', 'mas-elementor' ),
+				'type'      => Controls_Manager::SLIDER,
+				'default'   => array(
+					'size' => 14,
+				),
+				'range'     => array(
+					'px' => array(
+						'min' => 6,
+					),
+				),
+				'selectors' => array(
+					'{{WRAPPER}}' => '--e-icon-list-icon-size: {{SIZE}}{{UNIT}};',
+				),
+			)
+		);
+
+		$this->start_controls_tabs( 'tabs_icon' );
+
+		// ICON Spacing Tab.
+		$this->start_controls_tab(
+			'tab_icon_spacing',
+			array(
+				'label' => esc_html__( 'Spacing', 'mas-elementor' ),
+			)
+		);
+
+		// Icon Padding Controls.
+		$this->add_responsive_control(
+			'mas_icon_padding',
+			array(
+				'label'      => esc_html__( 'Padding', 'mas-elementor' ),
+				'type'       => Controls_Manager::DIMENSIONS,
+				'size_units' => array( 'px', 'em', '%', 'rem' ),
+				'selectors'  => array(
+					'{{WRAPPER}} .elementor-icon-list-icon' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				),
+			)
+		);
+
+		// Icon Margin Controls.
+		$this->add_responsive_control(
+			'mas_icon_margin',
+			array(
+				'label'      => esc_html__( 'Margin', 'mas-elementor' ),
+				'type'       => Controls_Manager::DIMENSIONS,
+				'size_units' => array( 'px', 'em', '%', 'rem' ),
+				'selectors'  => array(
+					'{{WRAPPER}} .elementor-icon-list-icon' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				),
+			)
+		);
+
+		$this->end_controls_tab();
+
+		// ICON Border Tab.
+		$this->start_controls_tab(
+			'tab_icon_border',
+			array(
+				'label' => esc_html__( 'Border', 'mas-elementor' ),
+			)
+		);
+
+		// Icon Border Controls.
+		$this->add_group_control(
+			Group_Control_Border::get_type(),
+			array(
+				'name'     => 'mas_icon_border',
+				'selector' => '{{WRAPPER}} .elementor-icon-list-icon',
+			)
+		);
+
+		// Icon Border Radius Controls.
+		$this->add_responsive_control(
+			'mas_icon_border_radius',
+			array(
+				'label'      => esc_html__( 'Border Radius', 'mas-elementor' ),
+				'type'       => Controls_Manager::DIMENSIONS,
+				'size_units' => array( 'px', '%', 'em' ),
+				'selectors'  => array(
+					'{{WRAPPER}} .elementor-icon-list-icon' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				),
+			)
+		);
+
+		// Icon Box Shadow Controls.
+		$this->add_group_control(
+			Group_Control_Box_Shadow::get_type(),
+			array(
+				'name'     => 'mas_icon_box_shadow',
+				'selector' => '{{WRAPPER}} .elementor-icon-list-icon',
+			)
+		);
+
+		$this->end_controls_tab();
+
+		$this->end_controls_tabs();
+
+		$this->end_controls_section();
+
+		// Title Section in Style TAB.
+		$this->start_controls_section(
+			'tab_title_style',
+			array(
+				'label' => esc_html__( 'Title', 'mas-elementor' ),
+				'tab'   => Controls_Manager::TAB_STYLE,
+			)
+		);
+
+		$this->add_control(
+			'heading_class',
+			array(
+				'label' => esc_html__( 'Title Class', 'mas-elementor' ),
+				'type'  => Controls_Manager::TEXT,
 			)
 		);
 
@@ -480,77 +741,117 @@ class Mas_Nav_Tabs extends Base_Widget {
 				'label'     => esc_html__( 'Title Color', 'mas-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
-					'{{WRAPPER}} .mas-elementor-nav-tab .nav-link' => 'color: {{VALUE}};',
+					'{{WRAPPER}} .mas-elementor-nav-tab .mas_tab_title' => 'color: {{VALUE}};',
 				),
 			)
 		);
 
-		// Typography Controls.
+		// Title Typography Controls.
 		$this->add_group_control(
 			Group_Control_Typography::get_type(),
 			array(
 				'name'     => 'title_typography',
-				'selector' => '{{WRAPPER}} .mas-elementor-nav-tab .nav-link',
+				'selector' => '{{WRAPPER}} .mas-elementor-nav-tab .mas_tab_title',
 
 			)
 		);
 
-		$this->end_controls_tab();
-
-		// Active Tab Controls.
-		$this->start_controls_tab(
-			'tab_active',
-			array(
-				'label' => esc_html__( 'Active', 'mas-elementor' ),
-			)
-		);
-
-		// Background Color Controls.
+		// Title Background Color Controls.
 		$this->add_control(
-			'active_bg_color',
+			'normal_bg_color',
 			array(
-				'label'     => esc_html__( 'Active Background Color', 'mas-elementor' ),
+				'label'     => esc_html__( 'Background Color', 'mas-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
-					'{{WRAPPER}} .mas-elementor-nav-tab .nav-link.active' => 'background-color: {{VALUE}};',
+					'{{WRAPPER}} .mas-elementor-nav-tab .mas_tab_title' => 'background-color: {{VALUE}};',
 				),
 			)
 		);
 
-		// Title Color Controls.
-		$this->add_control(
-			'active_title_color',
+		// Title Padding Controls.
+		$this->add_responsive_control(
+			'mas_nav_tab_title_padding',
 			array(
-				'label'     => esc_html__( 'Active Title Color', 'mas-elementor' ),
-				'type'      => Controls_Manager::COLOR,
-				'selectors' => array(
-					'{{WRAPPER}} .mas-elementor-nav-tab .nav-link.active' => 'color: {{VALUE}};',
+				'label'      => esc_html__( 'Padding', 'mas-elementor' ),
+				'type'       => Controls_Manager::DIMENSIONS,
+				'size_units' => array( 'px', 'em', '%', 'rem' ),
+				'selectors'  => array(
+					'{{WRAPPER}} .mas_tab_title' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				),
 			)
 		);
 
-		// Typography Controls.
+		// Title Margin Controls.
+		$this->add_responsive_control(
+			'mas_nav_tab_title_margin',
+			array(
+				'label'      => esc_html__( 'Margin', 'mas-elementor' ),
+				'type'       => Controls_Manager::DIMENSIONS,
+				'size_units' => array( 'px', 'em', '%', 'rem' ),
+				'selectors'  => array(
+					'{{WRAPPER}} .mas_tab_title' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				),
+			)
+		);
+
+		$this->end_controls_section();
+
+		// Description Section in Style TAB.
+		$this->start_controls_section(
+			'tab_description_style',
+			array(
+				'label' => esc_html__( 'Description', 'mas-elementor' ),
+				'tab'   => Controls_Manager::TAB_STYLE,
+			)
+		);
+
+		// Description Color Controls.
+		$this->add_control(
+			'description_color',
+			array(
+				'label'     => esc_html__( 'Description Color', 'mas-elementor' ),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => array(
+					'{{WRAPPER}} .mas-tab-description' => 'color: {{VALUE}};',
+				),
+			)
+		);
+
+		// Description Typography Controls.
 		$this->add_group_control(
 			Group_Control_Typography::get_type(),
 			array(
-				'name'     => 'active_title_typography',
-				'selector' => '{{WRAPPER}} .mas-elementor-nav-tab .nav-link.active',
+				'name'     => 'description_typography',
+				'selector' => '{{WRAPPER}} .mas-tab-description',
 
 			)
 		);
 
-		// Box Shadow Controls.
-		$this->add_group_control(
-			Group_Control_Box_Shadow::get_type(),
+		// Description Padding Controls.
+		$this->add_responsive_control(
+			'mas_nav_tab_description_padding',
 			array(
-				'name'     => 'active_anchor_box_shadow',
-				'selector' => '{{WRAPPER}} .mas-elementor-nav-tab .nav-link.active',
+				'label'      => esc_html__( 'Padding', 'mas-elementor' ),
+				'type'       => Controls_Manager::DIMENSIONS,
+				'size_units' => array( 'px', 'em', '%', 'rem' ),
+				'selectors'  => array(
+					'{{WRAPPER}} .mas-tab-description' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				),
 			)
 		);
 
-		$this->end_controls_tab();
-
-		$this->end_controls_tabs();
+		// Description Margin Controls.
+		$this->add_responsive_control(
+			'mas_nav_tab_description_margin',
+			array(
+				'label'      => esc_html__( 'Margin', 'mas-elementor' ),
+				'type'       => Controls_Manager::DIMENSIONS,
+				'size_units' => array( 'px', 'em', '%', 'rem' ),
+				'selectors'  => array(
+					'{{WRAPPER}} .mas-tab-description' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				),
+			)
+		);
 
 		$this->end_controls_section();
 
@@ -563,6 +864,12 @@ class Mas_Nav_Tabs extends Base_Widget {
 		$settings = $this->get_settings_for_display();
 		$list_id  = uniqid( 'tabs-' );
 
+		$fallback_defaults = array(
+			'fa fa-check',
+			'fa fa-times',
+			'fa fa-dot-circle-o',
+		);
+
 		$this->add_render_attribute(
 			'list',
 			array(
@@ -572,7 +879,7 @@ class Mas_Nav_Tabs extends Base_Widget {
 			)
 		);
 
-		$this->add_render_attribute( 'description_text', 'class', 'mas__elementor__tab__description' );
+		$this->add_render_attribute( 'description_text', 'class', 'mas-tab-description' );
 		$this->add_inline_editing_attributes( 'description_text' );
 
 		?>
@@ -584,6 +891,15 @@ class Mas_Nav_Tabs extends Base_Widget {
 				$selected = 'false';
 
 				$heading_tag = $item['title_tag'];
+
+				$title_class = array( 'mas_tab_title' );
+				if ( $settings['heading_class'] ) {
+					$title_class[] = $settings['heading_class'];
+				}
+
+				$this->add_render_attribute( 'heading_class', 'class', $title_class );
+
+				$migration_allowed = Icons_Manager::is_migration_allowed();
 
 				$this->add_render_attribute(
 					'list_item' . $count,
@@ -628,7 +944,26 @@ class Mas_Nav_Tabs extends Base_Widget {
 					<?php if ( isset( $item['list_url']['url'] ) ) : ?>
 						<a  <?php $this->print_render_attribute_string( 'list_link_item' . $count ); ?>>
 							<div style="display: flex">
-								<!-- <i class="bi-app-indicator fs-2 text-success"></i> -->
+								<?php
+								// add old default.
+								if ( ! isset( $item['icon'] ) && ! $migration_allowed ) {
+									$item['icon'] = isset( $fallback_defaults[ $index ] ) ? $fallback_defaults[ $index ] : 'fa fa-check';
+								}
+
+								$migrated = isset( $item['__fa4_migrated']['tab_icon'] );
+								$is_new   = ! isset( $item['icon'] ) && $migration_allowed;
+								if ( ! empty( $item['icon'] ) || ( ! empty( $item['tab_icon']['value'] ) && $is_new ) ) :
+									?>
+									<span class="elementor-icon-list-icon">
+										<?php
+										if ( $is_new || $migrated ) {
+											Icons_Manager::render_icon( $item['tab_icon'], array( 'aria-hidden' => 'true' ) );
+										} else {
+											?>
+												<i class="<?php echo esc_attr( $item['icon'] ); ?>" aria-hidden="true"></i>
+										<?php } ?>
+									</span>
+								<?php endif; ?>
 								<div style="flex-grow: 1">
 									<<?php echo esc_html( $heading_tag ); ?> <?php $this->print_render_attribute_string( 'heading_class' ); ?>>
 										<?php echo esc_html( $item['list'] ); ?>
