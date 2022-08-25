@@ -584,6 +584,17 @@ class Mas_Nav_Tabs extends Base_Widget {
 			)
 		);
 
+		$this->add_control(
+			'active_title_color',
+			array(
+				'label'     => esc_html__( 'Active Title Color', 'mas-elementor' ),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => array(
+					'{{WRAPPER}} .mas-nav-link.active' => 'color: {{VALUE}};',
+				),
+			)
+		);
+
 		$this->end_controls_tab();
 
 		$this->end_controls_tabs();
@@ -897,8 +908,9 @@ class Mas_Nav_Tabs extends Base_Widget {
 					$title_class[] = $settings['heading_class'];
 				}
 
-				$this->add_render_attribute( 'heading_class', 'class', $title_class );
-
+				if ( 1 === $count ) {
+					$this->add_render_attribute( 'heading_class', 'class', $title_class );
+				}
 				$migration_allowed = Icons_Manager::is_migration_allowed();
 
 				$this->add_render_attribute(
@@ -943,7 +955,7 @@ class Mas_Nav_Tabs extends Base_Widget {
 				<li <?php $this->print_render_attribute_string( 'list_item' . $count ); ?>>
 					<?php if ( isset( $item['list_url']['url'] ) ) : ?>
 						<a  <?php $this->print_render_attribute_string( 'list_link_item' . $count ); ?>>
-							<div style="display: flex">
+							<div class="mas-tab-flex">
 								<?php
 								// add old default.
 								if ( ! isset( $item['icon'] ) && ! $migration_allowed ) {
@@ -964,7 +976,7 @@ class Mas_Nav_Tabs extends Base_Widget {
 										<?php } ?>
 									</span>
 								<?php endif; ?>
-								<div style="flex-grow: 1">
+								<div class="mas-tab-flex-grow">
 									<<?php echo esc_html( $heading_tag ); ?> <?php $this->print_render_attribute_string( 'heading_class' ); ?>>
 										<?php echo esc_html( $item['list'] ); ?>
 									</<?php echo esc_html( $heading_tag ); ?>>
