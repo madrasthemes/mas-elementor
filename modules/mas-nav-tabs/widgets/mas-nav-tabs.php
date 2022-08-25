@@ -628,8 +628,8 @@ class Mas_Nav_Tabs extends Base_Widget {
 				'type'      => Controls_Manager::COLOR,
 				'default'   => '',
 				'selectors' => array(
-					'{{WRAPPER}} .elementor-icon-list-icon i' => 'color: {{VALUE}};',
-					'{{WRAPPER}} .elementor-icon-list-icon svg' => 'fill: {{VALUE}};',
+					'{{WRAPPER}} .mas-tab-icon i' => 'color: {{VALUE}};',
+					'{{WRAPPER}} .mas-tab-icon svg' => 'fill: {{VALUE}};',
 				),
 				'global'    => array(
 					'default' => Global_Colors::COLOR_PRIMARY,
@@ -651,10 +651,12 @@ class Mas_Nav_Tabs extends Base_Widget {
 					),
 				),
 				'selectors' => array(
-					'{{WRAPPER}}' => '--e-icon-list-icon-size: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}}' => '--e-icon-tab-icon-size: {{SIZE}}{{UNIT}};',
 				),
 			)
 		);
+
+		$e_icon_tab_icon_css_var = 'var(--e-icon-tab-icon-size, 1em)';
 
 		$this->start_controls_tabs( 'tabs_icon' );
 
@@ -674,7 +676,7 @@ class Mas_Nav_Tabs extends Base_Widget {
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', 'em', '%', 'rem' ),
 				'selectors'  => array(
-					'{{WRAPPER}} .elementor-icon-list-icon' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .mas-tab-icon' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				),
 			)
 		);
@@ -687,7 +689,7 @@ class Mas_Nav_Tabs extends Base_Widget {
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', 'em', '%', 'rem' ),
 				'selectors'  => array(
-					'{{WRAPPER}} .elementor-icon-list-icon' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .mas-tab-icon' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				),
 			)
 		);
@@ -707,7 +709,7 @@ class Mas_Nav_Tabs extends Base_Widget {
 			Group_Control_Border::get_type(),
 			array(
 				'name'     => 'mas_icon_border',
-				'selector' => '{{WRAPPER}} .elementor-icon-list-icon',
+				'selector' => '{{WRAPPER}} .mas-tab-icon',
 			)
 		);
 
@@ -719,7 +721,7 @@ class Mas_Nav_Tabs extends Base_Widget {
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', '%', 'em' ),
 				'selectors'  => array(
-					'{{WRAPPER}} .elementor-icon-list-icon' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .mas-tab-icon' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				),
 			)
 		);
@@ -729,7 +731,7 @@ class Mas_Nav_Tabs extends Base_Widget {
 			Group_Control_Box_Shadow::get_type(),
 			array(
 				'name'     => 'mas_icon_box_shadow',
-				'selector' => '{{WRAPPER}} .elementor-icon-list-icon',
+				'selector' => '{{WRAPPER}} .mas-tab-icon',
 			)
 		);
 
@@ -977,7 +979,7 @@ class Mas_Nav_Tabs extends Base_Widget {
 								$is_new   = ! isset( $item['icon'] ) && $migration_allowed;
 								if ( ! empty( $item['icon'] ) || ( ! empty( $item['tab_icon']['value'] ) && $is_new ) ) :
 									?>
-									<span class="elementor-icon-list-icon">
+									<span class="mas-tab-icon">
 										<?php
 										if ( $is_new || $migrated ) {
 											Icons_Manager::render_icon( $item['tab_icon'], array( 'aria-hidden' => 'true' ) );

@@ -35,3 +35,13 @@
 .mas-tab-flex-grow {
     flex-grow: 1;
 }
+
+.mas-tab-icon svg {
+    width: var(--e-icon-tab-icon-size, 1em);
+    height: var(--e-icon-tab-icon-size, 1em);
+}
+
+.mas-tab-icon i {
+    width: 1.25em;
+    font-size: var(--e-icon-tab-icon-size);
+}
