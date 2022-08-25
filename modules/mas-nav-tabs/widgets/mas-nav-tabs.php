@@ -505,6 +505,17 @@ class Mas_Nav_Tabs extends Base_Widget {
 			)
 		);
 
+		$this->add_control(
+			'normal_anchor_title_color',
+			array(
+				'label'     => esc_html__( 'Title Color', 'mas-elementor' ),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => array(
+					'{{WRAPPER}} .mas-nav-link' => 'color: {{VALUE}};',
+				),
+			)
+		);
+
 		$this->end_controls_tab();
 
 		// Active Anchor Spacing Tab.
