@@ -343,7 +343,7 @@ class Mas_Nav_Tabs extends Base_Widget {
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', 'em', '%', 'rem' ),
 				'selectors'  => array(
-					'{{WRAPPER}} .mas-elementor-nav-tab-li' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .mas-elementor-nav-tab-li:not(:last-child)' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				),
 			)
 		);
@@ -356,7 +356,7 @@ class Mas_Nav_Tabs extends Base_Widget {
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', 'em', '%', 'rem' ),
 				'selectors'  => array(
-					'{{WRAPPER}} .mas-elementor-nav-tab-li' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .mas-elementor-nav-tab-li:not(:last-child)' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				),
 			)
 		);
@@ -375,7 +375,7 @@ class Mas_Nav_Tabs extends Base_Widget {
 			Group_Control_Border::get_type(),
 			array(
 				'name'     => 'mas_nav_tab_li_border',
-				'selector' => '{{WRAPPER}} .mas-elementor-nav-tab-li',
+				'selector' => '{{WRAPPER}} .mas-elementor-nav-tab-li:not(:last-child)',
 			)
 		);
 
