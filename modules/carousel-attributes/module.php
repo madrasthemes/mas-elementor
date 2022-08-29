@@ -366,110 +366,12 @@ class Module extends Module_Base {
 		$element->start_controls_section(
 			'section_navigation',
 			array(
-				'label' => esc_html__( 'Navigation', 'mas-elementor' ),
-				'tab'   => Controls_Manager::TAB_STYLE,
-			)
-		);
-
-		$element->add_control(
-			'heading_arrows',
-			array(
-				'label'     => esc_html__( 'Arrows', 'mas-elementor' ),
-				'type'      => Controls_Manager::HEADING,
-				'separator' => 'none',
+				'label'     => esc_html__( 'Navigation', 'mas-elementor' ),
+				'tab'       => Controls_Manager::TAB_STYLE,
 				'condition' => array(
-					'show_arrows' => 'yes',
-				),
-			)
-		);
-
-		$element->add_control(
-			'arrows_size',
-			array(
-				'label'     => esc_html__( 'Size', 'mas-elementor' ),
-				'type'      => Controls_Manager::SLIDER,
-				'default'   => array(
-					'size' => 20,
-				),
-				'range'     => array(
-					'px' => array(
-						'min' => 10,
-						'max' => 40,
-					),
-				),
-				'selectors' => array(
-					'{{WRAPPER}} ~ .mas-elementor-swiper-arrow' => 'width: {{SIZE}}{{UNIT}} !important;',
-					'{{WRAPPER}} ~ .mas-elementor-swiper-arrow' => 'height: {{SIZE}}{{UNIT}} !important;',
-					'{{WRAPPER}} ~ .mas-elementor-swiper-arrow' => 'font-size: {{SIZE}}{{UNIT}} !important;',
-				),
-				'condition' => array(
-					'show_arrows' => 'yes',
-				),
-			)
-		);
-
-		$element->add_control(
-			'arrows_color',
-			array(
-				'label'     => esc_html__( 'Color', 'mas-elementor' ),
-				'type'      => Controls_Manager::COLOR,
-				'selectors' => array(
-					'{{WRAPPER}} ~ .mas-elementor-swiper-arrow' => 'color: {{VALUE}} !important;',
-					'{{WRAPPER}} ~ .mas-elementor-swiper-arrow svg' => 'fill: {{VALUE}}',
-				),
-				'condition' => array(
-					'show_arrows' => 'yes',
-				),
-			)
-		);
-
-		$element->add_control(
-			'arrows_bg_color',
-			array(
-				'label'     => esc_html__( 'Background Color', 'mas-elementor' ),
-				'type'      => Controls_Manager::COLOR,
-				'selectors' => array(
-					'{{WRAPPER}} ~ .mas-elementor-swiper-arrow' => 'background-color: {{VALUE}}',
-				),
-				'condition' => array(
-					'show_arrows' => 'yes',
-				),
-			)
-		);
-
-		$element->add_control(
-			'arrows_bg_hover_color',
-			array(
-				'label'     => esc_html__( 'Background Hover Color', 'mas-elementor' ),
-				'type'      => Controls_Manager::COLOR,
-				'selectors' => array(
-					'{{WRAPPER}} ~ .mas-elementor-swiper-arrow:hover' => 'background-color: {{VALUE}}',
-				),
-				'condition' => array(
-					'show_arrows' => 'yes',
-				),
-			)
-		);
-
-		$element->add_control(
-			'arrows_border_radius',
-			array(
-				'label'      => esc_html__( 'Border Radius', 'mas-elementor' ),
-				'type'       => Controls_Manager::SLIDER,
-				'size_units' => array( 'px', '%' ),
-				'range'      => array(
-					'%' => array(
-						'max' => 100,
-					),
-				),
-				'selectors'  => array(
-					'{{WRAPPER}} ~ .mas-elementor-swiper-arrow' => 'border-radius: {{SIZE}}{{UNIT}} !important;',
-				),
-				'condition'  => array(
 					'enable_carousel' => 'yes',
-					'show_arrows'     => 'yes',
+					'show_pagination' => 'yes',
 				),
-
 			)
 		);
 
@@ -481,32 +383,10 @@ class Module extends Module_Base {
 				'condition' => array(
 					'enable_carousel' => 'yes',
 					'show_pagination' => 'yes',
+					'pagination'      => 'bullets',
 				),
 			)
 		);
-
-		// $element->add_control(
-		// 'pagination_size',
-		// array(
-		// 'label'      => esc_html__( 'Size', 'mas-elementor' ),
-		// 'type'       => Controls_Manager::SLIDER,
-		// 'size_units' => array( 'px', '%' ),
-		// 'range'      => array(
-		// 'px' => array(
-		// 'max' => 100,
-		// ),
-		// ),
-		// 'selectors'  => array(
-		// '{{WRAPPER}} + .swiper-pagination .swiper-pagination-bullet' => 'width: {{SIZE}}{{UNIT}}!important;',
-		// '{{WRAPPER}} + .swiper-pagination .swiper-container-horizontal .swiper-pagination-progressbar' => 'height: {{SIZE}}{{UNIT}}',
-		// '{{WRAPPER}} + .swiper-pagination.swiper-pagination-fraction' => 'font-size: {{SIZE}}{{UNIT}}',
-		// ),
-		// 'condition'  => array(
-		// 'enable_carousel' => 'yes',
-		// 'show_pagination' => 'yes',
-		// ),
-		// )
-		// );
 
 		$element->add_control(
 			'dots_width',
@@ -529,33 +409,11 @@ class Module extends Module_Base {
 				'condition'  => array(
 					'enable_carousel' => 'yes',
 					'show_pagination' => 'yes',
+					'pagination'      => 'bullets',
 				),
 
 			)
 		);
-
-		// $element->add_control(
-		// 'dots_border_radius',
-		// array(
-		// 'label'      => esc_html__( 'Border Radius', 'mas-elementor' ),
-		// 'type'       => Controls_Manager::SLIDER,
-		// 'size_units' => array( 'px', '%' ),
-		// 'range'      => array(
-		// '%' => array(
-		// 'max' => 100,
-		// ),
-		// ),
-		// 'selectors'  => array(
-		// '{{WRAPPER}} + .swiper-pagination .swiper-pagination-bullet' => 'border-radius: {{SIZE}}{{UNIT}} !important;',
-		// ),
-		// 'condition'  => array(
-		// 'enable_carousel' => 'yes',
-		// 'show_pagination' => 'yes',
-		// 'pagination'      => 'bullets',
-		// ),
-
-		// )
-		// );
 
 		$element->add_control(
 			'dots_height',
@@ -583,26 +441,33 @@ class Module extends Module_Base {
 			)
 		);
 
-		// $element->add_control(
-		// 'pagination_color',
-		// array(
-		// 'label'     => esc_html__( 'Color', 'mas-elementor' ),
-		// 'type'      => Controls_Manager::COLOR,
-		// 'selectors' => array(
-		// '{WRAPPER}} + .swiper-pagination .swiper-pagination-bullet' => 'background-color: {{VALUE}}',
-		// ),
-		// 'condition' => array(
-		// 'enable_carousel' => 'yes',
-		// 'show_pagination' => 'yes',
-		// ),
-		// )
-		// );
-
 		$element->add_group_control(
 			\Elementor\Group_Control_Border::get_type(),
 			array(
-				'name'     => 'mas_swiper_border',
-				'selector' => '{{WRAPPER}} + .swiper-pagination .swiper-pagination-bullet',
+				'name'           => 'mas_swiper_border',
+				'selector'       => '{{WRAPPER}} + .swiper-pagination .swiper-pagination-bullet',
+				'fields_options' => array(
+					'border' => array(
+						'default' => 'solid',
+					),
+					'width'  => array(
+						'default' => array(
+							'top'      => '2',
+							'right'    => '2',
+							'bottom'   => '2',
+							'left'     => '2',
+							'isLinked' => false,
+						),
+					),
+					'color'  => array(
+						'default' => '#B7BAC6',
+					),
+				),
+				'condition'      => array(
+					'enable_carousel' => 'yes',
+					'show_pagination' => 'yes',
+					'pagination'      => 'bullets',
+				),
 			)
 		);
 
@@ -612,8 +477,21 @@ class Module extends Module_Base {
 				'label'      => __( 'Border Radius', 'mas-elementor' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', '%' ),
+				'default'    => array(
+					'top'      => '50',
+					'right'    => '50',
+					'bottom'   => '50',
+					'left'     => '50',
+					'unit'     => '%',
+					'isLinked' => false,
+				),
 				'selectors'  => array(
 					'{{WRAPPER}} + .swiper-pagination .swiper-pagination-bullet' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}}',
+				),
+				'condition'  => array(
+					'enable_carousel' => 'yes',
+					'show_pagination' => 'yes',
+					'pagination'      => 'bullets',
 				),
 			)
 		);
@@ -621,9 +499,28 @@ class Module extends Module_Base {
 		$element->add_group_control(
 			\Elementor\Group_Control_Box_Shadow::get_type(),
 			array(
-				'name'     => 'mas_swiper_box_shadow',
-				'label'    => esc_html__( 'Box Shadow', 'mas-elementor' ),
-				'selector' => '{{WRAPPER}} + .swiper-pagination .swiper-pagination-bullet',
+				'name'           => 'mas_swiper_box_shadow',
+				'label'          => esc_html__( 'Box Shadow', 'mas-elementor' ),
+				'selector'       => '{{WRAPPER}} + .swiper-pagination .swiper-pagination-bullet',
+				'fields_options' => array(
+					'box_shadow_position' => array(
+						'default' => 'inset',
+					),
+					'box_shadow'          => array(
+						'default' => array(
+							'horizontal' => 0,
+							'vertical'   => 0,
+							'blur'       => 0,
+							'spread'     => 4,
+							'color'      => '#FFFFFF',
+						),
+					),
+				),
+				'condition'      => array(
+					'enable_carousel' => 'yes',
+					'show_pagination' => 'yes',
+					'pagination'      => 'bullets',
+				),
 			)
 		);
 
@@ -632,12 +529,14 @@ class Module extends Module_Base {
 			array(
 				'label'     => esc_html__( 'Color', 'mas-elementor' ),
 				'type'      => Controls_Manager::COLOR,
+				'default'   => '#FFFFFF',
 				'selectors' => array(
 					'{{WRAPPER}} + .swiper-pagination .swiper-pagination-bullet' => 'background-color: {{VALUE}}!important',
 				),
 				'condition' => array(
 					'enable_carousel' => 'yes',
 					'show_pagination' => 'yes',
+					'pagination'      => 'bullets',
 				),
 			)
 		);
@@ -647,12 +546,14 @@ class Module extends Module_Base {
 			array(
 				'label'     => esc_html__( 'Active Color', 'mas-elementor' ),
 				'type'      => Controls_Manager::COLOR,
+				'default'   => '#B7BAC6',
 				'selectors' => array(
 					'{{WRAPPER}} + .swiper-pagination .swiper-pagination-bullet-active' => 'background-color: {{VALUE}}!important',
 				),
 				'condition' => array(
 					'enable_carousel' => 'yes',
 					'show_pagination' => 'yes',
+					'pagination'      => 'bullets',
 				),
 			)
 		);

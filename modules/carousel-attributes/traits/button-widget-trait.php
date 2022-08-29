@@ -63,6 +63,10 @@ trait Button_Widget_Trait {
 			array(
 				'label' => esc_html__( 'Button', 'mas-elementor' ),
 				'tab'   => Controls_Manager::TAB_LAYOUT,
+				'condition' => array(
+					'enable_carousel' => 'yes',
+					'show_arrows' => 'yes',
+				),
 			)
 		);
 
@@ -71,7 +75,7 @@ trait Button_Widget_Trait {
 			array(
 				'label'        => esc_html__( 'Type', 'mas-elementor' ),
 				'type'         => Controls_Manager::SELECT,
-				'default'      => '',
+				'default'      => 'primary',
 				'options'      => array(
 					'primary' => esc_html__( 'Default', 'mas-elementor' ),
 					'info'    => esc_html__( 'Info', 'mas-elementor' ),
@@ -87,7 +91,7 @@ trait Button_Widget_Trait {
 		$element->add_control(
 			'text',
 			array(
-				'label'       => $args['control_label_name'],
+				'label'       => esc_html__( 'Next Text', 'mas-elementor' ),
 				'type'        => Controls_Manager::TEXT,
 				'dynamic'     => array(
 					'active' => true,
@@ -101,7 +105,7 @@ trait Button_Widget_Trait {
 		$element->add_control(
 			'next_text',
 			array(
-				'label'       => $args['control_label_name'],
+				'label'       => esc_html__( 'Previous Text', 'mas-elementor' ),
 				'type'        => Controls_Manager::TEXT,
 				'dynamic'     => array(
 					'active' => true,
@@ -150,7 +154,7 @@ trait Button_Widget_Trait {
 		$element->add_control(
 			'selected_icon',
 			array(
-				'label'                  => esc_html__( 'Icon', 'mas-elementor' ),
+				'label'                  => esc_html__( 'Previous Icon', 'mas-elementor' ),
 				'type'                   => Controls_Manager::ICONS,
 				'fa4compatibility'       => 'icon',
 				'skin'                   => 'inline',
@@ -163,7 +167,7 @@ trait Button_Widget_Trait {
 		$element->add_control(
 			'selected_next_icon',
 			array(
-				'label'                  => esc_html__( 'Icon', 'mas-elementor' ),
+				'label'                  => esc_html__( 'Next Icon', 'mas-elementor' ),
 				'type'                   => Controls_Manager::ICONS,
 				'fa4compatibility'       => 'icon',
 				'skin'                   => 'inline',
@@ -250,7 +254,7 @@ trait Button_Widget_Trait {
 			array(
 				'label'       => esc_html__( 'Button CSS', 'mas-elementor' ),
 				'type'        => Controls_Manager::TEXT,
-				'default'     => 'btn-outline-primary',
+				'default'     => '',
 				'description' => esc_html__( 'Additional CSS to be applied to .btn element.', 'mas-elementor' ),
 				'condition'   => $args['section_condition'],
 			)
@@ -292,6 +296,10 @@ trait Button_Widget_Trait {
 			array(
 				'label' => esc_html__( 'Button', 'mas-elementor' ),
 				'tab'   => Controls_Manager::TAB_STYLE,
+				'condition' => array(
+					'enable_carousel' => 'yes',
+					'show_arrows' => 'yes',
+				),
 			)
 		);
 
