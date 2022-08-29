@@ -245,6 +245,32 @@ trait Button_Widget_Trait {
 		);
 
 		$element->add_control(
+			'swiper_arrows_spacing',
+			array(
+				'label'     => esc_html__( 'Arrows Spacing', 'mas-elementor' ),
+				'type'      => Controls_Manager::SLIDER,
+				'size_units' => array( 'px', '%' ),
+				'range'     => array(
+					'px' => array(
+						'max' => 1000,
+					),
+					'%' => array(
+						'max' => 50,
+					),
+				),
+				'default'   => array(
+					'unit' => '%',
+					'size' => 2,
+				),
+				'selectors' => array(
+					'{{WRAPPER}} ~ .mas-swiper-arrows .swiper-button-prev' => 'left:{{SIZE}}{{UNIT}} !important;',
+					'{{WRAPPER}} ~ .mas-swiper-arrows .swiper-button-next' => 'right:{{SIZE}}{{UNIT}} !important;',
+				),
+				'condition' => $args['section_condition'],
+			)
+		);
+
+		$element->add_control(
 			'button_wrapper_css',
 			array(
 				'label'       => esc_html__( 'Button Wrapper CSS', 'mas-elementor' ),
