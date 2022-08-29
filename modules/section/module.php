@@ -115,6 +115,7 @@ class Module extends Module_Base {
 	public function content_template() {
 		?>
 		<#
+		let swiper_wrapper = '';
 		if ( settings.background_video_link ) {
 			let videoAttributes = 'autoplay muted playsinline';
 
@@ -137,14 +138,17 @@ class Module extends Module_Base {
 				settings.gap = `${ settings.gap } no-gutters`;
 			}
 
-			if ( '' != settings.container_class ) {
-				settings.gap = `${ settings.gap } ${ settings.container_class }`;
+			if ( '' != settings.mas_container_class ) {
+				settings.gap = `${ settings.gap } ${ settings.mas_container_class }`;
+			}
+			if ( 'yes' == settings.enable_carousel ) {
+				swiper_wrapper = 'swiper-wrapper';
 			}
 		#>
 		<div class="elementor-background-overlay"></div>
 		<div class="elementor-shape elementor-shape-top"></div>
 		<div class="elementor-shape elementor-shape-bottom"></div>
-		<div class="elementor-container elementor-column-gap-{{ settings.gap }}">
+		<div class="elementor-container {{swiper_wrapper}} elementor-column-gap-{{ settings.gap }}">
 			<?php if ( ! Plugin::$instance->experiments->is_feature_active( 'e_dom_optimization' ) ) { ?>
 				<div class="elementor-row"></div>
 			<?php } ?>
