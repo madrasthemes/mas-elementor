@@ -61,11 +61,11 @@ trait Button_Widget_Trait {
 		$element->start_controls_section(
 			'section_swiper_button',
 			array(
-				'label' => esc_html__( 'Button', 'mas-elementor' ),
-				'tab'   => Controls_Manager::TAB_LAYOUT,
+				'label'     => esc_html__( 'Button', 'mas-elementor' ),
+				'tab'       => Controls_Manager::TAB_LAYOUT,
 				'condition' => array(
 					'enable_carousel' => 'yes',
-					'show_arrows' => 'yes',
+					'show_arrows'     => 'yes',
 				),
 			)
 		);
@@ -96,7 +96,7 @@ trait Button_Widget_Trait {
 				'dynamic'     => array(
 					'active' => true,
 				),
-				'default'     => $args['button_text'],
+				'default'     => '',
 				'placeholder' => $args['button_text'],
 				'condition'   => $args['section_condition'],
 			)
@@ -110,7 +110,7 @@ trait Button_Widget_Trait {
 				'dynamic'     => array(
 					'active' => true,
 				),
-				'default'     => $args['button_text'],
+				'default'     => '',
 				'placeholder' => $args['button_text'],
 				'condition'   => $args['section_condition'],
 			)
@@ -142,6 +142,10 @@ trait Button_Widget_Trait {
 						'max' => 50,
 					),
 				),
+				'default'   => array(
+					'unit' => 'px',
+					'size' => 30,
+				),
 				'selectors' => array(
 					'{{WRAPPER}} ~ .mas-swiper-arrows .elementor-button-icon' => 'font-size: {{SIZE}}{{UNIT}} !important;',
 					'{{WRAPPER}} ~ .mas-swiper-arrows .elementor-button-content-wrapper .elementor-button-icon i' => 'width: {{SIZE}}{{UNIT}} !important;',
@@ -158,6 +162,10 @@ trait Button_Widget_Trait {
 				'type'                   => Controls_Manager::ICONS,
 				'fa4compatibility'       => 'icon',
 				'skin'                   => 'inline',
+				'default'                => array(
+					'value'   => 'fas fa-arrow-left',
+					'library' => 'fa-solid',
+				),
 				'label_block'            => false,
 				'condition'              => $args['section_condition'],
 				'exclude_inline_options' => $args['exclude_inline_options'],
@@ -171,6 +179,10 @@ trait Button_Widget_Trait {
 				'type'                   => Controls_Manager::ICONS,
 				'fa4compatibility'       => 'icon',
 				'skin'                   => 'inline',
+				'default'                => array(
+					'value'   => 'fas fa-arrow-right',
+					'library' => 'fa-solid',
+				),
 				'label_block'            => false,
 				'condition'              => $args['section_condition'],
 				'exclude_inline_options' => $args['exclude_inline_options'],
@@ -196,7 +208,7 @@ trait Button_Widget_Trait {
 			array(
 				'label'     => esc_html__( 'Icon Position', 'mas-elementor' ),
 				'type'      => Controls_Manager::SELECT,
-				'default'   => 'left',
+				'default'   => 'right',
 				'options'   => array(
 					'left'  => esc_html__( 'Before', 'mas-elementor' ),
 					'right' => esc_html__( 'After', 'mas-elementor' ),
@@ -215,6 +227,10 @@ trait Button_Widget_Trait {
 						'max' => 50,
 					),
 				),
+				'default'   => array(
+					'unit' => 'px',
+					'size' => 0,
+				),
 				'selectors' => array(
 					'{{WRAPPER}} ~ .mas-swiper-arrows .swiper-button-prev, .swiper-container-rtl .swiper-button-next' => 'background-image:none !important;',
 					'{{WRAPPER}} ~ .mas-swiper-arrows .swiper-button-prev:after' => 'content:none !important;',
@@ -224,16 +240,6 @@ trait Button_Widget_Trait {
 					'{{WRAPPER}} ~ .mas-swiper-arrows .elementor-align-icon-left' => 'margin-right: {{SIZE}}{{UNIT}} !important;',
 					'{{WRAPPER}} ~ .mas-swiper-arrows' => 'width: 100px !important;',
 				),
-				'condition' => $args['section_condition'],
-			)
-		);
-
-		$element->add_control(
-			'view',
-			array(
-				'label'     => esc_html__( 'View', 'mas-elementor' ),
-				'type'      => Controls_Manager::HIDDEN,
-				'default'   => 'traditional',
 				'condition' => $args['section_condition'],
 			)
 		);
@@ -294,11 +300,11 @@ trait Button_Widget_Trait {
 		$element->start_controls_section(
 			'style_swiper_button',
 			array(
-				'label' => esc_html__( 'Button', 'mas-elementor' ),
-				'tab'   => Controls_Manager::TAB_STYLE,
+				'label'     => esc_html__( 'Button', 'mas-elementor' ),
+				'tab'       => Controls_Manager::TAB_STYLE,
 				'condition' => array(
 					'enable_carousel' => 'yes',
-					'show_arrows' => 'yes',
+					'show_arrows'     => 'yes',
 				),
 			)
 		);
@@ -357,7 +363,7 @@ trait Button_Widget_Trait {
 			array(
 				'label'     => esc_html__( 'Icon Color', 'mas-elementor' ),
 				'type'      => Controls_Manager::COLOR,
-				'default'   => '',
+				'default'   => '#BEC2C2',
 				'selectors' => array(
 					'{{WRAPPER}} ~ .mas-swiper-arrows .elementor-button-link' => 'fill: {{VALUE}}; color: {{VALUE}} !important;',
 				),
@@ -378,9 +384,7 @@ trait Button_Widget_Trait {
 						'default' => 'classic',
 					),
 					'color'      => array(
-						'global' => array(
-							'default' => Global_Colors::COLOR_ACCENT,
-						),
+						'default' => '#FFFFFF',
 					),
 				),
 				'condition'      => $args['section_condition'],
@@ -415,6 +419,7 @@ trait Button_Widget_Trait {
 			array(
 				'label'     => esc_html__( 'Icon Color', 'mas-elementor' ),
 				'type'      => Controls_Manager::COLOR,
+				'default'   => '#FFFFFF',
 				'selectors' => array(
 					'{{WRAPPER}} ~ .mas-swiper-arrows .elementor-button-link:hover, {{WRAPPER}} ~ .mas-swiper-arrows .elementor-button-link:focus' => 'color: {{VALUE}} !important;',
 					'{{WRAPPER}} ~ .mas-swiper-arrows .elementor-button-link:hover svg, {{WRAPPER}} ~ .mas-swiper-arrows .elementor-button-link:focus svg' => 'fill: {{VALUE}} !important;',
@@ -435,6 +440,9 @@ trait Button_Widget_Trait {
 					'background' => array(
 						'default' => 'classic',
 					),
+					'color'      => array(
+						'default' => '#FB236A',
+					),
 				),
 				'condition'      => $args['section_condition'],
 			)
@@ -445,13 +453,13 @@ trait Button_Widget_Trait {
 			array(
 				'label'     => esc_html__( 'Border Color', 'mas-elementor' ),
 				'type'      => Controls_Manager::COLOR,
-				'condition' => array(
-					'border_border!' => '',
-				),
+				// 'condition' => array(
+				// 'border_border!' => '',
+				// ),
 				'selectors' => array(
 					'{{WRAPPER}} ~ .mas-swiper-arrows .elementor-button-link:hover, {{WRAPPER}} ~ .mas-swiper-arrows .elementor-button-link:focus' => 'border-color: {{VALUE}};',
 				),
-				'condition' => $args['section_condition'],
+				'default'   => '#FB236A',
 			)
 		);
 
@@ -471,10 +479,27 @@ trait Button_Widget_Trait {
 		$element->add_group_control(
 			Group_Control_Border::get_type(),
 			array(
-				'name'      => 'swiper_arrow_border',
-				'selector'  => '{{WRAPPER}} ~ .mas-swiper-arrows .elementor-button-link',
-				'separator' => 'before',
-				'condition' => $args['section_condition'],
+				'name'           => 'swiper_arrow_border',
+				'selector'       => '{{WRAPPER}} ~ .mas-swiper-arrows .elementor-button-link',
+				'separator'      => 'before',
+				'condition'      => $args['section_condition'],
+				'fields_options' => array(
+					'border' => array(
+						'default' => 'dashed',
+					),
+					'width'  => array(
+						'default' => array(
+							'top'      => '2',
+							'right'    => '2',
+							'bottom'   => '2',
+							'left'     => '2',
+							'isLinked' => false,
+						),
+					),
+					'color'  => array(
+						'default' => '#BEC2C2',
+					),
+				),
 			)
 		);
 
@@ -488,6 +513,14 @@ trait Button_Widget_Trait {
 					'{{WRAPPER}} ~ .mas-swiper-arrows .elementor-button-link' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				),
 				'condition'  => $args['section_condition'],
+				'default'    => array(
+					'top'      => '50',
+					'right'    => '50',
+					'bottom'   => '50',
+					'left'     => '50',
+					'unit'     => '%',
+					'isLinked' => false,
+				),
 			)
 		);
 
@@ -511,6 +544,14 @@ trait Button_Widget_Trait {
 				),
 				'separator'  => 'before',
 				'condition'  => $args['section_condition'],
+				'default'    => array(
+					'top'      => '10',
+					'right'    => '20',
+					'bottom'   => '10',
+					'left'     => '20',
+					'unit'     => 'px',
+					'isLinked' => false,
+				),
 			)
 		);
 
