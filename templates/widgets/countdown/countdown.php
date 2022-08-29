@@ -45,7 +45,8 @@ $widget->add_render_attribute(
 
 ?>
 <div <?php $widget->print_render_attribute_string( 'div' ); ?>>
-	<?php echo wp_kses_post( $string ); ?>
+	<?php //echo wp_kses_post( $string ); ?>
+	<?php echo $string; ?>
 </div>
 <?php
 if ( $actions && is_array( $actions ) ) {

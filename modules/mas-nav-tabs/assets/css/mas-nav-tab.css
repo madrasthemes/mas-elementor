@@ -1,0 +1,47 @@
+.mas-elementor-nav-tab-layout-horizontal 
+    .mas-elementor-nav-tab {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.mas-elementor-nav-tab-layout-vertical 
+    .mas-elementor-nav-tab {
+    padding: 0;
+    margin: 0;
+    list-style: none;    
+}
+
+
+.tab-content>.tab-pane {
+    display: none;
+}
+
+.tab-content>.active {
+    display: block;
+}
+
+.mas-nav-link {
+    display: block;
+    width: 100%;
+}
+
+.mas-tab-flex {
+    display: flex;
+}
+
+.mas-tab-flex-grow {
+    flex-grow: 1;
+}
+
+.mas-tab-icon svg {
+    width: var(--e-icon-tab-icon-size, 1em);
+    height: var(--e-icon-tab-icon-size, 1em);
+}
+
+.mas-tab-icon i {
+    width: 1.25em;
+    font-size: var(--e-icon-tab-icon-size);
+}
