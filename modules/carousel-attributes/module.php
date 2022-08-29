@@ -559,6 +559,32 @@ class Module extends Module_Base {
 		);
 
 		$element->add_control(
+			'dots_pagination_spacing',
+			array(
+				'label'     => esc_html__( 'Dots Spacing', 'mas-elementor' ),
+				'type'      => Controls_Manager::SLIDER,
+				'default'   => array(
+					'size' => 4,
+				),
+				'range'     => array(
+					'px' => array(
+						'min' => 0,
+						'max' => 50,
+					),
+				),
+				'selectors' => array(
+					'{{WRAPPER}} + .swiper-pagination .swiper-pagination-bullet' => 'margin-right: {{SIZE}}px !important',
+					'{{WRAPPER}} + .swiper-pagination .swiper-pagination-bullet:last-child' => 'margin-right: 0px !important',
+				),
+				'condition' => array(
+					'enable_carousel' => 'yes',
+					'show_pagination' => 'yes',
+					'pagination'      => 'bullets',
+				),
+			)
+		);
+
+		$element->add_control(
 			'vertical_pagination_position',
 			array(
 				'label'     => esc_html__( 'Vertical Position', 'mas-elementor' ),
@@ -711,6 +737,7 @@ class Module extends Module_Base {
 				$element->add_render_attribute( 'swiper-pagination', 'id', 'pagination-' . $section_id );
 			}
 			$element->add_render_attribute( 'swiper-pagination', 'class', 'swiper-pagination' );
+			$element->add_render_attribute( 'swiper-pagination', 'style', 'position:relative' );
 			if ( 'yes' === $settings['show_pagination'] ) :
 				?>
 			<div <?php $element->print_render_attribute_string( 'swiper-pagination' ); ?>></div>
