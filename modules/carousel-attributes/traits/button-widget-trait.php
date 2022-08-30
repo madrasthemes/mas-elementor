@@ -44,8 +44,9 @@ trait Button_Widget_Trait {
 	 * Register button content controls.
 	 *
 	 * @param array $element Elements.
+	 * @param array $args arguments for controls.
 	 */
-	public function register_button_content_controls( $element ) {
+	public function register_button_content_controls( $element, $args = array( 'button_concat' => '~' ) ) {
 		$default_args = array(
 			'section_condition'      => array(),
 			'button_text'            => esc_html__( 'Click here', 'mas-elementor' ),
@@ -54,21 +55,22 @@ trait Button_Widget_Trait {
 			'alignment_default'      => '',
 			'exclude_inline_options' => array(),
 			'button_css'             => 'btn-outline-primary',
+			'button_concat'          => '~',
 		);
 
-		$args = $default_args;
+		$args = array_merge( $default_args, $args );
 
-		$element->start_controls_section(
-			'section_swiper_button',
-			array(
-				'label'     => esc_html__( 'Button', 'mas-elementor' ),
-				'tab'       => Controls_Manager::TAB_LAYOUT,
-				'condition' => array(
-					'enable_carousel' => 'yes',
-					'show_arrows'     => 'yes',
-				),
-			)
-		);
+		// $element->start_controls_section(
+		// 'section_swiper_button',
+		// array(
+		// 'label'     => esc_html__( 'Button', 'mas-elementor' ),
+		// 'tab'       => Controls_Manager::TAB_LAYOUT,
+		// 'condition' => array(
+		// 'enable_carousel' => 'yes',
+		// 'show_arrows'     => 'yes',
+		// ),
+		// )
+		// );
 
 		$element->add_control(
 			'button_type',
@@ -147,12 +149,12 @@ trait Button_Widget_Trait {
 					'size' => 30,
 				),
 				'selectors' => array(
-					'{{WRAPPER}} ~ .mas-swiper-arrows .elementor-button-icon i' => 'font-size: {{SIZE}}{{UNIT}} !important;',
-					'{{WRAPPER}} ~ .mas-swiper-arrows .elementor-button-content-wrapper .elementor-button-icon i' => 'width: {{SIZE}}{{UNIT}} !important;',
-					'{{WRAPPER}} ~ .mas-swiper-arrows .elementor-button-content-wrapper .elementor-button-icon i' => 'height: {{SIZE}}{{UNIT}} !important;',
-					'{{WRAPPER}} ~ .mas-swiper-arrows .elementor-button-icon' => 'font-size: {{SIZE}}{{UNIT}} !important;',
-					'{{WRAPPER}} ~ .mas-swiper-arrows .elementor-button-content-wrapper .elementor-button-icon svg' => 'width: {{SIZE}}{{UNIT}} !important;',
-					'{{WRAPPER}} ~ .mas-swiper-arrows .elementor-button-content-wrapper .elementor-button-icon svg' => 'height: {{SIZE}}{{UNIT}} !important;',
+					'{{WRAPPER}} ' . $args['button_concat'] . ' .mas-swiper-arrows .elementor-button-icon i' => 'font-size: {{SIZE}}{{UNIT}} !important;',
+					'{{WRAPPER}} ' . $args['button_concat'] . ' .mas-swiper-arrows .elementor-button-content-wrapper .elementor-button-icon i' => 'width: {{SIZE}}{{UNIT}} !important;',
+					'{{WRAPPER}} ' . $args['button_concat'] . ' .mas-swiper-arrows .elementor-button-content-wrapper .elementor-button-icon i' => 'height: {{SIZE}}{{UNIT}} !important;',
+					'{{WRAPPER}} ' . $args['button_concat'] . ' .mas-swiper-arrows .elementor-button-icon' => 'font-size: {{SIZE}}{{UNIT}} !important;',
+					'{{WRAPPER}} ' . $args['button_concat'] . ' .mas-swiper-arrows .elementor-button-content-wrapper .elementor-button-icon svg' => 'width: {{SIZE}}{{UNIT}} !important;',
+					'{{WRAPPER}} ' . $args['button_concat'] . ' .mas-swiper-arrows .elementor-button-content-wrapper .elementor-button-icon svg' => 'height: {{SIZE}}{{UNIT}} !important;',
 				),
 				'condition' => $args['section_condition'],
 			)
@@ -235,13 +237,13 @@ trait Button_Widget_Trait {
 					'size' => 0,
 				),
 				'selectors' => array(
-					'{{WRAPPER}} ~ .mas-swiper-arrows .swiper-button-prev, .swiper-container-rtl .swiper-button-next' => 'background-image:none !important;',
-					'{{WRAPPER}} ~ .mas-swiper-arrows .swiper-button-prev:after' => 'content:none !important;',
-					'{{WRAPPER}} ~ .mas-swiper-arrows .swiper-button-next, .swiper-rtl .swiper-button-prev' => 'background-image:none !important;',
-					'{{WRAPPER}} ~ .mas-swiper-arrows .swiper-button-next:after' => 'content:none !important;',
-					'{{WRAPPER}} ~ .mas-swiper-arrows .elementor-align-icon-right' => 'margin-left: {{SIZE}}{{UNIT}} !important;',
-					'{{WRAPPER}} ~ .mas-swiper-arrows .elementor-align-icon-left' => 'margin-right: {{SIZE}}{{UNIT}} !important;',
-					'{{WRAPPER}} ~ .mas-swiper-arrows' => 'width: 100px !important;',
+					'{{WRAPPER}} ' . $args['button_concat'] . ' .mas-swiper-arrows .swiper-button-prev, .swiper-container-rtl .swiper-button-next' => 'background-image:none !important;',
+					'{{WRAPPER}} ' . $args['button_concat'] . ' .mas-swiper-arrows .swiper-button-prev:after' => 'content:none !important;',
+					'{{WRAPPER}} ' . $args['button_concat'] . ' .mas-swiper-arrows .swiper-button-next, .swiper-rtl .swiper-button-prev' => 'background-image:none !important;',
+					'{{WRAPPER}} ' . $args['button_concat'] . ' .mas-swiper-arrows .swiper-button-next:after' => 'content:none !important;',
+					'{{WRAPPER}} ' . $args['button_concat'] . ' .mas-swiper-arrows .elementor-align-icon-right' => 'margin-left: {{SIZE}}{{UNIT}} !important;',
+					'{{WRAPPER}} ' . $args['button_concat'] . ' .mas-swiper-arrows .elementor-align-icon-left' => 'margin-right: {{SIZE}}{{UNIT}} !important;',
+					'{{WRAPPER}} ' . $args['button_concat'] . ' .mas-swiper-arrows' => 'width: 100px !important;',
 				),
 				'condition' => $args['section_condition'],
 			)
@@ -283,8 +285,8 @@ trait Button_Widget_Trait {
 					'unit' => '%',
 				),
 				'selectors'       => array(
-					'{{WRAPPER}} ~ .mas-swiper-arrows .swiper-button-prev' => 'left:{{SIZE}}{{UNIT}} !important;',
-					'{{WRAPPER}} ~ .mas-swiper-arrows .swiper-button-next' => 'right:{{SIZE}}{{UNIT}} !important;',
+					'{{WRAPPER}} ' . $args['button_concat'] . ' .mas-swiper-arrows .swiper-button-prev' => 'left:{{SIZE}}{{UNIT}} !important;',
+					'{{WRAPPER}} ' . $args['button_concat'] . ' .mas-swiper-arrows .swiper-button-next' => 'right:{{SIZE}}{{UNIT}} !important;',
 				),
 				'condition'       => $args['section_condition'],
 			)
@@ -328,20 +330,22 @@ trait Button_Widget_Trait {
 			)
 		);
 
-		$element->end_controls_section();
+		// $element->end_controls_section();
 	}
 
 	/**
 	 * Register Button Style controls.
 	 *
 	 * @param array $element Elementor.
+	 * @param array $args arguments for controls.
 	 */
-	public function register_button_style_controls( $element ) {
+	public function register_button_style_controls( $element, $args = array( 'button_concat' => '~' ) ) {
 		$default_args = array(
 			'section_condition' => array(),
+			'button_concat'     => '~',
 		);
 
-		$args = $default_args;
+		$args = array_merge( $default_args, $args );
 
 		$element->start_controls_section(
 			'style_swiper_button',
@@ -398,7 +402,7 @@ trait Button_Widget_Trait {
 				'type'      => Controls_Manager::COLOR,
 				'default'   => '',
 				'selectors' => array(
-					'{{WRAPPER}} ~ .mas-swiper-arrows .elementor-button-text' => 'fill: {{VALUE}}; color: {{VALUE}} !important;',
+					'{{WRAPPER}} ' . $args['button_concat'] . ' .mas-swiper-arrows .elementor-button-text' => 'fill: {{VALUE}}; color: {{VALUE}} !important;',
 				),
 				'condition' => $args['section_condition'],
 			)
@@ -411,7 +415,7 @@ trait Button_Widget_Trait {
 				'type'      => Controls_Manager::COLOR,
 				'default'   => '#BEC2C2',
 				'selectors' => array(
-					'{{WRAPPER}} ~ .mas-swiper-arrows .elementor-button-link' => 'fill: {{VALUE}}; color: {{VALUE}} !important;',
+					'{{WRAPPER}} ' . $args['button_concat'] . ' .mas-swiper-arrows .elementor-button-link' => 'fill: {{VALUE}}; color: {{VALUE}} !important;',
 				),
 				'condition' => $args['section_condition'],
 			)
@@ -424,7 +428,7 @@ trait Button_Widget_Trait {
 				'label'          => esc_html__( 'Background', 'mas-elementor' ),
 				'types'          => array( 'classic', 'gradient' ),
 				'exclude'        => array( 'image' ),
-				'selector'       => '{{WRAPPER}} ~ .mas-swiper-arrows .elementor-button-link',
+				'selector'       => '{{WRAPPER}} ' . $args['button_concat'] . ' .mas-swiper-arrows .elementor-button-link',
 				'fields_options' => array(
 					'background' => array(
 						'default' => 'classic',
@@ -467,8 +471,8 @@ trait Button_Widget_Trait {
 				'type'      => Controls_Manager::COLOR,
 				'default'   => '#FFFFFF',
 				'selectors' => array(
-					'{{WRAPPER}} ~ .mas-swiper-arrows .elementor-button-link:hover, {{WRAPPER}} ~ .mas-swiper-arrows .elementor-button-link:focus' => 'color: {{VALUE}} !important;',
-					'{{WRAPPER}} ~ .mas-swiper-arrows .elementor-button-link:hover svg, {{WRAPPER}} ~ .mas-swiper-arrows .elementor-button-link:focus svg' => 'fill: {{VALUE}} !important;',
+					'{{WRAPPER}} ' . $args['button_concat'] . ' .mas-swiper-arrows .elementor-button-link:hover, {{WRAPPER}} ' . $args['button_concat'] . ' .mas-swiper-arrows .elementor-button-link:focus' => 'color: {{VALUE}} !important;',
+					'{{WRAPPER}} ' . $args['button_concat'] . ' .mas-swiper-arrows .elementor-button-link:hover svg, {{WRAPPER}} ' . $args['button_concat'] . ' .mas-swiper-arrows .elementor-button-link:focus svg' => 'fill: {{VALUE}} !important;',
 				),
 				'condition' => $args['section_condition'],
 			)
@@ -481,7 +485,7 @@ trait Button_Widget_Trait {
 				'label'          => esc_html__( 'Background', 'mas-elementor' ),
 				'types'          => array( 'classic', 'gradient' ),
 				'exclude'        => array( 'image' ),
-				'selector'       => '{{WRAPPER}} ~ .mas-swiper-arrows .elementor-button-link:hover, {{WRAPPER}} ~ .mas-swiper-arrows .elementor-button-link:focus',
+				'selector'       => '{{WRAPPER}} ' . $args['button_concat'] . ' .mas-swiper-arrows .elementor-button-link:hover, {{WRAPPER}} ' . $args['button_concat'] . ' .mas-swiper-arrows .elementor-button-link:focus',
 				'fields_options' => array(
 					'background' => array(
 						'default' => 'classic',
@@ -503,7 +507,7 @@ trait Button_Widget_Trait {
 				// 'border_border!' => '',
 				// ),
 				'selectors' => array(
-					'{{WRAPPER}} ~ .mas-swiper-arrows .elementor-button-link:hover, {{WRAPPER}} ~ .mas-swiper-arrows .elementor-button-link:focus' => 'border-color: {{VALUE}};',
+					'{{WRAPPER}} ' . $args['button_concat'] . ' .mas-swiper-arrows .elementor-button-link:hover, {{WRAPPER}} ' . $args['button_concat'] . ' .mas-swiper-arrows .elementor-button-link:focus' => 'border-color: {{VALUE}};',
 				),
 				'default'   => '#FB236A',
 			)
@@ -517,7 +521,7 @@ trait Button_Widget_Trait {
 			Group_Control_Border::get_type(),
 			array(
 				'name'           => 'swiper_arrow_border',
-				'selector'       => '{{WRAPPER}} ~ .mas-swiper-arrows .elementor-button-link',
+				'selector'       => '{{WRAPPER}} ' . $args['button_concat'] . ' .mas-swiper-arrows .elementor-button-link',
 				'separator'      => 'before',
 				'condition'      => $args['section_condition'],
 				'fields_options' => array(
@@ -547,7 +551,7 @@ trait Button_Widget_Trait {
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', '%', 'em' ),
 				'selectors'  => array(
-					'{{WRAPPER}} ~ .mas-swiper-arrows .elementor-button-link' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} ' . $args['button_concat'] . ' .mas-swiper-arrows .elementor-button-link' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				),
 				'condition'  => $args['section_condition'],
 				'default'    => array(
@@ -577,7 +581,7 @@ trait Button_Widget_Trait {
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', 'em', '%' ),
 				'selectors'  => array(
-					'{{WRAPPER}} ~ .mas-swiper-arrows .elementor-button-link' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} ' . $args['button_concat'] . ' .mas-swiper-arrows .elementor-button-link' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				),
 				'separator'  => 'before',
 				'condition'  => $args['section_condition'],

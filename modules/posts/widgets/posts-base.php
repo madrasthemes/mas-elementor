@@ -13,6 +13,8 @@ use MASElementor\Base\Base_Widget;
 use Elementor\Controls_Manager;
 use MASElementor\Modules\QueryControl\Controls\Group_Control_Related;
 use Elementor\Plugin;
+use MASElementor\Modules\CarouselAttributes\Traits\Button_Widget_Trait;
+use MASElementor\Modules\CarouselAttributes\Traits\Pagination_Trait;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
@@ -22,6 +24,9 @@ if ( ! defined( 'ABSPATH' ) ) {
  * Class Posts
  */
 abstract class Posts_Base extends Base_Widget {
+
+	use Button_Widget_Trait;
+	use Pagination_Trait;
 
 	/**
 	 * Query.
@@ -598,293 +603,31 @@ abstract class Posts_Base extends Base_Widget {
 		$this->end_controls_section();
 		$this->end_injection();
 
+		$args = array(
+			'concat'        => '',
+			'button_concat' => '',
+		);
+
+		$this->register_pagination_style_controls( $this, $args );
+
 		$this->start_controls_section(
-			'section_navigation',
+			'masposts_swiper_button',
 			array(
-				'label' => esc_html__( 'Navigation', 'mas-elementor' ),
-				'tab'   => Controls_Manager::TAB_STYLE,
-			)
-		);
-
-		$this->add_control(
-			'heading_arrows',
-			array(
-				'label'     => esc_html__( 'Arrows', 'mas-elementor' ),
-				'type'      => Controls_Manager::HEADING,
-				'separator' => 'none',
+				'label'     => esc_html__( 'Button', 'mas-elementor' ),
+				'tab'       => Controls_Manager::TAB_CONTENT,
 				'condition' => array(
-					'show_arrows' => 'yes',
-				),
-			)
-		);
-
-		$this->add_control(
-			'arrows_size',
-			array(
-				'label'     => esc_html__( 'Size', 'mas-elementor' ),
-				'type'      => Controls_Manager::SLIDER,
-				'default'   => array(
-					'size' => 20,
-				),
-				'range'     => array(
-					'px' => array(
-						'min' => 20,
-						'max' => 40,
-					),
-				),
-				'selectors' => array(
-					'{{WRAPPER}} .mas-elementor-swiper-arrow' => 'width: {{SIZE}}{{UNIT}} !important;',
-					'{{WRAPPER}} .mas-elementor-swiper-arrow' => 'height: {{SIZE}}{{UNIT}} !important;',
-					'{{WRAPPER}} .mas-elementor-swiper-arrow' => 'font-size: {{SIZE}}{{UNIT}} !important;',
-				),
-				'condition' => array(
-					'show_arrows' => 'yes',
-				),
-			)
-		);
-
-		$this->add_control(
-			'arrows_color',
-			array(
-				'label'     => esc_html__( 'Color', 'mas-elementor' ),
-				'type'      => Controls_Manager::COLOR,
-				'selectors' => array(
-					'{{WRAPPER}} .mas-elementor-swiper-arrow' => 'color: {{VALUE}} !important;',
-					'{{WRAPPER}} .mas-elementor-swiper-arrow svg' => 'fill: {{VALUE}}',
-				),
-				'condition' => array(
-					'show_arrows' => 'yes',
-				),
-			)
-		);
-
-		$this->add_control(
-			'arrows_bg_color',
-			array(
-				'label'     => esc_html__( 'Background Color', 'mas-elementor' ),
-				'type'      => Controls_Manager::COLOR,
-				'selectors' => array(
-					'{{WRAPPER}} .mas-elementor-swiper-arrow' => 'background-color: {{VALUE}}',
-				),
-				'condition' => array(
-					'show_arrows' => 'yes',
-				),
-			)
-		);
-
-		$this->add_control(
-			'arrows_bg_hover_color',
-			array(
-				'label'     => esc_html__( 'Background Hover Color', 'mas-elementor' ),
-				'type'      => Controls_Manager::COLOR,
-				'selectors' => array(
-					'{{WRAPPER}} .mas-elementor-swiper-arrow:hover' => 'background-color: {{VALUE}}',
-				),
-				'condition' => array(
-					'show_arrows' => 'yes',
-				),
-			)
-		);
-
-		$this->add_control(
-			'arrows_border_radius',
-			array(
-				'label'      => esc_html__( 'Border Radius', 'mas-elementor' ),
-				'type'       => Controls_Manager::SLIDER,
-				'size_units' => array( 'px', '%' ),
-				'range'      => array(
-					'%' => array(
-						'max' => 100,
-					),
-				),
-				'selectors'  => array(
-					'{{WRAPPER}} .mas-elementor-swiper-arrow' => 'border-radius: {{SIZE}}{{UNIT}} !important;',
-				),
-				'condition'  => array(
 					'enable_carousel' => 'yes',
 					'show_arrows'     => 'yes',
 				),
-
 			)
 		);
 
-		$this->add_control(
-			'heading_pagination',
-			array(
-				'label'     => esc_html__( 'Pagination', 'mas-elementor' ),
-				'type'      => Controls_Manager::HEADING,
-				'condition' => array(
-					'enable_carousel' => 'yes',
-					'show_pagination' => 'yes',
-				),
-			)
-		);
-
-		$this->add_control(
-			'pagination_size',
-			array(
-				'label'      => esc_html__( 'Size', 'mas-elementor' ),
-				'type'       => Controls_Manager::SLIDER,
-				'size_units' => array( 'px', '%' ),
-				'range'      => array(
-					'px' => array(
-						'max' => 100,
-					),
-				),
-				'selectors'  => array(
-					'{{WRAPPER}} .swiper-pagination .swiper-pagination-bullet' => 'width: {{SIZE}}{{UNIT}}!important;',
-					'{{WRAPPER}} .swiper-pagination .swiper-container-horizontal .swiper-pagination-progressbar' => 'height: {{SIZE}}{{UNIT}}',
-					'{{WRAPPER}} .swiper-pagination.swiper-pagination-fraction' => 'font-size: {{SIZE}}{{UNIT}}',
-				),
-				'condition'  => array(
-					'enable_carousel' => 'yes',
-					'show_pagination' => 'yes',
-				),
-			)
-		);
-
-		$this->add_control(
-			'dots_border_radius',
-			array(
-				'label'      => esc_html__( 'Border Radius', 'mas-elementor' ),
-				'type'       => Controls_Manager::SLIDER,
-				'size_units' => array( 'px', '%' ),
-				'range'      => array(
-					'%' => array(
-						'max' => 100,
-					),
-				),
-				'selectors'  => array(
-					'{{WRAPPER}} + .swiper-pagination .swiper-pagination-bullet' => 'border-radius: {{SIZE}}{{UNIT}} !important;',
-				),
-				'condition'  => array(
-					'enable_carousel' => 'yes',
-					'show_pagination' => 'yes',
-					'pagination'      => 'bullets',
-				),
-
-			)
-		);
-
-		$this->add_control(
-			'dots_height',
-			array(
-				'label'      => esc_html__( 'Dots Height', 'mas-elementor' ),
-				'type'       => Controls_Manager::SLIDER,
-				'size_units' => array( 'px', '%' ),
-				'range'      => array(
-					'px' => array(
-						'max' => 100,
-					),
-				),
-				'selectors'  => array(
-					'{{WRAPPER}} + .swiper-pagination .swiper-pagination-bullet' => 'height: {{SIZE}}{{UNIT}}!important;',
-				),
-				'condition'  => array(
-					'enable_carousel' => 'yes',
-					'show_pagination' => 'yes',
-					'pagination'      => 'bullets',
-				),
-			)
-		);
-
-		$this->add_control(
-			'carousel_pagination_color',
-			array(
-				'label'     => esc_html__( 'Color', 'mas-elementor' ),
-				'type'      => Controls_Manager::COLOR,
-				'selectors' => array(
-					'{{WRAPPER}} + .swiper-pagination .swiper-pagination-bullet-active, {{WRAPPER}} + .swiper-pagination .swiper-pagination-progressbar-fill' => 'background-color: {{VALUE}}',
-					'{{WRAPPER}} + .swiper-pagination.swiper-pagination-fraction' => 'color: {{VALUE}}',
-				),
-				'condition' => array(
-					'enable_carousel' => 'yes',
-					'show_pagination' => 'yes',
-				),
-			)
-		);
-
-		$this->add_control(
-			'vertical_pagination_position',
-			array(
-				'label'     => esc_html__( 'Vertical Position', 'mas-elementor' ),
-				'type'      => Controls_Manager::SLIDER,
-				'default'   => array(
-					'size' => 100,
-				),
-				'range'     => array(
-					'%' => array(
-						'min' => 0,
-						'max' => 100,
-					),
-				),
-				'selectors' => array(
-					'{{WRAPPER}} + .swiper-pagination.swiper-pagination-bullets' => 'top: {{SIZE}}% !important;',
-					'{{WRAPPER}} + .swiper-pagination-progressbar.swiper-pagination-horizontal' => 'top: {{SIZE}}% !important;',
-					'{{WRAPPER}} + .swiper-pagination.swiper-pagination-fraction' => 'top: {{SIZE}}% !important;',
-				),
-				'condition' => array(
-					'enable_carousel' => 'yes',
-					'show_pagination' => 'yes',
-				),
-			)
-		);
-
-		$this->add_control(
-			'carousel_pagination_spacing_top',
-			array(
-				'label'      => esc_html__( 'Top Spacing', 'mas-elementor' ),
-				'type'       => Controls_Manager::SLIDER,
-				'default'    => array(
-					'size' => 0,
-				),
-				'size_units' => array( 'px', '%', 'rem' ),
-				'range'      => array(
-					'%' => array(
-						'min' => 0,
-						'max' => 100,
-					),
-				),
-				'selectors'  => array(
-					'{{WRAPPER}} + .swiper-pagination.swiper-pagination-bullets' => 'margin-top: {{SIZE}}{{UNIT}} !important;',
-					'{{WRAPPER}} + .swiper-pagination-progressbar.swiper-pagination-horizontal' => 'margin-top: {{SIZE}}{{UNIT}} !important;',
-					'{{WRAPPER}} + .swiper-pagination.swiper-pagination-fraction' => 'margin-top: {{SIZE}}{{UNIT}} !important;',
-				),
-				'condition'  => array(
-					'enable_carousel' => 'yes',
-					'show_pagination' => 'yes',
-				),
-			)
-		);
-
-		$this->add_control(
-			'pagination_spacing_bottom',
-			array(
-				'label'      => esc_html__( 'Bottom Spacing', 'mas-elementor' ),
-				'type'       => Controls_Manager::SLIDER,
-				'default'    => array(
-					'size' => 0,
-				),
-				'size_units' => array( 'px', '%', 'rem' ),
-				'range'      => array(
-					'%' => array(
-						'min' => 0,
-						'max' => 100,
-					),
-				),
-				'selectors'  => array(
-					'{{WRAPPER}} + .swiper-pagination.swiper-pagination-bullets' => 'margin-bottom: {{SIZE}}{{UNIT}} !important;',
-					'{{WRAPPER}} + .swiper-pagination-progressbar.swiper-pagination-horizontal' => 'margin-bottom: {{SIZE}}{{UNIT}} !important;',
-					'{{WRAPPER}} + .swiper-pagination.swiper-pagination-fraction' => 'margin-bottom: {{SIZE}}{{UNIT}} !important;',
-				),
-				'condition'  => array(
-					'enable_carousel' => 'yes',
-					'show_pagination' => 'yes',
-				),
-			)
-		);
+			$this->register_button_content_controls( $this, $args );
 
 		$this->end_controls_section();
+
+		$this->register_button_style_controls( $this, $args );
+
 	}
 
 	/**
@@ -1126,6 +869,44 @@ abstract class Posts_Base extends Base_Widget {
 			<?php echo implode( PHP_EOL, $links ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 		</nav>
 		<?php
+	}
+
+	/**
+	 * Carousel Loop Footer.
+	 *
+	 * @param array $settings Settings of this widget.
+	 */
+	public function carousel_loop_footer( array $settings = array() ) {
+		if ( 'yes' === $settings['enable_carousel'] ) {
+			?>
+			</div>
+			<?php
+			$widget_id = $this->get_id();
+			if ( ! empty( $widget_id ) && 'yes' === $settings['show_pagination'] ) {
+				$this->add_render_attribute( 'swiper-pagination', 'id', 'pagination-' . $widget_id );
+			}
+			$this->add_render_attribute( 'swiper-pagination', 'class', 'swiper-pagination' );
+			if ( 'yes' === $settings['show_pagination'] ) :
+				?>
+			<div <?php $this->print_render_attribute_string( 'swiper-pagination' ); ?>></div>
+				<?php
+			endif;
+			if ( 'yes' === $settings['show_arrows'] ) :
+				$prev_id = ! empty( $widget_id ) ? 'prev-' . $widget_id : '';
+				$next_id = ! empty( $widget_id ) ? 'next-' . $widget_id : '';
+				?>
+				<!-- If we need navigation buttons -->
+				<div class="d-flex mas-swiper-arrows">
+				<?php
+				$this->render_button( $this, $prev_id, $next_id );
+				?>
+				</div>
+				<?php
+			endif;
+			?>
+			</div>
+			<?php
+		}
 	}
 
 	/**

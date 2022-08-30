@@ -222,41 +222,6 @@ class Posts extends Posts_Base {
 	}
 
 	/**
-	 * Carousel Loop Footer.
-	 *
-	 * @param array $settings Settings of this widget.
-	 */
-	public function carousel_loop_footer( array $settings = array() ) {
-		if ( 'yes' === $settings['enable_carousel'] ) {
-			?>
-			</div>
-			<?php
-			$widget_id = $this->get_id();
-			if ( ! empty( $widget_id ) && 'yes' === $settings['show_pagination'] ) {
-				$this->add_render_attribute( 'swiper-pagination', 'id', 'pagination-' . $widget_id );
-			}
-			$this->add_render_attribute( 'swiper-pagination', 'class', 'swiper-pagination' );
-			if ( 'yes' === $settings['show_pagination'] ) :
-				?>
-			<div <?php $this->print_render_attribute_string( 'swiper-pagination' ); ?>></div>
-				<?php
-			endif;
-			if ( 'yes' === $settings['show_arrows'] ) :
-				$prev_id = ! empty( $widget_id ) ? 'prev-' . $widget_id : '';
-				$next_id = ! empty( $widget_id ) ? 'next-' . $widget_id : '';
-				?>
-				<!-- If we need navigation buttons -->
-				<div id ="<?php echo esc_attr( $prev_id ); ?>" class="swiper-button-prev mas-elementor-swiper-arrow"></div>
-				<div id ="<?php echo esc_attr( $next_id ); ?>" class="swiper-button-next mas-elementor-swiper-arrow"></div>
-				<?php
-			endif;
-			?>
-			</div>
-			<?php
-		}
-	}
-
-	/**
 	 * Widget render.
 	 */
 	public function render() {
