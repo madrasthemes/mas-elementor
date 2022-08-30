@@ -147,9 +147,12 @@ trait Button_Widget_Trait {
 					'size' => 30,
 				),
 				'selectors' => array(
-					'{{WRAPPER}} ~ .mas-swiper-arrows .elementor-button-icon' => 'font-size: {{SIZE}}{{UNIT}} !important;',
+					'{{WRAPPER}} ~ .mas-swiper-arrows .elementor-button-icon i' => 'font-size: {{SIZE}}{{UNIT}} !important;',
 					'{{WRAPPER}} ~ .mas-swiper-arrows .elementor-button-content-wrapper .elementor-button-icon i' => 'width: {{SIZE}}{{UNIT}} !important;',
 					'{{WRAPPER}} ~ .mas-swiper-arrows .elementor-button-content-wrapper .elementor-button-icon i' => 'height: {{SIZE}}{{UNIT}} !important;',
+					'{{WRAPPER}} ~ .mas-swiper-arrows .elementor-button-icon' => 'font-size: {{SIZE}}{{UNIT}} !important;',
+					'{{WRAPPER}} ~ .mas-swiper-arrows .elementor-button-content-wrapper .elementor-button-icon svg' => 'width: {{SIZE}}{{UNIT}} !important;',
+					'{{WRAPPER}} ~ .mas-swiper-arrows .elementor-button-content-wrapper .elementor-button-icon svg' => 'height: {{SIZE}}{{UNIT}} !important;',
 				),
 				'condition' => $args['section_condition'],
 			)
@@ -244,29 +247,46 @@ trait Button_Widget_Trait {
 			)
 		);
 
-		$element->add_control(
+		$element->add_responsive_control(
 			'swiper_arrows_spacing',
 			array(
-				'label'     => esc_html__( 'Arrows Spacing', 'mas-elementor' ),
-				'type'      => Controls_Manager::SLIDER,
-				'size_units' => array( 'px', '%' ),
-				'range'     => array(
+				'type'            => Controls_Manager::SLIDER,
+				'label'           => esc_html__( 'Arrows Spacing', 'mas-elementor' ),
+				'size_units'      => array( '%', 'px' ),
+				'range'           => array(
 					'px' => array(
-						'max' => 1000,
+						'min' => 0,
+						'max' => 100,
 					),
-					'%' => array(
+				),
+				'range'           => array(
+					'%'  => array(
+						'min' => -50,
 						'max' => 50,
 					),
+					'px' => array(
+						'min' => 0,
+						'max' => 1000,
+					),
 				),
-				'default'   => array(
+				'devices'         => array( 'desktop', 'tablet', 'mobile' ),
+				'desktop_default' => array(
+					'size' => 5,
 					'unit' => '%',
-					'size' => 2,
 				),
-				'selectors' => array(
+				'tablet_default'  => array(
+					'size' => 10,
+					'unit' => '%',
+				),
+				'mobile_default'  => array(
+					'size' => 5,
+					'unit' => '%',
+				),
+				'selectors'       => array(
 					'{{WRAPPER}} ~ .mas-swiper-arrows .swiper-button-prev' => 'left:{{SIZE}}{{UNIT}} !important;',
 					'{{WRAPPER}} ~ .mas-swiper-arrows .swiper-button-next' => 'right:{{SIZE}}{{UNIT}} !important;',
 				),
-				'condition' => $args['section_condition'],
+				'condition'       => $args['section_condition'],
 			)
 		);
 
@@ -489,15 +509,6 @@ trait Button_Widget_Trait {
 			)
 		);
 
-		$element->add_control(
-			'swiper_arrow_hover_animation',
-			array(
-				'label'     => esc_html__( 'Hover Animation', 'mas-elementor' ),
-				'type'      => Controls_Manager::HOVER_ANIMATION,
-				'condition' => $args['section_condition'],
-			)
-		);
-
 		$element->end_controls_tab();
 
 		$element->end_controls_tabs();
@@ -629,9 +640,6 @@ trait Button_Widget_Trait {
 			$instance->add_render_attribute( 'button', 'id', $settings['button_css_id'] );
 		}
 
-		// if ( $settings['hover_animation'] ) {
-		// $instance->add_render_attribute( 'button', 'class', 'elementor-animation-' . $settings['hover_animation'] );
-		// }.
 		?>
 		<div <?php $instance->print_render_attribute_string( 'prev_wrapper' ); ?>>
 			<a <?php $instance->print_render_attribute_string( 'button' ); ?>>
