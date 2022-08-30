@@ -54,7 +54,7 @@ trait Button_Widget_Trait {
 			'prefix_class'           => 'elementor%s-align-',
 			'alignment_default'      => '',
 			'exclude_inline_options' => array(),
-			'button_css'             => 'btn-outline-primary',
+			// 'button_css'             => 'btn-outline-primary',
 			'button_concat'          => '~',
 		);
 
@@ -72,23 +72,23 @@ trait Button_Widget_Trait {
 		// )
 		// );
 
-		$element->add_control(
-			'button_type',
-			array(
-				'label'        => esc_html__( 'Type', 'mas-elementor' ),
-				'type'         => Controls_Manager::SELECT,
-				'default'      => 'primary',
-				'options'      => array(
-					'primary' => esc_html__( 'Default', 'mas-elementor' ),
-					'info'    => esc_html__( 'Info', 'mas-elementor' ),
-					'success' => esc_html__( 'Success', 'mas-elementor' ),
-					'warning' => esc_html__( 'Warning', 'mas-elementor' ),
-					'danger'  => esc_html__( 'Danger', 'mas-elementor' ),
-				),
-				'prefix_class' => 'btn-',
-				'condition'    => $args['section_condition'],
-			)
-		);
+		// $element->add_control(
+		// 'button_type',
+		// array(
+		// 'label'        => esc_html__( 'Type', 'mas-elementor' ),
+		// 'type'         => Controls_Manager::SELECT,
+		// 'default'      => 'primary',
+		// 'options'      => array(
+		// 'primary' => esc_html__( 'Default', 'mas-elementor' ),
+		// 'info'    => esc_html__( 'Info', 'mas-elementor' ),
+		// 'success' => esc_html__( 'Success', 'mas-elementor' ),
+		// 'warning' => esc_html__( 'Warning', 'mas-elementor' ),
+		// 'danger'  => esc_html__( 'Danger', 'mas-elementor' ),
+		// ),
+		// 'prefix_class' => 'btn-',
+		// 'condition'    => $args['section_condition'],
+		// )
+		// );
 
 		$element->add_control(
 			'text',
