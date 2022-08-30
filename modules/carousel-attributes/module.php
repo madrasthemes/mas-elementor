@@ -524,15 +524,78 @@ class Module extends Module_Base {
 			)
 		);
 
+		$element->start_controls_tabs(
+			'mas_swiper_pagination_style',
+			array(
+				'condition' => array(
+					'enable_carousel' => 'yes',
+					'show_pagination' => 'yes',
+					'pagination'      => 'bullets',
+				),
+			)
+		);
+
+		$element->start_controls_tab(
+			'mas_swiper_pagination_dots_normal',
+			array(
+				'label'     => esc_html__( 'Normal', 'mas-elementor' ),
+				'condition' => array(
+					'enable_carousel' => 'yes',
+					'show_pagination' => 'yes',
+					'pagination'      => 'bullets',
+				),
+			)
+		);
+
 		$element->add_control(
 			'mas_swiper_dots_background_color',
 			array(
-				'label'     => esc_html__( 'Color', 'mas-elementor' ),
+				'label'     => esc_html__( 'Background Color', 'mas-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'default'   => '#FFFFFF',
 				'selectors' => array(
-					'{{WRAPPER}} + .swiper-pagination .swiper-pagination-bullet' => 'background-color: {{VALUE}}!important',
+					'{{WRAPPER}} + .swiper-pagination .swiper-pagination-bullet' => 'background-color: {{VALUE}}!important;',
 				),
+				'condition' => array(
+					'enable_carousel' => 'yes',
+					'show_pagination' => 'yes',
+					'pagination'      => 'bullets',
+				),
+			)
+		);
+
+		$element->add_control(
+			'mas_swiper_dots_opacity',
+			array(
+				'label'     => esc_html__( 'Opacity', 'mas-elementor' ),
+				'type'      => Controls_Manager::SLIDER,
+				'default'   => array(
+					'size' => 1,
+				),
+				'range'     => array(
+					'px' => array(
+						'max'  => 1,
+						'min'  => 0.10,
+						'step' => 0.01,
+					),
+				),
+				'selectors' => array(
+					'{{WRAPPER}} + .swiper-pagination .swiper-pagination-bullet' => 'opacity: {{SIZE}} !important;',
+				),
+				'condition' => array(
+					'enable_carousel' => 'yes',
+					'show_pagination' => 'yes',
+					'pagination'      => 'bullets',
+				),
+			)
+		);
+
+		$element->end_controls_tab();
+
+		$element->start_controls_tab(
+			'mas_swiper_pagination_dots_active',
+			array(
+				'label'     => esc_html__( 'Active', 'mas-elementor' ),
 				'condition' => array(
 					'enable_carousel' => 'yes',
 					'show_pagination' => 'yes',
@@ -544,7 +607,7 @@ class Module extends Module_Base {
 		$element->add_control(
 			'mas_swiper_dots_active_background_color',
 			array(
-				'label'     => esc_html__( 'Active Color', 'mas-elementor' ),
+				'label'     => esc_html__( 'Background Color', 'mas-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'default'   => '#B7BAC6',
 				'selectors' => array(
@@ -557,6 +620,36 @@ class Module extends Module_Base {
 				),
 			)
 		);
+
+		$element->add_control(
+			'mas_swiper_dots_opacity_active',
+			array(
+				'label'     => esc_html__( 'Opacity', 'mas-elementor' ),
+				'type'      => Controls_Manager::SLIDER,
+				'default'   => array(
+					'size' => 1,
+				),
+				'range'     => array(
+					'px' => array(
+						'max'  => 1,
+						'min'  => 0.10,
+						'step' => 0.01,
+					),
+				),
+				'selectors' => array(
+					'{{WRAPPER}} + .swiper-pagination .swiper-pagination-bullet-active' => 'opacity: {{SIZE}} !important;',
+				),
+				'condition' => array(
+					'enable_carousel' => 'yes',
+					'show_pagination' => 'yes',
+					'pagination'      => 'bullets',
+				),
+			)
+		);
+
+		$element->end_controls_tab();
+
+		$element->end_controls_tabs();
 
 		$element->add_control(
 			'dots_pagination_spacing',
@@ -581,6 +674,7 @@ class Module extends Module_Base {
 					'show_pagination' => 'yes',
 					'pagination'      => 'bullets',
 				),
+				'separator' => 'before',
 			)
 		);
 
