@@ -27,7 +27,7 @@ class Skin_Classic extends Skin_Base {
 	 * @return string
 	 */
 	public function get_id() {
-		return 'classic';
+		return 'mas-products-skin';
 	}
 
 	/**
@@ -36,7 +36,7 @@ class Skin_Classic extends Skin_Base {
 	 * @return string
 	 */
 	public function get_title() {
-		return __( 'Classic', 'mas-elementor' );
+		return __( 'MAS', 'mas-elementor' );
 	}
 
 	/**
@@ -59,7 +59,7 @@ class Skin_Classic extends Skin_Base {
 
 		$shortcode = $this->get_shortcode_object( $settings, $template );
 
-		$content = $shortcode->mas_product_content();
+		$content = $shortcode->mas_product_content( $widget, $settings );
 
 		if ( $content ) {
 			echo $content; //phpcs:ignore
@@ -77,7 +77,7 @@ class Skin_Classic extends Skin_Base {
 			'skin'   => $this,
 		);
 		return array(
-			'path' => 'widgets/post-classic.php',
+			'path' => 'widgets/product-classic.php',
 			'args' => $args,
 		);
 	}

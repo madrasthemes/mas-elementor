@@ -21,7 +21,7 @@ class Products_Renderer extends Base_Products_Renderer {
 	 *
 	 * @var array
 	 */
-	private $settings = array();
+	protected $settings = array();
 
 	/**
 	 * Product filter
