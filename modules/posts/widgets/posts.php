@@ -255,7 +255,7 @@ class Posts extends Posts_Base {
 				}
 
 				$this->current_permalink = get_permalink();
-				if ( ! empty( $settings['select_loop'] ) && in_array( $count, $settings['select_loop'], true ) ) {
+				if ( ! empty( $settings['select_loop'] ) && in_array( $count, $settings['select_loop'] ) ) {
 					print( mas_render_template( $settings['select_loop_template'], false ) );//phpcs:ignore
 				} else {
 					print( mas_render_template( $settings['select_template'], false ) );//phpcs:ignore
