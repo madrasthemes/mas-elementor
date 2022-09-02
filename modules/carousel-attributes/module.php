@@ -438,7 +438,7 @@ class Module extends Module_Base {
 				$element->add_render_attribute( 'swiper-pagination', 'id', 'pagination-' . $section_id );
 			}
 			$element->add_render_attribute( 'swiper-pagination', 'class', 'swiper-pagination' );
-			// $element->add_render_attribute( 'swiper-pagination', 'style', 'position:relative' );
+			$element->add_render_attribute( 'swiper-pagination', 'style', 'position: ' . $settings['mas_swiper_pagination_position'] . ';' );
 			if ( 'yes' === $settings['show_pagination'] ) :
 				?>
 			<div <?php $element->print_render_attribute_string( 'swiper-pagination' ); ?>></div>

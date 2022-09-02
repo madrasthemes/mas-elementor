@@ -203,6 +203,7 @@ abstract class Base_Products_Renderer extends \WC_Shortcode_Products {
 				$widget->add_render_attribute( 'swiper-pagination', 'id', 'pagination-' . $widget_id );
 			}
 			$widget->add_render_attribute( 'swiper-pagination', 'class', 'swiper-pagination' );
+			$widget->add_render_attribute( 'swiper-pagination', 'style', 'position: ' . $settings['mas_swiper_pagination_position'] . ';' );
 			if ( 'yes' === $settings['show_pagination'] ) :
 				?>
 			<div <?php $widget->print_render_attribute_string( 'swiper-pagination' ); ?>></div>

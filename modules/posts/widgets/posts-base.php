@@ -886,6 +886,7 @@ abstract class Posts_Base extends Base_Widget {
 				$this->add_render_attribute( 'swiper-pagination', 'id', 'pagination-' . $widget_id );
 			}
 			$this->add_render_attribute( 'swiper-pagination', 'class', 'swiper-pagination' );
+			$this->add_render_attribute( 'swiper-pagination', 'style', 'position: ' . $settings['mas_swiper_pagination_position'] . ';' );
 			if ( 'yes' === $settings['show_pagination'] ) :
 				?>
 			<div <?php $this->print_render_attribute_string( 'swiper-pagination' ); ?>></div>
