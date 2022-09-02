@@ -125,7 +125,6 @@ class Module extends Module_Base {
 	 */
 	public function post_widget_post_types( $post_types ) {
 		$post_types['job_listing'] = 'Job Listings';
-		$post_types['jersdka;']    = 'MAS Portfolio';
 		return $post_types;
 	}
 
