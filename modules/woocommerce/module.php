@@ -37,6 +37,8 @@ class Module extends Module_Base {
 	 */
 	protected $use_mini_cart_template;
 
+	const OPTION_NAME_USE_MINI_CART = 'use_mini_cart_template';
+
 	/**
 	 * Woocommerce Active
 	 *
@@ -124,6 +126,8 @@ class Module extends Module_Base {
 			'Product_Terms',
 			'Product_Title',
 			'Category_Image',
+			'Cart_Button_Url',
+			'Cart_Button_Text',
 		);
 
 		$module = Plugin::elementor()->dynamic_tags;
@@ -376,6 +380,8 @@ class Module extends Module_Base {
 	public function __construct() {
 		parent::__construct();
 
+		add_action( 'elementor/dynamic_tags/register', array( $this, 'register_tags' ) );
+
 		// $this->use_mini_cart_template = 'yes' === get_option( 'elementor_' . self::OPTION_NAME_USE_MINI_CART, 'no' );
 		// if ( is_admin() ) {
 		// add_action( 'elementor/admin/after_create_settings/' . Settings::PAGE_ID, array( $this, 'register_admin_fields' ), 15 );
@@ -390,7 +396,7 @@ class Module extends Module_Base {
 		// On Editor - Register WooCommerce frontend hooks before the Editor init.
 		// Priority = 5, in order to allow plugins remove/add their wc hooks on init.
 		// if ( ! empty( $_REQUEST['action'] ) && 'elementor' === $_REQUEST['action'] && is_admin() ) {
-		// add_action( 'init', array( $this, 'register_wc_hooks' ), 5 );.
+		// add_action( 'init', array( $this, 'register_wc_hooks' ), 5 );
 		// }.
 
 		if ( $this->use_mini_cart_template ) {
