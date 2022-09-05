@@ -34,12 +34,15 @@ class Module extends TagsModule {
 
 	public function __construct() { //PHPCS:ignore.
 		parent::__construct();
+		$this->add_actions();
 
+		add_action( 'elementor/frontend/before_register_styles', array( $this, 'register_frontend_styles' ) );
 		// ACF 5 and up.
 		if ( class_exists( '\acf' ) && function_exists( 'acf_get_field_groups' ) ) {
 			$this->add_component( 'acf', new ACF\Module() );
 		}
 	}
+
 	/**
 	 * Get tag name.
 	 */
@@ -98,6 +101,33 @@ class Module extends TagsModule {
 			self::COMMENTS_GROUP => array(
 				'title' => esc_html__( 'Comments', 'mas-elementor' ),
 			),
+		);
+	}
+
+	/**
+	 * Add Actions.
+	 */
+	protected function add_actions() {
+	}
+
+	/**
+	 * Return the style dependencies of the module.
+	 *
+	 * @return array
+	 */
+	public function get_style_depends() {
+		return array( 'mas-dynamic-tag-stylesheet' );
+	}
+
+	/**
+	 * Register frontend styles.
+	 */
+	public function register_frontend_styles() {
+		wp_enqueue_style(
+			'mas-dynamic-tag-stylesheet',
+			MAS_ELEMENTOR_MODULES_URL . 'dynamic-tags/assets/css/dynamic-tag.css',
+			array(),
+			MAS_ELEMENTOR_VERSION
 		);
 	}
 }
