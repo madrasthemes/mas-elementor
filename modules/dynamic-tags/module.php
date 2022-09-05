@@ -53,7 +53,7 @@ class Module extends TagsModule {
 	 * Get tag class name.
 	 */
 	public function get_tag_classes_names() {
-		return array(
+		$tags = array(
 			'Comments_Number',
 			'Comments_URL',
 			'Post_Excerpt',
@@ -68,12 +68,22 @@ class Module extends TagsModule {
 			'Author_Name',
 			'Author_Profile_Picture',
 			'Author_URL',
-			'Job_Title',
-			'Job_Company',
-			'Job_Location',
-			'Job_Terms',
-			'Job_Expiration',
 		);
+		$jobs = array();
+		if ( class_exists( 'WP_Job_Manager' ) ) {
+			$jobs = array(
+				'Job_Title',
+				'Job_Company',
+				'Job_Location',
+				'Job_Terms',
+				'Job_Expiration',
+			);
+
+		}
+
+		$tags = array_merge( $tags, $jobs );
+
+		return $tags;
 	}
 	/**
 	 * Get groups.
