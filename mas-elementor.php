@@ -410,10 +410,10 @@ if ( ! function_exists( 'mas_template_options' ) ) {
 
 		$mas_template = array();
 		$args         = array(
-			'post_type'      => 'elementor_library',
-			'post_status'    => 'publish',
-			'limit'          => '-1',
-			'posts_per_page' => '-1',
+			'post_type'              => 'elementor_library',
+			'post_status'            => 'publish',
+			'limit'                  => '-1',
+			'posts_per_page'         => '-1',
 			'elementor_library_type' => 'mas-post',
 		);
 
@@ -453,6 +453,11 @@ if ( ! function_exists( 'mas_render_template' ) ) {
 		} else {
 			return $content;
 		}
+	}
+
+	// Include the main wp-job-manager class.
+	if ( ! class_exists( 'JH_WPJM_Job_Manager' ) ) {
+		include_once dirname( MAS_ELEMENTOR__FILE__ ) . '/classes/class-wp-job-manager.php';
 	}
 }
 
