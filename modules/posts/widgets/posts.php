@@ -245,6 +245,9 @@ class Posts extends Posts_Base {
 
 		} else {
 			$count = 1;
+			?>
+			<div class="mas-posts-container">
+			<?php
 			while ( $query->have_posts() ) {
 
 				$query->the_post();
@@ -269,7 +272,10 @@ class Posts extends Posts_Base {
 
 				$count ++;
 			}
-			wp_reset_postdata();
+			?>
+					</div>
+					<?php
+					wp_reset_postdata();
 		}
 
 		$this->carousel_loop_footer( $settings );

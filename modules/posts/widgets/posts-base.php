@@ -11,10 +11,12 @@ use Elementor\Core\Kits\Documents\Tabs\Global_Typography;
 use Elementor\Group_Control_Typography;
 use MASElementor\Base\Base_Widget;
 use Elementor\Controls_Manager;
+use Elementor\Icons_Manager;
 use MASElementor\Modules\QueryControl\Controls\Group_Control_Related;
 use Elementor\Plugin;
 use MASElementor\Modules\CarouselAttributes\Traits\Button_Widget_Trait;
 use MASElementor\Modules\CarouselAttributes\Traits\Pagination_Trait;
+use MASElementor\Modules\Posts\Traits\Load_Button_Widget_Trait as Load_More_Button_Trait;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
@@ -25,6 +27,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 abstract class Posts_Base extends Base_Widget {
 
+	use Load_More_Button_Trait;
 	use Button_Widget_Trait;
 	use Pagination_Trait;
 
@@ -53,7 +56,20 @@ abstract class Posts_Base extends Base_Widget {
 	 * @return array
 	 */
 	public function get_script_depends() {
-		return array( 'imagesloaded' );
+		return array( 'imagesloaded', 'load-more' );
+	}
+
+	/**
+	 * Get style dependencies.
+	 *
+	 * Retrieve the list of style dependencies the element requires.
+	 *
+	 * @since 1.9.0
+	 *
+	 * @return array Element styles dependencies.
+	 */
+	public function get_style_depends() {
+		return array( 'load-more' );
 	}
 
 	/**
@@ -93,14 +109,17 @@ abstract class Posts_Base extends Base_Widget {
 		$this->add_control(
 			'pagination_type',
 			array(
-				'label'   => __( 'Pagination', 'mas-elementor' ),
-				'type'    => Controls_Manager::SELECT,
-				'default' => '',
-				'options' => array(
-					''                      => __( 'None', 'mas-elementor' ),
-					'numbers'               => __( 'Numbers', 'mas-elementor' ),
-					'prev_next'             => __( 'Previous/Next', 'mas-elementor' ),
-					'numbers_and_prev_next' => __( 'Numbers', 'mas-elementor' ) . ' + ' . __( 'Previous/Next', 'mas-elementor' ),
+				'label'              => __( 'Pagination', 'mas-elementor' ),
+				'type'               => Controls_Manager::SELECT,
+				'default'            => '',
+				'frontend_available' => true,
+				'options'            => array(
+					''                              => __( 'None', 'mas-elementor' ),
+					'numbers'                       => __( 'Numbers', 'mas-elementor' ),
+					'prev_next'                     => __( 'Previous/Next', 'mas-elementor' ),
+					'numbers_and_prev_next'         => __( 'Numbers', 'mas-elementor' ) . ' + ' . __( 'Previous/Next', 'mas-elementor' ),
+					self::LOAD_MORE_ON_CLICK        => esc_html__( 'Load on Click', 'mas-elementor' ),
+					self::LOAD_MORE_INFINITE_SCROLL => esc_html__( 'Infinite Scroll', 'mas-elementor' ),
 				),
 			)
 		);
@@ -185,6 +204,150 @@ abstract class Posts_Base extends Base_Widget {
 				'condition' => array(
 					'pagination_type!' => '',
 				),
+			)
+		);
+
+		$this->add_control(
+			'load_more_spinner',
+			array(
+				'label'                  => esc_html__( 'Spinner', 'mas-elementor' ),
+				'type'                   => Controls_Manager::ICONS,
+				'fa4compatibility'       => 'icon',
+				'default'                => array(
+					'value'   => 'fas fa-spinner',
+					'library' => 'fa-solid',
+				),
+				'exclude_inline_options' => array( 'svg' ),
+				'recommended'            => array(
+					'fa-solid' => array(
+						'spinner',
+						'cog',
+						'sync',
+						'sync-alt',
+						'asterisk',
+						'circle-notch',
+					),
+				),
+				'skin'                   => 'inline',
+				'label_block'            => false,
+				'condition'              => array(
+					'pagination_type' => array(
+						'load_more_on_click',
+						'load_more_infinite_scroll',
+					),
+				),
+				'frontend_available'     => true,
+			)
+		);
+
+		$this->add_control(
+			'heading_load_more_button',
+			array(
+				'label'     => esc_html__( 'Button', 'mas-elementor' ),
+				'type'      => Controls_Manager::HEADING,
+				'separator' => 'before',
+				'condition' => array(
+					'pagination_type' => 'load_more_on_click',
+				),
+			)
+		);
+
+		$this->load_more_register_button_content_controls(
+			array(
+				'button_text'            => esc_html__( 'Load More', 'mas-elementor' ),
+				'control_label_name'     => esc_html__( 'Button Text', 'mas-elementor' ),
+				'prefix_class'           => 'load-more-align-',
+				'alignment_default'      => 'center',
+				'section_condition'      => array(
+					'pagination_type' => 'load_more_on_click',
+				),
+				'exclude_inline_options' => array( 'svg' ),
+			)
+		);
+
+		$this->remove_control( 'button_type' );
+		$this->remove_control( 'link' );
+		$this->remove_control( 'size' );
+
+		$this->add_control(
+			'heading_load_more_no_posts_message',
+			array(
+				'label'     => esc_html__( 'No More Posts Message', 'mas-elementor' ),
+				'type'      => Controls_Manager::HEADING,
+				'separator' => 'before',
+				'condition' => array(
+					'pagination_type' => array(
+						'load_more_on_click',
+						'load_more_infinite_scroll',
+					),
+				),
+			)
+		);
+
+		$this->add_responsive_control(
+			'load_more_no_posts_message_align',
+			array(
+				'label'     => esc_html__( 'Alignment', 'mas-elementor' ),
+				'type'      => Controls_Manager::CHOOSE,
+				'options'   => array(
+					'left'    => array(
+						'title' => esc_html__( 'Left', 'mas-elementor' ),
+						'icon'  => 'eicon-text-align-left',
+					),
+					'center'  => array(
+						'title' => esc_html__( 'Center', 'mas-elementor' ),
+						'icon'  => 'eicon-text-align-center',
+					),
+					'right'   => array(
+						'title' => esc_html__( 'Right', 'mas-elementor' ),
+						'icon'  => 'eicon-text-align-right',
+					),
+					'justify' => array(
+						'title' => esc_html__( 'Justified', 'mas-elementor' ),
+						'icon'  => 'eicon-text-align-justify',
+					),
+				),
+				'selectors' => array(
+					'{{WRAPPER}}' => '--load-more-message-alignment: {{VALUE}};',
+				),
+				'condition' => array(
+					'pagination_type' => array(
+						'load_more_on_click',
+						'load_more_infinite_scroll',
+					),
+				),
+			)
+		);
+
+		$this->add_control(
+			'load_more_no_posts_message_switcher',
+			array(
+				'label'     => esc_html__( 'Custom Messages', 'mas-elementor' ),
+				'type'      => Controls_Manager::SWITCHER,
+				'default'   => '',
+				'condition' => array(
+					'pagination_type' => array(
+						'load_more_on_click',
+						'load_more_infinite_scroll',
+					),
+				),
+			)
+		);
+
+		$this->add_control(
+			'load_more_no_posts_custom_message',
+			array(
+				'label'       => esc_html__( 'No more posts message', 'mas-elementor' ),
+				'type'        => Controls_Manager::TEXT,
+				'default'     => esc_html__( 'No more posts to show', 'mas-elementor' ),
+				'condition'   => array(
+					'pagination_type'                     => array(
+						'load_more_on_click',
+						'load_more_infinite_scroll',
+					),
+					'load_more_no_posts_message_switcher' => 'yes',
+				),
+				'label_block' => true,
 			)
 		);
 
@@ -624,6 +787,8 @@ abstract class Posts_Base extends Base_Widget {
 
 			$this->register_button_content_controls( $this, $args );
 
+			$this->load_more_register_button_style_controls();
+
 		$this->end_controls_section();
 
 		$this->register_button_style_controls( $this, $args );
@@ -810,7 +975,7 @@ abstract class Posts_Base extends Base_Widget {
 		$this->add_render_attribute(
 			'load_more_anchor',
 			array(
-				'data-page'      => $current_page,
+				'data-page'      => intval( $current_page ),
 				'data-max-page'  => $this->get_query()->max_num_pages,
 				'data-next-page' => $this->get_wp_link_page( $next_page ),
 			)
@@ -825,10 +990,10 @@ abstract class Posts_Base extends Base_Widget {
 				// The link-url control is hidden, so default value is added to keep the same style like button widget.
 				$this->set_settings( 'link', array( 'url' => '#' ) );
 
-				$this->render_button( $this->parent );
+				$this->load_more_render_button( $this );
 			}
 
-			$this->render_message();
+			$this->load_more_render_message();
 			return;
 		}
 
@@ -1000,6 +1165,16 @@ abstract class Posts_Base extends Base_Widget {
 		}
 
 		return $swiper_settings;
+	}
+
+	/**
+	 * Render message
+	 */
+	protected function load_more_render_message() {
+		$settings = $this->get_settings();
+		?>
+		<div class="e-load-more-message mt-5"><?php echo esc_html( $settings['load_more_no_posts_custom_message'] ); ?></div>
+		<?php
 	}
 
 	/**

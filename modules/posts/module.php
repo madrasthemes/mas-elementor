@@ -7,6 +7,7 @@
 
 namespace MASElementor\Modules\Posts;
 
+use MASElementor\Modules\Posts\Data\Controller;
 use MASElementor\Base\Module_Base;
 use MASElementor\Modules\Posts\Widgets\Posts_Base;
 use MASElementor\Plugin;
@@ -113,9 +114,12 @@ class Module extends Module_Base {
 	public function __construct() {
 		parent::__construct();
 
+		Plugin::elementor()->data_manager->register_controller( Controller::class );
 		add_filter( 'mas_elementor/utils/get_public_post_types', array( $this, 'post_widget_post_types' ), 10, 1 );
 		add_filter( 'pre_handle_404', array( $this, 'allow_posts_widget_pagination' ), 10, 2 );
 		add_action( 'elementor/editor/after_save', array( $this, 'clear_elementor_cache' ), 15 );
+		add_action( 'elementor/frontend/before_register_scripts', array( $this, 'register_frontend_scripts' ) );
+		add_action( 'elementor/frontend/before_register_styles', array( $this, 'register_frontend_styles' ) );
 	}
 
 	/**
@@ -137,5 +141,30 @@ class Module extends Module_Base {
 			// Automatically purge and regenerate the Elementor CSS cache.
 			\Elementor\Plugin::instance()->files_manager->clear_cache();
 		}
+	}
+
+	/**
+	 * Register frontend script.
+	 */
+	public function register_frontend_scripts() {
+		wp_register_script(
+			'load-more',
+			MAS_ELEMENTOR_MODULES_URL . '/posts/assets/js/load-more.js',
+			array( 'elementor-frontend-modules' ),
+			MAS_ELEMENTOR_VERSION,
+			true
+		);
+	}
+
+	/**
+	 * Register frontend styles.
+	 */
+	public function register_frontend_styles() {
+		wp_register_style(
+			'load-more',
+			MAS_ELEMENTOR_MODULES_URL . '/posts/assets/css/load-more.css',
+			array(),
+			MAS_ELEMENTOR_VERSION
+		);
 	}
 }
