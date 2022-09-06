@@ -173,7 +173,7 @@ abstract class Base_Products_Renderer extends \WC_Shortcode_Products {
 		ob_start();
 		if ( 'yes' === $settings['enable_carousel'] ) {
 			$json = wp_json_encode( $this->get_swiper_carousel_options( $widget, $settings ) );
-			$widget->add_render_attribute( 'post_swiper', 'class', 'swiper-' . $widget->get_id() );
+			$widget->add_render_attribute( 'post_swiper', 'class', 'swiper-products-' . $widget->get_id() );
 			$widget->add_render_attribute( 'post_swiper', 'class', 'swiper' );
 			$widget->add_render_attribute( 'post_swiper', 'data-swiper-options', $json );
 			?>

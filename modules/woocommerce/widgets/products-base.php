@@ -8,6 +8,7 @@
 namespace MASElementor\Modules\Woocommerce\Widgets;
 
 use Elementor\Controls_Manager;
+use Elementor\Plugin;
 use Elementor\Core\Kits\Documents\Tabs\Global_Colors;
 use Elementor\Core\Kits\Documents\Tabs\Global_Typography;
 use Elementor\Group_Control_Border;
@@ -1087,6 +1088,73 @@ abstract class Products_Base extends Base_Widget {
 		} elseif ( $this->get_settings( 'nothing_found_message' ) ) {
 			echo '<div class="elementor-nothing-found elementor-products-nothing-found">' . esc_html( $this->get_settings( 'nothing_found_message' ) ) . '</div>'; //phpcs:ignore
 		}
+
+		$this->render_script( 'swiper-products-' . $this->get_id() );
+	}
+
+	/**
+	 * Render script in the editor.
+	 *
+	 * @param string $key widget ID.
+	 */
+	public function render_script( $key = '' ) {
+		$key = '.' . $key;
+		if ( Plugin::$instance->editor->is_edit_mode() ) :
+			?>
+			<script type="text/javascript">
+			var swiperCarousel = (() => {
+				// forEach function
+				let forEach = (array, callback, scope) => {
+				for (let i = 0; i < array.length; i++) {
+					callback.call(scope, i, array[i]); // passes back stuff we need
+				}
+				};
+
+				// Carousel initialisation
+				let swiperCarousels = document.querySelectorAll("<?php echo esc_attr( $key ); ?>");
+				forEach(swiperCarousels, (index, value) => {
+					let postUserOptions,
+					postsPagerOptions;
+				if(value.dataset.swiperOptions != undefined) postUserOptions = JSON.parse(value.dataset.swiperOptions);
+
+
+				// Pager
+				if(postUserOptions.pager) {
+					postsPagerOptions = {
+					pagination: {
+						el: postUserOptions.pager,
+						clickable: true,
+						bulletActiveClass: 'active',
+						bulletClass: 'page-item',
+						renderBullet: function (index, className) {
+						return '<li class="' + className + '"><a href="#" class="page-link btn-icon btn-sm">' + (index + 1) + '</a></li>';
+						}
+					}
+					}
+				}
+
+				// Slider init
+				let options = {...postUserOptions, ...postsPagerOptions};
+				let swiper = new Swiper(value, options);
+
+				// Tabs (linked content)
+				if(postUserOptions.tabs) {
+
+					swiper.on('activeIndexChange', (e) => {
+					let targetTab = document.querySelector(e.slides[e.activeIndex].dataset.swiperTab),
+						previousTab = document.querySelector(e.slides[e.previousIndex].dataset.swiperTab);
+
+					previousTab.classList.remove('active');
+					targetTab.classList.add('active');
+					});
+				}
+
+				});
+
+				})();
+			</script>
+			<?php
+		endif;
 	}
 
 }

@@ -11,6 +11,7 @@ use Elementor\Controls_Manager;
 use Elementor\Widget_Base;
 use MASElementor\Modules\Woocommerce\Module;
 use MASElementor\Modules\Woocommerce\Widgets\Products;
+use Elementor\Plugin;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
@@ -66,6 +67,8 @@ class Skin_Classic extends Skin_Base {
 		} elseif ( $widget->get_settings( 'nothing_found_message' ) ) {
 			echo '<div class="elementor-nothing-found elementor-products-nothing-found">' . esc_html( $widget->get_settings( 'nothing_found_message' ) ) . '</div>'; //phpcs:ignore
 		}
+
+		$widget->render_script( 'swiper-products-' . $widget->get_id() );
 	}
 
 	/**
