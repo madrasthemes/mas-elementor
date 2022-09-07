@@ -439,6 +439,7 @@ trait Pagination_Trait {
 							),
 						),
 						'selectors'  => array(
+							'{{WRAPPER}} ' . $args['concat'] . ' .swiper-pagination-horizontal' => 'bottom: 0px !important;',
 							'{{WRAPPER}} ' . $args['concat'] . ' .swiper-pagination.swiper-pagination-bullets' => 'margin-top: {{SIZE}}{{UNIT}} !important;',
 							'{{WRAPPER}} ' . $args['concat'] . ' .swiper-pagination-progressbar.swiper-pagination-horizontal' => 'margin-top: {{SIZE}}{{UNIT}} !important;',
 							'{{WRAPPER}} ' . $args['concat'] . ' .swiper-pagination.swiper-pagination-fraction' => 'margin-top: {{SIZE}}{{UNIT}} !important;',
@@ -467,6 +468,7 @@ trait Pagination_Trait {
 							),
 						),
 						'selectors'  => array(
+							'{{WRAPPER}} ' . $args['concat'] . ' .swiper-pagination-horizontal' => 'bottom: 0px !important;',
 							'{{WRAPPER}} ' . $args['concat'] . ' .swiper-pagination.swiper-pagination-bullets' => 'margin-bottom: {{SIZE}}{{UNIT}} !important;',
 							'{{WRAPPER}} ' . $args['concat'] . ' .swiper-pagination-progressbar.swiper-pagination-horizontal' => 'margin-bottom: {{SIZE}}{{UNIT}} !important;',
 							'{{WRAPPER}} ' . $args['concat'] . ' .swiper-pagination.swiper-pagination-fraction' => 'margin-bottom: {{SIZE}}{{UNIT}} !important;',
