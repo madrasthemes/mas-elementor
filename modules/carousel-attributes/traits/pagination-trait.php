@@ -116,6 +116,7 @@ trait Pagination_Trait {
 						'label'          => esc_html__( 'Box Shadow', 'mas-elementor' ),
 						'selector'       => '{{WRAPPER}} ' . $args['concat'] . ' .swiper-pagination .swiper-pagination-bullet',
 						'fields_options' => array(
+							'box_shadow_type'  => array( 'default' => 'yes' ),
 							'box_shadow_position' => array(
 								'default' => 'inset',
 							),
