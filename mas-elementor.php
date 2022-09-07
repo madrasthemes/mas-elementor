@@ -454,10 +454,5 @@ if ( ! function_exists( 'mas_render_template' ) ) {
 			return $content;
 		}
 	}
-
-	// Include the main wp-job-manager class.
-	if ( ! class_exists( 'JH_WPJM_Job_Manager' ) ) {
-		include_once dirname( MAS_ELEMENTOR__FILE__ ) . '/classes/class-wp-job-manager.php';
-	}
 }
 
