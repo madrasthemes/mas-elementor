@@ -49,61 +49,10 @@ class Job_Title extends \Elementor\Core\DynamicTags\Tag {
 	}
 
 	/**
-	 * Register icon widget controls.
-	 *
-	 * Adds different input fields to allow the user to change and customize the widget settings.
+	 * Render the post  title.
 	 */
-	protected function register_controls() {
-		$this->add_control(
-			'job_title_icon',
-			array(
-				'label'            => esc_html__( 'Icon', 'mas-elementor' ),
-				'type'             => Controls_Manager::ICONS,
-				'fa4compatibility' => 'icon',
-				'default'          => array(
-					'value' => 'fas fa-star',
-				),
-			)
-		);
-	}
-
-	/**
-	 * Render icon widget output on the frontend.
-	 *
-	 * Written in PHP and used to generate the final HTML.
-	 */
-	protected function render() {
-		$settings = $this->get_settings_for_display();
-
-		$fallback_defaults = array(
-			'fa fa-check',
-			'fa fa-times',
-			'fa fa-dot-circle-o',
-		);
-		$migration_allowed = Icons_Manager::is_migration_allowed();
+	public function render() {
 		echo wp_kses_post( wpjm_get_the_job_title() );
-		// add old default.
-		if ( ! isset( $settings['icon'] ) && ! $migration_allowed ) {
-			$settings['icon'] = isset( $fallback_defaults[ $index ] ) ? $fallback_defaults[ $index ] : 'fa fa-check';
-		}
-		$migrated = isset( $settings['__fa4_migrated']['job_title_icon'] );
-		$is_new   = ! isset( $settings['icon'] ) && $migration_allowed;
-		$featured = is_position_featured();
-
-		if ( $featured ) {
-			if ( ! empty( $settings['icon'] ) || ( ! empty( $settings['job_title_icon']['value'] ) && $is_new ) ) :
-				?>
-				<span class="mas-job-title-icon">
-					<?php
-					if ( $is_new || $migrated ) {
-						Icons_Manager::render_icon( $settings['job_title_icon'], array( 'aria-hidden' => 'true' ) );
-					} else {
-						?>
-						<i class="<?php echo esc_attr( $settings['icon'] ); ?>" aria-hidden="true"></i>
-					<?php } ?>
-				</span>
-				<?php
-			endif;
-		}
 	}
+
 }
