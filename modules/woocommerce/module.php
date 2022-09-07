@@ -74,6 +74,7 @@ class Module extends Module_Base {
 	public function get_widgets() {
 		return array(
 			'Products',
+			'Add_To_Cart',
 		);
 	}
 
@@ -125,6 +126,7 @@ class Module extends Module_Base {
 			'Product_Stock',
 			'Product_Terms',
 			'Product_Title',
+			'Product_Id',
 			'Category_Image',
 			'Cart_Button_Url',
 			'Cart_Button_Text',
