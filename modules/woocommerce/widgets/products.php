@@ -318,7 +318,7 @@ class Products extends Products_Base {
 		$this->register_query_controls();
 		$this->register_carousel_attributes_controls();
 
-		// parent::register_controls();.
+		parent::register_controls();
 	}
 
 	/**
