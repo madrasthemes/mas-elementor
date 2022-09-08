@@ -470,9 +470,9 @@ if ( ! function_exists( 'mas_elementor_breadcrumb' ) ) {
 				'mas_breadcrumb_defaults',
 				array(
 					'delimiter'   => '',
-					'wrap_before' => '<nav aria-label="breadcrumb" class="container pt-4 mt-lg-3"><ol class="breadcrumb mb-0">',
+					'wrap_before' => '<nav aria-label="breadcrumb" class="mas-breadcrumb" style="display: block";><ol style="display: flex;list-style: none;" class="need to add style d-flex">',
 					'wrap_after'  => '</ol></nav>',
-					'before'      => '<li class="breadcrumb-item">',
+					'before'      => '<li class="zeeboomba">',
 					'after'       => '</li>',
 					'home'        => _x( 'Home', 'breadcrumb', 'mas-elementor' ),
 				)
@@ -508,7 +508,7 @@ if ( ! function_exists( 'mas_elementor_breadcrumb' ) ) {
 						)
 					);
 				} else {
-					$output .= '<li class="breadcrumb-item active"><span>' . esc_html( $crumb[0] ) . '</span></li>';
+					$output .= '<li class="zeeboomba active"><span>' . esc_html( $crumb[0] ) . '</span></li>';
 				}
 			}
 
