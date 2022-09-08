@@ -75,7 +75,7 @@ class Job_Title extends \Elementor\Core\DynamicTags\Tag {
 				'type'  => Controls_Manager::SLIDER,
 				'range' => array(
 					'px' => array(
-						'min' => 6,
+						'min' => 1,
 						'max' => 300,
 					),
 				),
@@ -111,7 +111,7 @@ class Job_Title extends \Elementor\Core\DynamicTags\Tag {
 				'type'  => Controls_Manager::SLIDER,
 				'range' => array(
 					'px' => array(
-						'min' => 6,
+						'min' => 1,
 						'max' => 300,
 					),
 				),
