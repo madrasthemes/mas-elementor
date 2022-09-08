@@ -456,3 +456,66 @@ if ( ! function_exists( 'mas_render_template' ) ) {
 	}
 }
 
+if ( ! function_exists( 'mas_elementor_breadcrumb' ) ) {
+
+	/**
+	 * Output the Mas Breadcrumb.
+	 *
+	 * @param array $args Arguments.
+	 */
+	function mas_elementor_breadcrumb( $args = array() ) {
+		$args = wp_parse_args(
+			$args,
+			apply_filters(
+				'mas_breadcrumb_defaults',
+				array(
+					'delimiter'   => '',
+					'wrap_before' => '<nav aria-label="breadcrumb" class="container pt-4 mt-lg-3"><ol class="breadcrumb mb-0">',
+					'wrap_after'  => '</ol></nav>',
+					'before'      => '<li class="breadcrumb-item">',
+					'after'       => '</li>',
+					'home'        => _x( 'Home', 'breadcrumb', 'mas-elementor' ),
+				)
+			)
+		);
+
+		require plugin_dir_path( MAS_ELEMENTOR__FILE__ ) . 'classes/class-mas-breadcrumb.php';
+
+		$breadcrumbs = new Mas_Breadcrumb_Class();
+
+		if ( ! empty( $args['home'] ) ) {
+			$breadcrumbs->add_crumb( $args['home'], apply_filters( 'mas_breadcrumb_home_url', home_url() ), '<i class="bx bx-home-alt fs-lg me-1"></i>' );
+		}
+
+		$args['breadcrumb'] = $breadcrumbs->generate();
+
+		do_action( 'mas_breadcrumb', $breadcrumbs, $args );
+
+		if ( ! empty( $args['breadcrumb'] ) ) {
+
+			$output = wp_kses_post( $args['wrap_before'] );
+
+			foreach ( $args['breadcrumb'] as $key => $crumb ) {
+
+				if ( ! empty( $crumb[1] ) && count( $args['breadcrumb'] ) !== $key + 1 ) {
+					$output .= wp_kses_post(
+						sprintf(
+							'%s<a href="%s" class="text-gray-700">%s</a>%s',
+							$args['before'],
+							esc_url( $crumb[1] ),
+							$crumb[0],
+							$args['after']
+						)
+					);
+				} else {
+					$output .= '<li class="breadcrumb-item active"><span>' . esc_html( $crumb[0] ) . '</span></li>';
+				}
+			}
+
+			$output .= wp_kses_post( $args['wrap_after'] );
+
+			echo wp_kses_post( apply_filters( 'mas_breadcrumb_html', $output ) );
+		}
+	}
+}
+
