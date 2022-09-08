@@ -472,7 +472,7 @@ if ( ! function_exists( 'mas_elementor_breadcrumb' ) ) {
 					'delimiter'   => '',
 					'wrap_before' => '<nav aria-label="breadcrumb" class="mas-breadcrumb" style="display: block";><ol style="display: flex;list-style: none;" class="need to add style d-flex">',
 					'wrap_after'  => '</ol></nav>',
-					'before'      => '<li class="zeeboomba">',
+					'before'      => '<li class="mas_breadcrumb_li">',
 					'after'       => '</li>',
 					'home'        => _x( 'Home', 'breadcrumb', 'mas-elementor' ),
 				)
@@ -500,7 +500,7 @@ if ( ! function_exists( 'mas_elementor_breadcrumb' ) ) {
 				if ( ! empty( $crumb[1] ) && count( $args['breadcrumb'] ) !== $key + 1 ) {
 					$output .= wp_kses_post(
 						sprintf(
-							'%s<a href="%s" class="text-gray-700">%s</a>%s',
+							'%s<a href="%s" class="mas_breadcrumb_link">%s</a>%s',
 							$args['before'],
 							esc_url( $crumb[1] ),
 							$crumb[0],
@@ -508,7 +508,7 @@ if ( ! function_exists( 'mas_elementor_breadcrumb' ) ) {
 						)
 					);
 				} else {
-					$output .= '<li class="zeeboomba active"><span>' . esc_html( $crumb[0] ) . '</span></li>';
+					$output .= '<li class="mas_breadcrumb_li active"><span>' . esc_html( $crumb[0] ) . '</span></li>';
 				}
 			}
 
