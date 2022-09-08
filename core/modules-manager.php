@@ -31,6 +31,7 @@ final class Modules_Manager {
 	public function __construct() {
 		$modules = array(
 			// 'theme-builder',
+			'mas-breadcrumbs',
 			'mas-nav-tabs',
 			'mas-library',
 			'dynamic-tags',
