@@ -245,9 +245,12 @@ class Posts extends Posts_Base {
 
 		} else {
 			$count = 1;
-			?>
-			<div class="mas-posts-container">
-			<?php
+			if ( 'yes' !== $settings['enable_carousel'] ) {
+				// mas-post-container open.
+				?>
+				<div class="mas-posts-container">
+				<?php
+			}
 			while ( $query->have_posts() ) {
 
 				$query->the_post();
@@ -272,9 +275,12 @@ class Posts extends Posts_Base {
 
 				$count ++;
 			}
-			?>
-					</div>
-					<?php
+			if ( 'yes' !== $settings['enable_carousel'] ) {
+				// mas-post-container close.
+				?>
+				</div>
+				<?php
+			}
 					wp_reset_postdata();
 		}
 
