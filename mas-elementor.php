@@ -469,8 +469,8 @@ if ( ! function_exists( 'mas_elementor_breadcrumb' ) ) {
 			apply_filters(
 				'mas_breadcrumb_defaults',
 				array(
-					'delimiter'   => '',
-					'wrap_before' => '<nav aria-label="breadcrumb" class="mas-breadcrumb" style="display: block";><ol style="display: flex;list-style: none;" class="need to add style d-flex">',
+					'delimiter'   => '&nbsp;&#47;&nbsp;',
+					'wrap_before' => '<nav aria-label="breadcrumb" class="mas-breadcrumb"><ol>',
 					'wrap_after'  => '</ol></nav>',
 					'before'      => '<li class="mas_breadcrumb_li">',
 					'after'       => '</li>',
@@ -484,7 +484,7 @@ if ( ! function_exists( 'mas_elementor_breadcrumb' ) ) {
 		$breadcrumbs = new Mas_Breadcrumb_Class();
 
 		if ( ! empty( $args['home'] ) ) {
-			$breadcrumbs->add_crumb( $args['home'], apply_filters( 'mas_breadcrumb_home_url', home_url() ), '<i class="bx bx-home-alt fs-lg me-1"></i>' );
+			$breadcrumbs->add_crumb( $args['home'], apply_filters( 'mas_breadcrumb_home_url', home_url() ) );
 		}
 
 		$args['breadcrumb'] = $breadcrumbs->generate();
@@ -508,7 +508,7 @@ if ( ! function_exists( 'mas_elementor_breadcrumb' ) ) {
 						)
 					);
 				} else {
-					$output .= '<li class="mas_breadcrumb_li active"><span>' . esc_html( $crumb[0] ) . '</span></li>';
+					$output .= '<li class="mas_breadcrumb_li"><span>' . esc_html( $crumb[0] ) . '</span></li>';
 				}
 			}
 

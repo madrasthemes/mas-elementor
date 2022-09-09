@@ -81,26 +81,39 @@ class Mas_Breadcrumbs extends Base_Widget {
 		);
 
 		$this->add_responsive_control(
-			'alignment',
+			'mas_breadrumb_alignment',
 			array(
 				'label'     => esc_html__( 'Alignment', 'mas-elementor' ),
-				'type'      => Controls_Manager::CHOOSE,
+				'type'      => Controls_Manager::SELECT,
+				'default'   => 'flex-start',
 				'options'   => array(
-					'left'   => array(
-						'title' => esc_html__( 'Left', 'mas-elementor' ),
-						'icon'  => 'eicon-text-align-left',
+					'flex-start'    => array(
+						'title' => esc_html_x( 'Start', 'Flex Container Control', 'mas-elementor' ),
+						'icon'  => 'eicon-flex eicon-justify-start-h',
 					),
-					'center' => array(
-						'title' => esc_html__( 'Center', 'mas-elementor' ),
-						'icon'  => 'eicon-text-align-center',
+					'center'        => array(
+						'title' => esc_html_x( 'Center', 'Flex Container Control', 'mas-elementor' ),
+						'icon'  => 'eicon-flex eicon-justify-center-h',
 					),
-					'right'  => array(
-						'title' => esc_html__( 'Right', 'mas-elementor' ),
-						'icon'  => 'eicon-text-align-right',
+					'flex-end'      => array(
+						'title' => esc_html_x( 'End', 'Flex Container Control', 'mas-elementor' ),
+						'icon'  => 'eicon-flex eicon-justify-end-h',
+					),
+					'space-between' => array(
+						'title' => esc_html_x( 'Space Between', 'Flex Container Control', 'mas-elementor' ),
+						'icon'  => 'eicon-flex eicon-justify-space-between-h',
+					),
+					'space-around'  => array(
+						'title' => esc_html_x( 'Space Around', 'Flex Container Control', 'mas-elementor' ),
+						'icon'  => 'eicon-flex eicon-justify-space-around-h',
+					),
+					'space-evenly'  => array(
+						'title' => esc_html_x( 'Space Evenly', 'Flex Container Control', 'mas-elementor' ),
+						'icon'  => 'eicon-flex eicon-justify-space-evenly-h',
 					),
 				),
 				'selectors' => array(
-					'{{WRAPPER}} .mas-breadcrumb' => 'text-align: {{VALUE}}',
+					'{{WRAPPER}} .mas-breadcrumb-ol' => 'justify-content: {{VALUE}}',
 				),
 			)
 		);
@@ -145,7 +158,7 @@ class Mas_Breadcrumbs extends Base_Widget {
 
 		// Border Tab.
 		$this->start_controls_tab(
-			'breadrumb_border',
+			'mas_breadrumb_border',
 			array(
 				'label' => esc_html__( 'Border', 'mas-elementor' ),
 			)
@@ -155,14 +168,14 @@ class Mas_Breadcrumbs extends Base_Widget {
 		$this->add_group_control(
 			Group_Control_Border::get_type(),
 			array(
-				'name'     => 'mas_breadcrumb_nav_border',
+				'name'     => 'mas_breadcrumb_border',
 				'selector' => '{{WRAPPER}} .mas-breadcrumb-ol',
 			)
 		);
 
 		// Border Radius Controls.
 		$this->add_responsive_control(
-			'mas_breadcrumb_nav_border_radius',
+			'mas_breadcrumb_border_radius',
 			array(
 				'label'      => esc_html__( 'Border Radius', 'mas-elementor' ),
 				'type'       => Controls_Manager::DIMENSIONS,
@@ -177,7 +190,7 @@ class Mas_Breadcrumbs extends Base_Widget {
 		$this->add_group_control(
 			Group_Control_Box_Shadow::get_type(),
 			array(
-				'name'     => 'mas_nav_tab_ul_box_shadow',
+				'name'     => 'mas_breadrumb_box_shadow',
 				'selector' => '{{WRAPPER}} .mas-breadcrumb-ol',
 			)
 		);
@@ -197,48 +210,20 @@ class Mas_Breadcrumbs extends Base_Widget {
 			)
 		);
 
-		$this->start_controls_tabs( 'mas_breadcrumb_li' );
-
-		// LI Spacing Tab.
-		$this->start_controls_tab(
+		$this->add_responsive_control(
 			'mas_breadcrumb_li_spacing',
 			array(
-				'label' => esc_html__( 'Spacing', 'mas-elementor' ),
-			)
-		);
-
-		// LI Padding Controls.
-		$this->add_responsive_control(
-			'mas_breadcrumb_li_padding',
-			array(
-				'label'      => esc_html__( 'Padding', 'mas-elementor' ),
-				'type'       => Controls_Manager::DIMENSIONS,
-				'size_units' => array( 'px', 'em', '%', 'rem' ),
-				'selectors'  => array(
-					'{{WRAPPER}} .mas_breadcrumb_li:not(:last-child)' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				'label'     => esc_html__( 'Spacing', 'mas-elementor' ),
+				'type'      => Controls_Manager::SLIDER,
+				'range'     => array(
+					'px' => array(
+						'min' => 0,
+						'max' => 50,
+					),
 				),
-			)
-		);
-
-		// LI Margin Controls.
-		$this->add_responsive_control(
-			'mas_breadcrumb_li_margin',
-			array(
-				'label'      => esc_html__( 'Margin', 'mas-elementor' ),
-				'type'       => Controls_Manager::DIMENSIONS,
-				'size_units' => array( 'px', 'em', '%', 'rem' ),
-				'selectors'  => array(
-					'{{WRAPPER}} .mas_breadcrumb_li:not(:last-child)' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				'selectors' => array(
+					'{{WRAPPER}}' => '--mas_breadcrumb_li: {{SIZE}}{{UNIT}};',
 				),
-			)
-		);
-
-		$this->end_controls_tab();
-
-		$this->start_controls_tab(
-			'mas_breadcrumb_li_Border',
-			array(
-				'label' => esc_html__( 'Border', 'mas-elementor' ),
 			)
 		);
 
@@ -247,7 +232,7 @@ class Mas_Breadcrumbs extends Base_Widget {
 			Group_Control_Border::get_type(),
 			array(
 				'name'     => 'mas_breadcrumb_li_border',
-				'selector' => '{{WRAPPER}} .mas_breadcrumb_li:not(:last-child)',
+				'selector' => '{{WRAPPER}} .mas_breadcrumb_li',
 			)
 		);
 
@@ -273,58 +258,57 @@ class Mas_Breadcrumbs extends Base_Widget {
 			)
 		);
 
-		$this->end_controls_tab();
-
-		$this->end_controls_tabs();
-
 		$this->end_controls_section();
 
-		// Section for Anchor element Controls in STYLE Tab.
+		// Section for title controls in STYLE Tab.
 		$this->start_controls_section(
-			'anchor_element_section',
+			'mas_breadcrumb_title',
 			array(
-				'label' => esc_html__( 'Anchor Element', 'mas-elementor' ),
+				'label' => esc_html__( 'Title', 'mas-elementor' ),
 				'tab'   => Controls_Manager::TAB_STYLE,
 			)
 		);
 
-		$this->start_controls_tabs( 'tabs_anchor' );
-
-		// Anchor Spacing Tab.
-		$this->start_controls_tab(
-			'mas_breadcrumb_anchor_normal',
+		$this->add_control(
+			'mas_breadcrumb_link_color',
 			array(
-				'label' => esc_html__( 'Normal', 'mas-elementor' ),
-			)
-		);
-
-		// Anchor Padding Controls.
-		$this->add_responsive_control(
-			'mas_breadcrumb_link_padding',
-			array(
-				'label'      => esc_html__( 'Padding', 'mas-elementor' ),
-				'type'       => Controls_Manager::DIMENSIONS,
-				'size_units' => array( 'px', 'em', '%', 'rem' ),
-				'selectors'  => array(
-					'{{WRAPPER}} .mas_breadcrumb_link' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				'label'     => esc_html__( 'Link Color', 'mas-elementor' ),
+				'type'      => Controls_Manager::COLOR,
+				'global'    => array(
+					'default' => Global_Colors::COLOR_PRIMARY,
+				),
+				'selectors' => array(
+					'{{WRAPPER}} .mas_breadcrumb_link' => 'color: {{VALUE}};',
 				),
 			)
 		);
 
-		// Anchor Margin Controls.
-		$this->add_responsive_control(
-			'mas_breadcrumb_link_margin',
+		$this->add_control(
+			'mas_breadcrumb_title_color',
 			array(
-				'label'      => esc_html__( 'Margin', 'mas-elementor' ),
-				'type'       => Controls_Manager::DIMENSIONS,
-				'size_units' => array( 'px', 'em', '%', 'rem' ),
-				'selectors'  => array(
-					'{{WRAPPER}} .mas_breadcrumb_link' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				'label'     => esc_html__( 'Color', 'mas-elementor' ),
+				'type'      => Controls_Manager::COLOR,
+				'global'    => array(
+					'default' => Global_Colors::COLOR_PRIMARY,
+				),
+				'selectors' => array(
+					'{{WRAPPER}} .mas_breadcrumb_li' => 'color: {{VALUE}};',
 				),
 			)
 		);
 
-		// Border Controls.
+		$this->add_group_control(
+			Group_Control_Typography::get_type(),
+			array(
+				'name'     => 'mas_breadcrumb_typography',
+				'global'   => array(
+					'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
+				),
+				'selector' => '{{WRAPPER}} .mas_breadcrumb_li',
+			)
+		);
+
+		// Anchor Border Controls.
 		$this->add_group_control(
 			Group_Control_Border::get_type(),
 			array(
@@ -332,145 +316,6 @@ class Mas_Breadcrumbs extends Base_Widget {
 				'selector' => '{{WRAPPER}} .mas_breadcrumb_link',
 			)
 		);
-
-		// Border Radius Controls.
-		$this->add_responsive_control(
-			'mas_breadcrumb_link_border_radius',
-			array(
-				'label'      => esc_html__( 'Border Radius', 'mas-elementor' ),
-				'type'       => Controls_Manager::DIMENSIONS,
-				'size_units' => array( 'px', '%', 'em' ),
-				'selectors'  => array(
-					'{{WRAPPER}} .mas_breadcrumb_link' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-				),
-			)
-		);
-
-		// Box Shadow Controls.
-		$this->add_group_control(
-			Group_Control_Box_Shadow::get_type(),
-			array(
-				'name'     => 'mas_breadcrumb_link_box_shadow',
-				'selector' => '{{WRAPPER}} .mas_breadcrumb_link',
-			)
-		);
-
-		// Background Controls.
-		$this->add_control(
-			'mas_breadcrumb_link_background',
-			array(
-				'label'     => esc_html__( 'Background Color', 'mas-elementor' ),
-				'type'      => Controls_Manager::COLOR,
-				'selectors' => array(
-					'{{WRAPPER}} .mas_breadcrumb_link' => 'background-color: {{VALUE}};',
-				),
-			)
-		);
-
-		$this->add_control(
-			'normal_anchor_title_color',
-			array(
-				'label'     => esc_html__( 'Title Color', 'mas-elementor' ),
-				'type'      => Controls_Manager::COLOR,
-				'selectors' => array(
-					'{{WRAPPER}} .mas_breadcrumb_link' => 'color: {{VALUE}};',
-				),
-			)
-		);
-
-		$this->end_controls_tab();
-
-		// Active Anchor Spacing Tab.
-		$this->start_controls_tab(
-			'mas_breadcrumb_anchor_active',
-			array(
-				'label' => esc_html__( 'Active', 'mas-elementor' ),
-			)
-		);
-
-		// Active Anchor Padding Controls.
-		$this->add_responsive_control(
-			'mas_breadcrumb_link_active_padding',
-			array(
-				'label'      => esc_html__( 'Padding', 'mas-elementor' ),
-				'type'       => Controls_Manager::DIMENSIONS,
-				'size_units' => array( 'px', 'em', '%', 'rem' ),
-				'selectors'  => array(
-					'{{WRAPPER}} .mas_breadcrumb_link.active' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-				),
-			)
-		);
-
-		// Active Anchor Margin Controls.
-		$this->add_responsive_control(
-			'mas_breadcrumb_link_active_margin',
-			array(
-				'label'      => esc_html__( 'Margin', 'mas-elementor' ),
-				'type'       => Controls_Manager::DIMENSIONS,
-				'size_units' => array( 'px', 'em', '%', 'rem' ),
-				'selectors'  => array(
-					'{{WRAPPER}} .mas_breadcrumb_link.active' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-				),
-			)
-		);
-
-		// Active Border Controls.
-		$this->add_group_control(
-			Group_Control_Border::get_type(),
-			array(
-				'name'     => 'mas_breadcrumb_link_active_border',
-				'selector' => '{{WRAPPER}} .mas_breadcrumb_link.active',
-			)
-		);
-
-		// Active Border Radius Controls.
-		$this->add_responsive_control(
-			'mas_breadcrumb_link_active_border_radius',
-			array(
-				'label'      => esc_html__( 'Border Radius', 'mas-elementor' ),
-				'type'       => Controls_Manager::DIMENSIONS,
-				'size_units' => array( 'px', '%', 'em' ),
-				'selectors'  => array(
-					'{{WRAPPER}} .mas_breadcrumb_link.active' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-				),
-			)
-		);
-
-		// Box Shadow Controls.
-		$this->add_group_control(
-			Group_Control_Box_Shadow::get_type(),
-			array(
-				'name'     => 'mas_breadcrumb_link_active__box_shadow',
-				'selector' => '{{WRAPPER}} .mas_breadcrumb_link.active',
-			)
-		);
-
-		// Background Controls.
-		$this->add_control(
-			'mas_breadcrumb_link_active_background',
-			array(
-				'label'     => esc_html__( 'Background Color', 'mas-elementor' ),
-				'type'      => Controls_Manager::COLOR,
-				'selectors' => array(
-					'{{WRAPPER}} .mas_breadcrumb_link.active' => 'background-color: {{VALUE}};',
-				),
-			)
-		);
-
-		$this->add_control(
-			'mas_breadcrumb_active_title_color',
-			array(
-				'label'     => esc_html__( 'Active Title Color', 'mas-elementor' ),
-				'type'      => Controls_Manager::COLOR,
-				'selectors' => array(
-					'{{WRAPPER}} .mas_breadcrumb_link.active' => 'color: {{VALUE}};',
-				),
-			)
-		);
-
-		$this->end_controls_tab();
-
-		$this->end_controls_tabs();
 
 		$this->end_controls_section();
 	}
@@ -482,8 +327,9 @@ class Mas_Breadcrumbs extends Base_Widget {
 
 		$settings = $this->get_settings_for_display();
 		$args     = array(
-			'delimiter'   => '',
+			'delimiter'   => '&nbsp;&#47;&nbsp;',
 			'wrap_before' => '<nav class="mas-breadcrumb" aria-label="breadcrumb"><ol class="mas-breadcrumb-ol">',
+			'home'        => _x( 'Home', 'breadcrumb', 'mas-elementor' ),
 		);
 		mas_elementor_breadcrumb( $args );
 	}
