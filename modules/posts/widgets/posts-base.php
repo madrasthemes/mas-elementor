@@ -16,6 +16,7 @@ use MASElementor\Modules\QueryControl\Controls\Group_Control_Related;
 use Elementor\Plugin;
 use MASElementor\Modules\CarouselAttributes\Traits\Button_Widget_Trait;
 use MASElementor\Modules\CarouselAttributes\Traits\Pagination_Trait;
+use Elementor\Group_Control_Border;
 use MASElementor\Modules\Posts\Traits\Load_Button_Widget_Trait as Load_More_Button_Trait;
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -365,105 +366,82 @@ abstract class Posts_Base extends Base_Widget {
 		);
 
 		$this->add_group_control(
-			Group_Control_Typography::get_type(),
+			Group_Control_Border::get_type(),
 			array(
-				'name'     => 'pagination_typography',
-				'selector' => '{{WRAPPER}} .elementor-pagination',
-				'global'   => array(
-					'default' => Global_Typography::TYPOGRAPHY_SECONDARY,
+				'name'           => 'product_border',
+				'selector'       => '{{WRAPPER}} .elementor-pagination',
+				'fields_options' => array(
+					'border' => array(
+						'default' => 'solid',
+					),
+					'width'  => array(
+						'default' => array(
+							'top'      => '0',
+							'right'    => '0',
+							'bottom'   => '0',
+							'left'     => '0',
+							'isLinked' => true,
+						),
+					),
+					'color'  => array(
+						'default' => '#FFFFFF',
+					),
 				),
 			)
 		);
 
 		$this->add_control(
-			'pagination_color_heading',
+			'pag_heading',
 			array(
-				'label'     => __( 'Colors', 'mas-elementor' ),
+				'label'     => __( 'Spacing', 'mas-elementor' ),
 				'type'      => Controls_Manager::HEADING,
 				'separator' => 'before',
 			)
 		);
 
-		$this->start_controls_tabs( 'pagination_colors' );
-
-		$this->start_controls_tab(
-			'pagination_color_normal',
-			array(
-				'label' => __( 'Normal', 'mas-elementor' ),
-			)
-		);
-
 		$this->add_control(
-			'pagination_color',
-			array(
-				'label'     => __( 'Color', 'mas-elementor' ),
-				'type'      => Controls_Manager::COLOR,
-				'selectors' => array(
-					'{{WRAPPER}} .elementor-pagination .page-numbers:not(.dots)' => 'color: {{VALUE}};',
-				),
-			)
-		);
-
-		$this->end_controls_tab();
-
-		$this->start_controls_tab(
-			'pagination_color_hover',
-			array(
-				'label' => __( 'Hover', 'mas-elementor' ),
-			)
-		);
-
-		$this->add_control(
-			'pagination_hover_color',
-			array(
-				'label'     => __( 'Color', 'mas-elementor' ),
-				'type'      => Controls_Manager::COLOR,
-				'selectors' => array(
-					'{{WRAPPER}} .elementor-pagination a.page-numbers:hover' => 'color: {{VALUE}};',
-				),
-			)
-		);
-
-		$this->end_controls_tab();
-
-		$this->start_controls_tab(
-			'pagination_color_active',
-			array(
-				'label' => __( 'Active', 'mas-elementor' ),
-			)
-		);
-
-		$this->add_control(
-			'pagination_active_color',
-			array(
-				'label'     => __( 'Color', 'mas-elementor' ),
-				'type'      => Controls_Manager::COLOR,
-				'selectors' => array(
-					'{{WRAPPER}} .elementor-pagination .page-numbers.current' => 'color: {{VALUE}};',
-				),
-			)
-		);
-
-		$this->end_controls_tab();
-
-		$this->end_controls_tabs();
-
-		$this->add_responsive_control(
 			'pagination_spacing',
 			array(
-				'label'     => __( 'Space Between', 'mas-elementor' ),
-				'type'      => Controls_Manager::SLIDER,
-				'separator' => 'before',
-				'default'   => array(
-					'size' => 10,
+				'label'      => __( 'Top Spacing', 'mas-elementor' ),
+				'type'       => Controls_Manager::SLIDER,
+				'size_units' => array( 'px', '%', 'em' ),
+				'default'    => array(
+					'size' => 15,
 				),
-				'range'     => array(
+				'range'      => array(
+					'px' => array(
+						'min' => 0,
+						'max' => 200,
+					),
+				),
+				'selectors'  => array(
+					'{{WRAPPER}} nav.woocommerce-pagination' => 'margin-top: {{SIZE}}{{UNIT}}',
+					'{{WRAPPER}} .elementor-pagination' => 'margin-top: {{SIZE}}{{UNIT}}',
+				),
+			)
+		);
+
+		$this->add_responsive_control(
+			'product_pagination_spacing',
+			array(
+				'label'      => __( 'Space Between', 'mas-elementor' ),
+				'type'       => Controls_Manager::SLIDER,
+				'size_units' => array( 'px', '%', 'em' ),
+				'default'    => array(
+					'size' => 8,
+				),
+				'range'      => array(
 					'px' => array(
 						'min' => 0,
 						'max' => 100,
 					),
 				),
-				'selectors' => array(
+				'selectors'  => array(
+					'{{WRAPPER}} .woocommerce nav.woocommerce-pagination ul li' => 'border:0',
+					'body:not(.rtl) {{WRAPPER}} nav.woocommerce-pagination ul li:not(:first-child)' => 'margin-left: calc( {{SIZE}}{{UNIT}}/2 );',
+					'body:not(.rtl) {{WRAPPER}} nav.woocommerce-pagination ul li:not(:last-child)' => 'margin-right: calc( {{SIZE}}{{UNIT}}/2 );',
+					'body.rtl {{WRAPPER}} nav.woocommerce-pagination ul li:not(:first-child)' => 'margin-right: calc( {{SIZE}}{{UNIT}}/2 );',
+					'body.rtl {{WRAPPER}} nav.woocommerce-pagination ul li:not(:last-child)' => 'margin-left: calc( {{SIZE}}{{UNIT}}/2 );',
 					'body:not(.rtl) {{WRAPPER}} .elementor-pagination .page-numbers:not(:first-child)' => 'margin-left: calc( {{SIZE}}{{UNIT}}/2 );',
 					'body:not(.rtl) {{WRAPPER}} .elementor-pagination .page-numbers:not(:last-child)' => 'margin-right: calc( {{SIZE}}{{UNIT}}/2 );',
 					'body.rtl {{WRAPPER}} .elementor-pagination .page-numbers:not(:first-child)' => 'margin-right: calc( {{SIZE}}{{UNIT}}/2 );',
@@ -472,22 +450,350 @@ abstract class Posts_Base extends Base_Widget {
 			)
 		);
 
-		$this->add_responsive_control(
-			'pagination_spacing_top',
+		$this->add_control(
+			'pagination_padding',
 			array(
-				'label'     => __( 'Spacing', 'mas-elementor' ),
-				'type'      => Controls_Manager::SLIDER,
-				'range'     => array(
-					'px' => array(
-						'min' => 0,
-						'max' => 100,
-					),
+				'type'       => Controls_Manager::DIMENSIONS,
+				'label'      => esc_html__( 'Padding', 'mas-elementor' ),
+				'size_units' => array( 'px', '%', 'em' ),
+				'default'    => array(
+					'top'      => 8,
+					'right'    => 12,
+					'bottom'   => 8,
+					'left'     => 12,
+					'unit'     => 'px',
+					'isLinked' => false,
 				),
-				'selectors' => array(
-					'{{WRAPPER}} .elementor-pagination' => 'margin-top: {{SIZE}}{{UNIT}}',
+				'selectors'  => array(
+					'{{WRAPPER}} nav.woocommerce-pagination ul li a, {{WRAPPER}} nav.woocommerce-pagination ul li span' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .elementor-pagination .page-numbers' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				),
 			)
 		);
+
+		$this->start_controls_tabs(
+			'pagination_style_tabs',
+			array(
+				'separator' => 'before',
+			)
+		);
+
+		$this->start_controls_tab(
+			'pagination_style_normal',
+			array(
+				'label' => __( 'Normal', 'mas-elementor' ),
+			)
+		);
+
+		$this->add_group_control(
+			Group_Control_Typography::get_type(),
+			array(
+				'name'           => 'normal_pagination_typo',
+				'global'         => array(
+					'default' => Global_Typography::TYPOGRAPHY_ACCENT,
+				),
+				'selector'       => '{{WRAPPER}} .elementor-pagination .page-numbers',
+				'fields_options' => array(
+					'typography'  => array( 'default' => 'yes' ),
+					// Inner control name.
+					'font_weight' => array(
+						// Inner control settings.
+						'default' => '600',
+					),
+					'font_family' => array(
+						'default' => 'Quicksand',
+					),
+					'font_size'   => array(
+						'default' => array(
+							'unit' => 'px',
+							'size' => 14,
+						),
+					),
+				),
+			)
+		);
+
+		$this->add_control(
+			'pagination_link_color',
+			array(
+				'label'     => __( 'Text Color', 'mas-elementor' ),
+				'type'      => Controls_Manager::COLOR,
+				'default'   => '#576366',
+				'selectors' => array(
+					'{{WRAPPER}} .elementor-pagination .page-numbers' => 'color: {{VALUE}}',
+				),
+			)
+		);
+
+		$this->add_control(
+			'pagination_link_bg_color',
+			array(
+				'label'     => __( 'Background Color', 'mas-elementor' ),
+				'type'      => Controls_Manager::COLOR,
+				'default'   => '#FFFFFF',
+				'selectors' => array(
+					'{{WRAPPER}} .elementor-pagination .page-numbers' => 'background-color: {{VALUE}}',
+				),
+			)
+		);
+
+		$this->add_group_control(
+			Group_Control_Border::get_type(),
+			array(
+				'name'           => 'normal_single_pag_border',
+				'selector'       => '{{WRAPPER}} .elementor-pagination .page-numbers',
+				'fields_options' => array(
+					'border' => array(
+						'default' => 'solid',
+					),
+					'width'  => array(
+						'default' => array(
+							'top'      => '2',
+							'right'    => '2',
+							'bottom'   => '2',
+							'left'     => '2',
+							'isLinked' => true,
+						),
+					),
+					'color'  => array(
+						'default' => '#d3d9dd',
+					),
+				),
+			)
+		);
+
+		$this->add_control(
+			'normal_single_pag_border_red',
+			array(
+				'type'       => Controls_Manager::DIMENSIONS,
+				'label'      => esc_html__( 'Border Radius', 'mas-elementor' ),
+				'size_units' => array( 'px', '%', 'em' ),
+				'default'    => array(
+					'top'      => 5,
+					'right'    => 5,
+					'bottom'   => 5,
+					'left'     => 5,
+					'unit'     => 'px',
+					'isLinked' => false,
+				),
+				'selectors'  => array(
+					'{{WRAPPER}} .elementor-pagination .page-numbers' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				),
+			)
+		);
+
+		$this->end_controls_tab();
+
+		$this->start_controls_tab(
+			'pagination_style_hover',
+			array(
+				'label' => __( 'Hover', 'mas-elementor' ),
+			)
+		);
+
+		$this->add_group_control(
+			Group_Control_Typography::get_type(),
+			array(
+				'name'           => 'hover_pagination_typo',
+				'global'         => array(
+					'default' => Global_Typography::TYPOGRAPHY_ACCENT,
+				),
+				'selector'       => '{{WRAPPER}} .elementor-pagination .page-numbers:hover',
+				'fields_options' => array(
+					'typography'  => array( 'default' => 'yes' ),
+					// Inner control name.
+					'font_weight' => array(
+						// Inner control settings.
+						'default' => '600',
+					),
+					'font_family' => array(
+						'default' => 'Quicksand',
+					),
+					'font_size'   => array(
+						'default' => array(
+							'unit' => 'px',
+							'size' => 14,
+						),
+					),
+				),
+			)
+		);
+
+		$this->add_control(
+			'pagination_link_color_hover',
+			array(
+				'label'     => __( 'Text Color', 'mas-elementor' ),
+				'type'      => Controls_Manager::COLOR,
+				'default'   => '#576366',
+				'selectors' => array(
+					'{{WRAPPER}} .elementor-pagination .page-numbers:hover' => 'color: {{VALUE}}',
+				),
+			)
+		);
+
+		$this->add_control(
+			'pagination_link_bg_color_hover',
+			array(
+				'label'     => __( 'Background Color', 'mas-elementor' ),
+				'type'      => Controls_Manager::COLOR,
+				'default'   => '#00000000',
+				'selectors' => array(
+					'{{WRAPPER}} .elementor-pagination .page-numbers:hover' => 'background-color: {{VALUE}}',
+				),
+			)
+		);
+
+		$this->add_group_control(
+			Group_Control_Border::get_type(),
+			array(
+				'name'           => 'hover_single_pag_border',
+				'selector'       => '{{WRAPPER}} .elementor-pagination .page-numbers:hover',
+				'fields_options' => array(
+					'border' => array(
+						'default' => 'solid',
+					),
+					'width'  => array(
+						'default' => array(
+							'top'      => '2',
+							'right'    => '2',
+							'bottom'   => '2',
+							'left'     => '2',
+							'isLinked' => true,
+						),
+					),
+					'color'  => array(
+						'default' => '#b9c1c8',
+					),
+				),
+			)
+		);
+
+		$this->add_control(
+			'hover_single_pag_border_red',
+			array(
+				'type'       => Controls_Manager::DIMENSIONS,
+				'label'      => esc_html__( 'Border Radius', 'mas-elementor' ),
+				'size_units' => array( 'px', '%', 'em' ),
+				'default'    => array(
+					'top'      => 5,
+					'right'    => 5,
+					'bottom'   => 5,
+					'left'     => 5,
+					'unit'     => 'px',
+					'isLinked' => false,
+				),
+				'selectors'  => array(
+					'{{WRAPPER}} .elementor-pagination .page-numbers:hover' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				),
+			)
+		);
+
+		$this->end_controls_tab();
+
+		$this->start_controls_tab(
+			'pagination_style_active',
+			array(
+				'label' => __( 'Active', 'mas-elementor' ),
+			)
+		);
+
+		$this->add_group_control(
+			Group_Control_Typography::get_type(),
+			array(
+				'name'           => 'active_pagination_typo',
+				'global'         => array(
+					'default' => Global_Typography::TYPOGRAPHY_ACCENT,
+				),
+				'selector'       => '{{WRAPPER}} .elementor-pagination .page-numbers.current',
+				'fields_options' => array(
+					'typography'  => array( 'default' => 'yes' ),
+					// Inner control name.
+					'font_weight' => array(
+						// Inner control settings.
+						'default' => '600',
+					),
+					'font_family' => array(
+						'default' => 'Quicksand',
+					),
+					'font_size'   => array(
+						'default' => array(
+							'unit' => 'px',
+							'size' => 14,
+						),
+					),
+				),
+			)
+		);
+
+		$this->add_control(
+			'pagination_link_color_active',
+			array(
+				'label'     => __( 'Text Color', 'mas-elementor' ),
+				'type'      => Controls_Manager::COLOR,
+				'default'   => '#576366',
+				'selectors' => array(
+					'{{WRAPPER}} .elementor-pagination .page-numbers.current' => 'color: {{VALUE}}',
+				),
+			)
+		);
+
+		$this->add_control(
+			'pagination_link_bg_color_active',
+			array(
+				'label'     => __( 'Background Color', 'mas-elementor' ),
+				'type'      => Controls_Manager::COLOR,
+				'default'   => '#FFFFFF',
+				'selectors' => array(
+					'{{WRAPPER}} .elementor-pagination .page-numbers.current' => 'background-color: {{VALUE}}',
+				),
+			)
+		);
+
+		$this->add_group_control(
+			Group_Control_Border::get_type(),
+			array(
+				'name'           => 'active_single_pag_border',
+				'selector'       => '{{WRAPPER}} .elementor-pagination .page-numbers.current',
+				'fields_options' => array(
+					'border' => array(
+						'default' => 'solid',
+					),
+					'width'  => array(
+						'default' => array(
+							'top'      => '2',
+							'right'    => '2',
+							'bottom'   => '2',
+							'left'     => '2',
+							'isLinked' => true,
+						),
+					),
+					'color'  => array(
+						'default' => '#f2f4f5',
+					),
+				),
+			)
+		);
+
+		$this->add_control(
+			'active_single_pag_border_red',
+			array(
+				'type'       => Controls_Manager::DIMENSIONS,
+				'label'      => esc_html__( 'Border Radius', 'mas-elementor' ),
+				'size_units' => array( 'px', '%', 'em' ),
+				'default'    => array(
+					'top'      => 5,
+					'right'    => 5,
+					'bottom'   => 5,
+					'left'     => 5,
+					'unit'     => 'px',
+					'isLinked' => false,
+				),
+				'selectors'  => array(
+					'{{WRAPPER}} .elementor-pagination .page-numbers.current' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				),
+			)
+		);
+
 
 		$this->end_controls_section();
 	}
