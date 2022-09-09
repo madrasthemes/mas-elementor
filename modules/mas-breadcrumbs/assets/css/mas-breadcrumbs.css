@@ -1,0 +1,18 @@
+.mas-breadcrumb 
+   .mas-breadcrumb-ol {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.mas-breadcrumb .mas_breadcrumb_li {
+    margin: 0 var(--mas_breadcrumb_li);
+    -ms-flex-negative: 0;
+    flex-shrink: 0;
+}
+
+.mas_breadcrumb_li+.mas_breadcrumb_li::before {
+    content: "/";
+    /* font-size: var(--e-icon-tab-icon-size); */
+}

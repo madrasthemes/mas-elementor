@@ -469,10 +469,10 @@ if ( ! function_exists( 'mas_elementor_breadcrumb' ) ) {
 			apply_filters(
 				'mas_breadcrumb_defaults',
 				array(
-					'delimiter'   => '',
-					'wrap_before' => '<nav aria-label="breadcrumb" class="container pt-4 mt-lg-3"><ol class="breadcrumb mb-0">',
+					'delimiter'   => '&nbsp;&#47;&nbsp;',
+					'wrap_before' => '<nav aria-label="breadcrumb" class="mas-breadcrumb"><ol>',
 					'wrap_after'  => '</ol></nav>',
-					'before'      => '<li class="breadcrumb-item">',
+					'before'      => '<li class="mas_breadcrumb_li">',
 					'after'       => '</li>',
 					'home'        => _x( 'Home', 'breadcrumb', 'mas-elementor' ),
 				)
@@ -484,7 +484,7 @@ if ( ! function_exists( 'mas_elementor_breadcrumb' ) ) {
 		$breadcrumbs = new Mas_Breadcrumb_Class();
 
 		if ( ! empty( $args['home'] ) ) {
-			$breadcrumbs->add_crumb( $args['home'], apply_filters( 'mas_breadcrumb_home_url', home_url() ), '<i class="bx bx-home-alt fs-lg me-1"></i>' );
+			$breadcrumbs->add_crumb( $args['home'], apply_filters( 'mas_breadcrumb_home_url', home_url() ) );
 		}
 
 		$args['breadcrumb'] = $breadcrumbs->generate();
@@ -500,7 +500,7 @@ if ( ! function_exists( 'mas_elementor_breadcrumb' ) ) {
 				if ( ! empty( $crumb[1] ) && count( $args['breadcrumb'] ) !== $key + 1 ) {
 					$output .= wp_kses_post(
 						sprintf(
-							'%s<a href="%s" class="text-gray-700">%s</a>%s',
+							'%s<a href="%s" class="mas_breadcrumb_link">%s</a>%s',
 							$args['before'],
 							esc_url( $crumb[1] ),
 							$crumb[0],
@@ -508,7 +508,7 @@ if ( ! function_exists( 'mas_elementor_breadcrumb' ) ) {
 						)
 					);
 				} else {
-					$output .= '<li class="breadcrumb-item active"><span>' . esc_html( $crumb[0] ) . '</span></li>';
+					$output .= '<li class="mas_breadcrumb_li"><span>' . esc_html( $crumb[0] ) . '</span></li>';
 				}
 			}
 
