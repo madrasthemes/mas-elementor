@@ -213,7 +213,6 @@ abstract class Products_Base extends Base_Widget {
 			array(
 				'name'           => 'normal_single_pag_border',
 				'selector'       => '{{WRAPPER}} nav.woocommerce-pagination ul li a',
-				'separator'      => 'before',
 				'fields_options' => array(
 					'border' => array(
 						'default' => 'solid',
@@ -426,7 +425,6 @@ abstract class Products_Base extends Base_Widget {
 			array(
 				'name'           => 'active_single_pag_border',
 				'selector'       => '{{WRAPPER}} nav.woocommerce-pagination ul li span.current',
-				'separator'      => 'before',
 				'fields_options' => array(
 					'border' => array(
 						'default' => 'solid',
