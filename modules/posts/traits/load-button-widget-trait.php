@@ -82,7 +82,7 @@ trait Load_Button_Widget_Trait {
 				),
 				'placeholder' => esc_html__( 'https://your-link.com', 'mas-elementor' ),
 				'default'     => array(
-					'url' => '#',
+					'url' => '#loadMore',
 				),
 				'condition'   => $args['section_condition'],
 			)
@@ -202,21 +202,6 @@ trait Load_Button_Widget_Trait {
 			)
 		);
 
-		$this->add_control(
-			'lm_button_css_id',
-			array(
-				'label'       => esc_html__( 'Button ID', 'mas-elementor' ),
-				'type'        => Controls_Manager::TEXT,
-				'dynamic'     => array(
-					'active' => true,
-				),
-				'default'     => '',
-				'title'       => esc_html__( 'Add your custom id WITHOUT the Pound key. e.g: my-id', 'mas-elementor' ),
-				'description' => esc_html__( 'Please make sure the ID is unique and not used elsewhere on the page this form is displayed. This field allows `A-z 0-9` & underscore chars without spaces.', 'mas-elementor' ),
-				'separator'   => 'before',
-				'condition'   => $args['section_condition'],
-			)
-		);
 	}
 
 	/**
@@ -415,8 +400,9 @@ trait Load_Button_Widget_Trait {
 	 * Written in PHP and used to generate the final HTML.
 	 *
 	 * @param \Elementor\Widget_Base|null $instance The widget instance.
+	 * @param string                      $load_id load more button data id.
 	 */
-	protected function load_more_render_button( Widget_Base $instance = null ) {
+	protected function load_more_render_button( Widget_Base $instance = null, $load_id = '' ) {
 		if ( empty( $instance ) ) {
 			$instance = $this;
 		}
@@ -431,17 +417,17 @@ trait Load_Button_Widget_Trait {
 		if ( ! empty( $settings['lm_link']['url'] ) ) {
 			$instance->add_link_attributes( 'button', $settings['lm_link'] );
 			$instance->add_render_attribute( 'button', 'class', 'elementor-button-link' );
+			$instance->add_render_attribute( 'button', 'role', 'button' );
 		}
 
 		$instance->add_render_attribute( 'button', 'class', array( 'btn', 'btn__load-more' ) );
-		$instance->add_render_attribute( 'button', 'role', 'button' );
 
 		if ( ! empty( $settings['lm_button_css'] ) ) {
 			$instance->add_render_attribute( 'button', 'class', $settings['lm_button_css'] );
 		}
 
-		if ( ! empty( $settings['lm_button_css_id'] ) ) {
-			$instance->add_render_attribute( 'button', 'id', $settings['lm_button_css_id'] );
+		if ( ! empty( $load_id ) ) {
+			$instance->add_render_attribute( 'button', 'data-loader', $load_id );
 		}
 
 		if ( ! empty( $settings['lm_size'] ) ) {

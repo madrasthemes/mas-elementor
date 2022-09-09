@@ -60,7 +60,7 @@
     margin-top: var(--load-more—spacing, 30px);
 }
 .elementor-widget-mas-posts .elementor-button-wrapper .e-load-more-spinner, .elementor-widget-mas-archive-posts .elementor-button-wrapper .e-load-more-spinner, .elementor-widget-mas-portfolio .elementor-button-wrapper .e-load-more-spinner, .elementor-widget-mas-archive-portfolio .elementor-button-wrapper .e-load-more-spinner {
-    position: absolute;
+    position: relative;
     left: 50%;
     top: 50%;
     -webkit-transform: translate(-50%, -50%);

@@ -234,6 +234,10 @@ class Posts extends Posts_Base {
 			return;
 		}
 
+		$load_id      = 'load-id-' . $this->get_id();
+		$scroll_id    = 'scroll-id-' . $this->get_id();
+		$post_wrapper = $load_id . ' mas-posts-container ' . $scroll_id;
+
 		$this->carousel_loop_header( $settings );
 
 		// It's the global `wp_query` it self. and the loop was started from the theme.
@@ -248,7 +252,7 @@ class Posts extends Posts_Base {
 			if ( 'yes' !== $settings['enable_carousel'] ) {
 				// mas-post-container open.
 				?>
-				<div class="mas-posts-container">
+				<div class="<?php echo esc_attr( $post_wrapper ); ?>">
 				<?php
 			}
 			while ( $query->have_posts() ) {
@@ -261,7 +265,7 @@ class Posts extends Posts_Base {
 				}
 
 				$this->current_permalink = get_permalink();
-				if ( ! empty( $settings['select_loop'] ) && in_array( $count, $settings['select_loop'] ) ) {
+				if ( ! empty( $settings['select_loop'] ) && in_array( $count, $settings['select_loop'] ) ) { //phpcs:ignore
 					print( mas_render_template( $settings['select_loop_template'], false ) );//phpcs:ignore
 				} else {
 					print( mas_render_template( $settings['select_template'], false ) );//phpcs:ignore
@@ -287,7 +291,7 @@ class Posts extends Posts_Base {
 		$this->carousel_loop_footer( $settings );
 
 		if ( 'yes' !== $settings['enable_carousel'] ) {
-			$this->render_loop_footer();
+			$this->render_loop_footer( $load_id );
 		}
 
 		$this->render_script( 'swiper-' . $this->get_id() );

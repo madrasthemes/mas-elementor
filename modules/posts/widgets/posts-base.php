@@ -925,8 +925,10 @@ abstract class Posts_Base extends Base_Widget {
 
 	/**
 	 * Render loop footer for pagination.
+	 *
+	 * @param string $loadid load more button id.
 	 */
-	protected function render_loop_footer() {
+	protected function render_loop_footer( $loadid = '' ) {
 		$parent_settings       = $this->get_settings();
 		$using_ajax_pagination = in_array(
 			$parent_settings['pagination_type'],
@@ -953,8 +955,7 @@ abstract class Posts_Base extends Base_Widget {
 
 		$page_limit = $this->get_query()->max_num_pages;
 
-		// Page limit control should not effect in load more mode.
-		if ( '' !== $parent_settings['pagination_page_limit'] && ! $using_ajax_pagination ) {
+		if ( '' !== $parent_settings['pagination_page_limit'] ) {
 			$page_limit = min( $parent_settings['pagination_page_limit'], $page_limit );
 		}
 
@@ -976,13 +977,13 @@ abstract class Posts_Base extends Base_Widget {
 			'load_more_anchor',
 			array(
 				'data-page'      => intval( $current_page ),
-				'data-max-page'  => $this->get_query()->max_num_pages,
+				'data-max-page'  => $page_limit,
 				'data-next-page' => $this->get_wp_link_page( $next_page ),
 			)
 		);
-
+		$scroll_id = 'scroll-id-' . $this->get_id();
 		?>
-		<div class="e-load-more-anchor" <?php $this->print_render_attribute_string( 'load_more_anchor' ); ?>></div>
+		<div data-scrollId="<?php echo esc_attr( $scroll_id ); ?>" class="e-load-more-anchor" <?php $this->print_render_attribute_string( 'load_more_anchor' ); ?>></div>
 		<?php
 
 		if ( $using_ajax_pagination ) {
@@ -990,7 +991,7 @@ abstract class Posts_Base extends Base_Widget {
 				// The link-url control is hidden, so default value is added to keep the same style like button widget.
 				$this->set_settings( 'link', array( 'url' => '#' ) );
 
-				$this->load_more_render_button( $this );
+				$this->load_more_render_button( $this, $loadid );
 			}
 
 			$this->load_more_render_message();
