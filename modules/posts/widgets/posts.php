@@ -236,15 +236,7 @@ class Posts extends Posts_Base {
 
 		$load_id      = 'load-id-' . $this->get_id();
 		$scroll_id    = 'scroll-id-' . $this->get_id();
-		if ( 'load_more_infinite_scroll' === $settings['pagination_type'] ) {
-			$scroll_id    = 'mas-posts-infinite-scroll ' . $scroll_id;
-		}
-		if ( 'load_more_on_click' === $settings['pagination_type'] ) {
-			$load_id      = 'mas-posts-load-more ' . $load_id;
-		}
 		$post_wrapper = $load_id . ' mas-posts-container ' . $scroll_id;
-
-		$this->add_render_attribute( 'mas__posts_container', 'class', $post_wrapper );
 
 		$this->carousel_loop_header( $settings );
 
@@ -260,7 +252,7 @@ class Posts extends Posts_Base {
 			if ( 'yes' !== $settings['enable_carousel'] ) {
 				// mas-post-container open.
 				?>
-				<div <?php $this->print_render_attribute_string( 'mas__posts_container' ); ?>>
+				<div class="<?php echo esc_attr( $post_wrapper ); ?>">
 				<?php
 			}
 			while ( $query->have_posts() ) {
