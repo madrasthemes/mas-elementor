@@ -48,7 +48,6 @@
 				var dataLoad = newDoc.dataset.loader;
                 // event.preventDefault();
                 if ( dataLoad ) {
-					console.log(dataLoad);
                     this.handlePostsQuery(dataLoad);
                 }
                 
