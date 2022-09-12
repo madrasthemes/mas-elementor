@@ -317,6 +317,21 @@ class Mas_Breadcrumbs extends Base_Widget {
 			)
 		);
 
+		$this->add_control(
+			'separator_before',
+			array(
+				'label'       => esc_html__( 'Separator', 'mas-elementor' ),
+				'type'        => Controls_Manager::TEXT,
+				'dynamic'     => array(
+					'active' => true,
+				),
+				'default'     => esc_html__( 'This is the heading', 'mas-elementor' ),
+				'placeholder' => esc_html__( 'Enter your title', 'mas-elementor' ),
+				'label_block' => true,
+				'separator'   => 'before',
+			)
+		);
+
 		$this->end_controls_section();
 	}
 
@@ -325,9 +340,10 @@ class Mas_Breadcrumbs extends Base_Widget {
 	 */
 	protected function render() {
 
-		$settings = $this->get_settings_for_display();
-		$args     = array(
-			'delimiter'   => '&nbsp;&#47;&nbsp;',
+		$settings  = $this->get_settings_for_display();
+		$delimiter = $settings['separator_before'];
+		$args      = array(
+			'delimiter'   => $delimiter,
 			'wrap_before' => '<nav class="mas-breadcrumb" aria-label="breadcrumb"><ol class="mas-breadcrumb-ol">',
 			'home'        => _x( 'Home', 'breadcrumb', 'mas-elementor' ),
 		);
