@@ -1231,10 +1231,8 @@ abstract class Posts_Base extends Base_Widget {
 
 	/**
 	 * Render loop footer for pagination.
-	 *
-	 * @param string $loadid load more button id.
 	 */
-	protected function render_loop_footer( $loadid = '' ) {
+	protected function render_loop_footer() {
 		$parent_settings       = $this->get_settings();
 		$using_ajax_pagination = in_array(
 			$parent_settings['pagination_type'],
@@ -1287,9 +1285,8 @@ abstract class Posts_Base extends Base_Widget {
 				'data-next-page' => $this->get_wp_link_page( $next_page ),
 			)
 		);
-		$scroll_id = 'scroll-id-' . $this->get_id();
 		?>
-		<div data-scrollId="<?php echo esc_attr( $scroll_id ); ?>" class="e-load-more-anchor" <?php $this->print_render_attribute_string( 'load_more_anchor' ); ?>></div>
+		<div class="e-load-more-anchor" <?php $this->print_render_attribute_string( 'load_more_anchor' ); ?>></div>
 		<?php
 
 		if ( $using_ajax_pagination ) {
@@ -1297,7 +1294,7 @@ abstract class Posts_Base extends Base_Widget {
 				// The link-url control is hidden, so default value is added to keep the same style like button widget.
 				$this->set_settings( 'link', array( 'url' => '#' ) );
 
-				$this->load_more_render_button( $this, $loadid );
+				$this->load_more_render_button( $this );
 			}
 
 			$this->load_more_render_message();
