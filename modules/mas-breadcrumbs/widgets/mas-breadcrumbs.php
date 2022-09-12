@@ -317,18 +317,50 @@ class Mas_Breadcrumbs extends Base_Widget {
 			)
 		);
 
-		$this->add_control(
-			'separator_before',
+		$this->end_controls_section();
+
+		// Section for title controls in STYLE Tab.
+		$this->start_controls_section(
+			'mas_breadcrumb_separator',
 			array(
-				'label'       => esc_html__( 'Separator', 'mas-elementor' ),
+				'label' => esc_html__( 'Separator', 'mas-elementor' ),
+				'tab'   => Controls_Manager::TAB_STYLE,
+			)
+		);
+
+		$this->add_control(
+			'mas_separator_before',
+			array(
+				'label'       => esc_html__( 'Delimiter', 'mas-elementor' ),
 				'type'        => Controls_Manager::TEXT,
-				'dynamic'     => array(
-					'active' => true,
-				),
-				'default'     => esc_html__( 'This is the heading', 'mas-elementor' ),
-				'placeholder' => esc_html__( 'Enter your title', 'mas-elementor' ),
+				'default'     => esc_html__( '>', 'mas-elementor' ),
+				'placeholder' => esc_html__( 'Enter Delimiter', 'mas-elementor' ),
 				'label_block' => true,
-				'separator'   => 'before',
+			)
+		);
+
+		$this->add_control(
+			'mas_breadcrumb_separator_color',
+			array(
+				'label'     => esc_html__( 'Color', 'mas-elementor' ),
+				'type'      => Controls_Manager::COLOR,
+				'global'    => array(
+					'default' => Global_Colors::COLOR_PRIMARY,
+				),
+				'selectors' => array(
+					'{{WRAPPER}} .mas-breadcrumb-ol' => 'color: {{VALUE}};',
+				),
+			)
+		);
+
+		$this->add_group_control(
+			Group_Control_Typography::get_type(),
+			array(
+				'name'     => 'mas_breadcrumb_separator_typography',
+				'global'   => array(
+					'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
+				),
+				'selector' => '{{WRAPPER}} .mas-breadcrumb-ol',
 			)
 		);
 
@@ -341,7 +373,7 @@ class Mas_Breadcrumbs extends Base_Widget {
 	protected function render() {
 
 		$settings  = $this->get_settings_for_display();
-		$delimiter = $settings['separator_before'];
+		$delimiter = $settings['mas_separator_before'];
 		$args      = array(
 			'delimiter'   => $delimiter,
 			'wrap_before' => '<nav class="mas-breadcrumb" aria-label="breadcrumb"><ol class="mas-breadcrumb-ol">',

@@ -496,6 +496,7 @@ if ( ! function_exists( 'mas_elementor_breadcrumb' ) ) {
 			$output = wp_kses_post( $args['wrap_before'] );
 
 			foreach ( $args['breadcrumb'] as $key => $crumb ) {
+				$args['before'] = 0 === $key ? $args['before'] : $args['delimiter'] . $args['before'];
 
 				if ( ! empty( $crumb[1] ) && count( $args['breadcrumb'] ) !== $key + 1 ) {
 					$output .= wp_kses_post(

@@ -11,7 +11,3 @@
     -ms-flex-negative: 0;
     flex-shrink: 0;
 }
-
-/* .mas_breadcrumb_li+.mas_breadcrumb_li::before {
-    content: url(smiley.gif);
-} */
