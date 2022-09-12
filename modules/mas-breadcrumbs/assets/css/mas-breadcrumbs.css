@@ -12,7 +12,6 @@
     flex-shrink: 0;
 }
 
-.mas_breadcrumb_li+.mas_breadcrumb_li::before {
-    content: "/";
-    /* font-size: var(--e-icon-tab-icon-size); */
-}
+/* .mas_breadcrumb_li+.mas_breadcrumb_li::before {
+    content: url(smiley.gif);
+} */
