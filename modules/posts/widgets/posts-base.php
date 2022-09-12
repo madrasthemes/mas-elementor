@@ -312,8 +312,9 @@ abstract class Posts_Base extends Base_Widget {
 						'icon'  => 'eicon-text-align-justify',
 					),
 				),
+				'default'   => 'center',
 				'selectors' => array(
-					'{{WRAPPER}}' => '--load-more-message-alignment: {{VALUE}};',
+					'{{WRAPPER}} .e-load-more-message' => 'justify-content: {{VALUE}};',
 				),
 				'condition' => array(
 					'pagination_type' => array(
@@ -1498,8 +1499,9 @@ abstract class Posts_Base extends Base_Widget {
 	 */
 	protected function load_more_render_message() {
 		$settings = $this->get_settings();
+		$this->add_render_attribute( 'e-load-more-message', 'class', array( 'e-load-more-message' ) );
 		?>
-		<div class="e-load-more-message mt-5"><?php echo esc_html( $settings['load_more_no_posts_custom_message'] ); ?></div>
+		<div <?php $this->print_render_attribute_string( 'e-load-more-message' ); ?>><?php echo esc_html( $settings['load_more_no_posts_custom_message'] ); ?></div>
 		<?php
 	}
 

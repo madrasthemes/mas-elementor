@@ -45,13 +45,13 @@
     display: flex;
 }
 .elementor-widget-mas-posts.e-load-more-pagination-loading .mas-elementor-button-content-wrapper, .elementor-widget-mas-archive-posts.e-load-more-pagination-loading .mas-elementor-button-content-wrapper, .elementor-widget-mas-portfolio.e-load-more-pagination-loading .mas-elementor-button-content-wrapper, .elementor-widget-mas-archive-portfolio.e-load-more-pagination-loading .mas-elementor-button-content-wrapper {
-    visibility: hidden;
+    /* visibility: hidden; */
 }
 .elementor-widget-mas-posts.e-load-more-pagination-end .mas-elementor-button-wrapper, .elementor-widget-mas-archive-posts.e-load-more-pagination-end .mas-elementor-button-wrapper, .elementor-widget-mas-portfolio.e-load-more-pagination-end .mas-elementor-button-wrapper, .elementor-widget-mas-archive-portfolio.e-load-more-pagination-end .mas-elementor-button-wrapper {
     display: none;
 }
 .elementor-widget-mas-posts.e-load-more-pagination-end .e-load-more-message, .elementor-widget-mas-archive-posts.e-load-more-pagination-end .e-load-more-message, .elementor-widget-mas-portfolio.e-load-more-pagination-end .e-load-more-message, .elementor-widget-mas-archive-portfolio.e-load-more-pagination-end .e-load-more-message {
-    display: block;
+    display: flex;
 }
 .elementor-widget-mas-posts.e-load-more-no-spinner .mas-elementor-button-content-wrapper, .elementor-widget-mas-archive-posts.e-load-more-no-spinner .mas-elementor-button-content-wrapper, .elementor-widget-mas-portfolio.e-load-more-no-spinner .mas-elementor-button-content-wrapper, .elementor-widget-mas-archive-portfolio.e-load-more-no-spinner .mas-elementor-button-content-wrapper {
     visibility: visible;
