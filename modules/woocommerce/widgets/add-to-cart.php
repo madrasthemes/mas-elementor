@@ -11,6 +11,10 @@ use Elementor\Controls_Manager;
 use Elementor\Widget_Button;
 use MASElementor\Base\Base_Widget_Trait;
 use MASElementor\Modules\QueryControl\Module;
+use Elementor\Group_Control_Border;
+use Elementor\Core\Kits\Documents\Tabs\Global_Typography;
+use Elementor\Group_Control_Typography;
+
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
@@ -140,6 +144,17 @@ class Add_To_Cart extends Widget_Button {
 
 		parent::register_controls();
 
+		$this->start_injection(
+			array(
+				'of' => 'section_style',
+				'at' => 'before',
+			)
+		);
+
+		$this->register_quantity_controls(); 
+
+		$this->end_injection();
+
 		$this->start_controls_section(
 			'section_layout',
 			array(
@@ -209,6 +224,226 @@ class Add_To_Cart extends Widget_Button {
 			)
 		);
 	}
+
+	/**
+	 * Register controls for this widget.
+	 */
+	public function register_quantity_controls() {
+		$this->start_controls_section(
+			'section_quantity_style',
+			array(
+				'label'     => __( 'Quantity', 'mas-elementor' ),
+				'tab'       => Controls_Manager::TAB_STYLE,
+			)
+		);
+
+		$this->add_control(
+			'quantity_quantity_padding',
+			array(
+				'type'       => Controls_Manager::DIMENSIONS,
+				'label'      => esc_html__( 'Padding', 'mas-elementor' ),
+				'size_units' => array( 'px', '%', 'em' ),
+				'default'    => array(
+					'top'      => 8,
+					'right'    => 12,
+					'bottom'   => 8,
+					'left'     => 12,
+					'unit'     => 'px',
+					'isLinked' => false,
+				),
+				'selectors'  => array(
+					'{{WRAPPER}} .quantity .input-text' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				),
+			)
+		);
+
+		$this->add_control(
+			'quantity_align',
+			array(
+				'label'     => __( 'Alignment', 'mas-elementor' ),
+				'type'      => Controls_Manager::CHOOSE,
+				'options'   => array(
+					'left'   => array(
+						'title' => __( 'Left', 'mas-elementor' ),
+						'icon'  => 'eicon-text-align-left',
+					),
+					'center' => array(
+						'title' => __( 'Center', 'mas-elementor' ),
+						'icon'  => 'eicon-text-align-center',
+					),
+					'right'  => array(
+						'title' => __( 'Right', 'mas-elementor' ),
+						'icon'  => 'eicon-text-align-right',
+					),
+				),
+				'selectors' => array(
+					'{{WRAPPER}} .quantity .input-text' => 'text-align: {{VALUE}};',
+				),
+			)
+		);
+
+		$this->start_controls_tabs(
+			'quantity_style_tabs',
+			array(
+				'separator' => 'before',
+			)
+		);
+
+		$this->start_controls_tab(
+			'quantity_style_normal',
+			array(
+				'label' => __( 'Normal', 'mas-elementor' ),
+			)
+		);
+
+		$this->add_group_control(
+			\Elementor\Group_Control_Typography::get_type(),
+			array(
+				'name'           => 'normal_typo',
+				'global'         => array(
+					'default' => Global_Typography::TYPOGRAPHY_ACCENT,
+				),
+				'separator' => 'before',
+				'selector'       => '{{WRAPPER}} .quantity .input-text',
+				'fields_options' => array(
+					'typography'  => array( 'default' => 'yes' ),
+					// Inner control name.
+					'font_weight' => array(
+						// Inner control settings.
+						'default' => '400',
+					),
+					'font_size'   => array(
+						'default' => array(
+							'unit' => 'px',
+							'size' => 14,
+						),
+					),
+				),
+			)
+		);
+
+		
+		$this->add_group_control(
+			Group_Control_Border::get_type(),
+			array(
+				'name'           => 'quantity_border',
+				'selector'       => '{{WRAPPER}} .quantity .input-text',
+				'fields_options' => array(
+					'border' => array(
+						'default' => 'solid',
+					),
+					'width'  => array(
+						'default' => array(
+							'top'      => '2',
+							'right'    => '2',
+							'bottom'   => '2',
+							'left'     => '2',
+							'isLinked' => true,
+						),
+					),
+					'color'  => array(
+						'default' => '#d4d9dd',
+					),
+				),
+			)
+		);
+
+		$this->add_control(
+			'quantity_bg_color',
+			array(
+				'label'     => __( 'Background Color', 'mas-elementor' ),
+				'separator' => 'before',
+				'type'      => Controls_Manager::COLOR,
+				'default'   => '##f9fafa',
+				'selectors' => array(
+					'{{WRAPPER}} .quantity .input-text' => 'background-color: {{VALUE}}',
+				),
+			)
+		);
+
+		$this->end_controls_tab();
+
+		$this->start_controls_tab(
+			'quantity_style_hover',
+			array(
+				'label' => __( 'Hover', 'mas-elementor' ),
+			)
+		);
+
+		$this->add_group_control(
+			\Elementor\Group_Control_Typography::get_type(),
+			array(
+				'name'           => 'hover_typo',
+				'global'         => array(
+					'default' => Global_Typography::TYPOGRAPHY_ACCENT,
+				),
+				'separator' => 'before',
+				'selector'       => '{{WRAPPER}} .quantity .input-text:hover',
+				'fields_options' => array(
+					'typography'  => array( 'default' => 'yes' ),
+					// Inner control name.
+					'font_weight' => array(
+						// Inner control settings.
+						'default' => '400',
+					),
+					'font_size'   => array(
+						'default' => array(
+							'unit' => 'px',
+							'size' => 14,
+						),
+					),
+				),
+			)
+		);
+
+		
+		$this->add_group_control(
+			Group_Control_Border::get_type(),
+			array(
+				'name'           => 'hover_quantity_border',
+				'selector'       => '{{WRAPPER}} .quantity .input-text:hover',
+				'fields_options' => array(
+					'border' => array(
+						'default' => 'solid',
+					),
+					'width'  => array(
+						'default' => array(
+							'top'      => '2',
+							'right'    => '2',
+							'bottom'   => '2',
+							'left'     => '2',
+							'isLinked' => true,
+						),
+					),
+					'color'  => array(
+						'default' => '#d4d9dd',
+					),
+				),
+			)
+		);
+
+		$this->add_control(
+			'hover_quantity_bg_color',
+			array(
+				'label'     => __( 'Background Color', 'mas-elementor' ),
+				'separator' => 'before',
+				'type'      => Controls_Manager::COLOR,
+				'default'   => '##f9fafa',
+				'selectors' => array(
+					'{{WRAPPER}} .quantity .input-text:hover' => 'background-color: {{VALUE}}',
+				),
+			)
+		);
+
+
+
+		$this->end_controls_tab();
+
+		$this->end_controls_tabs();
+
+
+	$this->end_controls_section();
+}
 
 	/**
 	 * Render
