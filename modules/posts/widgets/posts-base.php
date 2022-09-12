@@ -386,7 +386,11 @@ abstract class Posts_Base extends Base_Widget {
 				'label'     => __( 'Pagination', 'mas-elementor' ),
 				'tab'       => Controls_Manager::TAB_STYLE,
 				'condition' => array(
-					'pagination_type!' => '',
+					'pagination_type!' => array(
+						'load_more_on_click',
+						'load_more_infinite_scroll',
+						'',
+					),
 				),
 			)
 		);
