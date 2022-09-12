@@ -400,9 +400,8 @@ trait Load_Button_Widget_Trait {
 	 * Written in PHP and used to generate the final HTML.
 	 *
 	 * @param \Elementor\Widget_Base|null $instance The widget instance.
-	 * @param string                      $load_id load more button data id.
 	 */
-	protected function load_more_render_button( Widget_Base $instance = null, $load_id = '' ) {
+	protected function load_more_render_button( Widget_Base $instance = null ) {
 		if ( empty( $instance ) ) {
 			$instance = $this;
 		}
@@ -424,10 +423,6 @@ trait Load_Button_Widget_Trait {
 
 		if ( ! empty( $settings['lm_button_css'] ) ) {
 			$instance->add_render_attribute( 'button', 'class', $settings['lm_button_css'] );
-		}
-
-		if ( ! empty( $load_id ) ) {
-			$instance->add_render_attribute( 'button', 'data-loader', $load_id );
 		}
 
 		if ( ! empty( $settings['lm_size'] ) ) {
