@@ -234,10 +234,7 @@ class Posts extends Posts_Base {
 			return;
 		}
 
-		$load_id      = 'load-id-' . $this->get_id();
-		$scroll_id    = 'scroll-id-' . $this->get_id();
-		$post_wrapper = $load_id . ' mas-posts-container ' . $scroll_id;
-
+		$post_wrapper = 'mas-posts-container';
 		$this->carousel_loop_header( $settings );
 
 		// It's the global `wp_query` it self. and the loop was started from the theme.
@@ -291,7 +288,7 @@ class Posts extends Posts_Base {
 		$this->carousel_loop_footer( $settings );
 
 		if ( 'yes' !== $settings['enable_carousel'] ) {
-			$this->render_loop_footer( $load_id );
+			$this->render_loop_footer();
 		}
 
 		$this->render_script( 'swiper-' . $this->get_id() );
