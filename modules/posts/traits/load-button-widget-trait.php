@@ -369,7 +369,10 @@ trait Load_Button_Widget_Trait {
 		}
 
 		$settings = $instance->get_settings();
+		$align    = 'mas-lm-align-' . $settings['lm_align'];
+
 		$instance->add_render_attribute( 'wrapper', 'class', array( 'btn-wrapper', 'mas-elementor-button-wrapper' ) );
+		$instance->add_render_attribute( 'wrapper', 'class', array( 'btn-wrapper', $align ) );
 
 		if ( ! empty( $settings['lm_button_wrapper_css'] ) ) {
 			$instance->add_render_attribute( 'wrapper', 'class', $settings['lm_button_wrapper_css'] );

@@ -68,3 +68,15 @@
     transform: translate(-50%, -50%);
     margin: inherit;
 }
+.elementor-widget-mas-posts .mas-elementor-button-wrapper{
+    display: flex;
+}
+.mas-lm-align-start{
+    justify-content: left;
+}
+.mas-lm-align-end{
+    justify-content: right;
+}
+.mas-lm-align-center{
+    justify-content: center;
+}

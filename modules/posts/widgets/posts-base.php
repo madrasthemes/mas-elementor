@@ -203,7 +203,11 @@ abstract class Posts_Base extends Base_Widget {
 					'{{WRAPPER}} .elementor-pagination' => 'text-align: {{VALUE}};',
 				),
 				'condition' => array(
-					'pagination_type!' => '',
+					'pagination_type' => array(
+						'prev_next',
+						'numbers_and_prev_next',
+						'numbers',
+					),
 				),
 			)
 		);
