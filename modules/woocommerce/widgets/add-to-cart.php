@@ -238,6 +238,36 @@ class Add_To_Cart extends Widget_Button {
 		);
 
 		$this->add_control(
+			'quantity_max_width',
+			array(
+				'label'          => esc_html__( 'Max Width', 'mas-elementor' ),
+				'type'           => Controls_Manager::SLIDER,
+				'default'        => array(
+					'unit' => 'px',
+					'size' => '80',
+				),
+				'size_units'     => array( '%', 'px', 'vw' ),
+				'range'          => array(
+					'%'  => array(
+						'min' => 1,
+						'max' => 100,
+					),
+					'px' => array(
+						'min' => 1,
+						'max' => 1000,
+					),
+					'vw' => array(
+						'min' => 1,
+						'max' => 100,
+					),
+				),
+				'selectors'      => array(
+					'{{WRAPPER}} .quantity .input-text' => 'max-width: {{SIZE}}{{UNIT}}',
+				),
+			)
+		);
+
+		$this->add_control(
 			'quantity_quantity_padding',
 			array(
 				'type'       => Controls_Manager::DIMENSIONS,
