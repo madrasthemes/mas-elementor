@@ -469,7 +469,7 @@ if ( ! function_exists( 'mas_elementor_breadcrumb' ) ) {
 			apply_filters(
 				'mas_breadcrumb_defaults',
 				array(
-					'delimiter'   => '&nbsp;&#47;&nbsp;',
+					'delimiter'   => '',
 					'wrap_before' => '<nav aria-label="breadcrumb" class="mas-breadcrumb"><ol>',
 					'wrap_after'  => '</ol></nav>',
 					'before'      => '<li class="mas_breadcrumb_li">',
@@ -508,7 +508,7 @@ if ( ! function_exists( 'mas_elementor_breadcrumb' ) ) {
 						)
 					);
 				} else {
-					$output .= '<li class="mas_breadcrumb_li"><span>' . esc_html( $crumb[0] ) . '</span></li>';
+					$output .= $args['delimiter'] . '<li class="mas_breadcrumb_li"><span>' . esc_html( $crumb[0] ) . '</span></li>';
 				}
 			}
 

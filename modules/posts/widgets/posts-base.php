@@ -203,7 +203,11 @@ abstract class Posts_Base extends Base_Widget {
 					'{{WRAPPER}} .elementor-pagination' => 'text-align: {{VALUE}};',
 				),
 				'condition' => array(
-					'pagination_type!' => '',
+					'pagination_type' => array(
+						'prev_next',
+						'numbers_and_prev_next',
+						'numbers',
+					),
 				),
 			)
 		);
@@ -308,8 +312,9 @@ abstract class Posts_Base extends Base_Widget {
 						'icon'  => 'eicon-text-align-justify',
 					),
 				),
+				'default'   => 'center',
 				'selectors' => array(
-					'{{WRAPPER}}' => '--load-more-message-alignment: {{VALUE}};',
+					'{{WRAPPER}} .e-load-more-message' => 'justify-content: {{VALUE}};',
 				),
 				'condition' => array(
 					'pagination_type' => array(
@@ -355,12 +360,37 @@ abstract class Posts_Base extends Base_Widget {
 		$this->end_controls_section();
 
 		$this->start_controls_section(
+			'section_load_more',
+			array(
+				'label'     => __( 'Load More Button', 'mas-elementor' ),
+				'tab'       => Controls_Manager::TAB_STYLE,
+				'condition' => array(
+					'pagination_type' => 'load_more_on_click',
+				),
+			)
+		);
+
+		$this->load_more_register_button_style_controls(
+			array(
+				'section_condition' => array(
+					'pagination_type' => 'load_more_on_click',
+				),
+			)
+		);
+
+		$this->end_controls_section();
+
+		$this->start_controls_section(
 			'section_pagination_style',
 			array(
 				'label'     => __( 'Pagination', 'mas-elementor' ),
 				'tab'       => Controls_Manager::TAB_STYLE,
 				'condition' => array(
-					'pagination_type!' => '',
+					'pagination_type!' => array(
+						'load_more_on_click',
+						'load_more_infinite_scroll',
+						'',
+					),
 				),
 			)
 		);
@@ -794,7 +824,6 @@ abstract class Posts_Base extends Base_Widget {
 			)
 		);
 
-
 		$this->end_controls_section();
 	}
 
@@ -1092,8 +1121,6 @@ abstract class Posts_Base extends Base_Widget {
 		);
 
 			$this->register_button_content_controls( $this, $args );
-
-			$this->load_more_register_button_style_controls();
 
 		$this->end_controls_section();
 
@@ -1476,8 +1503,9 @@ abstract class Posts_Base extends Base_Widget {
 	 */
 	protected function load_more_render_message() {
 		$settings = $this->get_settings();
+		$this->add_render_attribute( 'e-load-more-message', 'class', array( 'e-load-more-message' ) );
 		?>
-		<div class="e-load-more-message mt-5"><?php echo esc_html( $settings['load_more_no_posts_custom_message'] ); ?></div>
+		<div <?php $this->print_render_attribute_string( 'e-load-more-message' ); ?>><?php echo esc_html( $settings['load_more_no_posts_custom_message'] ); ?></div>
 		<?php
 	}
 

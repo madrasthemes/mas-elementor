@@ -1,10 +1,10 @@
-.elementor-widget-mas-posts.load-more-align-center .elementor-button-wrapper, .elementor-widget-mas-archive-posts.load-more-align-center .elementor-button-wrapper, .elementor-widget-mas-portfolio.load-more-align-center .elementor-button-wrapper, .elementor-widget-mas-archive-portfolio.load-more-align-center .elementor-button-wrapper {
+.elementor-widget-mas-posts.load-more-align-center .mas-elementor-button-wrapper, .elementor-widget-mas-archive-posts.load-more-align-center .mas-elementor-button-wrapper, .elementor-widget-mas-portfolio.load-more-align-center .mas-elementor-button-wrapper, .elementor-widget-mas-archive-portfolio.load-more-align-center .mas-elementor-button-wrapper {
     justify-content: center;
 }
-.elementor-widget-mas-posts.load-more-align-start .elementor-button-wrapper, .elementor-widget-mas-archive-posts.load-more-align-start .elementor-button-wrapper, .elementor-widget-mas-portfolio.load-more-align-start .elementor-button-wrapper, .elementor-widget-mas-archive-portfolio.load-more-align-start .elementor-button-wrapper {
+.elementor-widget-mas-posts.load-more-align-start .mas-elementor-button-wrapper, .elementor-widget-mas-archive-posts.load-more-align-start .mas-elementor-button-wrapper, .elementor-widget-mas-portfolio.load-more-align-start .mas-elementor-button-wrapper, .elementor-widget-mas-archive-portfolio.load-more-align-start .mas-elementor-button-wrapper {
     justify-content: start;
 }
-.elementor-widget-mas-posts.load-more-align-end .elementor-button-wrapper, .elementor-widget-mas-archive-posts.load-more-align-end .elementor-button-wrapper, .elementor-widget-mas-portfolio.load-more-align-end .elementor-button-wrapper, .elementor-widget-mas-archive-portfolio.load-more-align-end .elementor-button-wrapper {
+.elementor-widget-mas-posts.load-more-align-end .mas-elementor-button-wrapper, .elementor-widget-mas-archive-posts.load-more-align-end .mas-elementor-button-wrapper, .elementor-widget-mas-portfolio.load-more-align-end .mas-elementor-button-wrapper, .elementor-widget-mas-archive-portfolio.load-more-align-end .mas-elementor-button-wrapper {
     justify-content: end;
 }
 .elementor-widget-mas-posts.load-more-align-justify .elementor-button, .elementor-widget-mas-archive-posts.load-more-align-justify .elementor-button, .elementor-widget-mas-portfolio.load-more-align-justify .elementor-button, .elementor-widget-mas-archive-portfolio.load-more-align-justify .elementor-button {
@@ -44,22 +44,22 @@
     display: -ms-flexbox;
     display: flex;
 }
-.elementor-widget-mas-posts.e-load-more-pagination-loading .elementor-button-content-wrapper, .elementor-widget-mas-archive-posts.e-load-more-pagination-loading .elementor-button-content-wrapper, .elementor-widget-mas-portfolio.e-load-more-pagination-loading .elementor-button-content-wrapper, .elementor-widget-mas-archive-portfolio.e-load-more-pagination-loading .elementor-button-content-wrapper {
-    visibility: hidden;
+.elementor-widget-mas-posts.e-load-more-pagination-loading .mas-elementor-button-content-wrapper, .elementor-widget-mas-archive-posts.e-load-more-pagination-loading .mas-elementor-button-content-wrapper, .elementor-widget-mas-portfolio.e-load-more-pagination-loading .mas-elementor-button-content-wrapper, .elementor-widget-mas-archive-portfolio.e-load-more-pagination-loading .mas-elementor-button-content-wrapper {
+    /* visibility: hidden; */
 }
-.elementor-widget-mas-posts.e-load-more-pagination-end .elementor-button-wrapper, .elementor-widget-mas-archive-posts.e-load-more-pagination-end .elementor-button-wrapper, .elementor-widget-mas-portfolio.e-load-more-pagination-end .elementor-button-wrapper, .elementor-widget-mas-archive-portfolio.e-load-more-pagination-end .elementor-button-wrapper {
+.elementor-widget-mas-posts.e-load-more-pagination-end .mas-elementor-button-wrapper, .elementor-widget-mas-archive-posts.e-load-more-pagination-end .mas-elementor-button-wrapper, .elementor-widget-mas-portfolio.e-load-more-pagination-end .mas-elementor-button-wrapper, .elementor-widget-mas-archive-portfolio.e-load-more-pagination-end .mas-elementor-button-wrapper {
     display: none;
 }
 .elementor-widget-mas-posts.e-load-more-pagination-end .e-load-more-message, .elementor-widget-mas-archive-posts.e-load-more-pagination-end .e-load-more-message, .elementor-widget-mas-portfolio.e-load-more-pagination-end .e-load-more-message, .elementor-widget-mas-archive-portfolio.e-load-more-pagination-end .e-load-more-message {
-    display: block;
+    display: flex;
 }
-.elementor-widget-mas-posts.e-load-more-no-spinner .elementor-button-content-wrapper, .elementor-widget-mas-archive-posts.e-load-more-no-spinner .elementor-button-content-wrapper, .elementor-widget-mas-portfolio.e-load-more-no-spinner .elementor-button-content-wrapper, .elementor-widget-mas-archive-portfolio.e-load-more-no-spinner .elementor-button-content-wrapper {
+.elementor-widget-mas-posts.e-load-more-no-spinner .mas-elementor-button-content-wrapper, .elementor-widget-mas-archive-posts.e-load-more-no-spinner .mas-elementor-button-content-wrapper, .elementor-widget-mas-portfolio.e-load-more-no-spinner .mas-elementor-button-content-wrapper, .elementor-widget-mas-archive-portfolio.e-load-more-no-spinner .mas-elementor-button-content-wrapper {
     visibility: visible;
 }
-.elementor-widget-mas-posts .elementor-button-wrapper, .elementor-widget-mas-archive-posts .elementor-button-wrapper, .elementor-widget-mas-portfolio .elementor-button-wrapper, .elementor-widget-mas-archive-portfolio .elementor-button-wrapper {
+.elementor-widget-mas-posts .mas-elementor-button-wrapper, .elementor-widget-mas-archive-posts .mas-elementor-button-wrapper, .elementor-widget-mas-portfolio .mas-elementor-button-wrapper, .elementor-widget-mas-archive-portfolio .mas-elementor-button-wrapper {
     margin-top: var(--load-more—spacing, 30px);
 }
-.elementor-widget-mas-posts .elementor-button-wrapper .e-load-more-spinner, .elementor-widget-mas-archive-posts .elementor-button-wrapper .e-load-more-spinner, .elementor-widget-mas-portfolio .elementor-button-wrapper .e-load-more-spinner, .elementor-widget-mas-archive-portfolio .elementor-button-wrapper .e-load-more-spinner {
+.elementor-widget-mas-posts .mas-elementor-button-wrapper .e-load-more-spinner, .elementor-widget-mas-archive-posts .mas-elementor-button-wrapper .e-load-more-spinner, .elementor-widget-mas-portfolio .mas-elementor-button-wrapper .e-load-more-spinner, .elementor-widget-mas-archive-portfolio .mas-elementor-button-wrapper .e-load-more-spinner {
     position: relative;
     left: 50%;
     top: 50%;
@@ -67,4 +67,16 @@
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
     margin: inherit;
+}
+.elementor-widget-mas-posts .mas-elementor-button-wrapper{
+    display: flex;
+}
+.mas-lm-align-start{
+    justify-content: left;
+}
+.mas-lm-align-end{
+    justify-content: right;
+}
+.mas-lm-align-center{
+    justify-content: center;
 }
