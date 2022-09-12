@@ -355,6 +355,27 @@ abstract class Posts_Base extends Base_Widget {
 		$this->end_controls_section();
 
 		$this->start_controls_section(
+			'section_load_more',
+			array(
+				'label'     => __( 'Load More Button', 'mas-elementor' ),
+				'tab'       => Controls_Manager::TAB_STYLE,
+				'condition' => array(
+					'pagination_type' => 'load_more_on_click',
+				),
+			)
+		);
+
+		$this->load_more_register_button_style_controls(
+			array(
+				'section_condition' => array(
+					'pagination_type' => 'load_more_on_click',
+				),
+			)
+		);
+
+		$this->end_controls_section();
+
+		$this->start_controls_section(
 			'section_pagination_style',
 			array(
 				'label'     => __( 'Pagination', 'mas-elementor' ),
@@ -794,7 +815,6 @@ abstract class Posts_Base extends Base_Widget {
 			)
 		);
 
-
 		$this->end_controls_section();
 	}
 
@@ -1092,8 +1112,6 @@ abstract class Posts_Base extends Base_Widget {
 		);
 
 			$this->register_button_content_controls( $this, $args );
-
-			$this->load_more_register_button_style_controls();
 
 		$this->end_controls_section();
 

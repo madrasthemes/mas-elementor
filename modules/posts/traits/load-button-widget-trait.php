@@ -23,22 +23,6 @@ use Elementor\Widget_Base;
  * The button widget Trait.
  */
 trait Load_Button_Widget_Trait {
-	/**
-	 * Get button sizes.
-	 *
-	 * Retrieve an array of button sizes for the button widget.
-	 *
-	 * @return array An array containing button sizes.
-	 */
-	public static function load_more_get_button_sizes() {
-		return array(
-			'xs' => esc_html__( 'Extra Small', 'mas-elementor' ),
-			'sm' => esc_html__( 'Small', 'mas-elementor' ),
-			'md' => esc_html__( 'Medium', 'mas-elementor' ),
-			'lg' => esc_html__( 'Large', 'mas-elementor' ),
-			'xl' => esc_html__( 'Extra Large', 'mas-elementor' ),
-		);
-	}
 
 	/**
 	 * Register button content controls.
@@ -53,7 +37,7 @@ trait Load_Button_Widget_Trait {
 			'prefix_class'           => 'elementor%s-align-',
 			'alignment_default'      => 'center',
 			'exclude_inline_options' => array(),
-			'button_css'             => 'button -md -dark text-white',
+			'button_css'             => '',
 		);
 
 		$args = wp_parse_args( $args, $default_args );
@@ -114,18 +98,6 @@ trait Load_Button_Widget_Trait {
 		);
 
 		$this->add_control(
-			'lm_size',
-			array(
-				'label'          => esc_html__( 'Size', 'mas-elementor' ),
-				'type'           => Controls_Manager::SELECT,
-				'default'        => 'sm',
-				'options'        => self::get_button_sizes(),
-				'style_transfer' => true,
-				'condition'      => $args['section_condition'],
-			)
-		);
-
-		$this->add_control(
 			'lm_selected_icon',
 			array(
 				'label'                  => esc_html__( 'Icon', 'mas-elementor' ),
@@ -171,21 +143,11 @@ trait Load_Button_Widget_Trait {
 		);
 
 		$this->add_control(
-			'lm_view',
-			array(
-				'label'     => esc_html__( 'View', 'mas-elementor' ),
-				'type'      => Controls_Manager::HIDDEN,
-				'default'   => 'traditional',
-				'condition' => $args['section_condition'],
-			)
-		);
-
-		$this->add_control(
 			'lm_button_wrapper_css',
 			array(
 				'label'       => esc_html__( 'Button Wrapper CSS', 'mas-elementor' ),
 				'type'        => Controls_Manager::TEXT,
-				'default'     => 'row mt-40',
+				'default'     => '',
 				'description' => esc_html__( 'Additional CSS to be applied to .btn-wrapper element.', 'mas-elementor' ),
 				'condition'   => $args['section_condition'],
 			)
@@ -196,7 +158,7 @@ trait Load_Button_Widget_Trait {
 			array(
 				'label'       => esc_html__( 'Button CSS', 'mas-elementor' ),
 				'type'        => Controls_Manager::TEXT,
-				'default'     => 'button -md -dark text-white',
+				'default'     => '',
 				'description' => esc_html__( 'Additional CSS to be applied to .btn element.', 'mas-elementor' ),
 				'condition'   => $args['section_condition'],
 			)
@@ -260,7 +222,7 @@ trait Load_Button_Widget_Trait {
 				'default'   => '',
 				'selectors' => array(
 					'{{WRAPPER}} .btn__load-more' => 'fill: {{VALUE}}; color: {{VALUE}};',
-					'{{WRAPPER}} .btn-wrapper a'  => 'fill: {{VALUE}}; color: {{VALUE}} important;',
+					// '{{WRAPPER}} .btn-wrapper a'  => 'fill: {{VALUE}}; color: {{VALUE}} important;',
 				),
 				'condition' => $args['section_condition'],
 			)
@@ -273,7 +235,7 @@ trait Load_Button_Widget_Trait {
 				'label'          => esc_html__( 'Background', 'mas-elementor' ),
 				'types'          => array( 'classic', 'gradient' ),
 				'exclude'        => array( 'image' ),
-				'selector'       => '{{WRAPPER}} .btn__load-more',
+				'selector'       => '{{WRAPPER}} .mas-elementor-button-content-wrapper',
 				'fields_options' => array(
 					'background' => array(
 						'default' => 'classic',
@@ -318,7 +280,7 @@ trait Load_Button_Widget_Trait {
 				'label'          => esc_html__( 'Background', 'mas-elementor' ),
 				'types'          => array( 'classic', 'gradient' ),
 				'exclude'        => array( 'image' ),
-				'selector'       => '{{WRAPPER}} .btn__load-more:hover, {{WRAPPER}} .btn__load-more:focus',
+				'selector'       => '{{WRAPPER}} .mas-elementor-button-content-wrapper:hover, {{WRAPPER}} .mas-elementor-button-content-wrapper:focus',
 				'fields_options' => array(
 					'background' => array(
 						'default' => 'classic',
@@ -337,7 +299,7 @@ trait Load_Button_Widget_Trait {
 					'border_border!' => '',
 				),
 				'selectors' => array(
-					'{{WRAPPER}} .btn__load-more:hover, {{WRAPPER}} .btn__load-more:focus' => 'border-color: {{VALUE}};',
+					'{{WRAPPER}} .mas-elementor-button-content-wrapper:hover, {{WRAPPER}} .mas-elementor-button-content-wrapper:focus' => 'border-color: {{VALUE}};',
 				),
 				'condition' => $args['section_condition'],
 			)
@@ -351,7 +313,7 @@ trait Load_Button_Widget_Trait {
 			Group_Control_Border::get_type(),
 			array(
 				'name'      => 'lm_border',
-				'selector'  => '{{WRAPPER}} .btn__load-more',
+				'selector'  => '{{WRAPPER}} .mas-elementor-button-content-wrapper',
 				'separator' => 'before',
 				'condition' => $args['section_condition'],
 			)
@@ -364,7 +326,7 @@ trait Load_Button_Widget_Trait {
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', '%', 'em' ),
 				'selectors'  => array(
-					'{{WRAPPER}} .btn__load-more' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .mas-elementor-button-content-wrapper' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				),
 				'condition'  => $args['section_condition'],
 			)
@@ -386,7 +348,7 @@ trait Load_Button_Widget_Trait {
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', 'em', '%' ),
 				'selectors'  => array(
-					'{{WRAPPER}} .btn__load-more' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .mas-elementor-button-content-wrapper' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				),
 				'separator'  => 'before',
 				'condition'  => $args['section_condition'],
@@ -407,7 +369,7 @@ trait Load_Button_Widget_Trait {
 		}
 
 		$settings = $instance->get_settings();
-		$instance->add_render_attribute( 'wrapper', 'class', array( 'btn-wrapper', 'elementor-button-wrapper' ) );
+		$instance->add_render_attribute( 'wrapper', 'class', array( 'btn-wrapper', 'mas-elementor-button-wrapper' ) );
 
 		if ( ! empty( $settings['lm_button_wrapper_css'] ) ) {
 			$instance->add_render_attribute( 'wrapper', 'class', $settings['lm_button_wrapper_css'] );
@@ -415,18 +377,14 @@ trait Load_Button_Widget_Trait {
 
 		if ( ! empty( $settings['lm_link']['url'] ) ) {
 			$instance->add_link_attributes( 'button', $settings['lm_link'] );
-			$instance->add_render_attribute( 'button', 'class', 'elementor-button-link' );
+			$instance->add_render_attribute( 'button', 'class', 'mas-elementor-button-link' );
 			$instance->add_render_attribute( 'button', 'role', 'button' );
 		}
 
-		$instance->add_render_attribute( 'button', 'class', array( 'btn', 'btn__load-more' ) );
+		$instance->add_render_attribute( 'button', 'class', array( 'btn__load-more' ) );
 
 		if ( ! empty( $settings['lm_button_css'] ) ) {
 			$instance->add_render_attribute( 'button', 'class', $settings['lm_button_css'] );
-		}
-
-		if ( ! empty( $settings['lm_size'] ) ) {
-			$instance->add_render_attribute( 'button', 'class', 'elementor-size-' . $settings['lm_size'] );
 		}
 
 		?>
@@ -461,7 +419,7 @@ trait Load_Button_Widget_Trait {
 		$instance->add_render_attribute(
 			array(
 				'content-wrapper' => array(
-					'class' => 'elementor-button-content-wrapper',
+					'class' => 'mas-elementor-button-content-wrapper',
 				),
 				'icon-align'      => array(
 					'class' => array(
@@ -470,7 +428,7 @@ trait Load_Button_Widget_Trait {
 					),
 				),
 				'text'            => array(
-					'class' => 'elementor-button-text',
+					'class' => 'mas-elementor-button-text',
 				),
 			)
 		);
