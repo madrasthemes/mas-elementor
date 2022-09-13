@@ -116,6 +116,19 @@ class Mas_Nav_Menu extends Base_Widget {
 	}
 
 	/**
+	 * Get style dependencies.
+	 *
+	 * Retrieve the list of style dependencies the element requires.
+	 *
+	 * @since 1.9.0
+	 *
+	 * @return array Element styles dependencies.
+	 */
+	public function get_style_depends() {
+		return array( 'nav-menu-stylesheet' );
+	}
+
+	/**
 	 * Get widget element.
 	 *
 	 * @param array $element element.
@@ -397,7 +410,7 @@ class Mas_Nav_Menu extends Base_Widget {
 				'selector'       => '{{WRAPPER}} .sub-menu',
 				'fields_options' => array(
 					'border' => array(
-						'default' => 'none',
+						'default' => '',
 					),
 					'width'  => array(
 						'default' => array(
@@ -424,7 +437,6 @@ class Mas_Nav_Menu extends Base_Widget {
 				'selectors'  => array(
 					'{{WRAPPER}} .sub-menu' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				),
-				'separator'  => 'before',
 				'default'    => array(
 					'top'      => '6',
 					'right'    => '6',
@@ -543,6 +555,27 @@ class Mas_Nav_Menu extends Base_Widget {
 		$this->end_controls_tab();
 
 		$this->end_controls_tabs();
+
+		$this->add_control(
+			'mas_menu_item_padding',
+			array(
+				'label'      => esc_html__( 'Padding', 'mas-elementor' ),
+				'type'       => Controls_Manager::DIMENSIONS,
+				'size_units' => array( 'px', '%', 'em' ),
+				'selectors'  => array(
+					'{{WRAPPER}} .header-menu .sub-menu > li > a' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				),
+				'separator'  => 'before',
+				'default'    => array(
+					'top'      => '4',
+					'right'    => '30',
+					'bottom'   => '4',
+					'left'     => '30',
+					'unit'     => 'px',
+					'isLinked' => false,
+				),
+			)
+		);
 
 	}
 

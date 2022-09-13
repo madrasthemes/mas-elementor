@@ -42,7 +42,7 @@ class Module extends Module_Base {
 	 * Register frontend styles.
 	 */
 	public function register_frontend_styles() {
-		wp_enqueue_style(
+		wp_register_style(
 			'nav-menu-stylesheet',
 			MAS_ELEMENTOR_MODULES_URL . 'mas-nav-menu/assets/css/mas-nav-menu.css',
 			array(),
