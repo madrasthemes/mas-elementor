@@ -96,7 +96,7 @@ abstract class Base_Products_Renderer extends \WC_Shortcode_Products {
 				do_action( 'woocommerce_before_shop_loop' );
 			}
 
-			// woocommerce_product_loop_start();.
+			woocommerce_product_loop_start();
 
 			if ( wc_get_loop_prop( 'total' ) ) {
 				foreach ( $products->ids as $product_id ) {
@@ -117,7 +117,7 @@ abstract class Base_Products_Renderer extends \WC_Shortcode_Products {
 			}
 
 			$GLOBALS['post'] = $original_post; // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
-			// woocommerce_product_loop_end();.
+			woocommerce_product_loop_end();
 
 			// Fire standard shop loop hooks when paginating results so we can show result counts and so on.
 			if ( wc_string_to_bool( $this->attributes['paginate'] ) ) {
