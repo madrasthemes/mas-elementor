@@ -96,7 +96,8 @@ abstract class Base_Products_Renderer extends \WC_Shortcode_Products {
 				do_action( 'woocommerce_before_shop_loop' );
 			}
 
-			woocommerce_product_loop_start();
+			?><div class="mas-products">
+			<?php
 
 			if ( wc_get_loop_prop( 'total' ) ) {
 				foreach ( $products->ids as $product_id ) {
@@ -117,7 +118,9 @@ abstract class Base_Products_Renderer extends \WC_Shortcode_Products {
 			}
 
 			$GLOBALS['post'] = $original_post; // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
-			woocommerce_product_loop_end();
+			?>
+			</div>
+			<?php
 
 			// Fire standard shop loop hooks when paginating results so we can show result counts and so on.
 			if ( wc_string_to_bool( $this->attributes['paginate'] ) ) {
@@ -151,15 +154,18 @@ abstract class Base_Products_Renderer extends \WC_Shortcode_Products {
 			<div class="swiper-slide">
 			<?php
 		}
-		?><div class="product"><?php
+		?>
+		<div class="product">
+		<?php
 		print( mas_render_template( $settings['select_template'], false ) );//phpcs:ignore
-		?></div><?php
+		?>
+		</div>
+		<?php
 		if ( 'yes' === $settings['enable_carousel'] ) {
 			?>
 			</div>
 			<?php
 		}
-		// mas_elementor_get_template( $path, $args );.
 	}
 
 	/**
