@@ -38,7 +38,7 @@ abstract class Products_Base extends Base_Widget {
 	 * @return array Element styles dependencies.
 	 */
 	public function get_style_depends() {
-		return array( 'products' );
+		return array( 'products-stylesheet' );
 	}
 
 	/**
