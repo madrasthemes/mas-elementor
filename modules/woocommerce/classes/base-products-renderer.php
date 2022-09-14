@@ -96,7 +96,7 @@ abstract class Base_Products_Renderer extends \WC_Shortcode_Products {
 				do_action( 'woocommerce_before_shop_loop' );
 			}
 
-			?><div class="mas-products">
+			?><div class="mas-products mas-grid">
 			<?php
 
 			if ( wc_get_loop_prop( 'total' ) ) {

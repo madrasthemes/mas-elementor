@@ -217,12 +217,21 @@ class Products extends Products_Base {
 			)
 		);
 
+		$this->add_control(
+			'mas_products_class',
+			array(
+				'type' => Controls_Manager::HIDDEN,
+				'default' => 'wc-products',
+				'prefix_class' => 'mas-products-grid mas-elementor-',
+			)
+		);
+
 		$this->add_responsive_control(
 			'columns',
 			array(
 				'label'               => __( 'Columns', 'mas-elementor' ),
 				'type'                => Controls_Manager::NUMBER,
-				'prefix_class'        => 'mas-elementorducts-columns%s-',
+				'prefix_class'        => 'mas-grid%s-',
 				'min'                 => 1,
 				'max'                 => 12,
 				'default'             => Products_Renderer::DEFAULT_COLUMNS_AND_ROWS,
