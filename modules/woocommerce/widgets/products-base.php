@@ -21,10 +21,25 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
+
+
 /**
  * Class Products_Base
  */
 abstract class Products_Base extends Base_Widget {
+
+	/**
+	 * Get style dependencies.
+	 *
+	 * Retrieve the list of style dependencies the element requires.
+	 *
+	 * @since 1.9.0
+	 *
+	 * @return array Element styles dependencies.
+	 */
+	public function get_style_depends() {
+		return array( 'products' );
+	}
 
 	/**
 	 * Register controls for this widget.
