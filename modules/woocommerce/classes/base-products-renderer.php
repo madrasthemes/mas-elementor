@@ -100,6 +100,7 @@ abstract class Base_Products_Renderer extends \WC_Shortcode_Products {
 			<?php
 
 			if ( wc_get_loop_prop( 'total' ) ) {
+				$index__id = 1;
 				foreach ( $products->ids as $product_id ) {
 					$GLOBALS['post'] = get_post( $product_id ); // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
 					setup_postdata( $GLOBALS['post'] );
@@ -110,10 +111,11 @@ abstract class Base_Products_Renderer extends \WC_Shortcode_Products {
 					// Render product template.
 					// wc_get_template_part( 'content', 'product' );.
 
-					$this->skin_template_path();
+					$this->skin_template_path( $index__id );
 
 					// Restore product visibility.
 					remove_action( 'woocommerce_product_is_visible', array( $this, 'set_product_as_visible' ) );
+					$index__id++;
 				}
 			}
 
@@ -143,8 +145,10 @@ abstract class Base_Products_Renderer extends \WC_Shortcode_Products {
 
 	/**
 	 * Skin Template Path.
+	 *
+	 * @param array $index__id loop count.
 	 */
-	public function skin_template_path() {
+	public function skin_template_path( $index__id ) {
 
 		$path     = &$this->tem_path;
 		$args     = &$this->tem_args;
@@ -154,8 +158,16 @@ abstract class Base_Products_Renderer extends \WC_Shortcode_Products {
 			<div class="swiper-slide">
 			<?php
 		}
+		$count_class = 'mas-product';
+		if ( 0 === $index__id % $settings['columns'] ) {
+			$count_class .= ' last';
+		}
+		if ( 1 === $index__id % $settings['columns'] ) {
+			$count_class .= ' first';
+		}
+
 		?>
-		<div class="mas-product">
+		<div class="<?php echo esc_attr( $count_class ); ?>">
 		<?php
 		print( mas_render_template( $settings['select_template'], false ) );//phpcs:ignore
 		?>
