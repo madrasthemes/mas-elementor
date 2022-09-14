@@ -155,7 +155,7 @@ abstract class Base_Products_Renderer extends \WC_Shortcode_Products {
 			<?php
 		}
 		?>
-		<div class="product">
+		<div class="mas-product">
 		<?php
 		print( mas_render_template( $settings['select_template'], false ) );//phpcs:ignore
 		?>
