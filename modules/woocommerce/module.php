@@ -385,6 +385,8 @@ class Module extends Module_Base {
 		parent::__construct();
 
 		add_action( 'elementor/dynamic_tags/register', array( $this, 'register_tags' ) );
+		add_action( 'elementor/frontend/before_register_styles', array( $this, 'register_frontend_styles' ) );
+
 
 		// $this->use_mini_cart_template = 'yes' === get_option( 'elementor_' . self::OPTION_NAME_USE_MINI_CART, 'no' );
 		// if ( is_admin() ) {
@@ -409,5 +411,17 @@ class Module extends Module_Base {
 		}
 
 		add_filter( 'elementor/widgets/wordpress/widget_args', array( $this, 'woocommerce_wordpress_widget_css_class' ), 10, 2 );
+	}
+
+	/**
+	 * Register frontend styles.
+	 */
+	public function register_frontend_styles() {
+		wp_register_style(
+			'products-stylesheet',
+			MAS_ELEMENTOR_MODULES_URL . 'woocommerce/assets/css/products.css',
+			array(),
+			MAS_ELEMENTOR_VERSION
+		);
 	}
 }

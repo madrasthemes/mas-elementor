@@ -1,0 +1,33 @@
+.woocommerce .mas-product{
+	float: left;
+    margin: 0 3.8% 2.992em 0;
+    padding: 0;
+    position: relative;
+    margin-left: 0;
+	width: 22.05%;
+}
+
+.woocommerce.columns-2  .mas-product{
+	width:48%
+}
+
+
+.woocommerce.columns-3 .mas-product{
+	width:30.75%
+}
+
+.woocommerce.columns-5 .mas-product{
+	width:16.95%
+}
+
+.woocommerce.columns-6 .mas-product{
+	width:13.5%
+}
+
+.woocommerce.columns-6  .mas-product.first {
+	clear: both;
+}
+
+.mas-products .mas-product.last {
+	margin-right: 0;
+}
