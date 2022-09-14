@@ -419,7 +419,7 @@ class Module extends Module_Base {
 	public function register_frontend_styles() {
 		wp_register_style(
 			'products-stylesheet',
-			MAS_ELEMENTOR_MODULES_URL . 'woocommerce/assets/css/products.css',
+			MAS_ELEMENTOR_ASSETS_URL . 'css/main.css',
 			array(),
 			MAS_ELEMENTOR_VERSION
 		);
