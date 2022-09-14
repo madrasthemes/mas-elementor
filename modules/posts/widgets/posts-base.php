@@ -57,7 +57,7 @@ abstract class Posts_Base extends Base_Widget {
 	 * @return array
 	 */
 	public function get_script_depends() {
-		return array( 'imagesloaded', 'load-more' );
+		return array( 'load-more' );
 	}
 
 	/**

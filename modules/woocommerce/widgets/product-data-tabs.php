@@ -55,11 +55,11 @@ class Product_Data_Tabs extends Base_Widget {
 	 * Register controls.
 	 */
 	protected function register_controls() {
-		// Section for WC Wrapper Controls in STYLE Tab.
+
 		$this->start_controls_section(
-			'wc_wrapper_section',
+			'section_product_tabs_style',
 			array(
-				'label' => esc_html__( 'WC Wrapper', 'mas-elementor' ),
+				'label' => esc_html__( 'Tabs', 'mas-elementor' ),
 				'tab'   => Controls_Manager::TAB_STYLE,
 			)
 		);
@@ -73,80 +73,93 @@ class Product_Data_Tabs extends Base_Widget {
 			)
 		);
 
-		$this->start_controls_tabs( 'mas_product_data_tab' );
+		$this->start_controls_tabs( 'tabs_style' );
 
-		// Spacing Tab.
 		$this->start_controls_tab(
-			'mas_product_data_tab_spacing',
+			'normal_tabs_style',
 			array(
-				'label' => esc_html__( 'Spacing', 'mas-elementor' ),
+				'label' => esc_html__( 'Normal', 'mas-elementor' ),
 			)
 		);
 
-		// Padding Controls.
-		$this->add_responsive_control(
-			'mas_product_data_tab_padding',
+		$this->add_control(
+			'tab_text_color',
 			array(
-				'label'      => esc_html__( 'Padding', 'mas-elementor' ),
-				'type'       => Controls_Manager::DIMENSIONS,
-				'size_units' => array( 'px', 'em', '%', 'rem' ),
-				'selectors'  => array(
-					'{{WRAPPER}} .woocommerce-tabs' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				'label'     => esc_html__( 'Text Color', 'mas-elementor' ),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => array(
+					'.woocommerce {{WRAPPER}} .woocommerce-tabs ul.wc-tabs li a' => 'color: {{VALUE}}',
 				),
 			)
 		);
 
-		// Margin Controls.
-		$this->add_responsive_control(
-			'mas_product_data_tab_margin',
+		$this->add_control(
+			'tab_bg_color',
 			array(
-				'label'      => esc_html__( 'Margin', 'mas-elementor' ),
-				'type'       => Controls_Manager::DIMENSIONS,
-				'size_units' => array( 'px', 'em', '%', 'rem' ),
-				'selectors'  => array(
-					'{{WRAPPER}} .woocommerce-tabs' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				'label'     => esc_html__( 'Background Color', 'mas-elementor' ),
+				'type'      => Controls_Manager::COLOR,
+				'alpha'     => false,
+				'selectors' => array(
+					'.woocommerce {{WRAPPER}} .woocommerce-tabs ul.wc-tabs li' => 'background-color: {{VALUE}}',
+				),
+			)
+		);
+
+		$this->add_control(
+			'tabs_border_color',
+			array(
+				'label'     => esc_html__( 'Border Color', 'mas-elementor' ),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => array(
+					'.woocommerce {{WRAPPER}} .woocommerce-tabs .woocommerce-Tabs-panel' => 'border-color: {{VALUE}}',
+					'.woocommerce {{WRAPPER}} .woocommerce-tabs ul.wc-tabs li' => 'border-color: {{VALUE}}',
 				),
 			)
 		);
 
 		$this->end_controls_tab();
 
-		// Border Tab.
 		$this->start_controls_tab(
-			'mas_product_data_tab_border',
+			'active_tabs_style',
 			array(
-				'label' => esc_html__( 'Border', 'mas-elementor' ),
+				'label' => esc_html__( 'Active', 'mas-elementor' ),
 			)
 		);
 
-		// Border Controls.
-		$this->add_group_control(
-			Group_Control_Border::get_type(),
+		$this->add_control(
+			'active_tab_text_color',
 			array(
-				'name'     => 'mas_product_data_tab_border',
-				'selector' => '{{WRAPPER}} .woocommerce-tabs',
-			)
-		);
-
-		// Border Radius Controls.
-		$this->add_responsive_control(
-			'mas_product_data_tab_border_radius',
-			array(
-				'label'      => esc_html__( 'Border Radius', 'mas-elementor' ),
-				'type'       => Controls_Manager::DIMENSIONS,
-				'size_units' => array( 'px', '%', 'em' ),
-				'selectors'  => array(
-					'{{WRAPPER}} .woocommerce-tabs' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				'label'     => esc_html__( 'Text Color', 'mas-elementor' ),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => array(
+					'.woocommerce {{WRAPPER}} .woocommerce-tabs ul.wc-tabs li.active a' => 'color: {{VALUE}}',
 				),
 			)
 		);
 
-		// Box Shadow Controls.
-		$this->add_group_control(
-			Group_Control_Box_Shadow::get_type(),
+		$this->add_control(
+			'active_tab_bg_color',
 			array(
-				'name'     => 'mas_product_data_tab_box_shadow',
-				'selector' => '{{WRAPPER}} .woocommerce-tabs',
+				'label'     => esc_html__( 'Background Color', 'mas-elementor' ),
+				'type'      => Controls_Manager::COLOR,
+				'alpha'     => false,
+				'selectors' => array(
+					'.woocommerce {{WRAPPER}} .woocommerce-tabs .woocommerce-Tabs-panel, .woocommerce {{WRAPPER}} .woocommerce-tabs ul.wc-tabs li.active' => 'background-color: {{VALUE}}',
+					'.woocommerce {{WRAPPER}} .woocommerce-tabs ul.wc-tabs li.active' => 'border-bottom-color: {{VALUE}}',
+				),
+			)
+		);
+
+		$this->add_control(
+			'active_tabs_border_color',
+			array(
+				'label'     => esc_html__( 'Border Color', 'mas-elementor' ),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => array(
+					'.woocommerce {{WRAPPER}} .woocommerce-tabs .woocommerce-Tabs-panel' => 'border-color: {{VALUE}}',
+					'.woocommerce {{WRAPPER}} .woocommerce-tabs ul.wc-tabs li.active' => 'border-color: {{VALUE}} {{VALUE}} {{active_tab_bg_color.VALUE}} {{VALUE}}',
+					'.woocommerce {{WRAPPER}} .woocommerce-tabs ul.wc-tabs li:not(.active)' => 'border-bottom-color: {{VALUE}}',
+				),
 			)
 		);
 
@@ -154,256 +167,30 @@ class Product_Data_Tabs extends Base_Widget {
 
 		$this->end_controls_tabs();
 
-		$this->end_controls_section();
-
-		// Section for UL Wrapper Controls in STYLE Tab.
-		$this->start_controls_section(
-			'UL_wrapper_section',
+		$this->add_control(
+			'separator_tabs_style',
 			array(
-				'label' => esc_html__( 'UL Wrapper', 'mas-elementor' ),
-				'tab'   => Controls_Manager::TAB_STYLE,
+				'type' => Controls_Manager::DIVIDER,
 			)
 		);
 
-		$this->start_controls_tabs( 'mas_product_data_tab_ul' );
-
-		// Spacing Tab.
-		$this->start_controls_tab(
-			'mas_product_data_tab_ul_spacing',
-			array(
-				'label' => esc_html__( 'Spacing', 'mas-elementor' ),
-			)
-		);
-
-		// Padding Controls.
-		$this->add_responsive_control(
-			'mas_product_data_tab_ul_padding',
-			array(
-				'label'      => esc_html__( 'Padding', 'mas-elementor' ),
-				'type'       => Controls_Manager::DIMENSIONS,
-				'size_units' => array( 'px', 'em', '%', 'rem' ),
-				'selectors'  => array(
-					'{{WRAPPER}} .woocommerce-tabs ul' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-				),
-			)
-		);
-
-		// Margin Controls.
-		$this->add_responsive_control(
-			'mas_product_data_tab_ul_margin',
-			array(
-				'label'      => esc_html__( 'Margin', 'mas-elementor' ),
-				'type'       => Controls_Manager::DIMENSIONS,
-				'size_units' => array( 'px', 'em', '%', 'rem' ),
-				'selectors'  => array(
-					'{{WRAPPER}} .woocommerce-tabs ul' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-				),
-			)
-		);
-
-		$this->end_controls_tab();
-
-		// Border Tab.
-		$this->start_controls_tab(
-			'mas_product_data_tab_ul_border',
-			array(
-				'label' => esc_html__( 'Border', 'mas-elementor' ),
-			)
-		);
-
-		// Border Controls.
 		$this->add_group_control(
-			Group_Control_Border::get_type(),
+			Group_Control_Typography::get_type(),
 			array(
-				'name'     => 'mas_product_data_tab_ul_border',
-				'selector' => '{{WRAPPER}} .woocommerce-tabs ul',
+				'name'     => 'tab_typography',
+				'label'    => esc_html__( 'Typography', 'mas-elementor' ),
+				'selector' => '.woocommerce {{WRAPPER}} .woocommerce-tabs ul.wc-tabs li a',
 			)
 		);
 
-		// Border Radius Controls.
-		$this->add_responsive_control(
-			'mas_product_data_tab_ul_border_radius',
+		$this->add_control(
+			'tab_border_radius',
 			array(
-				'label'      => esc_html__( 'Border Radius', 'mas-elementor' ),
-				'type'       => Controls_Manager::DIMENSIONS,
-				'size_units' => array( 'px', '%', 'em' ),
-				'selectors'  => array(
-					'{{WRAPPER}} .woocommerce-tabs ul' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-				),
-			)
-		);
-
-		// Box Shadow Controls.
-		$this->add_group_control(
-			Group_Control_Box_Shadow::get_type(),
-			array(
-				'name'     => 'mas_product_data_tab_ul_box_shadow',
-				'selector' => '{{WRAPPER}} .woocommerce-tabs ul',
-			)
-		);
-
-		$this->end_controls_tab();
-
-		$this->end_controls_tabs();
-
-		$this->end_controls_section();
-
-		// Section for LI Wrapper Controls in STYLE Tab.
-		$this->start_controls_section(
-			'li_wrapper_section',
-			array(
-				'label' => esc_html__( 'LI Wrapper', 'mas-elementor' ),
-				'tab'   => Controls_Manager::TAB_STYLE,
-			)
-		);
-
-		$this->start_controls_tabs( 'mas_product_data_tab_li' );
-
-		// Spacing Tab.
-		$this->start_controls_tab(
-			'mas_product_data_tab_li_spacing',
-			array(
-				'label' => esc_html__( 'Spacing', 'mas-elementor' ),
-			)
-		);
-
-		// Padding Controls.
-		$this->add_responsive_control(
-			'mas_product_data_tab_li_padding',
-			array(
-				'label'      => esc_html__( 'Padding', 'mas-elementor' ),
-				'type'       => Controls_Manager::DIMENSIONS,
-				'size_units' => array( 'px', 'em', '%', 'rem' ),
-				'selectors'  => array(
-					'{{WRAPPER}} .woocommerce-tabs ul.wc-tabs li:not(:last-child)' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-				),
-			)
-		);
-
-		// Margin Controls.
-		$this->add_responsive_control(
-			'mas_product_data_tab_li_margin',
-			array(
-				'label'      => esc_html__( 'Margin', 'mas-elementor' ),
-				'type'       => Controls_Manager::DIMENSIONS,
-				'size_units' => array( 'px', 'em', '%', 'rem' ),
-				'selectors'  => array(
-					'{{WRAPPER}} .woocommerce-tabs ul.wc-tabs li:not(:last-child)' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-				),
-			)
-		);
-
-		$this->end_controls_tab();
-
-		// Border Tab.
-		$this->start_controls_tab(
-			'mas_product_data_tab_li_border',
-			array(
-				'label' => esc_html__( 'Border', 'mas-elementor' ),
-			)
-		);
-
-		// Border Controls.
-		$this->add_group_control(
-			Group_Control_Border::get_type(),
-			array(
-				'name'     => 'mas_product_data_tab_li_border',
-				'selector' => '{{WRAPPER}} .woocommerce-tabs ul.wc-tabs li',
-			)
-		);
-
-		// Border Radius Controls.
-		$this->add_responsive_control(
-			'mas_product_data_tab_li_border_radius',
-			array(
-				'label'      => esc_html__( 'Border Radius', 'mas-elementor' ),
-				'type'       => Controls_Manager::DIMENSIONS,
-				'size_units' => array( 'px', '%', 'em' ),
-				'selectors'  => array(
-					'{{WRAPPER}} .woocommerce-tabs ul.wc-tabs li' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-				),
-			)
-		);
-
-		// Box Shadow Controls.
-		$this->add_group_control(
-			Group_Control_Box_Shadow::get_type(),
-			array(
-				'name'     => 'mas_product_data_tab_li_box_shadow',
-				'selector' => '{{WRAPPER}} .woocommerce-tabs ul.wc-tabs li',
-			)
-		);
-
-		$this->end_controls_tab();
-
-		$this->end_controls_tabs();
-
-		$this->end_controls_section();
-
-		$this->start_controls_section(
-			'section_product_tabs_style',
-			array(
-				'label' => esc_html__( 'Anchor Element', 'mas-elementor' ),
-				'tab'   => Controls_Manager::TAB_STYLE,
-			)
-		);
-
-		// Padding Controls.
-		$this->add_responsive_control(
-			'mas_product_data_tab_anchor_padding',
-			array(
-				'label'      => esc_html__( 'Padding', 'mas-elementor' ),
-				'type'       => Controls_Manager::DIMENSIONS,
-				'size_units' => array( 'px', 'em', '%', 'rem' ),
+				'label'     => esc_html__( 'Border Radius', 'mas-elementor' ),
+				'type'      => Controls_Manager::SLIDER,
 				'selectors' => array(
-					'.woocommerce {{WRAPPER}} .woocommerce-tabs ul.wc-tabs li a' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'.woocommerce {{WRAPPER}} .woocommerce-tabs ul.wc-tabs li' => 'border-radius: {{SIZE}}{{UNIT}} {{SIZE}}{{UNIT}} 0 0',
 				),
-			)
-		);
-
-		// Margin Controls.
-		$this->add_responsive_control(
-			'mas_product_data_tab_anchor_margin',
-			array(
-				'label'      => esc_html__( 'Margin', 'mas-elementor' ),
-				'type'       => Controls_Manager::DIMENSIONS,
-				'size_units' => array( 'px', 'em', '%', 'rem' ),
-				'selectors' => array(
-					'.woocommerce {{WRAPPER}} .woocommerce-tabs ul.wc-tabs li a' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-				),
-			)
-		);
-
-		// Border Controls.
-		$this->add_group_control(
-			Group_Control_Border::get_type(),
-			array(
-				'name'      => 'mas_product_data_tab_anchor_border',
-				'selectors' => array(
-					'.woocommerce {{WRAPPER}} .woocommerce-tabs ul.wc-tabs li a' => 'border-color: {{VALUE}}',
-				),
-			)
-		);
-
-		// Border Radius Controls.
-		$this->add_responsive_control(
-			'mas_product_data_tab_anchor_border_radius',
-			array(
-				'label'      => esc_html__( 'Border Radius', 'mas-elementor' ),
-				'type'       => Controls_Manager::DIMENSIONS,
-				'size_units' => array( 'px', '%', 'em' ),
-				'selectors' => array(
-					'.woocommerce {{WRAPPER}} .woocommerce-tabs ul.wc-tabs li a' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-				),
-			)
-		);
-
-		// Box Shadow Controls.
-		$this->add_group_control(
-			Group_Control_Box_Shadow::get_type(),
-			array(
-				'name'     => 'mas_product_data_tab_anchor_box_shadow',
-				'selector' => '{{WRAPPER}} .woocommerce-tabs ul.wc-tabs li a',
 			)
 		);
 
@@ -506,6 +293,7 @@ class Product_Data_Tabs extends Base_Widget {
 
 		$this->end_controls_section();
 	}
+
 	/**
 	 * Render Widget
 	 */
