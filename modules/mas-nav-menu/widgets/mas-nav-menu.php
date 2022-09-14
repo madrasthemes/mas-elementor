@@ -11,8 +11,10 @@ use Elementor\Controls_Manager;
 use Elementor\Core\Kits\Documents\Tabs\Global_Colors;
 use Elementor\Core\Kits\Documents\Tabs\Global_Typography;
 use Elementor\Core\Responsive\Responsive;
+use Elementor\Group_Control_Background;
 use Elementor\Group_Control_Border;
 use Elementor\Group_Control_Box_Shadow;
+use Elementor\Group_Control_Text_Shadow;
 use Elementor\Group_Control_Typography;
 use Elementor\Icons_Manager;
 use Elementor\Repeater;
@@ -114,6 +116,19 @@ class Mas_Nav_Menu extends Base_Widget {
 	}
 
 	/**
+	 * Get style dependencies.
+	 *
+	 * Retrieve the list of style dependencies the element requires.
+	 *
+	 * @since 1.9.0
+	 *
+	 * @return array Element styles dependencies.
+	 */
+	public function get_style_depends() {
+		return array( 'nav-menu-stylesheet' );
+	}
+
+	/**
 	 * Get widget element.
 	 *
 	 * @param array $element element.
@@ -211,24 +226,6 @@ class Mas_Nav_Menu extends Base_Widget {
 				'default' => 'default',
 			)
 		);
-		// $this->add_control(
-		// 'view',
-		// [
-		// 'label'          => esc_html__( 'Layout', 'mas-elementor' ),
-		// 'type'           => Controls_Manager::CHOOSE,
-		// 'default'        => 'traditional',
-		// 'options'        => [
-		// 'traditional' => [
-		// 'title' => esc_html__( 'Default', 'mas-elementor' ),
-		// 'icon'  => 'eicon-editor-list-ul',
-		// ],
-		// 'inline'      => [
-		// 'title' => esc_html__( 'Inline', 'mas-elementor' ),
-		// 'icon'  => 'eicon-ellipsis-h',
-		// ],
-		// ],
-		// ]
-		// );
 
 		$this->end_controls_section();
 		$this->start_controls_section(
@@ -242,11 +239,34 @@ class Mas_Nav_Menu extends Base_Widget {
 		$this->add_group_control(
 			Group_Control_Typography::get_type(),
 			array(
-				'name'     => 'menu_typography',
-				'global'   => array(
+				'name'           => 'menu_typography',
+				'global'         => array(
 					'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
 				),
-				'selector' => '{{WRAPPER}} .mas-elementor-nav-menu .menu-item a',
+				'selector'       => '{{WRAPPER}} .mas-elementor-nav-menu .menu-item a',
+				'fields_options' => array(
+					'typography'  => array( 'default' => 'yes' ),
+					// Inner control name.
+					'font_weight' => array(
+						// Inner control settings.
+						'default' => '400',
+					),
+					'font_family' => array(
+						'default' => 'Varela Round',
+					),
+					'font_size'   => array(
+						'default' => array(
+							'unit' => 'px',
+							'size' => 14,
+						),
+					),
+					'line_height' => array(
+						'default' => array(
+							'unit' => 'px',
+							'size' => 24.5,
+						),
+					),
+				),
 			)
 		);
 
@@ -267,7 +287,7 @@ class Mas_Nav_Menu extends Base_Widget {
 				'global'    => array(
 					'default' => Global_Colors::COLOR_TEXT,
 				),
-				'default'   => '',
+				'default'   => '#ffffff',
 				'selectors' => array(
 					'{{WRAPPER}} .mas-elementor-nav-menu .menu-item a' => 'color: {{VALUE}}; fill: {{VALUE}};',
 				),
@@ -294,6 +314,7 @@ class Mas_Nav_Menu extends Base_Widget {
 				'selectors' => array(
 					'{{WRAPPER}} .mas-elementor-nav-menu .menu-item a:hover' => 'color: {{VALUE}}; fill: {{VALUE}};',
 				),
+				'default'   => '#ffffff',
 			)
 		);
 		$this->end_controls_tab();
@@ -320,6 +341,242 @@ class Mas_Nav_Menu extends Base_Widget {
 		$this->end_controls_tab();
 
 		$this->end_controls_tabs();
+
+		$this->add_control(
+			'mas_nav_submenu',
+			array(
+				'label' => __( 'Submenu', 'mas-elementor' ),
+				'type'  => Controls_Manager::HEADING,
+			)
+		);
+
+		$this->add_group_control(
+			Group_Control_Typography::get_type(),
+			array(
+				'name'           => 'submenu_typography',
+				'global'         => array(
+					'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
+				),
+				'selector'       => '{{WRAPPER}} .sub-menu .menu-item a',
+				'fields_options' => array(
+					'typography'  => array( 'default' => 'yes' ),
+					// Inner control name.
+					'font_weight' => array(
+						// Inner control settings.
+						'default' => '400',
+					),
+					'font_family' => array(
+						'default' => 'Varela Round',
+					),
+					'font_size'   => array(
+						'default' => array(
+							'unit' => 'px',
+							'size' => 14,
+						),
+					),
+					'line_height' => array(
+						'default' => array(
+							'unit' => 'px',
+							'size' => 24.5,
+						),
+					),
+				),
+			)
+		);
+
+		$this->add_group_control(
+			Group_Control_Background::get_type(),
+			array(
+				'name'           => 'lm_background',
+				'label'          => esc_html__( 'Background', 'mas-elementor' ),
+				'types'          => array( 'classic', 'gradient' ),
+				'exclude'        => array( 'image' ),
+				'selector'       => '{{WRAPPER}} .sub-menu',
+				'fields_options' => array(
+					'background' => array(
+						'default' => 'classic',
+					),
+					'color'      => array(
+						'default' => '#ffffff',
+					),
+				),
+			)
+		);
+
+		$this->add_group_control(
+			Group_Control_Border::get_type(),
+			array(
+				'name'           => 'lm_border',
+				'selector'       => '{{WRAPPER}} .sub-menu',
+				'fields_options' => array(
+					'border' => array(
+						'default' => '',
+					),
+					'width'  => array(
+						'default' => array(
+							'top'      => '2',
+							'right'    => '2',
+							'bottom'   => '2',
+							'left'     => '2',
+							'isLinked' => true,
+						),
+					),
+					'color'  => array(
+						'default' => '#ffffff',
+					),
+				),
+			)
+		);
+
+		$this->add_control(
+			'lm_border_radius',
+			array(
+				'label'      => esc_html__( 'Border Radius', 'mas-elementor' ),
+				'type'       => Controls_Manager::DIMENSIONS,
+				'size_units' => array( 'px', '%', 'em' ),
+				'selectors'  => array(
+					'{{WRAPPER}} .sub-menu' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				),
+				'default'    => array(
+					'top'      => '6',
+					'right'    => '6',
+					'bottom'   => '6',
+					'left'     => '6',
+					'unit'     => 'px',
+					'isLinked' => true,
+				),
+			)
+		);
+
+		$this->add_group_control(
+			Group_Control_Box_Shadow::get_type(),
+			array(
+				'name'           => 'lm_button_box_shadow',
+				'selector'       => '{{WRAPPER}} .sub-menu',
+				'fields_options' => array(
+					'box_shadow_type'     => array( 'default' => 'yes' ),
+					'box_shadow_position' => array(
+						'default' => 'outline',
+					),
+					'box_shadow'          => array(
+						'default' => array(
+							'horizontal' => 0,
+							'vertical'   => 5,
+							'blur'       => 12,
+							'spread'     => 6,
+							'color'      => 'rgba(0, 0, 0, 0.1)',
+						),
+					),
+				),
+			)
+		);
+
+		$this->start_controls_tabs( 'lm_tabs_button_style' );
+
+		$this->start_controls_tab(
+			'lm_tab_button_normal',
+			array(
+				'label' => esc_html__( 'Normal', 'mas-elementor' ),
+			)
+		);
+
+		$this->add_control(
+			'lm_button_text_color',
+			array(
+				'label'     => esc_html__( 'Text Color', 'mas-elementor' ),
+				'type'      => Controls_Manager::COLOR,
+				'default'   => '#7b8b8e',
+				'selectors' => array(
+					'{{WRAPPER}} .sub-menu .menu-item a' => 'fill: {{VALUE}}; color: {{VALUE}};',
+				),
+			)
+		);
+
+		$this->add_group_control(
+			Group_Control_Background::get_type(),
+			array(
+				'name'           => 'li_background',
+				'label'          => esc_html__( 'Background', 'mas-elementor' ),
+				'types'          => array( 'classic', 'gradient' ),
+				'exclude'        => array( 'image' ),
+				'selector'       => '{{WRAPPER}} .sub-menu li',
+				'fields_options' => array(
+					'background' => array(
+						'default' => 'classic',
+					),
+					'color'      => array(
+						'default' => '#ffffff',
+					),
+				),
+			)
+		);
+
+		$this->end_controls_tab();
+
+		$this->start_controls_tab(
+			'lm_tab_button_hover',
+			array(
+				'label' => esc_html__( 'Hover', 'mas-elementor' ),
+			)
+		);
+
+		$this->add_control(
+			'lm_hover_color',
+			array(
+				'label'     => esc_html__( 'Text Color', 'mas-elementor' ),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => array(
+					'{{WRAPPER}} .sub-menu .menu-item a:hover, {{WRAPPER}} .sub-menu .menu-item a:focus' => 'color: {{VALUE}};',
+					'{{WRAPPER}} .sub-menu .menu-item a:hover svg, {{WRAPPER}} .sub-menu .menu-item a:focus svg' => 'fill: {{VALUE}};',
+				),
+				'default'   => '#16181b',
+			)
+		);
+
+		$this->add_group_control(
+			Group_Control_Background::get_type(),
+			array(
+				'name'           => 'li_button_background_hover',
+				'label'          => esc_html__( 'Background', 'mas-elementor' ),
+				'types'          => array( 'classic', 'gradient' ),
+				'exclude'        => array( 'image' ),
+				'selector'       => '{{WRAPPER}} .sub-menu li a:hover, {{WRAPPER}} .sub-menu li a:focus',
+				'fields_options' => array(
+					'background' => array(
+						'default' => 'classic',
+					),
+					'color'      => array(
+						'default' => '#f8f9fa',
+					),
+				),
+			)
+		);
+
+		$this->end_controls_tab();
+
+		$this->end_controls_tabs();
+
+		$this->add_control(
+			'mas_menu_item_padding',
+			array(
+				'label'      => esc_html__( 'Padding', 'mas-elementor' ),
+				'type'       => Controls_Manager::DIMENSIONS,
+				'size_units' => array( 'px', '%', 'em' ),
+				'selectors'  => array(
+					'{{WRAPPER}} .header-menu .sub-menu > li > a' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				),
+				'separator'  => 'before',
+				'default'    => array(
+					'top'      => '4',
+					'right'    => '30',
+					'bottom'   => '4',
+					'left'     => '30',
+					'unit'     => 'px',
+					'isLinked' => false,
+				),
+			)
+		);
+
 	}
 
 	/**
