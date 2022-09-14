@@ -222,7 +222,7 @@ class Products extends Products_Base {
 			array(
 				'label'               => __( 'Columns', 'mas-elementor' ),
 				'type'                => Controls_Manager::NUMBER,
-				'prefix_class'        => 'mas-elementorducts-columns%s-',
+				'prefix_class'        => 'mas-products-columns%s-',
 				'min'                 => 1,
 				'max'                 => 12,
 				'default'             => Products_Renderer::DEFAULT_COLUMNS_AND_ROWS,
