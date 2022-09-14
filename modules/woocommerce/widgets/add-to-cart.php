@@ -328,8 +328,7 @@ class Add_To_Cart extends Widget_Button {
 					),
 				),
 				'selectors' => array(
-					'{{WRAPPER}} .mas-add-to-cart .quantity' => 'display: flex;',
-					'{{WRAPPER}} .mas-add-to-cart .quantity' => 'justify-content: {{VALUE}};',
+					'{{WRAPPER}} .mas-add-to-cart .quantity' => 'display: flex;justify-content: {{VALUE}};',
 				),
 			)
 		);

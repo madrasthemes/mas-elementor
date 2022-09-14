@@ -151,9 +151,9 @@ abstract class Base_Products_Renderer extends \WC_Shortcode_Products {
 			<div class="swiper-slide">
 			<?php
 		}
-
+		?><div class="product"><?php
 		print( mas_render_template( $settings['select_template'], false ) );//phpcs:ignore
-
+		?></div><?php
 		if ( 'yes' === $settings['enable_carousel'] ) {
 			?>
 			</div>
