@@ -308,8 +308,8 @@ class Product_Data_Tabs extends Base_Widget {
 
 		setup_postdata( $product->get_id() );
 
-		wc_get_template( 'single-product/tabs/tabs.php' );
-
+		// wc_get_template( 'single-product/tabs/tabs.php' ) .
+		mas_elementor_get_template( 'woocommerce/single-product/tabs/tabs.php' );
 		// On render widget from Editor - trigger the init manually.
 		if ( wp_doing_ajax() ) {
 			?>
