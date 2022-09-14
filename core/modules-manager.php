@@ -36,7 +36,7 @@ final class Modules_Manager {
 			'mas-library',
 			'dynamic-tags',
 			'multipurpose-text',
-			// 'posts',
+			'posts',
 			'query-control',
 			'woocommerce',
 			'section',
