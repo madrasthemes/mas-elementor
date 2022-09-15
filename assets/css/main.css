@@ -69,8 +69,6 @@
 .mas-products-grid .mas-products.mas-grid {
     display: grid;
     margin: 0;
-    grid-column-gap: 20px;
-    grid-row-gap: 40px;
 }
 
 .woocommerce .mas-products, .woocommerce-page .mas-products {
