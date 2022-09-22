@@ -112,7 +112,7 @@ class Mas_Nav_Menu extends Base_Widget {
 	 * @return string Widget depends.
 	 */
 	public function get_script_depends() {
-		return array( 'smartmenus' );
+		return array( 'navigation-script' );
 	}
 
 	/**
@@ -125,7 +125,7 @@ class Mas_Nav_Menu extends Base_Widget {
 	 * @return array Element styles dependencies.
 	 */
 	public function get_style_depends() {
-		return array( 'nav-menu-stylesheet' );
+		return array( 'nav-menu-stylesheet', 'mas-el-stylesheet' );
 	}
 
 	/**
@@ -224,6 +224,62 @@ class Mas_Nav_Menu extends Base_Widget {
 					'bootstrap' => 'Bootstrap Nav Walker',
 				),
 				'default' => 'default',
+			)
+		);
+
+		$this->add_control(
+			'layout',
+			array(
+				'label'              => esc_html__( 'Layout', 'mas-elementor' ),
+				'type'               => Controls_Manager::SELECT,
+				'default'            => 'horizontal',
+				'options'            => array(
+					'horizontal' => esc_html__( 'Horizontal', 'mas-elementor' ),
+					'dropdown'   => esc_html__( 'Dropdown', 'mas-elementor' ),
+				),
+				'frontend_available' => true,
+				'condition'          => array(
+					'walker!' => 'default',
+				),
+			)
+		);
+
+		// TODO: For Pro 3.6.0, convert this to the breakpoints utility method introduced in core 3.5.0.
+		$breakpoints          = Plugin::elementor()->breakpoints->get_active_breakpoints();
+		$dropdown_options     = array();
+		$excluded_breakpoints = array(
+			'laptop',
+			'widescreen',
+		);
+
+		foreach ( $breakpoints as $breakpoint_key => $breakpoint_instance ) {
+			// Do not include laptop and widscreen in the options since this feature is for mobile devices.
+			if ( in_array( $breakpoint_key, $excluded_breakpoints, true ) ) {
+				continue;
+			}
+
+			$dropdown_options[ $breakpoint_key ] = sprintf(
+				/* translators: 1: Breakpoint label, 2: `>` character, 3: Breakpoint value */
+				esc_html__( '%1$s (%2$s %3$dpx)', 'mas-elementor' ),
+				$breakpoint_instance->get_label(),
+				'>',
+				$breakpoint_instance->get_value()
+			);
+		}
+
+		$dropdown_options['none'] = esc_html__( 'None', 'mas-elementor' );
+
+		$this->add_control(
+			'dropdown',
+			array(
+				'label'        => esc_html__( 'Breakpoint', 'mas-elementor' ),
+				'type'         => Controls_Manager::SELECT,
+				'default'      => 'tablet',
+				'options'      => $dropdown_options,
+				'prefix_class' => 'mas-elementor-nav-menu--dropdown-',
+				'condition'    => array(
+					'layout!' => 'dropdown',
+				),
 			)
 		);
 
@@ -345,8 +401,9 @@ class Mas_Nav_Menu extends Base_Widget {
 		$this->add_control(
 			'mas_nav_submenu',
 			array(
-				'label' => __( 'Submenu', 'mas-elementor' ),
-				'type'  => Controls_Manager::HEADING,
+				'label'     => __( 'Submenu', 'mas-elementor' ),
+				'type'      => Controls_Manager::HEADING,
+				'separator' => 'before',
 			)
 		);
 

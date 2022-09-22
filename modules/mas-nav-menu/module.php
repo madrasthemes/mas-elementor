@@ -48,21 +48,28 @@ class Module extends Module_Base {
 			array(),
 			MAS_ELEMENTOR_VERSION
 		);
+		wp_register_style(
+			'mas-el-stylesheet',
+			MAS_ELEMENTOR_MODULES_URL . 'mas-nav-menu/assets/css/bootstrap-menu.css',
+			array(),
+			MAS_ELEMENTOR_VERSION
+		);
 
-		// wp_enqueue_script(
-		// 'nav-menu-script',
-		// MAS_ELEMENTOR_ASSETS_URL . 'js/bootstrap-bundle.min.js',
-		// array(),
-		// MAS_ELEMENTOR_VERSION,
-		// true
-		// );
-		// wp_enqueue_script(
-		// 'nav-menu-script',
-		// MAS_ELEMENTOR_ASSETS_URL . 'js/bootstrap.min.js',
-		// array(),
-		// MAS_ELEMENTOR_VERSION,
-		// true
-		// );.
+	}
+
+	/**
+	 * Register frontend styles.
+	 */
+	public function register_frontend_scripts() {
+
+		wp_register_script(
+			'bootstrap-script',
+			MAS_ELEMENTOR_ASSETS_URL . 'bootstrap.min.js',
+			array(),
+			MAS_ELEMENTOR_VERSION,
+			true
+		);
+
 	}
 
 	/**
@@ -70,6 +77,7 @@ class Module extends Module_Base {
 	 */
 	protected function add_actions() {
 		add_action( 'elementor/frontend/before_register_styles', array( $this, 'register_frontend_styles' ) );
+		add_action( 'elementor/frontend/before_register_scripts', array( $this, 'register_frontend_scripts' ) );
 	}
 
 	/**
