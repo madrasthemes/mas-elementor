@@ -66,6 +66,15 @@ class Mas_Breadcrumbs extends Base_Widget {
 	}
 
 	/**
+	 * Get the categories for the widget.
+	 *
+	 * @return array
+	 */
+	public function get_categories() {
+		return array( 'mas-elements' );
+	}
+
+	/**
 	 * Register Controls.
 	 *
 	 * @return void

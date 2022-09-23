@@ -52,6 +52,14 @@ class Product_Data_Tabs extends Base_Widget {
 		return array( 'woocommerce', 'shop', 'store', 'data', 'product', 'tabs' );
 	}
 	/**
+	 * Get the categories for the widget.
+	 *
+	 * @return array
+	 */
+	public function get_categories() {
+		return array( 'mas-elements' );
+	}
+	/**
 	 * Register controls.
 	 */
 	protected function register_controls() {

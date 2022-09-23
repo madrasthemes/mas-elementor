@@ -67,14 +67,12 @@ class Products extends Products_Base {
 	}
 
 	/**
-	 * Get the Categories related to the widget.
+	 * Get the categories for the widget.
 	 *
 	 * @return array
 	 */
 	public function get_categories() {
-		return array(
-			'woocommerce-elements',
-		);
+		return array( 'mas-elements' );
 	}
 
 	/**

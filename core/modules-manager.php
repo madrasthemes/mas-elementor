@@ -61,6 +61,7 @@ final class Modules_Manager {
 				$this->modules[ $module_name ] = $class_name::instance();
 			}
 		}
+		add_action( 'elementor/elements/categories_registered', array( $this, 'add_editor_categories' ) );
 	}
 
 	/**
@@ -76,6 +77,25 @@ final class Modules_Manager {
 			}
 
 			return null;
+		}
+
+		return $this->modules;
+	}
+	/**
+	 * Add widget categories.
+	 *
+	 * @param Elements_Manager $object Elements Manager reference.
+	 * @return array
+	 */
+	public function add_editor_categories( $object ) {
+		if ( $object ) {
+			$category_properties = array(
+				'title'  => esc_html__( 'MAS Elementor', 'mas-elementor' ),
+				'icon'   => 'eicon-wordpress',
+				'active' => true,
+			);
+			$object->add_category( 'mas-elements', $category_properties );
+
 		}
 
 		return $this->modules;
