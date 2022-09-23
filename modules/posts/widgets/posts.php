@@ -54,6 +54,15 @@ class Posts extends Posts_Base {
 	}
 
 	/**
+	 * Get the categories for the widget.
+	 *
+	 * @return array
+	 */
+	public function get_categories() {
+		return array( 'mas-elements' );
+	}
+
+	/**
 	 * Called on import to override.
 	 *
 	 * @param array $element The element being imported.

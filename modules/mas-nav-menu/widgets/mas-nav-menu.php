@@ -77,16 +77,12 @@ class Mas_Nav_Menu extends Base_Widget {
 	}
 
 	/**
-	 * Get widget categories.
+	 * Get the categories for the widget.
 	 *
-	 * Retrieve Nav Menu widget categories.
-	 *
-	 * @since 1.0.0
-	 *
-	 * @return string Widget categories.
+	 * @return array
 	 */
 	public function get_categories() {
-		return array( 'mas' );
+		return array( 'mas-elements' );
 	}
 
 	/**

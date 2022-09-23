@@ -66,6 +66,15 @@ class Mas_Nav_Tabs extends Base_Widget {
 	}
 
 	/**
+	 * Get the categories for the widget.
+	 *
+	 * @return array
+	 */
+	public function get_categories() {
+		return array( 'mas-elements' );
+	}
+
+	/**
 	 * Register controls for this widget.
 	 */
 	protected function register_controls() {

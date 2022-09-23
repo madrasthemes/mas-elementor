@@ -55,12 +55,12 @@ class Add_To_Cart extends Widget_Button {
 	}
 
 	/**
-	 * Get the categories related to the widget.
+	 * Get the categories for the widget.
 	 *
 	 * @return array
 	 */
 	public function get_categories() {
-		return array( 'woocommerce-elements' );
+		return array( 'mas-elements' );
 	}
 
 	/**
@@ -151,7 +151,7 @@ class Add_To_Cart extends Widget_Button {
 			)
 		);
 
-		$this->register_quantity_controls(); 
+		$this->register_quantity_controls();
 
 		$this->end_injection();
 
@@ -232,22 +232,22 @@ class Add_To_Cart extends Widget_Button {
 		$this->start_controls_section(
 			'section_quantity_style',
 			array(
-				'label'     => __( 'Quantity', 'mas-elementor' ),
-				'tab'       => Controls_Manager::TAB_STYLE,
+				'label' => __( 'Quantity', 'mas-elementor' ),
+				'tab'   => Controls_Manager::TAB_STYLE,
 			)
 		);
 
 		$this->add_control(
 			'quantity_max_width',
 			array(
-				'label'          => esc_html__( 'Max Width', 'mas-elementor' ),
-				'type'           => Controls_Manager::SLIDER,
-				'default'        => array(
+				'label'      => esc_html__( 'Max Width', 'mas-elementor' ),
+				'type'       => Controls_Manager::SLIDER,
+				'default'    => array(
 					'unit' => 'px',
 					'size' => '80',
 				),
-				'size_units'     => array( '%', 'px', 'vw' ),
-				'range'          => array(
+				'size_units' => array( '%', 'px', 'vw' ),
+				'range'      => array(
 					'%'  => array(
 						'min' => 1,
 						'max' => 100,
@@ -261,7 +261,7 @@ class Add_To_Cart extends Widget_Button {
 						'max' => 100,
 					),
 				),
-				'selectors'      => array(
+				'selectors'  => array(
 					'{{WRAPPER}} .mas-add-to-cart .quantity .input-text' => 'max-width: {{SIZE}}{{UNIT}}',
 				),
 			)
@@ -272,7 +272,7 @@ class Add_To_Cart extends Widget_Button {
 			array(
 				'label'     => esc_html__( 'Bottom Spacing', 'mas-elementor' ),
 				'type'      => Controls_Manager::SLIDER,
-				'default'	=> array(
+				'default'   => array(
 					'unit' => 'px',
 					'size' => '20',
 				),
@@ -314,15 +314,15 @@ class Add_To_Cart extends Widget_Button {
 				'label'     => __( 'Alignment', 'mas-elementor' ),
 				'type'      => Controls_Manager::CHOOSE,
 				'options'   => array(
-					'start'    => array(
+					'start'  => array(
 						'title' => esc_html__( 'Left', 'mas-elementor' ),
 						'icon'  => 'eicon-text-align-left',
 					),
-					'center'  => array(
+					'center' => array(
 						'title' => esc_html__( 'Center', 'mas-elementor' ),
 						'icon'  => 'eicon-text-align-center',
 					),
-					'end'   => array(
+					'end'    => array(
 						'title' => esc_html__( 'Right', 'mas-elementor' ),
 						'icon'  => 'eicon-text-align-right',
 					),
@@ -354,7 +354,7 @@ class Add_To_Cart extends Widget_Button {
 				'global'         => array(
 					'default' => Global_Typography::TYPOGRAPHY_ACCENT,
 				),
-				'separator' => 'before',
+				'separator'      => 'before',
 				'selector'       => '{{WRAPPER}} .mas-add-to-cart .quantity .input-text',
 				'fields_options' => array(
 					'typography'  => array( 'default' => 'yes' ),
@@ -373,7 +373,6 @@ class Add_To_Cart extends Widget_Button {
 			)
 		);
 
-		
 		$this->add_group_control(
 			Group_Control_Border::get_type(),
 			array(
@@ -428,7 +427,7 @@ class Add_To_Cart extends Widget_Button {
 				'global'         => array(
 					'default' => Global_Typography::TYPOGRAPHY_ACCENT,
 				),
-				'separator' => 'before',
+				'separator'      => 'before',
 				'selector'       => '{{WRAPPER}} .mas-add-to-cart .quantity .input-text:hover',
 				'fields_options' => array(
 					'typography'  => array( 'default' => 'yes' ),
@@ -447,7 +446,6 @@ class Add_To_Cart extends Widget_Button {
 			)
 		);
 
-		
 		$this->add_group_control(
 			Group_Control_Border::get_type(),
 			array(
@@ -486,15 +484,12 @@ class Add_To_Cart extends Widget_Button {
 			)
 		);
 
-
-
 		$this->end_controls_tab();
 
 		$this->end_controls_tabs();
 
-
-	$this->end_controls_section();
-}
+		$this->end_controls_section();
+	}
 
 	/**
 	 * Render
@@ -516,9 +511,10 @@ class Add_To_Cart extends Widget_Button {
 
 		$settings = $this->get_settings_for_display();
 
-		?><div class= "mas-add-to-cart"><?php
+		?><div class= "mas-add-to-cart">
+		<?php
 
-		if ( in_array( $settings['layout'], array( 'auto', 'stacked' ) ) ) {
+		if ( in_array( $settings['layout'], array( 'auto', 'stacked' ), true ) ) {
 			add_action( 'woocommerce_before_add_to_cart_quantity', array( $this, 'before_add_to_cart_quantity' ), 95 );
 			add_action( 'woocommerce_after_add_to_cart_button', array( $this, 'after_add_to_cart_button' ), 5 );
 		}
@@ -529,11 +525,13 @@ class Add_To_Cart extends Widget_Button {
 			$this->render_ajax_button( $product );
 		}
 
-		if ( in_array( $settings['layout'], array( 'auto', 'stacked' ) ) ) {
+		if ( in_array( $settings['layout'], array( 'auto', 'stacked' ), true ) ) {
 			remove_action( 'woocommerce_before_add_to_cart_quantity', array( $this, 'before_add_to_cart_quantity' ), 95 );
 			remove_action( 'woocommerce_after_add_to_cart_button', array( $this, 'after_add_to_cart_button' ), 5 );
 		}
-		?></div><?Php
+		?>
+		</div>
+		<?Php
 	}
 
 	/**

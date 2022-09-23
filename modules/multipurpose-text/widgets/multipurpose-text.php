@@ -58,7 +58,7 @@ class Multipurpose_Text extends Base_Widget {
 	 * @return array
 	 */
 	public function get_categories() {
-		return array( 'mas' );
+		return array( 'mas-elements' );
 	}
 
 	/**

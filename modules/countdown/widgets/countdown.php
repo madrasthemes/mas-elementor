@@ -63,6 +63,15 @@ class Countdown extends Base_Widget {
 	}
 
 	/**
+	 * Get the categories for the widget.
+	 *
+	 * @return array
+	 */
+	public function get_categories() {
+		return array( 'mas-elements' );
+	}
+
+	/**
 	 * Get the keywords associated with the widget.
 	 *
 	 * @return array
@@ -96,21 +105,21 @@ class Countdown extends Base_Widget {
 
 		$this->add_control(
 			'view',
-			[
-				'label' => esc_html__( 'Layout', 'elementor' ),
-				'type' => Controls_Manager::CHOOSE,
+			array(
+				'label'   => esc_html__( 'Layout', 'mas-elementor' ),
+				'type'    => Controls_Manager::CHOOSE,
 				'default' => 'traditional',
-				'options' => [
-					'traditional' => [
-						'title' => esc_html__( 'Default', 'elementor' ),
-						'icon' => 'eicon-editor-list-ul',
-					],
-					'inline' => [
-						'title' => esc_html__( 'Inline', 'elementor' ),
-						'icon' => 'eicon-ellipsis-h',
-					],
-				],
-			]
+				'options' => array(
+					'traditional' => array(
+						'title' => esc_html__( 'Default', 'mas-elementor' ),
+						'icon'  => 'eicon-editor-list-ul',
+					),
+					'inline'      => array(
+						'title' => esc_html__( 'Inline', 'mas-elementor' ),
+						'icon'  => 'eicon-ellipsis-h',
+					),
+				),
+			)
 		);
 
 		$this->add_control(
@@ -496,27 +505,27 @@ class Countdown extends Base_Widget {
 		if ( $instance['show_seconds'] ) {
 			$string .= $this->render_countdown_item( $instance, 'label_seconds', 'js-cd-seconds' );
 		}
-		
+
 		$this->add_render_attribute( 'view', 'class', 'js-countdown' );
 
 		if ( 'inline' === $instance['view'] ) {
 
 			$this->add_render_attribute( 'view', 'style', 'display: flex;' );
 		}
-		$a = '<div '. $this->get_render_attribute_string( 'view' ).' >' . $string . '</div>';
+		$a = '<div ' . $this->get_render_attribute_string( 'view' ) . ' >' . $string . '</div>';
 		return $a;
 	}
 	/**
 	 * Init labels for this widget.
 	 *
-	 * @var $_default_countdown_labels label for the widget.
+	 * @var $default_countdown_labels label for the widget.
 	 */
-	public $_default_countdown_labels;
+	public $default_countdown_labels;
 	/**
 	 * Init labels for this widget.
 	 */
-	public function init_default_countdown_labels() {
-		$this->_default_countdown_labels = array(
+	public function initdefault_countdown_labels() {
+		$this->default_countdown_labels = array(
 			'label_months'  => __( 'Months', 'mas-elementor' ),
 			'label_weeks'   => __( 'Weeks', 'mas-elementor' ),
 			'label_days'    => __( 'Days', 'mas-elementor' ),
@@ -528,12 +537,12 @@ class Countdown extends Base_Widget {
 	/**
 	 * Get default label for this widget.
 	 */
-	public function get_default_countdown_labels() {
-		if ( ! $this->_default_countdown_labels ) {
-			$this->init_default_countdown_labels();
+	public function getdefault_countdown_labels() {
+		if ( ! $this->default_countdown_labels ) {
+			$this->initdefault_countdown_labels();
 		}
 
-		return $this->_default_countdown_labels;
+		return $this->default_countdown_labels;
 	}
 	/**
 	 * Render for this widget.
@@ -548,7 +557,7 @@ class Countdown extends Base_Widget {
 							<span class="elementor-countdown-digits ' . $part_class . '">0</span>';
 
 		if ( $instance['show_labels'] ) {
-			$default_labels = $this->get_default_countdown_labels();
+			$default_labels = $this->getdefault_countdown_labels();
 			$label          = ( $instance['custom_labels'] ) ? $instance[ $label ] : $default_labels[ $label ];
 			$string        .= ' <span class="elementor-countdown-label">' . $label . '</span>';
 		}
