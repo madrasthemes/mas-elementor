@@ -24,17 +24,27 @@ if ( ! empty( $settings['menu'] ) ) {
 }
 	$walker = new MAS_Bootstrap_Navwalker();
 	$args   = array(
-		'echo'        => false,
-		'menu'        => $settings['menu'],
-		'menu_class'  => 'mas-elementor-nav-menu header-menu desktop-only',
-		'menu_id'     => 'menu-' . $widget->get_nav_menu_index() . '-' . $widget->get_id(),
+		'echo'            => false,
+		'menu'            => $settings['menu'],
+		'menu_class'      => 'mas-elementor-nav-menu menu',
+		'menu_id'         => 'menu-' . $widget->get_nav_menu_index() . '-' . $widget->get_id(),
+		'fallback_cb'     => '__return_empty_string',
+		'container'       => '',
 
-		'fallback_cb' => '__return_empty_string',
-		'container'   => '',
 
 	);
+
+	if ( 'horizontal' === $settings['layout'] || 'default' === $settings['walker'] ) {
+		$args['menu_class'] .= ' header-menu mas-elementor-nav-menu--main';
+	}
+
+	if ( 'dropdown' === $settings['layout'] ) {
+		$args['menu_class'] .= ' handheld-header-menu header-menu mas-elementor-nav-menu--dropdown';
+	}
+	$wrap_class = 'mas-nav-menu main-navigation';
 	if ( 'bootstrap' === $settings['walker'] ) {
 		$args['walker'] = apply_filters( 'mas_nav_menu_walker', $walker );
+		$wrap_class    .= ' mas-no-default';
 	}
 
 	// General Menu.
@@ -44,6 +54,33 @@ if ( ! empty( $settings['menu'] ) ) {
 		return;
 	}
 
-	?>
-	<?php echo wp_kses_post( $menu_html ); ?>
-	<?php
+	if ( 'horizontal' === $settings['layout'] || 'default' === $settings['walker'] ) {
+		?>
+		<div class="<?php echo esc_attr( $wrap_class ); ?>">
+		<?php
+		echo wp_kses_post( $menu_html );
+		?>
+		</div>
+		<?php
+	}
+	if ( 'default' !== $settings['walker'] ) {
+		?>
+		<div class="mas-hamburger-menu">
+			<nav class="navbar mas-elementor-menu-toggle">
+			<div class="container-fluid">
+				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#<?php echo esc_attr( 'toggle-' . $widget->get_id() ); ?>" aria-controls="<?php echo esc_attr( 'toggle-' . $widget->get_id() ); ?>" aria-expanded="false" aria-label="Toggle navigation">
+					<i class="eicon-menu-bar"></i>
+					<span class="navbar-toggler-icon"></span>
+				</button>
+			</div>
+			</nav>
+			<div class="off-canvas-navigation">
+				<div class="collapse handheld" id="<?php echo esc_attr( 'toggle-' . $widget->get_id() ); ?>">
+					<?php echo wp_kses_post( $menu_html ); ?>
+				</div>
+			</div>
+		</div>
+			<?php
+	}
+
+
