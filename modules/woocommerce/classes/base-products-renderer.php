@@ -92,7 +92,7 @@ abstract class Base_Products_Renderer extends \WC_Shortcode_Products {
 			do_action( "woocommerce_shortcode_before_{$this->type}_loop", $this->attributes );
 
 			// Fire standard shop loop hooks when paginating results so we can show result counts and so on.
-			if ( wc_string_to_bool( $this->attributes['paginate'] ) ) {
+			if ( wc_string_to_bool( $this->attributes['paginate'] && 'yes' !== $settings['enable_carousel'] ) ) {
 				do_action( 'woocommerce_before_shop_loop' );
 			}
 
