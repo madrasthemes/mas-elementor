@@ -479,6 +479,7 @@ class Mas_Nav_Tabs extends Base_Widget {
 				'selector' => '{{WRAPPER}} .mas-nav-link',
 			)
 		);
+		
 
 		// Border Radius Controls.
 		$this->add_responsive_control(
@@ -522,6 +523,15 @@ class Mas_Nav_Tabs extends Base_Widget {
 				'selectors' => array(
 					'{{WRAPPER}} .mas-nav-link' => 'color: {{VALUE}};',
 				),
+			)
+		);
+
+		$this->add_group_control(
+			Group_Control_Typography::get_type(),
+			array(
+				'name'     => 'anchor_typography',
+				'selector' => '{{WRAPPER}} .mas-nav-link',
+
 			)
 		);
 
@@ -612,6 +622,15 @@ class Mas_Nav_Tabs extends Base_Widget {
 				'selectors' => array(
 					'{{WRAPPER}} .mas-nav-link.active' => 'color: {{VALUE}};',
 				),
+			)
+		);
+
+		$this->add_group_control(
+			Group_Control_Typography::get_type(),
+			array(
+				'name'     => 'anchor_active_typography',
+				'selector' => '{{WRAPPER}} .mas-nav-link.active',
+
 			)
 		);
 
