@@ -163,6 +163,10 @@ class Products_Renderer extends Base_Products_Renderer {
 		$columns                      = ! empty( $settings['columns'] ) ? $settings['columns'] : self::DEFAULT_COLUMNS_AND_ROWS;
 		$query_args['posts_per_page'] = intval( $columns * $rows );
 
+		if ( ! empty( $settings['swiper_posts_per_page'] ) && 'yes' === $settings['enable_carousel'] ) {
+			$query_args['posts_per_page'] = intval( $settings['swiper_posts_per_page'] );
+		}
+
 		$query_args = apply_filters( 'woocommerce_shortcode_products_query', $query_args, $this->attributes, $this->type );
 
 		// Always query only IDs.

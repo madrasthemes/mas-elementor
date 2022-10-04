@@ -272,6 +272,19 @@ class Products extends Products_Base {
 		);
 
 		$this->add_control(
+			'swiper_posts_per_page',
+			array(
+				'label'       => __( 'Posts Per Page', 'mas-elementor' ),
+				'type'        => Controls_Manager::NUMBER,
+				'default'     => 6,
+				'render_type' => 'template',
+				'condition' => array(
+					'enable_carousel' => 'yes',
+				),
+			)
+		);
+
+		$this->add_control(
 			'paginate',
 			array(
 				'label'   => __( 'Pagination', 'mas-elementor' ),
