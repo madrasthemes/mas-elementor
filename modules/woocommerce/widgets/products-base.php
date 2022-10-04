@@ -57,6 +57,35 @@ abstract class Products_Base extends Base_Widget {
 			)
 		);
 
+		$this->add_responsive_control(
+			'pagination_text_align',
+			array(
+				'label'     => esc_html__( 'Text Alignment', 'mas-elementor' ),
+				'type'      => Controls_Manager::CHOOSE,
+				'options'   => array(
+					'left'    => array(
+						'title' => esc_html__( 'Left', 'mas-elementor' ),
+						'icon'  => 'eicon-text-align-left',
+					),
+					'center'  => array(
+						'title' => esc_html__( 'Center', 'mas-elementor' ),
+						'icon'  => 'eicon-text-align-center',
+					),
+					'right'   => array(
+						'title' => esc_html__( 'Right', 'mas-elementor' ),
+						'icon'  => 'eicon-text-align-right',
+					),
+				),
+				'devices'         => array( 'desktop', 'tablet', 'mobile' ),
+				'desktop_default' => 'center',
+				'tablet_default'  => 'center',
+				'mobile_default'  => 'center',
+				'selectors' => array(
+					'{{WRAPPER}} .woocommerce nav.woocommerce-pagination' => 'text-align: {{VALUE}};',
+				),
+			)
+		);
+
 		$this->add_group_control(
 			Group_Control_Border::get_type(),
 			array(
