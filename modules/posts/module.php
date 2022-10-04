@@ -166,5 +166,13 @@ class Module extends Module_Base {
 			array(),
 			MAS_ELEMENTOR_VERSION
 		);
+
+		wp_register_style(
+			'mas-posts-stylesheet',
+			MAS_ELEMENTOR_ASSETS_URL . 'css/main.css',
+			array(),
+			MAS_ELEMENTOR_VERSION
+		);
 	}
+
 }
