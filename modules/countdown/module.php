@@ -52,6 +52,14 @@ class Module extends Module_Base {
 		$this->add_actions();
 
 		add_action( 'elementor/frontend/before_register_scripts', array( $this, 'register_frontend_scripts' ) );
+		add_filter(
+			'safe_style_css',
+			function( $styles ) {
+				$styles[] = 'display';
+				$styles[] = 'flex-wrap';
+				return $styles;
+			}
+		);
 	}
 
 	/**

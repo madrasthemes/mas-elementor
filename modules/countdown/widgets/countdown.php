@@ -108,7 +108,7 @@ class Countdown extends Base_Widget {
 			array(
 				'label'   => esc_html__( 'Layout', 'mas-elementor' ),
 				'type'    => Controls_Manager::CHOOSE,
-				'default' => 'traditional',
+				'default' => 'inline',
 				'options' => array(
 					'traditional' => array(
 						'title' => esc_html__( 'Default', 'mas-elementor' ),
@@ -158,6 +158,55 @@ class Countdown extends Base_Widget {
 				'placeholder' => __( 'Minutes', 'mas-elementor' ),
 				'condition'   => array(
 					'countdown_type' => 'evergreen',
+				),
+			)
+		);
+
+		$this->add_control(
+			'single_view',
+			array(
+				'label'   => esc_html__( 'Text Layout', 'mas-elementor' ),
+				'type'    => Controls_Manager::CHOOSE,
+				'default' => 'wrap',
+				'options' => array(
+					'wrap'   => array(
+						'title' => esc_html__( 'Default', 'mas-elementor' ),
+						'icon'  => 'eicon-ellipsis-h',
+					),
+					'nowrap' => array(
+						'title' => esc_html__( 'Inline', 'mas-elementor' ),
+						'icon'  => 'eicon-editor-list-ul',
+					),
+				),
+			)
+		);
+
+		$this->add_responsive_control(
+			'countdown_text_align',
+			array(
+				'label'     => esc_html__( 'Text Alignment', 'mas-elementor' ),
+				'type'      => Controls_Manager::CHOOSE,
+				'options'   => array(
+					'left'    => array(
+						'title' => esc_html__( 'Left', 'mas-elementor' ),
+						'icon'  => 'eicon-text-align-left',
+					),
+					'center'  => array(
+						'title' => esc_html__( 'Center', 'mas-elementor' ),
+						'icon'  => 'eicon-text-align-center',
+					),
+					'right'   => array(
+						'title' => esc_html__( 'Right', 'mas-elementor' ),
+						'icon'  => 'eicon-text-align-right',
+					),
+					'justify' => array(
+						'title' => esc_html__( 'Justified', 'mas-elementor' ),
+						'icon'  => 'eicon-text-align-justify',
+					),
+				),
+				'default'   => 'center',
+				'selectors' => array(
+					'{{WRAPPER}} .mas-elementor-countdown-wrapper .mas-elementor-countdown-item' => 'text-align: {{VALUE}};',
 				),
 			)
 		);
@@ -361,7 +410,7 @@ class Countdown extends Base_Widget {
 				'label'     => __( 'Color', 'mas-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
-					'{{WRAPPER}} .elementor-countdown-digits' => 'color: {{VALUE}};',
+					'{{WRAPPER}} .mas-elementor-countdown-digits' => 'color: {{VALUE}};',
 				),
 			)
 		);
@@ -369,10 +418,41 @@ class Countdown extends Base_Widget {
 		$this->add_group_control(
 			Group_Control_Typography::get_type(),
 			array(
-				'name'     => 'digits_typography',
-				'selector' => '{{WRAPPER}} .elementor-countdown-digits',
-				'global'   => array(
+				'name'           => 'digits_typography',
+				'selector'       => '{{WRAPPER}} .mas-elementor-countdown-digits',
+				'global'         => array(
 					'default' => Global_Typography::TYPOGRAPHY_TEXT,
+				),
+				'fields_options' => array(
+					'typography'  => array( 'default' => 'yes' ),
+					// Inner control name.
+					'font_weight' => array(
+						// Inner control settings.
+						'default' => '700',
+					),
+					'font_family' => array(
+						'default' => 'Inter,sans-serif',
+					),
+					'font_size'   => array(
+						'default' => array(
+							'unit' => 'px',
+							'size' => 44,
+						),
+						'tablet'  => array(
+							'unit' => 'px',
+							'size' => 36.224,
+						),
+					),
+					'line_height' => array(
+						'default' => array(
+							'unit' => 'px',
+							'size' => 57.2,
+						),
+						'tablet'  => array(
+							'unit' => 'px',
+							'size' => 47.0912,
+						),
+					),
 				),
 			)
 		);
@@ -392,7 +472,7 @@ class Countdown extends Base_Widget {
 				'label'     => __( 'Color', 'mas-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
-					'{{WRAPPER}} .elementor-countdown-label' => 'color: {{VALUE}};',
+					'{{WRAPPER}} .mas-elementor-countdown-label' => 'color: {{VALUE}};',
 				),
 			)
 		);
@@ -400,10 +480,140 @@ class Countdown extends Base_Widget {
 		$this->add_group_control(
 			Group_Control_Typography::get_type(),
 			array(
-				'name'     => 'label_typography',
-				'selector' => '{{WRAPPER}} .elementor-countdown-label',
-				'global'   => array(
+				'name'           => 'label_typography',
+				'selector'       => '{{WRAPPER}} .mas-elementor-countdown-label',
+				'global'         => array(
 					'default' => Global_Typography::TYPOGRAPHY_SECONDARY,
+				),
+				'fields_options' => array(
+					'typography'  => array( 'default' => 'yes' ),
+					// Inner control name.
+					'font_weight' => array(
+						// Inner control settings.
+						'default' => '700',
+					),
+					'font_family' => array(
+						'default' => 'Inter,sans-serif',
+					),
+					'font_size'   => array(
+						'default' => array(
+							'unit' => 'px',
+							'size' => 16,
+						),
+					),
+					'line_height' => array(
+						'default' => array(
+							'unit' => 'px',
+							'size' => 20.8,
+						),
+					),
+				),
+			)
+		);
+
+		$this->add_control(
+			'heading_spacing',
+			array(
+				'label'     => __( 'Spacing', 'mas-elementor' ),
+				'type'      => Controls_Manager::HEADING,
+				'separator' => 'before',
+			)
+		);
+
+		$this->add_responsive_control(
+			'mas_countdown_width',
+			array(
+				'label'          => esc_html__( 'Width', 'mas-elementor' ),
+				'type'           => Controls_Manager::SLIDER,
+				'size_units'     => array( '%', 'px' ),
+				'range'          => array(
+					'%' => array(
+						'max' => 100,
+					),
+				),
+				'default'        => array(
+					'size' => 25,
+					'unit' => '%',
+				),
+				'tablet_default' => array(
+					'size' => 25,
+					'unit' => '%',
+				),
+				'mobile_default' => array(
+					'size' => 50,
+					'unit' => '%',
+				),
+				'selectors'      => array(
+					'{{WRAPPER}} .mas-elementor-countdown-wrapper .mas-countdown-inline .mas-elementor-countdown-item' => 'width: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}} .mas-elementor-countdown-wrapper .mas-countdown-block .mas-elementor-countdown-item' => 'width: {{SIZE}}{{UNIT}};',
+				),
+			)
+		);
+
+		$this->add_responsive_control(
+			'mas_countdown_space_between_label',
+			array(
+				'label'          => esc_html__( 'Label Spacing', 'mas-elementor' ),
+				'type'           => Controls_Manager::SLIDER,
+				'size_units'     => array( 'px' ),
+				'range'          => array(
+					'px' => array(
+						'max' => 300,
+					),
+				),
+				'default'        => array(
+					'size' => 0,
+					'unit' => 'px',
+				),
+				'tablet_default' => array(
+					'unit' => 'px',
+				),
+				'mobile_default' => array(
+					'unit' => 'px',
+				),
+				'selectors'      => array(
+					'{{WRAPPER}} .mas-elementor-countdown-wrapper .mas-elementor-countdown-item .mas-elementor-countdown-label.mas-countdown-item-nowrap' => 'margin-left: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}} .mas-elementor-countdown-wrapper .mas-elementor-countdown-item .mas-elementor-countdown-label.mas-countdown-item-wrap' => 'margin-top: {{SIZE}}{{UNIT}};',
+				),
+			)
+		);
+
+		$this->add_responsive_control(
+			'mas_countdwon_padding',
+			array(
+				'label'      => esc_html__( 'Padding', 'mas-elementor' ),
+				'type'       => Controls_Manager::DIMENSIONS,
+				'size_units' => array( 'px', 'em', '%', 'rem' ),
+				'selectors'  => array(
+					'{{WRAPPER}} .mas-elementor-countdown-wrapper .mas-elementor-countdown-item' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				),
+				'default'    => array(
+					'top'      => '0',
+					'right'    => '12',
+					'bottom'   => '0',
+					'left'     => '12',
+					'unit'     => '0',
+					'isLinked' => false,
+				),
+			)
+		);
+
+		$this->add_responsive_control(
+			'mas_countdwon_item_margin',
+			array(
+				'label'      => esc_html__( 'Margin', 'mas-elementor' ),
+				'type'       => Controls_Manager::DIMENSIONS,
+				'size_units' => array( 'px', 'em', '%', 'rem' ),
+				'selectors'  => array(
+					'{{WRAPPER}} .mas-elementor-countdown-wrapper .mas-elementor-countdown-item' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				),
+				'default'    => array(
+					'top'      => '0',
+					'right'    => '0',
+					'bottom'   => '32',
+					'left'     => '0',
+					'unit'     => '0',
+					'isLinked' => true,
 				),
 			)
 		);
@@ -441,7 +651,7 @@ class Countdown extends Base_Widget {
 					),
 				),
 				'selectors' => array(
-					'{{WRAPPER}} .elementor-countdown-expire--message' => 'text-align: {{VALUE}};',
+					'{{WRAPPER}} .mas-elementor-countdown-expire--message' => 'text-align: {{VALUE}};',
 				),
 			)
 		);
@@ -453,7 +663,7 @@ class Countdown extends Base_Widget {
 				'type'      => Controls_Manager::COLOR,
 				'default'   => '',
 				'selectors' => array(
-					'{{WRAPPER}} .elementor-countdown-expire--message' => 'color: {{VALUE}};',
+					'{{WRAPPER}} .mas-elementor-countdown-expire--message' => 'color: {{VALUE}};',
 				),
 				'global'    => array(
 					'default' => Global_Colors::COLOR_TEXT,
@@ -468,7 +678,7 @@ class Countdown extends Base_Widget {
 				'global'   => array(
 					'default' => Global_Typography::TYPOGRAPHY_TEXT,
 				),
-				'selector' => '{{WRAPPER}} .elementor-countdown-expire--message',
+				'selector' => '{{WRAPPER}} .mas-elementor-countdown-expire--message',
 			)
 		);
 
@@ -479,7 +689,7 @@ class Countdown extends Base_Widget {
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', '%', 'em' ),
 				'selectors'  => array(
-					'{{WRAPPER}} .elementor-countdown-expire--message' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .mas-elementor-countdown-expire--message' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				),
 			)
 		);
@@ -494,23 +704,26 @@ class Countdown extends Base_Widget {
 	public function get_strftime( $instance ) {
 		$string = '';
 		if ( $instance['show_days'] ) {
-			$string .= $this->render_countdown_item( $instance, 'label_days', 'js-cd-days' );
+			$string .= $this->render_countdown_item( $instance, 'label_days', 'mas-js-cd-days' );
 		}
 		if ( $instance['show_hours'] ) {
-			$string .= $this->render_countdown_item( $instance, 'label_hours', 'js-cd-hours' );
+			$string .= $this->render_countdown_item( $instance, 'label_hours', 'mas-js-cd-hours' );
 		}
 		if ( $instance['show_minutes'] ) {
-			$string .= $this->render_countdown_item( $instance, 'label_minutes', 'js-cd-minutes' );
+			$string .= $this->render_countdown_item( $instance, 'label_minutes', 'mas-js-cd-minutes' );
 		}
 		if ( $instance['show_seconds'] ) {
-			$string .= $this->render_countdown_item( $instance, 'label_seconds', 'js-cd-seconds' );
+			$string .= $this->render_countdown_item( $instance, 'label_seconds', 'mas-js-cd-seconds' );
 		}
 
-		$this->add_render_attribute( 'view', 'class', 'js-countdown' );
+		$this->add_render_attribute( 'view', 'class', 'mas-js-countdown' );
 
 		if ( 'inline' === $instance['view'] ) {
 
-			$this->add_render_attribute( 'view', 'style', 'display: flex;' );
+			$this->add_render_attribute( 'view', 'style', 'display: flex;flex-wrap:wrap' );
+			$this->add_render_attribute( 'view', 'class', 'mas-countdown-inline' );
+		} else {
+			$this->add_render_attribute( 'view', 'class', 'mas-countdown-block' );
 		}
 		$a = '<div ' . $this->get_render_attribute_string( 'view' ) . ' >' . $string . '</div>';
 		return $a;
@@ -552,17 +765,18 @@ class Countdown extends Base_Widget {
 	 * @param string $part_class part class.
 	 */
 	public function render_countdown_item( $instance, $label, $part_class ) {
-		$string = '<div class="col-6 col-sm-3">
-						<div class="elementor-countdown-item">
-							<span class="elementor-countdown-digits ' . $part_class . '">0</span>';
+
+		$digits_html = 'wrap' === $instance['single_view'] ? '<span class="mas-elementor-countdown-digits ' . $part_class . '" style="display:block">0</span>' : '<span class="mas-elementor-countdown-digits ' . $part_class . '">0</span>';
+		$string      = '<div class="mas-elementor-countdown-item">' . $digits_html;
 
 		if ( $instance['show_labels'] ) {
 			$default_labels = $this->getdefault_countdown_labels();
 			$label          = ( $instance['custom_labels'] ) ? $instance[ $label ] : $default_labels[ $label ];
-			$string        .= ' <span class="elementor-countdown-label">' . $label . '</span>';
+			$label_html     = 'wrap' === $instance['single_view'] ? ' <span class="mas-elementor-countdown-label mas-countdown-item-wrap" style="display:block">' . $label . '</span>' : ' <span class="mas-elementor-countdown-label mas-countdown-item-nowrap">' . $label . '</span>';
+			$string        .= $label_html;
 		}
 
-		$string .= '</div></div>';
+		$string .= '</div>';
 
 		return $string;
 	}
@@ -617,11 +831,11 @@ class Countdown extends Base_Widget {
 				var countDownDate = new Date( dated ).getTime();
 				// const oneYearFromNow = new Date()
 
-				document.querySelectorAll('.js-countdown').forEach(item => {
-					const days = item.querySelector('.js-cd-days'),
-					hours = item.querySelector('.js-cd-hours'),
-					minutes = item.querySelector('.js-cd-minutes'),
-					seconds = item.querySelector('.js-cd-seconds')
+				document.querySelectorAll('.mas-js-countdown').forEach(item => {
+					const days = item.querySelector('.mas-js-cd-days'),
+					hours = item.querySelector('.mas-js-cd-hours'),
+					minutes = item.querySelector('.mas-js-cd-minutes'),
+					seconds = item.querySelector('.mas-js-cd-seconds')
 
 					countdown(countDownDate,
 					ts => {

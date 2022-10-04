@@ -247,6 +247,9 @@ class Products extends Products_Base {
 					Controls_Stack::RESPONSIVE_DESKTOP => Controls_Stack::RESPONSIVE_TABLET,
 					Controls_Stack::RESPONSIVE_TABLET  => Controls_Stack::RESPONSIVE_TABLET,
 				),
+				'condition' => array(
+					'enable_carousel!' => 'yes',
+				),
 			)
 		);
 
@@ -262,6 +265,9 @@ class Products extends Products_Base {
 						'max' => 20,
 					),
 				),
+				'condition' => array(
+					'enable_carousel!' => 'yes',
+				),
 			)
 		);
 
@@ -271,6 +277,9 @@ class Products extends Products_Base {
 				'label'   => __( 'Pagination', 'mas-elementor' ),
 				'type'    => Controls_Manager::SWITCHER,
 				'default' => '',
+				'condition' => array(
+					'enable_carousel!' => 'yes',
+				),
 			)
 		);
 
@@ -282,6 +291,7 @@ class Products extends Products_Base {
 				'default'   => '',
 				'condition' => array(
 					'paginate' => 'yes',
+					'enable_carousel!' => 'yes',
 				),
 			)
 		);
@@ -295,6 +305,7 @@ class Products extends Products_Base {
 				'condition'       => array(
 					'paginate'    => 'yes',
 					'allow_order' => 'yes',
+					'enable_carousel!' => 'yes',
 				),
 			)
 		);
@@ -307,6 +318,7 @@ class Products extends Products_Base {
 				'default'   => '',
 				'condition' => array(
 					'paginate' => 'yes',
+					'enable_carousel!' => 'yes',
 				),
 			)
 		);

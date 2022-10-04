@@ -149,8 +149,8 @@ class Module extends Module_Base {
 	public function register_frontend_scripts() {
 		wp_register_script(
 			'load-more',
-			MAS_ELEMENTOR_MODULES_URL . '/posts/assets/js/load-more.js',
-			array(),
+			MAS_ELEMENTOR_MODULES_URL . 'posts/assets/js/load-more.js',
+			array( 'elementor-frontend-modules' ),
 			MAS_ELEMENTOR_VERSION,
 			true
 		);
@@ -162,7 +162,7 @@ class Module extends Module_Base {
 	public function register_frontend_styles() {
 		wp_register_style(
 			'load-more',
-			MAS_ELEMENTOR_MODULES_URL . '/posts/assets/css/load-more.css',
+			MAS_ELEMENTOR_MODULES_URL . 'posts/assets/css/load-more.css',
 			array(),
 			MAS_ELEMENTOR_VERSION
 		);

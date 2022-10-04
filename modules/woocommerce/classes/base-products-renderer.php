@@ -96,8 +96,11 @@ abstract class Base_Products_Renderer extends \WC_Shortcode_Products {
 				do_action( 'woocommerce_before_shop_loop' );
 			}
 
-			?><div class="mas-products mas-grid">
-			<?php
+			if ( 'yes' !== $settings['enable_carousel'] ) {
+				?>
+				<div class="mas-products mas-grid">
+				<?php
+			}
 
 			if ( wc_get_loop_prop( 'total' ) ) {
 				$index__id = 1;
@@ -125,7 +128,7 @@ abstract class Base_Products_Renderer extends \WC_Shortcode_Products {
 			<?php
 
 			// Fire standard shop loop hooks when paginating results so we can show result counts and so on.
-			if ( wc_string_to_bool( $this->attributes['paginate'] ) ) {
+			if ( wc_string_to_bool( $this->attributes['paginate'] ) && 'yes' !== $settings['enable_carousel'] ) {
 				do_action( 'woocommerce_after_shop_loop' );
 			}
 
@@ -135,6 +138,11 @@ abstract class Base_Products_Renderer extends \WC_Shortcode_Products {
 			wc_reset_loop();
 		} else {
 			do_action( "woocommerce_shortcode_{$this->type}_loop_no_results", $this->attributes );
+		}
+		if ( 'yes' !== $settings['enable_carousel'] ) {
+			?>
+			</div>
+			<?php
 		}
 
 		$before_render = '<div class="' . esc_attr( implode( ' ', $classes ) ) . '">' . $this->carousel_loop_header( $widget, $settings );

@@ -6,11 +6,11 @@
       var countDownDate = new Date( dated ).getTime();
       // const oneYearFromNow = new Date()
 
-      document.querySelectorAll('.js-countdown').forEach(item => {
-        const days = item.querySelector('.js-cd-days'),
-          hours = item.querySelector('.js-cd-hours'),
-          minutes = item.querySelector('.js-cd-minutes'),
-          seconds = item.querySelector('.js-cd-seconds')
+      document.querySelectorAll('.mas-js-countdown').forEach(item => {
+        const days = item.querySelector('.mas-js-cd-days'),
+          hours = item.querySelector('.mas-js-cd-hours'),
+          minutes = item.querySelector('.mas-js-cd-minutes'),
+          seconds = item.querySelector('.mas-js-cd-seconds')
 
         countdown(countDownDate,
           ts => {
