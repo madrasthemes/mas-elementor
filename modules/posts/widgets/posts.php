@@ -16,6 +16,7 @@ use Elementor\Core\Kits\Documents\Tabs\Global_Colors;
 use Elementor\Core\Kits\Documents\Tabs\Global_Typography;
 use Elementor\Group_Control_Border;
 use Elementor\Group_Control_Typography;
+use Elementor\Controls_Stack;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
@@ -90,11 +91,17 @@ class Posts extends Posts_Base {
 	 * Set the query variable
 	 */
 	public function query_posts() {
-
+		$settings   = $this->get_settings_for_display();
+		$rows       = ! empty( $settings['rows'] ) ? $settings['rows'] : 4;
+		$columns    = ! empty( $settings['columns'] ) ? $settings['columns'] : 4;
 		$query_args = array(
-			'posts_per_page' => $this->get_settings_for_display( 'posts_per_page' ),
+			'posts_per_page' => intval( $columns * $rows ),
 			'paged'          => $this->get_current_page(),
 		);
+
+		if ( ! empty( $settings['swiper_posts_per_page'] ) && 'yes' === $settings['enable_carousel'] ) {
+			$query_args['posts_per_page'] = intval( $settings['swiper_posts_per_page'] );
+		}
 
 		$elementor_query = Module_Query::instance();
 		$this->query     = $elementor_query->get_query( $this, $this->get_name(), $query_args, array() );
@@ -122,37 +129,59 @@ class Posts extends Posts_Base {
 			)
 		);
 
+		$this->add_control(
+			'mas_posts_class',
+			array(
+				'type'         => Controls_Manager::HIDDEN,
+				'default'      => 'mas-posts',
+				'prefix_class' => 'mas-posts-grid mas-elementor-',
+			)
+		);
+
 		$this->add_responsive_control(
 			'columns',
 			array(
-				'label'          => esc_html__( 'Columns', 'mas-elementor' ),
-				'type'           => Controls_Manager::SELECT,
-				'default'        => '3',
-				'tablet_default' => '2',
-				'mobile_default' => '1',
-				'options'        => array(
-					'1' => '1',
-					'2' => '2',
-					'3' => '3',
-					'4' => '4',
-					'5' => '5',
-					'6' => '6',
+				'label'               => __( 'Columns', 'mas-elementor' ),
+				'type'                => Controls_Manager::NUMBER,
+				'prefix_class'        => 'mas-grid%s-',
+				'min'                 => 1,
+				'max'                 => 12,
+				'default'             => 4,
+				'required'            => true,
+				'render_type'         => 'template',
+				'device_args'         => array(
+					Controls_Stack::RESPONSIVE_TABLET => array(
+						'required' => false,
+					),
+					Controls_Stack::RESPONSIVE_MOBILE => array(
+						'required' => false,
+					),
 				),
-				'selectors'      => array(
-					'{{WRAPPER}}.elementor-widget-mas-posts .elementor-widget-container .elementor' => 'width: calc( 100% / {{SIZE}} )',
+				'min_affected_device' => array(
+					Controls_Stack::RESPONSIVE_DESKTOP => Controls_Stack::RESPONSIVE_TABLET,
+					Controls_Stack::RESPONSIVE_TABLET  => Controls_Stack::RESPONSIVE_TABLET,
 				),
-				'condition'      => array(
+				'condition'           => array(
 					'enable_carousel!' => 'yes',
 				),
 			)
 		);
 
 		$this->add_control(
-			'posts_per_page',
+			'rows',
 			array(
-				'label'   => esc_html__( 'Posts Per Page', 'mas-elementor' ),
-				'type'    => Controls_Manager::NUMBER,
-				'default' => 3,
+				'label'       => __( 'Rows', 'mas-elementor' ),
+				'type'        => Controls_Manager::NUMBER,
+				'default'     => 4,
+				'render_type' => 'template',
+				'range'       => array(
+					'px' => array(
+						'max' => 20,
+					),
+				),
+				'condition'   => array(
+					'enable_carousel!' => 'yes',
+				),
 			)
 		);
 
@@ -194,6 +223,19 @@ class Posts extends Posts_Base {
 				'description' => esc_html__( 'Select Templates for the above selected posts series', 'mas-elementor' ),
 				'condition'   => array(
 					'enable_loop_selection' => 'yes',
+				),
+			)
+		);
+
+		$this->add_control(
+			'swiper_posts_per_page',
+			array(
+				'label'       => __( 'Posts Per Page', 'mas-elementor' ),
+				'type'        => Controls_Manager::NUMBER,
+				'default'     => 6,
+				'render_type' => 'template',
+				'condition'   => array(
+					'enable_carousel' => 'yes',
 				),
 			)
 		);
@@ -243,7 +285,7 @@ class Posts extends Posts_Base {
 			return;
 		}
 
-		$post_wrapper = 'mas-posts-container';
+		$post_wrapper = 'mas-posts-container mas-posts mas-grid';
 		$this->carousel_loop_header( $settings );
 
 		// It's the global `wp_query` it self. and the loop was started from the theme.
