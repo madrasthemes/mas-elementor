@@ -60,18 +60,18 @@ abstract class Products_Base extends Base_Widget {
 		$this->add_responsive_control(
 			'pagination_text_align',
 			array(
-				'label'     => esc_html__( 'Text Alignment', 'mas-elementor' ),
-				'type'      => Controls_Manager::CHOOSE,
-				'options'   => array(
-					'left'    => array(
+				'label'           => esc_html__( 'Text Alignment', 'mas-elementor' ),
+				'type'            => Controls_Manager::CHOOSE,
+				'options'         => array(
+					'left'   => array(
 						'title' => esc_html__( 'Left', 'mas-elementor' ),
 						'icon'  => 'eicon-text-align-left',
 					),
-					'center'  => array(
+					'center' => array(
 						'title' => esc_html__( 'Center', 'mas-elementor' ),
 						'icon'  => 'eicon-text-align-center',
 					),
-					'right'   => array(
+					'right'  => array(
 						'title' => esc_html__( 'Right', 'mas-elementor' ),
 						'icon'  => 'eicon-text-align-right',
 					),
@@ -80,7 +80,7 @@ abstract class Products_Base extends Base_Widget {
 				'desktop_default' => 'center',
 				'tablet_default'  => 'center',
 				'mobile_default'  => 'center',
-				'selectors' => array(
+				'selectors'       => array(
 					'{{WRAPPER}} .woocommerce nav.woocommerce-pagination' => 'text-align: {{VALUE}};',
 				),
 			)
@@ -512,6 +512,133 @@ abstract class Products_Base extends Base_Widget {
 		$this->end_controls_tab();
 
 		$this->end_controls_tabs();
+
+		$this->end_controls_section();
+
+		$this->start_controls_section(
+			'section_filter_style',
+			array(
+				'label'     => __( 'Filter', 'mas-elementor' ),
+				'tab'       => Controls_Manager::TAB_STYLE,
+				'condition' => array(
+					'allow_order' => 'yes',
+				),
+			)
+		);
+
+		// Anchor Border Controls.
+		$this->add_group_control(
+			Group_Control_Border::get_type(),
+			array(
+				'name'           => 'mas_filter_border_type',
+				'selector'       => '{{WRAPPER}} .woocommerce-ordering select',
+				'fields_options' => array(
+					'border' => array(
+						'default' => 'solid',
+					),
+					'width'  => array(
+						'default' => array(
+							'top'      => '1',
+							'right'    => '1',
+							'bottom'   => '1',
+							'left'     => '1',
+							'isLinked' => false,
+						),
+					),
+					'color'  => array(
+						'default' => '#f2f4f5',
+					),
+				),
+			)
+		);
+
+		$this->add_responsive_control(
+			'mas_filter_border_radius',
+			array(
+				'label'           => esc_html__( 'Border Radius', 'mas-elementor' ),
+				'type'            => Controls_Manager::DIMENSIONS,
+				'size_units'      => array( 'px', '%', 'em' ),
+				'devices'         => array( 'desktop', 'tablet', 'mobile' ),
+				'desktop_default' => array(
+					'top'      => '3',
+					'right'    => '3',
+					'bottom'   => '3',
+					'left'     => '3',
+					'isLinked' => false,
+				),
+				'tablet_default'  => array(
+					'top'      => '3',
+					'right'    => '3',
+					'bottom'   => '3',
+					'left'     => '3',
+					'isLinked' => false,
+				),
+				'mobile_default'  => array(
+					'top'      => '3',
+					'right'    => '3',
+					'bottom'   => '3',
+					'left'     => '3',
+					'isLinked' => false,
+				),
+				'selectors'       => array(
+					'{{WRAPPER}} .woocommerce-ordering select' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				),
+			)
+		);
+
+		$this->add_responsive_control(
+			'mas_product_filter_spacing_heading',
+			array(
+				'label'     => esc_html__( 'Spacing', 'mas-elementor' ),
+				'type'      => Controls_Manager::HEADING,
+				'separator' => 'before',
+			),
+		);
+
+		$this->add_responsive_control(
+			'mas_product_filter_padding',
+			array(
+				'label'           => esc_html__( 'Padding', 'mas-elementor' ),
+				'type'            => Controls_Manager::DIMENSIONS,
+				'size_units'      => array( 'px', 'em', '%', 'rem' ),
+				'selectors'       => array(
+					'{{WRAPPER}} .woocommerce-ordering select' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				),
+				'desktop_default' => array(
+					'top'      => '8',
+					'right'    => '16',
+					'bottom'   => '8',
+					'left'     => '16',
+					'isLinked' => false,
+				),
+				'tablet_default'  => array(
+					'top'      => '8',
+					'right'    => '16',
+					'bottom'   => '8',
+					'left'     => '16',
+					'isLinked' => false,
+				),
+				'mobile_default'  => array(
+					'top'      => '8',
+					'right'    => '16',
+					'bottom'   => '8',
+					'left'     => '16',
+					'isLinked' => false,
+				),
+			)
+		);
+
+		$this->add_responsive_control(
+			'mas_product_filter_margin',
+			array(
+				'label'      => esc_html__( 'Margin', 'mas-elementor' ),
+				'type'       => Controls_Manager::DIMENSIONS,
+				'size_units' => array( 'px', 'em', '%', 'rem' ),
+				'selectors'  => array(
+					'{{WRAPPER}} .woocommerce-ordering' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				),
+			)
+		);
 
 		$this->end_controls_section();
 
