@@ -247,9 +247,6 @@ class Products extends Products_Base {
 					Controls_Stack::RESPONSIVE_DESKTOP => Controls_Stack::RESPONSIVE_TABLET,
 					Controls_Stack::RESPONSIVE_TABLET  => Controls_Stack::RESPONSIVE_TABLET,
 				),
-				'condition' => array(
-					'enable_carousel!' => 'yes',
-				),
 			)
 		);
 
@@ -264,9 +261,6 @@ class Products extends Products_Base {
 					'px' => array(
 						'max' => 20,
 					),
-				),
-				'condition' => array(
-					'enable_carousel!' => 'yes',
 				),
 			)
 		);

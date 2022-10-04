@@ -53,6 +53,7 @@ abstract class Products_Base extends Base_Widget {
 				'tab'       => Controls_Manager::TAB_STYLE,
 				'condition' => array(
 					'paginate' => 'yes',
+					'enable_carousel!' => 'yes',
 				),
 			)
 		);
@@ -521,7 +522,8 @@ abstract class Products_Base extends Base_Widget {
 				'label'     => __( 'Filter', 'mas-elementor' ),
 				'tab'       => Controls_Manager::TAB_STYLE,
 				'condition' => array(
-					'allow_order' => 'yes',
+					'allow_order'      => 'yes',
+					'enable_carousel!' => 'yes',
 				),
 			)
 		);
