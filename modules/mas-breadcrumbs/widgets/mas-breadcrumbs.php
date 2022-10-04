@@ -84,7 +84,7 @@ class Mas_Breadcrumbs extends Base_Widget {
 		$this->start_controls_section(
 			'ol_section',
 			array(
-				'label' => esc_html__( 'OL Element', 'mas-elementor' ),
+				'label' => esc_html__( 'List Items', 'mas-elementor' ),
 				'tab'   => Controls_Manager::TAB_STYLE,
 			)
 		);
@@ -92,10 +92,13 @@ class Mas_Breadcrumbs extends Base_Widget {
 		$this->add_responsive_control(
 			'mas_breadrumb_alignment',
 			array(
-				'label'     => esc_html__( 'Alignment', 'mas-elementor' ),
-				'type'      => Controls_Manager::SELECT,
-				'default'   => 'flex-start',
-				'options'   => array(
+				'label'           => esc_html__( 'Horizontal Alignment', 'mas-elementor' ),
+				'type'            => Controls_Manager::SELECT,
+				'devices'         => array( 'desktop', 'tablet', 'mobile' ),
+				'desktop_default' => 'flex-start',
+				'tablet_default'  => 'flex-start',
+				'mobile_default'  => 'flex-start',
+				'options'         => array(
 					'flex-start'    => array(
 						'title' => esc_html_x( 'Start', 'Flex Container Control', 'mas-elementor' ),
 						'icon'  => 'eicon-flex eicon-justify-start-h',
@@ -121,8 +124,34 @@ class Mas_Breadcrumbs extends Base_Widget {
 						'icon'  => 'eicon-flex eicon-justify-space-evenly-h',
 					),
 				),
-				'selectors' => array(
+				'selectors'       => array(
 					'{{WRAPPER}} .mas-breadcrumb-ol' => 'justify-content: {{VALUE}}',
+				),
+			)
+		);
+
+		$this->add_responsive_control(
+			'mas_breadrumb_vertical_alignment',
+			array(
+				'label'     => esc_html__( 'Vertical Alignment', 'mas-elementor' ),
+				'type'      => Controls_Manager::CHOOSE,
+				'default'   => 'center',
+				'options'   => array(
+					'start'  => array(
+						'title' => esc_html__( 'Left', 'mas-elementor' ),
+						'icon'  => 'eicon-text-align-left',
+					),
+					'center' => array(
+						'title' => esc_html__( 'Center', 'mas-elementor' ),
+						'icon'  => 'eicon-text-align-center',
+					),
+					'end'    => array(
+						'title' => esc_html__( 'Right', 'mas-elementor' ),
+						'icon'  => 'eicon-text-align-right',
+					),
+				),
+				'selectors' => array(
+					'{{WRAPPER}} .mas-breadcrumb-ol' => 'align-items: {{VALUE}}',
 				),
 			)
 		);
@@ -214,7 +243,7 @@ class Mas_Breadcrumbs extends Base_Widget {
 		$this->start_controls_section(
 			'mas_breadcrumb_list_item_section',
 			array(
-				'label' => esc_html__( 'LI Element', 'mas-elementor' ),
+				'label' => esc_html__( 'List Item', 'mas-elementor' ),
 				'tab'   => Controls_Manager::TAB_STYLE,
 			)
 		);
@@ -279,20 +308,6 @@ class Mas_Breadcrumbs extends Base_Widget {
 		);
 
 		$this->add_control(
-			'mas_breadcrumb_link_color',
-			array(
-				'label'     => esc_html__( 'Link Color', 'mas-elementor' ),
-				'type'      => Controls_Manager::COLOR,
-				'global'    => array(
-					'default' => Global_Colors::COLOR_PRIMARY,
-				),
-				'selectors' => array(
-					'{{WRAPPER}} .mas_breadcrumb_link' => 'color: {{VALUE}};',
-				),
-			)
-		);
-
-		$this->add_control(
 			'mas_breadcrumb_title_color',
 			array(
 				'label'     => esc_html__( 'Color', 'mas-elementor' ),
@@ -302,6 +317,20 @@ class Mas_Breadcrumbs extends Base_Widget {
 				),
 				'selectors' => array(
 					'{{WRAPPER}} .mas_breadcrumb_li' => 'color: {{VALUE}};',
+				),
+			)
+		);
+
+		$this->add_control(
+			'mas_breadcrumb_link_color',
+			array(
+				'label'     => esc_html__( 'Link Color', 'mas-elementor' ),
+				'type'      => Controls_Manager::COLOR,
+				'global'    => array(
+					'default' => Global_Colors::COLOR_PRIMARY,
+				),
+				'selectors' => array(
+					'{{WRAPPER}} .mas_breadcrumb_link' => 'color: {{VALUE}};',
 				),
 			)
 		);
@@ -322,7 +351,7 @@ class Mas_Breadcrumbs extends Base_Widget {
 			Group_Control_Border::get_type(),
 			array(
 				'name'     => 'mas_breadcrumb_link_border',
-				'selector' => '{{WRAPPER}} .mas_breadcrumb_link',
+				'selector' => '{{WRAPPER}} li:last-child',
 			)
 		);
 
