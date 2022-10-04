@@ -231,7 +231,7 @@ class Products extends Products_Base {
 				'type'                => Controls_Manager::NUMBER,
 				'prefix_class'        => 'mas-grid%s-',
 				'min'                 => 1,
-				'max'                 => 12,
+				'max'                 => 6,
 				'default'             => Products_Renderer::DEFAULT_COLUMNS_AND_ROWS,
 				'required'            => true,
 				'render_type'         => 'template',

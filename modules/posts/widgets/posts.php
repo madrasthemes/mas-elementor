@@ -145,7 +145,7 @@ class Posts extends Posts_Base {
 				'type'                => Controls_Manager::NUMBER,
 				'prefix_class'        => 'mas-grid%s-',
 				'min'                 => 1,
-				'max'                 => 12,
+				'max'                 => 6,
 				'default'             => 4,
 				'required'            => true,
 				'render_type'         => 'template',
