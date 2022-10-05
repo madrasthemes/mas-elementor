@@ -178,6 +178,20 @@ trait Button_Widget_Trait {
 		);
 
 		$element->add_control(
+			'icon_align',
+			array(
+				'label'     => esc_html__( 'Previous Icon Position', 'mas-elementor' ),
+				'type'      => Controls_Manager::SELECT,
+				'default'   => 'left',
+				'options'   => array(
+					'left'  => esc_html__( 'Before', 'mas-elementor' ),
+					'right' => esc_html__( 'After', 'mas-elementor' ),
+				),
+				'condition' => array_merge( $args['section_condition'], array( 'selected_icon[value]!' => '' ) ),
+			)
+		);
+
+		$element->add_control(
 			'selected_next_icon',
 			array(
 				'label'                  => esc_html__( 'Next Icon', 'mas-elementor' ),
@@ -195,23 +209,9 @@ trait Button_Widget_Trait {
 		);
 
 		$element->add_control(
-			'icon_align',
-			array(
-				'label'     => esc_html__( 'Icon Position', 'mas-elementor' ),
-				'type'      => Controls_Manager::SELECT,
-				'default'   => 'left',
-				'options'   => array(
-					'left'  => esc_html__( 'Before', 'mas-elementor' ),
-					'right' => esc_html__( 'After', 'mas-elementor' ),
-				),
-				'condition' => array_merge( $args['section_condition'], array( 'selected_icon[value]!' => '' ) ),
-			)
-		);
-
-		$element->add_control(
 			'next_icon_align',
 			array(
-				'label'     => esc_html__( 'Icon Position', 'mas-elementor' ),
+				'label'     => esc_html__( 'Next Icon Position', 'mas-elementor' ),
 				'type'      => Controls_Manager::SELECT,
 				'default'   => 'right',
 				'options'   => array(
