@@ -197,6 +197,16 @@ class Mas_Nav_Tabs extends Base_Widget {
 		);
 
 		$this->add_control(
+			'tab_icon_enable',
+			array(
+				'label'     => esc_html__( 'Enable Icon', 'mas-elementor' ),
+				'type'      => Controls_Manager::SWITCHER,
+				'default'   => 'yes',
+				'separator' => 'before',
+			)
+		);
+
+		$this->add_control(
 			'type',
 			array(
 				'label'        => esc_html__( 'Position', 'mas-elementor' ),
@@ -207,7 +217,6 @@ class Mas_Nav_Tabs extends Base_Widget {
 					'vertical'   => esc_html__( 'Vertical', 'mas-elementor' ),
 				),
 				'prefix_class' => 'mas-elementor-nav-tab-layout-',
-				'separator'    => 'before',
 			)
 		);
 
@@ -217,7 +226,7 @@ class Mas_Nav_Tabs extends Base_Widget {
 		$this->start_controls_section(
 			'list_section',
 			array(
-				'label' => esc_html__( 'UL Element', 'mas-elementor' ),
+				'label' => esc_html__( 'List Items', 'mas-elementor' ),
 				'tab'   => Controls_Manager::TAB_STYLE,
 			)
 		);
@@ -225,9 +234,10 @@ class Mas_Nav_Tabs extends Base_Widget {
 		$this->add_control(
 			'ul_wrap',
 			array(
-				'label'       => esc_html__( 'UL Wrap Class', 'mas-elementor' ),
+				'label'       => esc_html__( 'List Items Wrapper Class', 'mas-elementor' ),
 				'type'        => Controls_Manager::TEXT,
 				'placeholder' => esc_html__( 'Enter Your Wrap Class', 'mas-elementor' ),
+				'description' => esc_html__( 'These classes are added to ul element', 'mas-elementor' ),
 				'default'     => 'nav nav-tabs',
 			)
 		);
@@ -319,7 +329,7 @@ class Mas_Nav_Tabs extends Base_Widget {
 		$this->start_controls_section(
 			'list_item_section',
 			array(
-				'label' => esc_html__( 'LI Element', 'mas-elementor' ),
+				'label' => esc_html__( 'List Item', 'mas-elementor' ),
 				'tab'   => Controls_Manager::TAB_STYLE,
 			)
 		);
@@ -327,9 +337,10 @@ class Mas_Nav_Tabs extends Base_Widget {
 		$this->add_control(
 			'li_wrap',
 			array(
-				'label'       => esc_html__( 'LI Wrap Class', 'mas-elementor' ),
+				'label'       => esc_html__( 'List item Wrap Class', 'mas-elementor' ),
 				'type'        => Controls_Manager::TEXT,
 				'placeholder' => esc_html__( 'Enter Your li Wrap Class', 'mas-elementor' ),
+				'description' => esc_html__( 'These classes are added to li elements', 'mas-elementor' ),
 				'default'     => 'nav-item',
 			)
 		);
@@ -420,7 +431,7 @@ class Mas_Nav_Tabs extends Base_Widget {
 		$this->start_controls_section(
 			'anchor_element_section',
 			array(
-				'label' => esc_html__( 'Anchor Element', 'mas-elementor' ),
+				'label' => esc_html__( 'Link Element', 'mas-elementor' ),
 				'tab'   => Controls_Manager::TAB_STYLE,
 			)
 		);
@@ -428,9 +439,9 @@ class Mas_Nav_Tabs extends Base_Widget {
 		$this->add_control(
 			'anchor_wrap',
 			array(
-				'label'       => esc_html__( 'Anchor Class', 'mas-elementor' ),
+				'label'       => esc_html__( 'Link Class', 'mas-elementor' ),
 				'type'        => Controls_Manager::TEXT,
-				'placeholder' => esc_html__( 'Enter Your Anchor Class', 'mas-elementor' ),
+				'placeholder' => esc_html__( 'Enter Your link Class', 'mas-elementor' ),
 				'default'     => 'nav-link',
 			)
 		);
@@ -479,7 +490,6 @@ class Mas_Nav_Tabs extends Base_Widget {
 				'selector' => '{{WRAPPER}} .mas-nav-link',
 			)
 		);
-		
 
 		// Border Radius Controls.
 		$this->add_responsive_control(
@@ -644,8 +654,11 @@ class Mas_Nav_Tabs extends Base_Widget {
 		$this->start_controls_section(
 			'tab_icon_style',
 			array(
-				'label' => esc_html__( 'Icon', 'mas-elementor' ),
-				'tab'   => Controls_Manager::TAB_STYLE,
+				'label'     => esc_html__( 'Icon', 'mas-elementor' ),
+				'tab'       => Controls_Manager::TAB_STYLE,
+				'condition' => array(
+					'tab_icon_enable' => 'yes',
+				),
 			)
 		);
 
@@ -656,7 +669,7 @@ class Mas_Nav_Tabs extends Base_Widget {
 				'type'      => Controls_Manager::COLOR,
 				'default'   => '',
 				'selectors' => array(
-					'{{WRAPPER}} .mas-tab-icon i' => 'color: {{VALUE}};',
+					'{{WRAPPER}} .mas-tab-icon i'   => 'color: {{VALUE}};',
 					'{{WRAPPER}} .mas-tab-icon svg' => 'fill: {{VALUE}};',
 				),
 				'global'    => array(
@@ -999,24 +1012,28 @@ class Mas_Nav_Tabs extends Base_Widget {
 							<div class="mas-tab-flex">
 								<?php
 								// add old default.
-								if ( ! isset( $item['icon'] ) && ! $migration_allowed ) {
-									$item['icon'] = isset( $fallback_defaults[ $index ] ) ? $fallback_defaults[ $index ] : 'fa fa-check';
-								}
+								if ( 'yes' === $settings['tab_icon_enable'] ) :
+									if ( ! isset( $item['icon'] ) && ! $migration_allowed ) {
+										$item['icon'] = isset( $fallback_defaults[ $index ] ) ? $fallback_defaults[ $index ] : 'fa fa-check';
+									}
 
-								$migrated = isset( $item['__fa4_migrated']['tab_icon'] );
-								$is_new   = ! isset( $item['icon'] ) && $migration_allowed;
-								if ( ! empty( $item['icon'] ) || ( ! empty( $item['tab_icon']['value'] ) && $is_new ) ) :
-									?>
-									<span class="mas-tab-icon">
+									$migrated = isset( $item['__fa4_migrated']['tab_icon'] );
+									$is_new   = ! isset( $item['icon'] ) && $migration_allowed;
+									if ( ! empty( $item['icon'] ) || ( ! empty( $item['tab_icon']['value'] ) && $is_new ) ) :
+										?>
+										<span class="mas-tab-icon">
+											<?php
+											if ( $is_new || $migrated ) {
+												Icons_Manager::render_icon( $item['tab_icon'], array( 'aria-hidden' => 'true' ) );
+											} else {
+												?>
+													<i class="<?php echo esc_attr( $item['icon'] ); ?>" aria-hidden="true"></i>
+											<?php } ?>
+										</span>
 										<?php
-										if ( $is_new || $migrated ) {
-											Icons_Manager::render_icon( $item['tab_icon'], array( 'aria-hidden' => 'true' ) );
-										} else {
-											?>
-												<i class="<?php echo esc_attr( $item['icon'] ); ?>" aria-hidden="true"></i>
-										<?php } ?>
-									</span>
-								<?php endif; ?>
+									endif;
+								endif;
+								?>
 								<div class="mas-tab-flex-grow">
 									<<?php echo esc_html( $heading_tag ); ?> <?php $this->print_render_attribute_string( 'heading_class' ); ?>>
 										<?php echo esc_html( $item['list'] ); ?>
