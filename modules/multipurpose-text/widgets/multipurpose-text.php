@@ -684,7 +684,7 @@ class Multipurpose_Text extends Base_Widget {
 		$this->start_controls_section(
 			'section_style_heading',
 			array(
-				'label' => esc_html__( 'Style', 'mas-elementor' ),
+				'label' => esc_html__( 'Content', 'mas-elementor' ),
 				'tab'   => Controls_Manager::TAB_STYLE,
 			)
 		);
