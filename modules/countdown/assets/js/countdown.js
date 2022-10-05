@@ -1,25 +1,98 @@
-(function() {
-      // INITIALIZATION OF COUNTDOWN
-      // =======================================================
-      var el = document.querySelector('.mas-elementor-countdown-wrapper');
-      var dated = el.dataset.date;
-      var countDownDate = new Date( dated ).getTime();
-      // const oneYearFromNow = new Date()
+/**
+ * Around | Multipurpose Bootstrap Template
+ * Copyright 2020 Createx Studio
+ * Theme core scripts
+ * 
+ * @author Createx Studio
+ * @version 1.2.0
+ */
 
-      document.querySelectorAll('.mas-js-countdown').forEach(item => {
-        const days = item.querySelector('.mas-js-cd-days'),
-          hours = item.querySelector('.mas-js-cd-hours'),
-          minutes = item.querySelector('.mas-js-cd-minutes'),
-          seconds = item.querySelector('.mas-js-cd-seconds')
 
-        countdown(countDownDate,
-          ts => {
-            days.innerHTML = ts.days
-            hours.innerHTML = ts.hours
-            minutes.innerHTML = ts.minutes
-            seconds.innerHTML = ts.seconds
-          },
-          countdown.DAYS | countdown.HOURS | countdown.MINUTES | countdown.SECONDS
-        )
-      })
-    })()
+ ;(function ($) {
+    'use strict';
+  
+    const theme = {
+  
+      /**
+       * Theme's components/functions list
+       * Comment out or delete the unnecessary component.
+       * Some component have dependencies (plugins). Do not forget to remove dependency.
+      */
+  
+      init: () => {
+        theme.countdown();
+      },
+
+      /**
+       * Countdown Timer
+       * @memberof theme
+       * @method countdown
+      */
+       countdown: () => {
+  
+        let coundown = document.querySelectorAll('.mas-elementor-countdown-wrapper');
+  
+        if (coundown == null) return;
+  
+        for (let i = 0; i < coundown.length; i++) {
+  
+          let endDate = coundown[i].dataset.date,
+              daysVal = coundown[i].querySelector('.mas-js-cd-days'),
+              hoursVal = coundown[i].querySelector('.mas-js-cd-hours'),
+              minutesVal = coundown[i].querySelector('.mas-js-cd-minutes'),
+              secondsVal = coundown[i].querySelector('.mas-js-cd-seconds'),
+              days, hours, minutes, seconds;
+          
+          endDate = new Date(endDate).getTime();
+  
+          if (isNaN(endDate)) return;
+  
+          setInterval(calculate, 1000);
+  
+          function calculate() {
+            let startDate = new Date().getTime();
+            
+            let timeRemaining = parseInt((endDate - startDate) / 1000);
+            
+            if (timeRemaining >= 0) {
+              days = parseInt(timeRemaining / 86400);
+              timeRemaining = (timeRemaining % 86400);
+              
+              hours = parseInt(timeRemaining / 3600);
+              timeRemaining = (timeRemaining % 3600);
+              
+              minutes = parseInt(timeRemaining / 60);
+              timeRemaining = (timeRemaining % 60);
+              
+              seconds = parseInt(timeRemaining);
+              
+              if (daysVal != null) {
+                daysVal.innerHTML = parseInt(days, 10);
+              }
+              if (hoursVal != null) {
+                hoursVal.innerHTML = hours < 10 ? '0' + hours : hours;
+              }
+              if (minutesVal != null) {
+                minutesVal.innerHTML = minutes < 10 ? '0' + minutes : minutes;
+              }
+              if (secondsVal != null) {
+                secondsVal.innerHTML = seconds < 10 ? '0' + seconds : seconds;
+              }
+              
+            } else {
+              return;
+            }
+          }
+        }
+      },
+  
+  
+    }
+  
+    /**
+     * Init theme core
+    */
+    
+    theme.init();
+  
+  })(jQuery);
