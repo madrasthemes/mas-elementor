@@ -178,6 +178,20 @@ trait Button_Widget_Trait {
 		);
 
 		$element->add_control(
+			'icon_align',
+			array(
+				'label'     => esc_html__( 'Previous Icon Position', 'mas-elementor' ),
+				'type'      => Controls_Manager::SELECT,
+				'default'   => 'left',
+				'options'   => array(
+					'left'  => esc_html__( 'Before', 'mas-elementor' ),
+					'right' => esc_html__( 'After', 'mas-elementor' ),
+				),
+				'condition' => array_merge( $args['section_condition'], array( 'selected_icon[value]!' => '' ) ),
+			)
+		);
+
+		$element->add_control(
 			'selected_next_icon',
 			array(
 				'label'                  => esc_html__( 'Next Icon', 'mas-elementor' ),
@@ -195,23 +209,9 @@ trait Button_Widget_Trait {
 		);
 
 		$element->add_control(
-			'icon_align',
-			array(
-				'label'     => esc_html__( 'Icon Position', 'mas-elementor' ),
-				'type'      => Controls_Manager::SELECT,
-				'default'   => 'left',
-				'options'   => array(
-					'left'  => esc_html__( 'Before', 'mas-elementor' ),
-					'right' => esc_html__( 'After', 'mas-elementor' ),
-				),
-				'condition' => array_merge( $args['section_condition'], array( 'selected_icon[value]!' => '' ) ),
-			)
-		);
-
-		$element->add_control(
 			'next_icon_align',
 			array(
-				'label'     => esc_html__( 'Icon Position', 'mas-elementor' ),
+				'label'     => esc_html__( 'Next Icon Position', 'mas-elementor' ),
 				'type'      => Controls_Manager::SELECT,
 				'default'   => 'right',
 				'options'   => array(
@@ -295,7 +295,7 @@ trait Button_Widget_Trait {
 		$element->add_control(
 			'button_wrapper_css',
 			array(
-				'label'       => esc_html__( 'Button Wrapper CSS', 'mas-elementor' ),
+				'label'       => esc_html__( 'Arrow Wrapper CSS', 'mas-elementor' ),
 				'type'        => Controls_Manager::TEXT,
 				'default'     => '',
 				'description' => esc_html__( 'Additional CSS to be applied to .btn-wrapper element.', 'mas-elementor' ),
@@ -306,26 +306,10 @@ trait Button_Widget_Trait {
 		$element->add_control(
 			'button_css',
 			array(
-				'label'       => esc_html__( 'Button CSS', 'mas-elementor' ),
+				'label'       => esc_html__( 'Arrow CSS', 'mas-elementor' ),
 				'type'        => Controls_Manager::TEXT,
 				'default'     => '',
 				'description' => esc_html__( 'Additional CSS to be applied to .btn element.', 'mas-elementor' ),
-				'condition'   => $args['section_condition'],
-			)
-		);
-
-		$element->add_control(
-			'button_css_id',
-			array(
-				'label'       => esc_html__( 'Button ID', 'mas-elementor' ),
-				'type'        => Controls_Manager::TEXT,
-				'dynamic'     => array(
-					'active' => true,
-				),
-				'default'     => '',
-				'title'       => esc_html__( 'Add your custom id WITHOUT the Pound key. e.g: my-id', 'mas-elementor' ),
-				'description' => esc_html__( 'Please make sure the ID is unique and not used elsewhere on the page this form is displayed. This field allows `A-z 0-9` & underscore chars without spaces.', 'mas-elementor' ),
-				'separator'   => 'before',
 				'condition'   => $args['section_condition'],
 			)
 		);
@@ -350,7 +334,7 @@ trait Button_Widget_Trait {
 		$element->start_controls_section(
 			'style_swiper_button',
 			array(
-				'label'     => esc_html__( 'Button', 'mas-elementor' ),
+				'label'     => esc_html__( 'Carousel Arrows', 'mas-elementor' ),
 				'tab'       => Controls_Manager::TAB_STYLE,
 				'condition' => array(
 					'enable_carousel' => 'yes',

@@ -231,7 +231,7 @@ class Products extends Products_Base {
 				'type'                => Controls_Manager::NUMBER,
 				'prefix_class'        => 'mas-grid%s-',
 				'min'                 => 1,
-				'max'                 => 12,
+				'max'                 => 6,
 				'default'             => Products_Renderer::DEFAULT_COLUMNS_AND_ROWS,
 				'required'            => true,
 				'render_type'         => 'template',
@@ -247,6 +247,9 @@ class Products extends Products_Base {
 					Controls_Stack::RESPONSIVE_DESKTOP => Controls_Stack::RESPONSIVE_TABLET,
 					Controls_Stack::RESPONSIVE_TABLET  => Controls_Stack::RESPONSIVE_TABLET,
 				),
+				'condition' => array(
+					'enable_carousel!' => 'yes',
+				),
 			)
 		);
 
@@ -261,6 +264,22 @@ class Products extends Products_Base {
 					'px' => array(
 						'max' => 20,
 					),
+				),
+				'condition' => array(
+					'enable_carousel!' => 'yes',
+				),
+			)
+		);
+
+		$this->add_control(
+			'swiper_posts_per_page',
+			array(
+				'label'       => __( 'Posts Per Page', 'mas-elementor' ),
+				'type'        => Controls_Manager::NUMBER,
+				'default'     => 6,
+				'render_type' => 'template',
+				'condition' => array(
+					'enable_carousel' => 'yes',
 				),
 			)
 		);

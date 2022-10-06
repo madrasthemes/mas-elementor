@@ -62,6 +62,15 @@ class Multipurpose_Text extends Base_Widget {
 	}
 
 	/**
+	 * Get the script dependencies for this widget.
+	 *
+	 * @return array
+	 */
+	public function get_script_depends() {
+		return array( 'mas-typed', 'mas-typed-init' );
+	}
+
+	/**
 	 * Register controls for this widget.
 	 *
 	 * @return void
@@ -103,19 +112,6 @@ class Multipurpose_Text extends Base_Widget {
 		);
 
 		$this->add_control(
-			'typing_text',
-			array(
-				'label'              => esc_html__( 'Typing Text', 'mas-elementor' ),
-				'description'        => esc_html__( 'Enter each word in a separate line', 'mas-elementor' ),
-				'type'               => Controls_Manager::TEXTAREA,
-				'placeholder'        => esc_html__( 'Enter Typing Text', 'mas-elementor' ),
-				'separator'          => 'none',
-				'default'            => "startup.\nfuture.\nsuccess.",
-				'frontend_available' => true,
-			)
-		);
-
-		$this->add_control(
 			'after_title',
 			array(
 				'label'       => esc_html__( 'After Highlighted Text', 'mas-elementor' ),
@@ -127,6 +123,96 @@ class Multipurpose_Text extends Base_Widget {
 				'placeholder' => esc_html__( 'Enter your title', 'mas-elementor' ),
 				'description' => esc_html__( 'Use <br> to break into two lines', 'mas-elementor' ),
 				'label_block' => true,
+			)
+		);
+
+		$this->add_control(
+			'typing_text',
+			array(
+				'label'              => esc_html__( 'Typing Text', 'mas-elementor' ),
+				'description'        => esc_html__( 'Enter each word in a separate line', 'mas-elementor' ),
+				'type'               => Controls_Manager::TEXTAREA,
+				'placeholder'        => esc_html__( 'Enter Typing Text', 'mas-elementor' ),
+				'separator'          => 'before',
+				'default'            => "startup.\nfuture.\nsuccess.",
+				'frontend_available' => true,
+			)
+		);
+
+		$this->add_control(
+			'type_speed',
+			array(
+				'label'     => esc_html__( 'Typing Speed', 'mas-elementor' ),
+				'type'      => Controls_Manager::SLIDER,
+				'default'   => array(
+					'size' => '40',
+				),
+				'range'     => array(
+					'px' => array(
+						'min'  => 0,
+						'max'  => 5000,
+						'step' => 10,
+					),
+				),
+				'condition' => array(
+					'typing_text!' => '',
+				),
+			)
+		);
+
+		$this->add_control(
+			'back_speed',
+			array(
+				'label'     => esc_html__( 'Back Speed', 'mas-elementor' ),
+				'type'      => Controls_Manager::SLIDER,
+				'default'   => array(
+					'size' => '40',
+				),
+				'range'     => array(
+					'px' => array(
+						'min'  => 0,
+						'max'  => 5000,
+						'step' => 10,
+					),
+				),
+				'condition' => array(
+					'typing_text!' => '',
+				),
+			)
+		);
+
+		$this->add_control(
+			'back_delay',
+			array(
+				'label'     => esc_html__( 'Back Delay', 'mas-elementor' ),
+				'type'      => Controls_Manager::SLIDER,
+				'default'   => array(
+					'size' => '500',
+				),
+				'range'     => array(
+					'px' => array(
+						'min'  => 0,
+						'max'  => 5000,
+						'step' => 50,
+					),
+				),
+				'condition' => array(
+					'typing_text!' => '',
+				),
+			)
+		);
+
+		$this->add_control(
+			'typing_loop',
+			array(
+				'type'      => Controls_Manager::SWITCHER,
+				'label'     => esc_html__( 'Enable Typing Loop', 'mas-elementor' ),
+				'default'   => 'yes',
+				'label_off' => esc_html__( 'Disable', 'mas-elementor' ),
+				'label_on'  => esc_html__( 'Enable', 'mas-elementor' ),
+				'condition' => array(
+					'typing_text!' => '',
+				),
 			)
 		);
 
@@ -414,8 +500,12 @@ class Multipurpose_Text extends Base_Widget {
 		$this->start_controls_section(
 			'heading_words_style',
 			array(
-				'label' => esc_html__( 'Typed Text', 'mas-elementor' ),
-				'tab'   => Controls_Manager::TAB_STYLE,
+				'label'     => esc_html__( 'Typed Text', 'mas-elementor' ),
+				'tab'       => Controls_Manager::TAB_STYLE,
+				'condition' => array(
+					'typing_text!' => '',
+				),
+
 			)
 		);
 
@@ -594,7 +684,7 @@ class Multipurpose_Text extends Base_Widget {
 		$this->start_controls_section(
 			'section_style_heading',
 			array(
-				'label' => esc_html__( 'Style', 'mas-elementor' ),
+				'label' => esc_html__( 'Content', 'mas-elementor' ),
 				'tab'   => Controls_Manager::TAB_STYLE,
 			)
 		);
@@ -703,11 +793,62 @@ class Multipurpose_Text extends Base_Widget {
 	}
 
 	/**
+	 * Get typed options
+	 *
+	 * @param array $settings The widget settings.
+	 * @return array
+	 */
+	protected function get_typed_options( $settings ) {
+		$typed_strings = explode( "\n", $settings['typing_text'] );
+		array_unshift( $typed_strings, '' );
+		$typed_options = array(
+			'strings'   => $typed_strings,
+			'typeSpeed' => (int) $settings['type_speed']['size'],
+			'backSpeed' => (int) $settings['back_speed']['size'],
+			'backDelay' => (int) $settings['back_delay']['size'],
+			'loop'      => 'yes' === $settings['typing_loop'] ? true : false,
+		);
+		return $typed_options;
+	}
+
+	/**
 	 * Render.
 	 *
 	 * @return void
 	 */
 	protected function render() {
+		$settings = $this->get_settings_for_display();
+		$typed_id = uniqid( 'typed-text-' );
+
+		$settings['typed_id'] = $typed_id;
+
+		$this->add_render_attribute(
+			'typing_text',
+			array(
+				'class'              => 'typed-text',
+				'data-typed-options' => wp_json_encode( $this->get_typed_options( $settings ) ),
+				'id'                 => $typed_id,
+			)
+		);
 		mas_elementor_get_template( 'widgets/multipurpose-text.php', array( 'widget' => $this ) );
+		$this->render_script( $settings );
+	}
+
+	/**
+	 * Render script in the editor.
+	 *
+	 * @param array $settings The widget settings.
+	 */
+	public function render_script( $settings ) {
+		$typed_options = $this->get_typed_options( $settings );
+		if ( Plugin::elementor()->editor->is_edit_mode() ) :
+			?>
+
+		<script type="text/javascript">
+			var animatedHeadline = new Typed( '#<?php echo esc_attr( $settings['typed_id'] ); ?>', <?php echo wp_json_encode( $typed_options ); ?> );
+		</script>
+			<?php
+
+		endif;
 	}
 }
