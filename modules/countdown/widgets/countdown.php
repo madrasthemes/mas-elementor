@@ -32,7 +32,7 @@ class Countdown extends Base_Widget {
 	 * @return string
 	 */
 	public function get_name() {
-		return 'countdown';
+		return 'mas-countdown';
 	}
 
 	/**
