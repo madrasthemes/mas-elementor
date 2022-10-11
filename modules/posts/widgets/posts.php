@@ -315,18 +315,20 @@ class Posts extends Posts_Base {
 					?>
 					<div class="swiper-slide">
 					<?php
-				}
-				$this->add_render_attribute( 'mas__loop-' . $count, 'class', 'mas-loop' );
-				if ( $tablet_row < $count ) {
-					$this->add_render_attribute( 'mas__loop-' . $count, 'class', $mas_loop_tablet );
-				}
-				if ( $mobile_row < $count ) {
-					$this->add_render_attribute( 'mas__loop-' . $count, 'class', $mas_loop_mobile );
-				}
+				} else {
+					$this->add_render_attribute( 'mas__loop-' . $count, 'class', 'mas-loop' );
+					if ( $tablet_row < $count ) {
+						$this->add_render_attribute( 'mas__loop-' . $count, 'class', $mas_loop_tablet );
+					}
+					if ( $mobile_row < $count ) {
+						$this->add_render_attribute( 'mas__loop-' . $count, 'class', $mas_loop_mobile );
+					}
 
-				?>
-				<div <?php $this->print_render_attribute_string( 'mas__loop-' . $count ); ?>>
-				<?php
+					?>
+					<div <?php $this->print_render_attribute_string( 'mas__loop-' . $count ); ?>>
+					<?php
+
+				}
 				$this->current_permalink = get_permalink();
 				if ( ! empty( $settings['select_loop'] ) && in_array( $count, $settings['select_loop'] ) ) { //phpcs:ignore
 					print( mas_render_template( $settings['select_loop_template'], false ) );//phpcs:ignore
@@ -338,10 +340,11 @@ class Posts extends Posts_Base {
 					?>
 					</div>
 					<?php
+				} else {
+					?>
+					</div>
+					<?php
 				}
-				?>
-				</div>
-				<?php
 
 				$count ++;
 			}
