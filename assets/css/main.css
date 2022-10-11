@@ -71,6 +71,11 @@
     margin: 0;
 }
 
+.mas-posts-grid .mas-posts.mas-grid {
+  display: grid;
+  margin: 0;
+}
+
 .woocommerce .mas-products, .woocommerce-page .mas-products {
     clear: both;
 }

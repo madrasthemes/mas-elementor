@@ -167,7 +167,7 @@ class Posts extends Posts_Base {
 			)
 		);
 
-		$this->add_control(
+		$this->add_responsive_control(
 			'rows',
 			array(
 				'label'       => __( 'Rows', 'mas-elementor' ),
@@ -296,13 +296,18 @@ class Posts extends Posts_Base {
 			wp_reset_postdata();
 
 		} else {
-			$count = 1;
+			$count      = 1;
+			$tablet_row = ! empty( $settings['rows_tablet'] ) && ! empty( $settings['columns_tablet'] ) ? $settings['rows_tablet'] * $settings['columns_tablet'] : $settings['rows'] * $settings['columns'];
+			$mobile_row = ! empty( $settings['rows_mobile'] ) && ! empty( $settings['columns_mobile'] ) ? $settings['rows_mobile'] * $settings['columns_mobile'] : $settings['rows'] * $settings['columns'];
 			if ( 'yes' !== $settings['enable_carousel'] ) {
 				// mas-post-container open.
 				?>
 				<div class="<?php echo esc_attr( $post_wrapper ); ?>">
 				<?php
 			}
+			$mas_loop_tablet = 'd-md-none';
+			$mas_loop_mobile = 'd-sm-none';
+
 			while ( $query->have_posts() ) {
 
 				$query->the_post();
@@ -311,7 +316,17 @@ class Posts extends Posts_Base {
 					<div class="swiper-slide">
 					<?php
 				}
+				$this->add_render_attribute( 'mas__loop-' . $count, 'class', 'mas-loop' );
+				if ( $tablet_row < $count ) {
+					$this->add_render_attribute( 'mas__loop-' . $count, 'class', $mas_loop_tablet );
+				}
+				if ( $mobile_row < $count ) {
+					$this->add_render_attribute( 'mas__loop-' . $count, 'class', $mas_loop_mobile );
+				}
 
+				?>
+				<div <?php $this->print_render_attribute_string( 'mas__loop-' . $count ); ?>>
+				<?php
 				$this->current_permalink = get_permalink();
 				if ( ! empty( $settings['select_loop'] ) && in_array( $count, $settings['select_loop'] ) ) { //phpcs:ignore
 					print( mas_render_template( $settings['select_loop_template'], false ) );//phpcs:ignore
@@ -324,6 +339,9 @@ class Posts extends Posts_Base {
 					</div>
 					<?php
 				}
+				?>
+				</div>
+				<?php
 
 				$count ++;
 			}
