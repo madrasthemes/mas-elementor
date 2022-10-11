@@ -41,16 +41,22 @@ $widget->add_render_attribute(
 	)
 );
 
+$link_url = isset( $instance['expire_redirect_url']['url'] ) ? $instance['expire_redirect_url']['url'] : '';
+$widget->add_render_attribute(
+	'expire-action',
+	array(
+		'class'        => 'new-message',
+		'data-message' => wp_json_encode( $instance['expire_actions'] ),
+		'href'         => $link_url,
+	)
+);
+
 ?>
 <div <?php $widget->print_render_attribute_string( 'div' ); ?>>
 	<?php echo wp_kses_post( $string ); ?>
+	<div style="display:none">
+	<a <?php $widget->print_render_attribute_string( 'expire-action' ); ?>>
+		<?php echo wp_kses_post( '<div class="mas-elementor-countdown-expire--message">' . $instance['message_after_expire'] . '</div>' ); ?>
+	</a>
+	</div>
 </div>
-<?php
-if ( $actions && is_array( $actions ) ) {
-	foreach ( $actions as $act ) {
-		if ( 'message' !== $act['type'] ) {
-			continue;
-		}
-		echo wp_kses_post( '<div class="mas-elementor-countdown-expire--message">' . $instance['message_after_expire'] . '</div>' );
-	}
-}

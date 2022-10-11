@@ -790,53 +790,62 @@ class Countdown extends Base_Widget {
 		
 				for (let i = 0; i < coundown.length; i++) {
 		
-					let endDate = coundown[i].dataset.date,
-						daysVal = coundown[i].querySelector('.mas-js-cd-days'),
-						hoursVal = coundown[i].querySelector('.mas-js-cd-hours'),
-						minutesVal = coundown[i].querySelector('.mas-js-cd-minutes'),
-						secondsVal = coundown[i].querySelector('.mas-js-cd-seconds'),
-						days, hours, minutes, seconds;
+				let endDate = coundown[i].dataset.date,
+					daysVal = coundown[i].querySelector('.mas-js-cd-days'),
+					hoursVal = coundown[i].querySelector('.mas-js-cd-hours'),
+					minutesVal = coundown[i].querySelector('.mas-js-cd-minutes'),
+					secondsVal = coundown[i].querySelector('.mas-js-cd-seconds'),
+					days, hours, minutes, seconds;
+				
+				endDate = new Date(endDate).getTime();
+		
+				if (isNaN(endDate)) return;
+		
+				var x = setInterval(function () {
+					let startDate = new Date().getTime();
 					
-					endDate = new Date(endDate).getTime();
-			
-					if (isNaN(endDate)) return;
-			
-					setInterval(calculate, 1000);
-			
-					function calculate() {
-						let startDate = new Date().getTime();
-						
-						let timeRemaining = parseInt((endDate - startDate) / 1000);
-						
-						if (timeRemaining >= 0) {
-						days = parseInt(timeRemaining / 86400);
-						timeRemaining = (timeRemaining % 86400);
-						
-						hours = parseInt(timeRemaining / 3600);
-						timeRemaining = (timeRemaining % 3600);
-						
-						minutes = parseInt(timeRemaining / 60);
-						timeRemaining = (timeRemaining % 60);
-						
-						seconds = parseInt(timeRemaining);
-						
-						if (daysVal != null) {
-							daysVal.innerHTML = parseInt(days, 10);
-						}
-						if (hoursVal != null) {
-							hoursVal.innerHTML = hours < 10 ? '0' + hours : hours;
-						}
-						if (minutesVal != null) {
-							minutesVal.innerHTML = minutes < 10 ? '0' + minutes : minutes;
-						}
-						if (secondsVal != null) {
-							secondsVal.innerHTML = seconds < 10 ? '0' + seconds : seconds;
-						}
-						
-						} else {
-						return;
-						}
+					let timeRemaining = parseInt((endDate - startDate) / 1000);
+					
+					if (timeRemaining >= 0) {
+					days = parseInt(timeRemaining / 86400);
+					timeRemaining = (timeRemaining % 86400);
+					
+					hours = parseInt(timeRemaining / 3600);
+					timeRemaining = (timeRemaining % 3600);
+					
+					minutes = parseInt(timeRemaining / 60);
+					timeRemaining = (timeRemaining % 60);
+					
+					seconds = parseInt(timeRemaining);
+					
+					if (daysVal != null) {
+						daysVal.innerHTML = parseInt(days, 10);
 					}
+					if (hoursVal != null) {
+						hoursVal.innerHTML = hours < 10 ? '0' + hours : hours;
+					}
+					if (minutesVal != null) {
+						minutesVal.innerHTML = minutes < 10 ? '0' + minutes : minutes;
+					}
+					if (secondsVal != null) {
+						secondsVal.innerHTML = seconds < 10 ? '0' + seconds : seconds;
+					}
+					
+					} else {
+					var html  = coundown[i].querySelector(".new-message").innerHTML;
+					var htmla = coundown[i].querySelector(".new-message");
+					var message = htmla.dataset.message;
+					var link  = htmla.getAttribute('href');
+					if ( message.includes('hide') ) {
+						coundown[i].querySelector(".mas-js-countdown").innerHTML = '';
+					}
+					if ( message.includes('message') ) {
+						coundown[i].querySelector(".mas-js-countdown").innerHTML = html;
+					}
+					}
+				}, 1000);
+		
+				
 				}
 			})();
 			</script>

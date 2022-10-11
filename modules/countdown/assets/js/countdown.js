@@ -47,9 +47,7 @@
   
           if (isNaN(endDate)) return;
   
-          setInterval(calculate, 1000);
-  
-          function calculate() {
+          var x = setInterval(function () {
             let startDate = new Date().getTime();
             
             let timeRemaining = parseInt((endDate - startDate) / 1000);
@@ -80,9 +78,23 @@
               }
               
             } else {
-              return;
+              var html  = coundown[i].querySelector(".new-message").innerHTML;
+              var htmla = coundown[i].querySelector(".new-message");
+              var message = htmla.dataset.message;
+              var link  = htmla.getAttribute('href');
+              if ( message.includes('hide') ) {
+                coundown[i].querySelector(".mas-js-countdown").innerHTML = '';
+              }
+              if ( message.includes('message') ) {
+                coundown[i].querySelector(".mas-js-countdown").innerHTML = html;
+              }
+              if ( message.includes('redirect') && link != '' ) {
+                window.location.href= link;
+              }
             }
-          }
+          }, 1000);
+  
+          
         }
       },
   
