@@ -16,14 +16,12 @@ $instance = $widget->get_settings_for_display();
 $due_date = $instance['due_date'];
 $string   = $widget->get_strftime( $instance );
 
-if ( 'evergreen' === $instance['countdown_type'] ) {
-	$widget->add_render_attribute( 'div', 'data-evergreen-interval', $widget->get_evergreen_interval( $instance ) );
-} else {
-	// Handle timezone ( we need to set GMT time ).
-	$gmt      = get_gmt_from_date( $due_date . ':00' );
-	$due_date = strtotime( $gmt );
-	$dated    = gmdate( 'd M Y H:i:s', $due_date );
-}
+
+// Handle timezone ( we need to set GMT time ).
+$gmt      = get_gmt_from_date( $due_date . ':00' );
+$due_date = strtotime( $gmt );
+$dated    = gmdate( 'd M Y H:i:s', $due_date );
+
 
 $actions = false;
 
@@ -43,16 +41,22 @@ $widget->add_render_attribute(
 	)
 );
 
+$link_url = isset( $instance['expire_redirect_url']['url'] ) ? $instance['expire_redirect_url']['url'] : '';
+$widget->add_render_attribute(
+	'expire-action',
+	array(
+		'class'        => 'new-message',
+		'data-message' => wp_json_encode( $instance['expire_actions'] ),
+		'href'         => $link_url,
+	)
+);
+
 ?>
 <div <?php $widget->print_render_attribute_string( 'div' ); ?>>
 	<?php echo wp_kses_post( $string ); ?>
+	<div style="display:none">
+	<a <?php $widget->print_render_attribute_string( 'expire-action' ); ?>>
+		<?php echo wp_kses_post( '<div class="mas-elementor-countdown-expire--message">' . $instance['message_after_expire'] . '</div>' ); ?>
+	</a>
+	</div>
 </div>
-<?php
-if ( $actions && is_array( $actions ) ) {
-	foreach ( $actions as $act ) {
-		if ( 'message' !== $act['type'] ) {
-			continue;
-		}
-		echo wp_kses_post( '<div class="mas-elementor-countdown-expire--message">' . $instance['message_after_expire'] . '</div>' );
-	}
-}

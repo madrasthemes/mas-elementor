@@ -91,19 +91,6 @@ class Countdown extends Base_Widget {
 		);
 
 		$this->add_control(
-			'countdown_type',
-			array(
-				'label'   => __( 'Type', 'mas-elementor' ),
-				'type'    => Controls_Manager::SELECT,
-				'options' => array(
-					'due_date'  => __( 'Due Date', 'mas-elementor' ),
-					'evergreen' => __( 'Evergreen Timer', 'mas-elementor' ),
-				),
-				'default' => 'due_date',
-			)
-		);
-
-		$this->add_control(
 			'view',
 			array(
 				'label'   => esc_html__( 'Layout', 'mas-elementor' ),
@@ -130,35 +117,6 @@ class Countdown extends Base_Widget {
 				'default'     => gmdate( 'Y-m-d H:i', strtotime( '+1 month' ) + ( get_option( 'gmt_offset' ) * HOUR_IN_SECONDS ) ),
 				/* translators: %s: Time zone. */
 				'description' => sprintf( __( 'Date set according to your timezone: %s.', 'mas-elementor' ), Utils::get_timezone_string() ),
-				'condition'   => array(
-					'countdown_type' => 'due_date',
-				),
-			)
-		);
-
-		$this->add_control(
-			'evergreen_counter_hours',
-			array(
-				'label'       => __( 'Hours', 'mas-elementor' ),
-				'type'        => Controls_Manager::NUMBER,
-				'default'     => 47,
-				'placeholder' => __( 'Hours', 'mas-elementor' ),
-				'condition'   => array(
-					'countdown_type' => 'evergreen',
-				),
-			)
-		);
-
-		$this->add_control(
-			'evergreen_counter_minutes',
-			array(
-				'label'       => __( 'Minutes', 'mas-elementor' ),
-				'type'        => Controls_Manager::NUMBER,
-				'default'     => 59,
-				'placeholder' => __( 'Minutes', 'mas-elementor' ),
-				'condition'   => array(
-					'countdown_type' => 'evergreen',
-				),
 			)
 		);
 
@@ -832,53 +790,62 @@ class Countdown extends Base_Widget {
 		
 				for (let i = 0; i < coundown.length; i++) {
 		
-					let endDate = coundown[i].dataset.date,
-						daysVal = coundown[i].querySelector('.mas-js-cd-days'),
-						hoursVal = coundown[i].querySelector('.mas-js-cd-hours'),
-						minutesVal = coundown[i].querySelector('.mas-js-cd-minutes'),
-						secondsVal = coundown[i].querySelector('.mas-js-cd-seconds'),
-						days, hours, minutes, seconds;
+				let endDate = coundown[i].dataset.date,
+					daysVal = coundown[i].querySelector('.mas-js-cd-days'),
+					hoursVal = coundown[i].querySelector('.mas-js-cd-hours'),
+					minutesVal = coundown[i].querySelector('.mas-js-cd-minutes'),
+					secondsVal = coundown[i].querySelector('.mas-js-cd-seconds'),
+					days, hours, minutes, seconds;
+				
+				endDate = new Date(endDate).getTime();
+		
+				if (isNaN(endDate)) return;
+		
+				var x = setInterval(function () {
+					let startDate = new Date().getTime();
 					
-					endDate = new Date(endDate).getTime();
-			
-					if (isNaN(endDate)) return;
-			
-					setInterval(calculate, 1000);
-			
-					function calculate() {
-						let startDate = new Date().getTime();
-						
-						let timeRemaining = parseInt((endDate - startDate) / 1000);
-						
-						if (timeRemaining >= 0) {
-						days = parseInt(timeRemaining / 86400);
-						timeRemaining = (timeRemaining % 86400);
-						
-						hours = parseInt(timeRemaining / 3600);
-						timeRemaining = (timeRemaining % 3600);
-						
-						minutes = parseInt(timeRemaining / 60);
-						timeRemaining = (timeRemaining % 60);
-						
-						seconds = parseInt(timeRemaining);
-						
-						if (daysVal != null) {
-							daysVal.innerHTML = parseInt(days, 10);
-						}
-						if (hoursVal != null) {
-							hoursVal.innerHTML = hours < 10 ? '0' + hours : hours;
-						}
-						if (minutesVal != null) {
-							minutesVal.innerHTML = minutes < 10 ? '0' + minutes : minutes;
-						}
-						if (secondsVal != null) {
-							secondsVal.innerHTML = seconds < 10 ? '0' + seconds : seconds;
-						}
-						
-						} else {
-						return;
-						}
+					let timeRemaining = parseInt((endDate - startDate) / 1000);
+					
+					if (timeRemaining >= 0) {
+					days = parseInt(timeRemaining / 86400);
+					timeRemaining = (timeRemaining % 86400);
+					
+					hours = parseInt(timeRemaining / 3600);
+					timeRemaining = (timeRemaining % 3600);
+					
+					minutes = parseInt(timeRemaining / 60);
+					timeRemaining = (timeRemaining % 60);
+					
+					seconds = parseInt(timeRemaining);
+					
+					if (daysVal != null) {
+						daysVal.innerHTML = parseInt(days, 10);
 					}
+					if (hoursVal != null) {
+						hoursVal.innerHTML = hours < 10 ? '0' + hours : hours;
+					}
+					if (minutesVal != null) {
+						minutesVal.innerHTML = minutes < 10 ? '0' + minutes : minutes;
+					}
+					if (secondsVal != null) {
+						secondsVal.innerHTML = seconds < 10 ? '0' + seconds : seconds;
+					}
+					
+					} else {
+					var html  = coundown[i].querySelector(".new-message").innerHTML;
+					var htmla = coundown[i].querySelector(".new-message");
+					var message = htmla.dataset.message;
+					var link  = htmla.getAttribute('href');
+					if ( message.includes('hide') ) {
+						coundown[i].querySelector(".mas-js-countdown").innerHTML = '';
+					}
+					if ( message.includes('message') ) {
+						coundown[i].querySelector(".mas-js-countdown").innerHTML = html;
+					}
+					}
+				}, 1000);
+		
+				
 				}
 			})();
 			</script>
