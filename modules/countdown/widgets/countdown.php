@@ -91,19 +91,6 @@ class Countdown extends Base_Widget {
 		);
 
 		$this->add_control(
-			'countdown_type',
-			array(
-				'label'   => __( 'Type', 'mas-elementor' ),
-				'type'    => Controls_Manager::SELECT,
-				'options' => array(
-					'due_date'  => __( 'Due Date', 'mas-elementor' ),
-					'evergreen' => __( 'Evergreen Timer', 'mas-elementor' ),
-				),
-				'default' => 'due_date',
-			)
-		);
-
-		$this->add_control(
 			'view',
 			array(
 				'label'   => esc_html__( 'Layout', 'mas-elementor' ),
@@ -130,35 +117,6 @@ class Countdown extends Base_Widget {
 				'default'     => gmdate( 'Y-m-d H:i', strtotime( '+1 month' ) + ( get_option( 'gmt_offset' ) * HOUR_IN_SECONDS ) ),
 				/* translators: %s: Time zone. */
 				'description' => sprintf( __( 'Date set according to your timezone: %s.', 'mas-elementor' ), Utils::get_timezone_string() ),
-				'condition'   => array(
-					'countdown_type' => 'due_date',
-				),
-			)
-		);
-
-		$this->add_control(
-			'evergreen_counter_hours',
-			array(
-				'label'       => __( 'Hours', 'mas-elementor' ),
-				'type'        => Controls_Manager::NUMBER,
-				'default'     => 47,
-				'placeholder' => __( 'Hours', 'mas-elementor' ),
-				'condition'   => array(
-					'countdown_type' => 'evergreen',
-				),
-			)
-		);
-
-		$this->add_control(
-			'evergreen_counter_minutes',
-			array(
-				'label'       => __( 'Minutes', 'mas-elementor' ),
-				'type'        => Controls_Manager::NUMBER,
-				'default'     => 59,
-				'placeholder' => __( 'Minutes', 'mas-elementor' ),
-				'condition'   => array(
-					'countdown_type' => 'evergreen',
-				),
 			)
 		);
 

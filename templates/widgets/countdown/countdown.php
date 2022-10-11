@@ -16,14 +16,12 @@ $instance = $widget->get_settings_for_display();
 $due_date = $instance['due_date'];
 $string   = $widget->get_strftime( $instance );
 
-if ( 'evergreen' === $instance['countdown_type'] ) {
-	$widget->add_render_attribute( 'div', 'data-evergreen-interval', $widget->get_evergreen_interval( $instance ) );
-} else {
-	// Handle timezone ( we need to set GMT time ).
-	$gmt      = get_gmt_from_date( $due_date . ':00' );
-	$due_date = strtotime( $gmt );
-	$dated    = gmdate( 'd M Y H:i:s', $due_date );
-}
+
+// Handle timezone ( we need to set GMT time ).
+$gmt      = get_gmt_from_date( $due_date . ':00' );
+$due_date = strtotime( $gmt );
+$dated    = gmdate( 'd M Y H:i:s', $due_date );
+
 
 $actions = false;
 
