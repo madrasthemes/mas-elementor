@@ -123,9 +123,11 @@ abstract class Base_Products_Renderer extends \WC_Shortcode_Products {
 			}
 
 			$GLOBALS['post'] = $original_post; // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
-			?>
-			</div>
-			<?php
+			if ( 'yes' !== $settings['enable_carousel'] ) {
+				?>
+				</div>
+				<?php
+			}
 
 			// Fire standard shop loop hooks when paginating results so we can show result counts and so on.
 			if ( wc_string_to_bool( $this->attributes['paginate'] ) && 'yes' !== $settings['enable_carousel'] ) {
@@ -138,11 +140,6 @@ abstract class Base_Products_Renderer extends \WC_Shortcode_Products {
 			wc_reset_loop();
 		} else {
 			do_action( "woocommerce_shortcode_{$this->type}_loop_no_results", $this->attributes );
-		}
-		if ( 'yes' !== $settings['enable_carousel'] ) {
-			?>
-			</div>
-			<?php
 		}
 
 		$before_render = '<div class="' . esc_attr( implode( ' ', $classes ) ) . '">' . $this->carousel_loop_header( $widget, $settings );
