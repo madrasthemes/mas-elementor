@@ -279,6 +279,66 @@ class Mas_Nav_Menu extends Base_Widget {
 			)
 		);
 
+		$this->add_responsive_control(
+			'mas_nav_content_align',
+			array(
+				'label'     => esc_html__( 'Menu Alignment', 'mas-elementor' ),
+				'type'      => Controls_Manager::CHOOSE,
+				'options'   => array(
+					'left'    => array(
+						'title' => esc_html__( 'Left', 'mas-elementor' ),
+						'icon'  => 'eicon-text-align-left',
+					),
+					'center'  => array(
+						'title' => esc_html__( 'Center', 'mas-elementor' ),
+						'icon'  => 'eicon-text-align-center',
+					),
+					'right'   => array(
+						'title' => esc_html__( 'Right', 'mas-elementor' ),
+						'icon'  => 'eicon-text-align-right',
+					),
+					'justify' => array(
+						'title' => esc_html__( 'Justified', 'mas-elementor' ),
+						'icon'  => 'eicon-text-align-justify',
+					),
+				),
+				'default'   => 'center',
+				'selectors' => array(
+					'{{WRAPPER}} .mas-elementor-nav-menu' => 'justify-content: {{VALUE}};',
+				),
+			)
+		);
+
+		$this->add_responsive_control(
+			'mas_nav_space_between',
+			array(
+				'label'          => esc_html__( 'Space Between', 'mas-elementor' ),
+				'type'           => Controls_Manager::SLIDER,
+				'size_units'     => array( 'px' ),
+				'range'          => array(
+					'px' => array(
+						'max' => 150,
+					),
+				),
+				'default'        => array(
+					'size' => 0,
+					'unit' => 'px',
+				),
+				'tablet_default' => array(
+					'size' => 0,
+					'unit' => 'px',
+				),
+				'mobile_default' => array(
+					'size' => 0,
+					'unit' => 'px',
+				),
+				'selectors'      => array(
+					'{{WRAPPER}} .mas-elementor-nav-menu li' => 'padding-right: {{SIZE}}px;',
+					'{{WRAPPER}} .mas-elementor-nav-menu li:last-child' => 'padding-right: 0px;',
+				),
+			)
+		);
+
 		$this->end_controls_section();
 		$this->start_controls_section(
 			'section_style_main-menu',
