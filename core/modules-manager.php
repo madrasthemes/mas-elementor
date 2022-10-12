@@ -50,6 +50,7 @@ final class Modules_Manager {
 			'mas-overflow',
 			'countdown',
 			'video',
+			'image-box',
 		);
 
 		foreach ( $modules as $module_name ) {
