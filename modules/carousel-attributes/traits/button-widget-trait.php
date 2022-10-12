@@ -350,7 +350,7 @@ trait Button_Widget_Trait {
 				'global'    => array(
 					'default' => Global_Typography::TYPOGRAPHY_ACCENT,
 				),
-				'selector'  => '{{WRAPPER}} .btn__load-more',
+				'selector'  => '{{WRAPPER}} .elementor-button-link',
 				'condition' => $args['section_condition'],
 			)
 		);
@@ -359,7 +359,7 @@ trait Button_Widget_Trait {
 			Group_Control_Text_Shadow::get_type(),
 			array(
 				'name'      => 'swiper_arrow_text_shadow',
-				'selector'  => '{{WRAPPER}} .btn__load-more',
+				'selector'  => '{{WRAPPER}} .elementor-button-link',
 				'condition' => $args['section_condition'],
 			)
 		);
@@ -441,8 +441,8 @@ trait Button_Widget_Trait {
 				'label'     => esc_html__( 'Text Color', 'mas-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
-					'{{WRAPPER}} .btn__load-more:hover, {{WRAPPER}} .btn__load-more:focus' => 'color: {{VALUE}};',
-					'{{WRAPPER}} .btn__load-more:hover svg, {{WRAPPER}} .btn__load-more:focus svg' => 'fill: {{VALUE}};',
+					'{{WRAPPER}} .elementor-button-link:hover, {{WRAPPER}} .elementor-button-link:focus' => 'color: {{VALUE}};',
+					'{{WRAPPER}} .elementor-button-link:hover svg, {{WRAPPER}} .elementor-button-link:focus svg' => 'fill: {{VALUE}};',
 				),
 				'condition' => $args['section_condition'],
 			)
@@ -553,7 +553,7 @@ trait Button_Widget_Trait {
 			Group_Control_Box_Shadow::get_type(),
 			array(
 				'name'      => 'swiper_arrow_button_box_shadow',
-				'selector'  => '{{WRAPPER}} .btn__load-more',
+				'selector'  => '{{WRAPPER}} .elementor-button-link',
 				'condition' => $args['section_condition'],
 			)
 		);
@@ -613,29 +613,29 @@ trait Button_Widget_Trait {
 		}
 
 		if ( ! empty( $settings['link']['url'] ) ) {
-			$instance->add_link_attributes( 'button', $settings['link'] );
-			$instance->add_render_attribute( 'button', 'class', 'elementor-button-link' );
+			$instance->add_link_attributes( 'swiper-button', $settings['link'] );
+			$instance->add_render_attribute( 'swiper-button', 'class', 'elementor-button-link' );
 		}
 
-		$instance->add_render_attribute( 'button', 'class', array( 'btn', 'btn__load-more' ) );
-		$instance->add_render_attribute( 'button', 'role', 'button' );
+		$instance->add_render_attribute( 'swiper-button', 'class', array( 'elementor-button-link' ) );
+		$instance->add_render_attribute( 'swiper-button', 'role', 'button' );
 
 		if ( ! empty( $settings['button_css'] ) ) {
-			$instance->add_render_attribute( 'button', 'class', $settings['button_css'] );
+			$instance->add_render_attribute( 'swiper-button', 'class', $settings['button_css'] );
 		}
 
 		if ( ! empty( $settings['button_css_id'] ) ) {
-			$instance->add_render_attribute( 'button', 'id', $settings['button_css_id'] );
+			$instance->add_render_attribute( 'swiper-button', 'id', $settings['button_css_id'] );
 		}
 
 		?>
 		<div <?php $instance->print_render_attribute_string( 'prev_wrapper' ); ?>>
-			<a <?php $instance->print_render_attribute_string( 'button' ); ?>>
+			<a <?php $instance->print_render_attribute_string( 'swiper-button' ); ?>>
 				<?php $this->render_prev_text( $instance ); ?>
 			</a>
 		</div>
 		<div <?php $instance->print_render_attribute_string( 'next_wrapper' ); ?>>
-			<a <?php $instance->print_render_attribute_string( 'button' ); ?>>
+			<a <?php $instance->print_render_attribute_string( 'swiper-button' ); ?>>
 				<?php $this->render_next_text( $instance ); ?>
 			</a>
 		</div>
