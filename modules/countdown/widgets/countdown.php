@@ -609,7 +609,7 @@ class Countdown extends Base_Widget {
 					),
 				),
 				'selectors' => array(
-					'{{WRAPPER}} .mas-elementor-countdown-expire--message' => 'text-align: {{VALUE}};',
+					'{{WRAPPER}} .mas-js-countdown' => 'justify-content: {{VALUE}};',
 				),
 			)
 		);
