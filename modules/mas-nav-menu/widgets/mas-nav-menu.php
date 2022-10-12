@@ -410,7 +410,7 @@ class Mas_Nav_Menu extends Base_Widget {
 				'global'         => array(
 					'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
 				),
-				'selector'       => '{{WRAPPER}} .sub-menu .menu-item a',
+				'selector'       => '{{WRAPPER}} .sub-menu .menu-item a, {{WRAPPER}} .dropdown-menu .menu-item a',
 				'fields_options' => array(
 					'typography'  => array( 'default' => 'yes' ),
 					// Inner control name.
@@ -444,7 +444,7 @@ class Mas_Nav_Menu extends Base_Widget {
 				'label'          => esc_html__( 'Background', 'mas-elementor' ),
 				'types'          => array( 'classic', 'gradient' ),
 				'exclude'        => array( 'image' ),
-				'selector'       => '{{WRAPPER}} .sub-menu',
+				'selector'       => '{{WRAPPER}} .sub-menu, {{WRAPPER}} .dropdown-menu',
 				'fields_options' => array(
 					'background' => array(
 						'default' => 'classic',
@@ -460,7 +460,7 @@ class Mas_Nav_Menu extends Base_Widget {
 			Group_Control_Border::get_type(),
 			array(
 				'name'           => 'lm_border',
-				'selector'       => '{{WRAPPER}} .sub-menu',
+				'selector'       => '{{WRAPPER}} .sub-menu, {{WRAPPER}} .dropdown-menu',
 				'fields_options' => array(
 					'border' => array(
 						'default' => '',
@@ -489,6 +489,7 @@ class Mas_Nav_Menu extends Base_Widget {
 				'size_units' => array( 'px', '%', 'em' ),
 				'selectors'  => array(
 					'{{WRAPPER}} .sub-menu' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .dropdown-menu' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				),
 				'default'    => array(
 					'top'      => '6',
@@ -505,7 +506,7 @@ class Mas_Nav_Menu extends Base_Widget {
 			Group_Control_Box_Shadow::get_type(),
 			array(
 				'name'           => 'lm_button_box_shadow',
-				'selector'       => '{{WRAPPER}} .sub-menu',
+				'selector'       => '{{WRAPPER}} .sub-menu, {{WRAPPER}} .dropdown-menu',
 				'fields_options' => array(
 					'box_shadow_type'     => array( 'default' => 'yes' ),
 					'box_shadow_position' => array(
@@ -541,6 +542,7 @@ class Mas_Nav_Menu extends Base_Widget {
 				'default'   => '#7b8b8e',
 				'selectors' => array(
 					'{{WRAPPER}} .sub-menu .menu-item a' => 'fill: {{VALUE}}; color: {{VALUE}};',
+					'{{WRAPPER}} .dropdown-menu .menu-item a' => 'fill: {{VALUE}}; color: {{VALUE}};',
 				),
 			)
 		);
@@ -552,7 +554,7 @@ class Mas_Nav_Menu extends Base_Widget {
 				'label'          => esc_html__( 'Background', 'mas-elementor' ),
 				'types'          => array( 'classic', 'gradient' ),
 				'exclude'        => array( 'image' ),
-				'selector'       => '{{WRAPPER}} .sub-menu li',
+				'selector'       => '{{WRAPPER}} .sub-menu li, {{WRAPPER}} .dropdown-menu li',
 				'fields_options' => array(
 					'background' => array(
 						'default' => 'classic',
@@ -581,6 +583,8 @@ class Mas_Nav_Menu extends Base_Widget {
 				'selectors' => array(
 					'{{WRAPPER}} .sub-menu .menu-item a:hover, {{WRAPPER}} .sub-menu .menu-item a:focus' => 'color: {{VALUE}};',
 					'{{WRAPPER}} .sub-menu .menu-item a:hover svg, {{WRAPPER}} .sub-menu .menu-item a:focus svg' => 'fill: {{VALUE}};',
+					'{{WRAPPER}} .dropdown-menu .menu-item a:hover, {{WRAPPER}} .dropdown-menu .menu-item a:focus' => 'color: {{VALUE}};',
+					'{{WRAPPER}} .dropdown-menu .menu-item a:hover svg, {{WRAPPER}} .dropdown-menu .menu-item a:focus svg' => 'fill: {{VALUE}};',
 				),
 				'default'   => '#16181b',
 			)
@@ -593,7 +597,7 @@ class Mas_Nav_Menu extends Base_Widget {
 				'label'          => esc_html__( 'Background', 'mas-elementor' ),
 				'types'          => array( 'classic', 'gradient' ),
 				'exclude'        => array( 'image' ),
-				'selector'       => '{{WRAPPER}} .sub-menu li a:hover, {{WRAPPER}} .sub-menu li a:focus',
+				'selector'       => '{{WRAPPER}} .sub-menu li a:hover, {{WRAPPER}} .sub-menu li a:focus, {{WRAPPER}} .dropdown-menu li a:hover, {{WRAPPER}} .dropdown-menu li a:focus',
 				'fields_options' => array(
 					'background' => array(
 						'default' => 'classic',
@@ -617,6 +621,7 @@ class Mas_Nav_Menu extends Base_Widget {
 				'size_units' => array( 'px', '%', 'em' ),
 				'selectors'  => array(
 					'{{WRAPPER}} .header-menu .sub-menu > li > a' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .header-menu .dropdown-menu > li > a' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				),
 				'separator'  => 'before',
 				'default'    => array(
