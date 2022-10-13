@@ -333,8 +333,8 @@ class Mas_Nav_Menu extends Base_Widget {
 					'unit' => 'px',
 				),
 				'selectors'      => array(
-					'{{WRAPPER}} .mas-elementor-nav-menu li' => 'padding-right: {{SIZE}}px;',
-					'{{WRAPPER}} .mas-elementor-nav-menu li:last-child' => 'padding-right: 0px;',
+					'{{WRAPPER}} .mas-elementor-nav-menu>li' => 'padding-right: {{SIZE}}px;',
+					'{{WRAPPER}} .mas-elementor-nav-menu>li:last-child' => 'padding-right: 0px;',
 				),
 			)
 		);
