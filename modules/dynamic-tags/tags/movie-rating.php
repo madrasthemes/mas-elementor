@@ -29,7 +29,7 @@ class Movie_Rating extends \Elementor\Core\DynamicTags\Tag {
 	 * Get the title.
 	 */
 	public function get_title() {
-		return esc_html__( 'Movies & TV Shows Rating', 'mas-elementor' );
+		return esc_html__( 'Movies and TV Shows Rating', 'mas-elementor' );
 	}
 	/**
 	 * Get the group.
