@@ -84,7 +84,7 @@ class Module extends TagsModule {
 		if ( class_exists( 'MasVideos' ) ) {
 			$movie = array(
 				'Movie_Rating',
-				'Movies',
+				'Mas_Videos_Text_Fields',
 			);
 			$tags = array_merge( $tags, $movie );
 
