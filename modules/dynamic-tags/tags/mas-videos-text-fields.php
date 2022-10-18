@@ -116,7 +116,7 @@ class Mas_Videos_Text_Fields extends \Elementor\Core\DynamicTags\Tag {
 			array(
 				'label'   => esc_html__( 'Type', 'mas-elementor' ),
 				'type'    => Controls_Manager::SELECT,
-				'default' => 'time_duration',
+				'default' => 'imdb_id',
 				'options' => array(
 					'imdb_id'       => esc_html__( 'IMDB ID', 'mas-elementor' ),
 					'tmdb_id'       => esc_html__( 'TMDB ID', 'mas-elementor' ),
