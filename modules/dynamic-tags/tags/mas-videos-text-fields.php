@@ -28,7 +28,7 @@ class Mas_Videos_Text_Fields extends \Elementor\Core\DynamicTags\Tag {
 	 * Get the title.
 	 */
 	public function get_title() {
-		return esc_html__( 'Movies', 'mas-elementor' );
+		return esc_html__( 'Mas Videos', 'mas-elementor' );
 	}
 	/**
 	 * Get the group.
@@ -54,9 +54,7 @@ class Mas_Videos_Text_Fields extends \Elementor\Core\DynamicTags\Tag {
 				'default' => 'movie',
 				'options' => array(
 					'tv_show' => esc_html__( 'TV Shows', 'mas-elementor' ),
-					'video'   => esc_html__( 'Videos', 'mas-elementor' ),
 					'movie'   => esc_html__( 'Movies', 'mas-elementor' ),
-					'person'  => esc_html__( 'Persons', 'mas-elementor' ),
 				),
 			)
 		);
