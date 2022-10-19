@@ -29,6 +29,15 @@ class Product_Related extends Products_Base {
 		return [ 'woocommerce', 'shop', 'store', 'related', 'similar', 'product' ];
 	}
 
+	/**
+	 * Get the categories for the widget.
+	 *
+	 * @return array
+	 */
+	public function get_categories() {
+		return array( 'mas-elements' );
+	}
+
 	protected function register_controls() {
 		$this->start_controls_section(
 			'section_related_products_content',
