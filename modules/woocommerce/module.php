@@ -76,7 +76,7 @@ class Module extends Module_Base {
 			'Products',
 			'Add_To_Cart',
 			'Product_Related',
-			'Product_Data_Tabs',
+			// 'Product_Data_Tabs',
 		);
 	}
 
@@ -386,7 +386,6 @@ class Module extends Module_Base {
 
 		add_action( 'elementor/dynamic_tags/register', array( $this, 'register_tags' ) );
 		add_action( 'elementor/frontend/before_register_styles', array( $this, 'register_frontend_styles' ) );
-
 
 		// $this->use_mini_cart_template = 'yes' === get_option( 'elementor_' . self::OPTION_NAME_USE_MINI_CART, 'no' );
 		// if ( is_admin() ) {
