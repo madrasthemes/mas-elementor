@@ -279,6 +279,66 @@ class Mas_Nav_Menu extends Base_Widget {
 			)
 		);
 
+		$this->add_responsive_control(
+			'mas_nav_content_align',
+			array(
+				'label'     => esc_html__( 'Menu Alignment', 'mas-elementor' ),
+				'type'      => Controls_Manager::CHOOSE,
+				'options'   => array(
+					'left'    => array(
+						'title' => esc_html__( 'Left', 'mas-elementor' ),
+						'icon'  => 'eicon-text-align-left',
+					),
+					'center'  => array(
+						'title' => esc_html__( 'Center', 'mas-elementor' ),
+						'icon'  => 'eicon-text-align-center',
+					),
+					'right'   => array(
+						'title' => esc_html__( 'Right', 'mas-elementor' ),
+						'icon'  => 'eicon-text-align-right',
+					),
+					'justify' => array(
+						'title' => esc_html__( 'Justified', 'mas-elementor' ),
+						'icon'  => 'eicon-text-align-justify',
+					),
+				),
+				'default'   => 'center',
+				'selectors' => array(
+					'{{WRAPPER}} .mas-elementor-nav-menu' => 'justify-content: {{VALUE}};',
+				),
+			)
+		);
+
+		$this->add_responsive_control(
+			'mas_nav_space_between',
+			array(
+				'label'          => esc_html__( 'Space Between', 'mas-elementor' ),
+				'type'           => Controls_Manager::SLIDER,
+				'size_units'     => array( 'px' ),
+				'range'          => array(
+					'px' => array(
+						'max' => 150,
+					),
+				),
+				'default'        => array(
+					'size' => 0,
+					'unit' => 'px',
+				),
+				'tablet_default' => array(
+					'size' => 0,
+					'unit' => 'px',
+				),
+				'mobile_default' => array(
+					'size' => 0,
+					'unit' => 'px',
+				),
+				'selectors'      => array(
+					'{{WRAPPER}} .mas-elementor-nav-menu>li' => 'padding-right: {{SIZE}}px;',
+					'{{WRAPPER}} .mas-elementor-nav-menu>li:last-child' => 'padding-right: 0px;',
+				),
+			)
+		);
+
 		$this->end_controls_section();
 		$this->start_controls_section(
 			'section_style_main-menu',
@@ -410,7 +470,7 @@ class Mas_Nav_Menu extends Base_Widget {
 				'global'         => array(
 					'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
 				),
-				'selector'       => '{{WRAPPER}} .sub-menu .menu-item a',
+				'selector'       => '{{WRAPPER}} .sub-menu .menu-item a, {{WRAPPER}} .dropdown-menu .menu-item a',
 				'fields_options' => array(
 					'typography'  => array( 'default' => 'yes' ),
 					// Inner control name.
@@ -444,7 +504,7 @@ class Mas_Nav_Menu extends Base_Widget {
 				'label'          => esc_html__( 'Background', 'mas-elementor' ),
 				'types'          => array( 'classic', 'gradient' ),
 				'exclude'        => array( 'image' ),
-				'selector'       => '{{WRAPPER}} .sub-menu',
+				'selector'       => '{{WRAPPER}} .sub-menu, {{WRAPPER}} .dropdown-menu',
 				'fields_options' => array(
 					'background' => array(
 						'default' => 'classic',
@@ -460,7 +520,7 @@ class Mas_Nav_Menu extends Base_Widget {
 			Group_Control_Border::get_type(),
 			array(
 				'name'           => 'lm_border',
-				'selector'       => '{{WRAPPER}} .sub-menu',
+				'selector'       => '{{WRAPPER}} .sub-menu, {{WRAPPER}} .dropdown-menu',
 				'fields_options' => array(
 					'border' => array(
 						'default' => '',
@@ -489,6 +549,7 @@ class Mas_Nav_Menu extends Base_Widget {
 				'size_units' => array( 'px', '%', 'em' ),
 				'selectors'  => array(
 					'{{WRAPPER}} .sub-menu' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .dropdown-menu' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				),
 				'default'    => array(
 					'top'      => '6',
@@ -505,7 +566,7 @@ class Mas_Nav_Menu extends Base_Widget {
 			Group_Control_Box_Shadow::get_type(),
 			array(
 				'name'           => 'lm_button_box_shadow',
-				'selector'       => '{{WRAPPER}} .sub-menu',
+				'selector'       => '{{WRAPPER}} .sub-menu, {{WRAPPER}} .dropdown-menu',
 				'fields_options' => array(
 					'box_shadow_type'     => array( 'default' => 'yes' ),
 					'box_shadow_position' => array(
@@ -541,6 +602,7 @@ class Mas_Nav_Menu extends Base_Widget {
 				'default'   => '#7b8b8e',
 				'selectors' => array(
 					'{{WRAPPER}} .sub-menu .menu-item a' => 'fill: {{VALUE}}; color: {{VALUE}};',
+					'{{WRAPPER}} .dropdown-menu .menu-item a' => 'fill: {{VALUE}}; color: {{VALUE}};',
 				),
 			)
 		);
@@ -552,7 +614,7 @@ class Mas_Nav_Menu extends Base_Widget {
 				'label'          => esc_html__( 'Background', 'mas-elementor' ),
 				'types'          => array( 'classic', 'gradient' ),
 				'exclude'        => array( 'image' ),
-				'selector'       => '{{WRAPPER}} .sub-menu li',
+				'selector'       => '{{WRAPPER}} .sub-menu li, {{WRAPPER}} .dropdown-menu li',
 				'fields_options' => array(
 					'background' => array(
 						'default' => 'classic',
@@ -581,6 +643,8 @@ class Mas_Nav_Menu extends Base_Widget {
 				'selectors' => array(
 					'{{WRAPPER}} .sub-menu .menu-item a:hover, {{WRAPPER}} .sub-menu .menu-item a:focus' => 'color: {{VALUE}};',
 					'{{WRAPPER}} .sub-menu .menu-item a:hover svg, {{WRAPPER}} .sub-menu .menu-item a:focus svg' => 'fill: {{VALUE}};',
+					'{{WRAPPER}} .dropdown-menu .menu-item a:hover, {{WRAPPER}} .dropdown-menu .menu-item a:focus' => 'color: {{VALUE}};',
+					'{{WRAPPER}} .dropdown-menu .menu-item a:hover svg, {{WRAPPER}} .dropdown-menu .menu-item a:focus svg' => 'fill: {{VALUE}};',
 				),
 				'default'   => '#16181b',
 			)
@@ -593,7 +657,7 @@ class Mas_Nav_Menu extends Base_Widget {
 				'label'          => esc_html__( 'Background', 'mas-elementor' ),
 				'types'          => array( 'classic', 'gradient' ),
 				'exclude'        => array( 'image' ),
-				'selector'       => '{{WRAPPER}} .sub-menu li a:hover, {{WRAPPER}} .sub-menu li a:focus',
+				'selector'       => '{{WRAPPER}} .sub-menu li a:hover, {{WRAPPER}} .sub-menu li a:focus, {{WRAPPER}} .dropdown-menu li a:hover, {{WRAPPER}} .dropdown-menu li a:focus',
 				'fields_options' => array(
 					'background' => array(
 						'default' => 'classic',
@@ -617,6 +681,7 @@ class Mas_Nav_Menu extends Base_Widget {
 				'size_units' => array( 'px', '%', 'em' ),
 				'selectors'  => array(
 					'{{WRAPPER}} .header-menu .sub-menu > li > a' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .header-menu .dropdown-menu > li > a' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				),
 				'separator'  => 'before',
 				'default'    => array(

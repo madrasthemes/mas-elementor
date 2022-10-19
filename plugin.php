@@ -154,7 +154,14 @@ class Plugin {
 	/**
 	 * Enqueue styles used by the plugin.
 	 */
-	public function enqueue_styles() {}
+	public function enqueue_styles() {
+		wp_enqueue_style(
+			'mas-elementor-main',
+			MAS_ELEMENTOR_ASSETS_URL . 'css/main.css',
+			array(),
+			MAS_ELEMENTOR_VERSION
+		);
+	}
 
 	/**
 	 * Enqueue frontend scripts used by the plugin.

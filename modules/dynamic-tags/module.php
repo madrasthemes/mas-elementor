@@ -78,10 +78,18 @@ class Module extends TagsModule {
 				'Job_Terms',
 				'Job_Expiration',
 			);
+			$tags = array_merge( $tags, $jobs );
+		}
+		$movie = array();
+		if ( class_exists( 'MasVideos' ) ) {
+			$movie = array(
+				'Movie_Rating',
+				'Mas_Videos_Text_Fields',
+				'Mas_Videos_Url_Fields',
+			);
+			$tags = array_merge( $tags, $movie );
 
 		}
-
-		$tags = array_merge( $tags, $jobs );
 
 		return $tags;
 	}

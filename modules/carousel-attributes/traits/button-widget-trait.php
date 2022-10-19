@@ -350,7 +350,7 @@ trait Button_Widget_Trait {
 				'global'    => array(
 					'default' => Global_Typography::TYPOGRAPHY_ACCENT,
 				),
-				'selector'  => '{{WRAPPER}} .elementor-button-link',
+				'selector'  => '{{WRAPPER}} .mas-swiper-arrows .elementor-button-link',
 				'condition' => $args['section_condition'],
 			)
 		);
