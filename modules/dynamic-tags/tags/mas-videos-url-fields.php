@@ -61,6 +61,9 @@ class Mas_Videos_Url_Fields extends Data_Tag {
 	 * @param array $options control opions.
 	 */
 	public function get_value( array $options = array() ) {
+		if ( is_movie() || is_video() ) {
+			wp_reset_postdata();
+		}
 		global $movie;
 		global $video;
 		$settings = $this->get_settings();

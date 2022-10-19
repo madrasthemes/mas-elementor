@@ -129,9 +129,12 @@ class Mas_Videos_Text_Fields extends \Elementor\Core\DynamicTags\Tag {
 	 * Render the post  title.
 	 */
 	public function render() {
+		if ( is_movie() || is_tv_show() ) {
+			wp_reset_postdata();
+		}
+
 		global $movie;
 		global $tv_show;
-
 		$settings    = $this->get_settings();
 		$text_output = '';
 		if ( ! empty( $movie ) && 'movie' === $settings['mas_videos_post_types'] ) {
