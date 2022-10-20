@@ -49,19 +49,24 @@ class Module extends Module_Base {
 		add_action( 'elementor/element/image-box/section_style_content/before_section_end', array( $this, 'add_content_style_controls' ), 15 );
 	}
 
+	/**
+	 * Add style controls to the element.
+	 *
+	 * @param Element $element element object.
+	 */
 	public function add_content_style_controls( $element ) {
 
 		$element->add_responsive_control(
-				'mas_image_box_content_margin',
-				array(
-					'label'      => esc_html__( 'Margin', 'mas-elementor' ),
-					'type'       => Controls_Manager::DIMENSIONS,
-					'size_units' => array( 'px', 'em', '%', 'rem' ),
-					'selectors'  => array(
-						'{{WRAPPER}} .elementor-image-box-content' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-					),
-				)
-			);
+			'mas_image_box_content_margin',
+			array(
+				'label'      => esc_html__( 'Margin', 'mas-elementor' ),
+				'type'       => Controls_Manager::DIMENSIONS,
+				'size_units' => array( 'px', 'em', '%', 'rem' ),
+				'selectors'  => array(
+					'{{WRAPPER}} .elementor-image-box-content' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				),
+			)
+		);
 	}
 
 }
