@@ -550,7 +550,7 @@ class Countdown extends Base_Widget {
 					'right'    => '12',
 					'bottom'   => '0',
 					'left'     => '12',
-					'unit'     => '0',
+					'unit'     => 'px',
 					'isLinked' => false,
 				),
 			)
@@ -570,7 +570,7 @@ class Countdown extends Base_Widget {
 					'right'    => '0',
 					'bottom'   => '32',
 					'left'     => '0',
-					'unit'     => '0',
+					'unit'     => 'px',
 					'isLinked' => true,
 				),
 			)
