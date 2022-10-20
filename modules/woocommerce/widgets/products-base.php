@@ -52,7 +52,7 @@ abstract class Products_Base extends Base_Widget {
 				'label'     => __( 'Pagination', 'mas-elementor' ),
 				'tab'       => Controls_Manager::TAB_STYLE,
 				'condition' => array(
-					'paginate' => 'yes',
+					'paginate'         => 'yes',
 					'enable_carousel!' => 'yes',
 				),
 			)
@@ -544,11 +544,11 @@ abstract class Products_Base extends Base_Widget {
 		$this->add_group_control(
 			Group_Control_Typography::get_type(),
 			array(
-				'name'           => 'pagination_filter_typo',
-				'global'         => array(
+				'name'     => 'pagination_filter_typo',
+				'global'   => array(
 					'default' => Global_Typography::TYPOGRAPHY_ACCENT,
 				),
-				'selector'       => '{{WRAPPER}} .woocommerce-result-count, {{WRAPPER}} .woocommerce-ordering select',
+				'selector' => '{{WRAPPER}} .woocommerce-result-count, {{WRAPPER}} .woocommerce-ordering select',
 			)
 		);
 
