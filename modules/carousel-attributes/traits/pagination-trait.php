@@ -116,7 +116,7 @@ trait Pagination_Trait {
 						'label'          => esc_html__( 'Box Shadow', 'mas-elementor' ),
 						'selector'       => '{{WRAPPER}} ' . $args['concat'] . ' .swiper-pagination .swiper-pagination-bullet',
 						'fields_options' => array(
-							'box_shadow_type'  => array( 'default' => 'yes' ),
+							'box_shadow_type'     => array( 'default' => 'yes' ),
 							'box_shadow_position' => array(
 								'default' => 'inset',
 							),
@@ -408,23 +408,23 @@ trait Pagination_Trait {
 				$element->add_control(
 					'fraction_pagination_font_size',
 					array(
-						'label'     => esc_html__( 'Font Size', 'mas-elementor' ),
-						'type'      => Controls_Manager::SLIDER,
+						'label'      => esc_html__( 'Font Size', 'mas-elementor' ),
+						'type'       => Controls_Manager::SLIDER,
 						'size_units' => array( 'px', '%' ),
-						'range'     => array(
+						'range'      => array(
 							'px' => array(
 								'min' => 0,
 								'max' => 300,
 							),
-							'%' => array(
+							'%'  => array(
 								'min' => 0,
 								'max' => 100,
 							),
 						),
-						'selectors' => array(
+						'selectors'  => array(
 							'{{WRAPPER}} ' . $args['concat'] . ' .swiper-pagination-fraction' => 'font-size: {{SIZE}}{{UNIT}} !important;',
 						),
-						'condition' => array(
+						'condition'  => array(
 							'enable_carousel' => 'yes',
 							'show_pagination' => 'yes',
 							'pagination'      => 'fraction',
@@ -461,23 +461,23 @@ trait Pagination_Trait {
 				$element->add_control(
 					'fraction_pagination_active_font_size',
 					array(
-						'label'     => esc_html__( 'Font Size', 'mas-elementor' ),
-						'type'      => Controls_Manager::SLIDER,
+						'label'      => esc_html__( 'Font Size', 'mas-elementor' ),
+						'type'       => Controls_Manager::SLIDER,
 						'size_units' => array( 'px', '%' ),
-						'range'     => array(
+						'range'      => array(
 							'px' => array(
 								'min' => 0,
 								'max' => 300,
 							),
-							'%' => array(
+							'%'  => array(
 								'min' => 0,
 								'max' => 100,
 							),
 						),
-						'selectors' => array(
+						'selectors'  => array(
 							'{{WRAPPER}} ' . $args['concat'] . ' .swiper-pagination-fraction .swiper-pagination-current' => 'font-size: {{SIZE}}{{UNIT}} !important;',
 						),
-						'condition' => array(
+						'condition'  => array(
 							'enable_carousel' => 'yes',
 							'show_pagination' => 'yes',
 							'pagination'      => 'fraction',
@@ -526,23 +526,23 @@ trait Pagination_Trait {
 				$element->add_control(
 					'progress_pagination_height',
 					array(
-						'label'     => esc_html__( 'Progress Bar Height', 'mas-elementor' ),
-						'type'      => Controls_Manager::SLIDER,
+						'label'      => esc_html__( 'Progress Bar Height', 'mas-elementor' ),
+						'type'       => Controls_Manager::SLIDER,
 						'size_units' => array( 'px', '%' ),
-						'range'     => array(
+						'range'      => array(
 							'px' => array(
 								'min' => 0,
 								'max' => 300,
 							),
-							'%' => array(
+							'%'  => array(
 								'min' => 0,
 								'max' => 100,
 							),
 						),
-						'selectors' => array(
+						'selectors'  => array(
 							'{{WRAPPER}} ' . $args['concat'] . ' .swiper-pagination-progressbar.swiper-pagination-horizontal' => 'padding-top: {{SIZE}}{{UNIT}} !important;padding-bottom: {{SIZE}}{{UNIT}} !important;',
 						),
-						'condition' => array(
+						'condition'  => array(
 							'enable_carousel' => 'yes',
 							'show_pagination' => 'yes',
 							'pagination'      => 'progressbar',
@@ -554,27 +554,27 @@ trait Pagination_Trait {
 				$element->add_control(
 					'progress_pagination_width',
 					array(
-						'label'     => esc_html__( 'Progress Bar Width', 'mas-elementor' ),
-						'type'      => Controls_Manager::SLIDER,
+						'label'      => esc_html__( 'Progress Bar Width', 'mas-elementor' ),
+						'type'       => Controls_Manager::SLIDER,
 						'size_units' => array( 'px', '%' ),
-						'default'   => array(
+						'default'    => array(
 							'size' => 100,
 							'unit' => '%',
 						),
-						'range'     => array(
+						'range'      => array(
 							'px' => array(
 								'min' => 0,
 								'max' => 2600,
 							),
-							'%' => array(
+							'%'  => array(
 								'min' => 0,
 								'max' => 100,
 							),
 						),
-						'selectors' => array(
+						'selectors'  => array(
 							'{{WRAPPER}} ' . $args['concat'] . ' .swiper-pagination-progressbar.swiper-pagination-horizontal' => 'width: {{SIZE}}{{UNIT}} !important;',
 						),
-						'condition' => array(
+						'condition'  => array(
 							'enable_carousel' => 'yes',
 							'show_pagination' => 'yes',
 							'pagination'      => 'progressbar',
