@@ -54,41 +54,10 @@ trait Button_Widget_Trait {
 			'prefix_class'           => 'elementor%s-align-',
 			'alignment_default'      => '',
 			'exclude_inline_options' => array(),
-			// 'button_css'             => 'btn-outline-primary',
 			'button_concat'          => '~',
 		);
 
 		$args = array_merge( $default_args, $args );
-
-		// $element->start_controls_section(
-		// 'section_swiper_button',
-		// array(
-		// 'label'     => esc_html__( 'Button', 'mas-elementor' ),
-		// 'tab'       => Controls_Manager::TAB_LAYOUT,
-		// 'condition' => array(
-		// 'enable_carousel' => 'yes',
-		// 'show_arrows'     => 'yes',
-		// ),
-		// )
-		// );
-
-		// $element->add_control(
-		// 'button_type',
-		// array(
-		// 'label'        => esc_html__( 'Type', 'mas-elementor' ),
-		// 'type'         => Controls_Manager::SELECT,
-		// 'default'      => 'primary',
-		// 'options'      => array(
-		// 'primary' => esc_html__( 'Default', 'mas-elementor' ),
-		// 'info'    => esc_html__( 'Info', 'mas-elementor' ),
-		// 'success' => esc_html__( 'Success', 'mas-elementor' ),
-		// 'warning' => esc_html__( 'Warning', 'mas-elementor' ),
-		// 'danger'  => esc_html__( 'Danger', 'mas-elementor' ),
-		// ),
-		// 'prefix_class' => 'btn-',
-		// 'condition'    => $args['section_condition'],
-		// )
-		// );
 
 		$element->add_control(
 			'text',
@@ -313,8 +282,6 @@ trait Button_Widget_Trait {
 				'condition'   => $args['section_condition'],
 			)
 		);
-
-		// $element->end_controls_section();
 	}
 
 	/**
@@ -487,9 +454,6 @@ trait Button_Widget_Trait {
 			array(
 				'label'     => esc_html__( 'Border Color', 'mas-elementor' ),
 				'type'      => Controls_Manager::COLOR,
-				// 'condition' => array(
-				// 'border_border!' => '',
-				// ),
 				'selectors' => array(
 					'{{WRAPPER}} ' . $args['button_concat'] . ' .mas-swiper-arrows .elementor-button-link:hover, {{WRAPPER}} ' . $args['button_concat'] . ' .mas-swiper-arrows .elementor-button-link:focus' => 'border-color: {{VALUE}};',
 				),
