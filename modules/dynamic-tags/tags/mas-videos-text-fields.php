@@ -61,10 +61,10 @@ class Mas_Videos_Text_Fields extends \Elementor\Core\DynamicTags\Tag {
 		$this->add_control(
 			'mas_movie_text_options',
 			array(
-				'label'   => esc_html__( 'Type', 'mas-elementor' ),
-				'type'    => Controls_Manager::SELECT,
-				'default' => 'time_duration',
-				'options' => array(
+				'label'     => esc_html__( 'Type', 'mas-elementor' ),
+				'type'      => Controls_Manager::SELECT,
+				'default'   => 'time_duration',
+				'options'   => array(
 					'release_date'  => esc_html__( 'Release Date', 'mas-elementor' ),
 					'time_duration' => esc_html__( 'Time Duration', 'mas-elementor' ),
 					'censor_rating' => esc_html__( 'Censor Rating', 'mas-elementor' ),
@@ -79,19 +79,19 @@ class Mas_Videos_Text_Fields extends \Elementor\Core\DynamicTags\Tag {
 		$this->add_control(
 			'date_format',
 			array(
-				'label'   => esc_html__( 'Date Format', 'mas-elementor' ),
-				'type'    => Controls_Manager::SELECT,
-				'options' => array(
-					'F j, Y'  => gmdate( 'F j, Y' ),
-					'Y-m-d'   => gmdate( 'Y-m-d' ),
-					'm/d/Y'   => gmdate( 'm/d/Y' ),
-					'd/m/Y'   => gmdate( 'd/m/Y' ),
-					'custom'  => esc_html__( 'Custom', 'mas-elementor' ),
+				'label'     => esc_html__( 'Date Format', 'mas-elementor' ),
+				'type'      => Controls_Manager::SELECT,
+				'options'   => array(
+					'F j, Y' => gmdate( 'F j, Y' ),
+					'Y-m-d'  => gmdate( 'Y-m-d' ),
+					'm/d/Y'  => gmdate( 'm/d/Y' ),
+					'd/m/Y'  => gmdate( 'd/m/Y' ),
+					'custom' => esc_html__( 'Custom', 'mas-elementor' ),
 				),
-				'default' => 'Y-m-d',
+				'default'   => 'Y-m-d',
 				'condition' => array(
 					'mas_movie_text_options' => 'release_date',
-					'mas_videos_post_types' => 'movie',
+					'mas_videos_post_types'  => 'movie',
 				),
 			)
 		);
@@ -99,12 +99,12 @@ class Mas_Videos_Text_Fields extends \Elementor\Core\DynamicTags\Tag {
 		$this->add_control(
 			'custom_format',
 			array(
-				'label'       => esc_html__( 'Custom Format', 'mas-elementor' ),
-				'default'     => gmdate( 'Y-m-d' ),
-				'condition'   => array(
-					'date_format' => 'custom',
+				'label'     => esc_html__( 'Custom Format', 'mas-elementor' ),
+				'default'   => gmdate( 'Y-m-d' ),
+				'condition' => array(
+					'date_format'            => 'custom',
 					'mas_movie_text_options' => 'release_date',
-					'mas_videos_post_types' => 'movie',
+					'mas_videos_post_types'  => 'movie',
 				),
 			)
 		);
@@ -112,12 +112,12 @@ class Mas_Videos_Text_Fields extends \Elementor\Core\DynamicTags\Tag {
 		$this->add_control(
 			'mas_tv_show_text_options',
 			array(
-				'label'   => esc_html__( 'Type', 'mas-elementor' ),
-				'type'    => Controls_Manager::SELECT,
-				'default' => 'imdb_id',
-				'options' => array(
-					'imdb_id'       => esc_html__( 'IMDB ID', 'mas-elementor' ),
-					'tmdb_id'       => esc_html__( 'TMDB ID', 'mas-elementor' ),
+				'label'     => esc_html__( 'Type', 'mas-elementor' ),
+				'type'      => Controls_Manager::SELECT,
+				'default'   => 'imdb_id',
+				'options'   => array(
+					'imdb_id' => esc_html__( 'IMDB ID', 'mas-elementor' ),
+					'tmdb_id' => esc_html__( 'TMDB ID', 'mas-elementor' ),
 				),
 				'condition' => array(
 					'mas_videos_post_types' => 'tv_show',
