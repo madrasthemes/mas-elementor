@@ -47,9 +47,7 @@ class Post_Terms extends \Elementor\Core\DynamicTags\Tag {
 	 * Register controls.
 	 */
 	protected function register_controls() {
-		$taxonomy_filter_args = array(
-			// 'show_in_nav_menus' => true,
-		);
+		$taxonomy_filter_args = array();
 
 		/**
 		 * Dynamic tags taxonomy args.
