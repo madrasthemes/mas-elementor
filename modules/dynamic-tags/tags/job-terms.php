@@ -63,7 +63,6 @@ class Job_Terms extends \Elementor\Core\DynamicTags\Tag {
 		 *                                    match against the taxonomy objects inside
 		 *                                    the `get_taxonomies()` function.
 		 */
-		// //PHPCS:ignore $taxonomy_filter_args = apply_filters( 'elementor_pro/dynamic_tags/post_terms/taxonomy_args', $taxonomy_filter_args );
 
 		$taxonomies = Utils::get_taxonomies( $taxonomy_filter_args, 'objects' );
 
