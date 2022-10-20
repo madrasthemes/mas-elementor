@@ -269,8 +269,8 @@ class Mas_Breadcrumbs extends Base_Widget {
 		$this->add_group_control(
 			Group_Control_Box_Shadow::get_type(),
 			array(
-				'name'      => 'mas_breadcrumb_li_box_shadow',
-				'selector'  => '{{WRAPPER}} .mas_breadcrumb_li',
+				'name'     => 'mas_breadcrumb_li_box_shadow',
+				'selector' => '{{WRAPPER}} .mas_breadcrumb_li',
 			)
 		);
 
