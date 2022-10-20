@@ -642,9 +642,6 @@ class Module extends Module_Base {
 
 		add_action( 'elementor/frontend/before_register_scripts', array( $this, 'register_frontend_scripts' ) );
 		add_action( 'elementor/frontend/before_register_styles', array( $this, 'register_frontend_styles' ) );
-		// add_action( 'elementor/editor/footer', array( $this, 'register_frontend_scripts' ) );.
-		// add_action( 'elementor/editor/wp_head', array( $this, 'register_frontend_styles' ) );.
-		// add_filter( 'elementor/section/print_template', array( $this, 'testing' ), 10, 2 );.
 	}
 
 	/**
