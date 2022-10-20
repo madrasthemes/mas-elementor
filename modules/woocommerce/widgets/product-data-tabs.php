@@ -576,7 +576,7 @@ class Product_Data_Tabs extends Base_Widget {
 			array(
 				'label'     => esc_html__( 'Title Color', 'mas-elementor' ),
 				'type'      => Controls_Manager::COLOR,
-				'selectors'  => array(
+				'selectors' => array(
 					'{{WRAPPER}} .woocommerce-Tabs-panel h2' => 'color: {{VALUE}};display: block;',
 				),
 			)
@@ -634,7 +634,7 @@ class Product_Data_Tabs extends Base_Widget {
 			array(
 				'label'     => esc_html__( 'Description Color', 'mas-elementor' ),
 				'type'      => Controls_Manager::COLOR,
-				'selectors'  => array(
+				'selectors' => array(
 					'{{WRAPPER}} .woocommerce-Tabs-panel' => 'color: {{VALUE}}',
 				),
 			)
