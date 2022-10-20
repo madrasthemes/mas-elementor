@@ -106,7 +106,7 @@ class Module extends DynamicTags\Module {
 				'label'   => $acf_group['title'],
 				'options' => $options,
 			);
-		} // End foreach().
+		}
 
 		return $groups;
 	}
