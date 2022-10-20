@@ -81,7 +81,7 @@ class Module extends Module_Base {
 			)
 		);
 	}
-		
+
 	/**
 	 * Before Render.
 	 *
