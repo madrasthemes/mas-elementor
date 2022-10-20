@@ -104,7 +104,6 @@ class Products extends Products_Base {
 	 */
 	protected function register_skins() {
 		$this->add_skin( new Skins\Skin_Classic( $this ) );
-		// $this->add_skin( new Skins\Skin_Grid( $this ) );
 	}
 
 	/**
@@ -206,9 +205,9 @@ class Products extends Products_Base {
 		$this->add_control(
 			'select_template',
 			array(
-				'label'   => esc_html__( 'Mas Templates', 'mas-elementor' ),
-				'type'    => Controls_Manager::SELECT,
-				'options' => $templates,
+				'label'     => esc_html__( 'Mas Templates', 'mas-elementor' ),
+				'type'      => Controls_Manager::SELECT,
+				'options'   => $templates,
 				'condition' => array(
 					'_skin' => 'mas-products-skin',
 				),
@@ -218,8 +217,8 @@ class Products extends Products_Base {
 		$this->add_control(
 			'mas_products_class',
 			array(
-				'type' => Controls_Manager::HIDDEN,
-				'default' => 'wc-products',
+				'type'         => Controls_Manager::HIDDEN,
+				'default'      => 'wc-products',
 				'prefix_class' => 'mas-products-grid mas-elementor-',
 			)
 		);
@@ -247,7 +246,7 @@ class Products extends Products_Base {
 					Controls_Stack::RESPONSIVE_DESKTOP => Controls_Stack::RESPONSIVE_TABLET,
 					Controls_Stack::RESPONSIVE_TABLET  => Controls_Stack::RESPONSIVE_TABLET,
 				),
-				'condition' => array(
+				'condition'           => array(
 					'enable_carousel!' => 'yes',
 				),
 			)
@@ -265,7 +264,7 @@ class Products extends Products_Base {
 						'max' => 20,
 					),
 				),
-				'condition' => array(
+				'condition'   => array(
 					'enable_carousel!' => 'yes',
 				),
 			)
@@ -278,7 +277,7 @@ class Products extends Products_Base {
 				'type'        => Controls_Manager::NUMBER,
 				'default'     => 6,
 				'render_type' => 'template',
-				'condition' => array(
+				'condition'   => array(
 					'enable_carousel' => 'yes',
 				),
 			)
@@ -287,9 +286,9 @@ class Products extends Products_Base {
 		$this->add_control(
 			'paginate',
 			array(
-				'label'   => __( 'Pagination', 'mas-elementor' ),
-				'type'    => Controls_Manager::SWITCHER,
-				'default' => '',
+				'label'     => __( 'Pagination', 'mas-elementor' ),
+				'type'      => Controls_Manager::SWITCHER,
+				'default'   => '',
 				'condition' => array(
 					'enable_carousel!' => 'yes',
 				),
@@ -303,7 +302,7 @@ class Products extends Products_Base {
 				'type'      => Controls_Manager::SWITCHER,
 				'default'   => '',
 				'condition' => array(
-					'paginate' => 'yes',
+					'paginate'         => 'yes',
 					'enable_carousel!' => 'yes',
 				),
 			)
@@ -316,8 +315,8 @@ class Products extends Products_Base {
 				'raw'             => __( 'Ordering is not available if this widget is placed in your front page. Visible on frontend only.', 'mas-elementor' ),
 				'content_classes' => 'elementor-panel-alert elementor-panel-alert-info',
 				'condition'       => array(
-					'paginate'    => 'yes',
-					'allow_order' => 'yes',
+					'paginate'         => 'yes',
+					'allow_order'      => 'yes',
 					'enable_carousel!' => 'yes',
 				),
 			)
@@ -330,7 +329,7 @@ class Products extends Products_Base {
 				'type'      => Controls_Manager::SWITCHER,
 				'default'   => '',
 				'condition' => array(
-					'paginate' => 'yes',
+					'paginate'         => 'yes',
 					'enable_carousel!' => 'yes',
 				),
 			)
