@@ -289,7 +289,7 @@ class Group_Control_Posts extends Group_Control_Base {
 		} else {
 			$query_args['post_type']      = $post_type;
 			$query_args['posts_per_page'] = $settings['posts_per_page'];
-			$query_args['tax_query']      = array();
+			$query_args['tax_query']      = array(); // phpcs:ignore
 
 			$query_args = $this->fix_offset( $query_args, $settings );
 
@@ -315,7 +315,7 @@ class Group_Control_Posts extends Group_Control_Base {
 		$post__not_in = array();
 		if ( ! empty( $settings['exclude'] ) ) {
 			if ( in_array( 'current_post', $settings['exclude'], true ) ) {
-				if ( wp_doing_ajax() && ! empty( $_REQUEST['post_id'] ) ) {
+				if ( wp_doing_ajax() && ! empty( $_REQUEST['post_id'] ) ) { // phpcs:ignore
 					$post__not_in[] = $_REQUEST['post_id']; //phpcs:ignore
 				} elseif ( is_singular() ) {
 					$post__not_in[] = get_queried_object_id();

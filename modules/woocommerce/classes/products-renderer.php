@@ -104,8 +104,8 @@ class Products_Renderer extends Base_Products_Renderer {
 			'order'               => strtoupper( $settings[ $prefix . 'order' ] ),
 		);
 
-		$query_args['meta_query'] = WC()->query->get_meta_query();
-		$query_args['tax_query']  = array();
+		$query_args['meta_query'] = WC()->query->get_meta_query(); // phpcs:ignore
+		$query_args['tax_query']  = array(); // phpcs:ignore
 
 		$front_page = is_front_page();
 		if ( 'yes' === $settings['paginate'] && 'yes' === $settings['allow_order'] && ! $front_page ) {
@@ -117,7 +117,7 @@ class Products_Renderer extends Base_Products_Renderer {
 		$query_args['orderby'] = $ordering_args['orderby'];
 		$query_args['order']   = $ordering_args['order'];
 		if ( $ordering_args['meta_key'] ) {
-			$query_args['meta_key'] = $ordering_args['meta_key'];
+			$query_args['meta_key'] = $ordering_args['meta_key']; // phpcs:ignore
 		}
 
 		// Visibility.
@@ -144,7 +144,7 @@ class Products_Renderer extends Base_Products_Renderer {
 		$this->set_exclude_query_args( $query_args );
 
 		if ( 'yes' === $settings['paginate'] ) {
-			$page = absint( empty( $_GET['product-page'] ) ? 1 : $_GET['product-page'] );
+			$page = absint( empty( $_GET['product-page'] ) ? 1 : $_GET['product-page'] ); // phpcs:ignore
 
 			if ( 1 < $page ) {
 				$query_args['paged'] = $page;
@@ -234,7 +234,7 @@ class Products_Renderer extends Base_Products_Renderer {
 		}
 
 		if ( ! empty( $tax_query ) ) {
-			$query_args['tax_query'] = array_merge( $query_args['tax_query'], $tax_query );
+			$query_args['tax_query'] = array_merge( $query_args['tax_query'], $tax_query ); // phpcs:ignore
 		}
 	}
 
@@ -280,13 +280,13 @@ class Products_Renderer extends Base_Products_Renderer {
 			return;
 		}
 		$post__not_in = array();
-		if ( in_array( 'current_post', $this->settings[ $prefix . 'exclude' ] ) ) {
+		if ( in_array( 'current_post', $this->settings[ $prefix . 'exclude' ] ) ) { // phpcs:ignore
 			if ( is_singular() ) {
 				$post__not_in[] = get_queried_object_id();
 			}
 		}
 
-		if ( in_array( 'manual_selection', $this->settings[ $prefix . 'exclude' ] ) && ! empty( $this->settings[ $prefix . 'exclude_ids' ] ) ) {
+		if ( in_array( 'manual_selection', $this->settings[ $prefix . 'exclude' ] ) && ! empty( $this->settings[ $prefix . 'exclude_ids' ] ) ) { // phpcs:ignore
 			$post__not_in = array_merge( $post__not_in, $this->settings[ $prefix . 'exclude_ids' ] );
 		}
 
@@ -300,7 +300,7 @@ class Products_Renderer extends Base_Products_Renderer {
 			$query_args['post__in'] = array_diff( $query_args['post__in'], $query_args['post__not_in'] );
 		}
 
-		if ( in_array( 'terms', $this->settings[ $prefix . 'exclude' ] ) && ! empty( $this->settings[ $prefix . 'exclude_term_ids' ] ) ) {
+		if ( in_array( 'terms', $this->settings[ $prefix . 'exclude' ] ) && ! empty( $this->settings[ $prefix . 'exclude_term_ids' ] ) ) { // phpcs:ignore
 			$terms = array();
 			foreach ( $this->settings[ $prefix . 'exclude_term_ids' ] as $to_exclude ) {
 				$term_data                       = get_term_by( 'term_taxonomy_id', $to_exclude );
@@ -316,7 +316,7 @@ class Products_Renderer extends Base_Products_Renderer {
 				);
 			}
 			if ( empty( $query_args['tax_query'] ) ) {
-				$query_args['tax_query'] = $tax_query;
+				$query_args['tax_query'] = $tax_query; // phpcs:ignore
 			} else {
 				$query_args['tax_query']['relation'] = 'AND';
 				$query_args['tax_query'][]           = $tax_query;
