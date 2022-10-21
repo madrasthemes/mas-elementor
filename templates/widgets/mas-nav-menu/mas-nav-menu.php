@@ -82,7 +82,6 @@ if ( ! empty( $settings['menu'] ) ) {
 					<?php echo wp_kses_post( $menu_html ); ?>
 				</div>
 			</nav>
-				
 		</div>
 			<?php
 	}
