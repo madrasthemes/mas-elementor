@@ -240,45 +240,6 @@ class Mas_Nav_Menu extends Base_Widget {
 			)
 		);
 
-		// TODO: For Pro 3.6.0, convert this to the breakpoints utility method introduced in core 3.5.0.
-		$breakpoints          = Plugin::elementor()->breakpoints->get_active_breakpoints();
-		$dropdown_options     = array();
-		$excluded_breakpoints = array(
-			'laptop',
-			'widescreen',
-		);
-
-		foreach ( $breakpoints as $breakpoint_key => $breakpoint_instance ) {
-			// Do not include laptop and widscreen in the options since this feature is for mobile devices.
-			if ( in_array( $breakpoint_key, $excluded_breakpoints, true ) ) {
-				continue;
-			}
-
-			$dropdown_options[ $breakpoint_key ] = sprintf(
-				/* translators: 1: Breakpoint label, 2: `>` character, 3: Breakpoint value */
-				esc_html__( '%1$s (%2$s %3$dpx)', 'mas-elementor' ),
-				$breakpoint_instance->get_label(),
-				'>',
-				$breakpoint_instance->get_value()
-			);
-		}
-
-		$dropdown_options['none'] = esc_html__( 'None', 'mas-elementor' );
-
-		$this->add_control(
-			'dropdown',
-			array(
-				'label'        => esc_html__( 'Breakpoint', 'mas-elementor' ),
-				'type'         => Controls_Manager::SELECT,
-				'default'      => 'tablet',
-				'options'      => $dropdown_options,
-				'prefix_class' => 'mas-elementor-nav-menu--dropdown-',
-				'condition'    => array(
-					'layout!' => 'dropdown',
-				),
-			)
-		);
-
 		$this->add_responsive_control(
 			'mas_nav_content_align',
 			array(
