@@ -24,12 +24,12 @@ if ( ! empty( $settings['menu'] ) ) {
 }
 	$walker = new MAS_Bootstrap_Navwalker();
 	$args   = array(
-		'echo'            => false,
-		'menu'            => $settings['menu'],
-		'menu_class'      => 'mas-elementor-nav-menu menu',
-		'menu_id'         => 'menu-' . $widget->get_nav_menu_index() . '-' . $widget->get_id(),
-		'fallback_cb'     => '__return_empty_string',
-		'container'       => '',
+		'echo'        => false,
+		'menu'        => $settings['menu'],
+		'menu_class'  => 'mas-elementor-nav-menu menu',
+		'menu_id'     => 'menu-' . $widget->get_nav_menu_index() . '-' . $widget->get_id(),
+		'fallback_cb' => '__return_empty_string',
+		'container'   => '',
 
 
 	);
