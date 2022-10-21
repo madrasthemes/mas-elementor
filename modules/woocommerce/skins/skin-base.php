@@ -28,18 +28,4 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 abstract class Skin_Base extends Elementor_Skin_Base {
 
-	/**
-	 * Get shortcode object
-	 *
-	 * @param array $settings settings of the widget.
-	 * @param array $template template path and arguments.
-	 */
-	public function get_shortcode_object( $settings, $template = array( 'path' => 'widgets/product-classic.php', 'args' => array() ) ) { //phpcs:ignore
-		if ( 'current_query' === $settings[ Products_Renderer::QUERY_CONTROL_NAME . '_post_type' ] ) {
-			$type = 'current_query';
-			return new Current_Query_Renderer( $settings, $type );
-		}
-		$type = 'products';
-		return new Products_Renderer( $settings, $type, $template );
-	}
 }
