@@ -9,7 +9,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 	$settings = $widget->get_settings_for_display();
-	require plugin_dir_path( MAS_ELEMENTOR__FILE__ ) . 'classes/class-wp-bootstrap-navwalker.php';
+	require MAS_ELEMENTOR_PATH . 'classes/class-wp-bootstrap-navwalker.php';
 
 	$available_menus = $widget->get_available_menus();
 
@@ -63,7 +63,7 @@ if ( ! empty( $settings['menu'] ) ) {
 		</div>
 		<?php
 	}
-	if ( 'default' !== $settings['walker'] ) {
+	if ( ( 'dropdown' === $settings['layout'] && 'bootstrap' === $settings['walker'] ) ) {
 		?>
 		<div class="mas-hamburger-menu">
 			<nav class="navbar mas-elementor-menu-toggle">
