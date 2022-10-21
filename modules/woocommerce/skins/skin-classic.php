@@ -56,9 +56,7 @@ class Skin_Classic extends Skin_Base {
 
 		$settings = $widget->get_settings();
 
-		$template = $this->mas_template_path();
-
-		$shortcode = $this->get_shortcode_object( $settings, $template );
+		$shortcode = $widget->get_shortcode_object( $settings );
 
 		$content = $shortcode->mas_product_content( $widget, $settings );
 
@@ -69,20 +67,6 @@ class Skin_Classic extends Skin_Base {
 		}
 
 		$widget->render_script( 'swiper-products-' . $widget->get_id() );
-	}
-
-	/**
-	 * MAS Elementor Template Path.
-	 */
-	public function mas_template_path() {
-		$args = array(
-			'widget' => $this->parent,
-			'skin'   => $this,
-		);
-		return array(
-			'path' => 'widgets/product-classic.php',
-			'args' => $args,
-		);
 	}
 
 }

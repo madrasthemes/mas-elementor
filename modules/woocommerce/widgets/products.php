@@ -654,18 +654,6 @@ class Products extends Products_Base {
 	}
 
 	/**
-	 * Register frontend styles.
-	 */
-	public function register_frontend_styles() {
-		wp_register_style(
-			'products-stylesheet',
-			MAS_ELEMENTOR_MODULES_URL . 'woocommerce/assets/css/products.css',
-			array(),
-			MAS_ELEMENTOR_VERSION
-		);
-	}
-
-	/**
 	 * Render Plain Content
 	 */
 	public function render_plain_content() {}

@@ -19,22 +19,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 abstract class Base_Products_Renderer extends \WC_Shortcode_Products {
 
 	/**
-	 * Base Products Renderer constructor.
-	 *
-	 * @param array  $settings the settings.
-	 * @param string $type post type.
-	 * @param array  $tem_path template path and args.
-	 */
-	public function __construct( $settings = array(), $type = 'products', $tem_path = array(
-		'path' => 'widgets/product-classic.php',
-		'args' => array(),
-	) ) {
-		$this->settings = $settings;
-		$this->tem_path = $tem_path['path'];
-		$this->tem_args = $tem_path['args'];
-	}
-
-	/**
 	 * Override original `get_content` that returns an HTML wrapper even if no results found.
 	 *
 	 * @return string Products HTML
@@ -155,8 +139,6 @@ abstract class Base_Products_Renderer extends \WC_Shortcode_Products {
 	 */
 	public function skin_template_path( $index__id ) {
 
-		$path     = &$this->tem_path;
-		$args     = &$this->tem_args;
 		$settings = &$this->settings;
 		if ( 'yes' === $settings['enable_carousel'] ) {
 			?>
