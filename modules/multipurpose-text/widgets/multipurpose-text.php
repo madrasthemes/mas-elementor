@@ -830,7 +830,7 @@ class Multipurpose_Text extends Base_Widget {
 				'id'                 => $typed_id,
 			)
 		);
-		mas_elementor_get_template( 'widgets/multipurpose-text.php', array( 'widget' => $this ) );
+		mas_elementor_get_template( 'widgets/multipurpose-text/multipurpose-text.php', array( 'widget' => $this ) );
 		$this->render_script( $settings );
 	}
 
