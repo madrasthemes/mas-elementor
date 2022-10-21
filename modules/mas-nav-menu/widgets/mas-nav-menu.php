@@ -399,7 +399,7 @@ class Mas_Nav_Menu extends Base_Widget {
 				'global'    => array(
 					'default' => Global_Colors::COLOR_TEXT,
 				),
-				'default'   => '#ffffff',
+				'default'   => '#000',
 				'selectors' => array(
 					'{{WRAPPER}} .mas-elementor-nav-menu .menu-item a' => 'color: {{VALUE}}; fill: {{VALUE}};',
 				),
@@ -426,7 +426,7 @@ class Mas_Nav_Menu extends Base_Widget {
 				'selectors' => array(
 					'{{WRAPPER}} .mas-elementor-nav-menu .menu-item a:hover' => 'color: {{VALUE}}; fill: {{VALUE}};',
 				),
-				'default'   => '#ffffff',
+				'default'   => '#000',
 			)
 		);
 		$this->end_controls_tab();
@@ -585,6 +585,15 @@ class Mas_Nav_Menu extends Base_Widget {
 			)
 		);
 
+		$this->add_control(
+			'mas_nav_submenu_item',
+			array(
+				'label'     => __( 'Submenu Item', 'mas-elementor' ),
+				'type'      => Controls_Manager::HEADING,
+				'separator' => 'before',
+			)
+		);
+
 		$this->start_controls_tabs( 'lm_tabs_button_style' );
 
 		$this->start_controls_tab(
@@ -703,6 +712,6 @@ class Mas_Nav_Menu extends Base_Widget {
 	 * @return void
 	 */
 	protected function render() {
-		mas_elementor_get_template( 'widgets/mas-nav-menu.php', array( 'widget' => $this ) );
+		mas_elementor_get_template( 'widgets/mas-nav-menu/mas-nav-menu.php', array( 'widget' => $this ) );
 	}
 }
