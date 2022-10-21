@@ -12,8 +12,8 @@ use Elementor\plugin;
  * Description: More power to your Elementor powered website with beautifully designed sections, templates, widgets, skins and extensions.
  * Plugin URI: https://madrasthemes.com/
  * Author: MadrasThemes
- * Version: 0.0.1
- * Elementor tested up to: 3.5.0
+ * Version: 1.0.0
+ * Elementor tested up to: 3.7.5
  * Author URI: https://madrasthemes.com/
  *
  * Text Domain: mas-elementor
