@@ -54,33 +54,35 @@ if ( ! empty( $settings['menu'] ) ) {
 		return;
 	}
 
-	if ( 'horizontal' === $settings['layout'] || 'default' === $settings['walker'] ) {
+	if ( ( 'horizontal' === $settings['layout'] && 'bootstrap' === $settings['walker'] ) || 'default' === $settings['walker'] ) {
 		?>
 		<div class="<?php echo esc_attr( $wrap_class ); ?>">
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#<?php echo esc_attr( 'toggle-' . $widget->get_id() ); ?>" aria-controls="<?php echo esc_attr( 'toggle-' . $widget->get_id() ); ?>" aria-expanded="false" aria-label="Toggle navigation">
+				<i class="eicon-menu-bar"></i>
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse handheld horizontal" id="<?php echo esc_attr( 'toggle-' . $widget->get_id() ); ?>">
+
 		<?php
 		echo wp_kses_post( $menu_html );
 		?>
 		</div>
+	</div>
 		<?php
 	}
 	if ( ( 'dropdown' === $settings['layout'] && 'bootstrap' === $settings['walker'] ) ) {
 		?>
 		<div class="mas-hamburger-menu">
 			<nav class="navbar mas-elementor-menu-toggle">
-			<div class="container-fluid">
 				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#<?php echo esc_attr( 'toggle-' . $widget->get_id() ); ?>" aria-controls="<?php echo esc_attr( 'toggle-' . $widget->get_id() ); ?>" aria-expanded="false" aria-label="Toggle navigation">
 					<i class="eicon-menu-bar"></i>
 					<span class="navbar-toggler-icon"></span>
 				</button>
-			</div>
-			</nav>
-			<div class="off-canvas-navigation">
 				<div class="collapse handheld" id="<?php echo esc_attr( 'toggle-' . $widget->get_id() ); ?>">
 					<?php echo wp_kses_post( $menu_html ); ?>
 				</div>
-			</div>
+			</nav>
+				
 		</div>
 			<?php
 	}
-
-
