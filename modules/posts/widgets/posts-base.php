@@ -70,7 +70,7 @@ abstract class Posts_Base extends Base_Widget {
 	 * @return array Element styles dependencies.
 	 */
 	public function get_style_depends() {
-		return array( 'load-more', 'mas-posts-stylesheet' );
+		return array( 'load-more' );
 	}
 
 	/**
