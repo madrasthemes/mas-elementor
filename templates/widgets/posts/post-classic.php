@@ -10,7 +10,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 ?>
-<article class="elementor-post elementor-grid-item post-1 post type-post status-publish format-standard hentry category-uncategorized" style="padding:10px">
+<article class="elementor-post elementor-grid-item post-1 post type-post status-publish format-standard" style="padding:10px">
 	<a class="elementor-post__thumbnail__link" href="<?php the_permalink(); ?>">
 		<div class="elementor-post__thumbnail"><?php the_post_thumbnail( 'full' ); ?></div>
 	</a>
