@@ -22,27 +22,16 @@ if ( ! defined( 'ABSPATH' ) ) {
 if ( $related_products ) : ?>
 
 	<section class="related products">
-       
 		<?php
 		$instance_settings = $widget->get_settings_for_display();
+		foreach ( $related_products as $related_product ) :
+			$post_object = get_post( $related_product->get_id() );
 
-		
-		//woocommerce_product_loop_start(); ?>
+			setup_postdata( $GLOBALS['post'] =& $post_object ); // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited, Squiz.PHP.DisallowMultipleAssignments.Found
 
-			<?php foreach ( $related_products as $related_product ) : ?>
-
-					<?php
-					$post_object = get_post( $related_product->get_id() );
-
-					setup_postdata( $GLOBALS['post'] =& $post_object ); // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited, Squiz.PHP.DisallowMultipleAssignments.Found
-
-					print( mas_render_template( $instance_settings['select_template'], false ) );//phpcs:ignore
-					?>
-
-			<?php endforeach; ?>
-
-		<?php //woocommerce_product_loop_end(); ?>
-
+			print( mas_render_template( $instance_settings['select_template'], false ) );//phpcs:ignore
+		endforeach;
+		?>
 	</section>
 	<?php
 endif;
