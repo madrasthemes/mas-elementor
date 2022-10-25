@@ -140,7 +140,7 @@
 
 		handleSuccessFetch(result) {
 			this.handleUiAfterLoading();
-			const posts = result.querySelectorAll(`[data-id="${this.elementId}"] .mas-posts-container > [data-elementor-type="mas-post"],article`);
+			const posts = result.querySelectorAll(`[data-id="${this.elementId}"] .mas-posts-container > [data-elementor-type="mas-post"],[data-id="${this.elementId}"] .mas-posts-container > article`);
 			const nextPageUrl = result.querySelector('.e-load-more-anchor').getAttribute('data-next-page'); // Converting HTMLCollection to an Array and iterate it.
 
 			const postsHTML = [...posts].reduce((accumulator, post) => {
