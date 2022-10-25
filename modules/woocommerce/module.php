@@ -10,8 +10,6 @@ namespace MASElementor\Modules\Woocommerce;
 use Elementor\Core\Documents_Manager;
 use Elementor\Settings;
 use MASElementor\Base\Module_Base;
-use MASElementor\Modules\ThemeBuilder\Classes\Conditions_Manager;
-use MASElementor\Modules\Woocommerce\Conditions\Woocommerce;
 use MASElementor\Plugin;
 
 if ( ! defined( 'ABSPATH' ) ) {
