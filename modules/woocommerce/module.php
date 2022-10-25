@@ -10,8 +10,6 @@ namespace MASElementor\Modules\Woocommerce;
 use Elementor\Core\Documents_Manager;
 use Elementor\Settings;
 use MASElementor\Base\Module_Base;
-use MASElementor\Modules\ThemeBuilder\Classes\Conditions_Manager;
-use MASElementor\Modules\Woocommerce\Conditions\Woocommerce;
 use MASElementor\Plugin;
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -386,14 +384,6 @@ class Module extends Module_Base {
 
 		add_action( 'elementor/dynamic_tags/register', array( $this, 'register_tags' ) );
 		add_action( 'elementor/frontend/before_register_styles', array( $this, 'register_frontend_styles' ) );
-
-		$this->use_mini_cart_template = 'yes' === get_option( 'elementor_' . self::OPTION_NAME_USE_MINI_CART, 'no' );
-		if ( is_admin() ) {
-			add_action( 'elementor/admin/after_create_settings/' . Settings::PAGE_ID, array( $this, 'register_admin_fields' ), 15 );
-		}
-
-		add_action( 'elementor/theme/register_conditions', array( $this, 'register_conditions' ) );
-		add_filter( 'elementor/theme/need_override_location', array( $this, 'theme_template_include' ), 10, 2 );
 
 		// On Editor - Register WooCommerce frontend hooks before the Editor init.
 		// Priority = 5, in order to allow plugins remove/add their wc hooks on init.
