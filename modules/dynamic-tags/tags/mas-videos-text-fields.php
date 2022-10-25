@@ -116,12 +116,29 @@ class Mas_Videos_Text_Fields extends \Elementor\Core\DynamicTags\Tag {
 				'type'      => Controls_Manager::SELECT,
 				'default'   => 'imdb_id',
 				'options'   => array(
-					'imdb_id' => esc_html__( 'IMDB ID', 'mas-elementor' ),
-					'tmdb_id' => esc_html__( 'TMDB ID', 'mas-elementor' ),
+					'imdb_id'           => esc_html__( 'IMDB ID', 'mas-elementor' ),
+					'tmdb_id'           => esc_html__( 'TMDB ID', 'mas-elementor' ),
+					'season_names'      => esc_html__( 'Season Names', 'mas-elementor' ),
+					'season_start_year' => esc_html__( 'Seasons Start Year', 'mas-elementor' ),
+					'season_end_year'   => esc_html__( 'Seasons End Year', 'mas-elementor' ),
 				),
 				'condition' => array(
 					'mas_videos_post_types' => 'tv_show',
 				),
+			)
+		);
+
+		$this->add_control(
+			'season_names_separator',
+			array(
+				'label'     => esc_html__( 'Separator', 'mas-elementor' ),
+				'type'      => Controls_Manager::TEXT,
+				'default'   => ', ',
+				'condition' => array(
+					'mas_videos_post_types'    => 'tv_show',
+					'mas_tv_show_text_options' => 'season_names',
+				),
+
 			)
 		);
 	}
@@ -163,6 +180,37 @@ class Mas_Videos_Text_Fields extends \Elementor\Core\DynamicTags\Tag {
 			}
 			if ( 'tmdb_id' === $settings['mas_tv_show_text_options'] ) {
 				$text_output = $tv_show->get_tmdb_id();
+			}
+			if ( ! empty( $settings['mas_tv_show_text_options'] ) ) {
+				$seasons      = $tv_show->get_seasons();
+				$start_year   = 0;
+				$end_year     = 0;
+				$season_names = array();
+				if ( is_array( $seasons ) ) {
+					foreach ( $seasons as $key => $season ) {
+						if ( 0 === $key ) {
+							$start_year = $season['year'];
+							$end_year   = $season['year'];
+						} else {
+							if ( $end_year < $season['year'] ) {
+								$end_year = $season['year'];
+							}
+							if ( $start_year > $season['year'] ) {
+								$start_year = $season['year'];
+							}
+						}
+						$season_names[] = $season['name'];
+
+					}
+				}
+				if ( 'season_start_year' === $settings['mas_tv_show_text_options'] ) {
+					$text_output = $start_year;
+				} elseif ( 'season_end_year' === $settings['mas_tv_show_text_options'] ) {
+					$text_output = $end_year;
+				} elseif ( 'season_names' === $settings['mas_tv_show_text_options'] ) {
+					$season_names = implode( $settings['season_names_separator'], $season_names );
+					$text_output  = $season_names;
+				}
 			}
 		}
 		echo wp_kses_post( $text_output );
