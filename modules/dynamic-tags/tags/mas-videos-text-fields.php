@@ -70,12 +70,51 @@ class Mas_Videos_Text_Fields extends \Elementor\Core\DynamicTags\Tag {
 					'censor_rating' => esc_html__( 'Censor Rating', 'mas-elementor' ),
 					'imdb_id'       => esc_html__( 'IMDB ID', 'mas-elementor' ),
 					'tmdb_id'       => esc_html__( 'TMDB ID', 'mas-elementor' ),
+					'crew'          => esc_html__( 'Crew', 'mas-elementor' ),
 				),
 				'condition' => array(
 					'mas_videos_post_types' => 'movie',
 				),
 			)
 		);
+
+		$crew_options = array();
+		for ( $i = 0; $i < 15; $i++ ) {
+			$suffix             = $i + 1;
+			$crew_options[ $i ] = 'Person ' . $suffix;
+		}
+
+		$this->add_control(
+			'mas_movie_person_ids',
+			array(
+				'label'       => esc_html__( 'Select Person', 'mas-elementor' ),
+				'type'        => Controls_Manager::SELECT,
+				'description' => esc_html__( 'Person here shown are in movie crew options and in ordered', 'mas-elementor' ),
+				'options'     => $crew_options,
+				'condition'   => array(
+					'mas_videos_post_types'  => 'movie',
+					'mas_movie_text_options' => 'crew',
+				),
+			)
+		);
+
+		$this->add_control(
+			'mas_movie_person_options',
+			array(
+				'label'     => esc_html__( 'Person options', 'mas-elementor' ),
+				'type'      => Controls_Manager::SELECT,
+				'default'   => 'name',
+				'options'   => array(
+					'name' => esc_html__( 'Name', 'mas-elementor' ),
+					'job'  => esc_html__( 'Job', 'mas-elementor' ),
+				),
+				'condition' => array(
+					'mas_videos_post_types'  => 'movie',
+					'mas_movie_text_options' => 'crew',
+				),
+			)
+		);
+
 		$this->add_control(
 			'date_format',
 			array(
@@ -172,6 +211,19 @@ class Mas_Videos_Text_Fields extends \Elementor\Core\DynamicTags\Tag {
 			}
 			if ( 'tmdb_id' === $settings['mas_movie_text_options'] ) {
 				$text_output = $movie->get_tmdb_id();
+			}
+			if ( 'crew' === $settings['mas_movie_text_options'] ) {
+				$crews = $movie->get_crew();
+				if ( ! empty( $crews ) ) {
+					foreach ( $crews as $key => $crew ) {
+						if ( $key === (int) $settings['mas_movie_person_ids'] && 'name' === $settings['mas_movie_person_options'] ) {
+							$text_output = get_the_title( $crew['id'] );
+						}
+						if ( $key === (int) $settings['mas_movie_person_ids'] && 'job' === $settings['mas_movie_person_options'] ) {
+							$text_output = $crew['job'];
+						}
+					}
+				}
 			}
 		}
 		if ( ! empty( $tv_show ) && 'tv_show' === $settings['mas_videos_post_types'] ) {

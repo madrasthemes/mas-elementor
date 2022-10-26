@@ -86,6 +86,7 @@ class Module extends TagsModule {
 				'Movie_Rating',
 				'Mas_Videos_Text_Fields',
 				'Mas_Videos_Url_Fields',
+				'Mas_Videos_Media_Fields',
 			);
 			$tags  = array_merge( $tags, $movie );
 
