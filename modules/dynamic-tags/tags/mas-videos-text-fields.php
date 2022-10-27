@@ -146,12 +146,9 @@ class Mas_Videos_Text_Fields extends \Elementor\Core\DynamicTags\Tag {
 	 * Render the post  title.
 	 */
 	public function render() {
-		if ( is_movie() || is_tv_show() ) {
-			wp_reset_postdata();
-		}
+		$movie = masvideos_get_movie( get_the_ID() );
+		$tv_show = masvideos_get_tv_show( get_the_ID() );
 
-		global $movie;
-		global $tv_show;
 		$settings    = $this->get_settings();
 		$text_output = '';
 		if ( ! empty( $movie ) && 'movie' === $settings['mas_videos_post_types'] ) {
@@ -183,10 +180,10 @@ class Mas_Videos_Text_Fields extends \Elementor\Core\DynamicTags\Tag {
 			}
 			if ( ! empty( $settings['mas_tv_show_text_options'] ) ) {
 				$seasons      = $tv_show->get_seasons();
-				$start_year   = 0;
-				$end_year     = 0;
+				$start_year   = '';
+				$end_year     = '';
 				$season_names = array();
-				if ( is_array( $seasons ) ) {
+				if ( ! empty( $seasons ) ) {
 					foreach ( $seasons as $key => $season ) {
 						if ( 0 === $key ) {
 							$start_year = $season['year'];
