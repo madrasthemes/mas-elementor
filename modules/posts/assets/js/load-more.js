@@ -71,19 +71,21 @@
 				this.handleInfiniteScroll();
 			} else if (this.elements.loadMoreSpinnerWrapper) {
 				// Instead of creating 2 spinners for on-click and infinity-scroll, one spinner will be used so it should be appended to the button in on-click mode.
-				this.elements.loadMoreButton.insertAdjacentElement('beforeEnd', this.elements.loadMoreSpinnerWrapper);
+				// this.elements.loadMoreButton.insertAdjacentElement('beforeEnd', this.elements.loadMoreSpinnerWrapper);
 			} // Set the post id and element id for the ajax request.
 
 
 			this.elementId = this.getID();
 			this.postId = elementorFrontendConfig.post.id; // Set the current page and last page for handling the load more post and when no more posts to show.
 
-			this.currentPage = parseInt(this.elements.loadMoreAnchor.getAttribute('data-page'));
-			this.maxPage = parseInt(this.elements.loadMoreAnchor.getAttribute('data-max-page'));
+			if (this.elements.loadMoreAnchor) {
+		      	this.currentPage = parseInt(this.elements.loadMoreAnchor.getAttribute('data-page'));
+		      	this.maxPage = parseInt(this.elements.loadMoreAnchor.getAttribute('data-max-page'));
 
-			if (this.currentPage === this.maxPage) {
-				this.handleUiWhenNoPosts();
-			}
+		      	if (this.currentPage === this.maxPage || !this.currentPage) {
+		        	this.handleUiWhenNoPosts();
+		      	}
+		    }
 		} // Handle load more functionality for infinity-scroll type.
 
 		handleInfiniteScroll() {
