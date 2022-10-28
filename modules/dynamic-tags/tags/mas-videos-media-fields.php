@@ -48,9 +48,9 @@ class Mas_Videos_Media_Fields extends \Elementor\Core\DynamicTags\Data_Tag {
 	 * @param array $options control opions.
 	 */
 	public function get_value( array $options = array() ) {
-		$movie = masvideos_get_movie( get_the_ID() );
+		$movie   = masvideos_get_movie( get_the_ID() );
 		$tv_show = masvideos_get_tv_show( get_the_ID() );
-		$video = masvideos_get_video( get_the_ID() );
+		$video   = masvideos_get_video( get_the_ID() );
 
 		$settings   = $this->get_settings();
 		$image_data = $this->get_settings( 'fallback' );
@@ -152,11 +152,11 @@ class Mas_Videos_Media_Fields extends \Elementor\Core\DynamicTags\Data_Tag {
 				'type'    => Controls_Manager::SELECT,
 				'default' => 'movie',
 				'options' => array(
-					'movie'      => esc_html__( 'Movies', 'mas-elementor' ),
-					'tv_show'    => esc_html__( 'TV Show', 'mas-elementor' ),
-					'video'      => esc_html__( 'Videos', 'mas-elementor' ),
-					'person'     => esc_html__( 'Movie Casts and Crew', 'mas-elementor' ),
-					'tv_person'  => esc_html__( 'TV Show Casts and Crew', 'mas-elementor' ),
+					'movie'     => esc_html__( 'Movies', 'mas-elementor' ),
+					'tv_show'   => esc_html__( 'TV Show', 'mas-elementor' ),
+					'video'     => esc_html__( 'Videos', 'mas-elementor' ),
+					'person'    => esc_html__( 'Movie Casts and Crew', 'mas-elementor' ),
+					'tv_person' => esc_html__( 'TV Show Casts and Crew', 'mas-elementor' ),
 				),
 			)
 		);
@@ -164,10 +164,10 @@ class Mas_Videos_Media_Fields extends \Elementor\Core\DynamicTags\Data_Tag {
 		$this->add_control(
 			'mas_videos_casts_crew',
 			array(
-				'label'   => esc_html__( 'Casts or Crew', 'mas-elementor' ),
-				'type'    => Controls_Manager::SELECT,
-				'default' => 'cast',
-				'options' => array(
+				'label'      => esc_html__( 'Casts or Crew', 'mas-elementor' ),
+				'type'       => Controls_Manager::SELECT,
+				'default'    => 'cast',
+				'options'    => array(
 					'cast' => esc_html__( 'Casts', 'mas-elementor' ),
 					'crew' => esc_html__( 'Crew', 'mas-elementor' ),
 				),
@@ -211,7 +211,7 @@ class Mas_Videos_Media_Fields extends \Elementor\Core\DynamicTags\Data_Tag {
 				'default'     => '0',
 				'description' => esc_html__( 'Person here shown are in movie crew options and in ordered', 'mas-elementor' ),
 				'options'     => $crew_options,
-				'conditions' => array(
+				'conditions'  => array(
 					'relation' => 'or',
 					'terms'    => array(
 						array(
