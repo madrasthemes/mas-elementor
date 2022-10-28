@@ -61,7 +61,7 @@ if ( ! empty( $settings['menu'] ) ) {
 				<i class="eicon-menu-bar"></i>
 				<span class="navbar-toggler-icon"></span>
 			</button>
-			<div class="collapse handheld horizontal" id="<?php echo esc_attr( 'toggle-' . $widget->get_id() ); ?>">
+			<div class="mas-align collapse handheld horizontal" id="<?php echo esc_attr( 'toggle-' . $widget->get_id() ); ?>">
 
 		<?php
 		echo wp_kses_post( $menu_html );
