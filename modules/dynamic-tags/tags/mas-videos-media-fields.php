@@ -48,9 +48,9 @@ class Mas_Videos_Media_Fields extends \Elementor\Core\DynamicTags\Data_Tag {
 	 * @param array $options control opions.
 	 */
 	public function get_value( array $options = array() ) {
-		$movie = masvideos_get_movie( get_the_ID() );
+		$movie   = masvideos_get_movie( get_the_ID() );
 		$tv_show = masvideos_get_tv_show( get_the_ID() );
-		$video = masvideos_get_video( get_the_ID() );
+		$video   = masvideos_get_video( get_the_ID() );
 
 		$settings   = $this->get_settings();
 		$image_data = $this->get_settings( 'fallback' );
