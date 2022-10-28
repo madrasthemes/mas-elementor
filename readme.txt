@@ -12,7 +12,7 @@ MAS Elementor is a free plugin. It is the addon for Elementor Plugin
 
 == Description ==
 
-MAS Elementor is a free plugin. Added new widgets and added controls for existing elementor widgets.
+MAS Elementor is a free plugin. Added new widgets and controls for existing elementor widgets.
 
 
 == Installation ==
@@ -54,6 +54,8 @@ Yes you can! Join in on our [GitHub repository](https://github.com/madrasthemes/
 All of our online documentation can be found on [our documentation site](https://docs.madrasthemes.com/mas-elementor/).
 
 == Screenshots ==
+
+1. You can build Posts section, Carousel, Countdown  using MAS Elementor Widgets
 
 
 == Changelog ==
