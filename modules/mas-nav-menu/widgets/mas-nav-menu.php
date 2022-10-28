@@ -267,7 +267,7 @@ class Mas_Nav_Menu extends Base_Widget {
 				'selectors' => array(
 					'{{WRAPPER}} .mas-align' => 'justify-content: {{VALUE}};',
 				),
-				'condition'          => array(
+				'condition' => array(
 					'layout' => 'horizontal',
 				),
 			)
@@ -300,7 +300,7 @@ class Mas_Nav_Menu extends Base_Widget {
 					'{{WRAPPER}} .mas-elementor-nav-menu>li' => 'padding-right: {{SIZE}}px;',
 					'{{WRAPPER}} .mas-elementor-nav-menu>li:last-child' => 'padding-right: 0px;',
 				),
-				'condition'          => array(
+				'condition'      => array(
 					'layout' => 'horizontal',
 				),
 			)
