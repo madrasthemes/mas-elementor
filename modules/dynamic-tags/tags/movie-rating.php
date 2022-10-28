@@ -69,8 +69,8 @@ class Movie_Rating extends \Elementor\Core\DynamicTags\Tag {
 	 * Render the comments number.
 	 */
 	public function render() {
-		$movie    = masvideos_get_movie( get_the_ID() );
-		$tv_show  = masvideos_get_tv_show( get_the_ID() );
+		$movie   = masvideos_get_movie( get_the_ID() );
+		$tv_show = masvideos_get_tv_show( get_the_ID() );
 
 		$settings = $this->get_settings();
 		$rating   = '';
