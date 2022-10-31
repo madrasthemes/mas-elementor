@@ -10,7 +10,7 @@ use Elementor\plugin;
 /**
  * Plugin Name: MAS Addons for Elementor
  * Description: More power to your Elementor powered website with beautifully designed sections, templates, widgets, skins and extensions.
- * Plugin URI: https://madrasthemes.com/
+ * Plugin URI: https://github.com/madrasthemes/mas-elementor
  * Author: MadrasThemes
  * Version: 1.0.0
  * Elementor tested up to: 3.7.5
