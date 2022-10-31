@@ -98,7 +98,7 @@ function mas_elementor_fail_load() {
 
 	$plugin = 'elementor/elementor.php';
 
-	if ( _is_elementor_installed() ) {
+	if ( mas_elementor_is_elementor_installed() ) {
 		if ( ! current_user_can( 'activate_plugins' ) ) {
 			return;
 		}
@@ -165,7 +165,7 @@ function mas_elementor_admin_notice_upgrade_recommendation() {
 	mas_elementor_print_error( $message );
 }
 
-if ( ! function_exists( '_is_elementor_installed' ) ) {
+if ( ! function_exists( 'mas_elementor_is_elementor_installed' ) ) {
 
 	/**
 	 * Elementor Install Check.
@@ -174,7 +174,7 @@ if ( ! function_exists( '_is_elementor_installed' ) ) {
 	 *
 	 * @return string
 	 */
-	function _is_elementor_installed() {
+	function mas_elementor_is_elementor_installed() {
 		$file_path         = 'elementor/elementor.php';
 		$installed_plugins = get_plugins();
 
