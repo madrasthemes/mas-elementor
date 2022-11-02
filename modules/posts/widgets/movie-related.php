@@ -93,6 +93,9 @@ class Movie_Related extends Posts_Base {
 		$settings = $this->get_settings_for_display();
 
 		$movie = masvideos_get_movie( get_the_ID() );
+		if ( empty( $movie ) ) {
+			return;
+		}
 
 		$rows    = ! empty( $settings['rows'] ) ? $settings['rows'] : 4;
 		$columns = ! empty( $settings['columns'] ) ? $settings['columns'] : 4;
