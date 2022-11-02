@@ -7,17 +7,6 @@
 
 namespace MASElementor\Modules\Posts\Widgets;
 
-use Elementor\Controls_Manager;
-use MASElementor\Modules\QueryControl\Module as Module_Query;
-use MASElementor\Modules\QueryControl\Controls\Group_Control_Related;
-use MASElementor\Modules\Posts\Skins;
-use MASElementor\Core\Utils;
-use Elementor\Core\Kits\Documents\Tabs\Global_Colors;
-use Elementor\Core\Kits\Documents\Tabs\Global_Typography;
-use Elementor\Group_Control_Border;
-use Elementor\Group_Control_Typography;
-use Elementor\Controls_Stack;
-
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
@@ -114,8 +103,8 @@ class Movie_Related extends Posts_Base {
 		if ( ! empty( $settings['swiper_posts_per_page'] ) && 'yes' === $settings['enable_carousel'] ) {
 			$args['posts_per_page'] = intval( $settings['swiper_posts_per_page'] );
 		}
-		$related_products = masvideos_get_related_movies( $movie->get_id(), $args['posts_per_page'] );
-		if ( ! $related_products ) {
+		$related_movies = masvideos_get_related_movies( $movie->get_id(), $args['posts_per_page'] );
+		if ( ! $related_movies ) {
 			return;
 		}
 
@@ -130,8 +119,8 @@ class Movie_Related extends Posts_Base {
 				<div class="<?php echo esc_attr( $post_wrapper ); ?>">
 				<?php
 		}
-		foreach ( $related_products as $related_product ) {
-			$post_object = get_post( $related_product );
+		foreach ( $related_movies as $related_movie ) {
+			$post_object = get_post( $related_movie );
 
 			setup_postdata( $GLOBALS['post'] =& $post_object ); // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited, Squiz.PHP.DisallowMultipleAssignments.Found
 			if ( 'yes' === $settings['enable_carousel'] ) {
