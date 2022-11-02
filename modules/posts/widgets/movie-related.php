@@ -25,7 +25,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Class Posts
  */
-class Posts extends Posts_Base {
+class Movie_Related extends Posts_Base {
 
 	/**
 	 * Get the name of the widget.
@@ -33,7 +33,7 @@ class Posts extends Posts_Base {
 	 * @return string
 	 */
 	public function get_name() {
-		return 'mas-posts';
+		return 'mas-related-movie';
 	}
 
 	/**
@@ -42,7 +42,7 @@ class Posts extends Posts_Base {
 	 * @return string
 	 */
 	public function get_title() {
-		return __( 'Posts', 'mas-elementor' );
+		return __( 'Related movie', 'mas-elementor' );
 	}
 
 	/**
@@ -76,6 +76,11 @@ class Posts extends Posts_Base {
 		return $element;
 	}
 
+	/**
+	 * Set the query variable
+	 */
+	public function query_posts() {
+	}
 
 	/**
 	 * Register controls for this widget.
@@ -84,27 +89,12 @@ class Posts extends Posts_Base {
 
 		$this->register_layout_section_controls();
 		parent::register_controls();
-		$this->register_pagination_section_controls();
 	}
 
 	/**
-	 * Set the query variable
+	 * Register Controls in Layout Section.
 	 */
-	public function query_posts() {
-		$settings   = $this->get_settings_for_display();
-		$rows       = ! empty( $settings['rows'] ) ? $settings['rows'] : 4;
-		$columns    = ! empty( $settings['columns'] ) ? $settings['columns'] : 4;
-		$query_args = array(
-			'posts_per_page' => intval( $columns * $rows ),
-			'paged'          => $this->get_current_page(),
-		);
-
-		if ( ! empty( $settings['swiper_posts_per_page'] ) && 'yes' === $settings['enable_carousel'] ) {
-			$query_args['posts_per_page'] = intval( $settings['swiper_posts_per_page'] );
-		}
-
-		$elementor_query = Module_Query::instance();
-		$this->query     = $elementor_query->get_query( $this, $this->get_name(), $query_args, array() );
+	protected function register_query_section_controls() {
 	}
 
 	/**
@@ -115,8 +105,19 @@ class Posts extends Posts_Base {
 		$this->query_posts();
 
 		$query = $this->get_query();
+		$movie = masvideos_get_movie( get_the_ID() );
 
-		if ( ! $query->found_posts ) {
+		$rows    = ! empty( $settings['rows'] ) ? $settings['rows'] : 4;
+		$columns = ! empty( $settings['columns'] ) ? $settings['columns'] : 4;
+		$args    = array(
+			'posts_per_page' => 2,
+		);
+
+		if ( ! empty( $settings['swiper_posts_per_page'] ) && 'yes' === $settings['enable_carousel'] ) {
+			$args['posts_per_page'] = intval( $settings['swiper_posts_per_page'] );
+		}
+		$related_products = masvideos_get_related_movies( $movie->get_id(), $args['posts_per_page'] );
+		if ( ! $related_products ) {
 			return;
 		}
 
@@ -124,62 +125,53 @@ class Posts extends Posts_Base {
 		$this->carousel_loop_header( $settings );
 
 		// It's the global `wp_query` it self. and the loop was started from the theme.
-		if ( $query->in_the_loop ) {
-
-			$this->current_permalink = get_permalink();
-			print( mas_render_template( $settings['select_template'], false ) );//phpcs:ignore
-			wp_reset_postdata();
-
-		} else {
 			$count = 1;
-			if ( 'yes' !== $settings['enable_carousel'] ) {
-				// mas-post-container open.
-				?>
+		if ( 'yes' !== $settings['enable_carousel'] ) {
+			// mas-post-container open.
+			?>
 				<div class="<?php echo esc_attr( $post_wrapper ); ?>">
 				<?php
-			}
-			while ( $query->have_posts() ) {
+		}
+		foreach ( $related_products as $related_product ) {
+			$post_object = get_post( $related_product );
 
-				$query->the_post();
-				if ( 'yes' === $settings['enable_carousel'] ) {
-					?>
-					<div class="swiper-slide">
-					<?php
-				}
-
-				$this->current_permalink = get_permalink();
-				if ( ! empty( $settings['select_template'] ) ) {
-					if ( ! empty( $settings['select_loop'] ) && in_array( $count, $settings['select_loop'] ) ) { //phpcs:ignore
-						print( mas_render_template( $settings['select_loop_template'], false ) );//phpcs:ignore
-					} else {
-						print( mas_render_template( $settings['select_template'], false ) );//phpcs:ignore
-					}
-				} else {
-					mas_elementor_get_template( 'widgets/posts/post-classic.php', array( 'widget' => $this ) );
-				}
-
-				if ( 'yes' === $settings['enable_carousel'] ) {
-					?>
-					</div>
-					<?php
-				}
-
-				$count ++;
-			}
-			if ( 'yes' !== $settings['enable_carousel'] ) {
-				// mas-post-container close.
+			setup_postdata( $GLOBALS['post'] =& $post_object ); // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited, Squiz.PHP.DisallowMultipleAssignments.Found
+			if ( 'yes' === $settings['enable_carousel'] ) {
 				?>
-				</div>
+					<div class="swiper-slide">
 				<?php
 			}
-					wp_reset_postdata();
+
+			$this->current_permalink = get_permalink();
+			if ( ! empty( $settings['select_template'] ) ) {
+				if ( ! empty( $settings['select_loop'] ) && in_array( $count, $settings['select_loop'] ) ) { //phpcs:ignore
+					print( mas_render_template( $settings['select_loop_template'], false ) );//phpcs:ignore
+
+				} else {
+					print( mas_render_template( $settings['select_template'], false ) );//phpcs:ignore
+
+				}
+			} else {
+				mas_elementor_get_template( 'widgets/posts/post-classic.php', array( 'widget' => $this ) );
+			}
+
+			if ( 'yes' === $settings['enable_carousel'] ) {
+				?>
+					</div>
+				<?php
+			}
+
+			$count ++;
 		}
+		if ( 'yes' !== $settings['enable_carousel'] ) {
+			// mas-post-container close.
+			?>
+				</div>
+			<?php
+		}
+			wp_reset_postdata();
 
 		$this->carousel_loop_footer( $settings );
-
-		if ( 'yes' !== $settings['enable_carousel'] ) {
-			$this->render_loop_footer();
-		}
 
 		$this->render_script( 'swiper-' . $this->get_id() );
 

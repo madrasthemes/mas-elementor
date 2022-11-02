@@ -18,6 +18,7 @@ use MASElementor\Modules\CarouselAttributes\Traits\Button_Widget_Trait;
 use MASElementor\Modules\CarouselAttributes\Traits\Pagination_Trait;
 use Elementor\Group_Control_Border;
 use MASElementor\Modules\Posts\Traits\Load_Button_Widget_Trait as Load_More_Button_Trait;
+use Elementor\Controls_Stack;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
@@ -1365,6 +1366,171 @@ abstract class Posts_Base extends Base_Widget {
 			<?php echo implode( PHP_EOL, $links ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 		</nav>
 		<?php
+	}
+
+	/**
+	 * Register Controls in Layout Section.
+	 */
+	protected function register_layout_section_controls() {
+		$this->start_controls_section(
+			'section_layout',
+			array(
+				'label' => __( 'Layout', 'mas-elementor' ),
+				'tab'   => Controls_Manager::TAB_CONTENT,
+			)
+		);
+
+		$templates = function_exists( 'mas_template_options' ) ? mas_template_options() : array();
+		$this->add_control(
+			'select_template',
+			array(
+				'label'   => esc_html__( 'Mas Templates', 'mas-elementor' ),
+				'type'    => Controls_Manager::SELECT,
+				'options' => $templates,
+			)
+		);
+
+		$this->add_control(
+			'mas_posts_class',
+			array(
+				'type'         => Controls_Manager::HIDDEN,
+				'default'      => 'mas-posts',
+				'prefix_class' => 'mas-posts-grid mas-elementor-',
+			)
+		);
+
+		$this->add_responsive_control(
+			'columns',
+			array(
+				'label'               => __( 'Columns', 'mas-elementor' ),
+				'type'                => Controls_Manager::NUMBER,
+				'prefix_class'        => 'mas-grid%s-',
+				'min'                 => 1,
+				'max'                 => 10,
+				'default'             => 4,
+				'required'            => true,
+				'render_type'         => 'template',
+				'device_args'         => array(
+					Controls_Stack::RESPONSIVE_TABLET => array(
+						'required' => false,
+					),
+					Controls_Stack::RESPONSIVE_MOBILE => array(
+						'required' => false,
+					),
+				),
+				'min_affected_device' => array(
+					Controls_Stack::RESPONSIVE_DESKTOP => Controls_Stack::RESPONSIVE_TABLET,
+					Controls_Stack::RESPONSIVE_TABLET  => Controls_Stack::RESPONSIVE_TABLET,
+				),
+				'condition'           => array(
+					'enable_carousel!' => 'yes',
+				),
+			)
+		);
+
+		$this->add_control(
+			'rows',
+			array(
+				'label'       => __( 'Rows', 'mas-elementor' ),
+				'type'        => Controls_Manager::NUMBER,
+				'default'     => 4,
+				'render_type' => 'template',
+				'range'       => array(
+					'px' => array(
+						'max' => 20,
+					),
+				),
+				'condition'   => array(
+					'enable_carousel!' => 'yes',
+				),
+			)
+		);
+
+		$this->add_control(
+			'enable_loop_selection',
+			array(
+				'type'      => Controls_Manager::SWITCHER,
+				'label'     => esc_html__( 'Enable Loop Selection', 'mas-elementor' ),
+				'default'   => 'no',
+				'separator' => 'before',
+				'condition' => array(
+					'select_template!' => '',
+				),
+			)
+		);
+
+		$loop = range( 1, 12 );
+		$loop = array_combine( $loop, $loop );
+
+		$this->add_control(
+			'select_loop',
+			array(
+				'label'     => esc_html__( 'Select Loop', 'mas-elementor' ),
+				'type'      => \Elementor\Controls_Manager::SELECT2,
+				'multiple'  => true,
+				'options'   => array() + $loop,
+				'condition' => array(
+					'enable_loop_selection' => 'yes',
+				),
+			)
+		);
+
+		$this->add_control(
+			'select_loop_template',
+			array(
+				'label'       => esc_html__( 'Mas Select Templates', 'mas-elementor' ),
+				'type'        => Controls_Manager::SELECT,
+				'options'     => $templates,
+				'description' => esc_html__( 'Select Templates for the above selected posts series', 'mas-elementor' ),
+				'condition'   => array(
+					'enable_loop_selection' => 'yes',
+				),
+			)
+		);
+
+		$this->add_control(
+			'swiper_posts_per_page',
+			array(
+				'label'       => __( 'Posts Per Page', 'mas-elementor' ),
+				'type'        => Controls_Manager::NUMBER,
+				'default'     => 6,
+				'render_type' => 'template',
+				'condition'   => array(
+					'enable_carousel' => 'yes',
+				),
+			)
+		);
+
+		$this->add_control(
+			'enable_carousel',
+			array(
+				'type'    => Controls_Manager::SWITCHER,
+				'label'   => esc_html__( 'Enable Carousel', 'mas-elementor' ),
+				'default' => 'no',
+			)
+		);
+
+		$this->end_controls_section();
+	}
+
+	/**
+	 * Carousel Loop Header.
+	 *
+	 * @param array $settings Settings of this widget.
+	 */
+	public function carousel_loop_header( array $settings = array() ) {
+
+		if ( 'yes' === $settings['enable_carousel'] ) {
+			$json = wp_json_encode( $this->get_swiper_carousel_options( $settings ) );
+			$this->add_render_attribute( 'post_swiper', 'class', 'swiper-' . $this->get_id() );
+			$this->add_render_attribute( 'post_swiper', 'class', 'swiper' );
+			$this->add_render_attribute( 'post_swiper', 'data-swiper-options', $json );
+			?>
+			<div <?php $this->print_render_attribute_string( 'post_swiper' ); ?>>
+				<div class="swiper-wrapper">
+			<?php
+		}
+
 	}
 
 	/**
