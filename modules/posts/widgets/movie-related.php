@@ -102,9 +102,7 @@ class Movie_Related extends Posts_Base {
 	 */
 	public function render() {
 		$settings = $this->get_settings_for_display();
-		$this->query_posts();
 
-		$query = $this->get_query();
 		$movie = masvideos_get_movie( get_the_ID() );
 
 		$rows    = ! empty( $settings['rows'] ) ? $settings['rows'] : 4;
