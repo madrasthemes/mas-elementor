@@ -110,7 +110,7 @@ class Movie_Related extends Posts_Base {
 		$rows    = ! empty( $settings['rows'] ) ? $settings['rows'] : 4;
 		$columns = ! empty( $settings['columns'] ) ? $settings['columns'] : 4;
 		$args    = array(
-			'posts_per_page' => 2,
+			'posts_per_page' => intval( $columns * $rows ),
 		);
 
 		if ( ! empty( $settings['swiper_posts_per_page'] ) && 'yes' === $settings['enable_carousel'] ) {
