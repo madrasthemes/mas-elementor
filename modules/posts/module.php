@@ -43,6 +43,7 @@ class Module extends Module_Base {
 			$movie   = array(
 				'Movie_Related',
 				'Movie_Linked_Videos',
+				'Movie_Recommended',
 			);
 			$widgets = array_merge( $widgets, $movie );
 

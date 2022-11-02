@@ -1681,8 +1681,9 @@ abstract class Posts_Base extends Base_Widget {
 	 * @param string $key widget ID.
 	 */
 	public function render_script( $key = '' ) {
-		$key = '.' . $key;
-		if ( Plugin::$instance->editor->is_edit_mode() ) :
+		$settings = $this->get_settings();
+		$key      = '.' . $key;
+		if ( Plugin::$instance->editor->is_edit_mode() && 'yes' === $settings['enable_carousel'] ) :
 			?>
 			<script type="text/javascript">
 			var swiperCarousel = (() => {
