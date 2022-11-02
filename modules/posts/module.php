@@ -42,6 +42,7 @@ class Module extends Module_Base {
 		if ( class_exists( 'MasVideos' ) ) {
 			$movie   = array(
 				'Movie_Related',
+				'Movie_Linked_Videos',
 			);
 			$widgets = array_merge( $widgets, $movie );
 
