@@ -341,6 +341,9 @@ class Products extends Products_Base {
 				'type'    => Controls_Manager::SWITCHER,
 				'label'   => esc_html__( 'Enable Carousel', 'mas-elementor' ),
 				'default' => 'no',
+				'condition' => array(
+					'_skin'         => 'mas-products-skin',
+				),
 			)
 		);
 
