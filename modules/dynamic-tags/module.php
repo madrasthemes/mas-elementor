@@ -32,7 +32,12 @@ class Module extends TagsModule {
 
 	const ACTION_GROUP = 'action';
 
-	public function __construct() { //PHPCS:ignore.
+	/**
+	 * Constructor.
+	 *
+	 * @return void
+	 */
+	public function __construct() {
 		parent::__construct();
 		$this->add_actions();
 

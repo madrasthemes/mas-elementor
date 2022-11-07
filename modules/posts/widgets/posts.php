@@ -292,7 +292,7 @@ class Posts extends Posts_Base {
 		if ( $query->in_the_loop ) {
 
 			$this->current_permalink = get_permalink();
-			print( mas_render_template( $settings['select_template'], false ) );//phpcs:ignore
+			print( mas_render_template( $settings['select_template'], false ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			wp_reset_postdata();
 
 		} else {
@@ -314,10 +314,10 @@ class Posts extends Posts_Base {
 
 				$this->current_permalink = get_permalink();
 				if ( ! empty( $settings['select_template'] ) ) {
-					if ( ! empty( $settings['select_loop'] ) && in_array( $count, $settings['select_loop'] ) ) { //phpcs:ignore
-						print( mas_render_template( $settings['select_loop_template'], false ) );//phpcs:ignore
+					if ( ! empty( $settings['select_loop'] ) && in_array( (string) $count, $settings['select_loop'], true ) ) {
+						print( mas_render_template( $settings['select_loop_template'], false ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 					} else {
-						print( mas_render_template( $settings['select_template'], false ) );//phpcs:ignore
+						print( mas_render_template( $settings['select_template'], false ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 					}
 				} else {
 					mas_elementor_get_template( 'widgets/posts/post-classic.php', array( 'widget' => $this ) );
