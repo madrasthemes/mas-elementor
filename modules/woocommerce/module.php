@@ -388,7 +388,7 @@ class Module extends Module_Base {
 
 		// On Editor - Register WooCommerce frontend hooks before the Editor init.
 		// Priority = 5, in order to allow plugins remove/add their wc hooks on init.
-		if ( ! empty( $_REQUEST['action'] ) && 'elementor' === $_REQUEST['action'] && is_admin() ) { //phpcs:ignore
+		if ( ! empty( $_REQUEST['action'] ) && 'elementor' === $_REQUEST['action'] && is_admin() ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 			add_action( 'init', array( $this, 'register_wc_hooks' ), 5 );
 		}
 
