@@ -78,8 +78,8 @@ class Utils {
 		);
 
 		foreach ( $server_ip_keys as $key ) {
-			if ( isset( $_SERVER[ $key ] ) && filter_var( $_SERVER[ $key ], FILTER_VALIDATE_IP ) ) { //phpcs:ignore
-				return $_SERVER[ $key ]; //phpcs:ignore
+			if ( isset( $_SERVER[ $key ] ) && filter_var( $_SERVER[ $key ], FILTER_VALIDATE_IP ) ) { // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.MissingUnslash
+				return $_SERVER[ $key ]; // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.MissingUnslash,WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 			}
 		}
 
@@ -264,7 +264,7 @@ class Utils {
 		global $authordata;
 		if ( ! isset( $authordata->ID ) ) {
 			$post       = get_post();
-			$authordata = get_userdata( $post->post_author ); // phpcs:ignore
+			$authordata = get_userdata( $post->post_author ); // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
 		}
 	}
 

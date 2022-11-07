@@ -375,8 +375,7 @@ if ( ! class_exists( 'MAS_Bootstrap_Navwalker' ) ) :
 
 			// if $args has 'echo' key and it's true echo, otherwise return.
 			if ( array_key_exists( 'echo', $args ) && $args['echo'] ) {
-                // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-				echo $fallback_output;
+				echo $fallback_output; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			} else {
 				return $fallback_output;
 			}
