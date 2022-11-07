@@ -691,9 +691,9 @@ abstract class Products_Base extends Base_Widget {
 		$content = $shortcode->get_content();
 
 		if ( $content ) {
-			echo $content; //phpcs:ignore
+			echo $content; // WPCS: XSS ok.
 		} elseif ( $this->get_settings( 'nothing_found_message' ) ) {
-			echo '<div class="elementor-nothing-found elementor-products-nothing-found">' . esc_html( $this->get_settings( 'nothing_found_message' ) ) . '</div>'; //phpcs:ignore
+			echo '<div class="elementor-nothing-found elementor-products-nothing-found">' . esc_html( $this->get_settings( 'nothing_found_message' ) ) . '</div>'; // WPCS: XSS ok.
 		}
 
 		$this->render_script( 'swiper-products-' . $this->get_id() );
