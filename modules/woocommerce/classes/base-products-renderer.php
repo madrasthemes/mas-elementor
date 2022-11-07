@@ -156,7 +156,7 @@ abstract class Base_Products_Renderer extends \WC_Shortcode_Products {
 		?>
 		<div class="<?php echo esc_attr( $count_class ); ?>">
 		<?php
-		print( mas_render_template( $settings['select_template'], false ) ); // WPCS: XSS ok.
+		print( mas_render_template( $settings['select_template'], false ) ); //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		?>
 		</div>
 		<?php
