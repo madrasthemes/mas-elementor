@@ -10,6 +10,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 $temp = $widget->get_settings_for_display();
-print( mas_render_template( $temp['select_loop_template'], false ) );//phpcs:ignore
+print( mas_render_template( $temp['select_loop_template'], false ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 
 

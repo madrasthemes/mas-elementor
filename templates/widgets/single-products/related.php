@@ -29,7 +29,7 @@ if ( $related_products ) : ?>
 
 			setup_postdata( $GLOBALS['post'] =& $post_object ); // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited, Squiz.PHP.DisallowMultipleAssignments.Found
 
-			print( mas_render_template( $instance_settings['select_template'], false ) );//phpcs:ignore
+			print( mas_render_template( $instance_settings['select_template'], false ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		endforeach;
 		?>
 	</section>

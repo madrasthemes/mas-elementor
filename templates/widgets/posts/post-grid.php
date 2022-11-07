@@ -30,7 +30,7 @@ if ( $query->in_the_loop ) {
 		$query->the_post();
 
 		$widget->current_permalink = get_permalink();
-		if ( ! empty( $settings['select_loop'] ) && in_array( $count, $settings['select_loop'] ) ) { //phpcs:ignore
+		if ( ! empty( $settings['select_loop'] ) && in_array( (string) $count, $settings['select_loop'], true ) ) {
 			mas_elementor_get_template( 'loop-post/selected-post.php', array( 'widget' => $widget ) );
 		} else {
 			mas_elementor_get_template( 'loop-post/loop-post.php', array( 'widget' => $widget ) );
