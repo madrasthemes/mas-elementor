@@ -81,7 +81,7 @@ function mas_elementor_print_error( $message ) {
 		return;
 	}
 	// PHPCS - $message should not be escaped.
-	echo '<div class="error">' . $message . '</div>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+	echo '<div class="error">' . wp_kses_post( $message ) . '</div>';
 }
 /**
  * Show in WP Dashboard notice about the plugin is not activated.
