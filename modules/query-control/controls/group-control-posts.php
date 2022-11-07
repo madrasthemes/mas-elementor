@@ -289,7 +289,7 @@ class Group_Control_Posts extends Group_Control_Base {
 		} else {
 			$query_args['post_type']      = $post_type;
 			$query_args['posts_per_page'] = $settings['posts_per_page'];
-			$query_args['tax_query']      = array(); //phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_tax_query
+			$query_args['tax_query']      = array(); // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_tax_query
 
 			$query_args = $this->fix_offset( $query_args, $settings );
 

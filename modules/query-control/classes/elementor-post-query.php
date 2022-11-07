@@ -376,7 +376,7 @@ class Elementor_Post_Query {
 		}
 
 		if ( empty( $this->query_args['tax_query'] ) ) {
-			$this->query_args['tax_query'] = $tax_query; // phpcs:ignore
+			$this->query_args['tax_query'] = $tax_query; //phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_tax_query
 
 			if ( $new_tax ) {
 				$this->query_args['tax_query']['relation'] = 'OR';
