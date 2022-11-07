@@ -338,11 +338,11 @@ class Products extends Products_Base {
 		$this->add_control(
 			'enable_carousel',
 			array(
-				'type'    => Controls_Manager::SWITCHER,
-				'label'   => esc_html__( 'Enable Carousel', 'mas-elementor' ),
-				'default' => 'no',
+				'type'      => Controls_Manager::SWITCHER,
+				'label'     => esc_html__( 'Enable Carousel', 'mas-elementor' ),
+				'default'   => 'no',
 				'condition' => array(
-					'_skin'         => 'mas-products-skin',
+					'_skin' => 'mas-products-skin',
 				),
 			)
 		);

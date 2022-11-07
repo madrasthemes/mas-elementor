@@ -1200,9 +1200,13 @@ abstract class Posts_Base extends Base_Widget {
 		}
 
 		if ( is_preview() ) {
-			if ( ( 'draft' !== $post->post_status ) && isset( $_GET['preview_id'], $_GET['preview_nonce'] ) ) { //phpcs:ignore
-				$query_args['preview_id']    = wp_unslash( $_GET['preview_id'] ); //phpcs:ignore
-				$query_args['preview_nonce'] = wp_unslash( $_GET['preview_nonce'] ); //phpcs:ignore
+			if ( ( 'draft' !== $post->post_status ) ) {
+				if ( isset( $_GET['preview_id'] ) ) {
+					$query_args['preview_id'] = sanitize_text_field( wp_unslash( $_GET['preview_id'] ) );
+				}
+				if ( isset( $_GET['preview_nonce'] ) && wp_verify_nonce( sanitize_text_field( wp_unslash( $_GET['preview_nonce'] ) ), 'post_preview_' . $post->ID ) ) {
+					$query_args['preview_nonce'] = ( isset( $_GET['preview_nonce'] ) ? sanitize_text_field( wp_unslash( $_GET['preview_nonce'] ) ) : '' );
+				}
 			}
 
 			$url = get_preview_post_link( $post, $query_args, $url );

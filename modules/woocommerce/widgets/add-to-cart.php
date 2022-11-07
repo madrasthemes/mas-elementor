@@ -501,7 +501,7 @@ class Add_To_Cart extends Widget_Button {
 			$product_id = $settings['product_id'];
 		} elseif ( wp_doing_ajax() && ! empty( $settings['product_id'] ) ) {
 			// PHPCS - No nonce is required.
-			$product_id = $_POST['post_id']; // phpcs:ignore
+			$product_id = isset( $_POST['post_id'] ) ? sanitize_text_field( wp_unslash( $_POST['post_id'] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Missing
 		} else {
 			$product_id = get_queried_object_id();
 		}
