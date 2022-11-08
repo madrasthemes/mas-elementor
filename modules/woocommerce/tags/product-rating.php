@@ -76,7 +76,6 @@ class Product_Rating extends Base_Tag {
 				break;
 		}
 
-		// PHPCS - Safe WC data.
-		echo $value; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		echo wp_kses_post( $value );
 	}
 }

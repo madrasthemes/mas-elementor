@@ -76,7 +76,6 @@ class Product_Price extends Base_Tag {
 				break;
 		}
 
-		// PHPCS - Just passing WC price as is.
-		echo $value; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		echo wp_kses_post( $value );
 	}
 }

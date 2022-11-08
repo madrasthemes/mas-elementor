@@ -19,7 +19,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 			<a href="<?php echo esc_url( get_permalink() ); ?>" ><?php the_title(); ?></a>
 		</h3>
 		<div class="elementor-post__meta-data">
-			<span class="elementor-post-date"><?php echo apply_filters( 'the_date', get_the_modified_date(), get_option( 'date_format' ), '', '' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></span>
+			<span class="elementor-post-date"><?php echo esc_html( apply_filters( 'the_date', get_the_modified_date(), get_option( 'date_format' ), '', '' ) ); ?></span>
 			<span class="elementor-post-avatar"><?php comments_number(); ?></span>
 		</div>
 		<div class="elementor-post__excerpt">

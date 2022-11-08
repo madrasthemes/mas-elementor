@@ -47,8 +47,7 @@ class Product_Stock extends Base_Tag {
 			$value = (int) $product->get_stock_quantity();
 		}
 
-		// PHPCS - `wc_get_stock_html` is safe, and `get_stock_quantity` protected with (int).
-		echo $value; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		echo wp_kses_post( $value );
 	}
 
 	/**
