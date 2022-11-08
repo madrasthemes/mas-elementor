@@ -449,7 +449,7 @@ if ( ! function_exists( 'mas_render_template' ) ) {
 		}
 
 		if ( $echo ) {
-			echo wp_kses_post( $content );
+			echo ( $content ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		} else {
 			return $content;
 		}
