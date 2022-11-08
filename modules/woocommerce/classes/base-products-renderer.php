@@ -267,7 +267,7 @@ abstract class Base_Products_Renderer extends \WC_Shortcode_Products {
 		}
 		if ( 'slide' === $settings['carousel_effect'] ) {
 			$swiper_settings['breakpoints']['1440']['slidesPerView'] = isset( $settings['slides_per_view'] ) ? $settings['slides_per_view'] : 3;
-			$swiper_settings['breakpoints']['1024']['slidesPerView'] = isset( $settings['slides_per_view'] ) ? $settings['slides_per_view'] : 3;
+			$swiper_settings['breakpoints']['1025']['slidesPerView'] = isset( $settings['slides_per_view'] ) ? $settings['slides_per_view'] : 3;
 			$swiper_settings['breakpoints']['500']['slidesPerView']  = isset( $settings['slides_per_view_tablet'] ) ? $settings['slides_per_view_tablet'] : 3;
 			$swiper_settings['breakpoints']['0']['slidesPerView']    = isset( $settings['slides_per_view_mobile'] ) ? $settings['slides_per_view_mobile'] : 1;
 
@@ -276,10 +276,10 @@ abstract class Base_Products_Renderer extends \WC_Shortcode_Products {
 		if ( 'yes' === $settings['enable_space_between'] ) {
 			if ( ! empty( $settings['space_between'] ) ) {
 				$swiper_settings['breakpoints']['1440']['spaceBetween'] = $settings['space_between'];
+				$swiper_settings['breakpoints']['1025']['spaceBetween'] = $settings['space_between'];
 
 			}
 			if ( ! empty( $settings['space_between_tablet'] ) ) {
-				$swiper_settings['breakpoints']['1024']['spaceBetween'] = $settings['space_between_tablet'];
 				$swiper_settings['breakpoints']['500']['spaceBetween']  = $settings['space_between_tablet'];
 
 			}

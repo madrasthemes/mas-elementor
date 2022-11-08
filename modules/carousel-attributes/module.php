@@ -511,7 +511,7 @@ class Module extends Module_Base {
 		}
 		if ( 'slide' === $settings['carousel_effect'] ) {
 			$swiper_settings['breakpoints']['1440']['slidesPerView'] = isset( $settings['slides_per_view'] ) ? $settings['slides_per_view'] : 3;
-			$swiper_settings['breakpoints']['1024']['slidesPerView'] = isset( $settings['slides_per_view'] ) ? $settings['slides_per_view'] : 3;
+			$swiper_settings['breakpoints']['1025']['slidesPerView'] = isset( $settings['slides_per_view'] ) ? $settings['slides_per_view'] : 3;
 			$swiper_settings['breakpoints']['500']['slidesPerView']  = isset( $settings['slides_per_view_tablet'] ) ? $settings['slides_per_view_tablet'] : 3;
 			$swiper_settings['breakpoints']['0']['slidesPerView']    = isset( $settings['slides_per_view_mobile'] ) ? $settings['slides_per_view_mobile'] : 1;
 
@@ -519,7 +519,7 @@ class Module extends Module_Base {
 
 		if ( 'slide' === $settings['carousel_effect'] ) {
 			$swiper_settings['breakpoints']['1440']['slidesPerGroup'] = isset( $settings['slides_to_scroll'] ) ? $settings['slides_to_scroll'] : 1;
-			$swiper_settings['breakpoints']['1024']['slidesPerGroup'] = isset( $settings['slides_to_scroll'] ) ? $settings['slides_to_scroll'] : 1;
+			$swiper_settings['breakpoints']['1025']['slidesPerGroup'] = isset( $settings['slides_to_scroll'] ) ? $settings['slides_to_scroll'] : 1;
 			$swiper_settings['breakpoints']['500']['slidesPerGroup']  = isset( $settings['slides_to_scroll_tablet'] ) ? $settings['slides_to_scroll_tablet'] : 1;
 			$swiper_settings['breakpoints']['0']['slidesPerGroup']    = isset( $settings['slides_to_scroll_mobile'] ) ? $settings['slides_to_scroll_mobile'] : 1;
 
@@ -528,10 +528,10 @@ class Module extends Module_Base {
 		if ( 'yes' === $settings['enable_space_between'] ) {
 			if ( ! empty( $settings['space_between'] ) ) {
 				$swiper_settings['breakpoints']['1440']['spaceBetween'] = $settings['space_between'];
+				$swiper_settings['breakpoints']['1025']['spaceBetween'] = $settings['space_between'];
 
 			}
 			if ( ! empty( $settings['space_between_tablet'] ) ) {
-				$swiper_settings['breakpoints']['1024']['spaceBetween'] = $settings['space_between_tablet'];
 				$swiper_settings['breakpoints']['500']['spaceBetween']  = $settings['space_between_tablet'];
 
 			}
