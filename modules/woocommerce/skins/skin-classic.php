@@ -63,7 +63,7 @@ class Skin_Classic extends Skin_Base {
 		if ( $content ) {
 			echo $content; //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		} elseif ( $widget->get_settings( 'nothing_found_message' ) ) {
-			echo '<div class="elementor-nothing-found elementor-products-nothing-found">' . esc_html( $widget->get_settings( 'nothing_found_message' ) ) . '</div>'; //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			echo '<div class="elementor-nothing-found elementor-products-nothing-found">' . esc_html( $widget->get_settings( 'nothing_found_message' ) ) . '</div>';
 		}
 
 		$widget->render_script( 'swiper-products-' . $widget->get_id() );
