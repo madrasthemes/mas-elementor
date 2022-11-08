@@ -80,8 +80,8 @@ function mas_elementor_print_error( $message ) {
 	if ( ! $message ) {
 		return;
 	}
-	// PHPCS - $message should not be escaped.
-	echo '<div class="error">' . wp_kses_post( $message ) . '</div>';
+	$message = '<div class="error">' . $message . '</div>';
+	echo wp_kses_post( $message );
 }
 /**
  * Show in WP Dashboard notice about the plugin is not activated.
