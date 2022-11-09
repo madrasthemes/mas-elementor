@@ -51,6 +51,7 @@ final class Modules_Manager {
 			'countdown',
 			'video',
 			'image-box',
+			'mas-episodes',
 		);
 
 		foreach ( $modules as $module_name ) {
