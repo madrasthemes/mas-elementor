@@ -147,7 +147,7 @@ class Multipurpose_Text extends Base_Widget {
 				'separator'          => 'before',
 				'default'            => "startup.\nfuture.\nsuccess.",
 				'frontend_available' => true,
-				'condition' => array(
+				'condition'          => array(
 					'enable_typing_text' => 'yes',
 				),
 			)
@@ -169,7 +169,7 @@ class Multipurpose_Text extends Base_Widget {
 					),
 				),
 				'condition' => array(
-					'typing_text!' => '',
+					'typing_text!'       => '',
 					'enable_typing_text' => 'yes',
 				),
 			)
@@ -191,7 +191,7 @@ class Multipurpose_Text extends Base_Widget {
 					),
 				),
 				'condition' => array(
-					'typing_text!' => '',
+					'typing_text!'       => '',
 					'enable_typing_text' => 'yes',
 				),
 			)
@@ -213,7 +213,7 @@ class Multipurpose_Text extends Base_Widget {
 					),
 				),
 				'condition' => array(
-					'typing_text!' => '',
+					'typing_text!'       => '',
 					'enable_typing_text' => 'yes',
 				),
 			)
@@ -228,7 +228,7 @@ class Multipurpose_Text extends Base_Widget {
 				'label_off' => esc_html__( 'Disable', 'mas-elementor' ),
 				'label_on'  => esc_html__( 'Enable', 'mas-elementor' ),
 				'condition' => array(
-					'typing_text!' => '',
+					'typing_text!'       => '',
 					'enable_typing_text' => 'yes',
 				),
 			)
@@ -523,7 +523,7 @@ class Multipurpose_Text extends Base_Widget {
 				'label'     => esc_html__( 'Typed Text', 'mas-elementor' ),
 				'tab'       => Controls_Manager::TAB_STYLE,
 				'condition' => array(
-					'typing_text!' => '',
+					'typing_text!'       => '',
 					'enable_typing_text' => 'yes',
 				),
 
