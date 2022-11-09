@@ -8,6 +8,7 @@
 namespace MASElementor\Modules\Woocommerce\Classes;
 
 use MASElementor\Modules\Woocommerce\Widgets\Products;
+use Elementor\Plugin;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
@@ -242,6 +243,9 @@ abstract class Base_Products_Renderer extends \WC_Shortcode_Products {
 	 * @return array
 	 */
 	public function get_swiper_carousel_options( $widget, array $settings ) {
+		$active_breakpoint_instances = Plugin::$instance->breakpoints->get_active_breakpoints();
+		// Devices need to be ordered from largest to smallest.
+		$active_devices  = array_reverse( array_keys( $active_breakpoint_instances ) );
 		$section_id      = $widget->get_id();
 		$swiper_settings = array();
 		if ( 'yes' === $settings['show_pagination'] ) {
@@ -266,26 +270,74 @@ abstract class Base_Products_Renderer extends \WC_Shortcode_Products {
 			$swiper_settings['fadeEffect']['crossFade'] = true;
 		}
 		if ( 'slide' === $settings['carousel_effect'] ) {
-			$swiper_settings['breakpoints']['1440']['slidesPerView'] = isset( $settings['slides_per_view'] ) ? $settings['slides_per_view'] : 3;
-			$swiper_settings['breakpoints']['1024']['slidesPerView'] = isset( $settings['slides_per_view'] ) ? $settings['slides_per_view'] : 3;
-			$swiper_settings['breakpoints']['500']['slidesPerView']  = isset( $settings['slides_per_view_tablet'] ) ? $settings['slides_per_view_tablet'] : 3;
-			$swiper_settings['breakpoints']['0']['slidesPerView']    = isset( $settings['slides_per_view_mobile'] ) ? $settings['slides_per_view_mobile'] : 1;
+			$breakpoint = '1440';
+			$swiper_settings['breakpoints'][ $breakpoint ]['slidesPerView'] = isset( $settings['slides_per_view'] ) ? $settings['slides_per_view'] : 3;
+			foreach ( $active_breakpoint_instances as $active_breakpoint_instance ) {
+				$array_key = 'slides_per_view_' . $active_breakpoint_instance->get_name();
+				if ( 'mobile' === $active_breakpoint_instance->get_name() ) {
+					$breakpoint = '0';
+				}
+				if ( 'widescreen' === $active_breakpoint_instance->get_name() ) {
+					$breakpoint = (string) $active_breakpoint_instance->get_default_value();
+					if ( property_exists( $active_breakpoint_instance, 'value' ) ) {
+						$breakpoint = (string) ( $active_breakpoint_instance->get_value() );
+					}
+					$swiper_settings['breakpoints'][ $breakpoint ]['slidesPerView'] = isset( $settings[ $array_key ] ) ? $settings[ $array_key ] : 1;
+					continue;
+				}
+				$swiper_settings['breakpoints'][ $breakpoint ]['slidesPerView'] = isset( $settings[ $array_key ] ) ? $settings[ $array_key ] : 1;
+				$breakpoint = (string) $active_breakpoint_instance->get_default_value() + 1;
+				if ( property_exists( $active_breakpoint_instance, 'value' ) ) {
+					$breakpoint = (string) ( $active_breakpoint_instance->get_value() + 1 );
+				}
+			}
+		}
 
+		if ( 'slide' === $settings['carousel_effect'] ) {
+			$breakpoint = '1440';
+			$swiper_settings['breakpoints'][ $breakpoint ]['slidesPerGroup'] = isset( $settings['slides_to_scroll'] ) ? $settings['slides_to_scroll'] : 3;
+			foreach ( $active_breakpoint_instances as $active_breakpoint_instance ) {
+				$array_key = 'slides_to_scroll_' . $active_breakpoint_instance->get_name();
+				if ( 'mobile' === $active_breakpoint_instance->get_name() ) {
+					$breakpoint = '0';
+				}
+				if ( 'widescreen' === $active_breakpoint_instance->get_name() ) {
+					$breakpoint = (string) $active_breakpoint_instance->get_default_value();
+					if ( property_exists( $active_breakpoint_instance, 'value' ) ) {
+						$breakpoint = (string) ( $active_breakpoint_instance->get_value() );
+					}
+					$swiper_settings['breakpoints'][ $breakpoint ]['slidesPerGroup'] = isset( $settings[ $array_key ] ) ? $settings[ $array_key ] : 1;
+					continue;
+				}
+				$swiper_settings['breakpoints'][ $breakpoint ]['slidesPerGroup'] = isset( $settings[ $array_key ] ) ? $settings[ $array_key ] : 1;
+				$breakpoint = (string) $active_breakpoint_instance->get_default_value() + 1;
+				if ( property_exists( $active_breakpoint_instance, 'value' ) ) {
+					$breakpoint = (string) ( $active_breakpoint_instance->get_value() + 1 );
+				}
+			}
 		}
 
 		if ( 'yes' === $settings['enable_space_between'] ) {
-			if ( ! empty( $settings['space_between'] ) ) {
-				$swiper_settings['breakpoints']['1440']['spaceBetween'] = $settings['space_between'];
-
-			}
-			if ( ! empty( $settings['space_between_tablet'] ) ) {
-				$swiper_settings['breakpoints']['1024']['spaceBetween'] = $settings['space_between_tablet'];
-				$swiper_settings['breakpoints']['500']['spaceBetween']  = $settings['space_between_tablet'];
-
-			}
-			if ( ! empty( $settings['space_between_mobile'] ) ) {
-				$swiper_settings['breakpoints']['0']['spaceBetween'] = $settings['space_between_mobile'];
-
+			$breakpoint = '1440';
+			$swiper_settings['breakpoints'][ $breakpoint ]['spaceBetween'] = isset( $settings['space_between'] ) ? $settings['space_between'] : 8;
+			foreach ( $active_breakpoint_instances as $active_breakpoint_instance ) {
+				$array_key = 'space_between_' . $active_breakpoint_instance->get_name();
+				if ( 'mobile' === $active_breakpoint_instance->get_name() ) {
+					$breakpoint = '0';
+				}
+				if ( 'widescreen' === $active_breakpoint_instance->get_name() ) {
+					$breakpoint = (string) $active_breakpoint_instance->get_default_value();
+					if ( property_exists( $active_breakpoint_instance, 'value' ) ) {
+						$breakpoint = (string) ( $active_breakpoint_instance->get_value() );
+					}
+					$swiper_settings['breakpoints'][ $breakpoint ]['spaceBetween'] = isset( $settings[ $array_key ] ) ? $settings[ $array_key ] : 8;
+					continue;
+				}
+				$swiper_settings['breakpoints'][ $breakpoint ]['spaceBetween'] = isset( $settings[ $array_key ] ) ? $settings[ $array_key ] : 8;
+				$breakpoint = (string) $active_breakpoint_instance->get_default_value() + 1;
+				if ( property_exists( $active_breakpoint_instance, 'value' ) ) {
+					$breakpoint = (string) ( $active_breakpoint_instance->get_value() + 1 );
+				}
 			}
 		}
 
