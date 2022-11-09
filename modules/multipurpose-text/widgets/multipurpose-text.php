@@ -127,6 +127,17 @@ class Multipurpose_Text extends Base_Widget {
 		);
 
 		$this->add_control(
+			'enable_typing_text',
+			array(
+				'type'      => Controls_Manager::SWITCHER,
+				'label'     => esc_html__( 'Enable Typing Text', 'mas-elementor' ),
+				'default'   => 'no',
+				'label_off' => esc_html__( 'Disable', 'mas-elementor' ),
+				'label_on'  => esc_html__( 'Enable', 'mas-elementor' ),
+			)
+		);
+
+		$this->add_control(
 			'typing_text',
 			array(
 				'label'              => esc_html__( 'Typing Text', 'mas-elementor' ),
@@ -136,6 +147,9 @@ class Multipurpose_Text extends Base_Widget {
 				'separator'          => 'before',
 				'default'            => "startup.\nfuture.\nsuccess.",
 				'frontend_available' => true,
+				'condition' => array(
+					'enable_typing_text' => 'yes',
+				),
 			)
 		);
 
@@ -156,6 +170,7 @@ class Multipurpose_Text extends Base_Widget {
 				),
 				'condition' => array(
 					'typing_text!' => '',
+					'enable_typing_text' => 'yes',
 				),
 			)
 		);
@@ -177,6 +192,7 @@ class Multipurpose_Text extends Base_Widget {
 				),
 				'condition' => array(
 					'typing_text!' => '',
+					'enable_typing_text' => 'yes',
 				),
 			)
 		);
@@ -198,6 +214,7 @@ class Multipurpose_Text extends Base_Widget {
 				),
 				'condition' => array(
 					'typing_text!' => '',
+					'enable_typing_text' => 'yes',
 				),
 			)
 		);
@@ -212,6 +229,7 @@ class Multipurpose_Text extends Base_Widget {
 				'label_on'  => esc_html__( 'Enable', 'mas-elementor' ),
 				'condition' => array(
 					'typing_text!' => '',
+					'enable_typing_text' => 'yes',
 				),
 			)
 		);
@@ -506,6 +524,7 @@ class Multipurpose_Text extends Base_Widget {
 				'tab'       => Controls_Manager::TAB_STYLE,
 				'condition' => array(
 					'typing_text!' => '',
+					'enable_typing_text' => 'yes',
 				),
 
 			)
@@ -843,7 +862,7 @@ class Multipurpose_Text extends Base_Widget {
 	 */
 	public function render_script( $settings ) {
 		$typed_options = $this->get_typed_options( $settings );
-		if ( Plugin::elementor()->editor->is_edit_mode() ) :
+		if ( Plugin::elementor()->editor->is_edit_mode() && 'yes' === $settings['enable_typing_text'] && ! empty( $settings['typing_text'] ) ) :
 			?>
 
 		<script type="text/javascript">
