@@ -414,6 +414,7 @@ class Multipurpose_Text extends Base_Widget {
 					),
 					'selectors' => array(
 						'{{WRAPPER}} .mas-elementor-multipurpose-text__highlighted-text' => 'color: {{VALUE}};',
+						'{{WRAPPER}} .mas-elementor-multipurpose-text__highlighted-text a' => 'color: {{VALUE}};',
 					),
 				)
 			);
@@ -422,7 +423,7 @@ class Multipurpose_Text extends Base_Widget {
 				Group_Control_Typography::get_type(),
 				array(
 					'name'     => 'highlighted_typography',
-					'selector' => '{{WRAPPER}} .mas-elementor-multipurpose-text__highlighted-text',
+					'selector' => '{{WRAPPER}} .mas-elementor-multipurpose-text__highlighted-text, {{WRAPPER}} .mas-elementor-multipurpose-text__highlighted-text a',
 					'global'   => array(
 						'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
 					),
@@ -447,7 +448,8 @@ class Multipurpose_Text extends Base_Widget {
 						'default' => Global_Colors::COLOR_PRIMARY,
 					),
 					'selectors' => array(
-						'{{WRAPPER}}:hover .mas-elementor-multipurpose-text__highlighted-text' => 'color: {{VALUE}};',
+						'{{WRAPPER}} .mas-elementor-multipurpose-text__highlighted-text:hover' => 'color: {{VALUE}};',
+						'{{WRAPPER}} .mas-elementor-multipurpose-text__highlighted-text a:hover' => 'color: {{VALUE}};',
 					),
 				)
 			);
@@ -456,7 +458,7 @@ class Multipurpose_Text extends Base_Widget {
 				Group_Control_Typography::get_type(),
 				array(
 					'name'     => 'hover_highlighted_typography',
-					'selector' => '{{WRAPPER}}:hover .mas-elementor-multipurpose-text__highlighted-text',
+					'selector' => '{{WRAPPER}} .mas-elementor-multipurpose-text__highlighted-text:hover, {{WRAPPER}} .mas-elementor-multipurpose-text__highlighted-text a:hover',
 					'global'   => array(
 						'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
 					),
