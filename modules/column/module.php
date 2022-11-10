@@ -213,8 +213,11 @@ class Module extends Module_Base {
 				'breakpoint'      => $settings['breakpoint'],
 				'startPoint'      => $settings['start_point_id'],
 				'endPoint'        => $settings['end_point_id'],
-				'stickyOffsetTop' => $settings['offset']['size'],
 			);
+
+			if ( isset( $settings['offset']['size'] ) ) {
+				$args['stickyOffsetTop'] = $settings['offset']['size'];
+			}
 
 			if ( 'yes' === $settings['scrollspy'] ) {
 				$element->add_render_attribute(
