@@ -97,6 +97,176 @@ class Mas_Episodes extends Base_Widget {
 		);
 
 		$this->end_controls_section();
+
+		$this->start_controls_section(
+			'section_style_tab',
+			array(
+				'label' => __( 'Layout', 'mas-elementor' ),
+				'tab'   => Controls_Manager::TAB_STYLE,
+			)
+		);
+
+		$this->start_controls_tabs( 'me_tabs_style' );
+
+		$this->start_controls_tab(
+			'me_tab_normal',
+			array(
+				'label' => esc_html__( 'Normal', 'mas-elementor' ),
+			)
+		);
+
+		$this->add_control(
+			'me_tab_text_color',
+			array(
+				'label'     => esc_html__( 'Text Color', 'mas-elementor' ),
+				'type'      => Controls_Manager::COLOR,
+				'default'   => '',
+				'selectors' => array(
+					'{{WRAPPER}} .nav-link' => 'color: {{VALUE}};',
+				),
+			)
+		);
+
+		$this->add_group_control(
+			Group_Control_Typography::get_type(),
+			array(
+				'name'     => 'me_tab_text_typography',
+				'selector' => '{{WRAPPER}} .nav-link',
+
+			)
+		);
+
+		$this->add_control(
+			'tab_background_color',
+			array(
+				'label'     => esc_html__( 'Background Color', 'mas-elementor' ),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => array(
+					'{{WRAPPER}} .me-tabs .mas-nav-link' => 'background-color: {{VALUE}};',
+				),
+			)
+		);
+
+		$this->end_controls_tab();
+
+		$this->start_controls_tab(
+			'me_tab_hover',
+			array(
+				'label' => esc_html__( 'Hover', 'mas-elementor' ),
+			)
+		);
+
+		$this->add_control(
+			'me_hover_tab_text_color',
+			array(
+				'label'     => esc_html__( 'Text Color', 'mas-elementor' ),
+				'type'      => Controls_Manager::COLOR,
+				'default'   => '',
+				'selectors' => array(
+					'{{WRAPPER}} .nav-link:hover' => 'color: {{VALUE}};',
+				),
+			)
+		);
+
+		$this->add_control(
+			'tab_hover_background_color',
+			array(
+				'label'     => esc_html__( 'Background Color', 'mas-elementor' ),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => array(
+					'{{WRAPPER}} .me-tabs .mas-nav-link:hover' => 'background-color: {{VALUE}};',
+				),
+			)
+		);
+
+		$this->end_controls_tab();
+
+		$this->start_controls_tab(
+			'me_tab_active',
+			array(
+				'label' => esc_html__( 'Active', 'mas-elementor' ),
+			)
+		);
+		$this->add_control(
+			'me_tab_active_text_color',
+			array(
+				'label'     => esc_html__( 'Text Color', 'mas-elementor' ),
+				'type'      => Controls_Manager::COLOR,
+				'default'   => '',
+				'selectors' => array(
+					'{{WRAPPER}} .nav-link.active' => 'color: {{VALUE}};',
+				),
+			)
+		);
+
+		$this->add_control(
+			'tab_active_background_color',
+			array(
+				'label'     => esc_html__( 'Background Color', 'mas-elementor' ),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => array(
+					'{{WRAPPER}} .mas-nav-link:has( .active )' => 'background-color: {{VALUE}};',
+				),
+			)
+		);
+
+		$this->end_controls_tab();
+
+		$this->end_controls_tabs();
+
+		// Title Padding Controls.
+		$this->add_responsive_control(
+			'me_nav_tab_li_padding',
+			array(
+				'label'      => esc_html__( 'Padding', 'mas-elementor' ),
+				'type'       => Controls_Manager::DIMENSIONS,
+				'size_units' => array( 'px', 'em', '%', 'rem' ),
+				'selectors'  => array(
+					'{{WRAPPER}} .me-tabs .mas-nav-link' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				),
+			)
+		);
+
+		// Title Margin Controls.
+		$this->add_responsive_control(
+			'me_nav_tab_li_margin',
+			array(
+				'label'      => esc_html__( 'Margin', 'mas-elementor' ),
+				'type'       => Controls_Manager::DIMENSIONS,
+				'size_units' => array( 'px', 'em', '%', 'rem' ),
+				'selectors'  => array(
+					'{{WRAPPER}} .me-tabs .mas-nav-link' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				),
+			)
+		);
+
+		$this->add_responsive_control(
+			'me_nav_tab_li_align',
+			array(
+				'label'     => esc_html__( 'Title Alignment', 'mas-elementor' ),
+				'type'      => Controls_Manager::CHOOSE,
+				'options'   => array(
+					'left'   => array(
+						'title' => esc_html__( 'Left', 'mas-elementor' ),
+						'icon'  => 'eicon-text-align-left',
+					),
+					'center' => array(
+						'title' => esc_html__( 'Center', 'mas-elementor' ),
+						'icon'  => 'eicon-text-align-center',
+					),
+					'right'  => array(
+						'title' => esc_html__( 'Right', 'mas-elementor' ),
+						'icon'  => 'eicon-text-align-right',
+					),
+				),
+				'default'   => 'center',
+				'selectors' => array(
+					'{{WRAPPER}} .mas-nav-link' => 'text-align: {{VALUE}};',
+				),
+			)
+		);
+
+		$this->end_controls_section();
 	}
 
 	/**
@@ -114,55 +284,58 @@ class Mas_Episodes extends Base_Widget {
 					$active = '';
 					$count  = $key + 1;
 
-					?>
-					<li class="mas-nav-link nav-item" id="me-tab-title-<?php echo esc_attr( $count ); ?>" role="tab" aria-controls="me-tab-<?php echo esc_attr( $count ); ?>">
-						<a class ="nav-link" href="#me-tab-<?php echo esc_attr( $count ); ?>" data-toggle="tab"><?php echo esc_html( $season['name'] ); ?></a>
-					</li>
-					<?php
+					if ( ! empty( $season['episodes'] ) ) :
+						?>
+						<li class="mas-nav-link nav-item" id="me-tab-title-<?php echo esc_attr( $count ); ?>" role="tab" aria-controls="me-tab-<?php echo esc_attr( $count ); ?>">
+							<a class ="nav-link" href="#me-tab-<?php echo esc_attr( $count ); ?>" data-toggle="tab"><?php echo esc_html( $season['name'] ); ?></a>
+						</li>
+						<?php
+					endif;
 				}
 				?>
 			</ul>
 			<div class="mas-episodes-content-wrapper tab-content">
-			<?php
-			foreach ( $seasons as $index => $season ) {
-				$count    = $index + 1;
-				$active   = '';
-				$selected = 'false';
-
-				if ( 1 === $count ) {
-					$active   = ' active';
-					$selected = 'true';
-					$this->add_render_attribute( 'list_link_item' . $count, 'class' );
-				}
-				$this->add_render_attribute(
-					'list_link_item' . $count,
-					array(
-						'class'           => 'tab-pane' . $active,
-						'id'              => 'me-tab-' . $count,
-						'role'            => 'tabpanel',
-						'aria-labelledby' => 'tab-title-' . $count,
-						'aria-selected'   => $selected,
-					)
-				);
-				?>
-				<div <?php $this->print_render_attribute_string( 'list_link_item' . $count ); ?>>
 				<?php
-				foreach ( $season['episodes'] as $key => $episode_id ) {
-					$episode = masvideos_get_episode( $episode_id );
+				foreach ( $seasons as $index => $season ) {
+					$count    = $index + 1;
+					$active   = '';
+					$selected = 'false';
 
-					$post_object = get_post( $episode->get_id() );
+					if ( 1 === $count ) {
+						$active   = ' active';
+						$selected = 'true';
+						$this->add_render_attribute( 'list_link_item' . $count, 'class' );
+					}
+					$this->add_render_attribute(
+						'list_link_item' . $count,
+						array(
+							'class'           => 'tab-pane' . $active,
+							'id'              => 'me-tab-' . $count,
+							'role'            => 'tabpanel',
+							'aria-labelledby' => 'tab-title-' . $count,
+							'aria-selected'   => $selected,
+						)
+					);
+					?>
+					<div <?php $this->print_render_attribute_string( 'list_link_item' . $count ); ?>>
+						<?php
+						foreach ( $season['episodes'] as $key => $episode_id ) {
+							$episode = masvideos_get_episode( $episode_id );
 
-					setup_postdata( $GLOBALS['post'] =& $post_object ); // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited, Squiz.PHP.DisallowMultipleAssignments.Found
-					print( mas_render_template( $settings['select_template'], false ) );//phpcs:ignore
+							$post_object = get_post( $episode->get_id() );
 
+							setup_postdata( $GLOBALS['post'] =& $post_object ); // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited, Squiz.PHP.DisallowMultipleAssignments.Found
+							print( mas_render_template( $settings['select_template'], false ) );//phpcs:ignore
+
+						}
+							wp_reset_postdata();
+						?>
+					</div>
+					<?php
 				}
-						wp_reset_postdata();
 				?>
-				</div>
-				<?php
-			}
-			?>
-			</div>		</div>
+			</div>		
+		</div>
 		<?php
 	}
 }

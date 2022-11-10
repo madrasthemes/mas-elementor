@@ -5,6 +5,7 @@
     padding: 0;
     margin: 0;
     list-style: none;
+    overflow-x:auto;
 }
 
 .mas-episodes-tabs.mas-episodes-tabs-wrapper 
