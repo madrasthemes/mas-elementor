@@ -208,11 +208,11 @@ class Module extends Module_Base {
 			}
 
 			$args = array(
-				'parentSelector'  => $settings['parent_id'],
-				'targetSelector'  => $settings['target_id'],
-				'breakpoint'      => $settings['breakpoint'],
-				'startPoint'      => $settings['start_point_id'],
-				'endPoint'        => $settings['end_point_id'],
+				'parentSelector' => $settings['parent_id'],
+				'targetSelector' => $settings['target_id'],
+				'breakpoint'     => $settings['breakpoint'],
+				'startPoint'     => $settings['start_point_id'],
+				'endPoint'       => $settings['end_point_id'],
 			);
 
 			if ( isset( $settings['offset']['size'] ) ) {
