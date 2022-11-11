@@ -36,3 +36,8 @@
 .mas-tab-flex-grow {
     flex-grow: 1;
 }
+
+.mas-episodes-grid .mas-episodes-content-wrapper .mas-episodes.mas-grid.active {
+    display: grid;
+    margin: 0;
+  }

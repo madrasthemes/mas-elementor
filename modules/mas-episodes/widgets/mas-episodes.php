@@ -19,6 +19,8 @@ use Elementor\Icons_Manager;
 use Elementor\Group_Control_Border;
 use Elementor\Group_Control_Box_Shadow;
 use Elementor\Group_Control_Background;
+use Elementor\Controls_Stack;
+
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
@@ -93,6 +95,56 @@ class Mas_Episodes extends Base_Widget {
 				'label'   => esc_html__( 'Mas Templates', 'mas-elementor' ),
 				'type'    => Controls_Manager::SELECT,
 				'options' => $templates,
+			)
+		);
+
+		$this->add_control(
+			'mas_episodes_class',
+			array(
+				'type'         => Controls_Manager::HIDDEN,
+				'default'      => 'mas-episodes',
+				'prefix_class' => 'mas-episodes-grid mas-elementor-',
+			)
+		);
+
+		$this->add_responsive_control(
+			'columns',
+			array(
+				'label'               => __( 'Columns', 'mas-elementor' ),
+				'type'                => Controls_Manager::NUMBER,
+				'prefix_class'        => 'mas-grid%s-',
+				'min'                 => 1,
+				'max'                 => 10,
+				'default'             => 4,
+				'required'            => true,
+				'render_type'         => 'template',
+				'device_args'         => array(
+					Controls_Stack::RESPONSIVE_TABLET => array(
+						'required' => false,
+					),
+					Controls_Stack::RESPONSIVE_MOBILE => array(
+						'required' => false,
+					),
+				),
+				'min_affected_device' => array(
+					Controls_Stack::RESPONSIVE_DESKTOP => Controls_Stack::RESPONSIVE_TABLET,
+					Controls_Stack::RESPONSIVE_TABLET  => Controls_Stack::RESPONSIVE_TABLET,
+				),
+			)
+		);
+
+		$this->add_control(
+			'rows',
+			array(
+				'label'       => __( 'Rows', 'mas-elementor' ),
+				'type'        => Controls_Manager::NUMBER,
+				'default'     => 1,
+				'render_type' => 'template',
+				'range'       => array(
+					'px' => array(
+						'max' => 20,
+					),
+				),
 			)
 		);
 
@@ -275,6 +327,10 @@ class Mas_Episodes extends Base_Widget {
 	protected function render() {
 		$settings = $this->get_settings();
 		$tv_shows = masvideos_get_tv_show( get_the_ID() );
+
+		$rows    = ! empty( $settings['rows'] ) ? $settings['rows'] : 1;
+		$columns = ! empty( $settings['columns'] ) ? $settings['columns'] : 4;
+
 		?>
 		<div class="mas-episodes-tabs mas-episodes-tabs-wrapper">
 			<ul class="me-tabs nav nav-tabs" role="tablist">
@@ -282,12 +338,27 @@ class Mas_Episodes extends Base_Widget {
 				$seasons = $tv_shows->get_seasons();
 				foreach ( $seasons as $key => $season ) {
 					$active = '';
-					$count  = $key + 1;
+
+					$count = $this->get_id() . (string) ( $key + 1 );
+
+					if ( 1 === $key + 1 ) {
+						$active = ' active';
+					}
+
+					$this->add_render_attribute(
+						'mas_epi_li' . $count,
+						array(
+							'class'         => 'mas-nav-link nav-item',
+							'id'            => 'me-tab-title-' . $count,
+							'role'          => 'tab',
+							'aria-controls' => 'me-tab-title-' . $count,
+						)
+					);
 
 					if ( ! empty( $season['episodes'] ) ) :
 						?>
-						<li class="mas-nav-link nav-item" id="me-tab-title-<?php echo esc_attr( $count ); ?>" role="tab" aria-controls="me-tab-<?php echo esc_attr( $count ); ?>">
-							<a class ="nav-link" href="#me-tab-<?php echo esc_attr( $count ); ?>" data-toggle="tab"><?php echo esc_html( $season['name'] ); ?></a>
+						<li <?php $this->print_render_attribute_string( 'mas_epi_li' . $count ); ?>>
+							<a class ="nav-link<?php echo esc_attr( $active ); ?>" href="#me-tab-<?php echo esc_attr( $count ); ?>" data-toggle="tab"><?php echo esc_html( $season['name'] ); ?></a>
 						</li>
 						<?php
 					endif;
@@ -297,19 +368,18 @@ class Mas_Episodes extends Base_Widget {
 			<div class="mas-episodes-content-wrapper tab-content">
 				<?php
 				foreach ( $seasons as $index => $season ) {
-					$count    = $index + 1;
+					$count    = $this->get_id() . (string) ( $index + 1 );
 					$active   = '';
 					$selected = 'false';
 
-					if ( 1 === $count ) {
+					if ( 1 === $index + 1 ) {
 						$active   = ' active';
 						$selected = 'true';
-						$this->add_render_attribute( 'list_link_item' . $count, 'class' );
 					}
 					$this->add_render_attribute(
 						'list_link_item' . $count,
 						array(
-							'class'           => 'tab-pane' . $active,
+							'class'           => 'mas-episodes-container mas-episodes mas-grid tab-pane' . $active,
 							'id'              => 'me-tab-' . $count,
 							'role'            => 'tabpanel',
 							'aria-labelledby' => 'tab-title-' . $count,
