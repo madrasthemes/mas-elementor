@@ -66,7 +66,7 @@ class Module extends Module_Base {
 	 * Register frontend styles.
 	 */
 	public function register_frontend_styles() {
-		wp_enqueue_style(
+		wp_register_style(
 			'mas-episodes-stylesheet',
 			MAS_ELEMENTOR_MODULES_URL . 'mas-episodes/css/mas-episodes-tab.css',
 			array(),

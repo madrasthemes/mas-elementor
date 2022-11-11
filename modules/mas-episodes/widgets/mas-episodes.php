@@ -77,6 +77,19 @@ class Mas_Episodes extends Base_Widget {
 	}
 
 	/**
+	 * Get style dependencies.
+	 *
+	 * Retrieve the list of style dependencies the element requires.
+	 *
+	 * @since 1.9.0
+	 *
+	 * @return array Element styles dependencies.
+	 */
+	public function get_style_depends() {
+		return array( 'mas-episodes-stylesheet' );
+	}
+
+	/**
 	 * Register Controls in Layout Section.
 	 */
 	protected function register_controls() {
