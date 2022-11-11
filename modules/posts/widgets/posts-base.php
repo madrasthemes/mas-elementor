@@ -1637,7 +1637,7 @@ abstract class Posts_Base extends Base_Widget {
 			$swiper_settings['fadeEffect']['crossFade'] = true;
 		}
 		if ( 'slide' === $settings['carousel_effect'] ) {
-			$breakpoint = '1440';
+			$breakpoint = '1441';
 			$swiper_settings['breakpoints'][ $breakpoint ]['slidesPerView'] = isset( $settings['slides_per_view'] ) ? $settings['slides_per_view'] : 3;
 			foreach ( $active_breakpoint_instances as $active_breakpoint_instance ) {
 				$array_key = 'slides_per_view_' . $active_breakpoint_instance->get_name();
@@ -1661,7 +1661,7 @@ abstract class Posts_Base extends Base_Widget {
 		}
 
 		if ( 'slide' === $settings['carousel_effect'] ) {
-			$breakpoint = '1440';
+			$breakpoint = '1441';
 			$swiper_settings['breakpoints'][ $breakpoint ]['slidesPerGroup'] = isset( $settings['slides_to_scroll'] ) ? $settings['slides_to_scroll'] : 3;
 			foreach ( $active_breakpoint_instances as $active_breakpoint_instance ) {
 				$array_key = 'slides_to_scroll_' . $active_breakpoint_instance->get_name();
@@ -1685,7 +1685,7 @@ abstract class Posts_Base extends Base_Widget {
 		}
 
 		if ( 'yes' === $settings['enable_space_between'] ) {
-			$breakpoint = '1440';
+			$breakpoint = '1441';
 			$swiper_settings['breakpoints'][ $breakpoint ]['spaceBetween'] = isset( $settings['space_between'] ) ? $settings['space_between'] : 8;
 			foreach ( $active_breakpoint_instances as $active_breakpoint_instance ) {
 				$array_key = 'space_between_' . $active_breakpoint_instance->get_name();
