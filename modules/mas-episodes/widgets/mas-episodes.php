@@ -111,56 +111,6 @@ class Mas_Episodes extends Base_Widget {
 			)
 		);
 
-		$this->add_control(
-			'mas_episodes_class',
-			array(
-				'type'         => Controls_Manager::HIDDEN,
-				'default'      => 'mas-episodes',
-				'prefix_class' => 'mas-episodes-grid mas-elementor-',
-			)
-		);
-
-		$this->add_responsive_control(
-			'columns',
-			array(
-				'label'               => __( 'Columns', 'mas-elementor' ),
-				'type'                => Controls_Manager::NUMBER,
-				'prefix_class'        => 'mas-grid%s-',
-				'min'                 => 1,
-				'max'                 => 10,
-				'default'             => 4,
-				'required'            => true,
-				'render_type'         => 'template',
-				'device_args'         => array(
-					Controls_Stack::RESPONSIVE_TABLET => array(
-						'required' => false,
-					),
-					Controls_Stack::RESPONSIVE_MOBILE => array(
-						'required' => false,
-					),
-				),
-				'min_affected_device' => array(
-					Controls_Stack::RESPONSIVE_DESKTOP => Controls_Stack::RESPONSIVE_TABLET,
-					Controls_Stack::RESPONSIVE_TABLET  => Controls_Stack::RESPONSIVE_TABLET,
-				),
-			)
-		);
-
-		$this->add_control(
-			'rows',
-			array(
-				'label'       => __( 'Rows', 'mas-elementor' ),
-				'type'        => Controls_Manager::NUMBER,
-				'default'     => 1,
-				'render_type' => 'template',
-				'range'       => array(
-					'px' => array(
-						'max' => 20,
-					),
-				),
-			)
-		);
-
 		$this->end_controls_section();
 
 		$this->start_controls_section(
@@ -341,9 +291,6 @@ class Mas_Episodes extends Base_Widget {
 		$settings = $this->get_settings();
 		$tv_shows = masvideos_get_tv_show( get_the_ID() );
 
-		$rows    = ! empty( $settings['rows'] ) ? $settings['rows'] : 1;
-		$columns = ! empty( $settings['columns'] ) ? $settings['columns'] : 4;
-
 		?>
 		<div class="mas-episodes-tabs mas-episodes-tabs-wrapper">
 			<ul class="me-tabs nav nav-tabs" role="tablist">
@@ -392,7 +339,7 @@ class Mas_Episodes extends Base_Widget {
 					$this->add_render_attribute(
 						'list_link_item' . $count,
 						array(
-							'class'           => 'mas-episodes-container mas-episodes mas-grid tab-pane' . $active,
+							'class'           => ' tab-pane' . $active,
 							'id'              => 'me-tab-' . $count,
 							'role'            => 'tabpanel',
 							'aria-labelledby' => 'tab-title-' . $count,
