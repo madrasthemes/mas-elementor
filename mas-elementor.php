@@ -404,9 +404,10 @@ if ( ! function_exists( 'mas_template_options' ) ) {
 	 *
 	 * Retrieve local templates saved by the user on his site.
 	 *
+	 * @param string $template_format  template format.
 	 * @return array Local templates.
 	 */
-	function mas_template_options() {
+	function mas_template_options( $template_format = 'mas-post' ) {
 
 		$mas_template = array();
 		$args         = array(
@@ -414,7 +415,7 @@ if ( ! function_exists( 'mas_template_options' ) ) {
 			'post_status'            => 'publish',
 			'limit'                  => '-1',
 			'posts_per_page'         => '-1',
-			'elementor_library_type' => 'mas-post',
+			'elementor_library_type' => $template_format,
 		);
 
 		$mas_templates = get_posts( $args );
@@ -453,6 +454,44 @@ if ( ! function_exists( 'mas_render_template' ) ) {
 		} else {
 			return $content;
 		}
+	}
+}
+
+if ( ! function_exists( 'mas_option_enabled_post_types' ) ) {
+
+	/**
+	 * Option enabled post types.
+	 *
+	 * @return array
+	 */
+	function mas_option_enabled_post_types() {
+		$post_types = array( 'post', 'page' );
+		if ( class_exists( 'MasVideos' ) ) {
+			$movie      = array(
+				'movie',
+				'tv_show',
+				'episode',
+				'video',
+			);
+			$post_types = array_merge( $post_types, $movie );
+
+		}
+		if ( class_exists( 'Woocommerce' ) ) {
+			$product    = array(
+				'product',
+			);
+			$post_types = array_merge( $post_types, $product );
+
+		}
+		if ( class_exists( 'WP_Job_Manager' ) ) {
+			$job        = array(
+				'job_listing',
+			);
+			$post_types = array_merge( $post_types, $job );
+
+		}
+
+		return apply_filters( 'mas_option_enabled_post_types', $post_types );
 	}
 }
 

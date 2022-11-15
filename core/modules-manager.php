@@ -51,6 +51,7 @@ final class Modules_Manager {
 			'countdown',
 			'video',
 			'image-box',
+			'page-settings',
 		);
 
 		foreach ( $modules as $module_name ) {
