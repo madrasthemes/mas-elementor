@@ -157,7 +157,7 @@ class Mas_Episodes extends Base_Widget {
 				'label'     => esc_html__( 'Background Color', 'mas-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
-					'{{WRAPPER}} .me-tabs .mas-nav-link' => 'background-color: {{VALUE}};',
+					'{{WRAPPER}} .me-tabs .mas-tab-flex' => 'background-color: {{VALUE}};',
 				),
 			)
 		);
@@ -189,7 +189,7 @@ class Mas_Episodes extends Base_Widget {
 				'label'     => esc_html__( 'Background Color', 'mas-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
-					'{{WRAPPER}} .me-tabs .mas-nav-link:hover' => 'background-color: {{VALUE}};',
+					'{{WRAPPER}} .me-tabs .mas-tab-flex:hover' => 'background-color: {{VALUE}};',
 				),
 			)
 		);
@@ -220,7 +220,7 @@ class Mas_Episodes extends Base_Widget {
 				'label'     => esc_html__( 'Background Color', 'mas-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
-					'{{WRAPPER}} .mas-nav-link:has( .active )' => 'background-color: {{VALUE}};',
+					'{{WRAPPER}} .mas-tab-flex:has( .active )' => 'background-color: {{VALUE}};',
 				),
 			)
 		);
@@ -237,7 +237,7 @@ class Mas_Episodes extends Base_Widget {
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', 'em', '%', 'rem' ),
 				'selectors'  => array(
-					'{{WRAPPER}} .me-tabs .mas-nav-link' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .me-tabs .mas-tab-flex' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				),
 			)
 		);
@@ -250,7 +250,7 @@ class Mas_Episodes extends Base_Widget {
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', 'em', '%', 'rem' ),
 				'selectors'  => array(
-					'{{WRAPPER}} .me-tabs .mas-nav-link' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .me-tabs .mas-tab-flex' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				),
 			)
 		);
@@ -261,7 +261,7 @@ class Mas_Episodes extends Base_Widget {
 				'label'     => esc_html__( 'Title Alignment', 'mas-elementor' ),
 				'type'      => Controls_Manager::CHOOSE,
 				'options'   => array(
-					'left'   => array(
+					'start'  => array(
 						'title' => esc_html__( 'Left', 'mas-elementor' ),
 						'icon'  => 'eicon-text-align-left',
 					),
@@ -269,14 +269,25 @@ class Mas_Episodes extends Base_Widget {
 						'title' => esc_html__( 'Center', 'mas-elementor' ),
 						'icon'  => 'eicon-text-align-center',
 					),
-					'right'  => array(
+					'end'    => array(
 						'title' => esc_html__( 'Right', 'mas-elementor' ),
 						'icon'  => 'eicon-text-align-right',
 					),
 				),
 				'default'   => 'center',
 				'selectors' => array(
-					'{{WRAPPER}} .mas-nav-link' => 'text-align: {{VALUE}};',
+					'{{WRAPPER}} .me-tabs' => 'justify-content: {{VALUE}};',
+				),
+			)
+		);
+
+		$this->add_control(
+			'me_separator_before',
+			array(
+				'label'     => esc_html__( 'Delimiter Color', 'mas-elementor' ),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => array(
+					'{{WRAPPER}} .mas-tab-flex:not(:first-child):before' => 'color: {{VALUE}};',
 				),
 			)
 		);
@@ -290,81 +301,84 @@ class Mas_Episodes extends Base_Widget {
 	protected function render() {
 		$settings = $this->get_settings();
 		$tv_shows = masvideos_get_tv_show( get_the_ID() );
+		$seasons  = $tv_shows->get_seasons();
 
 		?>
 		<div class="mas-episodes-tabs mas-episodes-tabs-wrapper">
-			<ul class="me-tabs nav nav-tabs" role="tablist">
-				<?php
-				$seasons = $tv_shows->get_seasons();
-				foreach ( $seasons as $key => $season ) {
-					$active = '';
-
-					$count = $this->get_id() . (string) ( $key + 1 );
-
-					if ( 1 === $key + 1 ) {
-						$active = ' active';
-					}
-
-					$this->add_render_attribute(
-						'mas_epi_li' . $count,
-						array(
-							'class'         => 'mas-nav-link nav-item',
-							'id'            => 'me-tab-title-' . $count,
-							'role'          => 'tab',
-							'aria-controls' => 'me-tab-title-' . $count,
-						)
-					);
-
-					if ( ! empty( $season['episodes'] ) ) :
-						?>
-						<li <?php $this->print_render_attribute_string( 'mas_epi_li' . $count ); ?>>
-							<a class ="nav-link<?php echo esc_attr( $active ); ?>" href="#me-tab-<?php echo esc_attr( $count ); ?>" data-toggle="tab"><?php echo esc_html( $season['name'] ); ?></a>
-						</li>
-						<?php
-					endif;
-				}
-				?>
-			</ul>
-			<div class="mas-episodes-content-wrapper tab-content">
-				<?php
-				foreach ( $seasons as $index => $season ) {
-					$count    = $this->get_id() . (string) ( $index + 1 );
-					$active   = '';
-					$selected = 'false';
-
-					if ( 1 === $index + 1 ) {
-						$active   = ' active';
-						$selected = 'true';
-					}
-					$this->add_render_attribute(
-						'list_link_item' . $count,
-						array(
-							'class'           => ' tab-pane' . $active,
-							'id'              => 'me-tab-' . $count,
-							'role'            => 'tabpanel',
-							'aria-labelledby' => 'tab-title-' . $count,
-							'aria-selected'   => $selected,
-						)
-					);
-					?>
-					<div <?php $this->print_render_attribute_string( 'list_link_item' . $count ); ?>>
-						<?php
-						foreach ( $season['episodes'] as $key => $episode_id ) {
-							$episode = masvideos_get_episode( $episode_id );
-
-							$post_object = get_post( $episode->get_id() );
-
-							setup_postdata( $GLOBALS['post'] =& $post_object ); // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited, Squiz.PHP.DisallowMultipleAssignments.Found
-							print( mas_render_template( $settings['select_template'], false ) );//phpcs:ignore
-
-						}
-							wp_reset_postdata();
-						?>
-					</div>
+			<?php if ( ! empty( $seasons ) ) : ?>
+				<ul class="me-tabs nav nav-tabs" role="tablist">
 					<?php
-				}
-				?>
-			</div>		
+
+					foreach ( $seasons as $key => $season ) {
+						$active = '';
+
+						$count = $this->get_id() . (string) ( $key + 1 );
+
+						if ( 1 === $key + 1 ) {
+							$active = ' active';
+						}
+
+						$this->add_render_attribute(
+							'mas_epi_li' . $count,
+							array(
+								'class'         => 'mas-tab-flex  nav-item',
+								'id'            => 'me-tab-title-' . $count,
+								'role'          => 'tab',
+								'aria-controls' => 'me-tab-title-' . $count,
+							)
+						);
+
+						if ( ! empty( $season['episodes'] ) ) :
+							?>
+							<li <?php $this->print_render_attribute_string( 'mas_epi_li' . $count ); ?>>
+								<a class ="nav-link<?php echo esc_attr( $active ); ?>" href="#me-tab-<?php echo esc_attr( $count ); ?>" data-toggle="tab"><?php echo esc_html( $season['name'] ); ?></a>
+							</li>
+							<?php
+						endif;
+					}
+					?>
+				</ul>
+				<div class="mas-episodes-content-wrapper tab-content">
+					<?php
+					foreach ( $seasons as $index => $season ) {
+						$count    = $this->get_id() . (string) ( $index + 1 );
+						$active   = '';
+						$selected = 'false';
+
+						if ( 1 === $index + 1 ) {
+							$active   = ' active';
+							$selected = 'true';
+						}
+						$this->add_render_attribute(
+							'list_link_item' . $count,
+							array(
+								'class'           => ' tab-pane' . $active,
+								'id'              => 'me-tab-' . $count,
+								'role'            => 'tabpanel',
+								'aria-labelledby' => 'tab-title-' . $count,
+								'aria-selected'   => $selected,
+							)
+						);
+						?>
+						<div <?php $this->print_render_attribute_string( 'list_link_item' . $count ); ?>>
+							<?php
+							foreach ( $season['episodes'] as $key => $episode_id ) {
+								$episode = masvideos_get_episode( $episode_id );
+
+								$post_object = get_post( $episode->get_id() );
+
+								setup_postdata( $GLOBALS['post'] =& $post_object ); // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited, Squiz.PHP.DisallowMultipleAssignments.Found
+								print( mas_render_template( $settings['select_template'], false ) );//phpcs:ignore
+
+							}
+								wp_reset_postdata();
+							?>
+						</div>
+						<?php
+					}
+					?>
+				</div>		
+			<?php endif; ?>
 		</div>
 		<?php
 	}
