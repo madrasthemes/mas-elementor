@@ -58,7 +58,9 @@ class ACF_Image extends \Elementor\Core\DynamicTags\Data_Tag {
 			'id'  => null,
 			'url' => '',
 		);
-
+		if ( empty( Module::get_tag_value_field( $this ) ) ) {
+			return;
+		}
 		list( $field, $meta_key ) = Module::get_tag_value_field( $this );
 		if ( $field && is_array( $field ) ) {
 			$field['return_format'] = isset( $field['save_format'] ) ? $field['save_format'] : $field['return_format'];
