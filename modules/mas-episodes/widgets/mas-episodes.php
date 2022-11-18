@@ -256,6 +256,18 @@ class Mas_Episodes extends Base_Widget {
 		);
 
 		$this->add_responsive_control(
+			'me_nav_tab_li_border_radius',
+			array(
+				'label'      => esc_html__( 'Border Radius', 'mas-elementor' ),
+				'type'       => Controls_Manager::DIMENSIONS,
+				'size_units' => array( 'px', 'em', '%', 'rem' ),
+				'selectors'  => array(
+					'{{WRAPPER}} .me-tabs .mas-tab-flex' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				),
+			)
+		);
+
+		$this->add_responsive_control(
 			'me_nav_tab_li_align',
 			array(
 				'label'     => esc_html__( 'Title Alignment', 'mas-elementor' ),
