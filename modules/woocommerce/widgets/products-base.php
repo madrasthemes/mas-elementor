@@ -688,10 +688,8 @@ abstract class Products_Base extends Base_Widget {
 
 		$shortcode = $this->get_shortcode_object( $settings );
 
-		$content = $shortcode->get_content();
-
-		if ( $content ) {
-			echo $content; //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		if ( $shortcode->get_content() ) {
+			echo $shortcode->get_content(); //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		} elseif ( $this->get_settings( 'nothing_found_message' ) ) {
 			echo '<div class="elementor-nothing-found elementor-products-nothing-found">' . esc_html( $this->get_settings( 'nothing_found_message' ) ) . '</div>';
 		}
