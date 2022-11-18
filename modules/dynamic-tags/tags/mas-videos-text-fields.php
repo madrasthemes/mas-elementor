@@ -88,6 +88,7 @@ class Mas_Videos_Text_Fields extends \Elementor\Core\DynamicTags\Tag {
 					'imdb_id'           => esc_html__( 'IMDB ID', 'mas-elementor' ),
 					'tmdb_id'           => esc_html__( 'TMDB ID', 'mas-elementor' ),
 					'season_names'      => esc_html__( 'Season Names', 'mas-elementor' ),
+					'season_count'      => esc_html__( 'Season Count', 'mas-elementor' ),
 					'season_start_year' => esc_html__( 'Seasons Start Year', 'mas-elementor' ),
 					'season_end_year'   => esc_html__( 'Seasons End Year', 'mas-elementor' ),
 					'casts_crew'        => esc_html__( 'Casts and Crew', 'mas-elementor' ),
@@ -446,6 +447,8 @@ class Mas_Videos_Text_Fields extends \Elementor\Core\DynamicTags\Tag {
 				} elseif ( 'season_names' === $settings['mas_tv_show_text_options'] ) {
 					$season_names = implode( $settings['season_names_separator'], $season_names );
 					$text_output  = $season_names;
+				} elseif ( 'season_count' === $settings['mas_tv_show_text_options'] && ! empty( $season_names ) ) {
+					$text_output = 1 === count( $season_names ) ? count( $season_names ) . ' Season' : count( $season_names ) . ' Seasons';
 				}
 			}
 			if ( 'crew' === $settings['mas_videos_person_options'] && 'casts_crew' === $settings['mas_tv_show_text_options'] ) {

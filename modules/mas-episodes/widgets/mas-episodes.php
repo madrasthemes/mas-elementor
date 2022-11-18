@@ -352,7 +352,7 @@ class Mas_Episodes extends Base_Widget {
 						$this->add_render_attribute(
 							'list_link_item' . $count,
 							array(
-								'class'           => ' tab-pane' . $active,
+								'class'           => 'tab-pane' . $active,
 								'id'              => 'me-tab-' . $count,
 								'role'            => 'tabpanel',
 								'aria-labelledby' => 'tab-title-' . $count,
@@ -367,7 +367,7 @@ class Mas_Episodes extends Base_Widget {
 
 								$post_object = get_post( $episode->get_id() );
 
-								setup_postdata( $GLOBALS['post'] =& $post_object ); // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited, Squiz.PHP.DisallowMultipleAssignments.Found
+								setup_postdata( masvideos_setup_episode_data( $episode_id ) ); // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited, Squiz.PHP.DisallowMultipleAssignments.Found
 								print( mas_render_template( $settings['select_template'], false ) );//phpcs:ignore
 
 							}
