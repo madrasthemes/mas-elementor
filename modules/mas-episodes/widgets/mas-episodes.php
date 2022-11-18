@@ -301,7 +301,10 @@ class Mas_Episodes extends Base_Widget {
 	protected function render() {
 		$settings = $this->get_settings();
 		$tv_shows = masvideos_get_tv_show( get_the_ID() );
-		$seasons  = $tv_shows->get_seasons();
+		if ( empty( $tv_shows ) ) {
+			return;
+		}
+		$seasons = $tv_shows->get_seasons();
 
 		?>
 		<div class="mas-episodes-tabs mas-episodes-tabs-wrapper">
@@ -340,6 +343,7 @@ class Mas_Episodes extends Base_Widget {
 				</ul>
 				<div class="mas-episodes-content-wrapper tab-content">
 					<?php
+
 					foreach ( $seasons as $index => $season ) {
 						$count    = $this->get_id() . (string) ( $index + 1 );
 						$active   = '';
@@ -362,15 +366,16 @@ class Mas_Episodes extends Base_Widget {
 						?>
 						<div <?php $this->print_render_attribute_string( 'list_link_item' . $count ); ?>>
 							<?php
+							$original_post = $GLOBALS['post'];
 							foreach ( $season['episodes'] as $key => $episode_id ) {
-								$episode = masvideos_get_episode( $episode_id );
-
-								$post_object = get_post( $episode->get_id() );
+								$GLOBALS['post'] = get_post( $episode_id ); // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
+								setup_postdata( $GLOBALS['post'] );
 
 								setup_postdata( masvideos_setup_episode_data( $episode_id ) ); // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited, Squiz.PHP.DisallowMultipleAssignments.Found
-								print( mas_render_template( $settings['select_template'], false ) );//phpcs:ignore
+								print( mas_render_template( $settings['select_template'], false ) );// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 
 							}
+							$GLOBALS['post'] = $original_post;// phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
 								wp_reset_postdata();
 							?>
 						</div>
