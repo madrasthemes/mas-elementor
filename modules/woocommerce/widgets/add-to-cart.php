@@ -148,6 +148,8 @@ class Add_To_Cart extends Widget_Button {
 
 		parent::register_controls();
 
+		$this->register_button_cart_update_controls();
+
 		$this->remove_control( 'section_style' );
 
 		$this->start_controls_section(
@@ -173,31 +175,6 @@ class Add_To_Cart extends Widget_Button {
 
 		$this->end_injection();
 
-		$this->start_controls_section(
-			'section_layout',
-			array(
-				'label' => esc_html__( 'Layout', 'mas-elementor' ),
-				'tab'   => Controls_Manager::TAB_CONTENT,
-			)
-		);
-
-		$this->add_control(
-			'layout',
-			array(
-				'label'        => esc_html__( 'Layout', 'mas-elementor' ),
-				'type'         => Controls_Manager::SELECT,
-				'options'      => array(
-					''        => esc_html__( 'Inline', 'mas-elementor' ),
-					'stacked' => esc_html__( 'Stacked', 'mas-elementor' ),
-					'auto'    => esc_html__( 'Auto', 'mas-elementor' ),
-				),
-				'prefix_class' => 'elementor-add-to-cart--layout-',
-				'render_type'  => 'template',
-			)
-		);
-
-		$this->end_controls_section();
-
 		$this->update_control(
 			'link',
 			array(
@@ -219,7 +196,7 @@ class Add_To_Cart extends Widget_Button {
 		$this->update_responsive_control(
 			'align',
 			array(
-				'prefix_class' => 'elementor-add-to-cart%s--align-',
+				'prefix_class' => 'elementor%s-align-',
 			)
 		);
 
@@ -237,7 +214,7 @@ class Add_To_Cart extends Widget_Button {
 			'size',
 			array(
 				'condition' => array(
-					'show_quantity' => '',
+					'show_quantity!' => 'yes',
 				),
 			)
 		);
@@ -513,6 +490,39 @@ class Add_To_Cart extends Widget_Button {
 	}
 
 	/**
+	 * Register button content update controls for this widget.
+	 */
+	protected function register_button_cart_update_controls() {
+		$this->update_control(
+			'button_type',
+			array(
+				'condition' => array(
+					'show_quantity!' => 'yes',
+				),
+			),
+		);
+		$this->update_control(
+			'icon_align',
+			array(
+				'condition' => array(
+					'show_quantity!' => 'yes',
+				),
+			),
+		);
+		$this->update_control(
+			'icon_indent',
+			array(
+				'selectors' => array(
+					'{{WRAPPER}} .elementor-button .elementor-align-icon-right' => 'margin-left: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}} .elementor-button .elementor-align-icon-left' => 'margin-right: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}} .cart .elementor-button-content-wrapper .elementor-button-icon' => 'margin-right: {{SIZE}}{{UNIT}};',
+				),
+			),
+		);
+
+	}
+
+	/**
 	 * Register button style controls for this widget.
 	 *
 	 * @param array $args conditional arguments.
@@ -733,21 +743,12 @@ class Add_To_Cart extends Widget_Button {
 		?><div class= "mas-add-to-cart">
 		<?php
 
-		if ( in_array( $settings['layout'], array( 'auto', 'stacked' ), true ) ) {
-			add_action( 'woocommerce_before_add_to_cart_quantity', array( $this, 'before_add_to_cart_quantity' ), 95 );
-			add_action( 'woocommerce_after_add_to_cart_button', array( $this, 'after_add_to_cart_button' ), 5 );
-		}
-
 		if ( 'yes' === $settings['show_quantity'] ) {
 			$this->render_form_button( $product );
 		} else {
 			$this->render_ajax_button( $product );
 		}
 
-		if ( in_array( $settings['layout'], array( 'auto', 'stacked' ), true ) ) {
-			remove_action( 'woocommerce_before_add_to_cart_quantity', array( $this, 'before_add_to_cart_quantity' ), 95 );
-			remove_action( 'woocommerce_after_add_to_cart_button', array( $this, 'after_add_to_cart_button' ), 5 );
-		}
 		?>
 		</div>
 		<?Php
