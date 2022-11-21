@@ -541,7 +541,7 @@ class Add_To_Cart extends Widget_Button {
 				'global'    => array(
 					'default' => Global_Typography::TYPOGRAPHY_ACCENT,
 				),
-				'selector'  => '{{WRAPPER}} .cart button',
+				'selector'  => '{{WRAPPER}} .elementor-button, {{WRAPPER}} .cart button',
 				'condition' => $args['section_condition'],
 			)
 		);
@@ -550,7 +550,7 @@ class Add_To_Cart extends Widget_Button {
 			Group_Control_Text_Shadow::get_type(),
 			array(
 				'name'      => 'cart_text_shadow',
-				'selector'  => '{{WRAPPER}} .cart button',
+				'selector'  => '{{WRAPPER}} .elementor-button, {{WRAPPER}} .cart button',
 				'condition' => $args['section_condition'],
 			)
 		);
@@ -577,6 +577,7 @@ class Add_To_Cart extends Widget_Button {
 				'type'      => Controls_Manager::COLOR,
 				'default'   => '',
 				'selectors' => array(
+					'{{WRAPPER}} .elementor-button' => 'fill: {{VALUE}}; color: {{VALUE}};',
 					'{{WRAPPER}} .cart button' => 'fill: {{VALUE}}; color: {{VALUE}};',
 				),
 				'condition' => $args['section_condition'],
@@ -590,7 +591,7 @@ class Add_To_Cart extends Widget_Button {
 				'label'          => esc_html__( 'Background', 'mas-elementor' ),
 				'types'          => array( 'classic', 'gradient' ),
 				'exclude'        => array( 'image' ),
-				'selector'       => '{{WRAPPER}} .cart button',
+				'selector'       => '{{WRAPPER}} .elementor-button, {{WRAPPER}} .cart button',
 				'fields_options' => array(
 					'background' => array(
 						'default' => 'classic',
@@ -621,6 +622,8 @@ class Add_To_Cart extends Widget_Button {
 				'label'     => esc_html__( 'Text Color', 'mas-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
+					'{{WRAPPER}} .elementor-button:hover, {{WRAPPER}} .elementor-button:focus' => 'color: {{VALUE}};',
+					'{{WRAPPER}} .elementor-button:hover svg, {{WRAPPER}} .elementor-button:focus svg' => 'fill: {{VALUE}};',
 					'{{WRAPPER}} .cart button:hover, {{WRAPPER}} .cart button:focus' => 'color: {{VALUE}};',
 					'{{WRAPPER}} .cart button:hover svg, {{WRAPPER}} .cart button:focus svg' => 'fill: {{VALUE}};',
 				),
@@ -635,7 +638,7 @@ class Add_To_Cart extends Widget_Button {
 				'label'          => esc_html__( 'Background', 'mas-elementor' ),
 				'types'          => array( 'classic', 'gradient' ),
 				'exclude'        => array( 'image' ),
-				'selector'       => '{{WRAPPER}} .cart button:hover, {{WRAPPER}} .cart button:focus',
+				'selector'       => '{{WRAPPER}} .elementor-button:hover, {{WRAPPER}} .elementor-button:focus, {{WRAPPER}} .cart button:hover, {{WRAPPER}} .cart button:focus',
 				'fields_options' => array(
 					'background' => array(
 						'default' => 'classic',
@@ -654,6 +657,7 @@ class Add_To_Cart extends Widget_Button {
 					'border_border!' => '',
 				),
 				'selectors' => array(
+					'{{WRAPPER}} .elementor-button:hover, {{WRAPPER}} .elementor-button:focus' => 'border-color: {{VALUE}};',
 					'{{WRAPPER}} .cart button:hover, {{WRAPPER}} .cart button:focus' => 'border-color: {{VALUE}};',
 				),
 				'condition' => $args['section_condition'],
@@ -677,7 +681,7 @@ class Add_To_Cart extends Widget_Button {
 			Group_Control_Border::get_type(),
 			array(
 				'name'      => 'cart_border',
-				'selector'  => '{{WRAPPER}} .cart button',
+				'selector'  => '{{WRAPPER}} .elementor-button, {{WRAPPER}} .cart button',
 				'separator' => 'before',
 				'condition' => $args['section_condition'],
 			)
@@ -690,6 +694,7 @@ class Add_To_Cart extends Widget_Button {
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', '%', 'em' ),
 				'selectors'  => array(
+					'{{WRAPPER}} .elementor-button' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 					'{{WRAPPER}} .cart button' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				),
 				'condition'  => $args['section_condition'],
@@ -700,7 +705,7 @@ class Add_To_Cart extends Widget_Button {
 			Group_Control_Box_Shadow::get_type(),
 			array(
 				'name'      => 'cart_button_box_shadow',
-				'selector'  => '{{WRAPPER}} .cart button',
+				'selector'  => '{{WRAPPER}} .elementor-button, {{WRAPPER}} .cart button',
 				'condition' => $args['section_condition'],
 			)
 		);
@@ -712,6 +717,7 @@ class Add_To_Cart extends Widget_Button {
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', 'em', '%' ),
 				'selectors'  => array(
+					'{{WRAPPER}} .elementor-button' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 					'{{WRAPPER}} .cart button' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				),
 				'separator'  => 'before',
