@@ -46,7 +46,7 @@ class Mas_Episodes extends Base_Widget {
 	 * @return string
 	 */
 	public function get_title() {
-		return esc_html__( 'MAS Episodes', 'mas-elementor' );
+		return esc_html__( 'MAS Tv-Shows Episodes', 'mas-elementor' );
 	}
 
 	/**
