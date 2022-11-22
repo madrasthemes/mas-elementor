@@ -26,10 +26,6 @@
     overflow-x: auto;
     overflow-y: hidden;
 }
-.mas-tab-flex:not(:first-child):before {
-    content: '/'; 
-   
-}
 
 .mas-nav-link {
     display: block;

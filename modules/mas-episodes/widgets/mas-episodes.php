@@ -293,17 +293,6 @@ class Mas_Episodes extends Base_Widget {
 			)
 		);
 
-		$this->add_control(
-			'me_separator_before',
-			array(
-				'label'     => esc_html__( 'Delimiter Color', 'mas-elementor' ),
-				'type'      => Controls_Manager::COLOR,
-				'selectors' => array(
-					'{{WRAPPER}} .mas-tab-flex:not(:first-child):before' => 'color: {{VALUE}};',
-				),
-			)
-		);
-
 		$this->end_controls_section();
 	}
 
@@ -380,6 +369,9 @@ class Mas_Episodes extends Base_Widget {
 							<?php
 							$original_post = $GLOBALS['post'];
 							foreach ( $season['episodes'] as $key => $episode_id ) {
+								if ( get_the_ID() == $episode_id ) {
+									continue;
+								}
 								$GLOBALS['post'] = get_post( $episode_id ); // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
 								setup_postdata( $GLOBALS['post'] );
 
