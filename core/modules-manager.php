@@ -52,7 +52,8 @@ final class Modules_Manager {
 			'video',
 			'image-box',
 			'page-settings',
-			'mas-episodes',
+			'mas-tv-shows-episodes',
+			'episodes',
 		);
 
 		foreach ( $modules as $module_name ) {

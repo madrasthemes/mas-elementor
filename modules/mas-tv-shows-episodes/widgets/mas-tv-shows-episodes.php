@@ -2,10 +2,10 @@
 /**
  * The Mas Nav Tab Widget.
  *
- * @package MASElementor/Modules/MasEpisodes/Widgets
+ * @package MASElementor/Modules/MasTvShowsEpisodes/Widgets
  */
 
-namespace MASElementor\Modules\MasEpisodes\Widgets;
+namespace MASElementor\Modules\MasTvShowsEpisodes\Widgets;
 
 use Elementor\Controls_Manager;
 use Elementor\Group_Control_Typography;
@@ -29,7 +29,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * MAS Episodes Elementor Widget.
  */
-class Mas_Episodes extends Base_Widget {
+class Mas_Tv_Shows_Episodes extends Base_Widget {
 
 	/**
 	 * Get the name of the widget.
@@ -37,7 +37,7 @@ class Mas_Episodes extends Base_Widget {
 	 * @return string
 	 */
 	public function get_name() {
-		return 'mas-episodes';
+		return 'mas-tv-shows-episodes';
 	}
 
 	/**
@@ -64,7 +64,7 @@ class Mas_Episodes extends Base_Widget {
 	 * @return array
 	 */
 	public function get_keywords() {
-		return array( 'episode', 'mas' );
+		return array( 'tv-shows-episode', 'mas' );
 	}
 
 	/**
@@ -86,7 +86,7 @@ class Mas_Episodes extends Base_Widget {
 	 * @return array Element styles dependencies.
 	 */
 	public function get_style_depends() {
-		return array( 'mas-episodes-stylesheet' );
+		return array( 'mas-tv-shows-episodes-stylesheet' );
 	}
 
 	/**
