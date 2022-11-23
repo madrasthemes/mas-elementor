@@ -129,7 +129,7 @@ class Episodes extends Base_Widget {
 		$seasons = $tv_show->get_seasons();
 
 		$settings = $this->get_settings();
-		$test_id  = get_the_ID();
+		$test_id  = (string) get_the_ID();
 		?><div class="episodes-wrapper">
 		<?php
 		foreach ( $seasons as $key => $season ) {

@@ -37,7 +37,7 @@ class Mas_Tv_Shows_Episodes extends Base_Widget {
 	 * @return string
 	 */
 	public function get_name() {
-		return 'mas-tv-shows-episodes';
+		return 'mas-episodes';
 	}
 
 	/**
