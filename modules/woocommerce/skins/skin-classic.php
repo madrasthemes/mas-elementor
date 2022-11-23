@@ -61,7 +61,7 @@ class Skin_Classic extends Skin_Base {
 		$content = $shortcode->mas_product_content( $widget, $settings );
 
 		if ( $content ) {
-			echo $content; //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			echo wp_kses_post( $content );
 		} elseif ( $widget->get_settings( 'nothing_found_message' ) ) {
 			echo '<div class="elementor-nothing-found elementor-products-nothing-found">' . esc_html( $widget->get_settings( 'nothing_found_message' ) ) . '</div>';
 		}
