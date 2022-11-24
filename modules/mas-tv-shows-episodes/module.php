@@ -5,7 +5,7 @@
  * @package MASElementor/Modules/MasBreadcrumb/Widgets
  */
 
-namespace MASElementor\Modules\MasEpisodes;
+namespace MASElementor\Modules\MasTvShowsEpisodes;
 
 use MASElementor\Base\Module_Base;
 
@@ -23,7 +23,7 @@ class Module extends Module_Base {
 	 * @return array
 	 */
 	public function get_style_depends() {
-		return array( 'mas-episodes-stylesheet' );
+		return array( 'mas-tv-shows-episodes-stylesheet' );
 	}
 
 	/**
@@ -33,7 +33,7 @@ class Module extends Module_Base {
 	 */
 	public function get_widgets() {
 		return array(
-			'Mas_Episodes',
+			'Mas_Tv_Shows_Episodes',
 		);
 	}
 
@@ -43,7 +43,7 @@ class Module extends Module_Base {
 	 * @return string
 	 */
 	public function get_name() {
-		return 'mas-episodes';
+		return 'mas-tv-shows-episodes';
 	}
 	/**
 	 * Add Actions.
@@ -67,8 +67,8 @@ class Module extends Module_Base {
 	 */
 	public function register_frontend_styles() {
 		wp_register_style(
-			'mas-episodes-stylesheet',
-			MAS_ELEMENTOR_MODULES_URL . 'mas-episodes/css/mas-episodes-tab.css',
+			'mas-tv-shows-episodes-stylesheet',
+			MAS_ELEMENTOR_MODULES_URL . 'mas-tv-shows-episodes/css/mas-tv-shows-episodes-tab.css',
 			array(),
 			MAS_ELEMENTOR_VERSION
 		);

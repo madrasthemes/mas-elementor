@@ -2,10 +2,10 @@
 /**
  * The Mas Nav Tab Widget.
  *
- * @package MASElementor/Modules/MasEpisodes/Widgets
+ * @package MASElementor/Modules/MasTvShowsEpisodes/Widgets
  */
 
-namespace MASElementor\Modules\MasEpisodes\Widgets;
+namespace MASElementor\Modules\MasTvShowsEpisodes\Widgets;
 
 use Elementor\Controls_Manager;
 use Elementor\Group_Control_Typography;
@@ -29,7 +29,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * MAS Episodes Elementor Widget.
  */
-class Mas_Episodes extends Base_Widget {
+class Mas_Tv_Shows_Episodes extends Base_Widget {
 
 	/**
 	 * Get the name of the widget.
@@ -46,7 +46,7 @@ class Mas_Episodes extends Base_Widget {
 	 * @return string
 	 */
 	public function get_title() {
-		return esc_html__( 'MAS Episodes', 'mas-elementor' );
+		return esc_html__( 'MAS Tv-Shows Episodes', 'mas-elementor' );
 	}
 
 	/**
@@ -64,7 +64,7 @@ class Mas_Episodes extends Base_Widget {
 	 * @return array
 	 */
 	public function get_keywords() {
-		return array( 'episode', 'mas' );
+		return array( 'tv-shows-episode', 'mas' );
 	}
 
 	/**
@@ -86,7 +86,7 @@ class Mas_Episodes extends Base_Widget {
 	 * @return array Element styles dependencies.
 	 */
 	public function get_style_depends() {
-		return array( 'mas-episodes-stylesheet' );
+		return array( 'mas-tv-shows-episodes-stylesheet' );
 	}
 
 	/**
@@ -256,6 +256,18 @@ class Mas_Episodes extends Base_Widget {
 		);
 
 		$this->add_responsive_control(
+			'me_nav_tab_li_border_radius',
+			array(
+				'label'      => esc_html__( 'Border Radius', 'mas-elementor' ),
+				'type'       => Controls_Manager::DIMENSIONS,
+				'size_units' => array( 'px', 'em', '%', 'rem' ),
+				'selectors'  => array(
+					'{{WRAPPER}} .me-tabs .mas-tab-flex' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				),
+			)
+		);
+
+		$this->add_responsive_control(
 			'me_nav_tab_li_align',
 			array(
 				'label'     => esc_html__( 'Title Alignment', 'mas-elementor' ),
@@ -281,17 +293,6 @@ class Mas_Episodes extends Base_Widget {
 			)
 		);
 
-		$this->add_control(
-			'me_separator_before',
-			array(
-				'label'     => esc_html__( 'Delimiter Color', 'mas-elementor' ),
-				'type'      => Controls_Manager::COLOR,
-				'selectors' => array(
-					'{{WRAPPER}} .mas-tab-flex:not(:first-child):before' => 'color: {{VALUE}};',
-				),
-			)
-		);
-
 		$this->end_controls_section();
 	}
 
@@ -301,7 +302,10 @@ class Mas_Episodes extends Base_Widget {
 	protected function render() {
 		$settings = $this->get_settings();
 		$tv_shows = masvideos_get_tv_show( get_the_ID() );
-		$seasons  = $tv_shows->get_seasons();
+		if ( empty( $tv_shows ) ) {
+			return;
+		}
+		$seasons = $tv_shows->get_seasons();
 
 		?>
 		<div class="mas-episodes-tabs mas-episodes-tabs-wrapper">
@@ -340,6 +344,7 @@ class Mas_Episodes extends Base_Widget {
 				</ul>
 				<div class="mas-episodes-content-wrapper tab-content">
 					<?php
+
 					foreach ( $seasons as $index => $season ) {
 						$count    = $this->get_id() . (string) ( $index + 1 );
 						$active   = '';
@@ -352,7 +357,7 @@ class Mas_Episodes extends Base_Widget {
 						$this->add_render_attribute(
 							'list_link_item' . $count,
 							array(
-								'class'           => ' tab-pane' . $active,
+								'class'           => 'tab-pane' . $active,
 								'id'              => 'me-tab-' . $count,
 								'role'            => 'tabpanel',
 								'aria-labelledby' => 'tab-title-' . $count,
@@ -362,15 +367,19 @@ class Mas_Episodes extends Base_Widget {
 						?>
 						<div <?php $this->print_render_attribute_string( 'list_link_item' . $count ); ?>>
 							<?php
+							$original_post = $GLOBALS['post'];
 							foreach ( $season['episodes'] as $key => $episode_id ) {
-								$episode = masvideos_get_episode( $episode_id );
+								if ( get_the_ID() == $episode_id ) {
+									continue;
+								}
+								$GLOBALS['post'] = get_post( $episode_id ); // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
+								setup_postdata( $GLOBALS['post'] );
 
-								$post_object = get_post( $episode->get_id() );
-
-								setup_postdata( $GLOBALS['post'] =& $post_object ); // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited, Squiz.PHP.DisallowMultipleAssignments.Found
-								print( mas_render_template( $settings['select_template'], false ) );//phpcs:ignore
+								setup_postdata( masvideos_setup_episode_data( $episode_id ) ); // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited, Squiz.PHP.DisallowMultipleAssignments.Found
+								print( mas_render_template( $settings['select_template'], false ) );// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 
 							}
+							$GLOBALS['post'] = $original_post;// phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
 								wp_reset_postdata();
 							?>
 						</div>
