@@ -53,6 +53,7 @@ final class Modules_Manager {
 			'image-box',
 			'page-settings',
 			'mas-episodes',
+			'forms',
 		);
 
 		foreach ( $modules as $module_name ) {
