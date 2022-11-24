@@ -39,7 +39,7 @@ class Module extends Module_Base {
 	public function __construct() {
 		parent::__construct();
 		// add_action( 'wp_loaded', array( $this, 'mas_add_new_member' ) );.
-		add_action( 'wp_loaded', array( $this, 'mas_login_member' ) );
+		// add_action( 'wp_loaded', array( $this, 'mas_login_member' ) );.
 	}
 
 	/**
