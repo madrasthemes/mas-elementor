@@ -1,6 +1,6 @@
 {
 	"name": "mas-elementor",
-	"version": "0.0.1",
+	"version": "1.0.0",
 	"description": "More power to your Elementor powered website with beautifully designed sections, templates, widgets, skins and extensions.",
 	"main": "Gruntfile.js",
 	"repository": {

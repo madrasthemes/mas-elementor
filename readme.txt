@@ -55,7 +55,15 @@ All of our online documentation can be found on [our documentation site](https:/
 
 == Screenshots ==
 
-1. You can build Posts section, Carousel, Countdown  using MAS Elementor Widgets
+1. These are the widgets included in this plugin.
+2. Mas-post elementor-library is where we build the post widget's loop template.
+3. Build content using dynamic tags here we add featured image for template.
+4. Build content using dynamic tags here we add title for template.
+5. Build content using dynamic tags here we add date for template.
+6. Use Posts widgets to display posts, it is displayed in this style by default.
+7. Select the dropdown control Mas Template to display different styles you built in mas-posts
+8. This is the output of the posts widget from the selected template.
+
 
 
 == Changelog ==
