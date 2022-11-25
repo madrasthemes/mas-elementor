@@ -2,14 +2,10 @@
 	"name": "mas-elementor",
 	"version": "0.0.1",
 	"description": "More power to your Elementor powered website with beautifully designed sections, templates, widgets, skins and extensions.",
-	"main": "index.js",
-	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1",
-		"wp-env": "wp-env"
-	},
+	"main": "Gruntfile.js",
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/madrasthemes/mas-elementor.git"
+		"url": "https://github.com/madrasthemes/mas-elementor.git"
 	},
 	"author": "MadrasThemes",
 	"license": "GPL-3.0",
@@ -17,7 +13,39 @@
 		"url": "https://github.com/madrasthemes/mas-elementor/issues"
 	},
 	"homepage": "https://github.com/madrasthemes/mas-elementor#readme",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"wp-env": "wp-env"
+	},
 	"devDependencies": {
-		"@wordpress/env": "^4.3.1"
+		"@wordpress/env": "^4.1.3",
+		"autoprefixer": "^9.8.0",
+		"bootstrap": "^4.5.0",
+		"grunt": "^1.4.1",
+		"grunt-checktextdomain": "^1.0.1",
+		"grunt-contrib-clean": "^2.0.0",
+		"grunt-contrib-compress": "^1.6.0",
+		"grunt-contrib-concat": "^1.0.1",
+		"grunt-contrib-copy": "^1.0.0",
+		"grunt-contrib-cssmin": "^3.0.0",
+		"grunt-contrib-jshint": "^2.1.0",
+		"grunt-contrib-uglify": "^4.0.1",
+		"grunt-contrib-watch": "^1.1.0",
+		"grunt-postcss": "^0.9.0",
+		"grunt-rtlcss": "^2.0.2",
+		"grunt-sass": "^3.1.0",
+		"grunt-stylelint": "^0.15.0",
+		"grunt-wp-i18n": "^1.0.3",
+		"node-sass": "^7.0.1",
+		"stylelint": "^13.5.0"
+	},
+	"browserslist": [
+		"last 1 version",
+		"> 1%",
+		"IE 10"
+	],
+	"engines": {
+		"node": ">=6.9.4",
+		"npm": ">=1.1.0"
 	}
 }
