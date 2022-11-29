@@ -295,6 +295,33 @@ class Jobs_Filter extends Base_Widget {
 				],
 			]
 		);
+
+		$this->add_responsive_control(
+			'form_align',
+			[
+				'label' => esc_html__( 'Alignment', 'elementor' ),
+				'type' => Controls_Manager::CHOOSE,
+				'options' => [
+					'left' => [
+						'title' => esc_html__( 'Left', 'elementor' ),
+						'icon' => 'eicon-text-align-left',
+					],
+					'center' => [
+						'title' => esc_html__( 'Center', 'elementor' ),
+						'icon' => 'eicon-text-align-center',
+					],
+					'right' => [
+						'title' => esc_html__( 'Right', 'elementor' ),
+						'icon' => 'eicon-text-align-right',
+					],
+				],
+				'default' => '',
+				'selectors' => [
+					'{{WRAPPER}} .mas-search-form' => 'justify-content: {{VALUE}} !important;',
+				],
+			]
+		);
+
 		$this->end_controls_section();
 		$this->start_controls_section(
 			'section_keyword_style', [
