@@ -225,6 +225,25 @@ class Plugin {
 		add_action( 'elementor/frontend/after_enqueue_styles', array( $this, 'enqueue_styles' ) );
 
 		add_action( 'elementor/document/save_version', array( $this, 'on_document_save_version' ) );
+		add_filter( 'wp_kses_allowed_html', array( $this, 'mas_add_style_tag' ), 10, 2 );
+	}
+
+	/**
+	 * Added Style tag in wp_kses_post.
+	 *
+	 * @param array  $allowed allowed tags and attributes.
+	 * @param string $context context parameters type.
+	 */
+	public function mas_add_style_tag( $allowed, $context ) {
+
+		if ( is_array( $context ) ) {
+			return $allowed;
+		}
+
+		if ( 'post' === $context ) {
+			$allowed['style'] = '';
+		}
+		return apply_filters( 'mas_add_style_tag', $allowed );
 	}
 
 	/**

@@ -385,7 +385,6 @@ class Module extends Module_Base {
 		add_action( 'elementor/dynamic_tags/register', array( $this, 'register_tags' ) );
 		add_action( 'elementor/frontend/before_register_styles', array( $this, 'register_frontend_styles' ) );
 		add_action( 'elementor/editor/before_enqueue_scripts', array( $this, 'maybe_init_cart' ) );
-		add_filter( 'wp_kses_allowed_html', array( $this, 'mas_add_style_tag' ), 10, 2 );
 
 		// On Editor - Register WooCommerce frontend hooks before the Editor init.
 		// Priority = 5, in order to allow plugins remove/add their wc hooks on init.
@@ -399,24 +398,6 @@ class Module extends Module_Base {
 		}
 
 		add_filter( 'elementor/widgets/wordpress/widget_args', array( $this, 'woocommerce_wordpress_widget_css_class' ), 10, 2 );
-	}
-
-	/**
-	 * Added Style tag in wp_kses_post.
-	 *
-	 * @param array  $allowed allowed tags and attributes.
-	 * @param string $context context parameters type.
-	 */
-	public function mas_add_style_tag( $allowed, $context ) {
-
-		if ( is_array( $context ) ) {
-			return $allowed;
-		}
-
-		if ( 'post' === $context ) {
-			$allowed['style'] = '';
-		}
-		return apply_filters( 'mas_add_style_tag', $allowed );
 	}
 
 	/**
