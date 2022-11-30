@@ -54,6 +54,7 @@ final class Modules_Manager {
 			'page-settings',
 			'mas-tv-shows-episodes',
 			'episodes',
+			'forms',
 		);
 
 		foreach ( $modules as $module_name ) {
