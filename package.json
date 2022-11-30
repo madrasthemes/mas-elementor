@@ -15,7 +15,9 @@
 	"homepage": "https://github.com/madrasthemes/mas-elementor#readme",
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
-		"wp-env": "wp-env"
+		"wp-env": "wp-env",
+		"build": "npm run archive",
+		"archive": "composer archive --file=$npm_package_name --format=zip"
 	},
 	"devDependencies": {
 		"@wordpress/env": "^4.1.3",
