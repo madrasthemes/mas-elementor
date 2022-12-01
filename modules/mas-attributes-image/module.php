@@ -26,6 +26,8 @@ class Module extends Module_Base {
 		$widgets = array();
 		if ( class_exists( 'MasVideos' ) && class_exists( '\acf' ) && function_exists( 'acf_get_field_groups' ) ) {
 			$widgets[] = 'Mas_Movie_Attributes_ACF_Image';
+			$widgets[] = 'Mas_TV_Show_Attributes_ACF_Image';
+			$widgets[] = 'Mas_Video_Attributes_ACF_Image';
 		}
 		return $widgets;
 	}
