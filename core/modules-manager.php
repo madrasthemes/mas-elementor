@@ -55,6 +55,7 @@ final class Modules_Manager {
 			'mas-tv-shows-episodes',
 			'episodes',
 			'forms',
+			'mas-attributes-image',
 		);
 
 		foreach ( $modules as $module_name ) {
