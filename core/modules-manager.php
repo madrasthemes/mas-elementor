@@ -56,6 +56,7 @@ final class Modules_Manager {
 			'episodes',
 			'forms',
 			'mas-attributes-image',
+			'masvideos-genre',
 		);
 
 		foreach ( $modules as $module_name ) {
