@@ -130,7 +130,7 @@ class Episodes extends Base_Widget {
 		$this->start_controls_section(
 			'section_swiper_arrows',
 			array(
-				'label'     => __( 'Layout', 'mas-elementor' ),
+				'label'     => __( 'Arrows', 'mas-elementor' ),
 				'tab'       => Controls_Manager::TAB_CONTENT,
 				'condition' => array(
 					'show_arrows' => 'yes',
