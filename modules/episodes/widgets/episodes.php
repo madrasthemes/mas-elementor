@@ -190,7 +190,7 @@ class Episodes extends Base_Widget {
 				<!-- If we need navigation buttons -->
 				<div class="d-flex mas-swiper-arrows">
 				<?php
-				$this->render_button( $this, $prev_id, $next_id, );
+				$this->render_button( $this, $prev_id, $next_id );
 				?>
 				</div>
 				<?php
