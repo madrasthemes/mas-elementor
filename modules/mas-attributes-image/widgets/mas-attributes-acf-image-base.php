@@ -136,6 +136,8 @@ abstract class Mas_Attributes_ACF_Image_Base extends Widget_Image {
 		if ( ! empty( $settings['key'] ) && ! empty( $terms ) ) {
 			$pair               = explode( ':', $settings['key'] );
 			list( $key, $name ) = $pair;
+			?><div class="acf-attr-image" style="display:flex;">
+			<?php
 			foreach ( $terms as $term ) {
 				$acf                   = get_field( $key, $term );
 				$settings['image_key'] = array(
@@ -144,6 +146,9 @@ abstract class Mas_Attributes_ACF_Image_Base extends Widget_Image {
 				);
 				Group_Control_Image_Size::print_attachment_image_html( $settings, 'attr_image', 'image_key' );
 			}
+			?>
+			</div>
+			<?php
 		}
 	}
 
