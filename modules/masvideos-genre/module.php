@@ -38,4 +38,26 @@ class Module extends Module_Base {
 	public function get_name() {
 		return 'masvideos-genre-filter';
 	}
+
+	/**
+	 * Instantiate the class.
+	 */
+	public function __construct() {
+		parent::__construct();
+
+		add_action( 'elementor/frontend/before_register_styles', array( $this, 'register_frontend_styles' ) );
+
+	}
+
+	/**
+	 * Register frontend styles.
+	 */
+	public function register_frontend_styles() {
+		wp_register_style(
+			'genre-stylesheet',
+			MAS_ELEMENTOR_MODULES_URL . 'masvideos-genre/assets/css/genre-filter.css',
+			array(),
+			MAS_ELEMENTOR_VERSION
+		);
+	}
 }
