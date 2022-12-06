@@ -150,11 +150,11 @@ class Movie_Genre_Filter extends Base_Widget {
 		$this->add_group_control(
 			Group_Control_Typography::get_type(),
 			array(
-				'name'      => 'filter_text',
-				'global'    => array(
+				'name'     => 'filter_text',
+				'global'   => array(
 					'default' => Global_Typography::TYPOGRAPHY_ACCENT,
 				),
-				'selector'  => '{{WRAPPER}} .filter-text',
+				'selector' => '{{WRAPPER}} .filter-text',
 			)
 		);
 
