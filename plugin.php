@@ -278,6 +278,7 @@ class Plugin {
 		spl_autoload_register( array( $this, 'autoload' ) );
 
 		$this->setup_hooks();
+		require_once MAS_ELEMENTOR_TEMPLATES_PATH . 'templates.php';
 	}
 
 	/**

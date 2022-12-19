@@ -91,6 +91,9 @@
         display: none;
     }
 }
+.bg-gradient-primary{
+  background:linear-gradient(to right, #1013bc, #9d83da, #26eef1)
+}
 
 
 
