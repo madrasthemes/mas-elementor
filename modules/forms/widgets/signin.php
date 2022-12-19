@@ -1,0 +1,1695 @@
+<?php
+/**
+ * The Posts Widget.
+ *
+ * @package MASElementor/Modules/Forms/Widgets
+ */
+
+namespace MASElementor\Modules\Forms\Widgets;
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+
+use MASElementor\Base\Base_Widget;
+use Elementor\Controls_Manager;
+use Elementor\Core\Schemes;
+use Elementor\Group_Control_Typography;
+use Elementor\Group_Control_Box_Shadow;
+use Elementor\Plugin;
+use WP_Error;
+
+/**
+ * MAS Elementor login widget.
+ *
+ * MAS Elementor widget that displays a login with the ability to control every
+ * aspect of the login design.
+ *
+ * @since 1.0.0
+ */
+class Signin extends Base_Widget {
+
+	/**
+	 * Get the name of the widget.
+	 *
+	 * @return string
+	 */
+	public function get_name() {
+		return 'mas-login';
+	}
+
+	/**
+	 * Get the title of the widget.
+	 *
+	 * @return string
+	 */
+	public function get_title() {
+		return esc_html__( 'User Account Forms', 'mas-elementor' );
+	}
+
+	/**
+	 * Get the icon for the widget.
+	 *
+	 * @return string
+	 */
+	public function get_icon() {
+		return 'eicon-lock-user';
+	}
+
+	/**
+	 * Get the keywords related to the widget.
+	 *
+	 * @return array
+	 */
+	public function get_keywords() {
+		return array( 'login', 'user', 'form', 'signin', 'signup', 'register' );
+	}
+
+	/**
+	 * Get the script dependencies for this widget.
+	 *
+	 * @return array
+	 */
+	public function get_script_depends() {
+		return array( 'forgot-password' );
+	}
+
+	/**
+	 * Register controls for this widget.
+	 */
+	protected function register_controls() {
+
+		$can_register = get_option( 'users_can_register' );
+
+		$this->start_controls_section(
+			'section_general',
+			array(
+				'label' => esc_html__( 'General', 'mas-elementor' ),
+			)
+		);
+
+		$this->add_control(
+			'display',
+			array(
+				'label'       => esc_html__( 'Display', 'mas-elementor' ),
+				'description' => esc_html__( 'Choose which forms you want to display. Please note that the register form is available only if registration is enabled from Settings > General > Membership.', 'mas-elementor' ),
+				'type'        => Controls_Manager::SELECT,
+				'options'     => array(
+					'all'      => esc_html__( 'All', 'mas-elementor' ),
+					'login'    => esc_html__( 'Login', 'mas-elementor' ),
+					'register' => esc_html__( 'Register', 'mas-elementor' ),
+					'forgot'   => esc_html__( 'Password Reset', 'mas-elementor' ),
+				),
+				'default'     => 'all',
+			)
+		);
+
+		$this->end_controls_section();
+
+		$this->add_form_option_controls();
+
+		$this->add_login_form_controls();
+
+		$this->add_register_form_controls();
+
+		$this->add_password_reset_form_controls();
+
+		$this->add_additional_options_controls();
+
+		$this->start_controls_section(
+			'section_heading_style',
+			array(
+				'label' => esc_html__( 'Form', 'mas-elementor' ),
+				'tab'   => Controls_Manager::TAB_STYLE,
+			)
+		);
+
+		$this->add_control(
+			'form_title_heading',
+			array(
+				'label'     => __( 'Form Title', 'mas-elementor' ),
+				'type'      => Controls_Manager::HEADING,
+				'condition' => array( 'show_form_title' => 'yes' ),
+			)
+		);
+
+		$this->add_control(
+			'form_title_color',
+			array(
+				'label'     => esc_html__( 'Color', 'mas-elementor' ),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => array(
+					'{{WRAPPER}} .form-header__title' => 'color: {{VALUE}};',
+				),
+				'condition' => array( 'show_form_title' => 'yes' ),
+			)
+		);
+
+		$this->add_group_control(
+			Group_Control_Typography::get_type(),
+			array(
+				'name'      => 'form_title_typography',
+				'selector'  => '{{WRAPPER}} .form-header__title',
+				'condition' => array( 'show_form_title' => 'yes' ),
+			)
+		);
+
+		$this->add_control(
+			'form_title_alignment',
+			array(
+				'label'     => esc_html__( 'Alignment', 'mas-elementor' ),
+				'type'      => Controls_Manager::CHOOSE,
+				'options'   => array(
+					'left'   => array(
+						'title' => esc_html__( 'Left', 'mas-elementor' ),
+						'icon'  => 'eicon-text-align-left',
+					),
+					'center' => array(
+						'title' => esc_html__( 'Center', 'mas-elementor' ),
+						'icon'  => 'eicon-text-align-center',
+					),
+					'right'  => array(
+						'title' => esc_html__( 'Right', 'mas-elementor' ),
+						'icon'  => 'eicon-text-align-right',
+					),
+				),
+				'selectors' => array(
+					'{{WRAPPER}} .form-header__title' => 'text-align: {{VALUE}}',
+				),
+				'default'   => 'left',
+				'condition' => array( 'show_form_title' => 'yes' ),
+			)
+		);
+
+		$this->add_control(
+			'title_css',
+			array(
+				'label'     => esc_html__( 'CSS Classes', 'mas-elementor' ),
+				'type'      => Controls_Manager::TEXT,
+				'title'     => esc_html__( 'Add your custom class for text without the dot. e.g: my-class', 'mas-elementor' ),
+				'default'   => 'mb-0 font-weight-bold',
+				'condition' => array( 'show_form_title' => 'yes' ),
+			)
+		);
+
+		$this->add_control(
+			'form_description_heading',
+			array(
+				'label'     => __( 'Form Description', 'mas-elementor' ),
+				'type'      => Controls_Manager::HEADING,
+				'separator' => 'before',
+				'condition' => array( 'show_form_description' => 'yes' ),
+			)
+		);
+
+		$this->add_control(
+			'form_description_color',
+			array(
+				'label'     => esc_html__( 'Color', 'mas-elementor' ),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => array(
+					'{{WRAPPER}} .form-header__desc' => 'color: {{VALUE}};',
+				),
+				'condition' => array( 'show_form_description' => 'yes' ),
+			)
+		);
+
+		$this->add_group_control(
+			Group_Control_Typography::get_type(),
+			array(
+				'name'      => 'form_description_typography',
+				'selector'  => '{{WRAPPER}} .form-header__desc',
+				'condition' => array( 'show_form_description' => 'yes' ),
+			)
+		);
+
+		$this->add_control(
+			'description_alignment',
+			array(
+				'label'     => esc_html__( 'Description Alignment', 'mas-elementor' ),
+				'type'      => Controls_Manager::CHOOSE,
+				'options'   => array(
+					'left'   => array(
+						'title' => esc_html__( 'Left', 'mas-elementor' ),
+						'icon'  => 'eicon-text-align-left',
+					),
+					'center' => array(
+						'title' => esc_html__( 'Center', 'mas-elementor' ),
+						'icon'  => 'eicon-text-align-center',
+					),
+					'right'  => array(
+						'title' => esc_html__( 'Right', 'mas-elementor' ),
+						'icon'  => 'eicon-text-align-right',
+					),
+				),
+				'selectors' => array(
+					'{{WRAPPER}} .form-header__desc' => 'text-align: {{VALUE}}',
+				),
+				'default'   => 'left',
+				'condition' => array( 'show_form_description' => 'yes' ),
+			)
+		);
+
+		$this->add_control(
+			'description_css',
+			array(
+				'label'     => esc_html__( 'CSS Classes', 'mas-elementor' ),
+				'type'      => Controls_Manager::TEXT,
+				'title'     => esc_html__( 'Add your custom class for text without the dot. e.g: my-class', 'mas-elementor' ),
+				'default'   => 'mb-6 text-muted',
+				'condition' => array(
+					'show_form_description' => 'yes',
+				),
+			)
+		);
+
+		$this->add_control(
+			'form_footer_alignment',
+			array(
+				'label'     => esc_html__( 'Form Footer Alignment', 'mas-elementor' ),
+				'type'      => Controls_Manager::CHOOSE,
+				'options'   => array(
+					'left'   => array(
+						'title' => esc_html__( 'Left', 'mas-elementor' ),
+						'icon'  => 'eicon-text-align-left',
+					),
+					'center' => array(
+						'title' => esc_html__( 'Center', 'mas-elementor' ),
+						'icon'  => 'eicon-text-align-center',
+					),
+					'right'  => array(
+						'title' => esc_html__( 'Right', 'mas-elementor' ),
+						'icon'  => 'eicon-text-align-right',
+					),
+				),
+				'separator' => 'before',
+				'default'   => 'left',
+				'selectors' => array(
+					'{{WRAPPER}} .form__footer' => 'text-align: {{VALUE}}',
+				),
+			)
+		);
+
+		$this->end_controls_section();
+	}
+
+	/**
+	 * Add form option controls.
+	 */
+	private function add_form_option_controls() {
+		$this->start_controls_section(
+			'section_form_controls',
+			array(
+				'label' => esc_html__( 'Form Controls', 'mas-elementor' ),
+			)
+		);
+
+		$this->add_control(
+			'show_form_title',
+			array(
+				'label'     => esc_html__( 'Title', 'mas-elementor' ),
+				'type'      => Controls_Manager::SWITCHER,
+				'default'   => 'yes',
+				'label_off' => esc_html__( 'Hide', 'mas-elementor' ),
+				'label_on'  => esc_html__( 'Show', 'mas-elementor' ),
+			)
+		);
+
+		$this->add_control(
+			'title_tag',
+			array(
+				'label'     => esc_html__( 'Title HTML Tag', 'mas-elementor' ),
+				'type'      => Controls_Manager::SELECT,
+				'options'   => array(
+					'h1'   => 'H1',
+					'h2'   => 'H2',
+					'h3'   => 'H3',
+					'h4'   => 'H4',
+					'h5'   => 'H5',
+					'h6'   => 'H6',
+					'div'  => 'div',
+					'span' => 'span',
+					'p'    => 'p',
+				),
+				'default'   => 'h1',
+				'condition' => array(
+					'show_form_title' => 'yes',
+				),
+			)
+		);
+
+		$this->add_control(
+			'show_form_description',
+			array(
+				'label'     => esc_html__( 'Description', 'mas-elementor' ),
+				'type'      => Controls_Manager::SWITCHER,
+				'default'   => 'yes',
+				'label_off' => esc_html__( 'Hide', 'mas-elementor' ),
+				'label_on'  => esc_html__( 'Show', 'mas-elementor' ),
+			)
+		);
+
+		$this->add_control(
+			'show_labels',
+			array(
+				'label'     => esc_html__( 'Labels', 'mas-elementor' ),
+				'type'      => Controls_Manager::SWITCHER,
+				'default'   => 'yes',
+				'label_off' => esc_html__( 'Hide', 'mas-elementor' ),
+				'label_on'  => esc_html__( 'Show', 'mas-elementor' ),
+			)
+		);
+
+		$this->add_control(
+			'button_heading',
+			array(
+				'label'     => esc_html__( 'Submit Button', 'mas-elementor' ),
+				'type'      => Controls_Manager::HEADING,
+				'separator' => 'before',
+			)
+		);
+
+		$this->add_control(
+			'button_type',
+			array(
+				'label'   => esc_html__( 'Type', 'mas-elementor' ),
+				'type'    => Controls_Manager::SELECT,
+				'default' => 'primary',
+				'options' => array(
+					'primary'           => esc_html__( 'Primary', 'mas-elementor' ),
+					'secondary'         => esc_html__( 'Secondary', 'mas-elementor' ),
+					'success'           => esc_html__( 'Success', 'mas-elementor' ),
+					'danger'            => esc_html__( 'Danger', 'mas-elementor' ),
+					'warning'           => esc_html__( 'Warning', 'mas-elementor' ),
+					'info'              => esc_html__( 'Info', 'mas-elementor' ),
+					'light'             => esc_html__( 'Light', 'mas-elementor' ),
+					'dark'              => esc_html__( 'Dark', 'mas-elementor' ),
+					'link'              => esc_html__( 'Link', 'mas-elementor' ),
+					'outline-primary'   => esc_html__( 'Primary outline', 'mas-elementor' ),
+					'outline-secondary' => esc_html__( 'Secondary outline', 'mas-elementor' ),
+					'outline-success'   => esc_html__( 'Success outline', 'mas-elementor' ),
+					'outline-danger'    => esc_html__( 'Danger outline', 'mas-elementor' ),
+					'outline-warning'   => esc_html__( 'Warning outline', 'mas-elementor' ),
+					'outline-info'      => esc_html__( 'Info outline', 'mas-elementor' ),
+					'outline-light'     => esc_html__( 'Light outline', 'mas-elementor' ),
+					'outline-dark'      => esc_html__( 'Dark outline', 'mas-elementor' ),
+					'primary-soft'      => esc_html__( 'Primary soft', 'mas-elementor' ),
+					'secondary-soft'    => esc_html__( 'Secondary soft', 'mas-elementor' ),
+					'success-soft'      => esc_html__( 'Success soft', 'mas-elementor' ),
+					'danger-soft'       => esc_html__( 'Danger soft', 'mas-elementor' ),
+					'warning-soft'      => esc_html__( 'Warning soft', 'mas-elementor' ),
+					'info-soft'         => esc_html__( 'Info soft', 'mas-elementor' ),
+				),
+			)
+		);
+
+		$this->add_control(
+			'button_size',
+			array(
+				'label'          => esc_html__( 'Size', 'mas-elementor' ),
+				'type'           => Controls_Manager::SELECT,
+				'options'        => array(
+					'xs' => esc_html__( 'Extra Small', 'mas-elementor' ),
+					'sm' => esc_html__( 'Small', 'mas-elementor' ),
+					''   => esc_html__( 'Base', 'mas-elementor' ),
+					'lg' => esc_html__( 'Large', 'mas-elementor' ),
+				),
+				'style_transfer' => true,
+				'default'        => '',
+			)
+		);
+
+		$this->add_control(
+			'button_radius',
+			array(
+				'label'          => esc_html__( 'Border Radius', 'mas-elementor' ),
+				'type'           => Controls_Manager::SELECT,
+				'options'        => array(
+					''          => esc_html__( 'Normal', 'mas-elementor' ),
+					'pill'      => esc_html__( 'Pill', 'mas-elementor' ),
+					'rounded-0' => esc_html__( 'Rounded 0', 'mas-elementor' ),
+					'card-btn'  => esc_html__( 'Card Btn', 'mas-elementor' ),
+				),
+				'default'        => '',
+				'style_transfer' => true,
+			)
+		);
+
+		$this->add_control(
+			'button_css_id',
+			array(
+				'label'       => esc_html__( 'Button ID', 'mas-elementor' ),
+				'type'        => Controls_Manager::TEXT,
+				'dynamic'     => array(
+					'active' => true,
+				),
+				'default'     => '',
+				'title'       => esc_html__( 'Add your custom id WITHOUT the Pound key. e.g: my-id', 'mas-elementor' ),
+				'description' => esc_html__( 'Please make sure the ID is unique and not used elsewhere on the page this form is displayed. This field allows <code>A-z 0-9</code> & underscore chars without spaces.', 'mas-elementor' ),
+				'separator'   => 'before',
+
+			)
+		);
+
+		$this->end_controls_section();
+	}
+
+	/**
+	 * Form fields render attributes.
+	 */
+	private function form_fields_render_attributes() {
+		$settings  = $this->get_settings();
+		$unique_id = uniqid();
+
+		$this->add_render_attribute(
+			'button_text',
+			'class',
+			array(
+				'elementor-login__button',
+				'btn',
+				'btn-block',
+			)
+		);
+
+		$this->add_render_attribute(
+			'register_button_text',
+			'class',
+			array(
+				'mas-register__button',
+				'btn',
+				'btn-block',
+			)
+		);
+
+		if ( ! empty( $settings['button_type'] ) ) {
+			$this->add_render_attribute( 'button_text', 'class', 'btn-' . $settings['button_type'] );
+		}
+
+		if ( ! empty( $settings['button_radius'] ) ) {
+			if ( 'rounded-0' === $settings['button_radius'] ) {
+				$this->add_render_attribute( 'button_text', 'class', $settings['button_radius'] );
+			} elseif ( 'card-btn' === $settings['button_radius'] ) {
+				$this->add_render_attribute( 'button_text', 'class', $settings['button_radius'] );
+			} else {
+				$this->add_render_attribute( 'button_text', 'class', 'btn-' . $settings['button_radius'] );
+			}
+		}
+
+		if ( ! empty( $settings['button_size'] ) ) {
+			$this->add_render_attribute( 'button_text', 'class', 'btn-' . $settings['button_size'] );
+		}
+
+		if ( ! empty( $settings['button_classes'] ) ) {
+			$this->add_render_attribute( 'button_text', 'class', $settings['button_classes'] );
+		}
+
+		$this->add_render_attribute(
+			array(
+				'wrapper'                         => array(
+					'class' => array(
+						'mas-form-fields-wrapper',
+						'mb-6',
+					),
+				),
+				'field-group'                     => array(
+					'class' => array(
+						'elementor-field-type-text',
+						'elementor-field-group',
+						'elementor-column',
+						'elementor-col-100',
+						'form-group',
+						'p-0',
+					),
+				),
+				'submit-group'                    => array(
+					'class' => array(
+						'mb-0',
+						'p-0',
+						'mt-2',
+					),
+				),
+
+				'button'                          => array(
+					'class' => array(
+						'mas-button',
+					),
+					'name'  => 'login',
+				),
+				'user_label'                      => array(
+					'for' => 'user-' . $unique_id,
+				),
+				'user_input'                      => array(
+					'type'        => 'text',
+					'name'        => 'username',
+					'id'          => 'user-' . $unique_id,
+					'placeholder' => $settings['user_placeholder'],
+					'class'       => array(
+						'form-control',
+					),
+					'value'       => ( ! empty( $_POST['username'] ) ) ? esc_attr( wp_unslash( $_POST['username'] ) ) : '', // phpcs:ignore WordPress.Security.NonceVerification.Missing, WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+				),
+				'password_label'                  => array(
+					'for' => 'password-' . $unique_id,
+				),
+				'password_input'                  => array(
+					'type'        => 'password',
+					'name'        => 'password',
+					'id'          => 'password-' . $unique_id,
+					'placeholder' => $settings['password_placeholder'],
+					'class'       => array(
+						'form-control',
+
+					),
+				),
+				'user_forget_password_label'      => array(
+					'for' => 'recoverSrEmail-' . $unique_id,
+
+				),
+
+				'user_forget_password_input'      => array(
+					'type'        => 'text',
+					'name'        => 'user_login',
+					'id'          => 'recoverSrEmail-' . $unique_id,
+					'placeholder' => $settings['user_placeholder'],
+					'class'       => array(
+						'form-control',
+					),
+				),
+
+				'user_register_label'             => array(
+					'for' => 'reg_username-' . $unique_id,
+				),
+
+				'user_register_input'             => array(
+					'type'        => 'text',
+					'name'        => 'username',
+					'id'          => 'reg_username-' . $unique_id,
+					'placeholder' => $settings['register_email_placeholder'],
+					'class'       => array(
+						'form-control',
+					),
+				),
+
+				'register_password_label'         => array(
+					'for' => 'signupSrPassword-' . $unique_id,
+				),
+
+				'register_password_input'         => array(
+					'type'        => 'password',
+					'name'        => 'password',
+					'id'          => 'signupSrPassword-' . $unique_id,
+					'placeholder' => $settings['register_password_placeholder'],
+					'class'       => array(
+						'form-control',
+					),
+				),
+				'email_register_label'            => array(
+					'for' => 'reg_email-' . $unique_id,
+				),
+
+				'email_register_input'            => array(
+					'type'        => 'email',
+					'name'        => 'email',
+					'id'          => 'reg_email-' . $unique_id,
+					'placeholder' => $settings['register_email_placeholder'],
+					'class'       => array(
+						'form-control',
+					),
+				),
+				'register_confirm_password_label' => array(
+					'for'   => 'signupSrConfirmPassword-' . $unique_id,
+					'class' => 'sr-only',
+				),
+				'register_confirm_password_input' => array(
+					'type'        => 'password',
+					'name'        => 'confirmPassword',
+					'id'          => 'signupSrConfirmPassword-' . $unique_id,
+					'placeholder' => $settings['register_confirm_password_placeholder'],
+					'class'       => array(
+						'form-control',
+					),
+				),
+
+				// TODO: add unique ID.
+				'label_user'                      => array(
+					'for'   => 'user',
+					'class' => 'elementor-field-label',
+				),
+
+				'label_password'                  => array(
+					'for'   => 'password',
+					'class' => 'elementor-field-label',
+				),
+			)
+		);
+
+		if ( ! $settings['show_labels'] ) {
+			$this->add_render_attribute( 'label', 'class', 'elementor-screen-only' );
+		}
+
+		$this->add_render_attribute( 'field-group', 'class', 'elementor-field-required' )
+			->add_render_attribute( 'input', 'required', true )
+			->add_render_attribute( 'input', 'aria-required', 'true' );
+	}
+
+	/**
+	 * Add login form controls.
+	 */
+	private function add_login_form_controls() {
+
+		$can_register = get_option( 'users_can_register' );
+
+		$this->start_controls_section(
+			'section_login',
+			array(
+				'label'     => esc_html__( 'Login Form', 'mas-elementor' ),
+				'condition' => array(
+					'display' => array( 'all', 'login' ),
+				),
+			)
+		);
+
+		$this->add_control(
+			'login_title',
+			array(
+				'label'       => esc_html__( 'Form Title', 'mas-elementor' ),
+				'type'        => Controls_Manager::TEXT,
+				'label_block' => true,
+				'default'     => esc_html__( 'Sign in', 'mas-elementor' ),
+				'placeholder' => esc_html__( 'Title', 'mas-elementor' ),
+				'condition'   => array(
+					'show_form_title' => 'yes',
+				),
+			)
+		);
+
+		$this->add_control(
+			'login_description',
+			array(
+				'label'       => esc_html__( 'Form Description', 'mas-elementor' ),
+				'type'        => Controls_Manager::TEXTAREA,
+				'default'     => esc_html__( 'Simplify your workflow in minutes.', 'mas-elementor' ),
+				'placeholder' => esc_html__( 'Description', 'mas-elementor' ),
+				'condition'   => array(
+					'show_form_description' => 'yes',
+				),
+			)
+		);
+
+		$this->add_control(
+			'user_label',
+			array(
+				'label'       => esc_html__( 'Username Label', 'mas-elementor' ),
+				'type'        => Controls_Manager::TEXT,
+				'label_block' => true,
+				'separator'   => 'before',
+				'default'     => esc_html__( 'Email Address', 'mas-elementor' ),
+				'condition'   => array(
+					'show_labels' => 'yes',
+				),
+			)
+		);
+
+		$this->add_control(
+			'user_placeholder',
+			array(
+				'label'       => esc_html__( 'Username Placeholder', 'mas-elementor' ),
+				'type'        => Controls_Manager::TEXT,
+				'label_block' => true,
+				'default'     => esc_html__( 'name@address.com', 'mas-elementor' ),
+			)
+		);
+
+		$this->add_control(
+			'password_label',
+			array(
+				'label'       => esc_html__( 'Password Label', 'mas-elementor' ),
+				'type'        => Controls_Manager::TEXT,
+				'label_block' => true,
+				'separator'   => 'before',
+				'default'     => esc_html__( 'Password', 'mas-elementor' ),
+				'condition'   => array(
+					'show_labels' => 'yes',
+				),
+			)
+		);
+
+		$this->add_control(
+			'password_placeholder',
+			array(
+				'label'       => esc_html__( 'Password Placeholder', 'mas-elementor' ),
+				'type'        => Controls_Manager::TEXT,
+				'label_block' => true,
+				'default'     => esc_html__( 'Enter your password', 'mas-elementor' ),
+			)
+		);
+
+		$this->add_control(
+			'show_lost_password',
+			array(
+				'label'     => esc_html__( 'Password Reset Link', 'mas-elementor' ),
+				'separator' => 'before',
+				'type'      => Controls_Manager::SWITCHER,
+				'default'   => 'yes',
+				'label_off' => esc_html__( 'Hide', 'mas-elementor' ),
+				'label_on'  => esc_html__( 'Show', 'mas-elementor' ),
+			)
+		);
+
+		$this->add_control(
+			'password_reset_text',
+			array(
+				'label'       => esc_html__( 'Password Reset Text', 'mas-elementor' ),
+				'type'        => Controls_Manager::TEXT,
+				'label_block' => true,
+				'default'     => esc_html__( 'Lost your password?', 'mas-elementor' ),
+				'label_off'   => esc_html__( 'Hide', 'mas-elementor' ),
+				'label_on'    => esc_html__( 'Show', 'mas-elementor' ),
+				'condition'   => array( 'show_lost_password' => 'yes' ),
+			)
+		);
+
+		$this->add_control(
+			'password_reset_link',
+			array(
+				'label'     => esc_html__( 'Password Reset Page', 'mas-elementor' ),
+				'type'      => Controls_Manager::URL,
+				'default'   => array( 'url' => '#' ),
+				'dynamic'   => array( 'active' => true ),
+				'condition' => array(
+					'display!'           => 'all',
+					'show_lost_password' => 'yes',
+				),
+			)
+		);
+
+		$this->add_control(
+			'show_remember_me',
+			array(
+				'label'     => esc_html__( 'Remember Me', 'mas-elementor' ),
+				'type'      => Controls_Manager::SWITCHER,
+				'default'   => 'no',
+				'separator' => 'before',
+				'label_off' => esc_html__( 'Hide', 'mas-elementor' ),
+				'label_on'  => esc_html__( 'Show', 'mas-elementor' ),
+			)
+		);
+
+		$this->add_control(
+			'button_text',
+			array(
+				'label'       => esc_html__( 'Login Button Text', 'mas-elementor' ),
+				'label_block' => true,
+				'separator'   => 'before',
+				'type'        => Controls_Manager::TEXT,
+				'default'     => esc_html__( 'Sign in', 'mas-elementor' ),
+			)
+		);
+
+		if ( $can_register ) :
+
+			$this->add_control(
+				'show_register',
+				array(
+					'label'     => esc_html__( 'Registration Link', 'mas-elementor' ),
+					'type'      => Controls_Manager::SWITCHER,
+					'default'   => 'yes',
+					'separator' => 'before',
+					'label_off' => esc_html__( 'Hide', 'mas-elementor' ),
+					'label_on'  => esc_html__( 'Show', 'mas-elementor' ),
+				)
+			);
+
+			$this->add_control(
+				'register_link_intro',
+				array(
+					'label'       => esc_html__( 'Registration Page Intro', 'mas-elementor' ),
+					'label_block' => true,
+					'type'        => Controls_Manager::TEXT,
+					'default'     => esc_html__( 'Don\'t have an account yet?', 'mas-elementor' ),
+					'condition'   => array( 'show_register' => 'yes' ),
+				)
+			);
+
+			$this->add_control(
+				'register_link_text',
+				array(
+					'label'       => esc_html__( 'Registration Link Text', 'mas-elementor' ),
+					'label_block' => true,
+					'type'        => Controls_Manager::TEXT,
+					'default'     => esc_html__( 'Sign up', 'mas-elementor' ),
+					'condition'   => array( 'show_register' => 'yes' ),
+				)
+			);
+
+			$this->add_control(
+				'register_link',
+				array(
+					'label'     => esc_html__( 'Registration Page Link', 'mas-elementor' ),
+					'type'      => Controls_Manager::URL,
+					'default'   => array( 'url' => '#' ),
+					'dynamic'   => array( 'active' => true ),
+					'condition' => array(
+						'display!'      => 'all',
+						'show_register' => 'yes',
+					),
+				)
+			);
+
+		endif;
+
+		$this->end_controls_section();
+	}
+
+	/**
+	 * Add register form controls.
+	 */
+	private function add_register_form_controls() {
+		$can_register = get_option( 'users_can_register' );
+
+		if ( $can_register ) :
+
+			$this->start_controls_section(
+				'section_register',
+				array(
+					'label'     => esc_html__( 'Register Form', 'mas-elementor' ),
+					'condition' => array( 'display' => array( 'all', 'register' ) ),
+				)
+			);
+
+			$this->add_control(
+				'register_title',
+				array(
+					'label'       => esc_html__( 'Form Title', 'mas-elementor' ),
+					'type'        => Controls_Manager::TEXT,
+					'label_block' => true,
+					'default'     => esc_html__( 'Sign up', 'mas-elementor' ),
+					'placeholder' => esc_html__( 'Title', 'mas-elementor' ),
+					'condition'   => array( 'show_form_title' => 'yes' ),
+				)
+			);
+
+			$this->add_control(
+				'register_description',
+				array(
+					'label'       => esc_html__( 'Form Description', 'mas-elementor' ),
+					'type'        => Controls_Manager::TEXTAREA,
+					'default'     => esc_html__( 'Simplify your workflow in minutes.', 'mas-elementor' ),
+					'placeholder' => esc_html__( 'Description', 'mas-elementor' ),
+					'condition'   => array( 'show_form_description' => 'yes' ),
+					'separator'   => 'after',
+				)
+			);
+
+			$this->add_control(
+				'register_email_label',
+				array(
+					'label'       => esc_html__( 'Email Label', 'mas-elementor' ),
+					'label_block' => true,
+					'type'        => Controls_Manager::TEXT,
+					'default'     => esc_html__( 'Email Address', 'mas-elementor' ),
+					'condition'   => array( 'show_labels' => 'yes' ),
+				)
+			);
+
+			$this->add_control(
+				'register_email_placeholder',
+				array(
+					'label'       => esc_html__( 'Email Placeholder', 'mas-elementor' ),
+					'label_block' => true,
+					'type'        => Controls_Manager::TEXT,
+					'default'     => esc_html__( 'name@address.com', 'mas-elementor' ),
+					'separator'   => 'after',
+				)
+			);
+
+			$this->add_control(
+				'register_password_label',
+				array(
+					'label'       => esc_html__( 'Pasword Label', 'mas-elementor' ),
+					'label_block' => true,
+					'type'        => Controls_Manager::TEXT,
+					'default'     => esc_html__( 'Password', 'mas-elementor' ),
+					'condition'   => array( 'show_labels' => 'yes' ),
+				)
+			);
+
+			$this->add_control(
+				'register_password_placeholder',
+				array(
+					'label'       => esc_html__( 'Password Placeholder', 'mas-elementor' ),
+					'label_block' => true,
+					'type'        => Controls_Manager::TEXT,
+					'default'     => esc_html__( 'Enter your password', 'mas-elementor' ),
+				)
+			);
+
+			$this->add_control(
+				'register_confirm_password_placeholder',
+				array(
+					'label'       => esc_html__( 'Confirm Password Label', 'mas-elementor' ),
+					'label_block' => true,
+					'type'        => Controls_Manager::TEXT,
+					'default'     => esc_html__( 'Confirm Password', 'mas-elementor' ),
+					'separator'   => 'after',
+				)
+			);
+
+			$this->add_control(
+				'register_button_text',
+				array(
+					'label'       => esc_html__( 'Register Button Text', 'mas-elementor' ),
+					'type'        => Controls_Manager::TEXT,
+					'label_block' => true,
+					'default'     => esc_html__( 'Sign up', 'mas-elementor' ),
+				)
+			);
+
+			$this->add_control(
+				'show_login',
+				array(
+					'label'     => esc_html__( 'Login Link', 'mas-elementor' ),
+					'type'      => Controls_Manager::SWITCHER,
+					'default'   => 'yes',
+					'separator' => 'before',
+					'label_off' => esc_html__( 'Hide', 'mas-elementor' ),
+					'label_on'  => esc_html__( 'Show', 'mas-elementor' ),
+				)
+			);
+
+			$this->add_control(
+				'login_link_intro',
+				array(
+					'label'       => esc_html__( 'Login Page Intro', 'mas-elementor' ),
+					'label_block' => true,
+					'type'        => Controls_Manager::TEXT,
+					'default'     => esc_html__( 'Already have an account?', 'mas-elementor' ),
+					'condition'   => array( 'show_login' => 'yes' ),
+				)
+			);
+
+			$this->add_control(
+				'login_link_text',
+				array(
+					'label'       => esc_html__( 'Login Link Text', 'mas-elementor' ),
+					'label_block' => true,
+					'type'        => Controls_Manager::TEXT,
+					'default'     => esc_html__( 'Login', 'mas-elementor' ),
+					'condition'   => array( 'show_login' => 'yes' ),
+				)
+			);
+
+			$this->add_control(
+				'login_link',
+				array(
+					'label'     => esc_html__( 'Login Page Link', 'mas-elementor' ),
+					'type'      => Controls_Manager::URL,
+					'default'   => array( 'url' => '#' ),
+					'dynamic'   => array( 'active' => true ),
+					'condition' => array(
+						'display!'   => 'all',
+						'show_login' => 'yes',
+					),
+				)
+			);
+
+			$this->end_controls_section();
+
+		endif;
+	}
+
+	/**
+	 * Add password reset form controls.
+	 */
+	private function add_password_reset_form_controls() {
+
+		$this->start_controls_section(
+			'section_password_reset',
+			array(
+				'label'     => esc_html__( 'Password Reset Form', 'mas-elementor' ),
+				'condition' => array( 'display' => array( 'all', 'forgot' ) ),
+			)
+		);
+
+		$this->add_control(
+			'password_title',
+			array(
+				'label'       => esc_html__( 'Form Title', 'mas-elementor' ),
+				'label_block' => true,
+				'type'        => Controls_Manager::TEXT,
+				'default'     => esc_html__( 'Password Reset', 'mas-elementor' ),
+				'placeholder' => esc_html__( 'Title', 'mas-elementor' ),
+				'condition'   => array( 'show_form_title' => 'yes' ),
+			)
+		);
+
+		$this->add_control(
+			'password_description',
+			array(
+				'label'       => esc_html__( 'Form Description', 'mas-elementor' ),
+				'label_block' => true,
+				'type'        => Controls_Manager::TEXTAREA,
+				'default'     => esc_html__( 'Enter your email to reset your password.', 'mas-elementor' ),
+				'placeholder' => esc_html__( 'Description', 'mas-elementor' ),
+				'condition'   => array( 'show_form_description' => 'yes' ),
+			)
+		);
+
+		$this->add_control(
+			'reset_pasword_button_text',
+			array(
+				'label'       => esc_html__( 'Button Text', 'mas-elementor' ),
+				'label_block' => true,
+				'type'        => Controls_Manager::TEXT,
+				'default'     => esc_html__( 'Reset Password', 'mas-elementor' ),
+			)
+		);
+
+		$this->add_control(
+			'rp_show_login',
+			array(
+				'label'     => esc_html__( 'Login Link', 'mas-elementor' ),
+				'type'      => Controls_Manager::SWITCHER,
+				'default'   => 'yes',
+				'separator' => 'before',
+				'label_off' => esc_html__( 'Hide', 'mas-elementor' ),
+				'label_on'  => esc_html__( 'Show', 'mas-elementor' ),
+			)
+		);
+
+		$this->add_control(
+			'rp_login_link_intro',
+			array(
+				'label'       => esc_html__( 'Login Page Intro', 'mas-elementor' ),
+				'label_block' => true,
+				'type'        => Controls_Manager::TEXT,
+				'default'     => esc_html__( 'Remember your password?', 'mas-elementor' ),
+				'condition'   => array( 'rp_show_login' => 'yes' ),
+			)
+		);
+
+		$this->add_control(
+			'rp_login_link_text',
+			array(
+				'label'       => esc_html__( 'Login Link Text', 'mas-elementor' ),
+				'label_block' => true,
+				'type'        => Controls_Manager::TEXT,
+				'default'     => esc_html__( 'Log in', 'mas-elementor' ),
+				'condition'   => array( 'rp_show_login' => 'yes' ),
+			)
+		);
+
+		$this->add_control(
+			'rp_login_link',
+			array(
+				'label'     => esc_html__( 'Login Page Link', 'mas-elementor' ),
+				'type'      => Controls_Manager::URL,
+				'default'   => array( 'url' => '#' ),
+				'dynamic'   => array( 'active' => true ),
+				'condition' => array(
+					'display!'      => 'all',
+					'rp_show_login' => 'yes',
+				),
+			)
+		);
+
+		$this->end_controls_section();
+	}
+
+	/**
+	 * Add additional options controls.
+	 */
+	private function add_additional_options_controls() {
+		$this->start_controls_section(
+			'section_login_content',
+			array(
+				'label' => esc_html__( 'Additional Options', 'mas-elementor' ),
+			)
+		);
+
+		$this->add_control(
+			'redirect_after_login',
+			array(
+				'label'     => esc_html__( 'Redirect After Login', 'mas-elementor' ),
+				'type'      => Controls_Manager::SWITCHER,
+				'default'   => '',
+				'label_off' => esc_html__( 'Off', 'mas-elementor' ),
+				'label_on'  => esc_html__( 'On', 'mas-elementor' ),
+			)
+		);
+
+		$this->add_control(
+			'redirect_url',
+			array(
+				'type'        => Controls_Manager::URL,
+				'show_label'  => false,
+				'options'     => false,
+				'separator'   => false,
+				'placeholder' => esc_html__( 'https://your-link.com', 'mas-elementor' ),
+				'description' => esc_html__( 'Note: Because of security reasons, you can ONLY use your current domain here.', 'mas-elementor' ),
+				'condition'   => array( 'redirect_after_login' => 'yes' ),
+				'default'     => array( 'url' => '#' ),
+			)
+		);
+
+		$this->add_control(
+			'redirect_after_logout',
+			array(
+				'label'     => esc_html__( 'Redirect After Logout', 'mas-elementor' ),
+				'type'      => Controls_Manager::SWITCHER,
+				'default'   => '',
+				'label_off' => esc_html__( 'Off', 'mas-elementor' ),
+				'label_on'  => esc_html__( 'On', 'mas-elementor' ),
+			)
+		);
+
+		$this->add_control(
+			'redirect_logout_url',
+			array(
+				'type'        => Controls_Manager::URL,
+				'show_label'  => false,
+				'options'     => false,
+				'separator'   => false,
+				'placeholder' => esc_html__( 'https://your-link.com', 'mas-elementor' ),
+				'description' => esc_html__( 'Note: Because of security reasons, you can ONLY use your current domain here.', 'mas-elementor' ),
+				'condition'   => array( 'redirect_after_logout' => 'yes' ),
+			)
+		);
+
+		$this->end_controls_section();
+	}
+
+	/**
+	 * Render.
+	 */
+	protected function render() {
+		$settings         = $this->get_settings();
+		$current_url      = remove_query_arg( 'fake_arg' );
+		$logout_redirect  = $current_url;
+		$show_title       = $settings['show_form_title'];
+		$show_description = $settings['show_form_description'];
+		$title_tag        = $settings['title_tag'];
+		$display          = $settings['display'];
+		$unique_id        = uniqid();
+		$login_form_id    = 'login-form-' . $unique_id;
+		$register_form_id = 'register-form-' . $unique_id;
+		$lost_pwd_form_id = 'lost-password-' . $unique_id;
+
+		/**
+		 * Add Form IDs to settings data
+		 */
+		$settings['login_form_id']    = $login_form_id;
+		$settings['register_form_id'] = $register_form_id;
+		$settings['lost_pwd_form_id'] = $lost_pwd_form_id;
+
+		if ( isset( $_POST['recoverPassword'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing
+			$login_tab_pane           = '';
+			$register_tab_pane        = '';
+			$forget_password_tab_pane = ' active';
+		} elseif ( isset( $_POST['register'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing
+			$login_tab_pane           = '';
+			$forget_password_tab_pane = '';
+			$register_tab_pane        = ' active';
+		} else {
+			$login_tab_pane           = ' active';
+			$forget_password_tab_pane = '';
+			$register_tab_pane        = '';
+		}
+
+		if ( 'yes' === $settings['redirect_after_logout'] && ! empty( $settings['redirect_logout_url']['url'] ) ) {
+			$logout_redirect = $settings['redirect_logout_url']['url'];
+		}
+
+		if ( is_user_logged_in() && ! Plugin::$instance->editor->is_edit_mode() ) {
+			$current_user = wp_get_current_user();
+
+			echo '<div class="elementor-login elementor-login__logged-in-message">' .
+				sprintf( __( 'You are Logged in as %1$s (<a href="%2$s">Logout</a>)', 'mas-elementor' ), $current_user->display_name, wp_logout_url( $logout_redirect ) ) . // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped, WordPress.WP.I18n.MissingTranslatorsComment
+				'</div>';
+
+			return;
+		}
+
+		$this->form_fields_render_attributes();
+
+		if ( 'register' === $display ) {
+			$this->render_register_form( $settings );
+			return;
+		} elseif ( 'login' === $display ) {
+			$this->render_login_form( $settings );
+			return;
+		} elseif ( 'forgot' === $display ) {
+			$this->render_password_reset_form( $settings );
+			return;
+		}
+
+		?><div class="mas-tab-content tab-content">
+			<div class="tab-pane<?php echo esc_attr( $login_tab_pane ); ?>" id="<?php echo esc_attr( $login_form_id ); ?>" aria-labelledby="login-tab">
+				<?php $this->render_login_form( $settings ); ?>
+			</div>
+
+			<div class="tab-pane<?php echo esc_attr( $forget_password_tab_pane ); ?>" id="<?php echo esc_attr( $lost_pwd_form_id ); ?>" aria-labelledby="forget-password-tab">
+				<?php $this->render_password_reset_form( $settings ); ?>
+			</div>
+
+			<?php if ( get_option( 'users_can_register' ) ) : ?>
+			<div class="tab-pane<?php echo esc_attr( $register_tab_pane ); ?>" id="<?php echo esc_attr( $register_form_id ); ?>" aria-labelledby="register-tab">
+				<?php $this->render_register_form( $settings ); ?>
+			</div>
+			<?php endif; ?>
+		</div>
+		<?php
+	}
+
+	/**
+	 * Render form header.
+	 *
+	 * @param string $title title.
+	 * @param string $desc desc.
+	 * @param array  $settings settings.
+	 */
+	private function render_form_header( $title, $desc, $settings ) {
+		$show_title = ( 'yes' === $settings['show_form_title'] );
+		$show_desc  = ( 'yes' === $settings['show_form_description'] );
+		$title_tag  = $settings['title_tag'];
+
+		$this->add_render_attribute( 'form_title', 'class', 'form-header__title' );
+
+		if ( ! empty( $settings['title_css'] ) ) {
+			$this->add_render_attribute( 'form_title', 'class', $settings['title_css'] );
+		}
+
+		$this->add_render_attribute( 'form_desc', 'class', 'form-header__desc' );
+
+		if ( ! empty( $settings['description_css'] ) ) {
+			$this->add_render_attribute( 'form_desc', 'class', $settings['description_css'] );
+		}
+
+		?>
+		<?php if ( $show_title && ! empty( $title ) ) : ?>
+			<<?php echo esc_html( $title_tag ); ?> <?php $this->print_render_attribute_string( 'form_title' ); ?>><?php echo esc_html( $title ); ?></<?php echo esc_html( $title_tag ); ?>>
+		<?php endif; ?>
+
+		<?php if ( $show_desc && ! empty( $desc ) ) : ?>
+			<p <?php $this->print_render_attribute_string( 'form_desc' ); ?>><?php echo esc_html( $desc ); ?></p>
+			<?php
+		endif;
+	}
+
+	/**
+	 * Render label.
+	 *
+	 * @param string $render_key render_key.
+	 * @param array  $settings settings.
+	 * @param string $label_key label_key.
+	 */
+	private function render_label( $render_key, $settings, $label_key = '' ) {
+
+		$show_label = ( 'yes' === $settings['show_labels'] );
+
+		if ( ! $show_label ) {
+			$this->add_render_attribute( $render_key, 'class', 'sr-only' );
+		}
+
+		if ( empty( $label_key ) ) {
+			$label_key = $render_key;
+		}
+
+		?>
+		<label <?php $this->print_render_attribute_string( $render_key ); ?>>
+			<?php print( $settings[ $label_key ] ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+		</label>
+		<?php
+	}
+
+	/**
+	 * Render lost password form link.
+	 *
+	 * @param array $settings settings.
+	 */
+	private function render_lost_password_form_link( $settings ) {
+		$show      = ( 'yes' === $settings['show_lost_password'] );
+		$form_id   = $settings['lost_pwd_form_id'];
+		$link_text = $settings['password_reset_text'];
+
+		if ( ! $show ) {
+			return;
+		}
+
+		$this->add_render_attribute(
+			'lost_password_form_link',
+			array(
+				'id'    => 'forgot-password-tab',
+				'class' => array( 'elementor-lost-password', 'font-size-sm' ),
+			)
+		);
+
+		if ( 'all' === $settings['display'] ) {
+			$this->add_render_attribute( 'lost_password_form_link', 'href', '#' . $form_id );
+			$this->add_render_attribute( 'lost_password_form_link', 'class', 'login-register-tab-switcher' );
+		} else {
+			$this->add_link_attributes( 'lost_password_form_link', $settings['password_reset_link'] );
+		}
+
+		printf( '<a %1$s>%2$s</a>', $this->get_render_attribute_string( 'lost_password_form_link' ), $link_text ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+	}
+
+	/**
+	 * Render register form link.
+	 *
+	 * @param array $settings settings.
+	 */
+	private function render_register_form_link( $settings ) {
+		$show       = ( get_option( 'users_can_register' ) && 'yes' === $settings['show_register'] );
+		$form_id    = $settings['register_form_id'];
+		$link_intro = $settings['register_link_intro'];
+		$link_text  = $settings['register_link_text'];
+
+		if ( ! $show ) {
+			return;
+		}
+
+		$this->add_render_attribute(
+			'register_form_link',
+			array(
+				'class' => array( 'd-inline-block', 'login' ),
+			)
+		);
+
+		if ( 'all' === $settings['display'] ) {
+			$this->add_render_attribute( 'register_form_link', 'id', 'register-tab' );
+			$this->add_render_attribute( 'register_form_link', 'href', '#' . $form_id );
+			$this->add_render_attribute( 'register_form_link', 'class', 'login-register-tab-switcher' );
+		} else {
+			$this->add_link_attributes( 'register_form_link', $settings['register_link'] );
+		}
+
+		$link_html = sprintf( '<a %1$s>%2$s</a>', $this->get_render_attribute_string( 'register_form_link' ), $link_text );
+
+		?>
+		<p class="mb-0 font-size-sm text-muted form__footer">
+			<?php printf( '%s %s.', $link_intro, $link_html ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+		</p>
+		<?php
+	}
+
+	/**
+	 * Render login form link.
+	 *
+	 * @param array $settings settings.
+	 */
+	private function render_login_form_link( $settings ) {
+		$show       = ( 'yes' === $settings['show_login'] );
+		$form_id    = $settings['login_form_id'];
+		$link_intro = $settings['login_link_intro'];
+		$link_text  = $settings['login_link_text'];
+
+		if ( ! $show ) {
+			return;
+		}
+
+		$this->add_render_attribute(
+			'login_form_link',
+			array(
+				'class' => array( 'login' ),
+			)
+		);
+
+		if ( 'all' === $settings['display'] ) {
+			$this->add_render_attribute( 'login_form_link', 'id', 'login-tab' );
+			$this->add_render_attribute( 'login_form_link', 'href', '#' . $form_id );
+			$this->add_render_attribute( 'login_form_link', 'class', 'login-register-tab-switcher' );
+		} else {
+			$this->add_link_attributes( 'login_form_link', $settings['login_link'] );
+		}
+
+		$link_html = sprintf( '<a %1$s>%2$s</a>', $this->get_render_attribute_string( 'login_form_link' ), $link_text );
+
+		?>
+		<p class="mb-0 font-size-sm text-muted form__footer">
+			<?php printf( '%s %s.', $link_intro, $link_html ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+		</p>
+		<?php
+	}
+
+	/**
+	 * Render rp login form link.
+	 *
+	 * @param array $settings settings.
+	 */
+	private function render_rp_login_form_link( $settings ) {
+		$show       = ( 'yes' === $settings['rp_show_login'] );
+		$form_id    = $settings['login_form_id'];
+		$link_intro = $settings['rp_login_link_intro'];
+		$link_text  = $settings['rp_login_link_text'];
+
+		if ( ! $show ) {
+			return;
+		}
+
+		$this->add_render_attribute(
+			'rp_login_form_link',
+			array(
+				'class' => array( 'login' ),
+				'id'    => 'login-tab',
+			)
+		);
+
+		if ( 'all' === $settings['display'] ) {
+			$this->add_render_attribute( 'rp_login_form_link', 'href', '#' . $form_id );
+			$this->add_render_attribute( 'rp_login_form_link', 'class', 'login-register-tab-switcher' );
+		} else {
+			$this->add_link_attributes( 'rp_login_form_link', $settings['rp_login_link'] );
+		}
+
+		$link_html = sprintf( '<a %1$s>%2$s</a>', $this->get_render_attribute_string( 'rp_login_form_link' ), $link_text );
+
+		?>
+		<p class="mb-0 font-size-sm text-muted form__footer">
+			<?php printf( '%s %s.', $link_intro, $link_html ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+		</p>
+		<?php
+	}
+
+	/**
+	 * Render login form.
+	 *
+	 * @param array $settings settings.
+	 */
+	private function render_login_form( $settings ) {
+
+		$current_url = remove_query_arg( 'fake_arg' );
+
+		if ( 'yes' === $settings['redirect_after_login'] && ! empty( $settings['redirect_url']['url'] ) ) {
+			$redirect_url = $settings['redirect_url']['url'];
+		} else {
+			$redirect_url = $current_url;
+		}
+
+		$this->render_form_header( $settings['login_title'], $settings['login_description'], $settings );
+
+		?>
+		<form class="elementor-form mas-login-form login" method="post">
+			<?php
+			if ( isset( $_POST['login'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing
+					// show any error messages after form submission.
+				?>
+					<div class="mb-3"><?php $this->mas_elementor_show_error_messages(); ?></div>
+					<?php
+			}
+			?>
+
+			<input type="hidden" name="redirect_to" value="<?php echo esc_attr( $redirect_url ); ?>">	
+			<div <?php $this->print_render_attribute_string( 'wrapper' ); ?>>
+				<div class="mb-5">
+					<div <?php $this->print_render_attribute_string( 'field-group' ); ?>>
+						<?php $this->render_label( 'user_label', $settings ); ?>
+						<input <?php $this->print_render_attribute_string( 'user_input' ); ?>>
+					</div>
+					<div <?php $this->print_render_attribute_string( 'field-group' ); ?>>
+						<div class="w-100 d-flex justify-content-between align-items-center">
+							<?php
+								$this->render_label( 'password_label', $settings );
+								$this->render_lost_password_form_link( $settings );
+							?>
+						</div>
+						<input <?php $this->print_render_attribute_string( 'password_input' ); ?>>
+					</div>
+
+					<?php if ( 'yes' === $settings['show_remember_me'] ) : ?>
+						<div class="elementor-field-type-checkbox elementor-field-group elementor-column elementor-col-100 elementor-remember-me mb-0 p-0">
+							<label for="elementor-login-remember-me">
+								<input type="checkbox" name="rememberme" value="forever">
+								<?php echo esc_html__( 'Remember Me', 'mas-elementor' ); ?>
+							</label>
+						</div>
+					<?php endif; ?>
+				</div>
+				<div <?php $this->print_render_attribute_string( 'submit-group' ); ?>>
+					<?php if ( ! empty( $settings['button_text'] ) ) : ?>
+						<input type="hidden" name="mas_login_nonce" value="<?php echo esc_attr( wp_create_nonce( 'mas-login-nonce' ) ); ?>"/>
+						<input type="hidden" name="mas_login_check" value="1"/>
+
+						<button type="submit" name="login" <?php $this->print_render_attribute_string( 'button_text' ); ?>><?php echo esc_html( $settings['button_text'] ); ?></button>
+					<?php endif; ?>
+				</div>
+			</div>
+			<?php $this->render_register_form_link( $settings ); ?>
+		</form>
+		<?php
+	}
+
+	/**
+	 * Render register form.
+	 *
+	 * @param array $settings settings.
+	 */
+	private function render_register_form( $settings ) {
+
+		$can_register = get_option( 'users_can_register' );
+
+		if ( ! $can_register ) {
+			return;
+		}
+		$this->render_form_header( $settings['register_title'], $settings['register_description'], $settings );
+		?>
+		<form class="mas-register elementor-form register" method="post">
+			<?php
+			if ( isset( $_POST['register'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing
+				?>
+					<div class="mb-3"><?php $this->mas_elementor_show_error_messages(); ?></div>
+					<?php
+			}
+			?>
+			<div <?php $this->print_render_attribute_string( 'wrapper' ); ?>>
+				<div class="mb-5">
+					<div <?php $this->print_render_attribute_string( 'field-group' ); ?>>
+						<?php $this->render_label( 'email_register_label', $settings, 'register_email_label' ); ?>
+						<input <?php $this->print_render_attribute_string( 'email_register_input' ); ?>>
+					</div>
+					<?php if ( apply_filters( 'mas_register_password_enabled', true ) ) : ?>
+						<div <?php $this->print_render_attribute_string( 'field-group' ); ?>>
+							<?php $this->render_label( 'register_password_label', $settings, 'register_password_label' ); ?>
+							<input <?php $this->print_render_attribute_string( 'register_password_input' ); ?>>
+						</div>
+						<div <?php $this->print_render_attribute_string( 'field-group' ); ?>>
+							<input <?php $this->print_render_attribute_string( 'register_confirm_password_input' ); ?>>
+						</div>
+					<?php else : ?>
+						<p><?php echo esc_html__( 'A password will be sent to your email address.', 'mas-elementor' ); ?></p>
+					<?php endif; ?>
+				</div>
+				<div <?php $this->print_render_attribute_string( 'submit-group' ); ?>>
+					<?php if ( ! empty( $settings['button_text'] ) ) : ?>
+						<input type="hidden" name="mas_register_nonce" value="<?php echo esc_attr( wp_create_nonce( 'mas-register-nonce' ) ); ?>"/>
+						<input type="hidden" name="mas_register_check" value="1"/>
+						<button type="submit" <?php $this->print_render_attribute_string( 'button_text' ); ?> name="register"><?php echo esc_html( $settings['register_button_text'] ); ?></button>
+					<?php endif; ?>
+				</div>
+			</div>
+			<?php $this->render_login_form_link( $settings ); ?>	 
+		</form>
+		<?php
+	}
+
+	/**
+	 * Render password reset form.
+	 *
+	 * @param array $settings settings.
+	 */
+	private function render_password_reset_form( $settings ) {
+
+		$this->render_form_header( $settings['password_title'], $settings['password_description'], $settings );
+		?>
+
+		<form class="mas-forget-password elementor-form forget-password" name="lostpasswordform" method="post">
+			<?php if ( isset( $_POST['recoverPassword'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing ?>
+				<div class="mb-3">
+					<?php $this->mas_elementor_show_error_messages(); ?>
+					<?php $this->mas_elementor_show_success_messages(); ?>
+				</div>
+			<?php } ?>
+			<div <?php $this->print_render_attribute_string( 'wrapper' ); ?>>
+				<div <?php $this->print_render_attribute_string( 'field-group' ); ?>>
+					<?php $this->render_label( 'user_forget_password_label', $settings, 'user_label' ); ?>
+					<input <?php $this->print_render_attribute_string( 'user_forget_password_input' ); ?>>
+				</div>
+				<div <?php $this->print_render_attribute_string( 'submit-group' ); ?>>
+					<?php if ( ! empty( $settings['button_text'] ) ) : ?>
+						<input type="hidden" name="mas_lost_password_nonce" value="<?php echo esc_attr( wp_create_nonce( 'mas-lost-password-nonce' ) ); ?>"/>
+						<input type="hidden" name="mas_lost_password_check" value="1"/>
+						<?php wp_nonce_field( 'ajax-lost-password-nonce', 'lost-password-security' ); ?>
+						<button type="submit" name="recoverPassword" <?php $this->print_render_attribute_string( 'button_text' ); ?>><?php echo esc_html( $settings['reset_pasword_button_text'] ); ?></button>
+					<?php endif; ?>
+				</div>
+			</div>
+			<?php $this->render_rp_login_form_link( $settings ); ?>
+		</form>
+		<?php
+	}
+
+	/**
+	 * Render plain content.
+	 */
+	public function render_plain_content() {}
+
+	/**
+	 * Landkit Form Success.
+	 *
+	 * @return WP_Error
+	 */
+	public function mas_elementor_form_success() {
+		static $wp_error; // Will hold global variable safely.
+		if ( ! isset( $wp_error ) ) {
+			$wp_error = new WP_Error( null, null, null );
+		}
+		return $wp_error;
+	}
+
+	/**
+	 * Landkit show success messages.
+	 */
+	public function mas_elementor_show_success_messages() {
+		$codes = $this->mas_elementor_form_success()->get_error_codes();
+		if ( $codes ) {
+			echo '<div class="notification alert alert-success">';
+				// Loop success codes and display success.
+			foreach ( $codes as $code ) {
+				$message = $this->mas_elementor_form_success()->get_error_message( $code );
+				echo '<span>' . esc_html( $message ) . '</span><br/>';
+			}
+			echo '</div>';
+		}
+	}
+
+	/**
+	 * Landkit Form errors.
+	 *
+	 * @return WP_Error
+	 */
+	public function mas_elementor_form_errors() {
+		static $wp_error; // Will hold global variable safely.
+		if ( ! isset( $wp_error ) ) {
+			$wp_error = new WP_Error( null, null, null );
+		}
+		return $wp_error;
+
+	}
+
+	/**
+	 * Show Error messages.
+	 */
+	public function mas_elementor_show_error_messages() {
+		$codes = $this->mas_elementor_form_errors()->get_error_codes();
+		if ( $codes ) {
+			echo '<div class="notification alert alert-danger">';
+				// Loop error codes and display errors.
+			foreach ( $codes as $code ) {
+				$message = $this->mas_elementor_form_errors()->get_error_message( $code );
+				echo '<span>' . esc_html( $message ) . '</span><br/>';
+
+			}
+			echo '</div>';
+		}
+	}
+}

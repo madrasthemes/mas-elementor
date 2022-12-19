@@ -8,6 +8,7 @@
 namespace MASElementor\Modules\Forms;
 
 use MASElementor\Base\Module_Base;
+use WP_Error;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
@@ -29,7 +30,8 @@ class Module extends Module_Base {
 	 */
 	public function get_widgets() {
 		return array(
-			'Login',
+			// 'Login',
+			'Signin',
 		);
 	}
 
@@ -38,8 +40,10 @@ class Module extends Module_Base {
 	 */
 	public function __construct() {
 		parent::__construct();
-		// add_action( 'wp_loaded', array( $this, 'mas_add_new_member' ) );.
-		// add_action( 'wp_loaded', array( $this, 'mas_login_member' ) );.
+		add_action( 'elementor/frontend/before_register_scripts', array( $this, 'register_frontend_scripts' ) );
+		add_action( 'wp_loaded', array( $this, 'mas_add_new_member' ) );
+		add_action( 'wp_loaded', array( $this, 'mas_login_member' ) );
+		add_action( 'wp_loaded', array( $this, 'mas_lost_password' ) );
 	}
 
 	/**
@@ -65,6 +69,19 @@ class Module extends Module_Base {
 		}
 		return $wp_error;
 
+	}
+
+	/**
+	 * Landkit Form Success.
+	 *
+	 * @return WP_Error
+	 */
+	public function mas_form_success() {
+		static $wp_error; // Will hold global variable safely.
+		if ( ! isset( $wp_error ) ) {
+			$wp_error = new WP_Error( null, null, null );
+		}
+		return $wp_error;
 	}
 
 	/**
@@ -163,7 +180,7 @@ class Module extends Module_Base {
 					$creds['user_password'] = $password;
 					$creds['remember']      = true;
 					if ( $password_generated ) {
-						mas_form_success()->add( 'verify_user', esc_html__( 'Account created successfully. Please check your email to create your account password', 'mas-elementor' ) );
+						$this->mas_form_success()->add( 'verify_user', esc_html__( 'Account created successfully. Please check your email to create your account password', 'mas-elementor' ) );
 					} else {
 						$user = wp_signon( $creds, false );
 						// send the newly created user to the home page after logging them in.
@@ -278,6 +295,64 @@ class Module extends Module_Base {
 				}
 			}
 		}
+	}
+
+	/**
+	 * Landkit Lost Password function.
+	 */
+	public function mas_lost_password() {
+		$nonce_value = $this->mas_get_var( $_REQUEST['mas_lost_password_nonce'], $this->mas_get_var( $_REQUEST['_wpnonce'], '' ) ); //phpcs:ignore
+		if ( isset( $_POST['mas_lost_password_check'] ) && wp_verify_nonce( $nonce_value, 'mas-lost-password-nonce' ) ) {
+			$login     = isset( $_POST['user_login'] ) ? sanitize_user( wp_unslash( $_POST['user_login'] ) ) : '';
+			$user_data = get_user_by( 'login', $login );
+
+			if ( empty( $login ) ) {
+				$this->mas_form_errors()->add( 'empty_user_login', esc_html__( 'Enter a username or email address', 'mas-elementor' ) );
+
+			} else {
+				// Check on username first, as customers can use emails as usernames.
+				$user_data = get_user_by( 'login', $login );
+			}
+			// If no user found, check if it login is email and lookup user based on email.
+			if ( ! $user_data && is_email( $login ) ) {
+				$user_data = get_user_by( 'email', $login );
+			}
+
+			do_action( 'lostpassword_post' );
+
+			if ( ! $user_data ) {
+				// if the user name doesn't exist.
+				$this->mas_form_errors()->add( 'empty_user_login', esc_html__( 'There is no account with that username or email address.', 'mas-elementor' ) );
+			}
+
+			if ( is_multisite() && ! is_user_member_of_blog( $user_data->ID, get_current_blog_id() ) ) {
+				$this->mas_form_errors()->add( 'empty_user_login', esc_html__( 'Invalid username or email address.', 'mas-elementor' ) );
+
+				return false;
+			}
+
+			$errors = $this->mas_form_errors()->get_error_messages();
+
+			// only create the user in if there are no errors.
+			if ( empty( $errors ) ) {
+				$this->mas_form_success()->add( 'verify_user', esc_html__( 'Passord has been sent to your email', 'mas-elementor' ) );
+
+			}
+		}
+
+	}
+
+	/**
+	 * Register frontend script.
+	 */
+	public function register_frontend_scripts() {
+		wp_register_script(
+			'forgot-password',
+			MAS_ELEMENTOR_MODULES_URL . 'forms/assets/js/forgot-password.js',
+			array( 'elementor-frontend-modules', 'jquery' ),
+			MAS_ELEMENTOR_VERSION,
+			true
+		);
 	}
 
 }
