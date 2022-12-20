@@ -187,7 +187,6 @@ class Signin extends Base_Widget {
 				'label'     => esc_html__( 'CSS Classes', 'mas-elementor' ),
 				'type'      => Controls_Manager::TEXT,
 				'title'     => esc_html__( 'Add your custom class for text without the dot. e.g: my-class', 'mas-elementor' ),
-				'default'   => 'mb-0 font-weight-bold',
 				'condition' => array( 'show_form_title' => 'yes' ),
 			)
 		);
@@ -290,6 +289,80 @@ class Signin extends Base_Widget {
 			)
 		);
 
+		$this->end_controls_section();
+
+		$this->add_login_style_controls();
+	}
+	/**
+	 * Add form option controls.
+	 */
+	private function add_login_style_controls() {
+
+		$this->start_controls_section(
+			'section_login_style',
+			array(
+				'label' => esc_html__( 'Login Form', 'mas-elementor' ),
+				'tab'   => Controls_Manager::TAB_STYLE,
+			)
+		);
+		$this->add_control(
+			'login_form_spacing',
+			array(
+				'label'     => esc_html__( 'Spacing', 'mas-elementor' ),
+				'type'      => Controls_Manager::SLIDER,
+				'default'   => array(
+					'size' => '0',
+				),
+				'range'     => array(
+					'px' => array(
+						'min' => 0,
+						'max' => 60,
+					),
+				),
+				'selectors' => array(
+					'{{WRAPPER}} .mas-login-fields > div' => 'margin-top: {{SIZE}}{{UNIT}};',
+				),
+			)
+		);
+		$this->add_control(
+			'signin_button_spacing',
+			array(
+				'label'     => esc_html__( 'Sign in Button Spacing', 'mas-elementor' ),
+				'type'      => Controls_Manager::SLIDER,
+				'default'   => array(
+					'size' => '0',
+				),
+				'range'     => array(
+					'px' => array(
+						'min' => 0,
+						'max' => 60,
+					),
+				),
+				'selectors' => array(
+					'{{WRAPPER}} .mas-signin-btn' => 'margin-top: {{SIZE}}{{UNIT}};',
+				),
+			)
+		);
+
+		$this->add_control(
+			'signup_link_spacing',
+			array(
+				'label'     => esc_html__( 'Sign up link Spacing', 'mas-elementor' ),
+				'type'      => Controls_Manager::SLIDER,
+				'default'   => array(
+					'size' => '0',
+				),
+				'range'     => array(
+					'px' => array(
+						'min' => 0,
+						'max' => 60,
+					),
+				),
+				'selectors' => array(
+					'{{WRAPPER}} .form__footer' => 'margin-top: {{SIZE}}{{UNIT}};',
+				),
+			)
+		);
 		$this->end_controls_section();
 	}
 
@@ -508,7 +581,6 @@ class Signin extends Base_Widget {
 				'wrapper'                         => array(
 					'class' => array(
 						'mas-form-fields-wrapper',
-						'mb-6',
 					),
 				),
 				'field-group'                     => array(
@@ -523,9 +595,7 @@ class Signin extends Base_Widget {
 				),
 				'submit-group'                    => array(
 					'class' => array(
-						'mb-0',
-						'p-0',
-						'mt-2',
+						'mas-signin-btn',
 					),
 				),
 
@@ -1387,7 +1457,7 @@ class Signin extends Base_Widget {
 		$link_html = sprintf( '<a %1$s>%2$s</a>', $this->get_render_attribute_string( 'register_form_link' ), $link_text );
 
 		?>
-		<p class="mb-0 font-size-sm text-muted form__footer">
+		<p class="form__footer">
 			<?php printf( '%s %s.', $link_intro, $link_html ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 		</p>
 		<?php
@@ -1426,7 +1496,7 @@ class Signin extends Base_Widget {
 		$link_html = sprintf( '<a %1$s>%2$s</a>', $this->get_render_attribute_string( 'login_form_link' ), $link_text );
 
 		?>
-		<p class="mb-0 font-size-sm text-muted form__footer">
+		<p class="form__footer">
 			<?php printf( '%s %s.', $link_intro, $link_html ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 		</p>
 		<?php
@@ -1465,7 +1535,7 @@ class Signin extends Base_Widget {
 		$link_html = sprintf( '<a %1$s>%2$s</a>', $this->get_render_attribute_string( 'rp_login_form_link' ), $link_text );
 
 		?>
-		<p class="mb-0 font-size-sm text-muted form__footer">
+		<p class="form__footer">
 			<?php printf( '%s %s.', $link_intro, $link_html ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 		</p>
 		<?php
@@ -1501,29 +1571,30 @@ class Signin extends Base_Widget {
 
 			<input type="hidden" name="redirect_to" value="<?php echo esc_attr( $redirect_url ); ?>">	
 			<div <?php $this->print_render_attribute_string( 'wrapper' ); ?>>
-				<div class="mb-5">
+				<div class="mas-login-fields">
 					<div <?php $this->print_render_attribute_string( 'field-group' ); ?>>
 						<?php $this->render_label( 'user_label', $settings ); ?>
 						<input <?php $this->print_render_attribute_string( 'user_input' ); ?>>
 					</div>
 					<div <?php $this->print_render_attribute_string( 'field-group' ); ?>>
-						<div class="w-100 d-flex justify-content-between align-items-center">
+						<input <?php $this->print_render_attribute_string( 'password_input' ); ?>>
+					</div>
+					<div style="display:flex;justify-content:space-between">
+						<?php if ( 'yes' === $settings['show_remember_me'] ) : ?>
+							<div class="elementor-field-type-checkbox elementor-field-group elementor-column elementor-col-100 elementor-remember-me">
+								<label for="elementor-login-remember-me">
+									<input type="checkbox" name="rememberme" value="forever">
+									<?php echo esc_html__( 'Remember Me', 'mas-elementor' ); ?>
+								</label>
+							</div>
+						<?php endif; ?>
+						<div class="w-100 d-flex justify-content-between align-items-center" style="width:100%;display:flex;justify-content:end">
 							<?php
 								$this->render_label( 'password_label', $settings );
 								$this->render_lost_password_form_link( $settings );
 							?>
 						</div>
-						<input <?php $this->print_render_attribute_string( 'password_input' ); ?>>
 					</div>
-
-					<?php if ( 'yes' === $settings['show_remember_me'] ) : ?>
-						<div class="elementor-field-type-checkbox elementor-field-group elementor-column elementor-col-100 elementor-remember-me mb-0 p-0">
-							<label for="elementor-login-remember-me">
-								<input type="checkbox" name="rememberme" value="forever">
-								<?php echo esc_html__( 'Remember Me', 'mas-elementor' ); ?>
-							</label>
-						</div>
-					<?php endif; ?>
 				</div>
 				<div <?php $this->print_render_attribute_string( 'submit-group' ); ?>>
 					<?php if ( ! empty( $settings['button_text'] ) ) : ?>
@@ -1562,7 +1633,7 @@ class Signin extends Base_Widget {
 			}
 			?>
 			<div <?php $this->print_render_attribute_string( 'wrapper' ); ?>>
-				<div class="mb-5">
+				<div class="">
 					<div <?php $this->print_render_attribute_string( 'field-group' ); ?>>
 						<?php $this->render_label( 'email_register_label', $settings, 'register_email_label' ); ?>
 						<input <?php $this->print_render_attribute_string( 'email_register_input' ); ?>>
