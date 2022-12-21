@@ -54,7 +54,7 @@ if ( ! class_exists( 'Premium_Templates_Core_Config' ) ) {
 				'pro_message'   => $this->get_pro_message(),
 				'api'           => array(
 					'enabled'   => true,
-					'base'      => 'https://dali.madrasthemes.com/elementor',
+					'base'      => 'https://dali.madrasthemes.com/elementor/',
 					'path'      => 'wp-json/mastemp/v1',
 					'endpoints' => array(
 						'templates'  => '/templates/',

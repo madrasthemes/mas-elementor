@@ -145,11 +145,12 @@ if ( ! class_exists( 'Premium_Templates_Assets' ) ) {
 					$name = basename( $file, '.php' );
 					ob_start();
 					include $file;
-					printf( '<script type="text/html" id="tmpl-mas-premium-pro%1$s">%2$s</script>', $name, ob_get_clean() ); //phpcs:ignore
+					printf( '<script type="text/html" id="tmpl-mas-premium-%1$s">%2$s</script>', $name, ob_get_clean() ); //phpcs:ignore
 
 				},
 				$scripts
 			);
+
 		}
 
 		/**

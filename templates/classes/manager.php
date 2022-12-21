@@ -34,8 +34,8 @@ if ( ! class_exists( 'Premium_Templates_Manager' ) ) {
 		public function __construct() {
 
 			// Register AJAX hooks
-			add_action( 'wp_ajax_si_premium_get_templates', array( $this, 'get_templates' ) );
-			add_action( 'wp_ajax_si_premium_inner_template', array( $this, 'insert_inner_template' ) );
+			add_action( 'wp_ajax_mas_premium_get_templates', array( $this, 'get_templates' ) );
+			add_action( 'wp_ajax_mas_premium_inner_template', array( $this, 'insert_inner_template' ) );
 
 			if ( defined( 'ELEMENTOR_VERSION' ) && version_compare( ELEMENTOR_VERSION, '2.2.8', '>' ) ) {
 				add_action( 'elementor/ajax/register_actions', array( $this, 'register_ajax_actions' ), 20 );
