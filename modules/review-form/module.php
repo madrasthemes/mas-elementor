@@ -20,6 +20,15 @@ if ( ! defined( 'ABSPATH' ) ) {
 class Module extends Module_Base {
 
 	/**
+	 * Instantiate the class.
+	 */
+	public function __construct() {
+		parent::__construct();
+
+		add_filter( 'comments_template', array( __CLASS__, 'comments_template_loader' ) );
+	}
+
+	/**
 	 * Get the widget of the module.
 	 *
 	 * @return string
