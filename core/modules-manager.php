@@ -57,6 +57,7 @@ final class Modules_Manager {
 			'forms',
 			'mas-attributes-image',
 			'masvideos-genre',
+			'review-form',
 		);
 
 		foreach ( $modules as $module_name ) {
