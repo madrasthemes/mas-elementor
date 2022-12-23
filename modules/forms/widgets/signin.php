@@ -18,6 +18,7 @@ use Elementor\Group_Control_Typography;
 use Elementor\Group_Control_Box_Shadow;
 use Elementor\Plugin;
 use WP_Error;
+use Elementor\Group_Control_Border;
 
 /**
  * MAS Elementor login widget.
@@ -182,6 +183,27 @@ class Signin extends Base_Widget {
 		);
 
 		$this->add_control(
+			'login_form_title_spacing',
+			array(
+				'label'     => esc_html__( 'Title Spacing', 'mas-elementor' ),
+				'type'      => Controls_Manager::SLIDER,
+				'default'   => array(
+					'size' => '0',
+				),
+				'range'     => array(
+					'px' => array(
+						'min' => 0,
+						'max' => 60,
+					),
+				),
+				'selectors' => array(
+					'{{WRAPPER}} .form-header__title' => 'margin-top: {{SIZE}}{{UNIT}};',
+				),
+				'condition' => array( 'show_form_title' => 'yes' ),
+			)
+		);
+
+		$this->add_control(
 			'title_css',
 			array(
 				'label'     => esc_html__( 'CSS Classes', 'mas-elementor' ),
@@ -250,12 +272,32 @@ class Signin extends Base_Widget {
 		);
 
 		$this->add_control(
+			'login_form_desc_spacing',
+			array(
+				'label'     => esc_html__( 'Description Spacing', 'mas-elementor' ),
+				'type'      => Controls_Manager::SLIDER,
+				'default'   => array(
+					'size' => '15',
+				),
+				'range'     => array(
+					'px' => array(
+						'min' => 0,
+						'max' => 60,
+					),
+				),
+				'selectors' => array(
+					'{{WRAPPER}} .form-header__desc' => 'margin-top: {{SIZE}}{{UNIT}};',
+				),
+				'condition' => array( 'show_form_description' => 'yes' ),
+			)
+		);
+
+		$this->add_control(
 			'description_css',
 			array(
 				'label'     => esc_html__( 'CSS Classes', 'mas-elementor' ),
 				'type'      => Controls_Manager::TEXT,
 				'title'     => esc_html__( 'Add your custom class for text without the dot. e.g: my-class', 'mas-elementor' ),
-				'default'   => 'mb-6 text-muted',
 				'condition' => array(
 					'show_form_description' => 'yes',
 				),
@@ -305,13 +347,78 @@ class Signin extends Base_Widget {
 				'tab'   => Controls_Manager::TAB_STYLE,
 			)
 		);
+
 		$this->add_control(
-			'login_form_spacing',
+			'form_alignment',
 			array(
-				'label'     => esc_html__( 'Spacing', 'mas-elementor' ),
+				'label'     => esc_html__( 'Alignment', 'mas-elementor' ),
+				'type'      => Controls_Manager::CHOOSE,
+				'options'   => array(
+					'left'   => array(
+						'title' => esc_html__( 'Left', 'mas-elementor' ),
+						'icon'  => 'eicon-text-align-left',
+					),
+					'center' => array(
+						'title' => esc_html__( 'Center', 'mas-elementor' ),
+						'icon'  => 'eicon-text-align-center',
+					),
+					'right'  => array(
+						'title' => esc_html__( 'Right', 'mas-elementor' ),
+						'icon'  => 'eicon-text-align-right',
+					),
+				),
+				'selectors' => array(
+					'{{WRAPPER}} .mas-form-fields-wrapper .mas-form-fields > div' => 'display:flex;justify-content: {{VALUE}}',
+					'{{WRAPPER}} .mas-form-fields-wrapper .mas-signin-btn' => 'display:flex;justify-content: {{VALUE}}',
+					'{{WRAPPER}} .mas-form-fields-wrapper .mas-lost-password' => 'display:flex;justify-content: {{VALUE}}',
+				),
+				'default'   => 'left',
+			)
+		);
+
+		$this->add_control(
+			'login_form_heading',
+			array(
+				'label'     => esc_html__( 'Form', 'mas-elementor' ),
+				'type'      => Controls_Manager::HEADING,
+				'separator' => 'none',
+			)
+		);
+
+		$this->add_group_control(
+			Group_Control_Typography::get_type(),
+			array(
+				'name'      => 'sigin_text_typography',
+				'selector'  => '{{WRAPPER}} .mas-form-fields-wrapper .elementor-field-type-text label',
+			)
+		);
+
+		$this->add_group_control(
+			Group_Control_Typography::get_type(),
+			array(
+				'name'      => 'sigin_input_typography',
+				'selector'  => '{{WRAPPER}} .mas-form-fields-wrapper .elementor-field-type-text input',
+			)
+		);
+
+		$this->add_control(
+			'login_label_color',
+			array(
+				'label'     => esc_html__( 'Label Color', 'mas-elementor' ),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => array(
+					'{{WRAPPER}} .mas-form-fields-wrapper .elementor-field-type-text label' => 'color: {{VALUE}};',
+				),
+			)
+		);
+
+		$this->add_control(
+			'login_form_spacebetween',
+			array(
+				'label'     => esc_html__( 'Form Spacing', 'mas-elementor' ),
 				'type'      => Controls_Manager::SLIDER,
 				'default'   => array(
-					'size' => '0',
+					'size' => '12',
 				),
 				'range'     => array(
 					'px' => array(
@@ -320,17 +427,147 @@ class Signin extends Base_Widget {
 					),
 				),
 				'selectors' => array(
-					'{{WRAPPER}} .mas-login-fields > div' => 'margin-top: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}} .mas-form-fields-wrapper .elementor-field-type-text label' => 'margin-right: {{SIZE}}{{UNIT}};',
 				),
 			)
 		);
+
+		$this->add_control(
+			'login_label_width',
+			array(
+				'label'     => esc_html__( 'Label Width', 'mas-elementor' ),
+				'type'      => Controls_Manager::SLIDER,
+				'default'   => array(
+					'size' => '12',
+					'unit' => '%',
+				),
+				'range'     => array(
+					'%' => array(
+						'min' => 0,
+						'max' => 100,
+					),
+				),
+				'selectors' => array(
+					'{{WRAPPER}} .mas-form-fields-wrapper .elementor-field-type-text label' => 'width: {{SIZE}}{{UNIT}};',
+				),
+			)
+		);
+
+		$this->add_control(
+			'login_form_width',
+			array(
+				'label'     => esc_html__( 'Form Width', 'mas-elementor' ),
+				'type'      => Controls_Manager::SLIDER,
+				'default'   => array(
+					'size' => '36',
+					'unit' => '%',
+				),
+				'range'     => array(
+					'%' => array(
+						'min' => 0,
+						'max' => 100,
+					),
+				),
+				'selectors' => array(
+					'{{WRAPPER}} .mas-form-fields-wrapper .elementor-field-type-text input' => 'width: {{SIZE}}{{UNIT}};',
+				),
+			)
+		);
+
+		$this->add_control(
+			'login_form_spacing',
+			array(
+				'label'     => esc_html__( 'Spacing', 'mas-elementor' ),
+				'type'      => Controls_Manager::SLIDER,
+				'default'   => array(
+					'size' => '15',
+				),
+				'range'     => array(
+					'px' => array(
+						'min' => 0,
+						'max' => 100,
+					),
+				),
+				'selectors' => array(
+					'{{WRAPPER}} .mas-form-fields-wrapper .mas-form-fields > div' => 'margin-top: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}} .mas-form-fields-wrapper .elementor-field-type-text' => 'margin-top: {{SIZE}}{{UNIT}};',
+				),
+			)
+		);
+
+		$this->add_control(
+			'login_button_heading',
+			array(
+				'label'     => esc_html__( 'Signin Button', 'mas-elementor' ),
+				'type'      => Controls_Manager::HEADING,
+				'separator' => 'before',
+			)
+		);
+
+		$this->add_group_control(
+			Group_Control_Typography::get_type(),
+			array(
+				'name'      => 'sigin_button_typography',
+				'selector'  => '{{WRAPPER}} .mas-signin-btn button',
+			)
+		);
+
+		$this->add_control(
+			'login_button_color',
+			array(
+				'label'     => esc_html__( 'Color', 'mas-elementor' ),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => array(
+					'{{WRAPPER}} .mas-signin-btn button' => 'color: {{VALUE}};',
+				),
+			)
+		);
+
+		$this->add_control(
+			'login_button_bg_color',
+			array(
+				'label'     => esc_html__( 'Color', 'mas-elementor' ),
+				'type'      => Controls_Manager::COLOR,
+				'default'   => '#20D756',
+				'selectors' => array(
+					'{{WRAPPER}} .mas-signin-btn button' => 'background-color: {{VALUE}};',
+				),
+			)
+		);
+
+		$this->add_group_control(
+			Group_Control_Border::get_type(),
+			array(
+				'name'           => 'login_button_border',
+				'selector'       => '{{WRAPPER}} .mas-signin-btn button',
+				'separator'      => 'none',
+				'fields_options' => array(
+					'border' => array(
+						'default' => 'none',
+					),
+					'width'  => array(
+						'default' => array(
+							'top'      => '2',
+							'right'    => '2',
+							'bottom'   => '2',
+							'left'     => '2',
+							'isLinked' => false,
+						),
+					),
+					'color'  => array(
+						'default' => '#BEC2C2',
+					),
+				),
+			)
+		);
+
 		$this->add_control(
 			'signin_button_spacing',
 			array(
 				'label'     => esc_html__( 'Sign in Button Spacing', 'mas-elementor' ),
 				'type'      => Controls_Manager::SLIDER,
 				'default'   => array(
-					'size' => '0',
+					'size' => '15',
 				),
 				'range'     => array(
 					'px' => array(
@@ -345,12 +582,61 @@ class Signin extends Base_Widget {
 		);
 
 		$this->add_control(
+			'login_signup_text_heading',
+			array(
+				'label'     => esc_html__( 'Signup Text', 'mas-elementor' ),
+				'type'      => Controls_Manager::HEADING,
+				'separator' => 'before',
+			)
+		);
+
+		$this->add_group_control(
+			Group_Control_Typography::get_type(),
+			array(
+				'name'      => 'signup_text_typography',
+				'selector'  => '{{WRAPPER}} .form__footer',
+			)
+		);
+
+		$this->add_group_control(
+			Group_Control_Typography::get_type(),
+			array(
+				'name'        => 'signup_link_typography',
+				'selector'    => '{{WRAPPER}} .form__footer a',
+				'description' => esc_html__( 'For the sign up link', 'mas-elementor' ),
+			)
+		);
+
+		$this->add_control(
+			'signup_text_color',
+			array(
+				'label'     => esc_html__( 'Color', 'mas-elementor' ),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => array(
+					'{{WRAPPER}} .form__footer' => 'color: {{VALUE}};',
+				),
+			)
+		);
+
+		$this->add_control(
+			'signup_link_color',
+			array(
+				'label'     => esc_html__( 'Link Color', 'mas-elementor' ),
+				'type'      => Controls_Manager::COLOR,
+				'default'   => '#20D756',
+				'selectors' => array(
+					'{{WRAPPER}} .form__footer a' => 'color: {{VALUE}};',
+				),
+			)
+		);
+
+		$this->add_control(
 			'signup_link_spacing',
 			array(
 				'label'     => esc_html__( 'Sign up link Spacing', 'mas-elementor' ),
 				'type'      => Controls_Manager::SLIDER,
 				'default'   => array(
-					'size' => '0',
+					'size' => '12',
 				),
 				'range'     => array(
 					'px' => array(
@@ -540,7 +826,6 @@ class Signin extends Base_Widget {
 			array(
 				'elementor-login__button',
 				'btn',
-				'btn-block',
 			)
 		);
 
@@ -550,7 +835,6 @@ class Signin extends Base_Widget {
 			array(
 				'mas-register__button',
 				'btn',
-				'btn-block',
 			)
 		);
 
@@ -688,7 +972,6 @@ class Signin extends Base_Widget {
 				),
 				'register_confirm_password_label' => array(
 					'for'   => 'signupSrConfirmPassword-' . $unique_id,
-					'class' => 'sr-only',
 				),
 				'register_confirm_password_input' => array(
 					'type'        => 'password',
@@ -1015,9 +1298,20 @@ class Signin extends Base_Widget {
 			);
 
 			$this->add_control(
-				'register_confirm_password_placeholder',
+				'register_confirm_password_label',
 				array(
 					'label'       => esc_html__( 'Confirm Password Label', 'mas-elementor' ),
+					'label_block' => true,
+					'type'        => Controls_Manager::TEXT,
+					'default'     => esc_html__( 'Confirm Password', 'mas-elementor' ),
+					'separator'   => 'none',
+				)
+			);
+
+			$this->add_control(
+				'register_confirm_password_placeholder',
+				array(
+					'label'       => esc_html__( 'Confirm Password Placeholder', 'mas-elementor' ),
 					'label_block' => true,
 					'type'        => Controls_Manager::TEXT,
 					'default'     => esc_html__( 'Confirm Password', 'mas-elementor' ),
@@ -1571,12 +1865,13 @@ class Signin extends Base_Widget {
 
 			<input type="hidden" name="redirect_to" value="<?php echo esc_attr( $redirect_url ); ?>">	
 			<div <?php $this->print_render_attribute_string( 'wrapper' ); ?>>
-				<div class="mas-login-fields">
+				<div class="mas-form-fields">
 					<div <?php $this->print_render_attribute_string( 'field-group' ); ?>>
 						<?php $this->render_label( 'user_label', $settings ); ?>
 						<input <?php $this->print_render_attribute_string( 'user_input' ); ?>>
 					</div>
 					<div <?php $this->print_render_attribute_string( 'field-group' ); ?>>
+						<?php $this->render_label( 'password_label', $settings ); ?>
 						<input <?php $this->print_render_attribute_string( 'password_input' ); ?>>
 					</div>
 					<div style="display:flex;justify-content:space-between">
@@ -1588,9 +1883,8 @@ class Signin extends Base_Widget {
 								</label>
 							</div>
 						<?php endif; ?>
-						<div class="w-100 d-flex justify-content-between align-items-center" style="width:100%;display:flex;justify-content:end">
+						<div class="mas-lost-password" style="width:100%;">
 							<?php
-								$this->render_label( 'password_label', $settings );
 								$this->render_lost_password_form_link( $settings );
 							?>
 						</div>
@@ -1633,7 +1927,7 @@ class Signin extends Base_Widget {
 			}
 			?>
 			<div <?php $this->print_render_attribute_string( 'wrapper' ); ?>>
-				<div class="">
+				<div class="mas-form-fields">
 					<div <?php $this->print_render_attribute_string( 'field-group' ); ?>>
 						<?php $this->render_label( 'email_register_label', $settings, 'register_email_label' ); ?>
 						<input <?php $this->print_render_attribute_string( 'email_register_input' ); ?>>
@@ -1644,6 +1938,7 @@ class Signin extends Base_Widget {
 							<input <?php $this->print_render_attribute_string( 'register_password_input' ); ?>>
 						</div>
 						<div <?php $this->print_render_attribute_string( 'field-group' ); ?>>
+							<?php $this->render_label( 'register_confirm_password_label', $settings, 'register_confirm_password_label' ); ?>
 							<input <?php $this->print_render_attribute_string( 'register_confirm_password_input' ); ?>>
 						</div>
 					<?php else : ?>
