@@ -388,16 +388,16 @@ class Signin extends Base_Widget {
 		$this->add_group_control(
 			Group_Control_Typography::get_type(),
 			array(
-				'name'      => 'sigin_text_typography',
-				'selector'  => '{{WRAPPER}} .mas-form-fields-wrapper .elementor-field-type-text label',
+				'name'     => 'sigin_text_typography',
+				'selector' => '{{WRAPPER}} .mas-form-fields-wrapper .elementor-field-type-text label',
 			)
 		);
 
 		$this->add_group_control(
 			Group_Control_Typography::get_type(),
 			array(
-				'name'      => 'sigin_input_typography',
-				'selector'  => '{{WRAPPER}} .mas-form-fields-wrapper .elementor-field-type-text input',
+				'name'     => 'sigin_input_typography',
+				'selector' => '{{WRAPPER}} .mas-form-fields-wrapper .elementor-field-type-text input',
 			)
 		);
 
@@ -507,8 +507,8 @@ class Signin extends Base_Widget {
 		$this->add_group_control(
 			Group_Control_Typography::get_type(),
 			array(
-				'name'      => 'sigin_button_typography',
-				'selector'  => '{{WRAPPER}} .mas-signin-btn button',
+				'name'     => 'sigin_button_typography',
+				'selector' => '{{WRAPPER}} .mas-signin-btn button',
 			)
 		);
 
@@ -593,8 +593,8 @@ class Signin extends Base_Widget {
 		$this->add_group_control(
 			Group_Control_Typography::get_type(),
 			array(
-				'name'      => 'signup_text_typography',
-				'selector'  => '{{WRAPPER}} .form__footer',
+				'name'     => 'signup_text_typography',
+				'selector' => '{{WRAPPER}} .form__footer',
 			)
 		);
 
@@ -971,7 +971,7 @@ class Signin extends Base_Widget {
 					),
 				),
 				'register_confirm_password_label' => array(
-					'for'   => 'signupSrConfirmPassword-' . $unique_id,
+					'for' => 'signupSrConfirmPassword-' . $unique_id,
 				),
 				'register_confirm_password_input' => array(
 					'type'        => 'password',
