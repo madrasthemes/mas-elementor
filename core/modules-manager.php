@@ -52,6 +52,7 @@ final class Modules_Manager {
 			'video',
 			'image-box',
 			'jobs-filter',
+			'mas-related-project',
 		);
 
 		foreach ( $modules as $module_name ) {
