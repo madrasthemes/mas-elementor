@@ -66,7 +66,7 @@ class Module extends Module_Base {
 			'enable_location_geocomplete'  => true,
 			'location_geocomplete_options' => array(),
 		);
-		$this->api_key                = get_option( 'elementor_google_maps_api_key' );
+		$this->api_key                = get_option( 'job_manager_google_maps_api_key' );
 
 		add_action( 'elementor/frontend/before_register_scripts', array( $this, 'register_frontend_scripts' ) );
 		add_action( 'wp_ajax_mas_live_search_jobs_suggest', array( __CLASS__, 'mas_live_search_jobs_suggest' ) );
