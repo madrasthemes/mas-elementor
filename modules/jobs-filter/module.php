@@ -127,10 +127,10 @@ class Module extends Module_Base {
 
 			$suggestions[] = $suggestion;
 		}
-
+		$call_back = '';
 		// JSON encode and echo.
-		if ( ! empty( $_GET['callback'] ) ) {
-			$call_back = wp_verify_nonce( sanitize_text_field( wp_unslash( $_GET['callback'] ) ) );
+		if ( isset( $_GET['callback'] ) ) {
+			$call_back = sanitize_text_field( wp_unslash( $_GET['callback'] ) );
 		}
 		$response = $call_back . '(' . wp_json_encode( $suggestions ) . ')';
 		echo wp_kses_post( $response );
