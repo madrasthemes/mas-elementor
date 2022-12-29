@@ -81,12 +81,18 @@
 }
 
 
-.mas-products-grid .mas-products.mas-grid {
+
+.mas-posts-grid .mas-posts.mas-grid {
   display: grid;
   margin: 0;
 }
 
 .mas-posts-grid .mas-posts.mas-grid {
+  display: grid;
+  margin: 0;
+}
+
+.mas-projects-grid .mas-projects.mas-grid {
   display: grid;
   margin: 0;
 }
