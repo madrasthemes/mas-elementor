@@ -53,6 +53,13 @@ final class Modules_Manager {
 			'image-box',
 			'jobs-filter',
 			'mas-related-project',
+			'page-settings',
+			'mas-tv-shows-episodes',
+			'episodes',
+			'forms',
+			'mas-attributes-image',
+			'masvideos-genre',
+			'review-form',
 		);
 
 		foreach ( $modules as $module_name ) {

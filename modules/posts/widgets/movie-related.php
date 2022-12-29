@@ -1,0 +1,169 @@
+<?php
+/**
+ * The Posts Widget.
+ *
+ * @package MASElementor/Modules/Posts/Widgets
+ */
+
+namespace MASElementor\Modules\Posts\Widgets;
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+
+/**
+ * Class Posts
+ */
+class Movie_Related extends Posts_Base {
+
+	/**
+	 * Get the name of the widget.
+	 *
+	 * @return string
+	 */
+	public function get_name() {
+		return 'mas-related-movie';
+	}
+
+	/**
+	 * Get the title of the widget.
+	 *
+	 * @return string
+	 */
+	public function get_title() {
+		return __( 'Related movie', 'mas-elementor' );
+	}
+
+	/**
+	 * Get the keywords related to the widget.
+	 *
+	 * @return array
+	 */
+	public function get_keywords() {
+		return array( 'posts', 'cpt', 'item', 'loop', 'query', 'cards', 'custom post type' );
+	}
+
+	/**
+	 * Get the categories for the widget.
+	 *
+	 * @return array
+	 */
+	public function get_categories() {
+		return array( 'mas-elements' );
+	}
+
+	/**
+	 * Called on import to override.
+	 *
+	 * @param array $element The element being imported.
+	 */
+	public function on_import( $element ) {
+		if ( ! get_post_type_object( $element['settings']['posts_post_type'] ) ) {
+			$element['settings']['posts_post_type'] = 'post';
+		}
+
+		return $element;
+	}
+
+	/**
+	 * Set the query variable
+	 */
+	public function query_posts() {
+	}
+
+	/**
+	 * Register controls for this widget.
+	 */
+	protected function register_controls() {
+
+		$this->register_layout_section_controls();
+		parent::register_controls();
+	}
+
+	/**
+	 * Register Controls in Layout Section.
+	 */
+	protected function register_query_section_controls() {
+	}
+
+	/**
+	 * Widget render.
+	 */
+	public function render() {
+		$settings = $this->get_settings_for_display();
+
+		$movie = masvideos_get_movie( get_the_ID() );
+		if ( empty( $movie ) ) {
+			return;
+		}
+
+		$rows    = ! empty( $settings['rows'] ) ? $settings['rows'] : 4;
+		$columns = ! empty( $settings['columns'] ) ? $settings['columns'] : 4;
+		$args    = array(
+			'posts_per_page' => intval( $columns * $rows ),
+		);
+
+		if ( ! empty( $settings['swiper_posts_per_page'] ) && 'yes' === $settings['enable_carousel'] ) {
+			$args['posts_per_page'] = intval( $settings['swiper_posts_per_page'] );
+		}
+		$related_movies = masvideos_get_related_movies( $movie->get_id(), $args['posts_per_page'] );
+		if ( ! $related_movies ) {
+			return;
+		}
+
+		$post_wrapper = 'mas-posts-container mas-posts mas-grid';
+		$this->carousel_loop_header( $settings );
+
+		// It's the global `wp_query` it self. and the loop was started from the theme.
+			$count = 1;
+		if ( 'yes' !== $settings['enable_carousel'] ) {
+			// mas-post-container open.
+			?>
+				<div class="<?php echo esc_attr( $post_wrapper ); ?>">
+				<?php
+		}
+		foreach ( $related_movies as $related_movie ) {
+			$post_object = get_post( $related_movie );
+
+			setup_postdata( $GLOBALS['post'] =& $post_object ); // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited, Squiz.PHP.DisallowMultipleAssignments.Found
+			if ( 'yes' === $settings['enable_carousel'] ) {
+				?>
+					<div class="swiper-slide">
+				<?php
+			}
+
+			$this->current_permalink = get_permalink();
+			if ( ! empty( $settings['select_template'] ) ) {
+				if ( ! empty( $settings['select_loop'] ) && in_array( $count, $settings['select_loop'] ) ) { //phpcs:ignore
+					print( mas_render_template( $settings['select_loop_template'], false ) );//phpcs:ignore
+
+				} else {
+					print( mas_render_template( $settings['select_template'], false ) );//phpcs:ignore
+
+				}
+			} else {
+				mas_elementor_get_template( 'widgets/posts/post-classic.php', array( 'widget' => $this ) );
+			}
+
+			if ( 'yes' === $settings['enable_carousel'] ) {
+				?>
+					</div>
+				<?php
+			}
+
+			$count ++;
+		}
+		if ( 'yes' !== $settings['enable_carousel'] ) {
+			// mas-post-container close.
+			?>
+				</div>
+			<?php
+		}
+			wp_reset_postdata();
+
+		$this->carousel_loop_footer( $settings );
+
+		$this->render_script( 'swiper-' . $this->get_id() );
+
+	}
+}

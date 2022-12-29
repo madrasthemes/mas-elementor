@@ -1,0 +1,15 @@
+.filter-columns-1 .filter .filter-genre ul {
+    columns: 1;
+    column-width: auto;
+    column-count: 1;
+}
+.filter-columns-2 .filter .filter-genre ul {
+    columns: 2;
+    column-width: auto;
+    column-count: 2;
+}
+.filter-columns-3 .filter .filter-genre ul {
+    columns: 3;
+    column-width: auto;
+    column-count: 3;
+}

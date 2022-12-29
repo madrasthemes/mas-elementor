@@ -127,6 +127,17 @@ class Multipurpose_Text extends Base_Widget {
 		);
 
 		$this->add_control(
+			'enable_typing_text',
+			array(
+				'type'      => Controls_Manager::SWITCHER,
+				'label'     => esc_html__( 'Enable Typing Text', 'mas-elementor' ),
+				'default'   => 'no',
+				'label_off' => esc_html__( 'Disable', 'mas-elementor' ),
+				'label_on'  => esc_html__( 'Enable', 'mas-elementor' ),
+			)
+		);
+
+		$this->add_control(
 			'typing_text',
 			array(
 				'label'              => esc_html__( 'Typing Text', 'mas-elementor' ),
@@ -136,6 +147,9 @@ class Multipurpose_Text extends Base_Widget {
 				'separator'          => 'before',
 				'default'            => "startup.\nfuture.\nsuccess.",
 				'frontend_available' => true,
+				'condition'          => array(
+					'enable_typing_text' => 'yes',
+				),
 			)
 		);
 
@@ -155,7 +169,8 @@ class Multipurpose_Text extends Base_Widget {
 					),
 				),
 				'condition' => array(
-					'typing_text!' => '',
+					'typing_text!'       => '',
+					'enable_typing_text' => 'yes',
 				),
 			)
 		);
@@ -176,7 +191,8 @@ class Multipurpose_Text extends Base_Widget {
 					),
 				),
 				'condition' => array(
-					'typing_text!' => '',
+					'typing_text!'       => '',
+					'enable_typing_text' => 'yes',
 				),
 			)
 		);
@@ -197,7 +213,8 @@ class Multipurpose_Text extends Base_Widget {
 					),
 				),
 				'condition' => array(
-					'typing_text!' => '',
+					'typing_text!'       => '',
+					'enable_typing_text' => 'yes',
 				),
 			)
 		);
@@ -211,7 +228,8 @@ class Multipurpose_Text extends Base_Widget {
 				'label_off' => esc_html__( 'Disable', 'mas-elementor' ),
 				'label_on'  => esc_html__( 'Enable', 'mas-elementor' ),
 				'condition' => array(
-					'typing_text!' => '',
+					'typing_text!'       => '',
+					'enable_typing_text' => 'yes',
 				),
 			)
 		);
@@ -414,6 +432,7 @@ class Multipurpose_Text extends Base_Widget {
 					),
 					'selectors' => array(
 						'{{WRAPPER}} .mas-elementor-multipurpose-text__highlighted-text' => 'color: {{VALUE}};',
+						'{{WRAPPER}} .mas-elementor-multipurpose-text__highlighted-text a' => 'color: {{VALUE}};',
 					),
 				)
 			);
@@ -422,7 +441,7 @@ class Multipurpose_Text extends Base_Widget {
 				Group_Control_Typography::get_type(),
 				array(
 					'name'     => 'highlighted_typography',
-					'selector' => '{{WRAPPER}} .mas-elementor-multipurpose-text__highlighted-text',
+					'selector' => '{{WRAPPER}} .mas-elementor-multipurpose-text__highlighted-text, {{WRAPPER}} .mas-elementor-multipurpose-text__highlighted-text a',
 					'global'   => array(
 						'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
 					),
@@ -447,7 +466,8 @@ class Multipurpose_Text extends Base_Widget {
 						'default' => Global_Colors::COLOR_PRIMARY,
 					),
 					'selectors' => array(
-						'{{WRAPPER}}:hover .mas-elementor-multipurpose-text__highlighted-text' => 'color: {{VALUE}};',
+						'{{WRAPPER}} .mas-elementor-multipurpose-text__highlighted-text:hover' => 'color: {{VALUE}};',
+						'{{WRAPPER}} .mas-elementor-multipurpose-text__highlighted-text a:hover' => 'color: {{VALUE}};',
 					),
 				)
 			);
@@ -456,7 +476,7 @@ class Multipurpose_Text extends Base_Widget {
 				Group_Control_Typography::get_type(),
 				array(
 					'name'     => 'hover_highlighted_typography',
-					'selector' => '{{WRAPPER}}:hover .mas-elementor-multipurpose-text__highlighted-text',
+					'selector' => '{{WRAPPER}} .mas-elementor-multipurpose-text__highlighted-text:hover, {{WRAPPER}} .mas-elementor-multipurpose-text__highlighted-text a:hover',
 					'global'   => array(
 						'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
 					),
@@ -503,7 +523,8 @@ class Multipurpose_Text extends Base_Widget {
 				'label'     => esc_html__( 'Typed Text', 'mas-elementor' ),
 				'tab'       => Controls_Manager::TAB_STYLE,
 				'condition' => array(
-					'typing_text!' => '',
+					'typing_text!'       => '',
+					'enable_typing_text' => 'yes',
 				),
 
 			)
@@ -841,7 +862,7 @@ class Multipurpose_Text extends Base_Widget {
 	 */
 	public function render_script( $settings ) {
 		$typed_options = $this->get_typed_options( $settings );
-		if ( Plugin::elementor()->editor->is_edit_mode() ) :
+		if ( Plugin::elementor()->editor->is_edit_mode() && 'yes' === $settings['enable_typing_text'] && ! empty( $settings['typing_text'] ) ) :
 			?>
 
 		<script type="text/javascript">

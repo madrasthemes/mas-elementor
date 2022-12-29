@@ -18,6 +18,7 @@ use MASElementor\Modules\CarouselAttributes\Traits\Button_Widget_Trait;
 use MASElementor\Modules\CarouselAttributes\Traits\Pagination_Trait;
 use Elementor\Group_Control_Border;
 use MASElementor\Modules\Posts\Traits\Load_Button_Widget_Trait as Load_More_Button_Trait;
+use Elementor\Controls_Stack;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
@@ -103,7 +104,10 @@ abstract class Posts_Base extends Base_Widget {
 		$this->start_controls_section(
 			'section_pagination',
 			array(
-				'label' => __( 'Pagination', 'mas-elementor' ),
+				'label'     => __( 'Pagination', 'mas-elementor' ),
+				'condition' => array(
+					'enable_carousel!' => 'yes',
+				),
 			)
 		);
 
@@ -865,24 +869,66 @@ abstract class Posts_Base extends Base_Widget {
 			)
 		);
 
+		// TODO: Once Core 3.4.0 is out, get the active devices using Breakpoints/Manager::get_active_devices_list().
+		$active_breakpoint_instances = Plugin::$instance->breakpoints->get_active_breakpoints();
+		// Devices need to be ordered from largest to smallest.
+		$active_devices = array_reverse( array_keys( $active_breakpoint_instances ) );
+
+		$slides_per_view = array(
+			'type'               => Controls_Manager::NUMBER,
+			'label'              => esc_html__( 'Slides Per View', 'mas-elementor' ),
+			'min'                => 1,
+			'max'                => 10,
+			'default'            => 1,
+			'condition'          => array(
+				'carousel_effect' => 'slide',
+				'enable_carousel' => 'yes',
+			),
+			'frontend_available' => true,
+		);
+
+		$slides_to_scroll = array(
+			'type'               => Controls_Manager::NUMBER,
+			'label'              => esc_html__( 'Slides To Scroll', 'mas-elementor' ),
+			'min'                => 1,
+			'max'                => 10,
+			'default'            => 1,
+			'condition'          => array(
+				'carousel_effect' => 'slide',
+				'enable_carousel' => 'yes',
+			),
+			'default'            => 1,
+			'frontend_available' => true,
+		);
+
+		$space_between = array(
+			'type'        => Controls_Manager::NUMBER,
+			'label'       => esc_html__( 'Space Between', 'mas-elementor' ),
+			'description' => esc_html__( 'Set Space between each Slides', 'mas-elementor' ),
+			'min'         => 0,
+			'max'         => 100,
+			'default'     => 8,
+			'condition'   => array(
+				'carousel_effect'      => 'slide',
+				'enable_carousel'      => 'yes',
+				'enable_space_between' => 'yes',
+			),
+		);
+
+		foreach ( $active_devices as $active_device ) {
+			$space_between[ $active_device . '_default' ]    = 8;
+			$slides_per_view[ $active_device . '_default' ]  = 1;
+			$slides_to_scroll[ $active_device . '_default' ] = 1;
+		}
+
 		$this->add_responsive_control(
 			'slides_per_view',
-			array(
-				'type'               => Controls_Manager::NUMBER,
-				'label'              => esc_html__( 'Slides Per View', 'mas-elementor' ),
-				'min'                => 1,
-				'max'                => 10,
-				'default'            => 1,
-				'condition'          => array(
-					'carousel_effect' => 'slide',
-					'enable_carousel' => 'yes',
-				),
-				'devices'            => array( 'desktop', 'tablet', 'mobile' ),
-				'default'            => 1,
-				'tablet_default'     => 1,
-				'mobile_default'     => 1,
-				'frontend_available' => true,
-			)
+			$slides_per_view
+		);
+
+		$this->add_responsive_control(
+			'slides_to_scroll',
+			$slides_to_scroll
 		);
 
 		$this->add_control(
@@ -902,22 +948,7 @@ abstract class Posts_Base extends Base_Widget {
 
 		$this->add_responsive_control(
 			'space_between',
-			array(
-				'type'           => Controls_Manager::NUMBER,
-				'label'          => esc_html__( 'Space Between', 'mas-elementor' ),
-				'description'    => esc_html__( 'Set Space between each Slides', 'mas-elementor' ),
-				'min'            => 0,
-				'max'            => 100,
-				'devices'        => array( 'desktop', 'tablet', 'mobile' ),
-				'default'        => '0',
-				'tablet_default' => '0',
-				'mobile_default' => '0',
-				'condition'      => array(
-					'carousel_effect'      => 'slide',
-					'enable_carousel'      => 'yes',
-					'enable_space_between' => 'yes',
-				),
-			)
+			$space_between
 		);
 
 		$this->add_control(
@@ -1372,6 +1403,171 @@ abstract class Posts_Base extends Base_Widget {
 	}
 
 	/**
+	 * Register Controls in Layout Section.
+	 */
+	protected function register_layout_section_controls() {
+		$this->start_controls_section(
+			'section_layout',
+			array(
+				'label' => __( 'Layout', 'mas-elementor' ),
+				'tab'   => Controls_Manager::TAB_CONTENT,
+			)
+		);
+
+		$templates = function_exists( 'mas_template_options' ) ? mas_template_options() : array();
+		$this->add_control(
+			'select_template',
+			array(
+				'label'   => esc_html__( 'Mas Templates', 'mas-elementor' ),
+				'type'    => Controls_Manager::SELECT,
+				'options' => $templates,
+			)
+		);
+
+		$this->add_control(
+			'mas_posts_class',
+			array(
+				'type'         => Controls_Manager::HIDDEN,
+				'default'      => 'mas-posts',
+				'prefix_class' => 'mas-posts-grid mas-elementor-',
+			)
+		);
+
+		$this->add_responsive_control(
+			'columns',
+			array(
+				'label'               => __( 'Columns', 'mas-elementor' ),
+				'type'                => Controls_Manager::NUMBER,
+				'prefix_class'        => 'mas-grid%s-',
+				'min'                 => 1,
+				'max'                 => 10,
+				'default'             => 4,
+				'required'            => true,
+				'render_type'         => 'template',
+				'device_args'         => array(
+					Controls_Stack::RESPONSIVE_TABLET => array(
+						'required' => false,
+					),
+					Controls_Stack::RESPONSIVE_MOBILE => array(
+						'required' => false,
+					),
+				),
+				'min_affected_device' => array(
+					Controls_Stack::RESPONSIVE_DESKTOP => Controls_Stack::RESPONSIVE_TABLET,
+					Controls_Stack::RESPONSIVE_TABLET  => Controls_Stack::RESPONSIVE_TABLET,
+				),
+				'condition'           => array(
+					'enable_carousel!' => 'yes',
+				),
+			)
+		);
+
+		$this->add_control(
+			'rows',
+			array(
+				'label'       => __( 'Rows', 'mas-elementor' ),
+				'type'        => Controls_Manager::NUMBER,
+				'default'     => 4,
+				'render_type' => 'template',
+				'range'       => array(
+					'px' => array(
+						'max' => 20,
+					),
+				),
+				'condition'   => array(
+					'enable_carousel!' => 'yes',
+				),
+			)
+		);
+
+		$this->add_control(
+			'enable_loop_selection',
+			array(
+				'type'      => Controls_Manager::SWITCHER,
+				'label'     => esc_html__( 'Enable Loop Selection', 'mas-elementor' ),
+				'default'   => 'no',
+				'separator' => 'before',
+				'condition' => array(
+					'select_template!' => '',
+				),
+			)
+		);
+
+		$loop = range( 1, 12 );
+		$loop = array_combine( $loop, $loop );
+
+		$this->add_control(
+			'select_loop',
+			array(
+				'label'     => esc_html__( 'Select Loop', 'mas-elementor' ),
+				'type'      => \Elementor\Controls_Manager::SELECT2,
+				'multiple'  => true,
+				'options'   => array() + $loop,
+				'condition' => array(
+					'enable_loop_selection' => 'yes',
+				),
+			)
+		);
+
+		$this->add_control(
+			'select_loop_template',
+			array(
+				'label'       => esc_html__( 'Mas Select Templates', 'mas-elementor' ),
+				'type'        => Controls_Manager::SELECT,
+				'options'     => $templates,
+				'description' => esc_html__( 'Select Templates for the above selected posts series', 'mas-elementor' ),
+				'condition'   => array(
+					'enable_loop_selection' => 'yes',
+				),
+			)
+		);
+
+		$this->add_control(
+			'swiper_posts_per_page',
+			array(
+				'label'       => __( 'Posts Per Page', 'mas-elementor' ),
+				'type'        => Controls_Manager::NUMBER,
+				'default'     => 6,
+				'render_type' => 'template',
+				'condition'   => array(
+					'enable_carousel' => 'yes',
+				),
+			)
+		);
+
+		$this->add_control(
+			'enable_carousel',
+			array(
+				'type'    => Controls_Manager::SWITCHER,
+				'label'   => esc_html__( 'Enable Carousel', 'mas-elementor' ),
+				'default' => 'no',
+			)
+		);
+
+		$this->end_controls_section();
+	}
+
+	/**
+	 * Carousel Loop Header.
+	 *
+	 * @param array $settings Settings of this widget.
+	 */
+	public function carousel_loop_header( array $settings = array() ) {
+
+		if ( 'yes' === $settings['enable_carousel'] ) {
+			$json = wp_json_encode( $this->get_swiper_carousel_options( $settings ) );
+			$this->add_render_attribute( 'post_swiper', 'class', 'swiper-' . $this->get_id() );
+			$this->add_render_attribute( 'post_swiper', 'class', 'swiper' );
+			$this->add_render_attribute( 'post_swiper', 'data-swiper-options', $json );
+			?>
+			<div <?php $this->print_render_attribute_string( 'post_swiper' ); ?>>
+				<div class="swiper-wrapper">
+			<?php
+		}
+
+	}
+
+	/**
 	 * Carousel Loop Footer.
 	 *
 	 * @param array $settings Settings of this widget.
@@ -1417,6 +1613,10 @@ abstract class Posts_Base extends Base_Widget {
 	 * @return array
 	 */
 	public function get_swiper_carousel_options( array $settings ) {
+		$active_breakpoint_instances = Plugin::$instance->breakpoints->get_active_breakpoints();
+		// Devices need to be ordered from largest to smallest.
+		$active_devices = array_reverse( array_keys( $active_breakpoint_instances ) );
+
 		$section_id      = $this->get_id();
 		$swiper_settings = array();
 		if ( 'yes' === $settings['show_pagination'] ) {
@@ -1441,26 +1641,74 @@ abstract class Posts_Base extends Base_Widget {
 			$swiper_settings['fadeEffect']['crossFade'] = true;
 		}
 		if ( 'slide' === $settings['carousel_effect'] ) {
-			$swiper_settings['breakpoints']['1440']['slidesPerView'] = isset( $settings['slides_per_view'] ) ? $settings['slides_per_view'] : 3;
-			$swiper_settings['breakpoints']['1024']['slidesPerView'] = isset( $settings['slides_per_view'] ) ? $settings['slides_per_view'] : 3;
-			$swiper_settings['breakpoints']['500']['slidesPerView']  = isset( $settings['slides_per_view_tablet'] ) ? $settings['slides_per_view_tablet'] : 3;
-			$swiper_settings['breakpoints']['0']['slidesPerView']    = isset( $settings['slides_per_view_mobile'] ) ? $settings['slides_per_view_mobile'] : 1;
+			$breakpoint = '1441';
+			$swiper_settings['breakpoints'][ $breakpoint ]['slidesPerView'] = isset( $settings['slides_per_view'] ) ? $settings['slides_per_view'] : 3;
+			foreach ( $active_breakpoint_instances as $active_breakpoint_instance ) {
+				$array_key = 'slides_per_view_' . $active_breakpoint_instance->get_name();
+				if ( 'mobile' === $active_breakpoint_instance->get_name() ) {
+					$breakpoint = '0';
+				}
+				if ( 'widescreen' === $active_breakpoint_instance->get_name() ) {
+					$breakpoint = (string) $active_breakpoint_instance->get_default_value();
+					if ( property_exists( $active_breakpoint_instance, 'value' ) ) {
+						$breakpoint = (string) ( $active_breakpoint_instance->get_value() );
+					}
+					$swiper_settings['breakpoints'][ $breakpoint ]['slidesPerView'] = isset( $settings[ $array_key ] ) ? $settings[ $array_key ] : 1;
+					continue;
+				}
+				$swiper_settings['breakpoints'][ $breakpoint ]['slidesPerView'] = isset( $settings[ $array_key ] ) ? $settings[ $array_key ] : 1;
+				$breakpoint = (string) $active_breakpoint_instance->get_default_value() + 1;
+				if ( property_exists( $active_breakpoint_instance, 'value' ) ) {
+					$breakpoint = (string) ( $active_breakpoint_instance->get_value() + 1 );
+				}
+			}
+		}
 
+		if ( 'slide' === $settings['carousel_effect'] ) {
+			$breakpoint = '1441';
+			$swiper_settings['breakpoints'][ $breakpoint ]['slidesPerGroup'] = isset( $settings['slides_to_scroll'] ) ? $settings['slides_to_scroll'] : 3;
+			foreach ( $active_breakpoint_instances as $active_breakpoint_instance ) {
+				$array_key = 'slides_to_scroll_' . $active_breakpoint_instance->get_name();
+				if ( 'mobile' === $active_breakpoint_instance->get_name() ) {
+					$breakpoint = '0';
+				}
+				if ( 'widescreen' === $active_breakpoint_instance->get_name() ) {
+					$breakpoint = (string) $active_breakpoint_instance->get_default_value();
+					if ( property_exists( $active_breakpoint_instance, 'value' ) ) {
+						$breakpoint = (string) ( $active_breakpoint_instance->get_value() );
+					}
+					$swiper_settings['breakpoints'][ $breakpoint ]['slidesPerGroup'] = isset( $settings[ $array_key ] ) ? $settings[ $array_key ] : 1;
+					continue;
+				}
+				$swiper_settings['breakpoints'][ $breakpoint ]['slidesPerGroup'] = isset( $settings[ $array_key ] ) ? $settings[ $array_key ] : 1;
+				$breakpoint = (string) $active_breakpoint_instance->get_default_value() + 1;
+				if ( property_exists( $active_breakpoint_instance, 'value' ) ) {
+					$breakpoint = (string) ( $active_breakpoint_instance->get_value() + 1 );
+				}
+			}
 		}
 
 		if ( 'yes' === $settings['enable_space_between'] ) {
-			if ( ! empty( $settings['space_between'] ) ) {
-				$swiper_settings['breakpoints']['1440']['spaceBetween'] = $settings['space_between'];
-
-			}
-			if ( ! empty( $settings['space_between_tablet'] ) ) {
-				$swiper_settings['breakpoints']['1024']['spaceBetween'] = $settings['space_between_tablet'];
-				$swiper_settings['breakpoints']['500']['spaceBetween']  = $settings['space_between_tablet'];
-
-			}
-			if ( ! empty( $settings['space_between_mobile'] ) ) {
-				$swiper_settings['breakpoints']['0']['spaceBetween'] = $settings['space_between_mobile'];
-
+			$breakpoint = '1441';
+			$swiper_settings['breakpoints'][ $breakpoint ]['spaceBetween'] = isset( $settings['space_between'] ) ? $settings['space_between'] : 8;
+			foreach ( $active_breakpoint_instances as $active_breakpoint_instance ) {
+				$array_key = 'space_between_' . $active_breakpoint_instance->get_name();
+				if ( 'mobile' === $active_breakpoint_instance->get_name() ) {
+					$breakpoint = '0';
+				}
+				if ( 'widescreen' === $active_breakpoint_instance->get_name() ) {
+					$breakpoint = (string) $active_breakpoint_instance->get_default_value();
+					if ( property_exists( $active_breakpoint_instance, 'value' ) ) {
+						$breakpoint = (string) ( $active_breakpoint_instance->get_value() );
+					}
+					$swiper_settings['breakpoints'][ $breakpoint ]['spaceBetween'] = isset( $settings[ $array_key ] ) ? $settings[ $array_key ] : 8;
+					continue;
+				}
+				$swiper_settings['breakpoints'][ $breakpoint ]['spaceBetween'] = isset( $settings[ $array_key ] ) ? $settings[ $array_key ] : 8;
+				$breakpoint = (string) $active_breakpoint_instance->get_default_value() + 1;
+				if ( property_exists( $active_breakpoint_instance, 'value' ) ) {
+					$breakpoint = (string) ( $active_breakpoint_instance->get_value() + 1 );
+				}
 			}
 		}
 
@@ -1519,8 +1767,9 @@ abstract class Posts_Base extends Base_Widget {
 	 * @param string $key widget ID.
 	 */
 	public function render_script( $key = '' ) {
-		$key = '.' . $key;
-		if ( Plugin::$instance->editor->is_edit_mode() ) :
+		$settings = $this->get_settings();
+		$key      = '.' . $key;
+		if ( Plugin::$instance->editor->is_edit_mode() && 'yes' === $settings['enable_carousel'] ) :
 			?>
 			<script type="text/javascript">
 			var swiperCarousel = (() => {

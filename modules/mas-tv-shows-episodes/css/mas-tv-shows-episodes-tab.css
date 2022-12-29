@@ -1,0 +1,41 @@
+.mas-episodes-tabs.mas-episodes-tabs-wrapper 
+    .me-tabs {
+    display: flex;
+    flex-wrap: nowrap;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    overflow-x:auto;
+}
+
+.mas-episodes-tabs.mas-episodes-tabs-wrapper 
+    .me-tabs {
+    padding: 0;
+    margin: 0;
+    list-style: none;    
+}
+
+
+.mas-episodes-content-wrapper.tab-content>.tab-pane {
+    display: none;
+}
+
+.mas-episodes-content-wrapper.tab-content>.active {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+
+.mas-nav-link {
+    display: block;
+    width: 100%;
+}
+
+.mas-tab-flex {
+    display: flex;
+}
+
+.mas-tab-flex-grow {
+    flex-grow: 1;
+}

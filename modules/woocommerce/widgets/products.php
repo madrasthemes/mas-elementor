@@ -17,6 +17,7 @@ use MASElementor\Modules\QueryControl\Module;
 use MASElementor\Modules\QueryControl\Module as Module_Query;
 use MASElementor\Modules\CarouselAttributes\Traits\Button_Widget_Trait;
 use MASElementor\Modules\CarouselAttributes\Traits\Pagination_Trait;
+use Elementor\Plugin;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
@@ -393,24 +394,66 @@ class Products extends Products_Base {
 			)
 		);
 
+		// TODO: Once Core 3.4.0 is out, get the active devices using Breakpoints/Manager::get_active_devices_list().
+		$active_breakpoint_instances = Plugin::$instance->breakpoints->get_active_breakpoints();
+		// Devices need to be ordered from largest to smallest.
+		$active_devices = array_reverse( array_keys( $active_breakpoint_instances ) );
+
+		$slides_per_view = array(
+			'type'               => Controls_Manager::NUMBER,
+			'label'              => esc_html__( 'Slides Per View', 'mas-elementor' ),
+			'min'                => 1,
+			'max'                => 10,
+			'default'            => 1,
+			'condition'          => array(
+				'carousel_effect' => 'slide',
+				'enable_carousel' => 'yes',
+			),
+			'frontend_available' => true,
+		);
+
+		$slides_to_scroll = array(
+			'type'               => Controls_Manager::NUMBER,
+			'label'              => esc_html__( 'Slides To Scroll', 'mas-elementor' ),
+			'min'                => 1,
+			'max'                => 10,
+			'default'            => 1,
+			'condition'          => array(
+				'carousel_effect' => 'slide',
+				'enable_carousel' => 'yes',
+			),
+			'default'            => 1,
+			'frontend_available' => true,
+		);
+
+		$space_between = array(
+			'type'        => Controls_Manager::NUMBER,
+			'label'       => esc_html__( 'Space Between', 'mas-elementor' ),
+			'description' => esc_html__( 'Set Space between each Slides', 'mas-elementor' ),
+			'min'         => 0,
+			'max'         => 100,
+			'default'     => 8,
+			'condition'   => array(
+				'carousel_effect'      => 'slide',
+				'enable_carousel'      => 'yes',
+				'enable_space_between' => 'yes',
+			),
+		);
+
+		foreach ( $active_devices as $active_device ) {
+			$space_between[ $active_device . '_default' ]    = 8;
+			$slides_per_view[ $active_device . '_default' ]  = 1;
+			$slides_to_scroll[ $active_device . '_default' ] = 1;
+		}
+
 		$this->add_responsive_control(
 			'slides_per_view',
-			array(
-				'type'               => Controls_Manager::NUMBER,
-				'label'              => esc_html__( 'Slides Per View', 'mas-elementor' ),
-				'min'                => 1,
-				'max'                => 10,
-				'default'            => 1,
-				'condition'          => array(
-					'carousel_effect' => 'slide',
-					'enable_carousel' => 'yes',
-				),
-				'devices'            => array( 'desktop', 'tablet', 'mobile' ),
-				'default'            => 1,
-				'tablet_default'     => 1,
-				'mobile_default'     => 1,
-				'frontend_available' => true,
-			)
+			$slides_per_view
+		);
+
+		$this->add_responsive_control(
+			'slides_to_scroll',
+			$slides_to_scroll
 		);
 
 		$this->add_control(
@@ -430,22 +473,7 @@ class Products extends Products_Base {
 
 		$this->add_responsive_control(
 			'space_between',
-			array(
-				'type'           => Controls_Manager::NUMBER,
-				'label'          => esc_html__( 'Space Between', 'mas-elementor' ),
-				'description'    => esc_html__( 'Set Space between each Slides', 'mas-elementor' ),
-				'min'            => 0,
-				'max'            => 100,
-				'devices'        => array( 'desktop', 'tablet', 'mobile' ),
-				'default'        => '0',
-				'tablet_default' => '0',
-				'mobile_default' => '0',
-				'condition'      => array(
-					'carousel_effect'      => 'slide',
-					'enable_carousel'      => 'yes',
-					'enable_space_between' => 'yes',
-				),
-			)
+			$space_between
 		);
 
 		$this->add_control(

@@ -36,9 +36,19 @@ class Module extends Module_Base {
 	 * @return array
 	 */
 	public function get_widgets() {
-		return array(
+		$widgets = array(
 			'Posts',
 		);
+		if ( class_exists( 'MasVideos' ) ) {
+			$movie   = array(
+				'Movie_Related',
+				'Movie_Linked_Videos',
+				'Movie_Recommended',
+			);
+			$widgets = array_merge( $widgets, $movie );
+
+		}
+		return $widgets;
 	}
 
 	/**

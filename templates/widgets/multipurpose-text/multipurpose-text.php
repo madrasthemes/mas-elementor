@@ -51,7 +51,7 @@ if ( ! empty( $settings['typing_text_classes'] ) ) {
 			$widget->add_render_attribute( 'typing_text', 'class', $settings['typing_text_classes'] );
 }
 
-if ( ! empty( $settings['typing_text'] ) ) {
+if ( ! empty( $settings['typing_text'] ) && 'yes' === $settings['enable_typing_text'] ) {
 	$typing_text = '<span ' . $widget->get_render_attribute_string( 'typing_text' ) . '></span>';
 
 }

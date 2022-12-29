@@ -109,44 +109,63 @@ class Module extends Module_Base {
 			)
 		);
 
+		// TODO: Once Core 3.4.0 is out, get the active devices using Breakpoints/Manager::get_active_devices_list().
+		$active_breakpoint_instances = Plugin::$instance->breakpoints->get_active_breakpoints();
+		// Devices need to be ordered from largest to smallest.
+		$active_devices = array_reverse( array_keys( $active_breakpoint_instances ) );
+
+		$slides_per_view  = array(
+			'type'               => Controls_Manager::NUMBER,
+			'label'              => esc_html__( 'Slides Per View', 'mas-elementor' ),
+			'min'                => 1,
+			'max'                => 10,
+			'default'            => 1,
+			'condition'          => array(
+				'carousel_effect' => 'slide',
+				'enable_carousel' => 'yes',
+			),
+			'frontend_available' => true,
+		);
+		$slides_to_scroll = array(
+			'type'               => Controls_Manager::NUMBER,
+			'label'              => esc_html__( 'Slides To Scroll', 'mas-elementor' ),
+			'min'                => 1,
+			'max'                => 10,
+			'default'            => 1,
+			'condition'          => array(
+				'carousel_effect' => 'slide',
+				'enable_carousel' => 'yes',
+			),
+			'default'            => 1,
+			'frontend_available' => true,
+		);
+		$space_between    = array(
+			'type'        => Controls_Manager::NUMBER,
+			'label'       => esc_html__( 'Space Between', 'mas-elementor' ),
+			'description' => esc_html__( 'Set Space between each Slides', 'mas-elementor' ),
+			'min'         => 0,
+			'max'         => 100,
+			'default'     => 8,
+			'condition'   => array(
+				'carousel_effect'      => 'slide',
+				'enable_carousel'      => 'yes',
+				'enable_space_between' => 'yes',
+			),
+		);
+		foreach ( $active_devices as $active_device ) {
+			$space_between[ $active_device . '_default' ]    = 8;
+			$slides_per_view[ $active_device . '_default' ]  = 1;
+			$slides_to_scroll[ $active_device . '_default' ] = 1;
+		}
+
 		$element->add_responsive_control(
 			'slides_per_view',
-			array(
-				'type'               => Controls_Manager::NUMBER,
-				'label'              => esc_html__( 'Slides Per View', 'mas-elementor' ),
-				'min'                => 1,
-				'max'                => 10,
-				'default'            => 1,
-				'condition'          => array(
-					'carousel_effect' => 'slide',
-					'enable_carousel' => 'yes',
-				),
-				'devices'            => array( 'desktop', 'tablet', 'mobile' ),
-				'default'            => 1,
-				'tablet_default'     => 1,
-				'mobile_default'     => 1,
-				'frontend_available' => true,
-			)
+			$slides_per_view
 		);
 
 		$element->add_responsive_control(
 			'slides_to_scroll',
-			array(
-				'type'               => Controls_Manager::NUMBER,
-				'label'              => esc_html__( 'Slides To Scroll', 'mas-elementor' ),
-				'min'                => 1,
-				'max'                => 10,
-				'default'            => 1,
-				'condition'          => array(
-					'carousel_effect' => 'slide',
-					'enable_carousel' => 'yes',
-				),
-				'devices'            => array( 'desktop', 'tablet', 'mobile' ),
-				'default'            => 1,
-				'tablet_default'     => 1,
-				'mobile_default'     => 1,
-				'frontend_available' => true,
-			)
+			$slides_to_scroll
 		);
 
 		$element->add_control(
@@ -166,22 +185,7 @@ class Module extends Module_Base {
 
 		$element->add_responsive_control(
 			'space_between',
-			array(
-				'type'           => Controls_Manager::NUMBER,
-				'label'          => esc_html__( 'Space Between', 'mas-elementor' ),
-				'description'    => esc_html__( 'Set Space between each Slides', 'mas-elementor' ),
-				'min'            => 0,
-				'max'            => 100,
-				'devices'        => array( 'desktop', 'tablet', 'mobile' ),
-				'default'        => 0,
-				'tablet_default' => 0,
-				'mobile_default' => 0,
-				'condition'      => array(
-					'carousel_effect'      => 'slide',
-					'enable_carousel'      => 'yes',
-					'enable_space_between' => 'yes',
-				),
-			)
+			$space_between
 		);
 
 		$element->add_control(
@@ -486,6 +490,10 @@ class Module extends Module_Base {
 	 * @return array
 	 */
 	public function get_swiper_carousel_options( array $settings, $element ) {
+		$active_breakpoint_instances = Plugin::$instance->breakpoints->get_active_breakpoints();
+		// Devices need to be ordered from largest to smallest.
+		$active_devices = array_reverse( array_keys( $active_breakpoint_instances ) );
+
 		$section_id      = $element->get_id();
 		$swiper_settings = array();
 		if ( 'yes' === $settings['show_pagination'] ) {
@@ -510,34 +518,74 @@ class Module extends Module_Base {
 			$swiper_settings['fadeEffect']['crossFade'] = true;
 		}
 		if ( 'slide' === $settings['carousel_effect'] ) {
-			$swiper_settings['breakpoints']['1440']['slidesPerView'] = isset( $settings['slides_per_view'] ) ? $settings['slides_per_view'] : 3;
-			$swiper_settings['breakpoints']['1024']['slidesPerView'] = isset( $settings['slides_per_view'] ) ? $settings['slides_per_view'] : 3;
-			$swiper_settings['breakpoints']['500']['slidesPerView']  = isset( $settings['slides_per_view_tablet'] ) ? $settings['slides_per_view_tablet'] : 3;
-			$swiper_settings['breakpoints']['0']['slidesPerView']    = isset( $settings['slides_per_view_mobile'] ) ? $settings['slides_per_view_mobile'] : 1;
-
+			$breakpoint = '1441';
+			$swiper_settings['breakpoints'][ $breakpoint ]['slidesPerView'] = isset( $settings['slides_per_view'] ) ? $settings['slides_per_view'] : 3;
+			foreach ( $active_breakpoint_instances as $active_breakpoint_instance ) {
+				$array_key = 'slides_per_view_' . $active_breakpoint_instance->get_name();
+				if ( 'mobile' === $active_breakpoint_instance->get_name() ) {
+					$breakpoint = '0';
+				}
+				if ( 'widescreen' === $active_breakpoint_instance->get_name() ) {
+					$breakpoint = (string) $active_breakpoint_instance->get_default_value();
+					if ( property_exists( $active_breakpoint_instance, 'value' ) ) {
+						$breakpoint = (string) ( $active_breakpoint_instance->get_value() );
+					}
+					$swiper_settings['breakpoints'][ $breakpoint ]['slidesPerView'] = isset( $settings[ $array_key ] ) ? $settings[ $array_key ] : 1;
+					continue;
+				}
+				$swiper_settings['breakpoints'][ $breakpoint ]['slidesPerView'] = isset( $settings[ $array_key ] ) ? $settings[ $array_key ] : 1;
+				$breakpoint = (string) $active_breakpoint_instance->get_default_value() + 1;
+				if ( property_exists( $active_breakpoint_instance, 'value' ) ) {
+					$breakpoint = (string) ( $active_breakpoint_instance->get_value() + 1 );
+				}
+			}
 		}
 
 		if ( 'slide' === $settings['carousel_effect'] ) {
-			$swiper_settings['breakpoints']['1440']['slidesPerGroup'] = isset( $settings['slides_to_scroll'] ) ? $settings['slides_to_scroll'] : 1;
-			$swiper_settings['breakpoints']['1024']['slidesPerGroup'] = isset( $settings['slides_to_scroll'] ) ? $settings['slides_to_scroll'] : 1;
-			$swiper_settings['breakpoints']['500']['slidesPerGroup']  = isset( $settings['slides_to_scroll_tablet'] ) ? $settings['slides_to_scroll_tablet'] : 1;
-			$swiper_settings['breakpoints']['0']['slidesPerGroup']    = isset( $settings['slides_to_scroll_mobile'] ) ? $settings['slides_to_scroll_mobile'] : 1;
-
+			$breakpoint = '1441';
+			$swiper_settings['breakpoints'][ $breakpoint ]['slidesPerGroup'] = isset( $settings['slides_to_scroll'] ) ? $settings['slides_to_scroll'] : 3;
+			foreach ( $active_breakpoint_instances as $active_breakpoint_instance ) {
+				$array_key = 'slides_to_scroll_' . $active_breakpoint_instance->get_name();
+				if ( 'mobile' === $active_breakpoint_instance->get_name() ) {
+					$breakpoint = '0';
+				}
+				if ( 'widescreen' === $active_breakpoint_instance->get_name() ) {
+					$breakpoint = (string) $active_breakpoint_instance->get_default_value();
+					if ( property_exists( $active_breakpoint_instance, 'value' ) ) {
+						$breakpoint = (string) ( $active_breakpoint_instance->get_value() );
+					}
+					$swiper_settings['breakpoints'][ $breakpoint ]['slidesPerGroup'] = isset( $settings[ $array_key ] ) ? $settings[ $array_key ] : 1;
+					continue;
+				}
+				$swiper_settings['breakpoints'][ $breakpoint ]['slidesPerGroup'] = isset( $settings[ $array_key ] ) ? $settings[ $array_key ] : 1;
+				$breakpoint = (string) $active_breakpoint_instance->get_default_value() + 1;
+				if ( property_exists( $active_breakpoint_instance, 'value' ) ) {
+					$breakpoint = (string) ( $active_breakpoint_instance->get_value() + 1 );
+				}
+			}
 		}
 
 		if ( 'yes' === $settings['enable_space_between'] ) {
-			if ( ! empty( $settings['space_between'] ) ) {
-				$swiper_settings['breakpoints']['1440']['spaceBetween'] = $settings['space_between'];
-
-			}
-			if ( ! empty( $settings['space_between_tablet'] ) ) {
-				$swiper_settings['breakpoints']['1024']['spaceBetween'] = $settings['space_between_tablet'];
-				$swiper_settings['breakpoints']['500']['spaceBetween']  = $settings['space_between_tablet'];
-
-			}
-			if ( ! empty( $settings['space_between_mobile'] ) ) {
-				$swiper_settings['breakpoints']['0']['spaceBetween'] = $settings['space_between_mobile'];
-
+			$breakpoint = '1441';
+			$swiper_settings['breakpoints'][ $breakpoint ]['spaceBetween'] = isset( $settings['space_between'] ) ? $settings['space_between'] : 8;
+			foreach ( $active_breakpoint_instances as $active_breakpoint_instance ) {
+				$array_key = 'space_between_' . $active_breakpoint_instance->get_name();
+				if ( 'mobile' === $active_breakpoint_instance->get_name() ) {
+					$breakpoint = '0';
+				}
+				if ( 'widescreen' === $active_breakpoint_instance->get_name() ) {
+					$breakpoint = (string) $active_breakpoint_instance->get_default_value();
+					if ( property_exists( $active_breakpoint_instance, 'value' ) ) {
+						$breakpoint = (string) ( $active_breakpoint_instance->get_value() );
+					}
+					$swiper_settings['breakpoints'][ $breakpoint ]['spaceBetween'] = isset( $settings[ $array_key ] ) ? $settings[ $array_key ] : 8;
+					continue;
+				}
+				$swiper_settings['breakpoints'][ $breakpoint ]['spaceBetween'] = isset( $settings[ $array_key ] ) ? $settings[ $array_key ] : 8;
+				$breakpoint = (string) $active_breakpoint_instance->get_default_value() + 1;
+				if ( property_exists( $active_breakpoint_instance, 'value' ) ) {
+					$breakpoint = (string) ( $active_breakpoint_instance->get_value() + 1 );
+				}
 			}
 		}
 
@@ -558,7 +606,7 @@ class Module extends Module_Base {
 			);
 		}
 
-		if ( $settings['center_slides'] ) {
+		if ( 'yes' === $settings['center_slides'] ) {
 			$swiper_settings['centeredSlides'] = true;
 		}
 
