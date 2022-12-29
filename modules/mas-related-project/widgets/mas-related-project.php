@@ -92,6 +92,16 @@ class Mas_Related_Project extends Base_Widget {
 			)
 		);
 
+		$this->add_control(
+			'mas_projects_class',
+			array(
+				'type'         => Controls_Manager::HIDDEN,
+				'default'      => 'mas-projects',
+				'prefix_class' => 'mas-projects-grid mas-elementor-',
+			)
+		);
+
+
 		$this->add_responsive_control(
 			'columns',
 			array(
@@ -198,7 +208,7 @@ class Mas_Related_Project extends Base_Widget {
 
 		$portfolio_tags = get_the_terms( get_the_ID(), 'jetpack-portfolio-tag' );
 
-		$project_wrapper = 'mas-project-container mas-project mas-grid';
+		$project_wrapper = 'mas-project-container mas-projects mas-grid';
 
 		if($portfolio_types || $portfolio_tags){
 			$type_ids = array();
