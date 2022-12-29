@@ -129,8 +129,8 @@ class Module extends Module_Base {
 		}
 		$call_back = '';
 		// JSON encode and echo.
-		if ( isset( $_GET['callback'] ) ) {
-			$call_back = sanitize_text_field( wp_unslash( $_GET['callback'] ) );
+		if ( isset( $_GET['callback'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+			$call_back = sanitize_text_field( wp_unslash( $_GET['callback'] ) ); // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 		}
 		$response = $call_back . '(' . wp_json_encode( $suggestions ) . ')';
 		echo wp_kses_post( $response );
