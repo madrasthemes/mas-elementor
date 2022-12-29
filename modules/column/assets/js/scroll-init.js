@@ -1,26 +1,40 @@
-(function() {
-    // INITIALIZATION OF STICKY BLOCKS
-    // =======================================================
-    Promise.all(Array.from(document.images)
-      .filter(img => !img.complete)
-      .map(img => new Promise(resolve => {
-        img.onload = img.onerror = resolve
-      })))
-      .then(() => {
-        new HSStickyBlock('.js-sticky-block', {
-          targetSelector: document.getElementById('header').classList.contains('navbar-fixed') ? '#header' : null
-        })
+
+    (function() {
+      // INITIALIZATION OF NAVBAR
+      // =======================================================
+      // new HSHeader('#masthead').init()
+
+      
+      // INITIALIZATION OF MEGA MENU
+      // =======================================================
+      // const megaMenu = new HSMegaMenu('.js-mega-menu', {
+      //   desktop: {
+      //     position: 'left'
+      //   }
+      // })
+
+
+      // INITIALIZATION OF GO TO
+      // =======================================================
+      // new HSGoTo('.js-go-to')
+
+
+      // INITIALIZATION OF STICKY BLOCKS
+      // =======================================================
+       new HSStickyBlock('.js-sticky-block', {
+        targetSelector: document.getElementById('masthead').classList.contains('navbar-fixed') ? '#masthead' : null
       })
 
 
-    // INITIALIZATION OF SCROLLSPY
-    // =======================================================
-    new bootstrap.ScrollSpy(document.body, {
-      target: '#navbarSettingsEg2',
-      offset: 10
-    })
+      // SCROLLSPY
+      // =======================================================
+      new bootstrap.ScrollSpy(document.body, {
+        target: '#navbarSettings',
+        offset: 10
+      })
 
-    new HSScrollspy('#navbarVerticalNavMenuEg2', {
-      breakpoint: 'lg'
-    })
-  })()
+      new HSScrollspy('#navbarVerticalNavMenu', {
+        breakpoint: 'lg'
+      })
+    })()
+  

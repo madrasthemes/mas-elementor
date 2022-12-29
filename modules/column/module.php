@@ -47,6 +47,7 @@ class Module extends Module_Base {
 		add_action( 'elementor/element/column/section_advanced/before_section_end', array( $this, 'add_widget_wrap_controls' ) );
 		add_action( 'elementor/element/after_add_attributes', array( $this, 'modify_attributes' ), 20 );
 		add_filter( 'elementor/column/print_template', array( $this, 'print_template' ) );
+		add_action( 'elementor/frontend/before_register_scripts', array( $this, 'register_frontend_scripts' ) );
 	}
 
 	/**
@@ -160,30 +161,52 @@ class Module extends Module_Base {
 	 * Register frontend script.
 	 */
 	public function register_frontend_scripts() {
+		// wp_enqueue_script(
+		// 'scrollspy-script',
+		// MAS_ELEMENTOR_MODULES_URL . 'column/assets/js/scrollspy.min.js',
+		// array(),
+		// MAS_ELEMENTOR_VERSION,
+		// true
+		// );.
+
 		wp_enqueue_script(
-			'scrollspy-script',
-			MAS_ELEMENTOR_MODULES_URL . 'column/assets/js/scrollspy.min.js',
+			'mas-scroll-script',
+			MAS_ELEMENTOR_MODULES_URL . 'column/assets/js/scroll.min.js',
 			array(),
 			MAS_ELEMENTOR_VERSION,
 			true
 		);
 
-		wp_enqueue_script(
-			'sticky-block-script',
-			MAS_ELEMENTOR_MODULES_URL . 'column/assets/js/sticky-block.min.js',
-			array(),
-			MAS_ELEMENTOR_VERSION,
-			true
-		);
+		// wp_enqueue_script(
+		// 'sticky-block-script',
+		// MAS_ELEMENTOR_MODULES_URL . 'column/assets/js/sticky-block.min.js',
+		// array(),
+		// MAS_ELEMENTOR_VERSION,
+		// true
+		// );.
 
 		wp_enqueue_script(
 			'scrollspy-init-script',
 			MAS_ELEMENTOR_MODULES_URL . 'column/assets/js/scroll-init.js',
-			array(),
+			array( 'mas-bootstrap-bundle' ),
 			MAS_ELEMENTOR_VERSION,
 			true
 		);
 
+		// wp_enqueue_script(
+		// 'scrollspy-script-header',
+		// MAS_ELEMENTOR_MODULES_URL . 'column/assets/js/hs-header.min.js',
+		// array(),
+		// MAS_ELEMENTOR_VERSION,
+		// true
+		// );
+		// wp_enqueue_script(
+		// 'scrollspy-script-nav',
+		// MAS_ELEMENTOR_MODULES_URL . 'column/assets/js/hs-navbar.min.js',
+		// array(),
+		// MAS_ELEMENTOR_VERSION,
+		// true
+		// );.
 	}
 
 
@@ -223,6 +246,7 @@ class Module extends Module_Base {
 				$element->add_render_attribute(
 					'_widget_wrapper',
 					array(
+						'id'                           => 'navbarSettings',
 						'class'                        => 'js-sticky-block js-scrollspy',
 						'data-hs-sticky-block-options' => wp_json_encode( $args ),
 					)
