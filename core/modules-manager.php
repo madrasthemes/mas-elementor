@@ -60,6 +60,7 @@ final class Modules_Manager {
 			'mas-attributes-image',
 			'masvideos-genre',
 			'review-form',
+			'scrollspy',
 		);
 
 		foreach ( $modules as $module_name ) {
