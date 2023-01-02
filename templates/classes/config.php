@@ -46,26 +46,29 @@ if ( ! class_exists( 'Premium_Templates_Core_Config' ) ) {
 		 */
 		public function __construct() {
 
-			$this->config = array(
-				'premium_temps' => esc_html__( 'Dali Templates', 'mas-elementor' ),
-				'key'           => $this->get_license_key(),
-				'status'        => $this->get_license_status(),
-				'license_page'  => $this->get_license_page(),
-				'pro_message'   => $this->get_pro_message(),
-				'api'           => array(
-					'enabled'   => true,
-					'base'      => 'https://dali.madrasthemes.com/elementor/',
-					'path'      => 'wp-json/mastemp/v1',
-					'endpoints' => array(
-						'templates'  => '/templates/',
-						'keywords'   => '/keywords/',
-						'categories' => '/categories/',
-						'template'   => '/template/',
-						'info'       => '/info/',
-						'template'   => '/template/',
+			$base_path = apply_filters('mas_elementor_premium_templates_path', '' );
+			if ( ! empty( $base_path ) ) {
+				$this->config = array(
+					'premium_temps' => esc_html__( 'Dali Templates', 'mas-elementor' ),
+					'key'           => $this->get_license_key(),
+					'status'        => $this->get_license_status(),
+					'license_page'  => $this->get_license_page(),
+					'pro_message'   => $this->get_pro_message(),
+					'api'           => array(
+						'enabled'   => true,
+						'base'      => $base_path,
+						'path'      => 'wp-json/mastemp/v1',
+						'endpoints' => array(
+							'templates'  => '/templates/',
+							'keywords'   => '/keywords/',
+							'categories' => '/categories/',
+							'template'   => '/template/',
+							'info'       => '/info/',
+							'template'   => '/template/',
+						),
 					),
-				),
-			);
+				);
+			}
 
 		}
 
