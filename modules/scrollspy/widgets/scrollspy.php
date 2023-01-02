@@ -109,6 +109,17 @@ class Scrollspy extends Widget_Icon_List {
 		);
 
 		$this->add_control(
+			'scrollspy_id',
+			array(
+				'label'     => esc_html__( 'Scrollspy ID', 'mas-elementor' ),
+				'type'      => Controls_Manager::TEXT,
+				'condition' => array(
+					'scrollspy' => 'yes',
+				),
+			)
+		);
+
+		$this->add_control(
 			'parent_id',
 			array(
 				'label'     => esc_html__( 'Parent ID', 'mas-elementor' ),
@@ -269,6 +280,7 @@ class Scrollspy extends Widget_Icon_List {
 			'breakpoint'     => $settings['breakpoint'],
 			'startPoint'     => '#' . $settings['start_point_id'],
 			'endPoint'       => '#' . $settings['end_point_id'],
+			'scrollspyId'    => '#' . $settings['scrollspy_id'],
 		);
 
 		if ( isset( $settings['offset']['size'] ) ) {
