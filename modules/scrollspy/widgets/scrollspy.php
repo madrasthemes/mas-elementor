@@ -74,13 +74,218 @@ class Scrollspy extends Widget_Icon_List {
 	}
 
 	/**
+	 * Get the script dependencies for this widget.
+	 *
+	 * @return array
+	 */
+	public function get_script_depends() {
+		return array( 'mas-scroll-script', 'scrollspy-init-script' );
+	}
+
+	/**
+	 * Register Controls.
+	 *
+	 * @return void
+	 */
+	public function register_controls() {
+		parent::register_controls();
+
+		$this->start_controls_section(
+			'section_scrollspy',
+			array(
+				'label' => __( 'ScrollSpy', 'mas-elementor' ),
+			)
+		);
+
+		$this->add_control(
+			'scrollspy',
+			array(
+				'type'      => Controls_Manager::SWITCHER,
+				'label'     => esc_html__( 'Enable Scrollspy ?', 'mas-elementor' ),
+				'default'   => 'no',
+				'label_off' => esc_html__( 'No', 'mas-elementor' ),
+				'label_on'  => esc_html__( 'Yes', 'mas-elementor' ),
+			)
+		);
+
+		$this->add_control(
+			'parent_id',
+			array(
+				'label'     => esc_html__( 'Parent ID', 'mas-elementor' ),
+				'type'      => Controls_Manager::TEXT,
+				'condition' => array(
+					'scrollspy' => 'yes',
+				),
+			)
+		);
+
+		$this->add_control(
+			'target_id',
+			array(
+				'label'     => esc_html__( 'Data Target ID', 'mas-elementor' ),
+				'type'      => Controls_Manager::TEXT,
+				'condition' => array(
+					'scrollspy' => 'yes',
+				),
+			)
+		);
+
+		$this->add_control(
+			'breakpoint',
+			array(
+				'label'     => esc_html__( 'Breakpoint', 'mas-elementor' ),
+				'type'      => Controls_Manager::SELECT,
+				'options'   => array(
+					'xs' => 'XS',
+					'sm' => 'SM',
+					'md' => 'MD',
+					'lg' => 'LG',
+				),
+				'default'   => 'md',
+				'condition' => array(
+					'scrollspy' => 'yes',
+				),
+			)
+		);
+
+		$this->add_control(
+			'start_point_id',
+			array(
+				'label'     => esc_html__( 'Startpoint ID', 'mas-elementor' ),
+				'type'      => Controls_Manager::TEXT,
+				'condition' => array(
+					'scrollspy' => 'yes',
+				),
+			)
+		);
+
+		$this->add_control(
+			'end_point_id',
+			array(
+				'label'     => esc_html__( 'Endpoint ID', 'mas-elementor' ),
+				'type'      => Controls_Manager::TEXT,
+				'condition' => array(
+					'scrollspy' => 'yes',
+				),
+			)
+		);
+
+		$this->add_control(
+			'offset',
+			array(
+				'label'     => esc_html__( 'Offset', 'mas-elementor' ),
+				'type'      => Controls_Manager::SLIDER,
+				'range'     => array(
+					'px' => array(
+						'min' => 0,
+						'max' => 100,
+					),
+				),
+				'condition' => array(
+					'scrollspy' => 'yes',
+				),
+			)
+		);
+		$this->end_controls_section();
+
+		$this->remove_control( 'section_text_style' );
+
+		$this->start_controls_section(
+			'scroll_section_text_style',
+			array(
+				'label' => esc_html__( 'Text', 'mas-elementor' ),
+				'tab'   => Controls_Manager::TAB_STYLE,
+			)
+		);
+
+		$this->add_control(
+			'scroll_text_color',
+			array(
+				'label'     => esc_html__( 'Text Color', 'mas-elementor' ),
+				'type'      => Controls_Manager::COLOR,
+				'default'   => '',
+				'selectors' => array(
+					'{{WRAPPER}} a' => 'color: {{VALUE}};',
+				),
+				'global'    => array(
+					'default' => Global_Colors::COLOR_SECONDARY,
+				),
+			)
+		);
+
+		$this->add_control(
+			'scroll_text_color_hover',
+			array(
+				'label'     => esc_html__( 'Hover', 'mas-elementor' ),
+				'type'      => Controls_Manager::COLOR,
+				'default'   => '',
+				'selectors' => array(
+					'{{WRAPPER}} .elementor-icon-list-item:hover a' => 'color: {{VALUE}};',
+				),
+			)
+		);
+
+		$this->add_control(
+			'scroll_text_indent',
+			array(
+				'label'     => esc_html__( 'Text Indent', 'mas-elementor' ),
+				'type'      => Controls_Manager::SLIDER,
+				'range'     => array(
+					'px' => array(
+						'max' => 50,
+					),
+				),
+				'selectors' => array(
+					'{{WRAPPER}} .elementor-icon-list-icon' => ! is_rtl() ? 'padding-right: {{SIZE}}{{UNIT}};' : 'padding-left: {{SIZE}}{{UNIT}};',
+				),
+			)
+		);
+
+		$this->add_group_control(
+			Group_Control_Typography::get_type(),
+			array(
+				'name'     => 'scroll_icon_typography',
+				'selector' => '{{WRAPPER}} .elementor-icon-list-item > .elementor-icon-list-text, {{WRAPPER}} .elementor-icon-list-item > a',
+				'global'   => array(
+					'default' => Global_Typography::TYPOGRAPHY_TEXT,
+				),
+			)
+		);
+
+		$this->end_controls_section();
+	}
+
+	/**
 	 * Render.
 	 *
 	 * @return void
 	 */
 	protected function render() {
 
-		$settings          = $this->get_settings_for_display();
+		$settings = $this->get_settings_for_display();
+		$args     = array(
+			'parentSelector' => '#' . $settings['parent_id'],
+			'targetSelector' => '#' . $settings['target_id'],
+			'breakpoint'     => $settings['breakpoint'],
+			'startPoint'     => '#' . $settings['start_point_id'],
+			'endPoint'       => '#' . $settings['end_point_id'],
+		);
+
+		if ( isset( $settings['offset']['size'] ) ) {
+			$args['stickyOffsetTop'] = $settings['offset']['size'];
+		}
+
+		if ( 'yes' === $settings['scrollspy'] ) {
+			$this->add_render_attribute(
+				'icon_list',
+				array(
+					'id'                           => 'navbarSettings',
+					'class'                        => 'js-sticky-block js-scrollspy',
+					'data-hs-sticky-block-options' => wp_json_encode( $args ),
+				)
+			);
+
+		}
 		$fallback_defaults = array(
 			'fa fa-check',
 			'fa fa-times',
@@ -94,57 +299,58 @@ class Scrollspy extends Widget_Icon_List {
 			$this->add_render_attribute( 'icon_list', 'class', 'elementor-inline-items' );
 			$this->add_render_attribute( 'list_item', 'class', 'elementor-inline-item' );
 		}
+		$this->add_render_attribute( 'scrollspy_wrap', 'id', $settings['parent_id'] );
 		?>
-		<ul <?php $this->print_render_attribute_string( 'icon_list' ); ?>>
-			<?php
-			foreach ( $settings['icon_list'] as $index => $item ) :
-				$repeater_setting_key = $this->get_repeater_setting_key( 'text', 'icon_list', $index );
-
-				$this->add_render_attribute( $repeater_setting_key, 'class', 'elementor-icon-list-text' );
-
-				$this->add_inline_editing_attributes( $repeater_setting_key );
-				$migration_allowed = Icons_Manager::is_migration_allowed();
-				?>
-				<li <?php $this->print_render_attribute_string( 'list_item' ); ?>>
-					<?php
-					if ( ! empty( $item['link']['url'] ) ) {
-						$link_key = 'link_' . $index;
-
-						$this->add_link_attributes( $link_key, $item['link'] );
-						?>
-						<a <?php $this->print_render_attribute_string( $link_key ); ?>>
-
-						<?php
-					}
-
-					// add old default.
-					if ( ! isset( $item['icon'] ) && ! $migration_allowed ) {
-						$item['icon'] = isset( $fallback_defaults[ $index ] ) ? $fallback_defaults[ $index ] : 'fa fa-check';
-					}
-
-					$migrated = isset( $item['__fa4_migrated']['selected_icon'] );
-					$is_new   = ! isset( $item['icon'] ) && $migration_allowed;
-					if ( ! empty( $item['icon'] ) || ( ! empty( $item['selected_icon']['value'] ) && $is_new ) ) :
-						?>
-						<span class="elementor-icon-list-icon">
-							<?php
-							if ( $is_new || $migrated ) {
-								Icons_Manager::render_icon( $item['selected_icon'], array( 'aria-hidden' => 'true' ) );
-							} else {
-								?>
-									<i class="<?php echo esc_attr( $item['icon'] ); ?>" aria-hidden="true"></i>
-							<?php } ?>
-						</span>
-					<?php endif; ?>
-					<?php $this->print_unescaped_setting( 'text', 'icon_list', $index ); ?>
-					<?php if ( ! empty( $item['link']['url'] ) ) : ?>
-						</a>
-					<?php endif; ?>
-				</li>
+		<div <?php $this->print_render_attribute_string( 'scrollspy_wrap' ); ?>>
+			<ul <?php $this->print_render_attribute_string( 'icon_list' ); ?>>
 				<?php
-			endforeach;
-			?>
-		</ul>
+				foreach ( $settings['icon_list'] as $index => $item ) :
+					$repeater_setting_key = $this->get_repeater_setting_key( 'text', 'icon_list', $index );
+
+					$this->add_inline_editing_attributes( $repeater_setting_key );
+					$migration_allowed = Icons_Manager::is_migration_allowed();
+					?>
+					<li <?php $this->print_render_attribute_string( 'list_item' ); ?>>
+						<?php
+						if ( ! empty( $item['link']['url'] ) ) {
+							$link_key = 'link_' . $index;
+
+							$this->add_link_attributes( $link_key, $item['link'] );
+							?>
+							<a <?php $this->print_render_attribute_string( $link_key ); ?>>
+
+							<?php
+						}
+
+						// add old default.
+						if ( ! isset( $item['icon'] ) && ! $migration_allowed ) {
+							$item['icon'] = isset( $fallback_defaults[ $index ] ) ? $fallback_defaults[ $index ] : 'fa fa-check';
+						}
+
+						$migrated = isset( $item['__fa4_migrated']['selected_icon'] );
+						$is_new   = ! isset( $item['icon'] ) && $migration_allowed;
+						if ( ! empty( $item['icon'] ) || ( ! empty( $item['selected_icon']['value'] ) && $is_new ) ) :
+							?>
+							<span class="elementor-icon-list-icon">
+								<?php
+								if ( $is_new || $migrated ) {
+									Icons_Manager::render_icon( $item['selected_icon'], array( 'aria-hidden' => 'true' ) );
+								} else {
+									?>
+										<i class="<?php echo esc_attr( $item['icon'] ); ?>" aria-hidden="true"></i>
+								<?php } ?>
+							</span>
+						<?php endif; ?>
+						<?php $this->print_unescaped_setting( 'text', 'icon_list', $index ); ?>
+						<?php if ( ! empty( $item['link']['url'] ) ) : ?>
+							</a>
+						<?php endif; ?>
+					</li>
+					<?php
+				endforeach;
+				?>
+			</ul>
+		</div>
 		<?php
 	}
 }

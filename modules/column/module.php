@@ -161,52 +161,21 @@ class Module extends Module_Base {
 	 * Register frontend script.
 	 */
 	public function register_frontend_scripts() {
-		// wp_enqueue_script(
-		// 'scrollspy-script',
-		// MAS_ELEMENTOR_MODULES_URL . 'column/assets/js/scrollspy.min.js',
-		// array(),
-		// MAS_ELEMENTOR_VERSION,
-		// true
-		// );.
-
 		wp_enqueue_script(
 			'mas-scroll-script',
-			MAS_ELEMENTOR_MODULES_URL . 'column/assets/js/scroll.min.js',
+			MAS_ELEMENTOR_ASSETS_URL . 'js/scrollspy/scroll.min.js',
 			array(),
 			MAS_ELEMENTOR_VERSION,
 			true
 		);
 
-		// wp_enqueue_script(
-		// 'sticky-block-script',
-		// MAS_ELEMENTOR_MODULES_URL . 'column/assets/js/sticky-block.min.js',
-		// array(),
-		// MAS_ELEMENTOR_VERSION,
-		// true
-		// );.
-
 		wp_enqueue_script(
 			'scrollspy-init-script',
-			MAS_ELEMENTOR_MODULES_URL . 'column/assets/js/scroll-init.js',
+			MAS_ELEMENTOR_ASSETS_URL . 'js/scrollspy/scroll-init.js',
 			array( 'mas-bootstrap-bundle' ),
 			MAS_ELEMENTOR_VERSION,
 			true
 		);
-
-		// wp_enqueue_script(
-		// 'scrollspy-script-header',
-		// MAS_ELEMENTOR_MODULES_URL . 'column/assets/js/hs-header.min.js',
-		// array(),
-		// MAS_ELEMENTOR_VERSION,
-		// true
-		// );
-		// wp_enqueue_script(
-		// 'scrollspy-script-nav',
-		// MAS_ELEMENTOR_MODULES_URL . 'column/assets/js/hs-navbar.min.js',
-		// array(),
-		// MAS_ELEMENTOR_VERSION,
-		// true
-		// );.
 	}
 
 
