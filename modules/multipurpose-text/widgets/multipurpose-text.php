@@ -823,12 +823,15 @@ class Multipurpose_Text extends Base_Widget {
 		$typed_strings = explode( "\n", $settings['typing_text'] );
 		array_unshift( $typed_strings, '' );
 		$typed_options = array(
-			'strings'   => $typed_strings,
-			'typeSpeed' => (int) $settings['type_speed']['size'],
-			'backSpeed' => (int) $settings['back_speed']['size'],
-			'backDelay' => (int) $settings['back_delay']['size'],
-			'loop'      => 'yes' === $settings['typing_loop'] ? true : false,
+			'strings' => $typed_strings,
+			'loop'    => 'yes' === $settings['typing_loop'] ? true : false,
 		);
+
+		if ( 'yes' === $settings['enable_typing_text'] && ! empty( $settings['typing_text'] ) ) {
+			$typed_options['typeSpeed'] = ! empty( (int) $settings['type_speed']['size'] ) ? (int) $settings['type_speed']['size'] : '40';
+			$typed_options['backSpeed'] = ! empty( (int) $settings['back_speed']['size'] ) ? (int) $settings['back_speed']['size'] : '40';
+			$typed_options['backDelay'] = ! empty( (int) $settings['back_delay']['size'] ) ? (int) $settings['back_delay']['size'] : '500';
+		}
 		return $typed_options;
 	}
 
@@ -843,14 +846,16 @@ class Multipurpose_Text extends Base_Widget {
 
 		$settings['typed_id'] = $typed_id;
 
-		$this->add_render_attribute(
-			'typing_text',
-			array(
-				'class'              => 'typed-text',
-				'data-typed-options' => wp_json_encode( $this->get_typed_options( $settings ) ),
-				'id'                 => $typed_id,
-			)
-		);
+		if ( 'yes' === $settings['enable_typing_text'] && ! empty( $settings['typing_text'] ) ) {
+			$this->add_render_attribute(
+				'typing_text',
+				array(
+					'class'              => 'typed-text',
+					'data-typed-options' => wp_json_encode( $this->get_typed_options( $settings ) ),
+					'id'                 => $typed_id,
+				)
+			);
+		}
 		mas_elementor_get_template( 'widgets/multipurpose-text/multipurpose-text.php', array( 'widget' => $this ) );
 		$this->render_script( $settings );
 	}

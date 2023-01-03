@@ -719,97 +719,6 @@ class Signin extends Base_Widget {
 			)
 		);
 
-		$this->add_control(
-			'button_heading',
-			array(
-				'label'     => esc_html__( 'Submit Button', 'mas-elementor' ),
-				'type'      => Controls_Manager::HEADING,
-				'separator' => 'before',
-			)
-		);
-
-		$this->add_control(
-			'button_type',
-			array(
-				'label'   => esc_html__( 'Type', 'mas-elementor' ),
-				'type'    => Controls_Manager::SELECT,
-				'default' => 'primary',
-				'options' => array(
-					'primary'           => esc_html__( 'Primary', 'mas-elementor' ),
-					'secondary'         => esc_html__( 'Secondary', 'mas-elementor' ),
-					'success'           => esc_html__( 'Success', 'mas-elementor' ),
-					'danger'            => esc_html__( 'Danger', 'mas-elementor' ),
-					'warning'           => esc_html__( 'Warning', 'mas-elementor' ),
-					'info'              => esc_html__( 'Info', 'mas-elementor' ),
-					'light'             => esc_html__( 'Light', 'mas-elementor' ),
-					'dark'              => esc_html__( 'Dark', 'mas-elementor' ),
-					'link'              => esc_html__( 'Link', 'mas-elementor' ),
-					'outline-primary'   => esc_html__( 'Primary outline', 'mas-elementor' ),
-					'outline-secondary' => esc_html__( 'Secondary outline', 'mas-elementor' ),
-					'outline-success'   => esc_html__( 'Success outline', 'mas-elementor' ),
-					'outline-danger'    => esc_html__( 'Danger outline', 'mas-elementor' ),
-					'outline-warning'   => esc_html__( 'Warning outline', 'mas-elementor' ),
-					'outline-info'      => esc_html__( 'Info outline', 'mas-elementor' ),
-					'outline-light'     => esc_html__( 'Light outline', 'mas-elementor' ),
-					'outline-dark'      => esc_html__( 'Dark outline', 'mas-elementor' ),
-					'primary-soft'      => esc_html__( 'Primary soft', 'mas-elementor' ),
-					'secondary-soft'    => esc_html__( 'Secondary soft', 'mas-elementor' ),
-					'success-soft'      => esc_html__( 'Success soft', 'mas-elementor' ),
-					'danger-soft'       => esc_html__( 'Danger soft', 'mas-elementor' ),
-					'warning-soft'      => esc_html__( 'Warning soft', 'mas-elementor' ),
-					'info-soft'         => esc_html__( 'Info soft', 'mas-elementor' ),
-				),
-			)
-		);
-
-		$this->add_control(
-			'button_size',
-			array(
-				'label'          => esc_html__( 'Size', 'mas-elementor' ),
-				'type'           => Controls_Manager::SELECT,
-				'options'        => array(
-					'xs' => esc_html__( 'Extra Small', 'mas-elementor' ),
-					'sm' => esc_html__( 'Small', 'mas-elementor' ),
-					''   => esc_html__( 'Base', 'mas-elementor' ),
-					'lg' => esc_html__( 'Large', 'mas-elementor' ),
-				),
-				'style_transfer' => true,
-				'default'        => '',
-			)
-		);
-
-		$this->add_control(
-			'button_radius',
-			array(
-				'label'          => esc_html__( 'Border Radius', 'mas-elementor' ),
-				'type'           => Controls_Manager::SELECT,
-				'options'        => array(
-					''          => esc_html__( 'Normal', 'mas-elementor' ),
-					'pill'      => esc_html__( 'Pill', 'mas-elementor' ),
-					'rounded-0' => esc_html__( 'Rounded 0', 'mas-elementor' ),
-					'card-btn'  => esc_html__( 'Card Btn', 'mas-elementor' ),
-				),
-				'default'        => '',
-				'style_transfer' => true,
-			)
-		);
-
-		$this->add_control(
-			'button_css_id',
-			array(
-				'label'       => esc_html__( 'Button ID', 'mas-elementor' ),
-				'type'        => Controls_Manager::TEXT,
-				'dynamic'     => array(
-					'active' => true,
-				),
-				'default'     => '',
-				'title'       => esc_html__( 'Add your custom id WITHOUT the Pound key. e.g: my-id', 'mas-elementor' ),
-				'description' => esc_html__( 'Please make sure the ID is unique and not used elsewhere on the page this form is displayed. This field allows <code>A-z 0-9</code> & underscore chars without spaces.', 'mas-elementor' ),
-				'separator'   => 'before',
-
-			)
-		);
-
 		$this->end_controls_section();
 	}
 
@@ -837,24 +746,6 @@ class Signin extends Base_Widget {
 				'btn',
 			)
 		);
-
-		if ( ! empty( $settings['button_type'] ) ) {
-			$this->add_render_attribute( 'button_text', 'class', 'btn-' . $settings['button_type'] );
-		}
-
-		if ( ! empty( $settings['button_radius'] ) ) {
-			if ( 'rounded-0' === $settings['button_radius'] ) {
-				$this->add_render_attribute( 'button_text', 'class', $settings['button_radius'] );
-			} elseif ( 'card-btn' === $settings['button_radius'] ) {
-				$this->add_render_attribute( 'button_text', 'class', $settings['button_radius'] );
-			} else {
-				$this->add_render_attribute( 'button_text', 'class', 'btn-' . $settings['button_radius'] );
-			}
-		}
-
-		if ( ! empty( $settings['button_size'] ) ) {
-			$this->add_render_attribute( 'button_text', 'class', 'btn-' . $settings['button_size'] );
-		}
 
 		if ( ! empty( $settings['button_classes'] ) ) {
 			$this->add_render_attribute( 'button_text', 'class', $settings['button_classes'] );
@@ -938,7 +829,7 @@ class Signin extends Base_Widget {
 					'type'        => 'text',
 					'name'        => 'username',
 					'id'          => 'reg_username-' . $unique_id,
-					'placeholder' => $settings['register_email_placeholder'],
+					'placeholder' => ! empty( $settings['register_email_placeholder'] ) ? $settings['register_email_placeholder'] : 'name@address.com',
 					'class'       => array(
 						'form-control',
 					),
@@ -952,7 +843,7 @@ class Signin extends Base_Widget {
 					'type'        => 'password',
 					'name'        => 'password',
 					'id'          => 'signupSrPassword-' . $unique_id,
-					'placeholder' => $settings['register_password_placeholder'],
+					'placeholder' => ! empty( $settings['register_password_placeholder'] ) ? $settings['register_password_placeholder'] : 'name@address.com',
 					'class'       => array(
 						'form-control',
 					),
@@ -965,7 +856,7 @@ class Signin extends Base_Widget {
 					'type'        => 'email',
 					'name'        => 'email',
 					'id'          => 'reg_email-' . $unique_id,
-					'placeholder' => $settings['register_email_placeholder'],
+					'placeholder' => ! empty( $settings['register_email_placeholder'] ) ? $settings['register_email_placeholder'] : 'name@address.com',
 					'class'       => array(
 						'form-control',
 					),
@@ -977,7 +868,7 @@ class Signin extends Base_Widget {
 					'type'        => 'password',
 					'name'        => 'confirmPassword',
 					'id'          => 'signupSrConfirmPassword-' . $unique_id,
-					'placeholder' => $settings['register_confirm_password_placeholder'],
+					'placeholder' => ! empty( $settings['register_confirm_password_placeholder'] ) ? $settings['register_confirm_password_placeholder'] : 'Confirm Password',
 					'class'       => array(
 						'form-control',
 					),
@@ -1726,8 +1617,8 @@ class Signin extends Base_Widget {
 	private function render_register_form_link( $settings ) {
 		$show       = ( get_option( 'users_can_register' ) && 'yes' === $settings['show_register'] );
 		$form_id    = $settings['register_form_id'];
-		$link_intro = $settings['register_link_intro'];
-		$link_text  = $settings['register_link_text'];
+		$link_intro = ! empty( $settings['register_link_intro'] ) ? $settings['register_link_intro'] : 'Don\'t have an account yet?';
+		$link_text  = ! empty( $settings['register_link_text'] ) ? $settings['register_link_text'] : 'Sign up';
 
 		if ( ! $show ) {
 			return;
