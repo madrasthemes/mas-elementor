@@ -296,6 +296,7 @@ class Skin_Counter_V1 extends Skin_Base {
 				'global'    => array(
 					'default' => Global_Colors::COLOR_SECONDARY,
 				),
+				'default'   => '#377dff',
 				'selectors' => array(
 					'{{WRAPPER}} .pieChart circle.pieChart__bar' => 'stroke: {{VALUE}};',
 				),
@@ -310,6 +311,7 @@ class Skin_Counter_V1 extends Skin_Base {
 				'global'    => array(
 					'default' => Global_Colors::COLOR_SECONDARY,
 				),
+				'default'   => '#f8fafd',
 				'selectors' => array(
 					'{{WRAPPER}} .pieChart__back' => 'stroke: {{VALUE}};',
 				),
