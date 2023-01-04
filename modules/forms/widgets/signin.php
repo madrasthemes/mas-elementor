@@ -699,6 +699,26 @@ class Signin extends Base_Widget {
 			)
 		);
 
+		$this->add_control(
+			'login_button_padding',
+			array(
+				'label'      => esc_html__( 'Padding', 'mas-elementor' ),
+				'type'       => Controls_Manager::DIMENSIONS,
+				'size_units' => array( 'px', '%', 'em' ),
+				'selectors'  => array(
+					'{{WRAPPER}} .mas-signin-btn button' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				),
+				'default'    => array(
+					'top'      => '6',
+					'right'    => '12',
+					'bottom'   => '6',
+					'left'     => '12',
+					'unit'     => 'px',
+					'isLinked' => '',
+				),
+			)
+		);
+
 		$this->add_group_control(
 			Group_Control_Border::get_type(),
 			array(
@@ -707,7 +727,7 @@ class Signin extends Base_Widget {
 				'separator'      => 'none',
 				'fields_options' => array(
 					'border' => array(
-						'default' => 'none',
+						'default' => 'solid',
 					),
 					'width'  => array(
 						'default' => array(
