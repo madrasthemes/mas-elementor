@@ -139,11 +139,23 @@ abstract class Mas_Attributes_ACF_Image_Base extends Widget_Image {
 			?><div class="acf-attr-image" style="display:flex;">
 			<?php
 			foreach ( $terms as $term ) {
-				$acf                   = get_field( $key, $term );
-				$settings['image_key'] = array(
-					'id'  => $acf['id'],
-					'url' => $acf['url'],
-				);
+				$acf = get_field( $key, $term );
+				if ( is_array( $acf ) ) {
+					$settings['image_key'] = array(
+						'id'  => $acf['id'],
+						'url' => $acf['url'],
+					);
+				} elseif ( wp_http_validate_url( $acf ) ) {
+					$settings['image_key'] = array(
+						'id'  => attachment_url_to_postid( $acf ),
+						'url' => $acf,
+					);
+				} else {
+					$settings['image_key'] = array(
+						'id'  => $acf,
+						'url' => wp_get_attachment_url( $acf ),
+					);
+				}
 				Group_Control_Image_Size::print_attachment_image_html( $settings, 'attr_image', 'image_key' );
 			}
 			?>
