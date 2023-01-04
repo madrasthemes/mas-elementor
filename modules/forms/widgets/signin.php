@@ -496,6 +496,170 @@ class Signin extends Base_Widget {
 		);
 
 		$this->add_control(
+			'login_form_input_heading',
+			array(
+				'label'     => esc_html__( 'Form Input', 'mas-elementor' ),
+				'type'      => Controls_Manager::HEADING,
+				'separator' => 'before',
+			)
+		);
+
+		$this->add_group_control(
+			Group_Control_Border::get_type(),
+			array(
+				'name'           => 'login_input_border',
+				'selector'       => '{{WRAPPER}} .mas-form-fields-wrapper .elementor-field-type-text input[type="text"],{{WRAPPER}} .mas-form-fields-wrapper .elementor-field-type-text input[type="password"]',
+				'separator'      => 'none',
+				'fields_options' => array(
+					'border' => array(
+						'default' => 'solid',
+					),
+					'width'  => array(
+						'default' => array(
+							'top'      => '2',
+							'right'    => '2',
+							'bottom'   => '2',
+							'left'     => '2',
+							'isLinked' => false,
+						),
+					),
+				),
+				'exclude'        => array( 'color' ),
+			)
+		);
+
+		$this->add_control(
+			'form_input_padding',
+			array(
+				'label'      => esc_html__( 'Padding', 'mas-elementor' ),
+				'type'       => Controls_Manager::DIMENSIONS,
+				'size_units' => array( 'px', '%', 'em' ),
+				'selectors'  => array(
+					'{{WRAPPER}} .mas-form-fields-wrapper .elementor-field-type-text input[type="text"]' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .mas-form-fields-wrapper .elementor-field-type-text input[type="password"]' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				),
+				'condition'  => array(
+					'login_input_border_border!' => 'none',
+				),
+			)
+		);
+
+		$this->add_control(
+			'form_input_border_radius',
+			array(
+				'label'      => esc_html__( 'Border Radius', 'mas-elementor' ),
+				'type'       => Controls_Manager::DIMENSIONS,
+				'size_units' => array( 'px', '%', 'em' ),
+				'selectors'  => array(
+					'{{WRAPPER}} .mas-form-fields-wrapper .elementor-field-type-text input[type="text"]' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .mas-form-fields-wrapper .elementor-field-type-text input[type="password"]' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				),
+				'condition'  => array(
+					'login_input_border_border!' => 'none',
+				),
+			)
+		);
+
+		$this->start_controls_tabs( 'form_input_controls' );
+
+		$this->start_controls_tab(
+			'form_input_controls_normal',
+			array(
+				'label' => esc_html__( 'Normal', 'mas-elementor' ),
+			)
+		);
+
+		$this->add_control(
+			'login_input_color',
+			array(
+				'label'     => esc_html__( 'Input Text Color', 'mas-elementor' ),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => array(
+					'{{WRAPPER}} .mas-form-fields-wrapper .elementor-field-type-text input[type="text"]' => 'color: {{VALUE}};',
+					'{{WRAPPER}} .mas-form-fields-wrapper .elementor-field-type-text input[type="password"]' => 'color: {{VALUE}};',
+				),
+			)
+		);
+
+		$this->add_control(
+			'login_input_bg_color',
+			array(
+				'label'     => esc_html__( 'Input BG Color', 'mas-elementor' ),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => array(
+					'{{WRAPPER}} .mas-form-fields-wrapper .elementor-field-type-text input[type="text"]' => 'background-color: {{VALUE}};',
+					'{{WRAPPER}} .mas-form-fields-wrapper .elementor-field-type-text input[type="password"]' => 'background-color: {{VALUE}};',
+				),
+			)
+		);
+
+		$this->add_control(
+			'login_input_border_color',
+			array(
+				'label'     => esc_html__( 'Input Border Color', 'mas-elementor' ),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => array(
+					'{{WRAPPER}} .mas-form-fields-wrapper .elementor-field-type-text input[type="text"]' => 'border-color: {{VALUE}};',
+					'{{WRAPPER}} .mas-form-fields-wrapper .elementor-field-type-text input[type="password"]' => 'border-color: {{VALUE}};',
+				),
+				'condition' => array(
+					'login_input_border_border!' => 'none',
+				),
+			)
+		);
+
+		$this->end_controls_tab();
+
+		$this->start_controls_tab(
+			'form_input_controls_hover',
+			array(
+				'label' => esc_html__( 'Hover', 'mas-elementor' ),
+			)
+		);
+
+		$this->add_control(
+			'login_input_hover_color',
+			array(
+				'label'     => esc_html__( 'Input Text Color', 'mas-elementor' ),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => array(
+					'{{WRAPPER}} .mas-form-fields-wrapper .elementor-field-type-text input[type="text"]:hover' => 'color: {{VALUE}};',
+					'{{WRAPPER}} .mas-form-fields-wrapper .elementor-field-type-text input[type="password"]:hover' => 'color: {{VALUE}};',
+				),
+			)
+		);
+
+		$this->add_control(
+			'login_input_bg_hover_color',
+			array(
+				'label'     => esc_html__( 'Input BG Color', 'mas-elementor' ),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => array(
+					'{{WRAPPER}} .mas-form-fields-wrapper .elementor-field-type-text input[type="text"]:hover' => 'background-color: {{VALUE}};',
+					'{{WRAPPER}} .mas-form-fields-wrapper .elementor-field-type-text input[type="password"]:hover' => 'background-color: {{VALUE}};',
+				),
+			)
+		);
+
+		$this->add_control(
+			'login_input_border_hover_color',
+			array(
+				'label'     => esc_html__( 'Input Border Color', 'mas-elementor' ),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => array(
+					'{{WRAPPER}} .mas-form-fields-wrapper .elementor-field-type-text input[type="text"]:hover' => 'border-color: {{VALUE}};',
+					'{{WRAPPER}} .mas-form-fields-wrapper .elementor-field-type-text input[type="password"]:hover' => 'border-color: {{VALUE}};',
+				),
+				'condition' => array(
+					'login_input_border_border!' => 'none',
+				),
+			)
+		);
+
+		$this->end_controls_tab();
+		$this->end_controls_tabs();
+
+		$this->add_control(
 			'login_button_heading',
 			array(
 				'label'     => esc_html__( 'Signin Button', 'mas-elementor' ),
