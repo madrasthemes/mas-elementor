@@ -61,6 +61,7 @@ final class Modules_Manager {
 			'masvideos-genre',
 			'review-form',
 			'scrollspy',
+			'counter',
 		);
 
 		foreach ( $modules as $module_name ) {
