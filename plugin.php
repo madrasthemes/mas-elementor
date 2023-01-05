@@ -161,6 +161,12 @@ class Plugin {
 			array(),
 			MAS_ELEMENTOR_VERSION
 		);
+		wp_enqueue_style(
+			'mas-magnific-popup',
+			MAS_ELEMENTOR_ASSETS_URL . 'css/popup/magnific-popup.css',
+			array(),
+			MAS_ELEMENTOR_VERSION
+		);
 	}
 
 	/**
@@ -170,6 +176,22 @@ class Plugin {
 		wp_enqueue_script(
 			'mas-bootstrap-bundle',
 			MAS_ELEMENTOR_ASSETS_URL . 'js/bootstrap/bootstrap.bundle.min.js',
+			array(),
+			MAS_ELEMENTOR_VERSION,
+			true
+		);
+
+		wp_enqueue_script(
+			'mas-magnigy-popup',
+			MAS_ELEMENTOR_ASSETS_URL . 'js/popup/jquery.magnific-popup.min.js',
+			array(),
+			MAS_ELEMENTOR_VERSION,
+			true
+		);
+
+		wp_enqueue_script(
+			'mas-popup-init',
+			MAS_ELEMENTOR_ASSETS_URL . 'js/popup/popup-init.js',
 			array(),
 			MAS_ELEMENTOR_VERSION,
 			true
