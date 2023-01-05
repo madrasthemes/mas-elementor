@@ -133,6 +133,9 @@ abstract class Mas_Attributes_ACF_Image_Base extends Widget_Image {
 	public function render() {
 		$settings = $this->get_settings_for_display();
 		$terms    = get_the_terms( get_the_ID(), $settings['select_taxonomies'] );
+		if ( is_wp_error( $terms ) || empty( $terms ) ) {
+			return '';
+		}
 		if ( ! empty( $settings['key'] ) && ! empty( $terms ) ) {
 			$pair               = explode( ':', $settings['key'] );
 			list( $key, $name ) = $pair;
