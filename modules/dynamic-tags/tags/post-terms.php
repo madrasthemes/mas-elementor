@@ -106,6 +106,9 @@ class Post_Terms extends \Elementor\Core\DynamicTags\Tag {
 
 		if ( 'yes' === $settings['link'] ) {
 			$value = get_the_term_list( get_the_ID(), $settings['taxonomy'], '', $settings['separator'] );
+			if ( is_wp_error( $value ) || empty( $value ) ) {
+				return '';
+			}
 		} else {
 			$terms = get_the_terms( get_the_ID(), $settings['taxonomy'] );
 
