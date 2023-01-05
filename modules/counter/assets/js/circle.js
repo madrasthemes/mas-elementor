@@ -145,7 +145,7 @@
             position:   'absolute',
             top:        0,
             left:       0,
-            textAlign:  'center',
+            // textAlign:  'center',
             width:      '100%',
             fontSize:   (this._radius * .7) + 'px',
             height:     this._svgSize + 'px',

@@ -118,15 +118,28 @@ class Skin_Counter_V1 extends Skin_Base {
 		}
 
 		$this->add_control(
+			'mas_counter_max_value',
+			array(
+				'label'       => esc_html__( 'Enter Maximum Number', 'mas-elementor' ),
+				'type'        => Controls_Manager::NUMBER,
+				'default'     => 100,
+				'description' => esc_html__( 'Maximum number must be higher than the counter number', 'mas-elementor' ),
+			),
+			array(
+				'position' => array(
+					'at' => 'after',
+					'of' => 'starting_number',
+				),
+			)
+		);
+
+		$this->add_control(
 			'mas_counter_value',
 			array(
-				'label'   => esc_html__( 'Enter Value', 'mas-elementor' ),
-				'type'    => Controls_Manager::NUMBER,
-				'default' => 75,
-				'max'     => 100,
-				'dynamic' => array(
-					'active' => true,
-				),
+				'label'       => esc_html__( 'Enter Counter Number', 'mas-elementor' ),
+				'type'        => Controls_Manager::NUMBER,
+				'description' => esc_html__( 'Counter number must be lower than the Maximum number', 'mas-elementor' ),
+				'default'     => 75,
 			),
 			array(
 				'position' => array(
@@ -147,6 +160,30 @@ class Skin_Counter_V1 extends Skin_Base {
 				'return_value' => 'true',
 
 			)
+		);
+
+		$this->add_control(
+			'mas_counter_duration',
+			array(
+				'label'       => esc_html__( 'Duration', 'mas-elementor' ),
+				'type'        => Controls_Manager::NUMBER,
+				'description' => esc_html__( 'Duration in seconds to complete', 'mas-elementor' ),
+				'default'     => 2,
+				'min'         => 1,
+				'max'         => 20,
+				'step'        => .5,
+			),
+		);
+
+		$this->add_control(
+			'mas_counter_stroke_width',
+			array(
+				'label'   => esc_html__( 'Stroke Width', 'mas-elementor' ),
+				'type'    => Controls_Manager::NUMBER,
+				'default' => '8',
+				'min'     => '1',
+				'max'     => '30',
+			),
 		);
 
 		$this->add_control(
@@ -191,7 +228,7 @@ class Skin_Counter_V1 extends Skin_Base {
 		$this->start_controls_section(
 			'section_counter_title',
 			array(
-				'label' => esc_html__( 'Title', 'mas-elementor' ),
+				'label' => esc_html__( 'Text', 'mas-elementor' ),
 				'tab'   => Controls_Manager::TAB_STYLE,
 			)
 		);
@@ -204,9 +241,9 @@ class Skin_Counter_V1 extends Skin_Base {
 				'global'    => array(
 					'default' => Global_Colors::COLOR_SECONDARY,
 				),
-				'default'   => '#111111',
+				'default'   => '#377dff',
 				'selectors' => array(
-					'{{WRAPPER}} .mas-counter' => 'color: {{VALUE}};',
+					'{{WRAPPER}} .mas-stats-progress__info' => 'color: {{VALUE}};',
 				),
 			)
 		);
@@ -214,22 +251,26 @@ class Skin_Counter_V1 extends Skin_Base {
 		$this->add_group_control(
 			Group_Control_Typography::get_type(),
 			array(
-				'name'     => 'typography_counter_title',
-				'global'   => array(
+				'name'           => 'typography_counter_title',
+				'global'         => array(
 					'default' => Global_Typography::TYPOGRAPHY_SECONDARY,
 				),
-				'selector' => '{{WRAPPER}} .mas-counter',
-				'exclude'  => array( 'line_height' ),
-			)
-		);
-
-		$this->end_controls_section();
-
-		$this->start_controls_section(
-			'section_description',
-			array(
-				'label' => esc_html__( 'Description', 'mas-elementor' ),
-				'tab'   => Controls_Manager::TAB_STYLE,
+				'selector'       => '{{WRAPPER}} .mas-stats-progress__info',
+				'exclude'        => array( 'line_height' ),
+				'fields_options' => array(
+					'typography'  => array( 'default' => 'yes' ),
+					// Inner control name.
+					'font_weight' => array(
+						// Inner control settings.
+						'default' => '600',
+					),
+					'font_size'   => array(
+						'default' => array(
+							'unit' => 'px',
+							'size' => 24,
+						),
+					),
+				),
 			)
 		);
 
@@ -241,9 +282,9 @@ class Skin_Counter_V1 extends Skin_Base {
 				'global'    => array(
 					'default' => Global_Colors::COLOR_SECONDARY,
 				),
-				'default'   => '#111111',
+				'default'   => '#77838f',
 				'selectors' => array(
-					'selector' => '{{WRAPPER}} .mas-counter div',
+					'selector' => '{{WRAPPER}} .mas-stats-progress__info div',
 				),
 			)
 		);
@@ -251,12 +292,112 @@ class Skin_Counter_V1 extends Skin_Base {
 		$this->add_group_control(
 			Group_Control_Typography::get_type(),
 			array(
-				'name'     => 'typography_desc',
-				'global'   => array(
+				'name'           => 'typography_desc',
+				'global'         => array(
 					'default' => Global_Typography::TYPOGRAPHY_SECONDARY,
 				),
-				'selector' => '{{WRAPPER}} .mas-counter div',
-				'exclude'  => array( 'line_height' ),
+				'selector'       => '{{WRAPPER}} .mas-stats-progress__info div',
+				'exclude'        => array( 'line_height' ),
+				'fields_options' => array(
+					'typography'  => array( 'default' => 'yes' ),
+					// Inner control name.
+					'font_weight' => array(
+						// Inner control settings.
+						'default' => '400',
+					),
+					'font_size'   => array(
+						'default' => array(
+							'unit' => 'px',
+							'size' => 13,
+						),
+					),
+				),
+			)
+		);
+
+		$this->add_control(
+			'mas_counter_top_position',
+			array(
+				'label'     => esc_html__( 'Position', 'mas-elementor' ),
+				'type'      => Controls_Manager::SLIDER,
+				'range'     => array(
+					'%' => array(
+						'max' => 100,
+						'min' => 0,
+					),
+				),
+				'default'   => array(
+					'unit' => '%',
+					'size' => 50,
+				),
+				'selectors' => array(
+					'{{WRAPPER}} .mas-stats-progress__info' => 'top: {{SIZE}}{{UNIT}}; transform: translate(0,-{{SIZE}}{{UNIT}});left: 0;right: 0;',
+				),
+			)
+		);
+
+		$this->add_control(
+			'mas_counter_padding',
+			array(
+				'label'      => esc_html__( 'Padding', 'mas-elementor' ),
+				'type'       => Controls_Manager::DIMENSIONS,
+				'size_units' => array( 'px', 'em', '%', 'rem' ),
+				'selectors'  => array(
+					'{{WRAPPER}} .mas-stats-progress__info' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				),
+				'default'    => array(
+					'top'      => '2',
+					'right'    => '2',
+					'bottom'   => '2',
+					'left'     => '2',
+					'unit'     => 'rem',
+					'isLinked' => true,
+				),
+			)
+		);
+
+		$this->add_control(
+			'mas_counter_space_divider',
+			array(
+				'label'   => esc_html__( 'Text Spacing', 'mas-elementor' ),
+				'type'    => Controls_Manager::SLIDER,
+				'range'   => array(
+					'%' => array(
+						'max'  => 100,
+						'min'  => 0,
+						'step' => 2,
+					),
+				),
+				'default' => array(
+					'unit' => '%',
+					'size' => 10,
+				),
+			)
+		);
+
+		$this->add_responsive_control(
+			'mas_counter_text_align',
+			array(
+				'label'     => esc_html__( 'Text Alignment', 'mas-elementor' ),
+				'type'      => Controls_Manager::CHOOSE,
+				'options'   => array(
+					'left'   => array(
+						'title' => esc_html__( 'Left', 'mas-elementor' ),
+						'icon'  => 'eicon-text-align-left',
+					),
+					'center' => array(
+						'title' => esc_html__( 'Center', 'mas-elementor' ),
+						'icon'  => 'eicon-text-align-center',
+					),
+					'right'  => array(
+						'title' => esc_html__( 'Right', 'mas-elementor' ),
+						'icon'  => 'eicon-text-align-right',
+					),
+				),
+				'default'   => 'center',
+				'selectors' => array(
+					'{{WRAPPER}} .mas-stats-progress__info' => 'text-align: {{VALUE}};',
+				),
 			)
 		);
 
@@ -318,6 +459,73 @@ class Skin_Counter_V1 extends Skin_Base {
 			)
 		);
 
+		$this->add_control(
+			'mas_counter_border_radius',
+			array(
+				'label'      => esc_html__( 'Border Radius', 'mas-elementor' ),
+				'type'       => Controls_Manager::DIMENSIONS,
+				'size_units' => array( 'px', 'em', '%', 'rem' ),
+				'selectors'  => array(
+					'{{WRAPPER}} .mas-stats-progress' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				),
+				'default'    => array(
+					'top'      => '50',
+					'right'    => '50',
+					'bottom'   => '50',
+					'left'     => '50',
+					'unit'     => '%',
+					'isLinked' => true,
+				),
+			)
+		);
+
+		$this->add_control(
+			'mas_circle_outer_size',
+			array(
+				'label'     => esc_html__( 'Outer Circle Size', 'mas-elementor' ),
+				'type'      => Controls_Manager::SLIDER,
+				'range'     => array(
+					'rem' => array(
+						'max'  => 50,
+						'min'  => 0.5,
+						'step' => 0.25,
+					),
+				),
+				'default'   => array(
+					'unit' => 'rem',
+					'size' => 13.75,
+				),
+				'selectors' => array(
+					'{{WRAPPER}} .mas-stats-progress'     => 'width: {{SIZE}}{{UNIT}}; height: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}} .mas-stats-progress svg' => 'margin-bottom: -0.4375rem; vertical-align: baseline;',
+				),
+			)
+		);
+
+		$this->add_group_control(
+			Group_Control_Box_Shadow::get_type(),
+			array(
+				'name'           => 'mas_counter_box_shadow',
+				'label'          => esc_html__( 'Box Shadow', 'mas-elementor' ),
+				'selector'       => '{{WRAPPER}} .mas-stats-progress',
+				'fields_options' => array(
+					'box_shadow_type'     => array( 'default' => 'yes' ),
+					'box_shadow_position' => array(
+						'default' => ' ',
+					),
+					'box_shadow'          => array(
+						'default' => array(
+							'horizontal' => 0,
+							'vertical'   => 6,
+							'blur'       => 24,
+							'spread'     => 0,
+							'color'      => 'rgba(140 ,152 ,164 ,0.13)',
+						),
+					),
+				),
+			)
+		);
+
 		$this->end_controls_section();
 	}
 
@@ -331,13 +539,17 @@ class Skin_Counter_V1 extends Skin_Base {
 		$skin_control_ids = array(
 			'hide_value',
 			'mas_counter_value',
+			'mas_counter_max_value',
 			'prefix_suffix',
 			'description',
+			'mas_counter_duration',
+			'mas_counter_stroke_width',
 
 			'counter_title_color',
 			'typography_counter_title_typography',
 			'typography_counter_title_font_weight',
 			'typography_counter_title_font_size',
+			'mas_counter_space_divider',
 
 			'desc_color',
 			'typography_desc_font_size',
@@ -355,19 +567,20 @@ class Skin_Counter_V1 extends Skin_Base {
 		$number_text        = 'prefix' === $skin_settings['prefix_suffix'] ? $settings['title'] . ' ' : ' ' . $settings['title'];
 		$counter_attributes = array(
 			'class'                             => 'mas-js-pie',
-			'data-circles-text-class'           => 'u-stats-progress__info mas-counter',
+			'style'                             => 'text-align:center',
+			'data-circles-text-class'           => 'mas-stats-progress__info',
 			'data-circles-is-hide-value'        => (string) $skin_settings['hide_value'],
 			'data-circles-value'                => (string) $skin_settings['mas_counter_value'],
-			'data-circles-max-value'            => '100',
+			'data-circles-max-value'            => (string) $skin_settings['mas_counter_max_value'],
 			'data-circles-fg-color'             => (string) $skin_settings['circle_bar_color'],
 			'data-circles-bg-color'             => (string) $skin_settings['circle_back_color'],
 			'data-circles-fg-stroke-linecap'    => 'round',
-			'data-circles-fg-stroke-miterlimit' => '10',
+			'data-circles-fg-stroke-miterlimit' => '100',
 			'data-circles-radius'               => ! empty( $skin_settings['mas_circle_size']['size'] ) ? (string) $skin_settings['mas_circle_size']['size'] : '10',
-			'data-circles-stroke-width'         => '8',
+			'data-circles-stroke-width'         => (string) $skin_settings['mas_counter_stroke_width'],
 			'data-circles-additional-text'      => $number_text,
 			'data-circles-additional-text-type' => (string) $skin_settings['prefix_suffix'],
-			'data-circles-duration'             => '2000',
+			'data-circles-duration'             => (string) ( $skin_settings['mas_counter_duration'] * 1000 ),
 			'data-circles-scroll-animate'       => 'true',
 			'data-circles-color'                => (string) $skin_settings['counter_title_color'],
 			'data-circles-font-size'            => (string) $skin_settings['typography_counter_title_font_size']['size'],
@@ -376,11 +589,11 @@ class Skin_Counter_V1 extends Skin_Base {
 			'data-circles-secondary-color'      => (string) $skin_settings['desc_color'],
 			'data-circles-secondary-font-size'  => (string) $skin_settings['typography_desc_font_size']['size'],
 			// 'data-circles-secondary-font-weight' => (string) $skin_settings['typography_desc_font_weight'],
-			'data-circles-divider-space'        => '10',
+			'data-circles-divider-space'        => (string) $skin_settings['mas_counter_space_divider']['size'],
 		);
 
 		$parent->add_render_attribute( 'mas-counter-js-attributes', $counter_attributes );
-		?><div class="u-stats-progress position-relative d-flex align-items-center justify-content-center">
+		?><div class="mas-stats-progress" style="position:relative;display:flex;align-items:center;justify-content:center">
 			<div <?php $parent->print_render_attribute_string( 'mas-counter-js-attributes' ); ?> ></div>
 		</div>
 		<?php
