@@ -519,7 +519,7 @@ if ( ! function_exists( 'mas_elementor_breadcrumb' ) ) {
 			)
 		);
 
-		require plugin_dir_path( MAS_ELEMENTOR__FILE__ ) . 'classes/class-mas-breadcrumb.php';
+		require_once plugin_dir_path( MAS_ELEMENTOR__FILE__ ) . 'classes/class-mas-breadcrumb.php';
 
 		$breadcrumbs = new Mas_Breadcrumb_Class();
 
