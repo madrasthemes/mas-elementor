@@ -12,8 +12,8 @@ use Elementor\plugin;
  * Description: More power to your Elementor powered website with beautifully designed sections, templates, widgets, skins and extensions.
  * Plugin URI: https://github.com/madrasthemes/mas-elementor
  * Author: MadrasThemes
- * Version: 1.0.0
- * Elementor tested up to: 3.7.5
+ * Version: 1.0.2
+ * Elementor tested up to: 3.10.0
  * Author URI: https://madrasthemes.com/
  *
  * Text Domain: mas-elementor
@@ -456,6 +456,29 @@ if ( ! function_exists( 'mas_render_template' ) ) {
 			return $content;
 		}
 	}
+}
+
+if ( ! function_exists( 'mas_render_content' ) ) {
+    /**
+     * MAS render content.
+     *
+     * @param array $post_id  post ID.
+     * @param bool  $echo  echo.
+     */
+    function mas_render_content( $post_id, $echo = false ) {
+        if ( did_action( 'elementor/loaded' ) ) {
+            $content = Plugin::instance()->frontend->get_builder_content_for_display( $post_id );
+        } else {
+            $content = get_the_content( null, false, $post_id );
+            $content = apply_filters( 'the_content', $content );
+            $content = str_replace( ']]>', ']]&gt;', $content );
+        }
+        if ( $echo ) {
+            echo wp_kses_post( $content );
+        } else {
+            return $content;
+        }
+    }
 }
 
 if ( ! function_exists( 'mas_option_enabled_post_types' ) ) {

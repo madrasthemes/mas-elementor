@@ -1,17 +1,307 @@
-# Copyright (C) 2022 MadrasThemes
+# Copyright (C) 2023 MadrasThemes
 # This file is distributed under the same license as the MAS Addons for Elementor package.
 msgid ""
 msgstr ""
-"Project-Id-Version: MAS Addons for Elementor 1.0.0\n"
+"Project-Id-Version: MAS Addons for Elementor 1.0.2\n"
 "Report-Msgid-Bugs-To: https://github.com/madrasthemes/mas-elementor/issues\n"
-"POT-Creation-Date: 2022-11-29 06:29:14+00:00\n"
+"POT-Creation-Date: 2023-01-12 10:58:16+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2022-MO-DA HO:MI+ZONE\n"
+"PO-Revision-Date: 2023-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
 "X-Generator: grunt-wp-i18n 1.0.3\n"
+
+#: modules/masvideos-genre/widgets/movie-genre-filter.php:127
+msgid "1"
+msgstr ""
+
+#: modules/jobs-filter/widgets/jobs-filter.php:186
+#: modules/masvideos-genre/widgets/movie-genre-filter.php:128
+msgid "2"
+msgstr ""
+
+#: modules/jobs-filter/widgets/jobs-filter.php:187
+#: modules/masvideos-genre/widgets/movie-genre-filter.php:129
+msgid "3"
+msgstr ""
+
+#: base/traits/carousel-traits.php:39 modules/carousel-attributes/module.php:74
+#: modules/posts/widgets/posts-base.php:848
+#: modules/woocommerce/widgets/products.php:373
+msgid "Carousel"
+msgstr ""
+
+#: base/traits/carousel-traits.php:54 modules/carousel-attributes/module.php:89
+#: modules/posts/widgets/posts-base.php:1542
+#: modules/woocommerce/widgets/products.php:343
+msgid "Enable Carousel"
+msgstr ""
+
+#: base/traits/carousel-traits.php:63 modules/carousel-attributes/module.php:98
+#: modules/posts/widgets/posts-base.php:858
+#: modules/woocommerce/widgets/products.php:383
+msgid "Effect"
+msgstr ""
+
+#: base/traits/carousel-traits.php:66
+#: modules/carousel-attributes/module.php:101
+#: modules/dynamic-tags/tags/comments-number.php:84
+#: modules/jobs-filter/widgets/jobs-filter.php:271
+#: modules/jobs-filter/widgets/jobs-filter.php:486
+#: modules/jobs-filter/widgets/jobs-filter.php:541
+#: modules/jobs-filter/widgets/jobs-filter.php:751
+#: modules/jobs-filter/widgets/jobs-filter.php:807
+#: modules/jobs-filter/widgets/jobs-filter.php:1013
+#: modules/jobs-filter/widgets/jobs-filter.php:1076
+#: modules/jobs-filter/widgets/jobs-filter.php:1369
+#: modules/jobs-filter/widgets/jobs-filter.php:1424
+#: modules/posts/widgets/posts-base.php:122
+#: modules/posts/widgets/posts-base.php:861
+#: modules/query-control/controls/group-control-related.php:76
+#: modules/woocommerce/widgets/products.php:386
+msgid "None"
+msgstr ""
+
+#: base/traits/carousel-traits.php:67
+#: modules/carousel-attributes/module.php:102
+#: modules/posts/widgets/posts-base.php:862
+#: modules/woocommerce/widgets/products.php:387
+msgid "Slide"
+msgstr ""
+
+#: base/traits/carousel-traits.php:68
+#: modules/carousel-attributes/module.php:103
+#: modules/posts/widgets/posts-base.php:863
+#: modules/woocommerce/widgets/products.php:388
+msgid "Fade"
+msgstr ""
+
+#: base/traits/carousel-traits.php:84
+#: modules/carousel-attributes/module.php:119
+#: modules/posts/widgets/posts-base.php:879
+#: modules/woocommerce/widgets/products.php:404
+msgid "Slides Per View"
+msgstr ""
+
+#: base/traits/carousel-traits.php:96
+#: modules/carousel-attributes/module.php:131
+#: modules/posts/widgets/posts-base.php:892
+#: modules/woocommerce/widgets/products.php:417
+msgid "Slides To Scroll"
+msgstr ""
+
+#: base/traits/carousel-traits.php:109 modules/accordion/module.php:116
+#: modules/carousel-attributes/module.php:144
+#: modules/mas-nav-menu/widgets/mas-nav-menu.php:279
+#: modules/masvideos-genre/widgets/movie-genre-filter.php:345
+#: modules/posts/widgets/posts-base.php:461
+#: modules/posts/widgets/posts-base.php:906
+#: modules/woocommerce/widgets/products-base.php:135
+#: modules/woocommerce/widgets/products.php:431
+msgid "Space Between"
+msgstr ""
+
+#: base/traits/carousel-traits.php:110
+#: modules/carousel-attributes/module.php:145
+#: modules/posts/widgets/posts-base.php:907
+#: modules/woocommerce/widgets/products.php:432
+msgid "Set Space between each Slides"
+msgstr ""
+
+#: base/traits/carousel-traits.php:140
+#: modules/carousel-attributes/module.php:175
+#: modules/posts/widgets/posts-base.php:938
+#: modules/woocommerce/widgets/products.php:463
+msgid "Enable Space Between"
+msgstr ""
+
+#: base/traits/carousel-traits.php:142 base/traits/carousel-traits.php:162
+#: base/traits/carousel-traits.php:178 base/traits/carousel-traits.php:193
+#: base/traits/carousel-traits.php:307
+#: modules/carousel-attributes/module.php:177
+#: modules/carousel-attributes/module.php:197
+#: modules/carousel-attributes/module.php:213
+#: modules/carousel-attributes/module.php:228
+#: modules/carousel-attributes/module.php:342
+#: modules/countdown/widgets/countdown.php:178
+#: modules/countdown/widgets/countdown.php:189
+#: modules/countdown/widgets/countdown.php:200
+#: modules/countdown/widgets/countdown.php:211
+#: modules/countdown/widgets/countdown.php:222
+#: modules/countdown/widgets/countdown.php:306 modules/divider/module.php:66
+#: modules/forms/widgets/login.php:80 modules/forms/widgets/login.php:239
+#: modules/forms/widgets/login.php:251 modules/forms/widgets/login.php:263
+#: modules/forms/widgets/login.php:274 modules/forms/widgets/signin.php:856
+#: modules/forms/widgets/signin.php:890 modules/forms/widgets/signin.php:901
+#: modules/forms/widgets/signin.php:1182 modules/forms/widgets/signin.php:1194
+#: modules/forms/widgets/signin.php:1221 modules/forms/widgets/signin.php:1246
+#: modules/forms/widgets/signin.php:1414 modules/forms/widgets/signin.php:1514
+#: modules/jobs-filter/widgets/jobs-filter.php:174
+#: modules/posts/widgets/posts-base.php:940
+#: modules/posts/widgets/posts-base.php:960
+#: modules/posts/widgets/posts-base.php:976
+#: modules/posts/widgets/posts-base.php:991
+#: modules/posts/widgets/posts-base.php:1105 modules/video/module.php:66
+#: modules/woocommerce/tags/product-stock.php:64
+#: modules/woocommerce/widgets/add-to-cart.php:129
+#: modules/woocommerce/widgets/products.php:465
+#: modules/woocommerce/widgets/products.php:485
+#: modules/woocommerce/widgets/products.php:501
+#: modules/woocommerce/widgets/products.php:516
+#: modules/woocommerce/widgets/products.php:630
+msgid "Hide"
+msgstr ""
+
+#: base/traits/carousel-traits.php:143 base/traits/carousel-traits.php:163
+#: base/traits/carousel-traits.php:179 base/traits/carousel-traits.php:194
+#: base/traits/carousel-traits.php:308
+#: modules/carousel-attributes/module.php:178
+#: modules/carousel-attributes/module.php:198
+#: modules/carousel-attributes/module.php:214
+#: modules/carousel-attributes/module.php:229
+#: modules/carousel-attributes/module.php:343
+#: modules/countdown/widgets/countdown.php:177
+#: modules/countdown/widgets/countdown.php:188
+#: modules/countdown/widgets/countdown.php:199
+#: modules/countdown/widgets/countdown.php:210
+#: modules/countdown/widgets/countdown.php:221 modules/divider/module.php:65
+#: modules/forms/widgets/login.php:81 modules/forms/widgets/login.php:240
+#: modules/forms/widgets/login.php:252 modules/forms/widgets/login.php:264
+#: modules/forms/widgets/login.php:275 modules/forms/widgets/signin.php:857
+#: modules/forms/widgets/signin.php:891 modules/forms/widgets/signin.php:902
+#: modules/forms/widgets/signin.php:1183 modules/forms/widgets/signin.php:1195
+#: modules/forms/widgets/signin.php:1222 modules/forms/widgets/signin.php:1247
+#: modules/forms/widgets/signin.php:1415 modules/forms/widgets/signin.php:1515
+#: modules/jobs-filter/widgets/jobs-filter.php:173
+#: modules/posts/widgets/posts-base.php:941
+#: modules/posts/widgets/posts-base.php:961
+#: modules/posts/widgets/posts-base.php:977
+#: modules/posts/widgets/posts-base.php:992
+#: modules/posts/widgets/posts-base.php:1106 modules/video/module.php:65
+#: modules/woocommerce/tags/product-stock.php:63
+#: modules/woocommerce/widgets/add-to-cart.php:130
+#: modules/woocommerce/widgets/products.php:466
+#: modules/woocommerce/widgets/products.php:486
+#: modules/woocommerce/widgets/products.php:502
+#: modules/woocommerce/widgets/products.php:517
+#: modules/woocommerce/widgets/products.php:631
+msgid "Show"
+msgstr ""
+
+#: base/traits/carousel-traits.php:160
+#: modules/carousel-attributes/module.php:195
+#: modules/posts/widgets/posts-base.php:958
+#: modules/woocommerce/widgets/products.php:483
+msgid "Center Slides"
+msgstr ""
+
+#: base/traits/carousel-traits.php:176
+#: modules/carousel-attributes/module.php:211
+#: modules/episodes/widgets/episodes.php:133
+#: modules/posts/widgets/posts-base.php:974
+#: modules/woocommerce/widgets/products.php:499
+msgid "Arrows"
+msgstr ""
+
+#: base/traits/carousel-traits.php:191
+#: modules/carousel-attributes/module.php:226
+#: modules/posts/widgets/posts-base.php:989
+#: modules/woocommerce/widgets/products.php:514
+msgid "Custom Arrows"
+msgstr ""
+
+#: base/traits/carousel-traits.php:205
+#: modules/carousel-attributes/module.php:240
+#: modules/posts/widgets/posts-base.php:1003
+#: modules/woocommerce/widgets/products.php:528
+msgid "Previous Arrow ID"
+msgstr ""
+
+#: base/traits/carousel-traits.php:218
+#: modules/carousel-attributes/module.php:253
+#: modules/posts/widgets/posts-base.php:1016
+#: modules/woocommerce/widgets/products.php:541
+msgid "Next Arrow ID"
+msgstr ""
+
+#: base/traits/carousel-traits.php:231
+#: modules/carousel-attributes/module.php:266
+#: modules/posts/widgets/posts-base.php:1029
+#: modules/woocommerce/widgets/products.php:554
+msgid "Transition Duration"
+msgstr ""
+
+#: base/traits/carousel-traits.php:246
+#: modules/carousel-attributes/module.php:281
+#: modules/posts/widgets/posts-base.php:1044
+#: modules/woocommerce/widgets/products.php:569
+msgid "Autoplay"
+msgstr ""
+
+#: base/traits/carousel-traits.php:261
+#: modules/carousel-attributes/module.php:296
+#: modules/posts/widgets/posts-base.php:1059
+#: modules/woocommerce/widgets/products.php:584
+msgid "Autoplay Speed"
+msgstr ""
+
+#: base/traits/carousel-traits.php:276
+#: modules/carousel-attributes/module.php:311
+#: modules/posts/widgets/posts-base.php:1074
+#: modules/woocommerce/widgets/products.php:599
+msgid "Infinite Loop"
+msgstr ""
+
+#: base/traits/carousel-traits.php:289
+#: modules/carousel-attributes/module.php:324
+#: modules/posts/widgets/posts-base.php:1087
+#: modules/woocommerce/widgets/products.php:612
+msgid "Pause on Hover"
+msgstr ""
+
+#: base/traits/carousel-traits.php:305
+#: modules/carousel-attributes/module.php:340
+#: modules/posts/widgets/posts-base.php:1103
+#: modules/woocommerce/widgets/products.php:628
+msgid "Enable Pagination"
+msgstr ""
+
+#: base/traits/carousel-traits.php:319
+#: modules/carousel-attributes/module.php:354
+#: modules/carousel-attributes/traits/pagination-trait.php:49
+#: modules/posts/widgets/posts-base.php:107
+#: modules/posts/widgets/posts-base.php:117
+#: modules/posts/widgets/posts-base.php:390
+#: modules/posts/widgets/posts-base.php:1117
+#: modules/posts/widgets/posts-base.php:1399
+#: modules/woocommerce/widgets/products-base.php:39
+#: modules/woocommerce/widgets/products.php:290
+#: modules/woocommerce/widgets/products.php:642
+msgid "Pagination"
+msgstr ""
+
+#: base/traits/carousel-traits.php:323
+#: modules/carousel-attributes/module.php:358
+#: modules/posts/widgets/posts-base.php:1121
+#: modules/woocommerce/widgets/products.php:646
+msgid "Dots"
+msgstr ""
+
+#: base/traits/carousel-traits.php:324
+#: modules/carousel-attributes/module.php:359
+#: modules/posts/widgets/posts-base.php:1122
+#: modules/woocommerce/widgets/products.php:647
+msgid "Fraction"
+msgstr ""
+
+#: base/traits/carousel-traits.php:325
+#: modules/carousel-attributes/module.php:360
+#: modules/posts/widgets/posts-base.php:1123
+#: modules/woocommerce/widgets/products.php:648
+msgid "Progress"
+msgstr ""
 
 #: classes/class-mas-breadcrumb.php:111
 msgid "Error 404"
@@ -38,11 +328,11 @@ msgstr ""
 msgid "Page %d"
 msgstr ""
 
-#: classes/class-wp-bootstrap-navwalker.php:368
+#: classes/class-wp-bootstrap-navwalker.php:380
 msgid "Add a menu"
 msgstr ""
 
-#: core/modules-manager.php:94 plugin.php:298
+#: core/modules-manager.php:105 plugin.php:340
 msgid "MAS Elementor"
 msgstr ""
 
@@ -100,73 +390,76 @@ msgstr ""
 msgid "Page Not Found"
 msgstr ""
 
-#: mas-elementor.php:108
+#: mas-elementor.php:109
 msgid "Activate the Elementor Plugin"
 msgstr ""
 
-#: mas-elementor.php:109
+#: mas-elementor.php:110
 msgid ""
 "Before you can use all the features of MAS Addons for Elementor, you need "
 "to activate the Elementor plugin first."
 msgstr ""
 
-#: mas-elementor.php:110
+#: mas-elementor.php:111
 msgid "Activate Now"
 msgstr ""
 
-#: mas-elementor.php:118
+#: mas-elementor.php:119
 msgid "Install and Activate the Elementor Plugin"
 msgstr ""
 
-#: mas-elementor.php:119
+#: mas-elementor.php:120
 msgid ""
 "Before you can use all the features of MAS Addons for Elementor, you need "
 "to install and activate the Elementor plugin first."
 msgstr ""
 
-#: mas-elementor.php:120
+#: mas-elementor.php:121
 msgid "Install Elementor"
 msgstr ""
 
-#: mas-elementor.php:141
+#: mas-elementor.php:142
 msgid ""
 "MAS Addons for Elementor is not working because you are using an old "
 "version of Elementor."
 msgstr ""
 
-#: mas-elementor.php:142 mas-elementor.php:163
+#: mas-elementor.php:143 mas-elementor.php:164
 msgid "Update Elementor Now"
 msgstr ""
 
-#: mas-elementor.php:162
+#: mas-elementor.php:163
 msgid ""
 "A new version of Elementor is available. For better performance and "
 "compatibility of MAS Addons for Elementor, we recommend updating to the "
 "latest version."
 msgstr ""
 
-#: mas-elementor.php:216
+#: mas-elementor.php:217
 #. translators: %s template
 msgid "%s does not exist."
 msgstr ""
 
-#: mas-elementor.php:233
+#: mas-elementor.php:234
 msgid ""
 "action_args should not be overwritten when calling "
 "mas_elementor_get_template."
 msgstr ""
 
-#: mas-elementor.php:423
+#: mas-elementor.php:425
 msgid "— None —"
 msgstr ""
 
-#: mas-elementor.php:428
+#: mas-elementor.php:430
 msgid "No Templates Found"
 msgstr ""
 
 #: modules/accordion/module.php:67
 #: modules/carousel-attributes/traits/button-widget-trait.php:109
 #: modules/dynamic-tags/tags/job-title.php:74
+#: modules/jobs-filter/widgets/jobs-filter.php:434
+#: modules/jobs-filter/widgets/jobs-filter.php:699
+#: modules/jobs-filter/widgets/jobs-filter.php:1262
 msgid "Icon Size"
 msgstr ""
 
@@ -174,6 +467,12 @@ msgstr ""
 #: modules/carousel-attributes/traits/button-widget-trait.php:528
 #: modules/countdown/widgets/countdown.php:542
 #: modules/countdown/widgets/countdown.php:646
+#: modules/counter/skins/skin-counter-v1.php:342
+#: modules/forms/widgets/signin.php:534 modules/forms/widgets/signin.php:705
+#: modules/jobs-filter/widgets/jobs-filter.php:451
+#: modules/jobs-filter/widgets/jobs-filter.php:716
+#: modules/jobs-filter/widgets/jobs-filter.php:969
+#: modules/jobs-filter/widgets/jobs-filter.php:1334
 #: modules/mas-breadcrumbs/widgets/mas-breadcrumbs.php:182
 #: modules/mas-breadcrumbs/widgets/mas-breadcrumbs.php:290
 #: modules/mas-breadcrumbs/widgets/mas-breadcrumbs.php:409
@@ -185,8 +484,10 @@ msgstr ""
 #: modules/mas-nav-tabs/widgets/mas-nav-tabs.php:716
 #: modules/mas-nav-tabs/widgets/mas-nav-tabs.php:840
 #: modules/mas-nav-tabs/widgets/mas-nav-tabs.php:899
+#: modules/mas-tv-shows-episodes/widgets/mas-tv-shows-episodes.php:236
+#: modules/masvideos-genre/widgets/movie-genre-filter.php:155
 #: modules/posts/traits/load-button-widget-trait.php:394
-#: modules/posts/widgets/posts-base.php:487 modules/testimonial/module.php:70
+#: modules/posts/widgets/posts-base.php:491 modules/testimonial/module.php:70
 #: modules/woocommerce/widgets/add-to-cart.php:293
 #: modules/woocommerce/widgets/add-to-cart.php:716
 #: modules/woocommerce/widgets/product-data-tabs.php:99
@@ -204,6 +505,10 @@ msgstr ""
 
 #: modules/accordion/module.php:96 modules/accordion/module.php:202
 #: modules/countdown/widgets/countdown.php:562 modules/image-box/module.php:62
+#: modules/jobs-filter/widgets/jobs-filter.php:463
+#: modules/jobs-filter/widgets/jobs-filter.php:728
+#: modules/jobs-filter/widgets/jobs-filter.php:984
+#: modules/jobs-filter/widgets/jobs-filter.php:1346
 #: modules/mas-breadcrumbs/widgets/mas-breadcrumbs.php:195
 #: modules/mas-breadcrumbs/widgets/mas-breadcrumbs.php:302
 #: modules/mas-breadcrumbs/widgets/mas-breadcrumbs.php:421
@@ -214,6 +519,7 @@ msgstr ""
 #: modules/mas-nav-tabs/widgets/mas-nav-tabs.php:729
 #: modules/mas-nav-tabs/widgets/mas-nav-tabs.php:853
 #: modules/mas-nav-tabs/widgets/mas-nav-tabs.php:912
+#: modules/mas-tv-shows-episodes/widgets/mas-tv-shows-episodes.php:249
 #: modules/woocommerce/widgets/product-data-tabs.php:112
 #: modules/woocommerce/widgets/product-data-tabs.php:204
 #: modules/woocommerce/widgets/product-data-tabs.php:296
@@ -224,15 +530,6 @@ msgstr ""
 #: modules/woocommerce/widgets/product-data-tabs.php:670
 #: modules/woocommerce/widgets/products-base.php:647
 msgid "Margin"
-msgstr ""
-
-#: modules/accordion/module.php:116 modules/carousel-attributes/module.php:171
-#: modules/mas-nav-menu/widgets/mas-nav-menu.php:279
-#: modules/posts/widgets/posts-base.php:457
-#: modules/posts/widgets/posts-base.php:907
-#: modules/woocommerce/widgets/products-base.php:135
-#: modules/woocommerce/widgets/products.php:435
-msgid "Space Between"
 msgstr ""
 
 #: modules/accordion/module.php:134
@@ -246,6 +543,14 @@ msgstr ""
 #: modules/accordion/module.php:172 modules/accordion/module.php:191
 #: modules/carousel-attributes/traits/button-widget-trait.php:498
 #: modules/carousel-attributes/traits/pagination-trait.php:333
+#: modules/counter/skins/skin-counter-v1.php:465
+#: modules/forms/widgets/login.php:568 modules/forms/widgets/login.php:652
+#: modules/forms/widgets/signin.php:550
+#: modules/jobs-filter/widgets/jobs-filter.php:256
+#: modules/jobs-filter/widgets/jobs-filter.php:588
+#: modules/jobs-filter/widgets/jobs-filter.php:855
+#: modules/jobs-filter/widgets/jobs-filter.php:1128
+#: modules/jobs-filter/widgets/jobs-filter.php:1472
 #: modules/mas-breadcrumbs/widgets/mas-breadcrumbs.php:227
 #: modules/mas-breadcrumbs/widgets/mas-breadcrumbs.php:333
 #: modules/mas-breadcrumbs/widgets/mas-breadcrumbs.php:451
@@ -255,10 +560,11 @@ msgstr ""
 #: modules/mas-nav-tabs/widgets/mas-nav-tabs.php:498
 #: modules/mas-nav-tabs/widgets/mas-nav-tabs.php:597
 #: modules/mas-nav-tabs/widgets/mas-nav-tabs.php:761
+#: modules/mas-tv-shows-episodes/widgets/mas-tv-shows-episodes.php:261
 #: modules/posts/traits/load-button-widget-trait.php:341
-#: modules/posts/widgets/posts-base.php:599
-#: modules/posts/widgets/posts-base.php:705
-#: modules/posts/widgets/posts-base.php:811
+#: modules/posts/widgets/posts-base.php:603
+#: modules/posts/widgets/posts-base.php:709
+#: modules/posts/widgets/posts-base.php:815
 #: modules/woocommerce/widgets/add-to-cart.php:693
 #: modules/woocommerce/widgets/product-data-tabs.php:144
 #: modules/woocommerce/widgets/product-data-tabs.php:236
@@ -272,244 +578,41 @@ msgstr ""
 msgid "Border Radius"
 msgstr ""
 
-#: modules/carousel-attributes/module.php:74
-#: modules/posts/widgets/posts-base.php:844
-#: modules/woocommerce/widgets/products.php:372
-msgid "Carousel"
-msgstr ""
-
-#: modules/carousel-attributes/module.php:89
-#: modules/posts/widgets/posts.php:247
-#: modules/woocommerce/widgets/products.php:342
-msgid "Enable Carousel"
-msgstr ""
-
-#: modules/carousel-attributes/module.php:98
-#: modules/posts/widgets/posts-base.php:854
-#: modules/woocommerce/widgets/products.php:382
-msgid "Effect"
-msgstr ""
-
-#: modules/carousel-attributes/module.php:101
-#: modules/dynamic-tags/tags/comments-number.php:84
-#: modules/posts/widgets/posts-base.php:118
-#: modules/posts/widgets/posts-base.php:857
-#: modules/query-control/controls/group-control-related.php:76
-#: modules/woocommerce/widgets/products.php:385
-msgid "None"
-msgstr ""
-
-#: modules/carousel-attributes/module.php:102
-#: modules/posts/widgets/posts-base.php:858
-#: modules/woocommerce/widgets/products.php:386
-msgid "Slide"
-msgstr ""
-
-#: modules/carousel-attributes/module.php:103
-#: modules/posts/widgets/posts-base.php:859
-#: modules/woocommerce/widgets/products.php:387
-msgid "Fade"
-msgstr ""
-
-#: modules/carousel-attributes/module.php:116
-#: modules/posts/widgets/posts-base.php:872
-#: modules/woocommerce/widgets/products.php:400
-msgid "Slides Per View"
-msgstr ""
-
-#: modules/carousel-attributes/module.php:136
-msgid "Slides To Scroll"
-msgstr ""
-
-#: modules/carousel-attributes/module.php:156
-#: modules/posts/widgets/posts-base.php:892
-#: modules/woocommerce/widgets/products.php:420
-msgid "Enable Space Between"
-msgstr ""
-
-#: modules/carousel-attributes/module.php:158
-#: modules/carousel-attributes/module.php:193
-#: modules/carousel-attributes/module.php:209
-#: modules/carousel-attributes/module.php:224
-#: modules/carousel-attributes/module.php:338
-#: modules/countdown/widgets/countdown.php:178
-#: modules/countdown/widgets/countdown.php:189
-#: modules/countdown/widgets/countdown.php:200
-#: modules/countdown/widgets/countdown.php:211
-#: modules/countdown/widgets/countdown.php:222
-#: modules/countdown/widgets/countdown.php:306 modules/divider/module.php:66
-#: modules/posts/widgets/posts-base.php:894
-#: modules/posts/widgets/posts-base.php:929
-#: modules/posts/widgets/posts-base.php:945
-#: modules/posts/widgets/posts-base.php:960
-#: modules/posts/widgets/posts-base.php:1074 modules/video/module.php:66
-#: modules/woocommerce/tags/product-stock.php:64
-#: modules/woocommerce/widgets/add-to-cart.php:129
-#: modules/woocommerce/widgets/products.php:422
-#: modules/woocommerce/widgets/products.php:457
-#: modules/woocommerce/widgets/products.php:473
-#: modules/woocommerce/widgets/products.php:488
-#: modules/woocommerce/widgets/products.php:602
-msgid "Hide"
-msgstr ""
-
-#: modules/carousel-attributes/module.php:159
-#: modules/carousel-attributes/module.php:194
-#: modules/carousel-attributes/module.php:210
-#: modules/carousel-attributes/module.php:225
-#: modules/carousel-attributes/module.php:339
-#: modules/countdown/widgets/countdown.php:177
-#: modules/countdown/widgets/countdown.php:188
-#: modules/countdown/widgets/countdown.php:199
-#: modules/countdown/widgets/countdown.php:210
-#: modules/countdown/widgets/countdown.php:221 modules/divider/module.php:65
-#: modules/posts/widgets/posts-base.php:895
-#: modules/posts/widgets/posts-base.php:930
-#: modules/posts/widgets/posts-base.php:946
-#: modules/posts/widgets/posts-base.php:961
-#: modules/posts/widgets/posts-base.php:1075 modules/video/module.php:65
-#: modules/woocommerce/tags/product-stock.php:63
-#: modules/woocommerce/widgets/add-to-cart.php:130
-#: modules/woocommerce/widgets/products.php:423
-#: modules/woocommerce/widgets/products.php:458
-#: modules/woocommerce/widgets/products.php:474
-#: modules/woocommerce/widgets/products.php:489
-#: modules/woocommerce/widgets/products.php:603
-msgid "Show"
-msgstr ""
-
-#: modules/carousel-attributes/module.php:172
-#: modules/posts/widgets/posts-base.php:908
-#: modules/woocommerce/widgets/products.php:436
-msgid "Set Space between each Slides"
-msgstr ""
-
-#: modules/carousel-attributes/module.php:191
-#: modules/posts/widgets/posts-base.php:927
-#: modules/woocommerce/widgets/products.php:455
-msgid "Center Slides"
-msgstr ""
-
-#: modules/carousel-attributes/module.php:207
-#: modules/posts/widgets/posts-base.php:943
-#: modules/woocommerce/widgets/products.php:471
-msgid "Arrows"
-msgstr ""
-
-#: modules/carousel-attributes/module.php:222
-#: modules/posts/widgets/posts-base.php:958
-#: modules/woocommerce/widgets/products.php:486
-msgid "Custom Arrows"
-msgstr ""
-
-#: modules/carousel-attributes/module.php:236
-#: modules/posts/widgets/posts-base.php:972
-#: modules/woocommerce/widgets/products.php:500
-msgid "Previous Arrow ID"
-msgstr ""
-
-#: modules/carousel-attributes/module.php:249
-#: modules/posts/widgets/posts-base.php:985
-#: modules/woocommerce/widgets/products.php:513
-msgid "Next Arrow ID"
-msgstr ""
-
-#: modules/carousel-attributes/module.php:262
-#: modules/posts/widgets/posts-base.php:998
-#: modules/woocommerce/widgets/products.php:526
-msgid "Transition Duration"
-msgstr ""
-
-#: modules/carousel-attributes/module.php:277
-#: modules/posts/widgets/posts-base.php:1013
-#: modules/woocommerce/widgets/products.php:541
-msgid "Autoplay"
-msgstr ""
-
-#: modules/carousel-attributes/module.php:292
-#: modules/posts/widgets/posts-base.php:1028
-#: modules/woocommerce/widgets/products.php:556
-msgid "Autoplay Speed"
-msgstr ""
-
-#: modules/carousel-attributes/module.php:307
-#: modules/posts/widgets/posts-base.php:1043
-#: modules/woocommerce/widgets/products.php:571
-msgid "Infinite Loop"
-msgstr ""
-
-#: modules/carousel-attributes/module.php:320
-#: modules/posts/widgets/posts-base.php:1056
-#: modules/woocommerce/widgets/products.php:584
-msgid "Pause on Hover"
-msgstr ""
-
-#: modules/carousel-attributes/module.php:336
-#: modules/posts/widgets/posts-base.php:1072
-#: modules/woocommerce/widgets/products.php:600
-msgid "Enable Pagination"
-msgstr ""
-
-#: modules/carousel-attributes/module.php:350
-#: modules/carousel-attributes/traits/pagination-trait.php:49
-#: modules/posts/widgets/posts-base.php:106
-#: modules/posts/widgets/posts-base.php:113
-#: modules/posts/widgets/posts-base.php:386
-#: modules/posts/widgets/posts-base.php:1086
-#: modules/posts/widgets/posts-base.php:1368
-#: modules/woocommerce/widgets/products-base.php:39
-#: modules/woocommerce/widgets/products.php:289
-#: modules/woocommerce/widgets/products.php:614
-msgid "Pagination"
-msgstr ""
-
-#: modules/carousel-attributes/module.php:354
-#: modules/posts/widgets/posts-base.php:1090
-#: modules/woocommerce/widgets/products.php:618
-msgid "Dots"
-msgstr ""
-
-#: modules/carousel-attributes/module.php:355
-#: modules/posts/widgets/posts-base.php:1091
-#: modules/woocommerce/widgets/products.php:619
-msgid "Fraction"
-msgstr ""
-
-#: modules/carousel-attributes/module.php:356
-#: modules/posts/widgets/posts-base.php:1092
-#: modules/woocommerce/widgets/products.php:620
-msgid "Progress"
-msgstr ""
-
-#: modules/carousel-attributes/module.php:606
+#: modules/carousel-attributes/module.php:654
 msgid "Enable Slide"
 msgstr ""
 
-#: modules/carousel-attributes/module.php:622
-#: modules/posts/widgets/posts-base.php:251
-#: modules/posts/widgets/posts-base.php:1114
+#: modules/carousel-attributes/module.php:670
+#: modules/forms/widgets/login.php:106 modules/forms/widgets/login.php:583
+#: modules/posts/widgets/posts-base.php:255
+#: modules/posts/widgets/posts-base.php:1145
 #: modules/woocommerce/widgets/add-to-cart.php:158
-#: modules/woocommerce/widgets/products.php:642
+#: modules/woocommerce/widgets/products.php:670
 msgid "Button"
 msgstr ""
 
 #: modules/carousel-attributes/traits/button-widget-trait.php:35
+#: modules/forms/widgets/login.php:91 modules/forms/widgets/login.php:128
 msgid "Extra Small"
 msgstr ""
 
 #: modules/carousel-attributes/traits/button-widget-trait.php:36
+#: modules/forms/widgets/login.php:92 modules/forms/widgets/login.php:129
 msgid "Small"
 msgstr ""
 
 #: modules/carousel-attributes/traits/button-widget-trait.php:37
+#: modules/forms/widgets/login.php:93 modules/forms/widgets/login.php:130
 msgid "Medium"
 msgstr ""
 
 #: modules/carousel-attributes/traits/button-widget-trait.php:38
+#: modules/forms/widgets/login.php:94 modules/forms/widgets/login.php:131
 msgid "Large"
 msgstr ""
 
 #: modules/carousel-attributes/traits/button-widget-trait.php:39
+#: modules/forms/widgets/login.php:95 modules/forms/widgets/login.php:132
 msgid "Extra Large"
 msgstr ""
 
@@ -519,7 +622,10 @@ msgid "Click here"
 msgstr ""
 
 #: modules/carousel-attributes/traits/button-widget-trait.php:53
+#: modules/counter/skins/skin-counter-v1.php:231
+#: modules/forms/widgets/login.php:113
 #: modules/posts/traits/load-button-widget-trait.php:36
+#: modules/scrollspy/widgets/scrollspy.php:207
 #: modules/woocommerce/tags/product-sale.php:42
 msgid "Text"
 msgstr ""
@@ -536,12 +642,14 @@ msgstr ""
 #: modules/dynamic-tags/tags/comments-number.php:80
 #: modules/dynamic-tags/tags/post-terms.php:95
 #: modules/mas-nav-tabs/widgets/mas-nav-tabs.php:126
-#: modules/multipurpose-text/widgets/multipurpose-text.php:222
+#: modules/multipurpose-text/widgets/multipurpose-text.php:240
 #: modules/posts/traits/load-button-widget-trait.php:62
 msgid "Link"
 msgstr ""
 
 #: modules/carousel-attributes/traits/button-widget-trait.php:98
+#: modules/forms/widgets/login.php:193 modules/forms/widgets/login.php:222
+#: modules/forms/widgets/signin.php:1587 modules/forms/widgets/signin.php:1612
 #: modules/mas-nav-tabs/widgets/mas-nav-tabs.php:130
 #: modules/posts/traits/load-button-widget-trait.php:67
 msgid "https://your-link.com"
@@ -558,6 +666,7 @@ msgstr ""
 #: modules/carousel-attributes/traits/button-widget-trait.php:156
 #: modules/carousel-attributes/traits/button-widget-trait.php:187
 #: modules/dynamic-tags/tags/job-title.php:100
+#: modules/jobs-filter/widgets/jobs-filter.php:1286
 #: modules/query-control/controls/group-control-query.php:349
 msgid "Before"
 msgstr ""
@@ -565,6 +674,7 @@ msgstr ""
 #: modules/carousel-attributes/traits/button-widget-trait.php:157
 #: modules/carousel-attributes/traits/button-widget-trait.php:188
 #: modules/dynamic-tags/tags/job-title.php:101
+#: modules/jobs-filter/widgets/jobs-filter.php:1287
 #: modules/query-control/controls/group-control-query.php:366
 msgid "After"
 msgstr ""
@@ -579,6 +689,7 @@ msgstr ""
 
 #: modules/carousel-attributes/traits/button-widget-trait.php:197
 #: modules/dynamic-tags/tags/job-title.php:110
+#: modules/jobs-filter/widgets/jobs-filter.php:1299
 msgid "Icon Spacing"
 msgstr ""
 
@@ -611,14 +722,21 @@ msgstr ""
 #: modules/carousel-attributes/traits/button-widget-trait.php:344
 #: modules/carousel-attributes/traits/pagination-trait.php:155
 #: modules/carousel-attributes/traits/pagination-trait.php:387
-#: modules/icon/module.php:66 modules/mas-nav-menu/widgets/mas-nav-menu.php:357
+#: modules/forms/widgets/login.php:593 modules/forms/widgets/signin.php:568
+#: modules/icon/module.php:66 modules/jobs-filter/widgets/jobs-filter.php:476
+#: modules/jobs-filter/widgets/jobs-filter.php:741
+#: modules/jobs-filter/widgets/jobs-filter.php:1000
+#: modules/jobs-filter/widgets/jobs-filter.php:1198
+#: modules/jobs-filter/widgets/jobs-filter.php:1359
+#: modules/mas-nav-menu/widgets/mas-nav-menu.php:357
 #: modules/mas-nav-menu/widgets/mas-nav-menu.php:569
 #: modules/mas-nav-tabs/widgets/mas-nav-tabs.php:455
-#: modules/multipurpose-text/widgets/multipurpose-text.php:309
-#: modules/multipurpose-text/widgets/multipurpose-text.php:403
-#: modules/multipurpose-text/widgets/multipurpose-text.php:517
+#: modules/mas-tv-shows-episodes/widgets/mas-tv-shows-episodes.php:129
+#: modules/multipurpose-text/widgets/multipurpose-text.php:327
+#: modules/multipurpose-text/widgets/multipurpose-text.php:421
+#: modules/multipurpose-text/widgets/multipurpose-text.php:538
 #: modules/posts/traits/load-button-widget-trait.php:200
-#: modules/posts/widgets/posts-base.php:514
+#: modules/posts/widgets/posts-base.php:518
 #: modules/woocommerce/widgets/add-to-cart.php:344
 #: modules/woocommerce/widgets/add-to-cart.php:568
 #: modules/woocommerce/widgets/product-data-tabs.php:275
@@ -629,18 +747,25 @@ msgstr ""
 #: modules/carousel-attributes/traits/button-widget-trait.php:352
 #: modules/carousel-attributes/traits/button-widget-trait.php:408
 #: modules/countdown/widgets/countdown.php:620
+#: modules/forms/widgets/login.php:466 modules/forms/widgets/login.php:501
+#: modules/forms/widgets/login.php:600 modules/forms/widgets/login.php:685
+#: modules/forms/widgets/login.php:747
 #: modules/mas-nav-menu/widgets/mas-nav-menu.php:364
 #: modules/mas-nav-menu/widgets/mas-nav-menu.php:388
 #: modules/mas-nav-menu/widgets/mas-nav-menu.php:411
 #: modules/mas-nav-menu/widgets/mas-nav-menu.php:576
 #: modules/mas-nav-menu/widgets/mas-nav-menu.php:617
-#: modules/multipurpose-text/widgets/multipurpose-text.php:524
-#: modules/multipurpose-text/widgets/multipurpose-text.php:600
+#: modules/mas-tv-shows-episodes/widgets/mas-tv-shows-episodes.php:136
+#: modules/mas-tv-shows-episodes/widgets/mas-tv-shows-episodes.php:177
+#: modules/mas-tv-shows-episodes/widgets/mas-tv-shows-episodes.php:208
+#: modules/multipurpose-text/widgets/multipurpose-text.php:545
+#: modules/multipurpose-text/widgets/multipurpose-text.php:621
 #: modules/posts/traits/load-button-widget-trait.php:208
 #: modules/posts/traits/load-button-widget-trait.php:277
-#: modules/posts/widgets/posts-base.php:549
-#: modules/posts/widgets/posts-base.php:655
-#: modules/posts/widgets/posts-base.php:761
+#: modules/posts/widgets/posts-base.php:553
+#: modules/posts/widgets/posts-base.php:659
+#: modules/posts/widgets/posts-base.php:765
+#: modules/scrollspy/widgets/scrollspy.php:215
 #: modules/woocommerce/widgets/add-to-cart.php:576
 #: modules/woocommerce/widgets/add-to-cart.php:622
 #: modules/woocommerce/widgets/product-data-tabs.php:448
@@ -654,6 +779,8 @@ msgstr ""
 #: modules/carousel-attributes/traits/button-widget-trait.php:365
 #: modules/carousel-attributes/traits/button-widget-trait.php:421
 #: modules/dynamic-tags/tags/job-title.php:88
+#: modules/jobs-filter/widgets/jobs-filter.php:420
+#: modules/jobs-filter/widgets/jobs-filter.php:685
 msgid "Icon Color"
 msgstr ""
 
@@ -670,13 +797,21 @@ msgid "Background"
 msgstr ""
 
 #: modules/carousel-attributes/traits/button-widget-trait.php:400
-#: modules/icon/module.php:98 modules/mas-nav-menu/widgets/mas-nav-menu.php:381
+#: modules/forms/widgets/login.php:678 modules/forms/widgets/signin.php:616
+#: modules/icon/module.php:98 modules/jobs-filter/widgets/jobs-filter.php:531
+#: modules/jobs-filter/widgets/jobs-filter.php:797
+#: modules/jobs-filter/widgets/jobs-filter.php:1063
+#: modules/jobs-filter/widgets/jobs-filter.php:1229
+#: modules/jobs-filter/widgets/jobs-filter.php:1414
+#: modules/mas-nav-menu/widgets/mas-nav-menu.php:381
 #: modules/mas-nav-menu/widgets/mas-nav-menu.php:610
-#: modules/multipurpose-text/widgets/multipurpose-text.php:344
-#: modules/multipurpose-text/widgets/multipurpose-text.php:437
-#: modules/multipurpose-text/widgets/multipurpose-text.php:593
+#: modules/mas-tv-shows-episodes/widgets/mas-tv-shows-episodes.php:170
+#: modules/multipurpose-text/widgets/multipurpose-text.php:362
+#: modules/multipurpose-text/widgets/multipurpose-text.php:456
+#: modules/multipurpose-text/widgets/multipurpose-text.php:614
 #: modules/posts/traits/load-button-widget-trait.php:269
-#: modules/posts/widgets/posts-base.php:620
+#: modules/posts/widgets/posts-base.php:624
+#: modules/scrollspy/widgets/scrollspy.php:230
 #: modules/woocommerce/widgets/add-to-cart.php:417
 #: modules/woocommerce/widgets/add-to-cart.php:614
 #: modules/woocommerce/widgets/products-base.php:293
@@ -684,6 +819,7 @@ msgid "Hover"
 msgstr ""
 
 #: modules/carousel-attributes/traits/button-widget-trait.php:455
+#: modules/forms/widgets/login.php:540 modules/forms/widgets/login.php:711
 #: modules/icon/module.php:76 modules/icon/module.php:108
 #: modules/woocommerce/widgets/add-to-cart.php:654
 msgid "Border Color"
@@ -695,7 +831,23 @@ msgstr ""
 
 #: modules/carousel-attributes/traits/pagination-trait.php:62
 #: modules/countdown/widgets/countdown.php:484
-#: modules/multipurpose-text/widgets/multipurpose-text.php:695
+#: modules/jobs-filter/widgets/jobs-filter.php:287
+#: modules/jobs-filter/widgets/jobs-filter.php:351
+#: modules/jobs-filter/widgets/jobs-filter.php:502
+#: modules/jobs-filter/widgets/jobs-filter.php:557
+#: modules/jobs-filter/widgets/jobs-filter.php:616
+#: modules/jobs-filter/widgets/jobs-filter.php:767
+#: modules/jobs-filter/widgets/jobs-filter.php:823
+#: modules/jobs-filter/widgets/jobs-filter.php:888
+#: modules/jobs-filter/widgets/jobs-filter.php:1032
+#: modules/jobs-filter/widgets/jobs-filter.php:1095
+#: modules/jobs-filter/widgets/jobs-filter.php:1161
+#: modules/jobs-filter/widgets/jobs-filter.php:1385
+#: modules/jobs-filter/widgets/jobs-filter.php:1440
+#: modules/masvideos-genre/widgets/movie-genre-filter.php:138
+#: modules/masvideos-genre/widgets/movie-genre-filter.php:254
+#: modules/masvideos-genre/widgets/movie-genre-filter.php:324
+#: modules/multipurpose-text/widgets/multipurpose-text.php:716
 msgid "Width"
 msgstr ""
 
@@ -704,16 +856,26 @@ msgid "Dots Height"
 msgstr ""
 
 #: modules/carousel-attributes/traits/pagination-trait.php:116
+#: modules/counter/skins/skin-counter-v1.php:509
 msgid "Box Shadow"
 msgstr ""
 
 #: modules/carousel-attributes/traits/pagination-trait.php:197
+#: modules/forms/widgets/login.php:526
+#: modules/jobs-filter/widgets/jobs-filter.php:387
+#: modules/jobs-filter/widgets/jobs-filter.php:652
+#: modules/jobs-filter/widgets/jobs-filter.php:927
+#: modules/jobs-filter/widgets/jobs-filter.php:1205
+#: modules/jobs-filter/widgets/jobs-filter.php:1236
 #: modules/mas-nav-tabs/widgets/mas-nav-tabs.php:520
 #: modules/mas-nav-tabs/widgets/mas-nav-tabs.php:619
 #: modules/mas-nav-tabs/widgets/mas-nav-tabs.php:828
-#: modules/posts/widgets/posts-base.php:561
-#: modules/posts/widgets/posts-base.php:667
-#: modules/posts/widgets/posts-base.php:773
+#: modules/mas-tv-shows-episodes/widgets/mas-tv-shows-episodes.php:157
+#: modules/mas-tv-shows-episodes/widgets/mas-tv-shows-episodes.php:189
+#: modules/mas-tv-shows-episodes/widgets/mas-tv-shows-episodes.php:220
+#: modules/posts/widgets/posts-base.php:565
+#: modules/posts/widgets/posts-base.php:671
+#: modules/posts/widgets/posts-base.php:777
 #: modules/woocommerce/widgets/add-to-cart.php:402
 #: modules/woocommerce/widgets/add-to-cart.php:475
 #: modules/woocommerce/widgets/product-data-tabs.php:340
@@ -732,7 +894,8 @@ msgstr ""
 #: modules/carousel-attributes/traits/pagination-trait.php:440
 #: modules/mas-nav-menu/widgets/mas-nav-menu.php:404
 #: modules/mas-nav-tabs/widgets/mas-nav-tabs.php:554
-#: modules/posts/widgets/posts-base.php:726
+#: modules/mas-tv-shows-episodes/widgets/mas-tv-shows-episodes.php:202
+#: modules/posts/widgets/posts-base.php:730
 #: modules/woocommerce/widgets/product-data-tabs.php:355
 #: modules/woocommerce/widgets/products-base.php:399
 msgid "Active"
@@ -777,6 +940,8 @@ msgid "Progress Bar Width"
 msgstr ""
 
 #: modules/carousel-attributes/traits/pagination-trait.php:588
+#: modules/counter/skins/skin-counter-v1.php:321
+#: modules/jobs-filter/widgets/jobs-filter.php:182
 #: modules/mas-nav-tabs/widgets/mas-nav-tabs.php:212
 msgid "Position"
 msgstr ""
@@ -795,7 +960,7 @@ msgstr ""
 
 #: modules/carousel-attributes/traits/pagination-trait.php:632
 #: modules/posts/traits/load-button-widget-trait.php:372
-#: modules/posts/widgets/posts-base.php:435
+#: modules/posts/widgets/posts-base.php:439
 #: modules/woocommerce/widgets/products-base.php:114
 msgid "Top Spacing"
 msgstr ""
@@ -805,48 +970,50 @@ msgstr ""
 msgid "Bottom Spacing"
 msgstr ""
 
-#: modules/column/module.php:62
+#: modules/column/module.php:63 modules/forms/widgets/signin.php:209
+#: modules/forms/widgets/signin.php:298
 msgid "CSS Classes"
 msgstr ""
 
-#: modules/column/module.php:64
+#: modules/column/module.php:65
 msgid "Applied to elementor-widget-wrap element."
 msgstr ""
 
-#: modules/column/module.php:72
+#: modules/column/module.php:73 modules/scrollspy/widgets/scrollspy.php:104
 msgid "Enable Scrollspy ?"
 msgstr ""
 
-#: modules/column/module.php:74
+#: modules/column/module.php:75 modules/scrollspy/widgets/scrollspy.php:106
 msgid "No"
 msgstr ""
 
-#: modules/column/module.php:75
+#: modules/column/module.php:76 modules/scrollspy/widgets/scrollspy.php:107
 msgid "Yes"
 msgstr ""
 
-#: modules/column/module.php:82
+#: modules/column/module.php:83 modules/scrollspy/widgets/scrollspy.php:125
 msgid "Parent ID"
 msgstr ""
 
-#: modules/column/module.php:93
+#: modules/column/module.php:94 modules/scrollspy/widgets/scrollspy.php:136
 msgid "Data Target ID"
 msgstr ""
 
-#: modules/column/module.php:104
+#: modules/column/module.php:105 modules/scrollspy/widgets/scrollspy.php:147
 msgid "Breakpoint"
 msgstr ""
 
-#: modules/column/module.php:122
+#: modules/column/module.php:123 modules/scrollspy/widgets/scrollspy.php:165
 msgid "Startpoint ID"
 msgstr ""
 
-#: modules/column/module.php:133
+#: modules/column/module.php:134 modules/scrollspy/widgets/scrollspy.php:176
 msgid "Endpoint ID"
 msgstr ""
 
-#: modules/column/module.php:144
+#: modules/column/module.php:145
 #: modules/query-control/controls/group-control-query.php:310
+#: modules/scrollspy/widgets/scrollspy.php:187
 msgid "Offset"
 msgstr ""
 
@@ -856,8 +1023,13 @@ msgid "Countdown"
 msgstr ""
 
 #: modules/countdown/widgets/countdown.php:96
+#: modules/episodes/widgets/episodes.php:111
+#: modules/mas-attributes-image/widgets/mas-attributes-acf-image-base.php:54
 #: modules/mas-nav-menu/widgets/mas-nav-menu.php:229
-#: modules/posts/widgets/posts.php:117
+#: modules/mas-tv-shows-episodes/widgets/mas-tv-shows-episodes.php:99
+#: modules/mas-tv-shows-episodes/widgets/mas-tv-shows-episodes.php:119
+#: modules/masvideos-genre/widgets/movie-genre-filter.php:92
+#: modules/posts/widgets/posts-base.php:1412
 msgid "Layout"
 msgstr ""
 
@@ -888,17 +1060,25 @@ msgid "Text Layout"
 msgstr ""
 
 #: modules/countdown/widgets/countdown.php:145
+#: modules/counter/skins/skin-counter-v1.php:381
 #: modules/woocommerce/widgets/products-base.php:51
 msgid "Text Alignment"
 msgstr ""
 
 #: modules/countdown/widgets/countdown.php:149
 #: modules/countdown/widgets/countdown.php:599
+#: modules/counter/skins/skin-counter-v1.php:385
+#: modules/forms/widgets/login.php:145 modules/forms/widgets/signin.php:165
+#: modules/forms/widgets/signin.php:254 modules/forms/widgets/signin.php:314
+#: modules/forms/widgets/signin.php:358
+#: modules/jobs-filter/widgets/jobs-filter.php:320
+#: modules/mas-attributes-image/widgets/mas-attributes-acf-image-base.php:93
 #: modules/mas-nav-menu/widgets/mas-nav-menu.php:250
-#: modules/multipurpose-text/widgets/multipurpose-text.php:271
+#: modules/mas-tv-shows-episodes/widgets/mas-tv-shows-episodes.php:277
+#: modules/multipurpose-text/widgets/multipurpose-text.php:289
 #: modules/posts/traits/load-button-widget-trait.php:83
-#: modules/posts/widgets/posts-base.php:189
-#: modules/posts/widgets/posts-base.php:299
+#: modules/posts/widgets/posts-base.php:193
+#: modules/posts/widgets/posts-base.php:303
 #: modules/woocommerce/widgets/add-to-cart.php:316
 #: modules/woocommerce/widgets/products-base.php:55
 msgid "Left"
@@ -906,12 +1086,19 @@ msgstr ""
 
 #: modules/countdown/widgets/countdown.php:153
 #: modules/countdown/widgets/countdown.php:603
+#: modules/counter/skins/skin-counter-v1.php:389
+#: modules/forms/widgets/login.php:149 modules/forms/widgets/signin.php:169
+#: modules/forms/widgets/signin.php:258 modules/forms/widgets/signin.php:318
+#: modules/forms/widgets/signin.php:362
+#: modules/jobs-filter/widgets/jobs-filter.php:324
+#: modules/mas-attributes-image/widgets/mas-attributes-acf-image-base.php:97
 #: modules/mas-breadcrumbs/widgets/mas-breadcrumbs.php:145
 #: modules/mas-nav-menu/widgets/mas-nav-menu.php:254
-#: modules/multipurpose-text/widgets/multipurpose-text.php:275
+#: modules/mas-tv-shows-episodes/widgets/mas-tv-shows-episodes.php:281
+#: modules/multipurpose-text/widgets/multipurpose-text.php:293
 #: modules/posts/traits/load-button-widget-trait.php:87
-#: modules/posts/widgets/posts-base.php:193
-#: modules/posts/widgets/posts-base.php:303
+#: modules/posts/widgets/posts-base.php:197
+#: modules/posts/widgets/posts-base.php:307
 #: modules/woocommerce/widgets/add-to-cart.php:320
 #: modules/woocommerce/widgets/products-base.php:59
 msgid "Center"
@@ -919,21 +1106,29 @@ msgstr ""
 
 #: modules/countdown/widgets/countdown.php:157
 #: modules/countdown/widgets/countdown.php:607
+#: modules/counter/skins/skin-counter-v1.php:393
+#: modules/forms/widgets/login.php:153 modules/forms/widgets/signin.php:173
+#: modules/forms/widgets/signin.php:262 modules/forms/widgets/signin.php:322
+#: modules/forms/widgets/signin.php:366
+#: modules/jobs-filter/widgets/jobs-filter.php:328
+#: modules/mas-attributes-image/widgets/mas-attributes-acf-image-base.php:101
 #: modules/mas-nav-menu/widgets/mas-nav-menu.php:258
-#: modules/multipurpose-text/widgets/multipurpose-text.php:279
+#: modules/mas-tv-shows-episodes/widgets/mas-tv-shows-episodes.php:285
+#: modules/multipurpose-text/widgets/multipurpose-text.php:297
 #: modules/posts/traits/load-button-widget-trait.php:91
-#: modules/posts/widgets/posts-base.php:197
-#: modules/posts/widgets/posts-base.php:307
+#: modules/posts/widgets/posts-base.php:201
+#: modules/posts/widgets/posts-base.php:311
 #: modules/woocommerce/widgets/add-to-cart.php:324
 #: modules/woocommerce/widgets/products-base.php:63
 msgid "Right"
 msgstr ""
 
 #: modules/countdown/widgets/countdown.php:161
+#: modules/forms/widgets/login.php:157
 #: modules/mas-nav-menu/widgets/mas-nav-menu.php:262
-#: modules/multipurpose-text/widgets/multipurpose-text.php:283
+#: modules/multipurpose-text/widgets/multipurpose-text.php:301
 #: modules/posts/traits/load-button-widget-trait.php:95
-#: modules/posts/widgets/posts-base.php:311
+#: modules/posts/widgets/posts-base.php:315
 msgid "Justified"
 msgstr ""
 
@@ -974,6 +1169,7 @@ msgid "Show Label"
 msgstr ""
 
 #: modules/countdown/widgets/countdown.php:231
+#: modules/forms/widgets/login.php:282
 msgid "Custom Label"
 msgstr ""
 
@@ -999,8 +1195,9 @@ msgid "Redirect URL"
 msgstr ""
 
 #: modules/countdown/widgets/countdown.php:352
-#: modules/multipurpose-text/widgets/multipurpose-text.php:687
-#: modules/woocommerce/widgets/products.php:200
+#: modules/masvideos-genre/widgets/movie-genre-filter.php:169
+#: modules/multipurpose-text/widgets/multipurpose-text.php:708
+#: modules/woocommerce/widgets/products.php:201
 msgid "Content"
 msgstr ""
 
@@ -1010,17 +1207,35 @@ msgstr ""
 
 #: modules/countdown/widgets/countdown.php:368
 #: modules/countdown/widgets/countdown.php:430
+#: modules/forms/widgets/signin.php:140 modules/forms/widgets/signin.php:229
+#: modules/forms/widgets/signin.php:682 modules/forms/widgets/signin.php:693
+#: modules/forms/widgets/signin.php:797
+#: modules/jobs-filter/widgets/jobs-filter.php:301
+#: modules/jobs-filter/widgets/jobs-filter.php:516
+#: modules/jobs-filter/widgets/jobs-filter.php:571
+#: modules/jobs-filter/widgets/jobs-filter.php:781
+#: modules/jobs-filter/widgets/jobs-filter.php:837
+#: modules/jobs-filter/widgets/jobs-filter.php:1047
+#: modules/jobs-filter/widgets/jobs-filter.php:1110
+#: modules/jobs-filter/widgets/jobs-filter.php:1216
+#: modules/jobs-filter/widgets/jobs-filter.php:1247
+#: modules/jobs-filter/widgets/jobs-filter.php:1399
+#: modules/jobs-filter/widgets/jobs-filter.php:1454
 #: modules/mas-breadcrumbs/widgets/mas-breadcrumbs.php:360
 #: modules/mas-breadcrumbs/widgets/mas-breadcrumbs.php:489
 #: modules/mas-nav-tabs/widgets/mas-nav-tabs.php:668
+#: modules/masvideos-genre/widgets/movie-genre-filter.php:232
+#: modules/masvideos-genre/widgets/movie-genre-filter.php:302
 msgid "Color"
 msgstr ""
 
 #: modules/countdown/widgets/countdown.php:421
+#: modules/forms/widgets/login.php:77 modules/forms/widgets/login.php:435
 msgid "Label"
 msgstr ""
 
 #: modules/countdown/widgets/countdown.php:475
+#: modules/forms/widgets/login.php:446 modules/forms/widgets/signin.php:480
 #: modules/mas-breadcrumbs/widgets/mas-breadcrumbs.php:174
 #: modules/mas-breadcrumbs/widgets/mas-breadcrumbs.php:254
 #: modules/mas-breadcrumbs/widgets/mas-breadcrumbs.php:283
@@ -1028,7 +1243,7 @@ msgstr ""
 #: modules/mas-nav-tabs/widgets/mas-nav-tabs.php:251
 #: modules/mas-nav-tabs/widgets/mas-nav-tabs.php:354
 #: modules/mas-nav-tabs/widgets/mas-nav-tabs.php:708
-#: modules/posts/widgets/posts-base.php:426
+#: modules/posts/widgets/posts-base.php:430
 #: modules/woocommerce/widgets/product-data-tabs.php:91
 #: modules/woocommerce/widgets/product-data-tabs.php:183
 #: modules/woocommerce/widgets/products-base.php:105
@@ -1041,10 +1256,14 @@ msgid "Label Spacing"
 msgstr ""
 
 #: modules/countdown/widgets/countdown.php:595
-#: modules/multipurpose-text/widgets/multipurpose-text.php:267
+#: modules/forms/widgets/login.php:141 modules/forms/widgets/signin.php:161
+#: modules/forms/widgets/signin.php:354
+#: modules/jobs-filter/widgets/jobs-filter.php:316
+#: modules/mas-attributes-image/widgets/mas-attributes-acf-image-base.php:89
+#: modules/multipurpose-text/widgets/multipurpose-text.php:285
 #: modules/posts/traits/load-button-widget-trait.php:78
-#: modules/posts/widgets/posts-base.php:185
-#: modules/posts/widgets/posts-base.php:295
+#: modules/posts/widgets/posts-base.php:189
+#: modules/posts/widgets/posts-base.php:299
 #: modules/woocommerce/widgets/add-to-cart.php:312
 msgid "Alignment"
 msgstr ""
@@ -1057,12 +1276,133 @@ msgstr ""
 msgid "Weeks"
 msgstr ""
 
+#: modules/counter/module.php:67
+msgid "Title CSS"
+msgstr ""
+
+#: modules/counter/skins/skin-counter-v1.php:51
+msgid "Pie Chart - MAS"
+msgstr ""
+
+#: modules/counter/skins/skin-counter-v1.php:123
+msgid "Enter Maximum Number"
+msgstr ""
+
+#: modules/counter/skins/skin-counter-v1.php:126
+msgid "Maximum number must be higher than the counter number"
+msgstr ""
+
+#: modules/counter/skins/skin-counter-v1.php:139
+msgid "Enter Counter Number"
+msgstr ""
+
+#: modules/counter/skins/skin-counter-v1.php:141
+msgid "Counter number must be lower than the Maximum number"
+msgstr ""
+
+#: modules/counter/skins/skin-counter-v1.php:156
+msgid "Hide Values"
+msgstr ""
+
+#: modules/counter/skins/skin-counter-v1.php:158
+#: modules/multipurpose-text/widgets/multipurpose-text.php:136
+#: modules/multipurpose-text/widgets/multipurpose-text.php:229
+#: modules/woocommerce/module.php:193
+msgid "Enable"
+msgstr ""
+
+#: modules/counter/skins/skin-counter-v1.php:159
+#: modules/multipurpose-text/widgets/multipurpose-text.php:135
+#: modules/multipurpose-text/widgets/multipurpose-text.php:228
+#: modules/woocommerce/module.php:192
+msgid "Disable"
+msgstr ""
+
+#: modules/counter/skins/skin-counter-v1.php:168
+msgid "Duration"
+msgstr ""
+
+#: modules/counter/skins/skin-counter-v1.php:170
+msgid "Duration in seconds to complete"
+msgstr ""
+
+#: modules/counter/skins/skin-counter-v1.php:181
+msgid "Stroke Width"
+msgstr ""
+
+#: modules/counter/skins/skin-counter-v1.php:192
+msgid "Text Position"
+msgstr ""
+
+#: modules/counter/skins/skin-counter-v1.php:196
+msgid "Prefix"
+msgstr ""
+
+#: modules/counter/skins/skin-counter-v1.php:197
+msgid "Suffix"
+msgstr ""
+
+#: modules/counter/skins/skin-counter-v1.php:205
+#: modules/forms/widgets/signin.php:887 modules/forms/widgets/signin.php:1120
+#: modules/forms/widgets/signin.php:1326 modules/forms/widgets/signin.php:1492
+#: modules/mas-nav-tabs/widgets/mas-nav-tabs.php:868
+msgid "Description"
+msgstr ""
+
+#: modules/counter/skins/skin-counter-v1.php:207
+msgid "One of the world's top research companies"
+msgstr ""
+
+#: modules/counter/skins/skin-counter-v1.php:208
+msgid "Enter description"
+msgstr ""
+
+#: modules/counter/skins/skin-counter-v1.php:239
+#: modules/mas-nav-tabs/widgets/mas-nav-tabs.php:531
+#: modules/mas-nav-tabs/widgets/mas-nav-tabs.php:806
+#: modules/multipurpose-text/widgets/multipurpose-text.php:334
+#: modules/multipurpose-text/widgets/multipurpose-text.php:369
+#: modules/review-form/widgets/mas-review-form.php:78
+#: modules/woocommerce/widgets/product-data-tabs.php:577
+msgid "Title Color"
+msgstr ""
+
+#: modules/counter/skins/skin-counter-v1.php:280
+#: modules/mas-nav-tabs/widgets/mas-nav-tabs.php:877
+#: modules/woocommerce/widgets/product-data-tabs.php:635
+msgid "Description Color"
+msgstr ""
+
+#: modules/counter/skins/skin-counter-v1.php:362
+msgid "Text Spacing"
+msgstr ""
+
+#: modules/counter/skins/skin-counter-v1.php:409
+msgid "Circle Bar"
+msgstr ""
+
+#: modules/counter/skins/skin-counter-v1.php:417
+msgid "Circle Size"
+msgstr ""
+
+#: modules/counter/skins/skin-counter-v1.php:435
+msgid "Circle Bar Color"
+msgstr ""
+
+#: modules/counter/skins/skin-counter-v1.php:450
+msgid "Circle Transparent Color"
+msgstr ""
+
+#: modules/counter/skins/skin-counter-v1.php:485
+msgid "Outer Circle Size"
+msgstr ""
+
 #: modules/divider/module.php:63 modules/video/module.php:63
 msgid "Enable Height?"
 msgstr ""
 
 #: modules/divider/module.php:73
-#: modules/multipurpose-text/widgets/multipurpose-text.php:765
+#: modules/multipurpose-text/widgets/multipurpose-text.php:786
 #: modules/video/module.php:73
 msgid "Height"
 msgstr ""
@@ -1072,6 +1412,7 @@ msgid "Options"
 msgstr ""
 
 #: modules/dynamic-tags/acf/module.php:122
+#: modules/mas-attributes-image/widgets/mas-attributes-acf-image-base.php:71
 msgid "Key"
 msgstr ""
 
@@ -1084,33 +1425,34 @@ msgstr ""
 msgid "Image Field"
 msgstr ""
 
-#: modules/dynamic-tags/acf/tags/acf-image.php:111
+#: modules/dynamic-tags/acf/tags/acf-image.php:113
+#: modules/dynamic-tags/tags/mas-videos-media-fields.php:243
 #: modules/dynamic-tags/tags/post-featured-image.php:71
 #: modules/query-control/controls/group-control-related.php:73
 msgid "Fallback"
 msgstr ""
 
-#: modules/dynamic-tags/module.php:107
+#: modules/dynamic-tags/module.php:111
 msgid "Post"
 msgstr ""
 
-#: modules/dynamic-tags/module.php:110
+#: modules/dynamic-tags/module.php:114
 msgid "Archive"
 msgstr ""
 
-#: modules/dynamic-tags/module.php:113
+#: modules/dynamic-tags/module.php:117
 msgid "Site"
 msgstr ""
 
-#: modules/dynamic-tags/module.php:116
+#: modules/dynamic-tags/module.php:120
 msgid "Media"
 msgstr ""
 
-#: modules/dynamic-tags/module.php:119
+#: modules/dynamic-tags/module.php:123
 msgid "Actions"
 msgstr ""
 
-#: modules/dynamic-tags/module.php:122
+#: modules/dynamic-tags/module.php:126
 #: modules/query-control/controls/group-control-posts.php:109
 #: modules/query-control/controls/group-control-query.php:137
 #: modules/query-control/controls/group-control-query.php:174
@@ -1119,7 +1461,7 @@ msgstr ""
 msgid "Author"
 msgstr ""
 
-#: modules/dynamic-tags/module.php:125
+#: modules/dynamic-tags/module.php:129
 msgid "Comments"
 msgstr ""
 
@@ -1221,8 +1563,10 @@ msgid "Job Expire"
 msgstr ""
 
 #: modules/dynamic-tags/tags/job-expiration.php:58
+#: modules/dynamic-tags/tags/mas-videos-episodes-text-fields.php:53
+#: modules/dynamic-tags/tags/mas-videos-media-fields.php:151
 #: modules/dynamic-tags/tags/mas-videos-text-fields.php:64
-#: modules/dynamic-tags/tags/mas-videos-text-fields.php:115
+#: modules/dynamic-tags/tags/mas-videos-text-fields.php:84
 #: modules/dynamic-tags/tags/movie-rating.php:57
 #: modules/dynamic-tags/tags/post-date.php:58
 #: modules/dynamic-tags/tags/post-time.php:52
@@ -1255,7 +1599,8 @@ msgid "Human Readable"
 msgstr ""
 
 #: modules/dynamic-tags/tags/job-expiration.php:80
-#: modules/dynamic-tags/tags/mas-videos-text-fields.php:89
+#: modules/dynamic-tags/tags/mas-videos-episodes-text-fields.php:76
+#: modules/dynamic-tags/tags/mas-videos-text-fields.php:335
 #: modules/dynamic-tags/tags/post-date.php:80
 #: modules/dynamic-tags/tags/post-time.php:72
 #: modules/query-control/controls/group-control-query.php:335
@@ -1263,7 +1608,8 @@ msgid "Custom"
 msgstr ""
 
 #: modules/dynamic-tags/tags/job-expiration.php:89
-#: modules/dynamic-tags/tags/mas-videos-text-fields.php:102
+#: modules/dynamic-tags/tags/mas-videos-episodes-text-fields.php:88
+#: modules/dynamic-tags/tags/mas-videos-text-fields.php:348
 #: modules/dynamic-tags/tags/post-date.php:89
 #: modules/dynamic-tags/tags/post-time.php:81
 msgid "Custom Format"
@@ -1296,7 +1642,7 @@ msgid "Taxonomy"
 msgstr ""
 
 #: modules/dynamic-tags/tags/job-terms.php:88
-#: modules/dynamic-tags/tags/mas-videos-text-fields.php:134
+#: modules/dynamic-tags/tags/mas-videos-text-fields.php:105
 #: modules/dynamic-tags/tags/post-terms.php:86
 #: modules/mas-breadcrumbs/widgets/mas-breadcrumbs.php:470
 #: modules/woocommerce/tags/product-terms.php:79
@@ -1315,7 +1661,99 @@ msgid "Icon"
 msgstr ""
 
 #: modules/dynamic-tags/tags/job-title.php:97
+#: modules/jobs-filter/widgets/jobs-filter.php:1282
 msgid "Icon Position"
+msgstr ""
+
+#: modules/dynamic-tags/tags/mas-videos-episodes-text-fields.php:31
+msgid "Mas Episodes"
+msgstr ""
+
+#: modules/dynamic-tags/tags/mas-videos-episodes-text-fields.php:57
+msgid "Episode Number"
+msgstr ""
+
+#: modules/dynamic-tags/tags/mas-videos-episodes-text-fields.php:58
+#: modules/dynamic-tags/tags/mas-videos-text-fields.php:68
+msgid "Release Date"
+msgstr ""
+
+#: modules/dynamic-tags/tags/mas-videos-episodes-text-fields.php:59
+#: modules/dynamic-tags/tags/mas-videos-text-fields.php:69
+msgid "Time Duration"
+msgstr ""
+
+#: modules/dynamic-tags/tags/mas-videos-episodes-text-fields.php:60
+#: modules/dynamic-tags/tags/mas-videos-text-fields.php:71
+#: modules/dynamic-tags/tags/mas-videos-text-fields.php:88
+msgid "IMDB ID"
+msgstr ""
+
+#: modules/dynamic-tags/tags/mas-videos-episodes-text-fields.php:61
+#: modules/dynamic-tags/tags/mas-videos-text-fields.php:72
+#: modules/dynamic-tags/tags/mas-videos-text-fields.php:89
+msgid "TMDB ID"
+msgstr ""
+
+#: modules/dynamic-tags/tags/mas-videos-episodes-text-fields.php:69
+#: modules/dynamic-tags/tags/mas-videos-text-fields.php:328
+msgid "Date Format"
+msgstr ""
+
+#: modules/dynamic-tags/tags/mas-videos-episodes-url-fields.php:48
+msgid "Mas Episodes URL"
+msgstr ""
+
+#: modules/dynamic-tags/tags/mas-videos-media-fields.php:43
+msgid "Mas Videos Featured Image"
+msgstr ""
+
+#: modules/dynamic-tags/tags/mas-videos-media-fields.php:155
+#: modules/dynamic-tags/tags/mas-videos-text-fields.php:57
+#: modules/dynamic-tags/tags/mas-videos-url-fields.php:100
+#: modules/dynamic-tags/tags/movie-rating.php:61
+msgid "Movies"
+msgstr ""
+
+#: modules/dynamic-tags/tags/mas-videos-media-fields.php:156
+msgid "TV Show"
+msgstr ""
+
+#: modules/dynamic-tags/tags/mas-videos-media-fields.php:157
+#: modules/dynamic-tags/tags/mas-videos-url-fields.php:101
+msgid "Videos"
+msgstr ""
+
+#: modules/dynamic-tags/tags/mas-videos-media-fields.php:158
+msgid "Movie Casts and Crew"
+msgstr ""
+
+#: modules/dynamic-tags/tags/mas-videos-media-fields.php:159
+msgid "TV Show Casts and Crew"
+msgstr ""
+
+#: modules/dynamic-tags/tags/mas-videos-media-fields.php:167
+msgid "Casts or Crew"
+msgstr ""
+
+#: modules/dynamic-tags/tags/mas-videos-media-fields.php:171
+#: modules/dynamic-tags/tags/mas-videos-text-fields.php:123
+msgid "Casts"
+msgstr ""
+
+#: modules/dynamic-tags/tags/mas-videos-media-fields.php:172
+#: modules/dynamic-tags/tags/mas-videos-text-fields.php:124
+msgid "Crew"
+msgstr ""
+
+#: modules/dynamic-tags/tags/mas-videos-media-fields.php:209
+#: modules/dynamic-tags/tags/mas-videos-text-fields.php:171
+msgid "Select Person"
+msgstr ""
+
+#: modules/dynamic-tags/tags/mas-videos-media-fields.php:212
+#: modules/dynamic-tags/tags/mas-videos-text-fields.php:173
+msgid "Person here shown are in movie crew options and in ordered"
 msgstr ""
 
 #: modules/dynamic-tags/tags/mas-videos-text-fields.php:31
@@ -1331,56 +1769,59 @@ msgstr ""
 msgid "TV Shows"
 msgstr ""
 
-#: modules/dynamic-tags/tags/mas-videos-text-fields.php:57
-#: modules/dynamic-tags/tags/mas-videos-url-fields.php:100
-#: modules/dynamic-tags/tags/movie-rating.php:61
-msgid "Movies"
-msgstr ""
-
-#: modules/dynamic-tags/tags/mas-videos-text-fields.php:68
-msgid "Release Date"
-msgstr ""
-
-#: modules/dynamic-tags/tags/mas-videos-text-fields.php:69
-msgid "Time Duration"
-msgstr ""
-
 #: modules/dynamic-tags/tags/mas-videos-text-fields.php:70
 msgid "Censor Rating"
 msgstr ""
 
-#: modules/dynamic-tags/tags/mas-videos-text-fields.php:71
-#: modules/dynamic-tags/tags/mas-videos-text-fields.php:119
-msgid "IMDB ID"
+#: modules/dynamic-tags/tags/mas-videos-text-fields.php:73
+#: modules/dynamic-tags/tags/mas-videos-text-fields.php:94
+msgid "Casts and Crew"
 msgstr ""
 
-#: modules/dynamic-tags/tags/mas-videos-text-fields.php:72
-#: modules/dynamic-tags/tags/mas-videos-text-fields.php:120
-msgid "TMDB ID"
-msgstr ""
-
-#: modules/dynamic-tags/tags/mas-videos-text-fields.php:82
-msgid "Date Format"
-msgstr ""
-
-#: modules/dynamic-tags/tags/mas-videos-text-fields.php:121
+#: modules/dynamic-tags/tags/mas-videos-text-fields.php:90
 msgid "Season Names"
 msgstr ""
 
-#: modules/dynamic-tags/tags/mas-videos-text-fields.php:122
+#: modules/dynamic-tags/tags/mas-videos-text-fields.php:91
+msgid "Season Count"
+msgstr ""
+
+#: modules/dynamic-tags/tags/mas-videos-text-fields.php:92
 msgid "Seasons Start Year"
 msgstr ""
 
-#: modules/dynamic-tags/tags/mas-videos-text-fields.php:123
+#: modules/dynamic-tags/tags/mas-videos-text-fields.php:93
 msgid "Seasons End Year"
+msgstr ""
+
+#: modules/dynamic-tags/tags/mas-videos-text-fields.php:119
+msgid "Persons"
+msgstr ""
+
+#: modules/dynamic-tags/tags/mas-videos-text-fields.php:216
+#: modules/dynamic-tags/tags/mas-videos-text-fields.php:272
+msgid "Person options"
+msgstr ""
+
+#: modules/dynamic-tags/tags/mas-videos-text-fields.php:220
+#: modules/dynamic-tags/tags/mas-videos-text-fields.php:276
+msgid "Name"
+msgstr ""
+
+#: modules/dynamic-tags/tags/mas-videos-text-fields.php:221
+msgid "Job"
+msgstr ""
+
+#: modules/dynamic-tags/tags/mas-videos-text-fields.php:277
+msgid "Character"
+msgstr ""
+
+#: modules/dynamic-tags/tags/mas-videos-tv-shows-episode-url-fields.php:48
+msgid "Mas Tv-Shows Episode URL"
 msgstr ""
 
 #: modules/dynamic-tags/tags/mas-videos-url-fields.php:48
 msgid "Mas Videos URL"
-msgstr ""
-
-#: modules/dynamic-tags/tags/mas-videos-url-fields.php:101
-msgid "Videos"
 msgstr ""
 
 #: modules/dynamic-tags/tags/movie-rating.php:32
@@ -1417,6 +1858,672 @@ msgstr ""
 
 #: modules/dynamic-tags/tags/post-url.php:31
 msgid "Post URL"
+msgstr ""
+
+#: modules/episodes/widgets/episodes.php:61
+msgid "Episodes"
+msgstr ""
+
+#: modules/episodes/widgets/episodes.php:120
+#: modules/mas-related-project/widgets/mas-related-project.php:89
+#: modules/mas-tv-shows-episodes/widgets/mas-tv-shows-episodes.php:108
+#: modules/page-settings/module.php:140
+#: modules/posts/widgets/posts-base.php:1421
+#: modules/woocommerce/widgets/product-related.php:87
+#: modules/woocommerce/widgets/products.php:209
+msgid "Mas Templates"
+msgstr ""
+
+#: modules/forms/module.php:121
+msgid "Username already taken"
+msgstr ""
+
+#: modules/forms/module.php:125
+msgid "Invalid username"
+msgstr ""
+
+#: modules/forms/module.php:129
+msgid "Please enter a username"
+msgstr ""
+
+#: modules/forms/module.php:133
+msgid "Invalid email"
+msgstr ""
+
+#: modules/forms/module.php:137
+msgid "Email already registered"
+msgstr ""
+
+#: modules/forms/module.php:150
+msgid "Password you entered is mismatched"
+msgstr ""
+
+#: modules/forms/module.php:183
+msgid ""
+"Account created successfully. Please check your email to create your "
+"account password"
+msgstr ""
+
+#: modules/forms/module.php:245
+msgid "Invalid username or email address"
+msgstr ""
+
+#: modules/forms/module.php:255
+msgid "Please enter a password"
+msgstr ""
+
+#: modules/forms/module.php:262
+msgid "Incorrect password"
+msgstr ""
+
+#: modules/forms/module.php:310
+msgid "Enter a username or email address"
+msgstr ""
+
+#: modules/forms/module.php:325
+msgid "There is no account with that username or email address."
+msgstr ""
+
+#: modules/forms/module.php:329
+msgid "Invalid username or email address."
+msgstr ""
+
+#: modules/forms/module.php:338
+msgid "Passord has been sent to your email"
+msgstr ""
+
+#: modules/forms/widgets/login.php:42 modules/forms/widgets/signin.php:100
+#: modules/forms/widgets/signin.php:1436
+msgid "Login"
+msgstr ""
+
+#: modules/forms/widgets/login.php:70
+msgid "Form Fields"
+msgstr ""
+
+#: modules/forms/widgets/login.php:88
+msgid "Input Size"
+msgstr ""
+
+#: modules/forms/widgets/login.php:118
+msgid "Log In"
+msgstr ""
+
+#: modules/forms/widgets/login.php:125
+#: modules/mas-nav-tabs/widgets/mas-nav-tabs.php:684
+msgid "Size"
+msgstr ""
+
+#: modules/forms/widgets/login.php:171 modules/forms/widgets/signin.php:1565
+msgid "Additional Options"
+msgstr ""
+
+#: modules/forms/widgets/login.php:178 modules/forms/widgets/signin.php:1572
+msgid "Redirect After Login"
+msgstr ""
+
+#: modules/forms/widgets/login.php:181 modules/forms/widgets/login.php:210
+#: modules/forms/widgets/signin.php:1575 modules/forms/widgets/signin.php:1600
+msgid "Off"
+msgstr ""
+
+#: modules/forms/widgets/login.php:182 modules/forms/widgets/login.php:211
+#: modules/forms/widgets/signin.php:1576 modules/forms/widgets/signin.php:1601
+msgid "On"
+msgstr ""
+
+#: modules/forms/widgets/login.php:194 modules/forms/widgets/login.php:223
+#: modules/forms/widgets/signin.php:1588 modules/forms/widgets/signin.php:1613
+msgid ""
+"Note: Because of security reasons, you can ONLY use your current domain "
+"here."
+msgstr ""
+
+#: modules/forms/widgets/login.php:207 modules/forms/widgets/signin.php:1597
+msgid "Redirect After Logout"
+msgstr ""
+
+#: modules/forms/widgets/login.php:236 modules/forms/widgets/login.php:965
+#: modules/forms/widgets/login.php:1122 modules/forms/widgets/signin.php:1193
+msgid "Lost your password?"
+msgstr ""
+
+#: modules/forms/widgets/login.php:248 modules/forms/widgets/login.php:975
+#: modules/forms/widgets/login.php:1133 modules/forms/widgets/signin.php:101
+msgid "Register"
+msgstr ""
+
+#: modules/forms/widgets/login.php:260 modules/forms/widgets/login.php:942
+#: modules/forms/widgets/login.php:1104 modules/forms/widgets/signin.php:1217
+#: modules/forms/widgets/signin.php:1957
+msgid "Remember Me"
+msgstr ""
+
+#: modules/forms/widgets/login.php:271 modules/forms/widgets/login.php:739
+msgid "Logged in Message"
+msgstr ""
+
+#: modules/forms/widgets/login.php:290 modules/forms/widgets/signin.php:1130
+msgid "Username Label"
+msgstr ""
+
+#: modules/forms/widgets/login.php:295 modules/forms/widgets/login.php:319
+msgid "Username or Email Address"
+msgstr ""
+
+#: modules/forms/widgets/login.php:317 modules/forms/widgets/signin.php:1144
+msgid "Username Placeholder"
+msgstr ""
+
+#: modules/forms/widgets/login.php:332 modules/forms/widgets/signin.php:1154
+msgid "Password Label"
+msgstr ""
+
+#: modules/forms/widgets/login.php:337 modules/forms/widgets/login.php:361
+#: modules/forms/widgets/signin.php:1158 modules/forms/widgets/signin.php:1360
+msgid "Password"
+msgstr ""
+
+#: modules/forms/widgets/login.php:359 modules/forms/widgets/signin.php:1168
+#: modules/forms/widgets/signin.php:1368
+msgid "Password Placeholder"
+msgstr ""
+
+#: modules/forms/widgets/login.php:376 modules/forms/widgets/signin.php:123
+#: modules/forms/widgets/signin.php:382
+#: modules/jobs-filter/widgets/jobs-filter.php:248
+msgid "Form"
+msgstr ""
+
+#: modules/forms/widgets/login.php:384
+msgid "Rows Gap"
+msgstr ""
+
+#: modules/forms/widgets/login.php:405
+msgid "Links Color"
+msgstr ""
+
+#: modules/forms/widgets/login.php:419
+msgid "Links Hover Color"
+msgstr ""
+
+#: modules/forms/widgets/login.php:493
+msgid "Fields"
+msgstr ""
+
+#: modules/forms/widgets/login.php:554
+msgid "Border Width"
+msgstr ""
+
+#: modules/forms/widgets/login.php:664
+msgid "Text Padding"
+msgstr ""
+
+#: modules/forms/widgets/login.php:725
+msgid "Animation"
+msgstr ""
+
+#: modules/forms/widgets/login.php:894
+#. translators: 1: User display name, 2: Link opening tag, 3: Link closing tag.
+msgid "You are Logged in as %1$s (%2$sLogout%3$s)"
+msgstr ""
+
+#: modules/forms/widgets/login.php:1053 modules/forms/widgets/signin.php:2020
+msgid "A password will be sent to your email address."
+msgstr ""
+
+#: modules/forms/widgets/signin.php:48
+msgid "User Account Forms"
+msgstr ""
+
+#: modules/forms/widgets/signin.php:88
+msgid "General"
+msgstr ""
+
+#: modules/forms/widgets/signin.php:95
+msgid "Display"
+msgstr ""
+
+#: modules/forms/widgets/signin.php:96
+msgid ""
+"Choose which forms you want to display. Please note that the register form "
+"is available only if registration is enabled from Settings > General > "
+"Membership."
+msgstr ""
+
+#: modules/forms/widgets/signin.php:99
+#: modules/query-control/controls/group-control-query.php:329
+#: modules/query-control/module.php:1188 templates/classes/manager.php:183
+msgid "All"
+msgstr ""
+
+#: modules/forms/widgets/signin.php:102 modules/forms/widgets/signin.php:1479
+msgid "Password Reset"
+msgstr ""
+
+#: modules/forms/widgets/signin.php:131 modules/forms/widgets/signin.php:1103
+#: modules/forms/widgets/signin.php:1311 modules/forms/widgets/signin.php:1476
+msgid "Form Title"
+msgstr ""
+
+#: modules/forms/widgets/signin.php:188
+#: modules/masvideos-genre/widgets/movie-genre-filter.php:275
+msgid "Title Spacing"
+msgstr ""
+
+#: modules/forms/widgets/signin.php:211 modules/forms/widgets/signin.php:300
+msgid "Add your custom class for text without the dot. e.g: my-class"
+msgstr ""
+
+#: modules/forms/widgets/signin.php:219 modules/forms/widgets/signin.php:1117
+#: modules/forms/widgets/signin.php:1323 modules/forms/widgets/signin.php:1488
+msgid "Form Description"
+msgstr ""
+
+#: modules/forms/widgets/signin.php:250
+msgid "Description Alignment"
+msgstr ""
+
+#: modules/forms/widgets/signin.php:277
+msgid "Description Spacing"
+msgstr ""
+
+#: modules/forms/widgets/signin.php:310
+msgid "Form Footer Alignment"
+msgstr ""
+
+#: modules/forms/widgets/signin.php:346 modules/forms/widgets/signin.php:1093
+msgid "Login Form"
+msgstr ""
+
+#: modules/forms/widgets/signin.php:407
+msgid "Label Color"
+msgstr ""
+
+#: modules/forms/widgets/signin.php:418
+msgid "Form Spacing"
+msgstr ""
+
+#: modules/forms/widgets/signin.php:438
+msgid "Label Width"
+msgstr ""
+
+#: modules/forms/widgets/signin.php:459
+msgid "Form Width"
+msgstr ""
+
+#: modules/forms/widgets/signin.php:501
+msgid "Form Input"
+msgstr ""
+
+#: modules/forms/widgets/signin.php:575 modules/forms/widgets/signin.php:623
+msgid "Input Text Color"
+msgstr ""
+
+#: modules/forms/widgets/signin.php:587 modules/forms/widgets/signin.php:635
+msgid "Input BG Color"
+msgstr ""
+
+#: modules/forms/widgets/signin.php:599 modules/forms/widgets/signin.php:647
+msgid "Input Border Color"
+msgstr ""
+
+#: modules/forms/widgets/signin.php:665
+msgid "Signin Button"
+msgstr ""
+
+#: modules/forms/widgets/signin.php:751
+msgid "Sign in Button Spacing"
+msgstr ""
+
+#: modules/forms/widgets/signin.php:771
+msgid "Signup Text"
+msgstr ""
+
+#: modules/forms/widgets/signin.php:790
+msgid "For the sign up link"
+msgstr ""
+
+#: modules/forms/widgets/signin.php:808
+#: modules/mas-breadcrumbs/widgets/mas-breadcrumbs.php:374
+msgid "Link Color"
+msgstr ""
+
+#: modules/forms/widgets/signin.php:820
+msgid "Sign up link Spacing"
+msgstr ""
+
+#: modules/forms/widgets/signin.php:846
+msgid "Form Controls"
+msgstr ""
+
+#: modules/forms/widgets/signin.php:853 modules/forms/widgets/signin.php:1107
+#: modules/forms/widgets/signin.php:1315 modules/forms/widgets/signin.php:1480
+#: modules/mas-breadcrumbs/widgets/mas-breadcrumbs.php:352
+#: modules/mas-nav-tabs/widgets/mas-nav-tabs.php:789
+#: modules/mas-related-project/widgets/mas-related-project.php:167
+#: modules/masvideos-genre/widgets/movie-genre-filter.php:224
+#: modules/multipurpose-text/widgets/multipurpose-text.php:82
+#: modules/multipurpose-text/widgets/multipurpose-text.php:317
+#: modules/query-control/controls/group-control-query.php:388
+#: modules/woocommerce/widgets/product-related.php:117
+#: modules/woocommerce/widgets/products.php:143
+msgid "Title"
+msgstr ""
+
+#: modules/forms/widgets/signin.php:864
+msgid "Title HTML Tag"
+msgstr ""
+
+#: modules/forms/widgets/signin.php:898
+msgid "Labels"
+msgstr ""
+
+#: modules/forms/widgets/signin.php:1106 modules/forms/widgets/signin.php:1233
+msgid "Sign in"
+msgstr ""
+
+#: modules/forms/widgets/signin.php:1119 modules/forms/widgets/signin.php:1325
+msgid "Simplify your workflow in minutes."
+msgstr ""
+
+#: modules/forms/widgets/signin.php:1134 modules/forms/widgets/signin.php:1338
+msgid "Email Address"
+msgstr ""
+
+#: modules/forms/widgets/signin.php:1147 modules/forms/widgets/signin.php:1349
+msgid "name@address.com"
+msgstr ""
+
+#: modules/forms/widgets/signin.php:1171 modules/forms/widgets/signin.php:1371
+msgid "Enter your password"
+msgstr ""
+
+#: modules/forms/widgets/signin.php:1178
+msgid "Password Reset Link"
+msgstr ""
+
+#: modules/forms/widgets/signin.php:1190
+msgid "Password Reset Text"
+msgstr ""
+
+#: modules/forms/widgets/signin.php:1203
+msgid "Password Reset Page"
+msgstr ""
+
+#: modules/forms/widgets/signin.php:1229
+msgid "Login Button Text"
+msgstr ""
+
+#: modules/forms/widgets/signin.php:1242
+msgid "Registration Link"
+msgstr ""
+
+#: modules/forms/widgets/signin.php:1254
+msgid "Registration Page Intro"
+msgstr ""
+
+#: modules/forms/widgets/signin.php:1257
+msgid "Don't have an account yet?"
+msgstr ""
+
+#: modules/forms/widgets/signin.php:1265
+msgid "Registration Link Text"
+msgstr ""
+
+#: modules/forms/widgets/signin.php:1268 modules/forms/widgets/signin.php:1314
+#: modules/forms/widgets/signin.php:1403
+msgid "Sign up"
+msgstr ""
+
+#: modules/forms/widgets/signin.php:1276
+msgid "Registration Page Link"
+msgstr ""
+
+#: modules/forms/widgets/signin.php:1303
+msgid "Register Form"
+msgstr ""
+
+#: modules/forms/widgets/signin.php:1335
+msgid "Email Label"
+msgstr ""
+
+#: modules/forms/widgets/signin.php:1346
+msgid "Email Placeholder"
+msgstr ""
+
+#: modules/forms/widgets/signin.php:1357
+msgid "Pasword Label"
+msgstr ""
+
+#: modules/forms/widgets/signin.php:1378
+msgid "Confirm Password Label"
+msgstr ""
+
+#: modules/forms/widgets/signin.php:1381 modules/forms/widgets/signin.php:1392
+msgid "Confirm Password"
+msgstr ""
+
+#: modules/forms/widgets/signin.php:1389
+msgid "Confirm Password Placeholder"
+msgstr ""
+
+#: modules/forms/widgets/signin.php:1400
+msgid "Register Button Text"
+msgstr ""
+
+#: modules/forms/widgets/signin.php:1410 modules/forms/widgets/signin.php:1510
+msgid "Login Link"
+msgstr ""
+
+#: modules/forms/widgets/signin.php:1422 modules/forms/widgets/signin.php:1522
+msgid "Login Page Intro"
+msgstr ""
+
+#: modules/forms/widgets/signin.php:1425
+msgid "Already have an account?"
+msgstr ""
+
+#: modules/forms/widgets/signin.php:1433 modules/forms/widgets/signin.php:1533
+msgid "Login Link Text"
+msgstr ""
+
+#: modules/forms/widgets/signin.php:1444 modules/forms/widgets/signin.php:1544
+msgid "Login Page Link"
+msgstr ""
+
+#: modules/forms/widgets/signin.php:1468
+msgid "Password Reset Form"
+msgstr ""
+
+#: modules/forms/widgets/signin.php:1491
+msgid "Enter your email to reset your password."
+msgstr ""
+
+#: modules/forms/widgets/signin.php:1500
+#: modules/posts/widgets/posts-base.php:267
+msgid "Button Text"
+msgstr ""
+
+#: modules/forms/widgets/signin.php:1503
+msgid "Reset Password"
+msgstr ""
+
+#: modules/forms/widgets/signin.php:1525
+msgid "Remember your password?"
+msgstr ""
+
+#: modules/forms/widgets/signin.php:1536
+msgid "Log in"
+msgstr ""
+
+#: modules/forms/widgets/signin.php:1666
+msgid "You are Logged in as %1$s (<a href=\"%2$s\">Logout</a>)"
+msgstr ""
+
+#: modules/jobs-filter/widgets/jobs-filter.php:56
+msgid "Jobs Filter"
+msgstr ""
+
+#: modules/jobs-filter/widgets/jobs-filter.php:96
+#: modules/jobs-filter/widgets/jobs-filter.php:343
+msgid "Keyword"
+msgstr ""
+
+#: modules/jobs-filter/widgets/jobs-filter.php:103
+msgid "Keyword Placeholder"
+msgstr ""
+
+#: modules/jobs-filter/widgets/jobs-filter.php:108
+msgid "Job title, keywords or company name"
+msgstr ""
+
+#: modules/jobs-filter/widgets/jobs-filter.php:116
+msgid "Keyword Icon"
+msgstr ""
+
+#: modules/jobs-filter/widgets/jobs-filter.php:131
+#: modules/jobs-filter/widgets/jobs-filter.php:608
+msgid "Location"
+msgstr ""
+
+#: modules/jobs-filter/widgets/jobs-filter.php:138
+msgid "Location Placeholder"
+msgstr ""
+
+#: modules/jobs-filter/widgets/jobs-filter.php:143
+msgid "City, province or region"
+msgstr ""
+
+#: modules/jobs-filter/widgets/jobs-filter.php:151
+msgid "Location Icon"
+msgstr ""
+
+#: modules/jobs-filter/widgets/jobs-filter.php:164
+#: modules/jobs-filter/widgets/jobs-filter.php:877
+#: modules/jobs-filter/widgets/jobs-filter.php:1523
+#: modules/jobs-filter/widgets/jobs-filter.php:1545
+msgid "Category"
+msgstr ""
+
+#: modules/jobs-filter/widgets/jobs-filter.php:171
+msgid "Show Category"
+msgstr ""
+
+#: modules/jobs-filter/widgets/jobs-filter.php:198
+msgid "Category Placeholder"
+msgstr ""
+
+#: modules/jobs-filter/widgets/jobs-filter.php:203
+msgid "Any Category"
+msgstr ""
+
+#: modules/jobs-filter/widgets/jobs-filter.php:215
+#: modules/jobs-filter/widgets/jobs-filter.php:227
+#: modules/jobs-filter/widgets/jobs-filter.php:1153
+msgid "Search"
+msgstr ""
+
+#: modules/jobs-filter/widgets/jobs-filter.php:222
+msgid "Search Text"
+msgstr ""
+
+#: modules/jobs-filter/widgets/jobs-filter.php:235
+msgid "Search Icon"
+msgstr ""
+
+#: modules/jobs-filter/widgets/jobs-filter.php:268
+#: modules/jobs-filter/widgets/jobs-filter.php:483
+#: modules/jobs-filter/widgets/jobs-filter.php:538
+#: modules/jobs-filter/widgets/jobs-filter.php:748
+#: modules/jobs-filter/widgets/jobs-filter.php:804
+#: modules/jobs-filter/widgets/jobs-filter.php:1010
+#: modules/jobs-filter/widgets/jobs-filter.php:1073
+#: modules/jobs-filter/widgets/jobs-filter.php:1366
+#: modules/jobs-filter/widgets/jobs-filter.php:1421
+msgid "Border Type"
+msgstr ""
+
+#: modules/jobs-filter/widgets/jobs-filter.php:272
+#: modules/jobs-filter/widgets/jobs-filter.php:487
+#: modules/jobs-filter/widgets/jobs-filter.php:542
+#: modules/jobs-filter/widgets/jobs-filter.php:752
+#: modules/jobs-filter/widgets/jobs-filter.php:808
+#: modules/jobs-filter/widgets/jobs-filter.php:1014
+#: modules/jobs-filter/widgets/jobs-filter.php:1077
+#: modules/jobs-filter/widgets/jobs-filter.php:1370
+#: modules/jobs-filter/widgets/jobs-filter.php:1425
+msgid "Solid"
+msgstr ""
+
+#: modules/jobs-filter/widgets/jobs-filter.php:273
+#: modules/jobs-filter/widgets/jobs-filter.php:488
+#: modules/jobs-filter/widgets/jobs-filter.php:543
+#: modules/jobs-filter/widgets/jobs-filter.php:753
+#: modules/jobs-filter/widgets/jobs-filter.php:809
+#: modules/jobs-filter/widgets/jobs-filter.php:1015
+#: modules/jobs-filter/widgets/jobs-filter.php:1078
+#: modules/jobs-filter/widgets/jobs-filter.php:1371
+#: modules/jobs-filter/widgets/jobs-filter.php:1426
+msgid "Double"
+msgstr ""
+
+#: modules/jobs-filter/widgets/jobs-filter.php:274
+#: modules/jobs-filter/widgets/jobs-filter.php:489
+#: modules/jobs-filter/widgets/jobs-filter.php:544
+#: modules/jobs-filter/widgets/jobs-filter.php:754
+#: modules/jobs-filter/widgets/jobs-filter.php:810
+#: modules/jobs-filter/widgets/jobs-filter.php:1016
+#: modules/jobs-filter/widgets/jobs-filter.php:1079
+#: modules/jobs-filter/widgets/jobs-filter.php:1372
+#: modules/jobs-filter/widgets/jobs-filter.php:1427
+msgid "Dotted"
+msgstr ""
+
+#: modules/jobs-filter/widgets/jobs-filter.php:275
+#: modules/jobs-filter/widgets/jobs-filter.php:490
+#: modules/jobs-filter/widgets/jobs-filter.php:545
+#: modules/jobs-filter/widgets/jobs-filter.php:755
+#: modules/jobs-filter/widgets/jobs-filter.php:811
+#: modules/jobs-filter/widgets/jobs-filter.php:1017
+#: modules/jobs-filter/widgets/jobs-filter.php:1080
+#: modules/jobs-filter/widgets/jobs-filter.php:1373
+#: modules/jobs-filter/widgets/jobs-filter.php:1428
+msgid "Dashed"
+msgstr ""
+
+#: modules/jobs-filter/widgets/jobs-filter.php:276
+#: modules/jobs-filter/widgets/jobs-filter.php:491
+#: modules/jobs-filter/widgets/jobs-filter.php:546
+#: modules/jobs-filter/widgets/jobs-filter.php:756
+#: modules/jobs-filter/widgets/jobs-filter.php:812
+#: modules/jobs-filter/widgets/jobs-filter.php:1018
+#: modules/jobs-filter/widgets/jobs-filter.php:1081
+#: modules/jobs-filter/widgets/jobs-filter.php:1374
+#: modules/jobs-filter/widgets/jobs-filter.php:1429
+msgid "Groove"
+msgstr ""
+
+#: modules/jobs-filter/widgets/jobs-filter.php:409
+#: modules/jobs-filter/widgets/jobs-filter.php:674
+#: modules/jobs-filter/widgets/jobs-filter.php:955
+msgid "Placeholder Color"
+msgstr ""
+
+#: modules/mas-attributes-image/widgets/mas-attributes-acf-image-base.php:62
+msgid "Select Taxonomy"
+msgstr ""
+
+#: modules/mas-attributes-image/widgets/mas-movie-attributes-acf-image.php:34
+msgid "MAS Movie Attributes Image"
+msgstr ""
+
+#: modules/mas-attributes-image/widgets/mas-tv-show-attributes-acf-image.php:34
+msgid "MAS TV Show Attributes Image"
+msgstr ""
+
+#: modules/mas-attributes-image/widgets/mas-video-attributes-acf-image.php:34
+msgid "MAS Video Attributes Image"
 msgstr ""
 
 #: modules/mas-breadcrumbs/widgets/mas-breadcrumbs.php:47
@@ -1458,20 +2565,6 @@ msgstr ""
 #: modules/mas-breadcrumbs/widgets/mas-breadcrumbs.php:246
 #: modules/mas-nav-tabs/widgets/mas-nav-tabs.php:332
 msgid "List Item"
-msgstr ""
-
-#: modules/mas-breadcrumbs/widgets/mas-breadcrumbs.php:352
-#: modules/mas-nav-tabs/widgets/mas-nav-tabs.php:789
-#: modules/multipurpose-text/widgets/multipurpose-text.php:82
-#: modules/multipurpose-text/widgets/multipurpose-text.php:299
-#: modules/query-control/controls/group-control-query.php:388
-#: modules/woocommerce/widgets/product-related.php:117
-#: modules/woocommerce/widgets/products.php:142
-msgid "Title"
-msgstr ""
-
-#: modules/mas-breadcrumbs/widgets/mas-breadcrumbs.php:374
-msgid "Link Color"
 msgstr ""
 
 #: modules/mas-breadcrumbs/widgets/mas-breadcrumbs.php:478
@@ -1645,37 +2738,147 @@ msgstr ""
 msgid "Enter Your link Class"
 msgstr ""
 
-#: modules/mas-nav-tabs/widgets/mas-nav-tabs.php:531
-#: modules/mas-nav-tabs/widgets/mas-nav-tabs.php:806
-#: modules/multipurpose-text/widgets/multipurpose-text.php:316
-#: modules/multipurpose-text/widgets/multipurpose-text.php:351
-#: modules/woocommerce/widgets/product-data-tabs.php:577
-msgid "Title Color"
-msgstr ""
-
 #: modules/mas-nav-tabs/widgets/mas-nav-tabs.php:630
 msgid "Active Title Color"
-msgstr ""
-
-#: modules/mas-nav-tabs/widgets/mas-nav-tabs.php:684
-msgid "Size"
 msgstr ""
 
 #: modules/mas-nav-tabs/widgets/mas-nav-tabs.php:797
 msgid "Title Class"
 msgstr ""
 
-#: modules/mas-nav-tabs/widgets/mas-nav-tabs.php:868
-msgid "Description"
-msgstr ""
-
-#: modules/mas-nav-tabs/widgets/mas-nav-tabs.php:877
-#: modules/woocommerce/widgets/product-data-tabs.php:635
-msgid "Description Color"
-msgstr ""
-
 #: modules/mas-overflow/module.php:79
 msgid "Enable Overflow Scroll"
+msgstr ""
+
+#: modules/mas-related-project/widgets/mas-related-project.php:43
+msgid "Mas Related Project"
+msgstr ""
+
+#: modules/mas-related-project/widgets/mas-related-project.php:81
+msgid "Related Projects"
+msgstr ""
+
+#: modules/mas-related-project/widgets/mas-related-project.php:107
+#: modules/masvideos-genre/widgets/movie-genre-filter.php:110
+#: modules/masvideos-genre/widgets/movie-genre-filter.php:123
+#: modules/posts/widgets/posts-base.php:1439
+#: modules/woocommerce/widgets/base-widget.php:54
+#: modules/woocommerce/widgets/products.php:230
+msgid "Columns"
+msgstr ""
+
+#: modules/mas-related-project/widgets/mas-related-project.php:133
+#: modules/posts/widgets/posts-base.php:1468
+#: modules/woocommerce/widgets/products.php:259
+msgid "Rows"
+msgstr ""
+
+#: modules/mas-related-project/widgets/mas-related-project.php:148
+msgid "Post Per Page"
+msgstr ""
+
+#: modules/mas-related-project/widgets/mas-related-project.php:162
+#: modules/query-control/controls/group-control-query.php:383
+#: modules/woocommerce/widgets/product-related.php:112
+msgid "Order By"
+msgstr ""
+
+#: modules/mas-related-project/widgets/mas-related-project.php:166
+#: modules/query-control/controls/group-control-query.php:325
+#: modules/query-control/controls/group-control-query.php:387
+#: modules/woocommerce/widgets/product-related.php:116
+#: modules/woocommerce/widgets/products.php:142
+msgid "Date"
+msgstr ""
+
+#: modules/mas-related-project/widgets/mas-related-project.php:168
+#: modules/woocommerce/widgets/product-related.php:118
+#: modules/woocommerce/widgets/products.php:144
+msgid "Price"
+msgstr ""
+
+#: modules/mas-related-project/widgets/mas-related-project.php:169
+#: modules/woocommerce/widgets/product-related.php:119
+#: modules/woocommerce/widgets/products.php:145
+msgid "Popularity"
+msgstr ""
+
+#: modules/mas-related-project/widgets/mas-related-project.php:170
+#: modules/woocommerce/widgets/product-related.php:120
+#: modules/woocommerce/widgets/products.php:146
+msgid "Rating"
+msgstr ""
+
+#: modules/mas-related-project/widgets/mas-related-project.php:171
+#: modules/query-control/controls/group-control-query.php:391
+#: modules/woocommerce/widgets/product-related.php:121
+#: modules/woocommerce/widgets/products.php:147
+msgid "Random"
+msgstr ""
+
+#: modules/mas-related-project/widgets/mas-related-project.php:172
+#: modules/query-control/controls/group-control-query.php:390
+#: modules/woocommerce/widgets/product-related.php:122
+#: modules/woocommerce/widgets/products.php:148
+msgid "Menu Order"
+msgstr ""
+
+#: modules/mas-related-project/widgets/mas-related-project.php:180
+#: modules/query-control/controls/group-control-query.php:399
+#: modules/woocommerce/widgets/product-related.php:130
+msgid "Order"
+msgstr ""
+
+#: modules/mas-related-project/widgets/mas-related-project.php:184
+#: modules/query-control/controls/group-control-query.php:403
+#: modules/woocommerce/widgets/product-related.php:134
+msgid "ASC"
+msgstr ""
+
+#: modules/mas-related-project/widgets/mas-related-project.php:185
+#: modules/query-control/controls/group-control-query.php:404
+#: modules/woocommerce/widgets/product-related.php:135
+msgid "DESC"
+msgstr ""
+
+#: modules/mas-tv-shows-episodes/widgets/mas-tv-shows-episodes.php:49
+msgid "MAS Tv-Shows Episodes"
+msgstr ""
+
+#: modules/mas-tv-shows-episodes/widgets/mas-tv-shows-episodes.php:273
+msgid "Title Alignment"
+msgstr ""
+
+#: modules/masvideos-genre/widgets/movie-genre-filter.php:42
+msgid "Movie Genre Filter"
+msgstr ""
+
+#: modules/masvideos-genre/widgets/movie-genre-filter.php:100
+msgid "Filter Title"
+msgstr ""
+
+#: modules/masvideos-genre/widgets/movie-genre-filter.php:102
+msgid "Filter by Genre"
+msgstr ""
+
+#: modules/masvideos-genre/widgets/movie-genre-filter.php:113
+msgid "Movie Genre"
+msgstr ""
+
+#: modules/masvideos-genre/widgets/movie-genre-filter.php:114
+msgid "TV Show Genre"
+msgstr ""
+
+#: modules/masvideos-genre/widgets/movie-genre-filter.php:294
+msgid "List"
+msgstr ""
+
+#: modules/masvideos-genre/widgets/movie-genre-filter.php:313
+msgid "Hover Color"
+msgstr ""
+
+#: modules/masvideos-genre/widgets/movie-genre-filter.php:366
+msgid "List Spacing"
 msgstr ""
 
 #: modules/multipurpose-text/widgets/multipurpose-text.php:43
@@ -1697,7 +2900,7 @@ msgid "Use <br> to break into two lines"
 msgstr ""
 
 #: modules/multipurpose-text/widgets/multipurpose-text.php:104
-#: modules/multipurpose-text/widgets/multipurpose-text.php:393
+#: modules/multipurpose-text/widgets/multipurpose-text.php:411
 msgid "Highlighted Text"
 msgstr ""
 
@@ -1705,128 +2908,126 @@ msgstr ""
 msgid "After Highlighted Text"
 msgstr ""
 
-#: modules/multipurpose-text/widgets/multipurpose-text.php:132
+#: modules/multipurpose-text/widgets/multipurpose-text.php:133
+msgid "Enable Typing Text"
+msgstr ""
+
+#: modules/multipurpose-text/widgets/multipurpose-text.php:143
 msgid "Typing Text"
 msgstr ""
 
-#: modules/multipurpose-text/widgets/multipurpose-text.php:133
+#: modules/multipurpose-text/widgets/multipurpose-text.php:144
 msgid "Enter each word in a separate line"
 msgstr ""
 
-#: modules/multipurpose-text/widgets/multipurpose-text.php:135
+#: modules/multipurpose-text/widgets/multipurpose-text.php:146
 msgid "Enter Typing Text"
 msgstr ""
 
-#: modules/multipurpose-text/widgets/multipurpose-text.php:145
+#: modules/multipurpose-text/widgets/multipurpose-text.php:159
 msgid "Typing Speed"
 msgstr ""
 
-#: modules/multipurpose-text/widgets/multipurpose-text.php:166
+#: modules/multipurpose-text/widgets/multipurpose-text.php:181
 msgid "Back Speed"
 msgstr ""
 
-#: modules/multipurpose-text/widgets/multipurpose-text.php:187
+#: modules/multipurpose-text/widgets/multipurpose-text.php:203
 msgid "Back Delay"
 msgstr ""
 
-#: modules/multipurpose-text/widgets/multipurpose-text.php:209
+#: modules/multipurpose-text/widgets/multipurpose-text.php:226
 msgid "Enable Typing Loop"
 msgstr ""
 
-#: modules/multipurpose-text/widgets/multipurpose-text.php:211
-#: modules/woocommerce/module.php:190
-msgid "Disable"
-msgstr ""
-
-#: modules/multipurpose-text/widgets/multipurpose-text.php:212
-#: modules/woocommerce/module.php:191
-msgid "Enable"
-msgstr ""
-
-#: modules/multipurpose-text/widgets/multipurpose-text.php:237
+#: modules/multipurpose-text/widgets/multipurpose-text.php:255
 msgid "Anchor Tag CSS"
 msgstr ""
 
-#: modules/multipurpose-text/widgets/multipurpose-text.php:239
+#: modules/multipurpose-text/widgets/multipurpose-text.php:257
 msgid ""
 "Additional CSS classes separated by space that you'd like to apply to the "
 "<a> tag"
 msgstr ""
 
-#: modules/multipurpose-text/widgets/multipurpose-text.php:246
+#: modules/multipurpose-text/widgets/multipurpose-text.php:264
 msgid "HTML Tag"
 msgstr ""
 
-#: modules/multipurpose-text/widgets/multipurpose-text.php:381
+#: modules/multipurpose-text/widgets/multipurpose-text.php:399
 msgid "Additional CSS"
 msgstr ""
 
-#: modules/multipurpose-text/widgets/multipurpose-text.php:383
+#: modules/multipurpose-text/widgets/multipurpose-text.php:401
 msgid ""
 "Additional CSS classes separated by space that you'd like to apply to the "
 "title"
 msgstr ""
 
-#: modules/multipurpose-text/widgets/multipurpose-text.php:410
-#: modules/multipurpose-text/widgets/multipurpose-text.php:444
+#: modules/multipurpose-text/widgets/multipurpose-text.php:428
+#: modules/multipurpose-text/widgets/multipurpose-text.php:463
 msgid "Highlight Color"
 msgstr ""
 
-#: modules/multipurpose-text/widgets/multipurpose-text.php:473
+#: modules/multipurpose-text/widgets/multipurpose-text.php:493
 msgid "Before Text CSS"
 msgstr ""
 
-#: modules/multipurpose-text/widgets/multipurpose-text.php:475
+#: modules/multipurpose-text/widgets/multipurpose-text.php:495
 msgid ""
 "Additional CSS classes separated by space that you'd like to apply to the "
 "before highlighted text"
 msgstr ""
 
-#: modules/multipurpose-text/widgets/multipurpose-text.php:483
+#: modules/multipurpose-text/widgets/multipurpose-text.php:503
 msgid "Highlighted CSS"
 msgstr ""
 
-#: modules/multipurpose-text/widgets/multipurpose-text.php:485
+#: modules/multipurpose-text/widgets/multipurpose-text.php:505
 msgid ""
 "Additional CSS classes separated by space that you'd like to apply to the "
 "highlighted text"
 msgstr ""
 
-#: modules/multipurpose-text/widgets/multipurpose-text.php:492
+#: modules/multipurpose-text/widgets/multipurpose-text.php:512
 msgid "After Text CSS"
 msgstr ""
 
-#: modules/multipurpose-text/widgets/multipurpose-text.php:494
+#: modules/multipurpose-text/widgets/multipurpose-text.php:514
 msgid ""
 "Additional CSS classes separated by space that you'd like to apply to the "
 "after highlighted text"
 msgstr ""
 
-#: modules/multipurpose-text/widgets/multipurpose-text.php:503
+#: modules/multipurpose-text/widgets/multipurpose-text.php:523
 msgid "Typed Text"
 msgstr ""
 
-#: modules/multipurpose-text/widgets/multipurpose-text.php:544
-#: modules/multipurpose-text/widgets/multipurpose-text.php:620
+#: modules/multipurpose-text/widgets/multipurpose-text.php:565
+#: modules/multipurpose-text/widgets/multipurpose-text.php:641
 msgid "Underline Color"
 msgstr ""
 
-#: modules/multipurpose-text/widgets/multipurpose-text.php:556
-#: modules/multipurpose-text/widgets/multipurpose-text.php:632
+#: modules/multipurpose-text/widgets/multipurpose-text.php:577
+#: modules/multipurpose-text/widgets/multipurpose-text.php:653
 msgid "Underline Width"
 msgstr ""
 
-#: modules/multipurpose-text/widgets/multipurpose-text.php:671
+#: modules/multipurpose-text/widgets/multipurpose-text.php:692
 msgid "Typed Text CSS Classes"
 msgstr ""
 
-#: modules/multipurpose-text/widgets/multipurpose-text.php:678
+#: modules/multipurpose-text/widgets/multipurpose-text.php:699
 msgid "Add your custom class WITHOUT the dot. e.g: my-class"
 msgstr ""
 
-#: modules/multipurpose-text/widgets/multipurpose-text.php:730
+#: modules/multipurpose-text/widgets/multipurpose-text.php:751
 #: modules/woocommerce/widgets/add-to-cart.php:241
 msgid "Max Width"
+msgstr ""
+
+#: modules/page-settings/module.php:132
+msgid "Templates"
 msgstr ""
 
 #: modules/posts/data/controller.php:49
@@ -1845,130 +3046,122 @@ msgstr ""
 msgid "Button CSS"
 msgstr ""
 
-#: modules/posts/widgets/posts-base.php:119
-#: modules/posts/widgets/posts-base.php:121
-msgid "Numbers"
+#: modules/posts/widgets/movie-linked-videos.php:36
+msgid "Movie Linked Videos"
 msgstr ""
 
-#: modules/posts/widgets/posts-base.php:120
-#: modules/posts/widgets/posts-base.php:121
-msgid "Previous/Next"
+#: modules/posts/widgets/movie-recommended.php:36
+msgid "Recommended Movies"
 msgstr ""
 
-#: modules/posts/widgets/posts-base.php:122
-msgid "Load on Click"
+#: modules/posts/widgets/movie-related.php:34
+msgid "Related movie"
 msgstr ""
 
 #: modules/posts/widgets/posts-base.php:123
+#: modules/posts/widgets/posts-base.php:125
+msgid "Numbers"
+msgstr ""
+
+#: modules/posts/widgets/posts-base.php:124
+#: modules/posts/widgets/posts-base.php:125
+msgid "Previous/Next"
+msgstr ""
+
+#: modules/posts/widgets/posts-base.php:126
+msgid "Load on Click"
+msgstr ""
+
+#: modules/posts/widgets/posts-base.php:127
 msgid "Infinite Scroll"
 msgstr ""
 
-#: modules/posts/widgets/posts-base.php:131
+#: modules/posts/widgets/posts-base.php:135
 msgid "Page Limit"
 msgstr ""
 
-#: modules/posts/widgets/posts-base.php:142
+#: modules/posts/widgets/posts-base.php:146
 msgid "Shorten"
 msgstr ""
 
-#: modules/posts/widgets/posts-base.php:157
+#: modules/posts/widgets/posts-base.php:161
 msgid "Previous Label"
 msgstr ""
 
-#: modules/posts/widgets/posts-base.php:158
+#: modules/posts/widgets/posts-base.php:162
 msgid "&laquo; Previous"
 msgstr ""
 
-#: modules/posts/widgets/posts-base.php:171
+#: modules/posts/widgets/posts-base.php:175
 msgid "Next Label"
 msgstr ""
 
-#: modules/posts/widgets/posts-base.php:172
+#: modules/posts/widgets/posts-base.php:176
 msgid "Next &raquo;"
 msgstr ""
 
-#: modules/posts/widgets/posts-base.php:218
+#: modules/posts/widgets/posts-base.php:222
 msgid "Spinner"
 msgstr ""
 
-#: modules/posts/widgets/posts-base.php:262
+#: modules/posts/widgets/posts-base.php:266
 msgid "Load More"
 msgstr ""
 
-#: modules/posts/widgets/posts-base.php:263
-msgid "Button Text"
-msgstr ""
-
-#: modules/posts/widgets/posts-base.php:280
+#: modules/posts/widgets/posts-base.php:284
 msgid "No More Posts Message"
 msgstr ""
 
-#: modules/posts/widgets/posts-base.php:331
+#: modules/posts/widgets/posts-base.php:335
 msgid "Custom Messages"
 msgstr ""
 
-#: modules/posts/widgets/posts-base.php:346
+#: modules/posts/widgets/posts-base.php:350
 msgid "No more posts message"
 msgstr ""
 
-#: modules/posts/widgets/posts-base.php:348
+#: modules/posts/widgets/posts-base.php:352
 msgid "No more posts to show"
 msgstr ""
 
-#: modules/posts/widgets/posts-base.php:365
+#: modules/posts/widgets/posts-base.php:369
 msgid "Load More Button"
 msgstr ""
 
-#: modules/posts/widgets/posts-base.php:1138
-#: modules/woocommerce/widgets/products.php:116
+#: modules/posts/widgets/posts-base.php:1169
+#: modules/woocommerce/widgets/products.php:117
 msgid "Query"
 msgstr ""
 
-#: modules/posts/widgets/posts-base.php:1344
+#: modules/posts/widgets/posts-base.php:1375 templates/documents/page.php:16
+#: templates/types/page.php:21
 msgid "Page"
+msgstr ""
+
+#: modules/posts/widgets/posts-base.php:1487
+msgid "Enable Loop Selection"
+msgstr ""
+
+#: modules/posts/widgets/posts-base.php:1502
+msgid "Select Loop"
+msgstr ""
+
+#: modules/posts/widgets/posts-base.php:1515
+msgid "Mas Select Templates"
+msgstr ""
+
+#: modules/posts/widgets/posts-base.php:1518
+msgid "Select Templates for the above selected posts series"
+msgstr ""
+
+#: modules/posts/widgets/posts-base.php:1528
+#: modules/query-control/controls/group-control-query.php:412
+#: modules/woocommerce/widgets/products.php:277
+msgid "Posts Per Page"
 msgstr ""
 
 #: modules/posts/widgets/posts.php:45
 msgid "Posts"
-msgstr ""
-
-#: modules/posts/widgets/posts.php:126
-#: modules/woocommerce/widgets/product-related.php:87
-#: modules/woocommerce/widgets/products.php:208
-msgid "Mas Templates"
-msgstr ""
-
-#: modules/posts/widgets/posts.php:144
-#: modules/woocommerce/widgets/base-widget.php:54
-#: modules/woocommerce/widgets/products.php:229
-msgid "Columns"
-msgstr ""
-
-#: modules/posts/widgets/posts.php:173
-#: modules/woocommerce/widgets/products.php:258
-msgid "Rows"
-msgstr ""
-
-#: modules/posts/widgets/posts.php:192
-msgid "Enable Loop Selection"
-msgstr ""
-
-#: modules/posts/widgets/posts.php:207
-msgid "Select Loop"
-msgstr ""
-
-#: modules/posts/widgets/posts.php:220
-msgid "Mas Select Templates"
-msgstr ""
-
-#: modules/posts/widgets/posts.php:223
-msgid "Select Templates for the above selected posts series"
-msgstr ""
-
-#: modules/posts/widgets/posts.php:233
-#: modules/query-control/controls/group-control-query.php:412
-#: modules/woocommerce/widgets/products.php:276
-msgid "Posts Per Page"
 msgstr ""
 
 #: modules/query-control/controls/group-control-posts.php:90
@@ -1989,13 +3182,13 @@ msgstr ""
 #: modules/query-control/controls/group-control-query.php:213
 #: modules/query-control/controls/group-control-related.php:77
 #: modules/query-control/module.php:116
-#: modules/woocommerce/widgets/products.php:153
+#: modules/woocommerce/widgets/products.php:154
 msgid "Manual Selection"
 msgstr ""
 
 #: modules/query-control/controls/group-control-posts.php:148
 #: modules/query-control/controls/group-control-query.php:91
-#: modules/woocommerce/widgets/products.php:131
+#: modules/woocommerce/widgets/products.php:132
 msgid "Current Query"
 msgstr ""
 
@@ -2012,8 +3205,8 @@ msgstr ""
 #: modules/query-control/controls/group-control-query.php:214
 #: modules/query-control/controls/group-control-query.php:250
 #: modules/query-control/controls/group-control-related.php:57
-#: modules/woocommerce/widgets/products.php:154
-#: modules/woocommerce/widgets/products.php:159
+#: modules/woocommerce/widgets/products.php:155
+#: modules/woocommerce/widgets/products.php:160
 msgid "Term"
 msgstr ""
 
@@ -2034,7 +3227,7 @@ msgstr ""
 
 #: modules/query-control/controls/group-control-query.php:212
 #: modules/query-control/module.php:115
-#: modules/woocommerce/widgets/products.php:152
+#: modules/woocommerce/widgets/products.php:153
 msgid "Current Post"
 msgstr ""
 
@@ -2051,18 +3244,6 @@ msgstr ""
 
 #: modules/query-control/controls/group-control-query.php:319
 msgid "Use this setting to skip over posts (e.g. '2' to skip over 2 posts)."
-msgstr ""
-
-#: modules/query-control/controls/group-control-query.php:325
-#: modules/query-control/controls/group-control-query.php:387
-#: modules/woocommerce/widgets/product-related.php:116
-#: modules/woocommerce/widgets/products.php:141
-msgid "Date"
-msgstr ""
-
-#: modules/query-control/controls/group-control-query.php:329
-#: modules/query-control/module.php:1188
-msgid "All"
 msgstr ""
 
 #: modules/query-control/controls/group-control-query.php:330
@@ -2102,40 +3283,8 @@ msgid ""
 "date (inclusive)."
 msgstr ""
 
-#: modules/query-control/controls/group-control-query.php:383
-#: modules/woocommerce/widgets/product-related.php:112
-msgid "Order By"
-msgstr ""
-
 #: modules/query-control/controls/group-control-query.php:389
 msgid "ID"
-msgstr ""
-
-#: modules/query-control/controls/group-control-query.php:390
-#: modules/woocommerce/widgets/product-related.php:122
-#: modules/woocommerce/widgets/products.php:147
-msgid "Menu Order"
-msgstr ""
-
-#: modules/query-control/controls/group-control-query.php:391
-#: modules/woocommerce/widgets/product-related.php:121
-#: modules/woocommerce/widgets/products.php:146
-msgid "Random"
-msgstr ""
-
-#: modules/query-control/controls/group-control-query.php:399
-#: modules/woocommerce/widgets/product-related.php:130
-msgid "Order"
-msgstr ""
-
-#: modules/query-control/controls/group-control-query.php:403
-#: modules/woocommerce/widgets/product-related.php:134
-msgid "ASC"
-msgstr ""
-
-#: modules/query-control/controls/group-control-query.php:404
-#: modules/woocommerce/widgets/product-related.php:135
-msgid "DESC"
 msgstr ""
 
 #: modules/query-control/controls/group-control-query.php:421
@@ -2174,6 +3323,30 @@ msgid ""
 "affects the frontend."
 msgstr ""
 
+#: modules/review-form/widgets/mas-review-form.php:42
+msgid "Review Form"
+msgstr ""
+
+#: modules/review-form/widgets/mas-review-form.php:70
+msgid "Style"
+msgstr ""
+
+#: modules/scrollspy/widgets/scrollspy.php:46
+msgid "Scroll Spy"
+msgstr ""
+
+#: modules/scrollspy/widgets/scrollspy.php:96
+msgid "ScrollSpy"
+msgstr ""
+
+#: modules/scrollspy/widgets/scrollspy.php:114
+msgid "Scrollspy ID"
+msgstr ""
+
+#: modules/scrollspy/widgets/scrollspy.php:242
+msgid "Text Indent"
+msgstr ""
+
 #: modules/section/module.php:66
 msgid "Container CSS Classes"
 msgstr ""
@@ -2184,21 +3357,21 @@ msgid ""
 "utility classes here."
 msgstr ""
 
-#: modules/woocommerce/module.php:140 modules/woocommerce/module.php:180
+#: modules/woocommerce/module.php:140 modules/woocommerce/module.php:182
 msgid "WooCommerce"
 msgstr ""
 
-#: modules/woocommerce/module.php:184
+#: modules/woocommerce/module.php:186
 msgid "Mini Cart Template"
 msgstr ""
 
-#: modules/woocommerce/module.php:193
+#: modules/woocommerce/module.php:195
 msgid ""
 "Set to `Disable` in order to use your Theme's or WooCommerce's mini-cart "
 "template instead of Elementor's."
 msgstr ""
 
-#: modules/woocommerce/module.php:220
+#: modules/woocommerce/module.php:222
 msgid "Cart"
 msgstr ""
 
@@ -2243,7 +3416,7 @@ msgid "Original"
 msgstr ""
 
 #: modules/woocommerce/tags/product-price.php:47
-#: modules/woocommerce/widgets/products.php:133
+#: modules/woocommerce/widgets/products.php:134
 msgid "Sale"
 msgstr ""
 
@@ -2404,53 +3577,88 @@ msgstr ""
 msgid "Products Per Page"
 msgstr ""
 
-#: modules/woocommerce/widgets/product-related.php:118
-#: modules/woocommerce/widgets/products.php:143
-msgid "Price"
-msgstr ""
-
-#: modules/woocommerce/widgets/product-related.php:119
-#: modules/woocommerce/widgets/products.php:144
-msgid "Popularity"
-msgstr ""
-
-#: modules/woocommerce/widgets/product-related.php:120
-#: modules/woocommerce/widgets/products.php:145
-msgid "Rating"
-msgstr ""
-
 #: modules/woocommerce/widgets/products-base.php:509
 msgid "Filter"
 msgstr ""
 
-#: modules/woocommerce/widgets/products.php:48
+#: modules/woocommerce/widgets/products.php:49
 msgid "Products"
 msgstr ""
 
-#: modules/woocommerce/widgets/products.php:132
+#: modules/woocommerce/widgets/products.php:133
 msgid "Latest Products"
 msgstr ""
 
-#: modules/woocommerce/widgets/products.php:134
+#: modules/woocommerce/widgets/products.php:135
 msgid "Featured"
 msgstr ""
 
-#: modules/woocommerce/widgets/products.php:301
+#: modules/woocommerce/widgets/products.php:302
 msgid "Allow Order"
 msgstr ""
 
-#: modules/woocommerce/widgets/products.php:315
+#: modules/woocommerce/widgets/products.php:316
 msgid ""
 "Ordering is not available if this widget is placed in your front page. "
 "Visible on frontend only."
 msgstr ""
 
-#: modules/woocommerce/widgets/products.php:328
+#: modules/woocommerce/widgets/products.php:329
 msgid "Show Result Count"
 msgstr ""
 
 #: plugin.php:90 plugin.php:101
 msgid "Something went wrong."
+msgstr ""
+
+#: templates/classes/config.php:52
+#: templates/scripts/template-modal-header-logo.php:12
+msgid "Mas Elementor Templates"
+msgstr ""
+
+#: templates/classes/config.php:128
+msgid "Get Pro"
+msgstr ""
+
+#: templates/documents/section.php:16 templates/types/section.php:21
+msgid "Section"
+msgstr ""
+
+#: templates/scripts/template-modal-error.php:13
+msgid "Template couldn't be loaded. Please activate you license key before."
+msgstr ""
+
+#: templates/scripts/template-modal-header-back.php:10
+msgid "Back to Library"
+msgstr ""
+
+#: templates/scripts/template-modal-header.php:11
+msgid "Close"
+msgstr ""
+
+#: templates/scripts/template-modal-insert-button.php:12
+#: templates/scripts/template-modal-item.php:22
+msgid "Insert"
+msgstr ""
+
+#: templates/scripts/template-modal-keywords.php:11
+msgid "Filter by Widget / Addon"
+msgstr ""
+
+#: templates/scripts/template-modal-keywords.php:13
+msgid "All Widgets/Addons"
+msgstr ""
+
+#: templates/scripts/template-modal-loading.php:15
+msgid "Loading"
+msgstr ""
+
+#: templates/types/page.php:25
+msgid "Pages"
+msgstr ""
+
+#: templates/types/section.php:25
+msgid "Sections"
 msgstr ""
 
 #. Plugin Name of the plugin/theme
@@ -2535,7 +3743,7 @@ msgctxt "post format archive title"
 msgid "Chats"
 msgstr ""
 
-#: mas-elementor.php:477
+#: mas-elementor.php:540
 #: modules/mas-breadcrumbs/widgets/mas-breadcrumbs.php:524
 msgctxt "breadcrumb"
 msgid "Home"
@@ -2571,7 +3779,7 @@ msgctxt "Flex Container Control"
 msgid "Space Evenly"
 msgstr ""
 
-#: modules/woocommerce/widgets/products.php:135
+#: modules/woocommerce/widgets/products.php:136
 msgctxt "Posts Query Control"
 msgid "Manual Selection"
 msgstr ""
