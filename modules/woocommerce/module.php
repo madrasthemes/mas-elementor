@@ -142,7 +142,9 @@ class Module extends Module_Base {
 		);
 
 		foreach ( $tags as $tag ) {
-			$module->register_tag( 'MASElementor\\Modules\\Woocommerce\\tags\\' . $tag );
+			$tag = 'MASElementor\\Modules\\Woocommerce\\tags\\' . $tag;
+
+			$module->register( new $tag() );
 		}
 	}
 
