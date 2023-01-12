@@ -1200,7 +1200,7 @@ class Module extends Module_Base {
 	 */
 	protected function add_actions() {
 		add_action( 'elementor/ajax/register_actions', array( $this, 'register_ajax_actions' ) );
-		add_action( 'elementor/controls/controls_registered', array( $this, 'register_controls' ) );
+		add_action( 'elementor/controls/register', array( $this, 'register_controls' ) );
 
 		add_filter( 'mas_elementor/editor/localize_settings', array( $this, 'localize_settings' ) );
 
