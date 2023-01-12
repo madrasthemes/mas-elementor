@@ -15,7 +15,6 @@ use MASElementor\Base\Base_Widget;
 use Elementor\Repeater;
 use Elementor\Group_Control_Border;
 use Elementor\Group_Control_Box_Shadow;
-use MASElementor\Modules\JobsFilter\Skins;
 use Elementor\Core\Kits\Documents\Tabs\Global_Colors;
 use Elementor\Icons_Manager;
 
