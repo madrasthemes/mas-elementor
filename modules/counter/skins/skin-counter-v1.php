@@ -584,11 +584,9 @@ class Skin_Counter_V1 extends Skin_Base {
 			'data-circles-scroll-animate'       => 'true',
 			'data-circles-color'                => (string) $skin_settings['counter_title_color'],
 			'data-circles-font-size'            => (string) $skin_settings['typography_counter_title_font_size']['size'],
-			// 'data-circles-font-weight'          => (string) $skin_settings['typography_counter_title_font_weight'],description
 			'data-circles-secondary-text'       => $skin_settings['description'],
 			'data-circles-secondary-color'      => (string) $skin_settings['desc_color'],
 			'data-circles-secondary-font-size'  => (string) $skin_settings['typography_desc_font_size']['size'],
-			// 'data-circles-secondary-font-weight' => (string) $skin_settings['typography_desc_font_weight'],
 			'data-circles-divider-space'        => (string) $skin_settings['mas_counter_space_divider']['size'],
 		);
 
@@ -624,7 +622,7 @@ class Skin_Counter_V1 extends Skin_Base {
 		if ( Plugin::$instance->editor->is_edit_mode() ) :
 			?>
 			<script type="text/javascript">
-				 /**
+				/**
 				 * Editor Counter Load.
 				 */
 				( function( $, window ) {

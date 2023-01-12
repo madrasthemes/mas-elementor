@@ -38,5 +38,5 @@ class Module extends Module_Base {
 		return 'mas-related-project';
 	}
 
-	
+
 }

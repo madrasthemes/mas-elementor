@@ -42,7 +42,6 @@ class Module extends Module_Base {
 	 */
 	public function add_actions() {
 		add_action( 'elementor/widget/counter/skins_init', array( $this, 'init_skins' ), 10 );
-		// add_action( 'elementor/element/counter/section_title/before_section_end', [ $this, 'remove_style_counter_controls' ], 10 );.
 		add_action( 'elementor/frontend/before_register_scripts', array( $this, 'register_frontend_scripts' ) );
 	}
 

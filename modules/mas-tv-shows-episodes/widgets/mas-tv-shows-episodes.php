@@ -369,7 +369,7 @@ class Mas_Tv_Shows_Episodes extends Base_Widget {
 							<?php
 							$original_post = $GLOBALS['post'];
 							foreach ( $season['episodes'] as $key => $episode_id ) {
-								if ( get_the_ID() == $episode_id ) {
+								if ( get_the_ID() === (int) $episode_id ) {
 									continue;
 								}
 								$GLOBALS['post'] = get_post( $episode_id ); // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited

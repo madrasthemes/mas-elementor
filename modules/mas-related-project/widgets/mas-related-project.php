@@ -101,7 +101,6 @@ class Mas_Related_Project extends Base_Widget {
 			)
 		);
 
-
 		$this->add_responsive_control(
 			'columns',
 			array(
@@ -157,8 +156,6 @@ class Mas_Related_Project extends Base_Widget {
 			)
 		);
 
-		// $this->add_columns_responsive_control();
-
 		$this->add_control(
 			'orderby',
 			array(
@@ -201,7 +198,7 @@ class Mas_Related_Project extends Base_Widget {
 	 */
 	protected function render() {
 		global $post;
-	
+
 		$settings = $this->get_settings_for_display();
 
 		$portfolio_types = get_the_terms( get_the_ID(), 'jetpack-portfolio-type' );
@@ -210,43 +207,45 @@ class Mas_Related_Project extends Base_Widget {
 
 		$project_wrapper = 'mas-project-container mas-projects mas-grid';
 
-		if($portfolio_types || $portfolio_tags){
+		if ( $portfolio_types || $portfolio_tags ) {
 			$type_ids = array();
-		  	if($portfolio_types) {
-		  		foreach($portfolio_types as $portfolio_type ) {
-		  			$type_ids[] = $portfolio_type->term_id;;
-		  		}
-		  	}
-		  	
-			$tag_ids = array();
-		  	if($portfolio_tags) {
-		  		foreach ($portfolio_tags as $portfolio_tag) {
-			  		 $tag_ids[] = $portfolio_tag->term_id;;
-			  	}
-			}				
+			if ( $portfolio_types ) {
+				foreach ( $portfolio_types as $portfolio_type ) {
+					$type_ids[] = $portfolio_type->term_id;
 
-			$args = array( 
-				'tax_query' => array(
-					 'relation' => 'OR',
-			      array(
-			        'taxonomy' => 'jetpack-portfolio-type',
-			        'field' => 'id',
-			        'terms' => $type_ids
-			      ),
-			      array(
-			        'taxonomy' => 'jetpack-portfolio-tag',
-			        'field' => 'id',
-			        'terms' => $tag_ids
-			      )
-			    ),
-			    'post__not_in'   => array( get_the_ID() ), 
-	            'post_type'      => 'jetpack-portfolio', 
-	            'posts_per_page' => 4,
+				}
+			}
+
+			$tag_ids = array();
+			if ( $portfolio_tags ) {
+				foreach ( $portfolio_tags as $portfolio_tag ) {
+					$tag_ids[] = $portfolio_tag->term_id;
+
+				}
+			}
+
+			$args = array(
+				'tax_query'      => array( //phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_tax_query
+					'relation' => 'OR',
+					array(
+						'taxonomy' => 'jetpack-portfolio-type',
+						'field'    => 'id',
+						'terms'    => $type_ids,
+					),
+					array(
+						'taxonomy' => 'jetpack-portfolio-tag',
+						'field'    => 'id',
+						'terms'    => $tag_ids,
+					),
+				),
+				'post__not_in'   => array( get_the_ID() ),
+				'post_type'      => 'jetpack-portfolio',
+				'posts_per_page' => 4,
 				'columns'        => 1,
 				'rows'           => 1,
 				'orderby'        => $settings['orderby'],
 				'order'          => $settings['order'],
-	        );
+			);
 
 			if ( ! empty( $settings['posts_per_page'] ) ) {
 				$args['posts_per_page'] = $settings['posts_per_page'];
@@ -259,20 +258,18 @@ class Mas_Related_Project extends Base_Widget {
 			if ( ! empty( $settings['columns'] ) ) {
 				$args['columns'] = $settings['columns'];
 			}
-		
 
+			$related_works = new \WP_Query( $args );
 
-			$related_works = new\WP_Query( $args );
-
-			if( $related_works->have_posts() ) {
+			if ( $related_works->have_posts() ) {
 				?>
 				<div class="<?php echo esc_attr( $project_wrapper ); ?>">
 				<?php
-			    while( $related_works->have_posts() ) { 
-			    	$related_works->the_post();
-			      // display each post
-			      	print( mas_render_template( $settings['select_template'], false ) );
-			    }
+				while ( $related_works->have_posts() ) {
+					$related_works->the_post();
+					// display each post.
+					print( mas_render_template( $settings['select_template'], false ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+				}
 				?>
 				</div>
 				<?php
