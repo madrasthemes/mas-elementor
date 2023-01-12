@@ -69,7 +69,7 @@ All of our online documentation can be found on [our documentation site](https:/
 == Changelog ==
 
 = 1.0.2 - 2022-01-12 =
-* Fix : Fixed template.php issue.
+* Fix : Fixed templates.php issue.
 
 = 1.0.1 - 2022-01-12 =
 * Elementor 3.10.0 Compatibility
