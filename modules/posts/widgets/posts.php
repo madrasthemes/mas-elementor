@@ -141,12 +141,7 @@ class Posts extends Posts_Base {
 			while ( $query->have_posts() ) {
 
 				$query->the_post();
-				if ( 'yes' === $settings['enable_carousel'] ) {
-					?>
-					<div class="swiper-slide">
-					<?php
-				}
-
+				$this->carousel_slide_loop_start( $settings );
 				$this->current_permalink = get_permalink();
 				if ( ! empty( $settings['select_template'] ) ) {
 					if ( ! empty( $settings['select_loop'] ) && in_array( (string) $count, $settings['select_loop'], true ) ) {
@@ -158,11 +153,7 @@ class Posts extends Posts_Base {
 					mas_elementor_get_template( 'widgets/posts/post-classic.php', array( 'widget' => $this ) );
 				}
 
-				if ( 'yes' === $settings['enable_carousel'] ) {
-					?>
-					</div>
-					<?php
-				}
+				$this->carousel_slide_loop_end( $settings );
 
 				$count ++;
 			}

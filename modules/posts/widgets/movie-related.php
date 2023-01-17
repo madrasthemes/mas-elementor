@@ -126,11 +126,7 @@ class Movie_Related extends Posts_Base {
 			$post_object = get_post( $related_movie );
 
 			setup_postdata( $GLOBALS['post'] =& $post_object ); // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited, Squiz.PHP.DisallowMultipleAssignments.Found
-			if ( 'yes' === $settings['enable_carousel'] ) {
-				?>
-					<div class="swiper-slide">
-				<?php
-			}
+			$this->carousel_slide_loop_start( $settings );
 
 			$this->current_permalink = get_permalink();
 			if ( ! empty( $settings['select_template'] ) ) {
@@ -145,11 +141,7 @@ class Movie_Related extends Posts_Base {
 				mas_elementor_get_template( 'widgets/posts/post-classic.php', array( 'widget' => $this ) );
 			}
 
-			if ( 'yes' === $settings['enable_carousel'] ) {
-				?>
-					</div>
-				<?php
-			}
+			$this->carousel_slide_loop_end( $settings );
 
 			$count ++;
 		}

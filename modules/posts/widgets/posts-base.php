@@ -19,6 +19,7 @@ use MASElementor\Modules\CarouselAttributes\Traits\Pagination_Trait;
 use Elementor\Group_Control_Border;
 use MASElementor\Modules\Posts\Traits\Load_Button_Widget_Trait as Load_More_Button_Trait;
 use Elementor\Controls_Stack;
+use Elementor\Group_Control_Background;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
@@ -378,6 +379,66 @@ abstract class Posts_Base extends Base_Widget {
 			array(
 				'section_condition' => array(
 					'pagination_type' => 'load_more_on_click',
+				),
+			)
+		);
+
+		$this->end_controls_section();
+
+		$this->start_controls_section(
+			'section_slide_bg',
+			array(
+				'label'     => __( 'Slide Background Image', 'mas-elementor' ),
+				'tab'       => Controls_Manager::TAB_STYLE,
+				'condition' => array(
+					'slide_bg_image'  => 'yes',
+					'enable_carousel' => 'yes',
+				),
+			)
+		);
+
+		$this->add_control(
+			'slide_bg_repeat',
+			array(
+				'label'     => esc_html_x( 'Repeat', 'Background Control', 'mas-elementor' ),
+				'type'      => Controls_Manager::SELECT,
+				'default'   => '',
+				'options'   => array(
+					''          => esc_html_x( 'Default', 'Background Control', 'mas-elementor' ),
+					'no-repeat' => esc_html_x( 'No-repeat', 'Background Control', 'mas-elementor' ),
+					'repeat'    => esc_html_x( 'Repeat', 'Background Control', 'mas-elementor' ),
+					'repeat-x'  => esc_html_x( 'Repeat-x', 'Background Control', 'mas-elementor' ),
+					'repeat-y'  => esc_html_x( 'Repeat-y', 'Background Control', 'mas-elementor' ),
+				),
+				'selectors' => array(
+					'{{WRAPPER}} .swiper-slide' => 'background-repeat: {{VALUE}};',
+				),
+				'condition' => array(
+					'slide_bg_image'  => 'yes',
+					'enable_carousel' => 'yes',
+				),
+			)
+		);
+
+		$this->add_control(
+			'slide_bg_size',
+			array(
+				'label'     => esc_html_x( 'Size', 'Background Control', 'mas-elementor' ),
+				'type'      => Controls_Manager::SELECT,
+				'default'   => '',
+				'options'   => array(
+					''        => esc_html_x( 'Default', 'Background Control', 'mas-elementor' ),
+					'auto'    => esc_html_x( 'Auto', 'Background Control', 'mas-elementor' ),
+					'cover'   => esc_html_x( 'Cover', 'Background Control', 'mas-elementor' ),
+					'contain' => esc_html_x( 'Contain', 'Background Control', 'mas-elementor' ),
+					'initial' => esc_html_x( 'Custom', 'Background Control', 'mas-elementor' ),
+				),
+				'selectors' => array(
+					'{{WRAPPER}} .swiper-slide' => 'background-size: {{VALUE}};',
+				),
+				'condition' => array(
+					'slide_bg_image'  => 'yes',
+					'enable_carousel' => 'yes',
 				),
 			)
 		);
@@ -866,6 +927,24 @@ abstract class Posts_Base extends Base_Widget {
 					'enable_carousel' => 'yes',
 				),
 				'frontend_available' => true,
+			)
+		);
+
+		$this->add_control(
+			'slide_bg_image',
+			array(
+				'type'        => Controls_Manager::SWITCHER,
+				'label'       => esc_html__( 'Enable Slide Background Image', 'mas-elementor' ),
+				'description' => esc_html__( 'Display featured image as slide background image', 'mas-elementor' ),
+				'default'     => 'no',
+				'label_off'   => esc_html__( 'Hide', 'mas-elementor' ),
+				'label_on'    => esc_html__( 'Show', 'mas-elementor' ),
+				'condition'   => array(
+					'enable_carousel' => 'yes',
+				),
+				'dynamic'     => array(
+					'active' => true,
+				),
 			)
 		);
 
@@ -1600,6 +1679,39 @@ abstract class Posts_Base extends Base_Widget {
 				</div>
 				<?php
 			endif;
+			?>
+			</div>
+			<?php
+		}
+	}
+
+	/**
+	 * Swiper loop start.
+	 *
+	 * @param array $settings Settings of this widget.
+	 */
+	public function carousel_slide_loop_start( array $settings = array() ) {
+		$slide_bg_url = get_the_post_thumbnail_url( get_the_ID(), 'full' );
+		if ( 'yes' === $settings['enable_carousel'] ) {
+			$this->add_render_attribute( 'slide_bg_image', 'class', 'swiper-slide' );
+			if ( 'yes' === $settings['slide_bg_image'] && ! empty( $slide_bg_url ) ) {
+				$bg_image = 'background-image: url(' . $slide_bg_url . ');';
+
+				$this->add_render_attribute( 'slide_bg_image', 'style', $bg_image );
+			}
+			?>
+			<div <?php $this->print_render_attribute_string( 'slide_bg_image' ); ?>>
+			<?php
+		}
+	}
+
+	/**
+	 * Swiper loop end.
+	 *
+	 * @param array $settings Settings of this widget.
+	 */
+	public function carousel_slide_loop_end( array $settings = array() ) {
+		if ( 'yes' === $settings['enable_carousel'] ) {
 			?>
 			</div>
 			<?php

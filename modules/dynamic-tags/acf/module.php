@@ -131,6 +131,7 @@ class Module extends DynamicTags\Module {
 	public function get_tag_classes_names() {
 		return array(
 			'ACF_Image',
+			'ACF_Text',
 		);
 	}
 
