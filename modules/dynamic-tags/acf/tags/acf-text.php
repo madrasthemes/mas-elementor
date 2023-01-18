@@ -50,7 +50,6 @@ class ACF_Text extends \Elementor\Core\DynamicTags\Tag {
 	 */
 	public function render() {
 		list( $field, $meta_key ) = Module::get_tag_value_field( $this );
-
 		if ( $field && ! empty( $field['type'] ) ) {
 			$value = $field['value'];
 

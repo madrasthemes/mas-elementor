@@ -10,6 +10,7 @@ namespace MASElementor\Modules\DynamicTags\ACF;
 use Elementor\Controls_Manager;
 use Elementor\Core\DynamicTags\Base_Tag;
 use Elementor\Modules\DynamicTags;
+use MASElementor\Plugin;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
@@ -135,6 +136,34 @@ class Module extends DynamicTags\Module {
 		);
 	}
 
+	/**
+	 * Get ACF field.
+	 *
+	 * @param string $field_key field.
+	 * @param string $meta_key meta key.
+	 * @return mixed
+	 */
+	private static function get_acf_field( $field_key, $meta_key ) {
+		if ( 'options' === $field_key ) {
+			$field = get_field_object( $meta_key, $field_key );
+		} else {
+			$field = self::get_field_from_current_item( $field_key );
+		}
+		return $field;
+	}
+
+	/**
+	 * Get ACF field from current item.
+	 *
+	 * @param string $field_key field key.
+	 * @return mixed
+	 */
+	private static function get_field_from_current_item( $field_key ) {
+		$field = get_field_object( $field_key );
+
+		return $field;
+	}
+
 	// For use by ACF tags.
 	/**
 	 * Get tag value field.
@@ -146,14 +175,7 @@ class Module extends DynamicTags\Module {
 
 		if ( ! empty( $key ) ) {
 			list( $field_key, $meta_key ) = explode( ':', $key );
-
-			if ( 'options' === $field_key ) {
-				$field = get_field_object( $meta_key, $field_key );
-			} else {
-				$field = get_field_object( $field_key, get_queried_object() );
-			}
-
-			return array( $field, $meta_key );
+			return array( self::get_acf_field( $field_key, $meta_key ), $meta_key );
 		}
 
 		return array();
