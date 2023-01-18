@@ -454,6 +454,18 @@ class Signin extends Base_Widget {
 		);
 
 		$this->add_control(
+			'login_label_margin',
+			array(
+				'label'      => esc_html__( 'Form Label Margin', 'mas-elementor' ),
+				'type'       => Controls_Manager::DIMENSIONS,
+				'size_units' => array( 'px', 'em', '%', 'rem' ),
+				'selectors'  => array(
+					'{{WRAPPER}} .mas-form-fields-wrapper .elementor-field-type-text label' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				),
+			)
+		);
+
+		$this->add_control(
 			'login_form_width',
 			array(
 				'label'     => esc_html__( 'Form Width', 'mas-elementor' ),
@@ -535,6 +547,7 @@ class Signin extends Base_Widget {
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', '%', 'em' ),
 				'selectors'  => array(
+					'{{WRAPPER}} .mas-form-fields-wrapper .elementor-field-type-text input[type="email"]' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 					'{{WRAPPER}} .mas-form-fields-wrapper .elementor-field-type-text input[type="text"]' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 					'{{WRAPPER}} .mas-form-fields-wrapper .elementor-field-type-text input[type="password"]' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				),
@@ -551,6 +564,7 @@ class Signin extends Base_Widget {
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', '%', 'em' ),
 				'selectors'  => array(
+					'{{WRAPPER}} .mas-form-fields-wrapper .elementor-field-type-text input[type="email"]' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 					'{{WRAPPER}} .mas-form-fields-wrapper .elementor-field-type-text input[type="text"]' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 					'{{WRAPPER}} .mas-form-fields-wrapper .elementor-field-type-text input[type="password"]' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				),
@@ -741,6 +755,65 @@ class Signin extends Base_Widget {
 					'color'  => array(
 						'default' => '#BEC2C2',
 					),
+				),
+			)
+		);
+
+		$this->add_control(
+			'button_border_radius',
+			array(
+				'label'      => esc_html__( 'Border Radius', 'mas-elementor' ),
+				'type'       => Controls_Manager::DIMENSIONS,
+				'size_units' => array( 'px', '%', 'em' ),
+				'selectors'  => array(
+					'{{WRAPPER}} .mas-signin-btn button' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				),
+			)
+		);
+
+		$this->add_responsive_control(
+			'button_width_alignment',
+			array(
+				'label'     => esc_html__( 'Button Alignment', 'mas-elementor' ),
+				'type'      => Controls_Manager::CHOOSE,
+				'options'   => array(
+					'start'  => array(
+						'title' => esc_html__( 'Left', 'mas-elementor' ),
+						'icon'  => 'eicon-text-align-left',
+					),
+					'center' => array(
+						'title' => esc_html__( 'Center', 'mas-elementor' ),
+						'icon'  => 'eicon-text-align-center',
+					),
+					'end'    => array(
+						'title' => esc_html__( 'Right', 'mas-elementor' ),
+						'icon'  => 'eicon-text-align-right',
+					),
+				),
+				'selectors' => array(
+					'{{WRAPPER}} .mas-signin-btn' => 'display:flex; justify-content: {{VALUE}} !important;',
+				),
+
+			)
+		);
+
+		$this->add_responsive_control(
+			'signin_button_width',
+			array(
+				'label'     => esc_html__( 'Sign in Button Width', 'mas-elementor' ),
+				'type'      => Controls_Manager::SLIDER,
+				'default'   => array(
+					'size' => '100',
+					'unit' => '%',
+				),
+				'range'     => array(
+					'%' => array(
+						'min' => 0,
+						'max' => 100,
+					),
+				),
+				'selectors' => array(
+					'{{WRAPPER}} .mas-signin-btn button[type="submit"]' => 'width: {{SIZE}}{{UNIT}};',
 				),
 			)
 		);
