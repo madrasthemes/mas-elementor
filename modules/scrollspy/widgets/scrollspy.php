@@ -211,21 +211,6 @@ class Scrollspy extends Widget_Icon_List {
 		);
 
 		$this->add_control(
-			'scroll_text_color',
-			array(
-				'label'     => esc_html__( 'Text Color', 'mas-elementor' ),
-				'type'      => Controls_Manager::COLOR,
-				'default'   => '',
-				'selectors' => array(
-					'{{WRAPPER}} a' => 'color: {{VALUE}};',
-				),
-				'global'    => array(
-					'default' => Global_Colors::COLOR_SECONDARY,
-				),
-			)
-		);
-
-		$this->add_control(
 			'scroll_border_color',
 			array(
 				'label'     => esc_html__( 'Border Color', 'mas-elementor' ),
