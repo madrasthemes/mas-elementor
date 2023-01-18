@@ -771,6 +771,53 @@ class Signin extends Base_Widget {
 			)
 		);
 
+		$this->add_responsive_control(
+			'button_width_alignment',
+			array(
+				'label'     => esc_html__( 'Button Alignment', 'mas-elementor' ),
+				'type'      => Controls_Manager::CHOOSE,
+				'options'   => array(
+					'start'  => array(
+						'title' => esc_html__( 'Left', 'mas-elementor' ),
+						'icon'  => 'eicon-text-align-left',
+					),
+					'center' => array(
+						'title' => esc_html__( 'Center', 'mas-elementor' ),
+						'icon'  => 'eicon-text-align-center',
+					),
+					'end'    => array(
+						'title' => esc_html__( 'Right', 'mas-elementor' ),
+						'icon'  => 'eicon-text-align-right',
+					),
+				),
+				'selectors' => array(
+					'{{WRAPPER}} .mas-signin-btn' => 'display:flex; justify-content: {{VALUE}} !important;',
+				),
+
+			)
+		);
+
+		$this->add_responsive_control(
+			'signin_button_width',
+			array(
+				'label'     => esc_html__( 'Sign in Button Width', 'mas-elementor' ),
+				'type'      => Controls_Manager::SLIDER,
+				'default'   => array(
+					'size' => '100',
+					'unit' => '%',
+				),
+				'range'     => array(
+					'%' => array(
+						'min' => 0,
+						'max' => 100,
+					),
+				),
+				'selectors' => array(
+					'{{WRAPPER}} .mas-signin-btn button[type="submit"]' => 'width: {{SIZE}}{{UNIT}};',
+				),
+			)
+		);
+
 		$this->add_control(
 			'signin_button_spacing',
 			array(
