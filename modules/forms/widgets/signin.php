@@ -760,6 +760,18 @@ class Signin extends Base_Widget {
 		);
 
 		$this->add_control(
+			'button_border_radius',
+			array(
+				'label'      => esc_html__( 'Border Radius', 'mas-elementor' ),
+				'type'       => Controls_Manager::DIMENSIONS,
+				'size_units' => array( 'px', '%', 'em' ),
+				'selectors'  => array(
+					'{{WRAPPER}} .mas-signin-btn button' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				),
+			)
+		);
+
+		$this->add_control(
 			'signin_button_spacing',
 			array(
 				'label'     => esc_html__( 'Sign in Button Spacing', 'mas-elementor' ),
