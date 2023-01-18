@@ -98,103 +98,78 @@ class Scrollspy extends Widget_Icon_List {
 		);
 
 		$this->add_control(
-			'scrollspy',
-			array(
-				'type'      => Controls_Manager::SWITCHER,
-				'label'     => esc_html__( 'Enable Scrollspy ?', 'mas-elementor' ),
-				'default'   => 'no',
-				'label_off' => esc_html__( 'No', 'mas-elementor' ),
-				'label_on'  => esc_html__( 'Yes', 'mas-elementor' ),
-			)
-		);
-
-		$this->add_control(
 			'scrollspy_id',
 			array(
-				'label'     => esc_html__( 'Scrollspy ID', 'mas-elementor' ),
-				'type'      => Controls_Manager::TEXT,
-				'condition' => array(
-					'scrollspy' => 'yes',
-				),
+				'label' => esc_html__( 'Scrollspy ID', 'mas-elementor' ),
+				'type'  => Controls_Manager::TEXT,
+
 			)
 		);
 
 		$this->add_control(
 			'parent_id',
 			array(
-				'label'     => esc_html__( 'Parent ID', 'mas-elementor' ),
-				'type'      => Controls_Manager::TEXT,
-				'condition' => array(
-					'scrollspy' => 'yes',
-				),
+				'label' => esc_html__( 'Parent ID', 'mas-elementor' ),
+				'type'  => Controls_Manager::TEXT,
+
 			)
 		);
 
 		$this->add_control(
 			'target_id',
 			array(
-				'label'     => esc_html__( 'Data Target ID', 'mas-elementor' ),
-				'type'      => Controls_Manager::TEXT,
-				'condition' => array(
-					'scrollspy' => 'yes',
-				),
+				'label' => esc_html__( 'Data Target ID', 'mas-elementor' ),
+				'type'  => Controls_Manager::TEXT,
+
 			)
 		);
 
 		$this->add_control(
 			'breakpoint',
 			array(
-				'label'     => esc_html__( 'Breakpoint', 'mas-elementor' ),
-				'type'      => Controls_Manager::SELECT,
-				'options'   => array(
+				'label'   => esc_html__( 'Breakpoint', 'mas-elementor' ),
+				'type'    => Controls_Manager::SELECT,
+				'options' => array(
 					'xs' => 'XS',
 					'sm' => 'SM',
 					'md' => 'MD',
 					'lg' => 'LG',
 				),
-				'default'   => 'md',
-				'condition' => array(
-					'scrollspy' => 'yes',
-				),
+				'default' => 'md',
+
 			)
 		);
 
 		$this->add_control(
 			'start_point_id',
 			array(
-				'label'     => esc_html__( 'Startpoint ID', 'mas-elementor' ),
-				'type'      => Controls_Manager::TEXT,
-				'condition' => array(
-					'scrollspy' => 'yes',
-				),
+				'label' => esc_html__( 'Startpoint ID', 'mas-elementor' ),
+				'type'  => Controls_Manager::TEXT,
+
 			)
 		);
 
 		$this->add_control(
 			'end_point_id',
 			array(
-				'label'     => esc_html__( 'Endpoint ID', 'mas-elementor' ),
-				'type'      => Controls_Manager::TEXT,
-				'condition' => array(
-					'scrollspy' => 'yes',
-				),
+				'label' => esc_html__( 'Endpoint ID', 'mas-elementor' ),
+				'type'  => Controls_Manager::TEXT,
+
 			)
 		);
 
 		$this->add_control(
 			'offset',
 			array(
-				'label'     => esc_html__( 'Offset', 'mas-elementor' ),
-				'type'      => Controls_Manager::SLIDER,
-				'range'     => array(
+				'label' => esc_html__( 'Offset', 'mas-elementor' ),
+				'type'  => Controls_Manager::SLIDER,
+				'range' => array(
 					'px' => array(
 						'min' => 0,
 						'max' => 100,
 					),
 				),
-				'condition' => array(
-					'scrollspy' => 'yes',
-				),
+
 			)
 		);
 		$this->end_controls_section();
@@ -206,6 +181,17 @@ class Scrollspy extends Widget_Icon_List {
 			array(
 				'label' => esc_html__( 'Text', 'mas-elementor' ),
 				'tab'   => Controls_Manager::TAB_STYLE,
+			)
+		);
+
+		$this->start_controls_tabs(
+			'scrollspy_tabs',
+		);
+
+		$this->start_controls_tab(
+			'scrollspy_tab_normal',
+			array(
+				'label' => esc_html__( 'Normal', 'mas-elementor' ),
 			)
 		);
 
@@ -225,14 +211,82 @@ class Scrollspy extends Widget_Icon_List {
 		);
 
 		$this->add_control(
-			'scroll_text_color_hover',
+			'scroll_text_color',
 			array(
-				'label'     => esc_html__( 'Hover', 'mas-elementor' ),
+				'label'     => esc_html__( 'Text Color', 'mas-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'default'   => '',
 				'selectors' => array(
-					'{{WRAPPER}} .elementor-icon-list-item:hover a' => 'color: {{VALUE}};',
+					'{{WRAPPER}} a' => 'color: {{VALUE}};',
 				),
+				'global'    => array(
+					'default' => Global_Colors::COLOR_SECONDARY,
+				),
+			)
+		);
+
+		$this->add_control(
+			'scroll_border_color',
+			array(
+				'label'     => esc_html__( 'Border Color', 'mas-elementor' ),
+				'type'      => Controls_Manager::COLOR,
+				'default'   => '',
+				'selectors' => array(
+					'{{WRAPPER}} a' => 'border-color: {{VALUE}};',
+				),
+				'global'    => array(
+					'default' => Global_Colors::COLOR_SECONDARY,
+				),
+			)
+		);
+
+		$this->end_controls_tab();
+
+		$this->start_controls_tab(
+			'scrollspy_tab_active',
+			array(
+				'label' => esc_html__( 'Active', 'mas-elementor' ),
+			)
+		);
+
+		$this->add_control(
+			'scroll_text_color_active',
+			array(
+				'label'     => esc_html__( 'Text Color', 'mas-elementor' ),
+				'type'      => Controls_Manager::COLOR,
+				'default'   => '',
+				'selectors' => array(
+					'{{WRAPPER}} .elementor-icon-list-item a.active' => 'color: {{VALUE}} !important;',
+				),
+			)
+		);
+
+		$this->add_control(
+			'scroll_border_color_active',
+			array(
+				'label'     => esc_html__( 'Border Color', 'mas-elementor' ),
+				'type'      => Controls_Manager::COLOR,
+				'default'   => '',
+				'selectors' => array(
+					'{{WRAPPER}} .elementor-icon-list-item a.active' => 'border-color: {{VALUE}} !important;',
+				),
+			)
+		);
+
+		$this->end_controls_tab();
+
+		$this->end_controls_tabs();
+
+		$this->add_control(
+			'scroll_text_color_hover',
+			array(
+				'label'     => esc_html__( 'Text Hover Color', 'mas-elementor' ),
+				'type'      => Controls_Manager::COLOR,
+				'default'   => '',
+				'selectors' => array(
+					'{{WRAPPER}} .elementor-icon-list-item:hover a' => 'color: {{VALUE}} !important;',
+				),
+				'separator' => 'before',
 			)
 		);
 
@@ -287,17 +341,15 @@ class Scrollspy extends Widget_Icon_List {
 			$args['stickyOffsetTop'] = $settings['offset']['size'];
 		}
 
-		if ( 'yes' === $settings['scrollspy'] ) {
-			$this->add_render_attribute(
-				'icon_list',
-				array(
-					'id'                           => 'navbarSettings',
-					'class'                        => 'js-sticky-block js-scrollspy',
-					'data-hs-sticky-block-options' => wp_json_encode( $args ),
-				)
-			);
+		$this->add_render_attribute(
+			'icon_list',
+			array(
+				'id'                           => 'navbarSettings',
+				'class'                        => 'js-sticky-block js-scrollspy',
+				'data-hs-sticky-block-options' => wp_json_encode( $args ),
+			)
+		);
 
-		}
 		$fallback_defaults = array(
 			'fa fa-check',
 			'fa fa-times',
