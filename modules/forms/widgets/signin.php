@@ -589,6 +589,7 @@ class Signin extends Base_Widget {
 				'label'     => esc_html__( 'Input Text Color', 'mas-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
+					'{{WRAPPER}} .mas-form-fields-wrapper .elementor-field-type-text input[type="email"]' => 'color: {{VALUE}};',
 					'{{WRAPPER}} .mas-form-fields-wrapper .elementor-field-type-text input[type="text"]' => 'color: {{VALUE}};',
 					'{{WRAPPER}} .mas-form-fields-wrapper .elementor-field-type-text input[type="password"]' => 'color: {{VALUE}};',
 				),
@@ -601,6 +602,7 @@ class Signin extends Base_Widget {
 				'label'     => esc_html__( 'Input BG Color', 'mas-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
+					'{{WRAPPER}} .mas-form-fields-wrapper .elementor-field-type-text input[type="email"]' => 'background-color: {{VALUE}};',
 					'{{WRAPPER}} .mas-form-fields-wrapper .elementor-field-type-text input[type="text"]' => 'background-color: {{VALUE}};',
 					'{{WRAPPER}} .mas-form-fields-wrapper .elementor-field-type-text input[type="password"]' => 'background-color: {{VALUE}};',
 				),
@@ -613,6 +615,7 @@ class Signin extends Base_Widget {
 				'label'     => esc_html__( 'Input Border Color', 'mas-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
+					'{{WRAPPER}} .mas-form-fields-wrapper .elementor-field-type-text input[type="email"]' => 'border-color: {{VALUE}};',
 					'{{WRAPPER}} .mas-form-fields-wrapper .elementor-field-type-text input[type="text"]' => 'border-color: {{VALUE}};',
 					'{{WRAPPER}} .mas-form-fields-wrapper .elementor-field-type-text input[type="password"]' => 'border-color: {{VALUE}};',
 				),
@@ -637,6 +640,7 @@ class Signin extends Base_Widget {
 				'label'     => esc_html__( 'Input Text Color', 'mas-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
+					'{{WRAPPER}} .mas-form-fields-wrapper .elementor-field-type-text input[type="email"]:hover' => 'color: {{VALUE}};',
 					'{{WRAPPER}} .mas-form-fields-wrapper .elementor-field-type-text input[type="text"]:hover' => 'color: {{VALUE}};',
 					'{{WRAPPER}} .mas-form-fields-wrapper .elementor-field-type-text input[type="password"]:hover' => 'color: {{VALUE}};',
 				),
@@ -649,6 +653,7 @@ class Signin extends Base_Widget {
 				'label'     => esc_html__( 'Input BG Color', 'mas-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
+					'{{WRAPPER}} .mas-form-fields-wrapper .elementor-field-type-text input[type="email"]:hover' => 'background-color: {{VALUE}};',
 					'{{WRAPPER}} .mas-form-fields-wrapper .elementor-field-type-text input[type="text"]:hover' => 'background-color: {{VALUE}};',
 					'{{WRAPPER}} .mas-form-fields-wrapper .elementor-field-type-text input[type="password"]:hover' => 'background-color: {{VALUE}};',
 				),
@@ -661,6 +666,7 @@ class Signin extends Base_Widget {
 				'label'     => esc_html__( 'Input Border Color', 'mas-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
+					'{{WRAPPER}} .mas-form-fields-wrapper .elementor-field-type-text input[type="email"]:hover' => 'border-color: {{VALUE}};',
 					'{{WRAPPER}} .mas-form-fields-wrapper .elementor-field-type-text input[type="text"]:hover' => 'border-color: {{VALUE}};',
 					'{{WRAPPER}} .mas-form-fields-wrapper .elementor-field-type-text input[type="password"]:hover' => 'border-color: {{VALUE}};',
 				),
