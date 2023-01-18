@@ -49,7 +49,15 @@ class ACF_Text extends \Elementor\Core\DynamicTags\Tag {
 	 * Render.
 	 */
 	public function render() {
-		list( $field, $meta_key ) = Module::get_tag_value_field( $this );
+		$settings = $this->get_settings_for_display();
+
+		if ( 'user' === $settings['post_type_switch'] ) {
+			$author_id                = get_the_author_meta( 'ID' );
+			list( $field, $meta_key ) = Module::get_user_tag_value_field( $this, $author_id );
+		} else {
+			list( $field, $meta_key ) = Module::get_text_tag_value_field( $this );
+		}
+
 		if ( $field && ! empty( $field['type'] ) ) {
 			$value = $field['value'];
 
@@ -112,6 +120,20 @@ class ACF_Text extends \Elementor\Core\DynamicTags\Tag {
 	 * Register Controls.
 	 */
 	protected function register_controls() {
+
+		$this->add_control(
+			'post_type_switch',
+			array(
+				'label'   => esc_html__( 'Options', 'mas-elementor' ),
+				'type'    => Controls_Manager::SELECT,
+				'default' => 'default',
+				'options' => array(
+					'default' => esc_html__( 'Default', 'mas-elementor' ),
+					'user'    => esc_html__( 'User', 'mas-elementor' ),
+				),
+			)
+		);
+
 		Module::add_key_control( $this );
 	}
 	/**

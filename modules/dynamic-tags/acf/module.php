@@ -141,13 +141,15 @@ class Module extends DynamicTags\Module {
 	 *
 	 * @param string $field_key field.
 	 * @param string $meta_key meta key.
+	 * @param string $post_id post_id.
 	 * @return mixed
 	 */
-	private static function get_acf_field( $field_key, $meta_key ) {
+	private static function get_acf_field( $field_key, $meta_key, $post_id = '' ) {
+		$post_id = empty( $post_id ) ? get_the_ID() : $post_id;
 		if ( 'options' === $field_key ) {
 			$field = get_field_object( $meta_key, $field_key );
 		} else {
-			$field = self::get_field_from_current_item( $field_key );
+			$field = self::get_field_from_current_item( $field_key, $post_id );
 		}
 		return $field;
 	}
@@ -156,12 +158,49 @@ class Module extends DynamicTags\Module {
 	 * Get ACF field from current item.
 	 *
 	 * @param string $field_key field key.
+	 * @param string $post_id post_id.
 	 * @return mixed
 	 */
-	private static function get_field_from_current_item( $field_key ) {
-		$field = get_field_object( $field_key );
+	private static function get_field_from_current_item( $field_key, $post_id = '' ) {
+		$post_id = empty( $post_id ) ? get_the_ID() : $post_id;
+		$field   = get_field_object( $field_key, $post_id );
 
 		return $field;
+	}
+
+	// For use by ACF tags.
+	/**
+	 * Get tag value field.
+	 *
+	 * @param Base_Tag $tag tag.
+	 */
+	public static function get_text_tag_value_field( Base_Tag $tag ) {
+		$key = $tag->get_settings( 'key' );
+
+		if ( ! empty( $key ) ) {
+			list( $field_key, $meta_key ) = explode( ':', $key );
+			return array( self::get_acf_field( $field_key, $meta_key ), $meta_key );
+		}
+
+		return array();
+	}
+
+	// For use by ACF tags.
+	/**
+	 * Get tag value field.
+	 *
+	 * @param Base_Tag $tag tag.
+	 * @param string   $author_id author_id.
+	 */
+	public static function get_user_tag_value_field( Base_Tag $tag, $author_id ) {
+		$key = $tag->get_settings( 'key' );
+
+		if ( ! empty( $key ) ) {
+			list( $field_key, $meta_key ) = explode( ':', $key );
+			return array( self::get_acf_field( $field_key, $meta_key, 'user_' . $author_id ), $meta_key );
+		}
+
+		return array();
 	}
 
 	// For use by ACF tags.
@@ -175,7 +214,14 @@ class Module extends DynamicTags\Module {
 
 		if ( ! empty( $key ) ) {
 			list( $field_key, $meta_key ) = explode( ':', $key );
-			return array( self::get_acf_field( $field_key, $meta_key ), $meta_key );
+
+			if ( 'options' === $field_key ) {
+				$field = get_field_object( $meta_key, $field_key );
+			} else {
+				$field = get_field_object( $field_key, get_queried_object() );
+			}
+
+			return array( $field, $meta_key );
 		}
 
 		return array();
