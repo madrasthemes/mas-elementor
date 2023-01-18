@@ -520,7 +520,7 @@ class Signin extends Base_Widget {
 			Group_Control_Border::get_type(),
 			array(
 				'name'           => 'login_input_border',
-				'selector'       => '{{WRAPPER}} .mas-form-fields-wrapper .elementor-field-type-text input[type="text"],{{WRAPPER}} .mas-form-fields-wrapper .elementor-field-type-text input[type="password"]',
+				'selector'       => '{{WRAPPER}} .mas-form-fields-wrapper .elementor-field-type-text input[type="text"],{{WRAPPER}} .mas-form-fields-wrapper .elementor-field-type-text input[type="password"],.mas-form-fields-wrapper .elementor-field-type-text input[type="email"]',
 				'separator'      => 'none',
 				'fields_options' => array(
 					'border' => array(
