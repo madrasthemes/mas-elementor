@@ -134,41 +134,50 @@ class Posts extends Posts_Base {
 	 */
 	public function thumb_post( $settings, $query ) {
 		if ( 'yes' === $settings['enable_thumbs'] && 'yes' === $settings['enable_carousel'] ) {
-			$this->carousel_thumb_header( $settings );
+			?><div class="mas-posts-thumbs-wrapper">
+				<div class="mas-posts-thumbs-container">
+				<?php
+					$this->carousel_thumb_header( $settings );
 
-			if ( $query->in_the_loop ) {
+				if ( $query->in_the_loop ) {
 
-				$this->current_permalink = get_permalink();
-				print( mas_render_template( $settings['thumb_template'], false ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-				wp_reset_postdata();
-
-			} else {
-				$count = 1;
-				while ( $query->have_posts() ) {
-
-					$query->the_post();
-					$this->thumb_slide_loop_start( $settings );
 					$this->current_permalink = get_permalink();
-					if ( ! empty( $settings['thumb_template'] ) ) {
-						print( mas_render_template( $settings['thumb_template'], false ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-					} else {
-						mas_elementor_get_template( 'widgets/posts/post-classic.php', array( 'widget' => $this ) );
+					print( mas_render_template( $settings['thumb_template'], false ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+					wp_reset_postdata();
+
+				} else {
+					$count = 1;
+					while ( $query->have_posts() ) {
+
+						$query->the_post();
+						$this->thumb_slide_loop_start( $settings );
+						$this->current_permalink = get_permalink();
+						if ( ! empty( $settings['thumb_template'] ) ) {
+							print( mas_render_template( $settings['thumb_template'], false ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+						} else {
+							?>
+								<span class="swiper-step-pagination-title"><?php the_title(); ?></span>
+								<?php
+						}
+
+						$this->thumb_slide_loop_end( $settings );
+
+						$count ++;
 					}
-
-					$this->thumb_slide_loop_end( $settings );
-
-					$count ++;
+					if ( 'yes' !== $settings['enable_carousel'] ) {
+						// mas-post-container close.
+						?>
+							</div>
+						<?php
+					}
+							wp_reset_postdata();
 				}
-				if ( 'yes' !== $settings['enable_carousel'] ) {
-					// mas-post-container close.
-					?>
-					</div>
-					<?php
-				}
-						wp_reset_postdata();
-			}
 
-			$this->carousel_thumb_footer( $settings );
+					$this->carousel_thumb_footer( $settings );
+				?>
+				</div>
+			</div>
+			<?php
 		}
 
 	}
@@ -182,9 +191,16 @@ class Posts extends Posts_Base {
 		if ( 'yes' === $settings['enable_thumbs'] && 'yes' === $settings['enable_carousel'] ) {
 			$json        = wp_json_encode( $this->get_swiper_thumbs_options( $settings ) );
 			$thumbs_json = wp_json_encode( array( 'thumbs_selector' => 'thumb-' . $this->get_id() ) );
+			$classes     = array( 'js-swiper-thumbs' );
+			if ( 'light' === $settings['thumbs_pag_color'] ) {
+				$classes[] = 'swiper-step-pagination-light';
+			} elseif ( 'dark' === $settings['thumbs_pag_color'] ) {
+				$classes[] = 'swiper-step-pagination';
+			}
+
 			$this->add_render_attribute( 'thumb_swiper', 'data-thumbs-options', $thumbs_json );
 			$this->add_render_attribute( 'thumb_swiper', 'data-swiper-options', $json );
-			$this->add_render_attribute( 'thumb_swiper', 'class', 'js-swiper-thumbs js-swiper-blog-modern-hero-thumbs swiper-step-pagination' );
+			$this->add_render_attribute( 'thumb_swiper', 'class', $classes );
 
 			?>
 			<div <?php $this->print_render_attribute_string( 'thumb_swiper' ); ?>>

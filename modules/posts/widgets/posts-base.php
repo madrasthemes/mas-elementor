@@ -1284,6 +1284,37 @@ abstract class Posts_Base extends Base_Widget {
 
 		$this->end_controls_section();
 
+		$this->start_controls_section(
+			'section_style_swiper_thumbs',
+			array(
+				'label'     => __( 'Swiper Thumbs', 'mas-elementor' ),
+				'tab'       => Controls_Manager::TAB_STYLE,
+				'condition' => array(
+					'enable_carousel' => 'yes',
+					'enable_thumbs'   => 'yes',
+				),
+			)
+		);
+
+		$this->add_control(
+			'thumbs_pag_color',
+			array(
+				'label'     => esc_html__( 'Pagination Colors', 'mas-elementor' ),
+				'type'      => Controls_Manager::SELECT,
+				'default'   => 'dark',
+				'options'   => array(
+					'dark'  => esc_html__( 'Dark', 'mas-elementor' ),
+					'light' => esc_html__( 'Light', 'mas-elementor' ),
+				),
+				'condition' => array(
+					'enable_carousel' => 'yes',
+					'enable_thumbs'   => 'yes',
+				),
+			)
+		);
+
+		$this->end_controls_section();
+
 		$this->register_button_style_controls( $this, $args );
 
 	}
