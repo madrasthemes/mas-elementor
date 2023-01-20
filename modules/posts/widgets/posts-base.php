@@ -1257,6 +1257,23 @@ abstract class Posts_Base extends Base_Widget {
 			$thumb_slides_per_view
 		);
 
+		$this->add_control(
+			'thumbs_direction',
+			array(
+				'label'     => esc_html__( 'Thumbs Direction', 'mas-elementor' ),
+				'type'      => Controls_Manager::SELECT,
+				'default'   => 'horizontal',
+				'options'   => array(
+					'horizontal' => esc_html__( 'Horizontal', 'mas-elementor' ),
+					'vertical'   => esc_html__( 'Vertical', 'mas-elementor' ),
+				),
+				'condition' => array(
+					'enable_carousel' => 'yes',
+					'enable_thumbs'   => 'yes',
+				),
+			)
+		);
+
 		$this->end_controls_section();
 		$this->end_injection();
 
@@ -1981,11 +1998,11 @@ abstract class Posts_Base extends Base_Widget {
 		// Devices need to be ordered from largest to smallest.
 		$active_devices = array_reverse( array_keys( $active_breakpoint_instances ) );
 
-		$section_id      = $this->get_id();
-		$swiper_settings = array();
+		$section_id     = $this->get_id();
+		$thumb_settings = array();
 		if ( ! empty( $settings['thumb_slides_per_view'] ) ) {
 			$breakpoint = '1441';
-			$swiper_settings['breakpoints'][ $breakpoint ]['slidesPerView'] = isset( $settings['thumb_slides_per_view'] ) ? $settings['thumb_slides_per_view'] : 3;
+			$thumb_settings['breakpoints'][ $breakpoint ]['slidesPerView'] = isset( $settings['thumb_slides_per_view'] ) ? $settings['thumb_slides_per_view'] : 3;
 			foreach ( $active_breakpoint_instances as $active_breakpoint_instance ) {
 				$array_key = 'thumb_slides_per_view_' . $active_breakpoint_instance->get_name();
 				if ( 'mobile' === $active_breakpoint_instance->get_name() ) {
@@ -1996,18 +2013,19 @@ abstract class Posts_Base extends Base_Widget {
 					if ( property_exists( $active_breakpoint_instance, 'value' ) ) {
 						$breakpoint = (string) ( $active_breakpoint_instance->get_value() );
 					}
-					$swiper_settings['breakpoints'][ $breakpoint ]['slidesPerView'] = isset( $settings[ $array_key ] ) ? $settings[ $array_key ] : 1;
+					$thumb_settings['breakpoints'][ $breakpoint ]['slidesPerView'] = isset( $settings[ $array_key ] ) ? $settings[ $array_key ] : 1;
 					continue;
 				}
-				$swiper_settings['breakpoints'][ $breakpoint ]['slidesPerView'] = isset( $settings[ $array_key ] ) ? $settings[ $array_key ] : 1;
+				$thumb_settings['breakpoints'][ $breakpoint ]['slidesPerView'] = isset( $settings[ $array_key ] ) ? $settings[ $array_key ] : 1;
 				$breakpoint = (string) $active_breakpoint_instance->get_default_value() + 1;
 				if ( property_exists( $active_breakpoint_instance, 'value' ) ) {
 					$breakpoint = (string) ( $active_breakpoint_instance->get_value() + 1 );
 				}
 			}
 		}
+		$thumb_settings['direction'] = $settings['thumbs_direction'];
 
-		return $swiper_settings;
+		return $thumb_settings;
 	}
 
 	/**
