@@ -76,12 +76,7 @@ class Module extends Module_Base {
 	 * Register frontend styles.
 	 */
 	public function mas_add_nav_menus() {
-		register_nav_menus(
-			array(
-				'mas_primary_nav_menu' => 'Navigation Bar',
-				'mas_footer_menu'      => 'Footer Bar',
-			)
-		);
+		register_nav_menus();
 	}
 
 	/**
