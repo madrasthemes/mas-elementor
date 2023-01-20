@@ -49,16 +49,20 @@ class ACF_Text extends \Elementor\Core\DynamicTags\Tag {
 	 * Render.
 	 */
 	public function render() {
-		$settings = $this->get_settings_for_display();
-
-		if ( 'user' === $settings['post_type_switch'] ) {
-			$author_id                = get_the_author_meta( 'ID' );
+		$settings  = $this->get_settings_for_display();
+		$author_id = is_author() ? get_the_ID() : get_the_author_meta( 'ID' );
+		if ( 'user' === $settings['post_type_switch'] && ! empty( Module::get_user_tag_value_field( $this, $author_id ) ) ) {
 			list( $field, $meta_key ) = Module::get_user_tag_value_field( $this, $author_id );
-		} else {
+		} elseif ( ! empty( Module::get_text_tag_value_field( $this ) ) ) {
 			list( $field, $meta_key ) = Module::get_text_tag_value_field( $this );
+
+		}
+		if ( empty( $field ) && empty( $meta_key ) ) {
+			echo wp_kses_post( 'Choose ACF Key' );
+			return;
 		}
 
-		if ( $field && ! empty( $field['type'] ) ) {
+		if ( ! empty( $field ) && ! empty( $field['type'] ) ) {
 			$value = $field['value'];
 
 			switch ( $field['type'] ) {
