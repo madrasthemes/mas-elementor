@@ -975,6 +975,7 @@ abstract class Posts_Base extends Base_Widget {
 			'condition'          => array(
 				'carousel_effect' => 'slide',
 				'enable_carousel' => 'yes',
+
 			),
 			'default'            => 1,
 			'frontend_available' => true,
@@ -1041,6 +1042,7 @@ abstract class Posts_Base extends Base_Widget {
 				'condition'          => array(
 					'carousel_effect' => 'slide',
 					'enable_carousel' => 'yes',
+
 				),
 				'frontend_available' => true,
 			)
@@ -1057,6 +1059,7 @@ abstract class Posts_Base extends Base_Widget {
 				'condition' => array(
 					'enable_carousel'     => 'yes',
 					'show_custom_arrows!' => 'yes',
+
 				),
 			)
 		);
@@ -1072,6 +1075,7 @@ abstract class Posts_Base extends Base_Widget {
 				'condition' => array(
 					'enable_carousel' => 'yes',
 					'show_arrows!'    => 'yes',
+
 				),
 			)
 		);
@@ -1085,6 +1089,7 @@ abstract class Posts_Base extends Base_Widget {
 					'enable_carousel'    => 'yes',
 					'show_arrows!'       => 'yes',
 					'show_custom_arrows' => 'yes',
+
 				),
 			)
 		);
@@ -1098,6 +1103,7 @@ abstract class Posts_Base extends Base_Widget {
 					'enable_carousel'    => 'yes',
 					'show_arrows!'       => 'yes',
 					'show_custom_arrows' => 'yes',
+
 				),
 			)
 		);
@@ -1112,6 +1118,7 @@ abstract class Posts_Base extends Base_Widget {
 				'render_type'        => 'none',
 				'condition'          => array(
 					'enable_carousel' => 'yes',
+
 				),
 				'frontend_available' => true,
 			)
@@ -1127,6 +1134,7 @@ abstract class Posts_Base extends Base_Widget {
 				'render_type'        => 'none',
 				'condition'          => array(
 					'enable_carousel' => 'yes',
+
 				),
 				'frontend_available' => true,
 			)
@@ -1141,6 +1149,7 @@ abstract class Posts_Base extends Base_Widget {
 				'condition'          => array(
 					'autoplay'        => 'yes',
 					'enable_carousel' => 'yes',
+
 				),
 				'render_type'        => 'none',
 				'frontend_available' => true,
@@ -1169,6 +1178,7 @@ abstract class Posts_Base extends Base_Widget {
 				'condition'          => array(
 					'autoplay'        => 'yes',
 					'enable_carousel' => 'yes',
+
 				),
 				'render_type'        => 'none',
 				'frontend_available' => true,
@@ -1185,6 +1195,7 @@ abstract class Posts_Base extends Base_Widget {
 				'label_on'           => esc_html__( 'Show', 'mas-elementor' ),
 				'condition'          => array(
 					'enable_carousel' => 'yes',
+
 				),
 				'frontend_available' => true,
 			)
@@ -1204,8 +1215,46 @@ abstract class Posts_Base extends Base_Widget {
 				'condition' => array(
 					'enable_carousel' => 'yes',
 					'show_pagination' => 'yes',
+
 				),
 			)
+		);
+
+		$this->end_controls_section();
+
+		$this->start_controls_section(
+			'section_thumb_attributes',
+			array(
+				'label'     => __( 'Thumbs', 'mas-elementor' ),
+				'tab'       => Controls_Manager::TAB_CONTENT,
+				'condition' => array(
+					'enable_thumbs'   => 'yes',
+					'enable_carousel' => 'yes',
+				),
+			)
+		);
+
+		$active_breakpoint_instances = Plugin::$instance->breakpoints->get_active_breakpoints();
+		// Devices need to be ordered from largest to smallest.
+		$active_devices = array_reverse( array_keys( $active_breakpoint_instances ) );
+
+		$thumb_slides_per_view = array(
+			'type'               => Controls_Manager::NUMBER,
+			'label'              => esc_html__( 'Slides Per View', 'mas-elementor' ),
+			'min'                => 1,
+			'max'                => 10,
+			'default'            => 1,
+			'condition'          => array(
+				'carousel_effect' => 'slide',
+				'enable_carousel' => 'yes',
+				'enable_thumbs'   => 'yes',
+			),
+			'frontend_available' => true,
+		);
+
+		$this->add_responsive_control(
+			'thumb_slides_per_view',
+			$thumb_slides_per_view
 		);
 
 		$this->end_controls_section();
@@ -1226,6 +1275,7 @@ abstract class Posts_Base extends Base_Widget {
 				'condition' => array(
 					'enable_carousel' => 'yes',
 					'show_arrows'     => 'yes',
+
 				),
 			)
 		);
@@ -1623,6 +1673,31 @@ abstract class Posts_Base extends Base_Widget {
 			)
 		);
 
+		$this->add_control(
+			'enable_thumbs',
+			array(
+				'type'      => Controls_Manager::SWITCHER,
+				'label'     => esc_html__( 'Enable Thumbs', 'mas-elementor' ),
+				'default'   => 'no',
+				'condition' => array(
+					'enable_carousel' => 'yes',
+				),
+			)
+		);
+
+		$this->add_control(
+			'thumb_template',
+			array(
+				'label'     => esc_html__( 'Mas Templates', 'mas-elementor' ),
+				'type'      => Controls_Manager::SELECT,
+				'options'   => $templates,
+				'condition' => array(
+					'enable_carousel' => 'yes',
+					'enable_thumbs'   => 'yes',
+				),
+			)
+		);
+
 		$this->end_controls_section();
 	}
 
@@ -1635,9 +1710,11 @@ abstract class Posts_Base extends Base_Widget {
 
 		if ( 'yes' === $settings['enable_carousel'] ) {
 			$json = wp_json_encode( $this->get_swiper_carousel_options( $settings ) );
-			$this->add_render_attribute( 'post_swiper', 'class', 'swiper-' . $this->get_id() );
 			$this->add_render_attribute( 'post_swiper', 'class', 'swiper' );
+			$this->add_render_attribute( 'post_swiper', 'class', 'swiper-' . $this->get_id() );
 			$this->add_render_attribute( 'post_swiper', 'data-swiper-options', $json );
+			$this->add_render_attribute( 'post_swiper', 'data-swiper-widget', 'thumb-' . $this->get_id() );
+
 			?>
 			<div <?php $this->print_render_attribute_string( 'post_swiper' ); ?>>
 				<div class="swiper-wrapper">
@@ -1857,6 +1934,46 @@ abstract class Posts_Base extends Base_Widget {
 		}
 		if ( $settings['speed'] ) {
 			$swiper_settings['speed'] = $settings['speed'];
+		}
+
+		return $swiper_settings;
+	}
+
+	/**
+	 * Get carousel settings
+	 *
+	 * @param array $settings The widget settings.
+	 * @return array
+	 */
+	public function get_swiper_thumbs_options( array $settings ) {
+		$active_breakpoint_instances = Plugin::$instance->breakpoints->get_active_breakpoints();
+		// Devices need to be ordered from largest to smallest.
+		$active_devices = array_reverse( array_keys( $active_breakpoint_instances ) );
+
+		$section_id      = $this->get_id();
+		$swiper_settings = array();
+		if ( ! empty( $settings['thumb_slides_per_view'] ) ) {
+			$breakpoint = '1441';
+			$swiper_settings['breakpoints'][ $breakpoint ]['slidesPerView'] = isset( $settings['thumb_slides_per_view'] ) ? $settings['thumb_slides_per_view'] : 3;
+			foreach ( $active_breakpoint_instances as $active_breakpoint_instance ) {
+				$array_key = 'thumb_slides_per_view_' . $active_breakpoint_instance->get_name();
+				if ( 'mobile' === $active_breakpoint_instance->get_name() ) {
+					$breakpoint = '0';
+				}
+				if ( 'widescreen' === $active_breakpoint_instance->get_name() ) {
+					$breakpoint = (string) $active_breakpoint_instance->get_default_value();
+					if ( property_exists( $active_breakpoint_instance, 'value' ) ) {
+						$breakpoint = (string) ( $active_breakpoint_instance->get_value() );
+					}
+					$swiper_settings['breakpoints'][ $breakpoint ]['slidesPerView'] = isset( $settings[ $array_key ] ) ? $settings[ $array_key ] : 1;
+					continue;
+				}
+				$swiper_settings['breakpoints'][ $breakpoint ]['slidesPerView'] = isset( $settings[ $array_key ] ) ? $settings[ $array_key ] : 1;
+				$breakpoint = (string) $active_breakpoint_instance->get_default_value() + 1;
+				if ( property_exists( $active_breakpoint_instance, 'value' ) ) {
+					$breakpoint = (string) ( $active_breakpoint_instance->get_value() + 1 );
+				}
+			}
 		}
 
 		return $swiper_settings;
