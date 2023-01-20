@@ -73,11 +73,24 @@ class Module extends Module_Base {
 	}
 
 	/**
+	 * Register frontend styles.
+	 */
+	public function mas_add_nav_menus() {
+		register_nav_menus(
+			array(
+				'mas_primary_nav_menu' => 'Navigation Bar',
+				'mas_footer_menu'      => 'Footer Bar',
+			)
+		);
+	}
+
+	/**
 	 * Add Actions.
 	 */
 	protected function add_actions() {
 		add_action( 'elementor/frontend/before_register_styles', array( $this, 'register_frontend_styles' ) );
 		add_action( 'elementor/frontend/before_register_scripts', array( $this, 'register_frontend_scripts' ) );
+		add_action( 'init', array( $this, 'mas_add_nav_menus' ) );
 	}
 
 	/**
