@@ -53,7 +53,7 @@ class ACF_Text extends \Elementor\Core\DynamicTags\Tag {
 		$author_id = is_author() ? get_the_ID() : get_the_author_meta( 'ID' );
 		if ( 'user' === $settings['post_type_switch'] && ! empty( Module::get_user_tag_value_field( $this, $author_id ) ) ) {
 			list( $field, $meta_key ) = Module::get_user_tag_value_field( $this, $author_id );
-		} elseif ( ! empty( Module::get_text_tag_value_field( $this ) ) ) {
+		} else {
 			list( $field, $meta_key ) = Module::get_text_tag_value_field( $this );
 
 		}
