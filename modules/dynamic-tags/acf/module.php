@@ -176,7 +176,7 @@ class Module extends DynamicTags\Module {
 	 */
 	public static function get_text_tag_value_field( Base_Tag $tag ) {
 		$key = $tag->get_settings( 'key' );
-		if ( ! empty( $key ) || $key > 0 ) {
+		if ( ! empty( $key ) && !(int) $key ) {
 			list( $field_key, $meta_key ) = explode( ':', $key );
 			return array( self::get_acf_field( $field_key, $meta_key ), $meta_key );
 		}
@@ -194,7 +194,7 @@ class Module extends DynamicTags\Module {
 	public static function get_user_tag_value_field( Base_Tag $tag, $author_id ) {
 		$key = $tag->get_settings( 'key' );
 
-		if ( ! empty( $key ) || $key > 0 ) {
+		if ( ! empty( $key ) && !(int) $key ) {
 			list( $field_key, $meta_key ) = explode( ':', $key );
 			return array( self::get_acf_field( $field_key, $meta_key, 'user_' . $author_id ), $meta_key );
 		}
