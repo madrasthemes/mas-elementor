@@ -14,7 +14,7 @@ const carousel = (() => {
 
   // Carousel initialisation
   let carousels = document.querySelectorAll('.swiper');
-  let thumbs = document.querySelectorAll('.js-swiper-thumbs');
+  let thumbs = document.querySelectorAll('.mas-js-swiper-thumbs');
   forEach(carousels, (index, value) => {
     let userOptions,
         pagerOptions,

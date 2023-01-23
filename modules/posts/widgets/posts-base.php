@@ -1330,6 +1330,336 @@ abstract class Posts_Base extends Base_Widget {
 			)
 		);
 
+		$this->start_controls_tabs(
+			'thumb_style_tabs',
+			array(
+				'separator' => 'before',
+			)
+		);
+
+		$this->start_controls_tab(
+			'thumb_style_normal',
+			array(
+				'label' => __( 'Normal', 'mas-elementor' ),
+			)
+		);
+
+		$this->add_control(
+			'thumb_title_color',
+			array(
+				'label'     => __( 'Text Color', 'mas-elementor' ),
+				'type'      => Controls_Manager::COLOR,
+				'default'   => '#576366',
+				'selectors' => array(
+					'{{WRAPPER}} .mas-posts-thumbs-wrapper .swiper-slide::before' => 'background-color: {{VALUE}}',
+					'{{WRAPPER}} .mas-posts-thumbs-wrapper .swiper-step-pagination-title' => 'color: {{VALUE}}',
+				),
+			)
+		);
+
+		$this->end_controls_tab();
+
+		$this->start_controls_tab(
+			'thumb_style_active',
+			array(
+				'label' => __( 'Active', 'mas-elementor' ),
+			)
+		);
+
+		$this->add_control(
+			'thumb_active_title_color',
+			array(
+				'label'     => __( 'Text Color', 'mas-elementor' ),
+				'type'      => Controls_Manager::COLOR,
+				'default'   => '#576366',
+				'selectors' => array(
+					// '{{WRAPPER}} .elementor-pagination .page-numbers' => 'color: {{VALUE}}',
+					'{{WRAPPER}} .mas-posts-thumbs-wrapper .swiper-slide-thumb-active::before' => 'background-color: {{VALUE}}',
+					'{{WRAPPER}} .mas-posts-thumbs-wrapper .swiper-slide-thumb-active .swiper-step-pagination-title' => 'color: {{VALUE}}',
+				),
+			)
+		);
+
+		$this->end_controls_tab();
+
+		$this->end_controls_tabs();
+
+		$this->add_responsive_control(
+			'swiper_thumbs_padding',
+			array(
+				'type'        => Controls_Manager::DIMENSIONS,
+				'label'       => esc_html__( 'Padding', 'mas-elementor' ),
+				'size_units'  => array( 'px', '%', 'em' ),
+				'description' => esc_html__( 'padding between progress and title', 'mas-elementor' ),
+				'default'     => array(
+					'top'      => 8,
+					'right'    => 12,
+					'bottom'   => 8,
+					'left'     => 12,
+					'unit'     => 'px',
+					'isLinked' => false,
+				),
+				'selectors'   => array(
+					'{{WRAPPER}} .mas-posts-thumbs-wrapper .swiper-slide' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				),
+				'separator'   => 'before',
+			)
+		);
+
+		$this->add_responsive_control(
+			'swiper_thumbscustom_width',
+			array(
+				'label'      => esc_html__( 'Width', 'mas-elementor' ),
+				'type'       => Controls_Manager::SLIDER,
+				'default'    => array(
+					'unit' => '%',
+				),
+				'range'      => array(
+					'px' => array(
+						'max'  => 1000,
+						'step' => 1,
+					),
+					'%'  => array(
+						'max'  => 100,
+						'step' => 1,
+					),
+				),
+				'size_units' => array( 'px', '%', 'vw', 'custom' ),
+				'selectors'  => array(
+					'{{WRAPPER}} .mas-posts-thumbs-container' => '--container-widget-width: {{SIZE}}{{UNIT}}; --container-widget-flex-grow: 0; width: var( --container-widget-width, {{SIZE}}{{UNIT}} ); max-width: {{SIZE}}{{UNIT}}',
+				),
+				// 'condition' => [ '_element_width' => 'initial' ],
+			)
+		);
+
+		$this->add_control(
+			'thumb_position',
+			array(
+				'label'              => esc_html__( 'Position', 'mas-elementor' ),
+				'type'               => Controls_Manager::SELECT,
+				'default'            => '',
+				'options'            => array(
+					''         => esc_html__( 'Default', 'mas-elementor' ),
+					'absolute' => esc_html__( 'Absolute', 'mas-elementor' ),
+					'fixed'    => esc_html__( 'Fixed', 'mas-elementor' ),
+				),
+				'selectors'          => array(
+					'{{WRAPPER}} .mas-posts-thumbs-wrapper' => 'position: {{VALUE}};',
+				),
+				'frontend_available' => true,
+				'separator'          => 'before',
+			)
+		);
+
+		$left  = esc_html__( 'Left', 'mas-elementor' );
+		$right = esc_html__( 'Right', 'mas-elementor' );
+
+		$start = is_rtl() ? $right : $left;
+		$end   = ! is_rtl() ? $right : $left;
+
+		$this->add_control(
+			'thumb_offset_orientation_h',
+			array(
+				'label'       => esc_html__( 'Horizontal Orientation', 'mas-elementor' ),
+				'type'        => Controls_Manager::CHOOSE,
+				'toggle'      => false,
+				'default'     => 'start',
+				'options'     => array(
+					'start' => array(
+						'title' => $start,
+						'icon'  => 'eicon-h-align-left',
+					),
+					'end'   => array(
+						'title' => $end,
+						'icon'  => 'eicon-h-align-right',
+					),
+				),
+				'classes'     => 'elementor-control-start-end',
+				'render_type' => 'ui',
+				'condition'   => array(
+					'thumb_position!' => '',
+				),
+			)
+		);
+
+		$this->add_responsive_control(
+			'thumb_offset_x',
+			array(
+				'label'      => esc_html__( 'Offset', 'mas-elementor' ),
+				'type'       => Controls_Manager::SLIDER,
+				'range'      => array(
+					'px' => array(
+						'min'  => -1000,
+						'max'  => 1000,
+						'step' => 1,
+					),
+					'%'  => array(
+						'min' => -200,
+						'max' => 200,
+					),
+					'vw' => array(
+						'min' => -200,
+						'max' => 200,
+					),
+					'vh' => array(
+						'min' => -200,
+						'max' => 200,
+					),
+				),
+				'default'    => array(
+					'size' => '0',
+				),
+				'size_units' => array( 'px', '%', 'vw', 'vh', 'custom' ),
+				'selectors'  => array(
+					'body:not(.rtl) {{WRAPPER}} .mas-posts-thumbs-wrapper' => 'left: {{SIZE}}{{UNIT}}',
+					'body.rtl {{WRAPPER}} .mas-posts-thumbs-wrapper' => 'right: {{SIZE}}{{UNIT}}',
+				),
+				'condition'  => array(
+					'thumb_offset_orientation_h!' => 'end',
+					'thumb_position!'             => '',
+				),
+			)
+		);
+
+		$this->add_responsive_control(
+			'thumb_offset_x_end',
+			array(
+				'label'      => esc_html__( 'Offset', 'mas-elementor' ),
+				'type'       => Controls_Manager::SLIDER,
+				'range'      => array(
+					'px' => array(
+						'min'  => -1000,
+						'max'  => 1000,
+						'step' => 0.1,
+					),
+					'%'  => array(
+						'min' => -200,
+						'max' => 200,
+					),
+					'vw' => array(
+						'min' => -200,
+						'max' => 200,
+					),
+					'vh' => array(
+						'min' => -200,
+						'max' => 200,
+					),
+				),
+				'default'    => array(
+					'size' => '0',
+				),
+				'size_units' => array( 'px', '%', 'vw', 'vh', 'custom' ),
+				'selectors'  => array(
+					'body:not(.rtl) {{WRAPPER}} .mas-posts-thumbs-wrapper' => 'right: {{SIZE}}{{UNIT}}',
+					'body.rtl {{WRAPPER}} .mas-posts-thumbs-wrapper' => 'left: {{SIZE}}{{UNIT}}',
+				),
+				'condition'  => array(
+					'thumb_offset_orientation_h' => 'end',
+					'thumb_position!'            => '',
+				),
+			)
+		);
+
+		$this->add_control(
+			'thumb_offset_orientation_v',
+			array(
+				'label'       => esc_html__( 'Vertical Orientation', 'mas-elementor' ),
+				'type'        => Controls_Manager::CHOOSE,
+				'toggle'      => false,
+				'default'     => 'start',
+				'options'     => array(
+					'start' => array(
+						'title' => esc_html__( 'Top', 'mas-elementor' ),
+						'icon'  => 'eicon-v-align-top',
+					),
+					'end'   => array(
+						'title' => esc_html__( 'Bottom', 'mas-elementor' ),
+						'icon'  => 'eicon-v-align-bottom',
+					),
+				),
+				'render_type' => 'ui',
+				'condition'   => array(
+					'thumb_position!' => '',
+				),
+			)
+		);
+
+		$this->add_responsive_control(
+			'thumb_offset_y',
+			array(
+				'label'      => esc_html__( 'Offset', 'mas-elementor' ),
+				'type'       => Controls_Manager::SLIDER,
+				'range'      => array(
+					'px' => array(
+						'min'  => -1000,
+						'max'  => 1000,
+						'step' => 1,
+					),
+					'%'  => array(
+						'min' => -200,
+						'max' => 200,
+					),
+					'vh' => array(
+						'min' => -200,
+						'max' => 200,
+					),
+					'vw' => array(
+						'min' => -200,
+						'max' => 200,
+					),
+				),
+				'size_units' => array( 'px', '%', 'vh', 'vw', 'custom' ),
+				'default'    => array(
+					'size' => '0',
+				),
+				'selectors'  => array(
+					'{{WRAPPER}} .mas-posts-thumbs-wrapper' => 'top: {{SIZE}}{{UNIT}}',
+				),
+				'condition'  => array(
+					'thumb_offset_orientation_v!' => 'end',
+					'thumb_position!'             => '',
+				),
+			)
+		);
+
+		$this->add_responsive_control(
+			'thumb_offset_y_end',
+			array(
+				'label'      => esc_html__( 'Offset', 'mas-elementor' ),
+				'type'       => Controls_Manager::SLIDER,
+				'range'      => array(
+					'px' => array(
+						'min'  => -1000,
+						'max'  => 1000,
+						'step' => 1,
+					),
+					'%'  => array(
+						'min' => -200,
+						'max' => 200,
+					),
+					'vh' => array(
+						'min' => -200,
+						'max' => 200,
+					),
+					'vw' => array(
+						'min' => -200,
+						'max' => 200,
+					),
+				),
+				'size_units' => array( 'px', '%', 'vh', 'vw', 'custom' ),
+				'default'    => array(
+					'size' => '0',
+				),
+				'selectors'  => array(
+					'{{WRAPPER}} .mas-posts-thumbs-wrapper' => 'bottom: {{SIZE}}{{UNIT}}',
+				),
+				'condition'  => array(
+					'thumb_offset_orientation_v' => 'end',
+					'thumb_position!'            => '',
+				),
+			)
+		);
+
 		$this->end_controls_section();
 
 		$this->register_button_style_controls( $this, $args );

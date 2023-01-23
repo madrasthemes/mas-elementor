@@ -191,7 +191,7 @@ class Posts extends Posts_Base {
 		if ( 'yes' === $settings['enable_thumbs'] && 'yes' === $settings['enable_carousel'] ) {
 			$json        = wp_json_encode( $this->get_swiper_thumbs_options( $settings ) );
 			$thumbs_json = wp_json_encode( array( 'thumbs_selector' => 'thumb-' . $this->get_id() ) );
-			$classes     = array( 'js-swiper-thumbs' );
+			$classes     = array( 'mas-js-swiper-thumbs' );
 			if ( 'light' === $settings['thumbs_pag_color'] ) {
 				$classes[] = 'swiper-step-pagination-light';
 			} elseif ( 'dark' === $settings['thumbs_pag_color'] ) {
