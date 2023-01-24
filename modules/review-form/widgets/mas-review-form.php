@@ -48,7 +48,7 @@ class Mas_Review_Form extends Base_Widget {
 	 * @return string
 	 */
 	public function get_icon() {
-		return 'eicon-lock-user';
+		return 'eicon-form-horizontal';
 	}
 
 	/**
