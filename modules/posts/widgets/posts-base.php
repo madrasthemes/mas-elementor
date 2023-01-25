@@ -1245,16 +1245,38 @@ abstract class Posts_Base extends Base_Widget {
 			'max'                => 10,
 			'default'            => 1,
 			'condition'          => array(
-				'carousel_effect' => 'slide',
 				'enable_carousel' => 'yes',
 				'enable_thumbs'   => 'yes',
 			),
 			'frontend_available' => true,
 		);
 
+		$thumb_space_between = array(
+			'type'        => Controls_Manager::NUMBER,
+			'label'       => esc_html__( 'Space Between', 'mas-elementor' ),
+			'description' => esc_html__( 'Set Space between each Slides', 'mas-elementor' ),
+			'min'         => 0,
+			'max'         => 100,
+			'default'     => 8,
+			'condition'   => array(
+				'enable_carousel' => 'yes',
+				'enable_thumbs'   => 'yes',
+			),
+		);
+
+		foreach ( $active_devices as $active_device ) {
+			$thumb_space_between[ $active_device . '_default' ]   = 8;
+			$thumb_slides_per_view[ $active_device . '_default' ] = 1;
+		}
+
 		$this->add_responsive_control(
 			'thumb_slides_per_view',
 			$thumb_slides_per_view
+		);
+
+		$this->add_responsive_control(
+			'thumb_space_between',
+			$thumb_space_between
 		);
 
 		$this->add_control(
@@ -1330,6 +1352,28 @@ abstract class Posts_Base extends Base_Widget {
 			)
 		);
 
+		$this->add_responsive_control(
+			'thumbs_container_padding',
+			array(
+				'type'        => Controls_Manager::DIMENSIONS,
+				'label'       => esc_html__( 'Padding', 'mas-elementor' ),
+				'size_units'  => array( 'px', '%', 'em' ),
+				'description' => esc_html__( 'padding in thumbs container', 'mas-elementor' ),
+				'default'     => array(
+					'top'      => 56,
+					'right'    => 0,
+					'bottom'   => 0,
+					'left'     => 0,
+					'unit'     => 'px',
+					'isLinked' => false,
+				),
+				'selectors'   => array(
+					'{{WRAPPER}} .mas-posts-thumbs-wrapper .mas-posts-thumbs-container' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				),
+				'separator'   => 'none',
+			)
+		);
+
 		$this->start_controls_tabs(
 			'thumb_style_tabs',
 			array(
@@ -1352,6 +1396,7 @@ abstract class Posts_Base extends Base_Widget {
 				'default'   => '#576366',
 				'selectors' => array(
 					'{{WRAPPER}} .mas-posts-thumbs-wrapper .swiper-slide::before' => 'background-color: {{VALUE}}',
+					'{{WRAPPER}} .mas-posts-thumbs-wrapper .swiper-wrapper::before' => 'background-color: {{VALUE}}',
 					'{{WRAPPER}} .mas-posts-thumbs-wrapper .swiper-step-pagination-title' => 'color: {{VALUE}}',
 				),
 			)
@@ -2330,27 +2375,48 @@ abstract class Posts_Base extends Base_Widget {
 
 		$section_id     = $this->get_id();
 		$thumb_settings = array();
-		if ( ! empty( $settings['thumb_slides_per_view'] ) ) {
+		// if ( ! empty( $settings['thumb_slides_per_view'] ) ) {.
 			$breakpoint = '1441';
 			$thumb_settings['breakpoints'][ $breakpoint ]['slidesPerView'] = isset( $settings['thumb_slides_per_view'] ) ? $settings['thumb_slides_per_view'] : 3;
-			foreach ( $active_breakpoint_instances as $active_breakpoint_instance ) {
-				$array_key = 'thumb_slides_per_view_' . $active_breakpoint_instance->get_name();
-				if ( 'mobile' === $active_breakpoint_instance->get_name() ) {
-					$breakpoint = '0';
-				}
-				if ( 'widescreen' === $active_breakpoint_instance->get_name() ) {
-					$breakpoint = (string) $active_breakpoint_instance->get_default_value();
-					if ( property_exists( $active_breakpoint_instance, 'value' ) ) {
-						$breakpoint = (string) ( $active_breakpoint_instance->get_value() );
-					}
-					$thumb_settings['breakpoints'][ $breakpoint ]['slidesPerView'] = isset( $settings[ $array_key ] ) ? $settings[ $array_key ] : 1;
-					continue;
+		foreach ( $active_breakpoint_instances as $active_breakpoint_instance ) {
+			$array_key = 'thumb_slides_per_view_' . $active_breakpoint_instance->get_name();
+			if ( 'mobile' === $active_breakpoint_instance->get_name() ) {
+				$breakpoint = '0';
+			}
+			if ( 'widescreen' === $active_breakpoint_instance->get_name() ) {
+				$breakpoint = (string) $active_breakpoint_instance->get_default_value();
+				if ( property_exists( $active_breakpoint_instance, 'value' ) ) {
+					$breakpoint = (string) ( $active_breakpoint_instance->get_value() );
 				}
 				$thumb_settings['breakpoints'][ $breakpoint ]['slidesPerView'] = isset( $settings[ $array_key ] ) ? $settings[ $array_key ] : 1;
-				$breakpoint = (string) $active_breakpoint_instance->get_default_value() + 1;
+				continue;
+			}
+			$thumb_settings['breakpoints'][ $breakpoint ]['slidesPerView'] = isset( $settings[ $array_key ] ) ? $settings[ $array_key ] : 1;
+			$breakpoint = (string) $active_breakpoint_instance->get_default_value() + 1;
+			if ( property_exists( $active_breakpoint_instance, 'value' ) ) {
+				$breakpoint = (string) ( $active_breakpoint_instance->get_value() + 1 );
+			}
+		}
+		// }.
+		$breakpoint = '1441';
+			$thumb_settings['breakpoints'][ $breakpoint ]['spaceBetween'] = isset( $settings['thumb_space_between'] ) ? $settings['thumb_space_between'] : 8;
+		foreach ( $active_breakpoint_instances as $active_breakpoint_instance ) {
+			$array_key = 'thumb_space_between_' . $active_breakpoint_instance->get_name();
+			if ( 'mobile' === $active_breakpoint_instance->get_name() ) {
+				$breakpoint = '0';
+			}
+			if ( 'widescreen' === $active_breakpoint_instance->get_name() ) {
+				$breakpoint = (string) $active_breakpoint_instance->get_default_value();
 				if ( property_exists( $active_breakpoint_instance, 'value' ) ) {
-					$breakpoint = (string) ( $active_breakpoint_instance->get_value() + 1 );
+					$breakpoint = (string) ( $active_breakpoint_instance->get_value() );
 				}
+				$thumb_settings['breakpoints'][ $breakpoint ]['spaceBetween'] = isset( $settings[ $array_key ] ) ? $settings[ $array_key ] : 8;
+				continue;
+			}
+			$thumb_settings['breakpoints'][ $breakpoint ]['spaceBetween'] = isset( $settings[ $array_key ] ) ? $settings[ $array_key ] : 8;
+			$breakpoint = (string) $active_breakpoint_instance->get_default_value() + 1;
+			if ( property_exists( $active_breakpoint_instance, 'value' ) ) {
+				$breakpoint = (string) ( $active_breakpoint_instance->get_value() + 1 );
 			}
 		}
 		$thumb_settings['direction'] = $settings['thumbs_direction'];
@@ -2383,49 +2449,77 @@ abstract class Posts_Base extends Base_Widget {
 			var swiperCarousel = (() => {
 				// forEach function
 				let forEach = (array, callback, scope) => {
-				for (let i = 0; i < array.length; i++) {
+					for (let i = 0; i < array.length; i++) {
 					callback.call(scope, i, array[i]); // passes back stuff we need
-				}
+					}
 				};
 
 				// Carousel initialisation
-				let swiperCarousels = document.querySelectorAll("<?php echo esc_attr( $key ); ?>");
-				forEach(swiperCarousels, (index, value) => {
-					let postUserOptions,
-					postsPagerOptions;
-				if(value.dataset.swiperOptions != undefined) postUserOptions = JSON.parse(value.dataset.swiperOptions);
+				let carousels = document.querySelectorAll('.swiper');
+				let thumbs = document.querySelectorAll('.mas-js-swiper-thumbs');
+				forEach(carousels, (index, value) => {
+					let userOptions,
+						pagerOptions,
+						userThumbs;
+					if(value.dataset.swiperOptions != undefined) userOptions = JSON.parse(value.dataset.swiperOptions);
+					if(value.dataset.swiperWidget != undefined) userThumbs = (value.dataset.swiperWidget);
+				
 
 
-				// Pager
-				if(postUserOptions.pager) {
-					postsPagerOptions = {
-					pagination: {
-						el: postUserOptions.pager,
+					// Pager
+					if(userOptions.pager) {
+					pagerOptions = {
+						pagination: {
+						el: '.pagination .list-unstyled',
 						clickable: true,
 						bulletActiveClass: 'active',
 						bulletClass: 'page-item',
 						renderBullet: function (index, className) {
-						return '<li class="' + className + '"><a href="#" class="page-link btn-icon btn-sm">' + (index + 1) + '</a></li>';
+							return '<li class="' + className + '"><a href="#" class="page-link btn-icon btn-sm">' + (index + 1) + '</a></li>';
+						}
 						}
 					}
 					}
-				}
+					// Slider init
+					
 
-				// Slider init
-				let options = {...postUserOptions, ...postsPagerOptions};
-				let swiper = new Swiper(value, options);
+					forEach(thumbs, (thumbsIndex, thumbsValue) => { 
+					let thumbsUserOptions,
+					thumbSwiperOptions;
+					if(thumbsValue.dataset.swiperOptions != undefined) thumbSwiperOptions = JSON.parse(thumbsValue.dataset.swiperOptions);
+					// console.log(thumbsValue.dataset.thumbsOptions);
+					if(thumbsValue.dataset.thumbsOptions != undefined) thumbsUserOptions = JSON.parse(thumbsValue.dataset.thumbsOptions);
+				
+					if ( thumbsUserOptions.thumbs_selector == userThumbs ) {
 
-				// Tabs (linked content)
-				if(postUserOptions.tabs) {
+						let sliderThumbs = new Swiper(thumbsValue, thumbSwiperOptions);
+					
+						userOptions['thumbs'] = {'swiper': sliderThumbs};
+
+					}
+
+					});
+					let options = {...userOptions, ...pagerOptions};
+					
+					// console.log(value);
+					let swiper = new Swiper(value, options);
+
+					swiper.on('init', function(swiper){
+					console.log('Init')
+					});
+
+
+					// Tabs (linked content)
+					if(userOptions.tabs) {
 
 					swiper.on('activeIndexChange', (e) => {
-					let targetTab = document.querySelector(e.slides[e.activeIndex].dataset.swiperTab),
-						previousTab = document.querySelector(e.slides[e.previousIndex].dataset.swiperTab);
+						let targetTab = document.querySelector(e.slides[e.activeIndex].dataset.swiperTab),
+							previousTab = document.querySelector(e.slides[e.previousIndex].dataset.swiperTab);
 
-					previousTab.classList.remove('active');
-					targetTab.classList.add('active');
+						previousTab.classList.remove('active');
+						targetTab.classList.add('active');
 					});
-				}
+					}
 
 				});
 
