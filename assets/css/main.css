@@ -181,3 +181,25 @@
     left: 0px;
     z-index: 3;
   }
+  /* .mas-posts-thumbs-wrapper {
+    display: none;
+  } */
+  
+
+  @media (max-width: 1440px) {
+    .mas-thumbs-swiper-block .mas-posts-thumbs-wrapper {
+      display: block;
+    }
+  }
+  
+  @media (max-width: 1024px) {
+    .mas-thumbs-swiper-laptop-block .mas-posts-thumbs-wrapper {
+      display: block;
+    }
+  }
+  
+  @media (max-width:767px){
+    .mas-thumbs-swiper-tablet-block .mas-posts-thumbs-wrapper {
+      display: block;
+    }
+  }

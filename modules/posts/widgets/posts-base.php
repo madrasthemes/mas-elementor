@@ -1228,7 +1228,7 @@ abstract class Posts_Base extends Base_Widget {
 				'label'     => __( 'Thumbs', 'mas-elementor' ),
 				'tab'       => Controls_Manager::TAB_CONTENT,
 				'condition' => array(
-					'enable_thumbs'   => 'yes',
+					'enable_thumbs'   => 'block',
 					'enable_carousel' => 'yes',
 				),
 			)
@@ -1246,7 +1246,7 @@ abstract class Posts_Base extends Base_Widget {
 			'default'            => 1,
 			'condition'          => array(
 				'enable_carousel' => 'yes',
-				'enable_thumbs'   => 'yes',
+				'enable_thumbs'   => 'block',
 			),
 			'frontend_available' => true,
 		);
@@ -1260,7 +1260,7 @@ abstract class Posts_Base extends Base_Widget {
 			'default'     => 8,
 			'condition'   => array(
 				'enable_carousel' => 'yes',
-				'enable_thumbs'   => 'yes',
+				'enable_thumbs'   => 'block',
 			),
 		);
 
@@ -1291,7 +1291,7 @@ abstract class Posts_Base extends Base_Widget {
 				),
 				'condition' => array(
 					'enable_carousel' => 'yes',
-					'enable_thumbs'   => 'yes',
+					'enable_thumbs'   => 'block',
 				),
 			)
 		);
@@ -1330,7 +1330,7 @@ abstract class Posts_Base extends Base_Widget {
 				'tab'       => Controls_Manager::TAB_STYLE,
 				'condition' => array(
 					'enable_carousel' => 'yes',
-					'enable_thumbs'   => 'yes',
+					'enable_thumbs'   => 'block',
 				),
 			)
 		);
@@ -1347,7 +1347,7 @@ abstract class Posts_Base extends Base_Widget {
 				),
 				'condition' => array(
 					'enable_carousel' => 'yes',
-					'enable_thumbs'   => 'yes',
+					'enable_thumbs'   => 'block',
 				),
 			)
 		);
@@ -1371,6 +1371,34 @@ abstract class Posts_Base extends Base_Widget {
 					'{{WRAPPER}} .mas-posts-thumbs-wrapper .mas-posts-thumbs-container' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				),
 				'separator'   => 'none',
+			)
+		);
+
+		$this->add_group_control(
+			Group_Control_Typography::get_type(),
+			array(
+				'name'           => 'thumbs_typography',
+				'global'         => array(
+					'default' => Global_Typography::TYPOGRAPHY_ACCENT,
+				),
+				'selector'       => '{{WRAPPER}} .mas-posts-thumbs-wrapper .swiper-slide',
+				'fields_options' => array(
+					'typography'  => array( 'default' => 'yes' ),
+					// Inner control name.
+					'font_weight' => array(
+						// Inner control settings.
+						'default' => '400',
+					),
+					'font_family' => array(
+						'default' => 'Inter',
+					),
+					'font_size'   => array(
+						'default' => array(
+							'unit' => 'px',
+							'size' => 16,
+						),
+					),
+				),
 			)
 		);
 
@@ -2096,15 +2124,19 @@ abstract class Posts_Base extends Base_Widget {
 			)
 		);
 
-		$this->add_control(
+		$this->add_responsive_control(
 			'enable_thumbs',
 			array(
-				'type'      => Controls_Manager::SWITCHER,
-				'label'     => esc_html__( 'Enable Thumbs', 'mas-elementor' ),
-				'default'   => 'no',
-				'condition' => array(
+				'type'         => Controls_Manager::SWITCHER,
+				'label'        => esc_html__( 'Enable Thumbs', 'mas-elementor' ),
+				'label_on'     => __( 'On', 'mas-elementor' ),
+				'label_off'    => __( 'Off', 'mas-elementor' ),
+				'return_value' => 'block',
+				'default'      => 'none',
+				'condition'    => array(
 					'enable_carousel' => 'yes',
 				),
+				'prefix_class' => 'mas-thumbs-swiper%s-',
 			)
 		);
 
@@ -2116,7 +2148,7 @@ abstract class Posts_Base extends Base_Widget {
 				'options'   => $templates,
 				'condition' => array(
 					'enable_carousel' => 'yes',
-					'enable_thumbs'   => 'yes',
+					'enable_thumbs'   => 'block',
 				),
 			)
 		);
