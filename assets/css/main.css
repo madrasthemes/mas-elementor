@@ -190,21 +190,21 @@
     }
   }
 
-  @media (max-width:1440px) and (min-width: 1025px) {
+  @media (min-width: 1025px) and (max-width:1440px) {
     .mas-swiper-pagination-hidden-laptop .swiper-pagination,
     .mas-thumbs-swiper-hidden-laptop .mas-posts-thumbs-wrapper {
       display: none;
     }
   }
   
-  @media (max-width: 1024px) and (min-width: 768px) {
+  @media (min-width: 768px) and (max-width: 1024px) {
     .mas-swiper-pagination-hidden-tablet .swiper-pagination,
     .mas-thumbs-swiper-hidden-tablet .mas-posts-thumbs-wrapper {
       display: none;
     }
   }
   
-  @media (max-width:767px) and (min-width:0px){
+  @media (min-width:0px) and (max-width:767px) {
     .mas-swiper-pagination-hidden-mobile .swiper-pagination,
     .mas-thumbs-swiper-hidden-mobile .mas-posts-thumbs-wrapper {
       display: none;
