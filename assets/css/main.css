@@ -204,7 +204,7 @@
     }
   }
   
-  @media (max-width:767px){
+  @media (max-width:767px) and (min-width:0px){
     .mas-swiper-pagination-hidden-mobile .swiper-pagination,
     .mas-thumbs-swiper-hidden-mobile .mas-posts-thumbs-wrapper {
       display: none;
