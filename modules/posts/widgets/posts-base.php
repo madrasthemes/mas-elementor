@@ -1228,7 +1228,7 @@ abstract class Posts_Base extends Base_Widget {
 				'label'     => __( 'Thumbs', 'mas-elementor' ),
 				'tab'       => Controls_Manager::TAB_CONTENT,
 				'condition' => array(
-					'enable_thumbs'   => 'block',
+					'enable_thumbs'   => 'yes',
 					'enable_carousel' => 'yes',
 				),
 			)
@@ -1246,7 +1246,7 @@ abstract class Posts_Base extends Base_Widget {
 			'default'            => 1,
 			'condition'          => array(
 				'enable_carousel' => 'yes',
-				'enable_thumbs'   => 'block',
+				'enable_thumbs'   => 'yes',
 			),
 			'frontend_available' => true,
 		);
@@ -1260,7 +1260,7 @@ abstract class Posts_Base extends Base_Widget {
 			'default'     => 8,
 			'condition'   => array(
 				'enable_carousel' => 'yes',
-				'enable_thumbs'   => 'block',
+				'enable_thumbs'   => 'yes',
 			),
 		);
 
@@ -1291,7 +1291,7 @@ abstract class Posts_Base extends Base_Widget {
 				),
 				'condition' => array(
 					'enable_carousel' => 'yes',
-					'enable_thumbs'   => 'block',
+					'enable_thumbs'   => 'yes',
 				),
 			)
 		);
@@ -1330,7 +1330,7 @@ abstract class Posts_Base extends Base_Widget {
 				'tab'       => Controls_Manager::TAB_STYLE,
 				'condition' => array(
 					'enable_carousel' => 'yes',
-					'enable_thumbs'   => 'block',
+					'enable_thumbs'   => 'yes',
 				),
 			)
 		);
@@ -1347,7 +1347,7 @@ abstract class Posts_Base extends Base_Widget {
 				),
 				'condition' => array(
 					'enable_carousel' => 'yes',
-					'enable_thumbs'   => 'block',
+					'enable_thumbs'   => 'yes',
 				),
 			)
 		);
@@ -1446,7 +1446,6 @@ abstract class Posts_Base extends Base_Widget {
 				'type'      => Controls_Manager::COLOR,
 				'default'   => '#576366',
 				'selectors' => array(
-					// '{{WRAPPER}} .elementor-pagination .page-numbers' => 'color: {{VALUE}}',
 					'{{WRAPPER}} .mas-posts-thumbs-wrapper .swiper-slide-thumb-active::before' => 'background-color: {{VALUE}}',
 					'{{WRAPPER}} .mas-posts-thumbs-wrapper .swiper-slide-thumb-active .swiper-step-pagination-title' => 'color: {{VALUE}}',
 				),
@@ -1501,7 +1500,6 @@ abstract class Posts_Base extends Base_Widget {
 				'selectors'  => array(
 					'{{WRAPPER}} .mas-posts-thumbs-container' => '--container-widget-width: {{SIZE}}{{UNIT}}; --container-widget-flex-grow: 0; width: var( --container-widget-width, {{SIZE}}{{UNIT}} ); max-width: {{SIZE}}{{UNIT}}',
 				),
-				// 'condition' => [ '_element_width' => 'initial' ],
 			)
 		);
 
@@ -2124,19 +2122,18 @@ abstract class Posts_Base extends Base_Widget {
 			)
 		);
 
-		$this->add_responsive_control(
+		$this->add_control(
 			'enable_thumbs',
 			array(
 				'type'         => Controls_Manager::SWITCHER,
 				'label'        => esc_html__( 'Enable Thumbs', 'mas-elementor' ),
 				'label_on'     => __( 'On', 'mas-elementor' ),
 				'label_off'    => __( 'Off', 'mas-elementor' ),
-				'return_value' => 'block',
-				'default'      => 'none',
+				'return_value' => 'yes',
+				'default'      => 'no',
 				'condition'    => array(
 					'enable_carousel' => 'yes',
 				),
-				'prefix_class' => 'mas-thumbs-swiper%s-',
 			)
 		);
 
@@ -2148,12 +2145,102 @@ abstract class Posts_Base extends Base_Widget {
 				'options'   => $templates,
 				'condition' => array(
 					'enable_carousel' => 'yes',
-					'enable_thumbs'   => 'block',
+					'enable_thumbs'   => 'yes',
 				),
 			)
 		);
 
 		$this->end_controls_section();
+
+		$this->start_controls_section(
+			'mas_thumbs_section_layout',
+			array(
+				'label'     => __( 'Thumbs Responsive', 'mas-elementor' ),
+				'tab'       => Controls_Manager::TAB_CONTENT,
+				'condition' => array(
+					'enable_carousel' => 'yes',
+					'enable_thumbs'   => 'yes',
+				),
+			)
+		);
+
+		$this->mas_swiper_thumbs_hidden_device_controls();
+
+		$this->end_controls_section();
+
+		$this->start_controls_section(
+			'mas_swiper_pagination_hide',
+			array(
+				'label'     => __( 'Swiper Pagination Responsive', 'mas-elementor' ),
+				'tab'       => Controls_Manager::TAB_CONTENT,
+				'condition' => array(
+					'enable_carousel' => 'yes',
+				),
+			)
+		);
+
+		$this->mas_swiper_pagination_hidden_device_controls();
+
+		$this->end_controls_section();
+
+	}
+
+	/**
+	 * Add Hidden Device Controls
+	 *
+	 * Adds controls for hiding elements within certain devices' viewport widths. Adds a control for each active device.
+	 */
+	protected function mas_swiper_pagination_hidden_device_controls() {
+		// The 'Hide On X' controls are displayed from largest to smallest, while the method returns smallest to largest.
+		$active_devices     = Plugin::$instance->breakpoints->get_active_devices_list( array( 'reverse' => true ) );
+		$active_breakpoints = Plugin::$instance->breakpoints->get_active_breakpoints();
+
+		foreach ( $active_devices as $breakpoint_key ) {
+			$label = 'desktop' === $breakpoint_key ? esc_html__( 'Desktop', 'mas-elementor' ) : $active_breakpoints[ $breakpoint_key ]->get_label();
+
+			$this->add_control(
+				'mas_swiper_pag_hide_' . $breakpoint_key,
+				array(
+					/* translators: %s: Device name. */
+					'label'        => sprintf( __( 'Hide On %s', 'mas-elementor' ), $label ),
+					'type'         => Controls_Manager::SWITCHER,
+					'default'      => '',
+					'prefix_class' => 'mas-swiper-pagination-',
+					'label_on'     => esc_html__( 'Hide', 'mas-elementor' ),
+					'label_off'    => esc_html__( 'Show', 'mas-elementor' ),
+					'return_value' => 'hidden-' . $breakpoint_key,
+				)
+			);
+		}
+	}
+
+	/**
+	 * Add Hidden Device Controls
+	 *
+	 * Adds controls for hiding elements within certain devices' viewport widths. Adds a control for each active device.
+	 */
+	protected function mas_swiper_thumbs_hidden_device_controls() {
+		// The 'Hide On X' controls are displayed from largest to smallest, while the method returns smallest to largest.
+		$active_devices     = Plugin::$instance->breakpoints->get_active_devices_list( array( 'reverse' => true ) );
+		$active_breakpoints = Plugin::$instance->breakpoints->get_active_breakpoints();
+
+		foreach ( $active_devices as $breakpoint_key ) {
+			$label = 'desktop' === $breakpoint_key ? esc_html__( 'Desktop', 'mas-elementor' ) : $active_breakpoints[ $breakpoint_key ]->get_label();
+
+			$this->add_control(
+				'mas_hide_' . $breakpoint_key,
+				array(
+					/* translators: %s: Device name. */
+					'label'        => sprintf( __( 'Hide On %s', 'mas-elementor' ), $label ),
+					'type'         => Controls_Manager::SWITCHER,
+					'default'      => '',
+					'prefix_class' => 'mas-thumbs-swiper-',
+					'label_on'     => esc_html__( 'Hide', 'mas-elementor' ),
+					'label_off'    => esc_html__( 'Show', 'mas-elementor' ),
+					'return_value' => 'hidden-' . $breakpoint_key,
+				)
+			);
+		}
 	}
 
 	/**
@@ -2407,7 +2494,6 @@ abstract class Posts_Base extends Base_Widget {
 
 		$section_id     = $this->get_id();
 		$thumb_settings = array();
-		// if ( ! empty( $settings['thumb_slides_per_view'] ) ) {.
 			$breakpoint = '1441';
 			$thumb_settings['breakpoints'][ $breakpoint ]['slidesPerView'] = isset( $settings['thumb_slides_per_view'] ) ? $settings['thumb_slides_per_view'] : 3;
 		foreach ( $active_breakpoint_instances as $active_breakpoint_instance ) {
@@ -2429,7 +2515,7 @@ abstract class Posts_Base extends Base_Widget {
 				$breakpoint = (string) ( $active_breakpoint_instance->get_value() + 1 );
 			}
 		}
-		// }.
+
 		$breakpoint = '1441';
 			$thumb_settings['breakpoints'][ $breakpoint ]['spaceBetween'] = isset( $settings['thumb_space_between'] ) ? $settings['thumb_space_between'] : 8;
 		foreach ( $active_breakpoint_instances as $active_breakpoint_instance ) {
@@ -2494,9 +2580,7 @@ abstract class Posts_Base extends Base_Widget {
 						pagerOptions,
 						userThumbs;
 					if(value.dataset.swiperOptions != undefined) userOptions = JSON.parse(value.dataset.swiperOptions);
-					if(value.dataset.swiperWidget != undefined) userThumbs = (value.dataset.swiperWidget);
-				
-
+					if(value.dataset.swiperWidget != undefined) userThumbs   = (value.dataset.swiperWidget);
 
 					// Pager
 					if(userOptions.pager) {
@@ -2513,28 +2597,26 @@ abstract class Posts_Base extends Base_Widget {
 					}
 					}
 					// Slider init
-					
 
 					forEach(thumbs, (thumbsIndex, thumbsValue) => { 
 					let thumbsUserOptions,
 					thumbSwiperOptions;
 					if(thumbsValue.dataset.swiperOptions != undefined) thumbSwiperOptions = JSON.parse(thumbsValue.dataset.swiperOptions);
 					// console.log(thumbsValue.dataset.thumbsOptions);
-					if(thumbsValue.dataset.thumbsOptions != undefined) thumbsUserOptions = JSON.parse(thumbsValue.dataset.thumbsOptions);
-				
+					if(thumbsValue.dataset.thumbsOptions != undefined) thumbsUserOptions  = JSON.parse(thumbsValue.dataset.thumbsOptions);
+
 					if ( thumbsUserOptions.thumbs_selector == userThumbs ) {
 
-						let sliderThumbs = new Swiper(thumbsValue, thumbSwiperOptions);
-					
+						let sliderThumbs      = new Swiper(thumbsValue, thumbSwiperOptions);
 						userOptions['thumbs'] = {'swiper': sliderThumbs};
 
 					}
 
 					});
 					let options = {...userOptions, ...pagerOptions};
-					
+
 					// console.log(value);
-					let swiper = new Swiper(value, options);
+					let swiper  = new Swiper(value, options);
 
 					swiper.on('init', function(swiper){
 					console.log('Init')

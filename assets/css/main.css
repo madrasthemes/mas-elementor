@@ -181,25 +181,51 @@
     left: 0px;
     z-index: 3;
   }
-  /* .mas-posts-thumbs-wrapper {
-    display: none;
-  } */
-  
 
-  @media (max-width: 1440px) {
-    .mas-thumbs-swiper-block .mas-posts-thumbs-wrapper {
-      display: block;
+  @media (min-width:1440px) {
+    .mas-thumbs-swiper-hidden-desktop .mas-posts-thumbs-wrapper {
+      display: none;
+    }
+  }
+
+  @media (max-width:1440px) {
+    .mas-thumbs-swiper-hidden-laptop .mas-posts-thumbs-wrapper {
+      display: none;
     }
   }
   
   @media (max-width: 1024px) {
-    .mas-thumbs-swiper-laptop-block .mas-posts-thumbs-wrapper {
-      display: block;
+    .mas-thumbs-swiper-hidden-tablet .mas-posts-thumbs-wrapper {
+      display: none;
     }
   }
   
   @media (max-width:767px){
-    .mas-thumbs-swiper-tablet-block .mas-posts-thumbs-wrapper {
-      display: block;
+    .mas-thumbs-swiper-hidden-mobile .mas-posts-thumbs-wrapper {
+      display: none;
+    }
+  }
+
+  @media (min-width:1440px) {
+    .mas-swiper-pagination-hidden-desktop .swiper-pagination {
+      display: none;
+    }
+  }
+
+  @media (max-width:1440px) {
+    .mas-swiper-pagination-hidden-laptop .swiper-pagination {
+      display: none;
+    }
+  }
+  
+  @media (max-width: 1024px) {
+    .mas-swiper-pagination-hidden-tablet .swiper-pagination {
+      display: none;
+    }
+  }
+  
+  @media (max-width:767px){
+    .mas-swiper-pagination-hidden-mobile .swiper-pagination {
+      display: none;
     }
   }
