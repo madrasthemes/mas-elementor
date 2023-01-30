@@ -948,6 +948,29 @@ abstract class Posts_Base extends Base_Widget {
 			)
 		);
 
+		$this->add_control(
+			'mas_posts_swiper_height',
+			array(
+				'label'                => esc_html__( 'Height', 'mas-elementor' ),
+				'type'                 => Controls_Manager::SELECT,
+				'default'              => 'default',
+				'options'              => array(
+					'default' => 'Default',
+					'auto'    => 'Auto',
+				),
+				'selectors_dictionary' => array(
+					'default' => '100%',
+					'auto'    => 'auto',
+				),
+				'selectors'            => array(
+					'{{WRAPPER}} .swiper-slide' => 'height: {{VALUE}};',
+				),
+				'condition'            => array(
+					'enable_carousel' => 'yes',
+				),
+			)
+		);
+
 		// TODO: Once Core 3.4.0 is out, get the active devices using Breakpoints/Manager::get_active_devices_list().
 		$active_breakpoint_instances = Plugin::$instance->breakpoints->get_active_breakpoints();
 		// Devices need to be ordered from largest to smallest.
