@@ -189,6 +189,29 @@ class Module extends Module_Base {
 		);
 
 		$element->add_control(
+			'swiper_height_auto',
+			array(
+				'label'                => esc_html__( 'Height', 'mas-elementor' ),
+				'type'                 => Controls_Manager::SELECT,
+				'default'              => 'default',
+				'options'              => array(
+					'default' => 'Default',
+					'auto'    => 'Auto',
+				),
+				'selectors_dictionary' => array(
+					'default' => '100%',
+					'auto'    => 'auto',
+				),
+				'selectors'            => array(
+					'{{WRAPPER}} .swiper-slide' => 'height: {{VALUE}};',
+				),
+				'condition'            => array(
+					'enable_carousel' => 'yes',
+				),
+			)
+		);
+
+		$element->add_control(
 			'center_slides',
 			array(
 				'type'               => Controls_Manager::SWITCHER,
