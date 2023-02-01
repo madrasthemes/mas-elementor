@@ -397,7 +397,136 @@ abstract class Posts_Base extends Base_Widget {
 			)
 		);
 
-		$this->add_control(
+		$this->add_responsive_control(
+			'slide_bg_position',
+			array(
+				'label'      => esc_html_x( 'Position', 'Background Control', 'mas-elementor' ),
+				'type'       => Controls_Manager::SELECT,
+				'default'    => '',
+				'responsive' => true,
+				'options'    => array(
+					''              => esc_html_x( 'Default', 'Background Control', 'mas-elementor' ),
+					'center center' => esc_html_x( 'Center Center', 'Background Control', 'mas-elementor' ),
+					'center left'   => esc_html_x( 'Center Left', 'Background Control', 'mas-elementor' ),
+					'center right'  => esc_html_x( 'Center Right', 'Background Control', 'mas-elementor' ),
+					'top center'    => esc_html_x( 'Top Center', 'Background Control', 'mas-elementor' ),
+					'top left'      => esc_html_x( 'Top Left', 'Background Control', 'mas-elementor' ),
+					'top right'     => esc_html_x( 'Top Right', 'Background Control', 'mas-elementor' ),
+					'bottom center' => esc_html_x( 'Bottom Center', 'Background Control', 'mas-elementor' ),
+					'bottom left'   => esc_html_x( 'Bottom Left', 'Background Control', 'mas-elementor' ),
+					'bottom right'  => esc_html_x( 'Bottom Right', 'Background Control', 'mas-elementor' ),
+					'initial'       => esc_html_x( 'Custom', 'Background Control', 'mas-elementor' ),
+
+				),
+				'selectors'  => array(
+					'{{WRAPPER}} .swiper-slide' => 'background-position: {{VALUE}};',
+				),
+				'condition'  => array(
+					'slide_bg_image'  => 'yes',
+					'enable_carousel' => 'yes',
+				),
+			)
+		);
+
+		$this->add_responsive_control(
+			'slide_bg_position_xpos',
+			array(
+				'label'          => esc_html_x( 'X Position', 'Background Control', 'mas-elementor' ),
+				'type'           => Controls_Manager::SLIDER,
+				'responsive'     => true,
+				'size_units'     => array( 'px', 'em', '%', 'vw' ),
+				'default'        => array(
+					'unit' => 'px',
+					'size' => 0,
+				),
+				'tablet_default' => array(
+					'unit' => 'px',
+					'size' => 0,
+				),
+				'mobile_default' => array(
+					'unit' => 'px',
+					'size' => 0,
+				),
+				'range'          => array(
+					'px' => array(
+						'min' => -800,
+						'max' => 800,
+					),
+					'em' => array(
+						'min' => -100,
+						'max' => 100,
+					),
+					'%'  => array(
+						'min' => -100,
+						'max' => 100,
+					),
+					'vw' => array(
+						'min' => -100,
+						'max' => 100,
+					),
+				),
+				'selectors'      => array(
+					'{{WRAPPER}} .swiper-slide' => 'background-position: {{SIZE}}{{UNIT}} {{slide_bg_position_ypos.SIZE}}{{slide_bg_position_ypos.UNIT}}',
+				),
+				'condition'      => array(
+					'slide_bg_image'    => 'yes',
+					'enable_carousel'   => 'yes',
+					'slide_bg_position' => array( 'initial' ),
+				),
+				'required'       => true,
+			)
+		);
+
+		$this->add_responsive_control(
+			'slide_bg_position_ypos',
+			array(
+				'label'          => esc_html_x( 'Y Position', 'Background Control', 'mas-elementor' ),
+				'type'           => Controls_Manager::SLIDER,
+				'responsive'     => true,
+				'size_units'     => array( 'px', 'em', '%', 'vh' ),
+				'default'        => array(
+					'unit' => 'px',
+					'size' => 0,
+				),
+				'tablet_default' => array(
+					'unit' => 'px',
+					'size' => 0,
+				),
+				'mobile_default' => array(
+					'unit' => 'px',
+					'size' => 0,
+				),
+				'range'          => array(
+					'px' => array(
+						'min' => -800,
+						'max' => 800,
+					),
+					'em' => array(
+						'min' => -100,
+						'max' => 100,
+					),
+					'%'  => array(
+						'min' => -100,
+						'max' => 100,
+					),
+					'vh' => array(
+						'min' => -100,
+						'max' => 100,
+					),
+				),
+				'selectors'      => array(
+					'{{WRAPPER}} .swiper-slide' => 'background-position: {{slide_bg_position_xpos.SIZE}}{{slide_bg_position_xpos.UNIT}} {{SIZE}}{{UNIT}}',
+				),
+				'condition'      => array(
+					'slide_bg_image'    => 'yes',
+					'enable_carousel'   => 'yes',
+					'slide_bg_position' => array( 'initial' ),
+				),
+				'required'       => true,
+			)
+		);
+
+		$this->add_responsive_control(
 			'slide_bg_repeat',
 			array(
 				'label'     => esc_html_x( 'Repeat', 'Background Control', 'mas-elementor' ),
@@ -420,7 +549,7 @@ abstract class Posts_Base extends Base_Widget {
 			)
 		);
 
-		$this->add_control(
+		$this->add_responsive_control(
 			'slide_bg_size',
 			array(
 				'label'     => esc_html_x( 'Size', 'Background Control', 'mas-elementor' ),
