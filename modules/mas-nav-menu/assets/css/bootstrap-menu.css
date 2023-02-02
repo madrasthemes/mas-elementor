@@ -47,15 +47,19 @@
     justify-content: space-between; 
   }
   @media (min-width: 1200px) {
-  .header-menu .menu-item-has-children > a:after,
-  .has-mega-menu a:after {
+  .header-menu .menu-item-has-children > a:after {
     font-family: "Line Awesome Free";
     font-weight: 900;
     line-height: 1;
     -webkit-font-smoothing: antialiased;
     font-size: 10px;
     line-height: 28px;
-    margin-left: 10px; 
+    margin-left: 10px;
+    content: "";
+    border-top: 0.3em solid;
+    border-right: 0.3em solid transparent;
+    border-bottom: 0;
+    border-left: 0.3em solid transparent;
   } 
   
   }
