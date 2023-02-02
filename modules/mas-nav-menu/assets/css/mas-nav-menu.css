@@ -236,7 +236,6 @@ margin-top: 20px;
 
 @media(max-width: 1199px) {
   .handheld.collapse, .handheld.collapsing {
-      box-shadow: 0 1.5rem 4rem rgb(22 28 45 / 15%);
       overflow-x: hidden;
       overflow-y: scroll;
       z-index: 99;
