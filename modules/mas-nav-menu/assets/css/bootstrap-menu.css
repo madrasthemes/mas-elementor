@@ -47,7 +47,8 @@
     justify-content: space-between; 
   }
   @media (min-width: 1200px) {
-  .header-menu .menu-item-has-children > a:after {
+  .header-menu .menu-item-has-children > a:after,
+  .has-mega-menu a:after {
     font-family: "Line Awesome Free";
     font-weight: 900;
     line-height: 1;
