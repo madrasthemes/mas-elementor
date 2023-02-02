@@ -322,7 +322,7 @@ class Mas_Nav_Menu extends Base_Widget {
 				'global'         => array(
 					'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
 				),
-				'selector'       => '{{WRAPPER}} .mas-elementor-nav-menu .menu-item a',
+				'selector'       => '{{WRAPPER}} .mas-elementor-nav-menu .menu-item .nav-link',
 				'fields_options' => array(
 					'typography'  => array( 'default' => 'yes' ),
 					// Inner control name.
