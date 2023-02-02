@@ -368,7 +368,7 @@ class Mas_Nav_Menu extends Base_Widget {
 				),
 				'default'   => '#000',
 				'selectors' => array(
-					'{{WRAPPER}} .mas-elementor-nav-menu .menu-item a' => 'color: {{VALUE}}; fill: {{VALUE}};',
+					'{{WRAPPER}} .mas-elementor-nav-menu .menu-item .nav-link' => 'color: {{VALUE}}; fill: {{VALUE}};',
 				),
 			)
 		);
@@ -391,7 +391,7 @@ class Mas_Nav_Menu extends Base_Widget {
 					'default' => Global_Colors::COLOR_ACCENT,
 				),
 				'selectors' => array(
-					'{{WRAPPER}} .mas-elementor-nav-menu .menu-item a:hover' => 'color: {{VALUE}}; fill: {{VALUE}};',
+					'{{WRAPPER}} .mas-elementor-nav-menu .menu-item .nav-link:hover' => 'color: {{VALUE}}; fill: {{VALUE}};',
 				),
 				'default'   => '#000',
 			)
