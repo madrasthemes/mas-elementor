@@ -62,6 +62,7 @@ final class Modules_Manager {
 			'review-form',
 			'scrollspy',
 			'counter',
+			'icon-list',
 		);
 
 		foreach ( $modules as $module_name ) {
