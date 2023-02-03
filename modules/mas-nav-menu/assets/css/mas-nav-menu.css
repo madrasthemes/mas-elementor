@@ -1,3 +1,6 @@
+.off-canvas-active {
+  overflow: hidden;
+}
 
 .header-menu {
   display: flex;
@@ -55,7 +58,12 @@
   -webkit-font-smoothing: antialiased;
   font-size: 10px;
   line-height: 28px;
-  margin-left: 10px; 
+  margin-left: 10px;
+  content: "";
+  border-top: 0.3em solid;
+  border-right: 0.3em solid transparent;
+  border-bottom: 0;
+  border-left: 0.3em solid transparent; 
 } 
 
 }
@@ -228,7 +236,6 @@ margin-top: 20px;
 
 @media(max-width: 1199px) {
   .handheld.collapse, .handheld.collapsing {
-      box-shadow: 0 1.5rem 4rem rgb(22 28 45 / 15%);
       overflow-x: hidden;
       overflow-y: scroll;
       z-index: 99;
