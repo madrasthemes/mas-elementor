@@ -63,7 +63,6 @@ class Module extends Module_Base {
 				'size_units' => array( 'px', 'em', '%', 'rem', 'custom' ),
 				'selectors'  => array(
 					'{{WRAPPER}} .elementor-icon-list-items .elementor-icon-list-item' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}} !important;',
-					'{{WRAPPER}} .elementor-icon-list-items:not(.elementor-inline-items) .elementor-icon-list-item:not(:last-child)' => 'padding-bottom: {{BOTTOM}}{{UNIT}} !important;',
 				),
 			)
 		);
