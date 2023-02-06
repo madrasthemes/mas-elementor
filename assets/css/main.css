@@ -210,3 +210,7 @@
       display: none;
     }
   }
+
+  .off-canvas-active {
+    overflow: hidden;
+  }

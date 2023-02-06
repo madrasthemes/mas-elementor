@@ -108,7 +108,7 @@ class Mas_Nav_Menu extends Base_Widget {
 	 * @return string Widget depends.
 	 */
 	public function get_script_depends() {
-		return array( 'navigation-script' );
+		return array( 'navigation-script', 'mas-nav-init' );
 	}
 
 	/**
