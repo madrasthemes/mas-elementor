@@ -231,6 +231,9 @@ class Posts extends Posts_Base {
 	public function thumb_slide_loop_start( array $settings = array() ) {
 		if ( 'yes' === $settings['enable_thumbs'] && 'yes' === $settings['enable_carousel'] ) {
 			$this->add_render_attribute( 'thumb_bg_image', 'class', 'swiper-slide' );
+			if ( 'vertical' === $settings['thumbs_direction'] ) {
+				$this->add_render_attribute( 'thumb_bg_image', 'class', 'swiper-pagination-progress swiper-pagination-progress-light' );
+			}
 			?>
 			<div <?php $this->print_render_attribute_string( 'thumb_bg_image' ); ?>>
 			<?php
