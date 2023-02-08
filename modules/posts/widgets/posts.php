@@ -155,9 +155,18 @@ class Posts extends Posts_Base {
 						if ( ! empty( $settings['thumb_template'] ) ) {
 							print( mas_render_template( $settings['thumb_template'], false ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 						} else {
-							?>
+							if ( 'horizontal' === $settings['thumbs_direction'] ) {
+								?>
 								<span class="swiper-step-pagination-title"><?php the_title(); ?></span>
 								<?php
+							} else {
+								?>
+								<p class="swiper-step-pagination-title"><?php the_title(); ?></p>
+								<div class="swiper-pagination-progress-body">
+									<div class="js-swiper-pagination-progress-body-helper swiper-pagination-progress-body-helper"></div>
+								</div>
+								<?php
+							}
 						}
 
 						$this->thumb_slide_loop_end( $settings );
@@ -192,11 +201,11 @@ class Posts extends Posts_Base {
 			$json        = wp_json_encode( $this->get_swiper_thumbs_options( $settings ) );
 			$thumbs_json = wp_json_encode( array( 'thumbs_selector' => 'thumb-' . $this->get_id() ) );
 			$classes     = array( 'mas-js-swiper-thumbs' );
-			if ( 'light' === $settings['thumbs_pag_color'] ) {
-				$classes[] = 'swiper-step-pagination-light';
-			} elseif ( 'dark' === $settings['thumbs_pag_color'] ) {
-				$classes[] = 'swiper-step-pagination';
-			}
+			// if ( 'light' === $settings['thumbs_pag_color'] ) {
+			// $classes[] = 'swiper-step-pagination-light';
+			// } elseif ( 'dark' === $settings['thumbs_pag_color'] ) {
+			// $classes[] = 'swiper-step-pagination';
+			// }.
 
 			$this->add_render_attribute( 'thumb_swiper', 'data-thumbs-options', $thumbs_json );
 			$this->add_render_attribute( 'thumb_swiper', 'data-swiper-options', $json );
@@ -206,6 +215,12 @@ class Posts extends Posts_Base {
 			<div <?php $this->print_render_attribute_string( 'thumb_swiper' ); ?>>
 				<div class="swiper-wrapper">
 			<?php
+			if ( 'yes' === $settings['enable_thumbs'] && 'yes' === $settings['enable_carousel'] ) {
+				$this->add_render_attribute( 'thumb_bg_image', 'class', 'swiper-slide' );
+				if ( 'vertical' === $settings['thumbs_direction'] ) {
+					$this->add_render_attribute( 'thumb_bg_image', 'class', 'swiper-pagination-progress swiper-pagination-progress-ight' );
+				}
+			}
 		}
 
 	}
@@ -230,10 +245,6 @@ class Posts extends Posts_Base {
 	 */
 	public function thumb_slide_loop_start( array $settings = array() ) {
 		if ( 'yes' === $settings['enable_thumbs'] && 'yes' === $settings['enable_carousel'] ) {
-			$this->add_render_attribute( 'thumb_bg_image', 'class', 'swiper-slide' );
-			if ( 'vertical' === $settings['thumbs_direction'] ) {
-				$this->add_render_attribute( 'thumb_bg_image', 'class', 'swiper-pagination-progress swiper-pagination-progress-light' );
-			}
 			?>
 			<div <?php $this->print_render_attribute_string( 'thumb_bg_image' ); ?>>
 			<?php

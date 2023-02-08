@@ -47,19 +47,20 @@ const carousel = (() => {
       if(thumbsValue.dataset.swiperOptions != undefined) thumbSwiperOptions = JSON.parse(thumbsValue.dataset.swiperOptions);
       // console.log(thumbsValue.dataset.thumbsOptions);
       if(thumbsValue.dataset.thumbsOptions != undefined) thumbsUserOptions = JSON.parse(thumbsValue.dataset.thumbsOptions);
+      
 
       if ( 'horizontal' !== thumbSwiperOptions.direction && thumbsUserOptions.thumbs_selector == userThumbs ) {
         let sliderThumbs = new Swiper(thumbsValue, {
           direction: 'vertical',
           watchSlidesVisibility: true,
           watchSlidesProgress: true,
-          slidesPerView: 4,
+          slidesPerView: 3,
           history: false,
           on: {
             'afterInit': function (swiper) {
               swiper.el.style.opacity = 1
               swiper.el.querySelectorAll('.js-swiper-pagination-progress-body-helper')
-                      .forEach($progress => $progress.style.transitionDuration = `${swiper.params.autoplay.delay}ms`)
+                      .forEach($progress => $progress.style.transitionDuration = `${userOptions.autoplay.delay}ms`)
             }
           }
         });
