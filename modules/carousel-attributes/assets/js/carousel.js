@@ -50,20 +50,17 @@ const carousel = (() => {
       
 
       if ( 'horizontal' !== thumbSwiperOptions.direction && thumbsUserOptions.thumbs_selector == userThumbs ) {
-        let sliderThumbs = new Swiper(thumbsValue, {
-          direction: 'vertical',
-          watchSlidesVisibility: true,
-          watchSlidesProgress: true,
-          slidesPerView: 3,
-          history: false,
-          on: {
-            'afterInit': function (swiper) {
-              swiper.el.style.opacity = 1
-              swiper.el.querySelectorAll('.js-swiper-pagination-progress-body-helper')
-                      .forEach($progress => $progress.style.transitionDuration = `${userOptions.autoplay.delay}ms`)
-            }
+        thumbSwiperOptions['on'] = {
+          'afterInit': function (swiper) {
+            swiper.el.style.opacity = 1
+            swiper.el.querySelectorAll('.js-swiper-pagination-progress-body-helper')
+                    .forEach($progress => $progress.style.transitionDuration = `${userOptions.autoplay.delay}ms`)
           }
-        });
+        };
+        thumbSwiperOptions['watchSlidesVisibility'] = true;
+        thumbSwiperOptions['watchSlidesProgress'] = true;
+        thumbSwiperOptions['history'] = false;
+        let sliderThumbs = new Swiper(thumbsValue, thumbSwiperOptions);
         userOptions['thumbs'] = {'swiper': sliderThumbs};
       }
   

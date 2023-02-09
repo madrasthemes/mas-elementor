@@ -1397,8 +1397,9 @@ abstract class Posts_Base extends Base_Widget {
 			'max'                => 10,
 			'default'            => 1,
 			'condition'          => array(
-				'enable_carousel' => 'yes',
-				'enable_thumbs'   => 'yes',
+				'enable_carousel'  => 'yes',
+				'enable_thumbs'    => 'yes',
+				'thumbs_direction' => 'horizontal',
 			),
 			'frontend_available' => true,
 		);
@@ -1627,6 +1628,50 @@ abstract class Posts_Base extends Base_Widget {
 					'{{WRAPPER}} .mas-posts-thumbs-wrapper .swiper-slide' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				),
 				'separator'   => 'before',
+			)
+		);
+
+		$this->add_responsive_control(
+			'thumbs_vertical_space_between',
+			array(
+				'label'      => esc_html__( 'Title Spacing', 'mas-elementor' ),
+				'type'       => Controls_Manager::SLIDER,
+				'default'    => array(
+					'unit' => '%',
+				),
+				'range'      => array(
+					'px' => array(
+						'max'  => 1000,
+						'step' => 1,
+					),
+					'%'  => array(
+						'max'  => 100,
+						'step' => 1,
+					),
+				),
+				'condition'          => array(
+					'thumbs_direction' => 'vertical',
+				),
+				'size_units' => array( 'px', '%', 'vw', 'custom' ),
+				'selectors'  => array(
+					'{{WRAPPER}} .swiper-step-pagination-title' => 'margin-bottom: {{SIZE}}{{UNIT}};',
+				),
+				'separator'   => 'before',
+			)
+		);
+
+		$this->add_control(
+			'thumb_progress_color',
+			array(
+				'label'     => __( 'Progress Color', 'mas-elementor' ),
+				'type'      => Controls_Manager::COLOR,
+				'default'   => '#377dff',
+				'selectors' => array(
+					'{{WRAPPER}} .swiper-pagination-progress-body-helper' => 'background-color: {{VALUE}}',
+				),
+				'condition'          => array(
+					'thumbs_direction' => 'vertical',
+				),
 			)
 		);
 
