@@ -61,4 +61,26 @@
         });
     }
 
+    // Show password visiblity hover icon on Mas forms
+    $( '.mas-form-fields-wrapper .password_input[type="password"]' ).wrap( '<span class="password-input"></span>' );
+    // Add 'password-input' class to the password wrapper in Login.
+    $( '.mas-form-fields-wrapper' ).filter(':password').parent('span').addClass('password-input');
+    $( '.password-input' ).append( '<span class="show-password-input"></span>' );
+
+    $( '.show-password-input' ).on( 'click',
+        function() {
+            if ( $( this ).hasClass( 'display-password' ) ) {
+                $( this ).removeClass( 'display-password' );
+            } else {
+                $( this ).addClass( 'display-password' );
+            }
+            if ( $( this ).hasClass( 'display-password' ) ) {
+                $( this ).siblings( ['input[type="password"]'] ).prop( 'type', 'text' );
+            } else {
+                $( this ).siblings( 'input[type="text"]' ).prop( 'type', 'password' );
+            }
+        }
+    );
+
+
  } )( jQuery, window );

@@ -574,6 +574,25 @@ class Signin extends Base_Widget {
 			)
 		);
 
+		$this->add_control(
+			'input_icon_margin',
+			array(
+				'label'      => esc_html__( 'Input Icon Margin', 'mas-elementor' ),
+				'type'       => Controls_Manager::DIMENSIONS,
+				'default' => array(
+					'top'      => '0',
+					'right'    => '0',
+					'bottom'   => '-4',
+					'left'     => '-36',
+					'isLinked' => false,
+				),
+				'size_units' => array( 'px', 'em', '%', 'rem' ),
+				'selectors'  => array(
+					'{{WRAPPER}} .mas-form-fields-wrapper .mas-input-icon' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				),
+			)
+		);
+
 		$this->start_controls_tabs( 'form_input_controls' );
 
 		$this->start_controls_tab(
@@ -1098,6 +1117,20 @@ class Signin extends Base_Widget {
 					),
 				),
 
+				'register_label_name'            => array(
+					'for' => 'registerName-' . $unique_id,
+				),
+
+				'register_name_input'      => array(
+					'type'        => 'text',
+					'name'        => 'regname',
+					'id'          => 'registerName-' . $unique_id,
+					'placeholder' => $settings['register_name_placeholder'],
+					'class'       => array(
+						'form-control',
+					),
+				),
+
 				'register_password_label'         => array(
 					'for' => 'signupSrPassword-' . $unique_id,
 				),
@@ -1405,6 +1438,27 @@ class Signin extends Base_Widget {
 					'placeholder' => esc_html__( 'Description', 'mas-elementor' ),
 					'condition'   => array( 'show_form_description' => 'yes' ),
 					'separator'   => 'after',
+				)
+			);
+
+			$this->add_control(
+				'register_name_label',
+				array(
+					'label'       => esc_html__( 'Name', 'mas-elementor' ),
+					'label_block' => true,
+					'type'        => Controls_Manager::TEXT,
+					'default'     => esc_html__( 'Enter Your Name', 'mas-elementor' ),
+					'condition'   => array( 'show_labels' => 'yes' ),
+				)
+			);
+
+			$this->add_control(
+				'register_name_placeholder',
+				array(
+					'label'       => esc_html__( 'Username Placeholder', 'mas-elementor' ),
+					'type'        => Controls_Manager::TEXT,
+					'label_block' => true,
+					'default'     => esc_html__( 'enter your name', 'mas-elementor' ),
 				)
 			);
 
@@ -2027,6 +2081,7 @@ class Signin extends Base_Widget {
 					<div <?php $this->print_render_attribute_string( 'field-group' ); ?>>
 						<?php $this->render_label( 'password_label', $settings ); ?>
 						<input <?php $this->print_render_attribute_string( 'password_input' ); ?>>
+						<span class="show-password-input mas-input-icon"><i class="eicon-preview-thin"></i></span>
 					</div>
 					<div style="display:flex;justify-content:space-between">
 						<?php if ( 'yes' === $settings['show_remember_me'] ) : ?>
@@ -2083,6 +2138,10 @@ class Signin extends Base_Widget {
 			<div <?php $this->print_render_attribute_string( 'wrapper' ); ?>>
 				<div class="mas-form-fields">
 					<div <?php $this->print_render_attribute_string( 'field-group' ); ?>>
+						<?php $this->render_label( 'register_label_name', $settings, 'register_name_label' ); ?>
+						<input <?php $this->print_render_attribute_string( 'register_name_input' ); ?>>
+					</div>
+					<div <?php $this->print_render_attribute_string( 'field-group' ); ?>>
 						<?php $this->render_label( 'email_register_label', $settings, 'register_email_label' ); ?>
 						<input <?php $this->print_render_attribute_string( 'email_register_input' ); ?>>
 					</div>
@@ -2090,10 +2149,12 @@ class Signin extends Base_Widget {
 						<div <?php $this->print_render_attribute_string( 'field-group' ); ?>>
 							<?php $this->render_label( 'register_password_label', $settings, 'register_password_label' ); ?>
 							<input <?php $this->print_render_attribute_string( 'register_password_input' ); ?>>
+							<span class="show-password-input mas-input-icon"><i class="eicon-preview-thin"></i></span>
 						</div>
 						<div <?php $this->print_render_attribute_string( 'field-group' ); ?>>
 							<?php $this->render_label( 'register_confirm_password_label', $settings, 'register_confirm_password_label' ); ?>
 							<input <?php $this->print_render_attribute_string( 'register_confirm_password_input' ); ?>>
+							<span class="show-password-input mas-input-icon"><i class="eicon-preview-thin"></i></span>
 						</div>
 					<?php else : ?>
 						<p><?php echo esc_html__( 'A password will be sent to your email address.', 'mas-elementor' ); ?></p>

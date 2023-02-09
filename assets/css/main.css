@@ -136,3 +136,10 @@
 			margin: 0 !important;
 			padding: 0 !important;
 	}
+
+  .show-password-input{
+    opacity: 1;
+  }
+  .show-password-input.display-password{
+    opacity: 0.4;
+  }
