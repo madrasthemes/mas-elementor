@@ -828,7 +828,7 @@ class Signin extends Base_Widget {
 				'label'     => esc_html__( 'Sign in Button Width', 'mas-elementor' ),
 				'type'      => Controls_Manager::SLIDER,
 				'default'   => array(
-					'size' => '100',
+					'size' => '',
 					'unit' => '%',
 				),
 				'range'     => array(
@@ -1125,7 +1125,7 @@ class Signin extends Base_Widget {
 					'type'        => 'text',
 					'name'        => 'regname',
 					'id'          => 'registerName-' . $unique_id,
-					'placeholder' => $settings['register_name_placeholder'],
+					'placeholder' => ! empty( $settings['register_name_placeholder'] ) ? $settings['register_name_placeholder'] : 'enter your name',
 					'class'       => array(
 						'form-control',
 					),
@@ -1444,7 +1444,7 @@ class Signin extends Base_Widget {
 			$this->add_control(
 				'register_name_label',
 				array(
-					'label'       => esc_html__( 'Name', 'mas-elementor' ),
+					'label'       => esc_html__( 'Register Name', 'mas-elementor' ),
 					'label_block' => true,
 					'type'        => Controls_Manager::TEXT,
 					'default'     => esc_html__( 'Enter Your Name', 'mas-elementor' ),
@@ -1455,7 +1455,7 @@ class Signin extends Base_Widget {
 			$this->add_control(
 				'register_name_placeholder',
 				array(
-					'label'       => esc_html__( 'Username Placeholder', 'mas-elementor' ),
+					'label'       => esc_html__( 'Register Name Placeholder', 'mas-elementor' ),
 					'type'        => Controls_Manager::TEXT,
 					'label_block' => true,
 					'default'     => esc_html__( 'enter your name', 'mas-elementor' ),
