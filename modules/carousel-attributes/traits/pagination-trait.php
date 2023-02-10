@@ -367,8 +367,10 @@ trait Pagination_Trait {
 							),
 						),
 						'selectors' => array(
-							'{{WRAPPER}} ' . $args['concat'] . ' .swiper-pagination .swiper-pagination-bullet' => 'margin-right: {{SIZE}}px !important',
-							'{{WRAPPER}} ' . $args['concat'] . ' .swiper-pagination .swiper-pagination-bullet:last-child' => 'margin-right: 0px !important',
+							'{{WRAPPER}} ' . $args['concat'] . ' .swiper-pagination.mas-pagination-horizontal .swiper-pagination-bullet' => 'margin-right: {{SIZE}}px !important',
+							'{{WRAPPER}} ' . $args['concat'] . ' .swiper-pagination.mas-pagination-horizontal .swiper-pagination-bullet:last-child' => 'margin-right: 0px !important',
+							'{{WRAPPER}} ' . $args['concat'] . ' .swiper-pagination.swiper-pagination-vertical .swiper-pagination-bullet' => 'margin-bottom: {{SIZE}}px !important',
+							'{{WRAPPER}} ' . $args['concat'] . ' .swiper-pagination.swiper-pagination-vertical .swiper-pagination-bullet:last-child' => 'margin-bottom: 0px !important',
 						),
 						'condition' => array(
 							'enable_carousel' => 'yes',

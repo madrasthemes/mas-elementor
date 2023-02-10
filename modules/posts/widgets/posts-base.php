@@ -1372,6 +1372,24 @@ abstract class Posts_Base extends Base_Widget {
 			)
 		);
 
+		$this->add_control(
+			'pagination_style',
+			array(
+				'label'     => esc_html__( 'Pagination Style', 'mas-elementor' ),
+				'type'      => Controls_Manager::SELECT,
+				'default'   => 'horizontal',
+				'options'   => array(
+					'horizontal' => esc_html__( 'Horizontal', 'mas-elementor' ),
+					'vertical'   => esc_html__( 'Vertical', 'mas-elementor' ),
+				),
+				'condition' => array(
+					'enable_carousel' => 'yes',
+					'show_pagination' => 'yes',
+
+				),
+			)
+		);
+
 		$this->end_controls_section();
 
 		$this->start_controls_section(
@@ -2477,6 +2495,11 @@ abstract class Posts_Base extends Base_Widget {
 				$this->add_render_attribute( 'swiper-pagination', 'id', 'pagination-' . $widget_id );
 			}
 			$this->add_render_attribute( 'swiper-pagination', 'class', 'swiper-pagination' );
+			if ( 'vertical' === $settings['pagination_style'] ) {
+				$this->add_render_attribute( 'swiper-pagination', 'class', 'swiper-pagination-vertical' );
+			} else {
+				$this->add_render_attribute( 'swiper-pagination', 'class', 'mas-pagination-horizontal' );
+			}
 			$this->add_render_attribute( 'swiper-pagination', 'style', 'position: ' . $settings['mas_swiper_pagination_position'] . ';' );
 			if ( 'yes' === $settings['show_pagination'] ) :
 				?>
