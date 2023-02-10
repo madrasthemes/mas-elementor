@@ -201,11 +201,11 @@ class Posts extends Posts_Base {
 			$json        = wp_json_encode( $this->get_swiper_thumbs_options( $settings ) );
 			$thumbs_json = wp_json_encode( array( 'thumbs_selector' => 'thumb-' . $this->get_id() ) );
 			$classes     = array( 'mas-js-swiper-thumbs' );
-			// if ( 'light' === $settings['thumbs_pag_color'] ) {
-			// $classes[] = 'swiper-step-pagination-light';
-			// } elseif ( 'dark' === $settings['thumbs_pag_color'] ) {
-			// $classes[] = 'swiper-step-pagination';
-			// }.
+			if ( 'light' === $settings['thumbs_pag_color'] ) {
+				$classes[] = 'horizontal' === $settings['thumbs_pag_color'] ? 'swiper-step-pagination-light swiper-step-pagination' : 'swiper-pagination-progress-light';
+			} elseif ( 'dark' === $settings['thumbs_pag_color'] ) {
+				$classes[] = 'horizontal' === $settings['thumbs_pag_color'] ? 'swiper-step-pagination' : 'swiper-pagination-progress';
+			}
 
 			$this->add_render_attribute( 'thumb_swiper', 'data-thumbs-options', $thumbs_json );
 			$this->add_render_attribute( 'thumb_swiper', 'data-swiper-options', $json );

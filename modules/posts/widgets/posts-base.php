@@ -1601,6 +1601,21 @@ abstract class Posts_Base extends Base_Widget {
 			)
 		);
 
+		$this->add_control(
+			'thumb_progress_color',
+			array(
+				'label'     => __( 'Progress Color', 'mas-elementor' ),
+				'type'      => Controls_Manager::COLOR,
+				'default'   => '#377dff',
+				'selectors' => array(
+					'{{WRAPPER}} .swiper-pagination-progress-body-helper' => 'background-color: {{VALUE}}',
+				),
+				'condition'          => array(
+					'thumbs_direction' => 'vertical',
+				),
+			)
+		);
+
 		$this->end_controls_tab();
 
 		$this->start_controls_tab(
@@ -1619,6 +1634,21 @@ abstract class Posts_Base extends Base_Widget {
 				'selectors' => array(
 					'{{WRAPPER}} .mas-posts-thumbs-wrapper .swiper-slide-thumb-active::before' => 'background-color: {{VALUE}}',
 					'{{WRAPPER}} .mas-posts-thumbs-wrapper .swiper-slide-thumb-active .swiper-step-pagination-title' => 'color: {{VALUE}}',
+				),
+			)
+		);
+
+		$this->add_control(
+			'thumb_progress_active_color',
+			array(
+				'label'     => __( 'Progress Color', 'mas-elementor' ),
+				'type'      => Controls_Manager::COLOR,
+				'default'   => '#ffffff',
+				'selectors' => array(
+					'{{WRAPPER}} .mas-posts-thumbs-wrapper .swiper-slide-thumb-active .swiper-pagination-progress-body-helper' => 'background-color: {{VALUE}}',
+				),
+				'condition'          => array(
+					'thumbs_direction' => 'vertical',
 				),
 			)
 		);
@@ -1675,21 +1705,6 @@ abstract class Posts_Base extends Base_Widget {
 					'{{WRAPPER}} .swiper-step-pagination-title' => 'margin-bottom: {{SIZE}}{{UNIT}};',
 				),
 				'separator'   => 'before',
-			)
-		);
-
-		$this->add_control(
-			'thumb_progress_color',
-			array(
-				'label'     => __( 'Progress Color', 'mas-elementor' ),
-				'type'      => Controls_Manager::COLOR,
-				'default'   => '#377dff',
-				'selectors' => array(
-					'{{WRAPPER}} .swiper-pagination-progress-body-helper' => 'background-color: {{VALUE}}',
-				),
-				'condition'          => array(
-					'thumbs_direction' => 'vertical',
-				),
 			)
 		);
 
