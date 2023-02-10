@@ -635,7 +635,7 @@ trait Pagination_Trait {
 				$end   = ! is_rtl() ? $right : $left;
 
 				$element->add_control(
-					'thumb_offset_orientation_h',
+					'pag_offset_orientation_h',
 					array(
 						'label'       => esc_html__( 'Horizontal Orientation', 'mas-elementor' ),
 						'type'        => Controls_Manager::CHOOSE,
@@ -662,7 +662,7 @@ trait Pagination_Trait {
 				);
 
 				$element->add_responsive_control(
-					'thumb_offset_x',
+					'pag_offset_x',
 					array(
 						'label'      => esc_html__( 'Offset', 'mas-elementor' ),
 						'type'       => Controls_Manager::SLIDER,
@@ -694,7 +694,7 @@ trait Pagination_Trait {
 							'body.rtl {{WRAPPER}} ' . $args['concat'] . ' .swiper-pagination' => 'right: {{SIZE}}{{UNIT}} !important',
 						),
 						'condition'  => array(
-							'thumb_offset_orientation_h!' => 'end',
+							'pag_offset_orientation_h!' => 'end',
 							'enable_carousel'             => 'yes',
 							'show_pagination'             => 'yes',
 							'mas_swiper_pagination_position' => 'absolute',
@@ -703,7 +703,7 @@ trait Pagination_Trait {
 				);
 
 				$element->add_responsive_control(
-					'thumb_offset_x_end',
+					'pag_offset_x_end',
 					array(
 						'label'      => esc_html__( 'Offset', 'mas-elementor' ),
 						'type'       => Controls_Manager::SLIDER,
@@ -735,7 +735,7 @@ trait Pagination_Trait {
 							'body.rtl {{WRAPPER}} ' . $args['concat'] . ' .swiper-pagination' => 'left: {{SIZE}}{{UNIT}} !important',
 						),
 						'condition'  => array(
-							'thumb_offset_orientation_h' => 'end',
+							'pag_offset_orientation_h' => 'end',
 							'enable_carousel'            => 'yes',
 							'show_pagination'            => 'yes',
 							'mas_swiper_pagination_position' => 'absolute',
