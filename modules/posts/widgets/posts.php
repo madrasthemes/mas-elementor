@@ -202,9 +202,9 @@ class Posts extends Posts_Base {
 			$thumbs_json = wp_json_encode( array( 'thumbs_selector' => 'thumb-' . $this->get_id() ) );
 			$classes     = array( 'mas-js-swiper-thumbs' );
 			if ( 'light' === $settings['thumbs_pag_color'] ) {
-				$classes[] = 'horizontal' === $settings['thumbs_pag_color'] ? 'swiper-step-pagination-light swiper-step-pagination' : 'swiper-pagination-progress-light';
+				$classes[] = 'horizontal' === $settings['thumbs_direction'] ? 'swiper-step-pagination-light swiper-step-pagination' : 'swiper-pagination-progress-light';
 			} elseif ( 'dark' === $settings['thumbs_pag_color'] ) {
-				$classes[] = 'horizontal' === $settings['thumbs_pag_color'] ? 'swiper-step-pagination' : 'swiper-pagination-progress';
+				$classes[] = 'horizontal' === $settings['thumbs_direction'] ? 'swiper-step-pagination' : 'swiper-pagination-progress';
 			}
 
 			$this->add_render_attribute( 'thumb_swiper', 'data-thumbs-options', $thumbs_json );
