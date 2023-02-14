@@ -172,7 +172,7 @@ class Skin_Counter_V1 extends Skin_Base {
 				'min'         => 1,
 				'max'         => 20,
 				'step'        => .5,
-			),
+			)
 		);
 
 		$this->add_control(
@@ -183,7 +183,7 @@ class Skin_Counter_V1 extends Skin_Base {
 				'default' => '8',
 				'min'     => '1',
 				'max'     => '30',
-			),
+			)
 		);
 
 		$this->add_control(

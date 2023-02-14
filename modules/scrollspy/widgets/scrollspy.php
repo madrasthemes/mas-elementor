@@ -185,7 +185,7 @@ class Scrollspy extends Widget_Icon_List {
 		);
 
 		$this->start_controls_tabs(
-			'scrollspy_tabs',
+			'scrollspy_tabs'
 		);
 
 		$this->start_controls_tab(

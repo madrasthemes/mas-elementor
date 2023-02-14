@@ -48,12 +48,13 @@ class Post_Featured_Image extends \Elementor\Core\DynamicTags\Data_Tag {
 	 * @param array $options control opions.
 	 */
 	public function get_value( array $options = array() ) {
-		$thumbnail_id = get_post_thumbnail_id();
+		$thumbnail_id  = get_post_thumbnail_id();
+		$thumbnail_url = wp_get_attachment_image_src( $thumbnail_id, 'full' );
 
-		if ( $thumbnail_id ) {
+		if ( $thumbnail_id && ! empty( $thumbnail_url )) {
 			$image_data = array(
 				'id'  => $thumbnail_id,
-				'url' => wp_get_attachment_image_src( $thumbnail_id, 'full' )[0],
+				'url' => $thumbnail_url[0],
 			);
 		} else {
 			$image_data = $this->get_settings( 'fallback' );
