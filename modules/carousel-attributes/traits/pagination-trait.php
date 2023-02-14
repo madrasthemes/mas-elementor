@@ -367,8 +367,10 @@ trait Pagination_Trait {
 							),
 						),
 						'selectors' => array(
-							'{{WRAPPER}} ' . $args['concat'] . ' .swiper-pagination .swiper-pagination-bullet' => 'margin-right: {{SIZE}}px !important',
-							'{{WRAPPER}} ' . $args['concat'] . ' .swiper-pagination .swiper-pagination-bullet:last-child' => 'margin-right: 0px !important',
+							'{{WRAPPER}} ' . $args['concat'] . ' .swiper-pagination.mas-pagination-horizontal .swiper-pagination-bullet' => 'margin-right: {{SIZE}}px !important',
+							'{{WRAPPER}} ' . $args['concat'] . ' .swiper-pagination.mas-pagination-horizontal .swiper-pagination-bullet:last-child' => 'margin-right: 0px !important',
+							'{{WRAPPER}} ' . $args['concat'] . ' .swiper-pagination.swiper-pagination-vertical .swiper-pagination-bullet' => 'margin-bottom: {{SIZE}}px !important',
+							'{{WRAPPER}} ' . $args['concat'] . ' .swiper-pagination.swiper-pagination-vertical .swiper-pagination-bullet:last-child' => 'margin-bottom: 0px !important',
 						),
 						'condition' => array(
 							'enable_carousel' => 'yes',
@@ -599,7 +601,7 @@ trait Pagination_Trait {
 					)
 				);
 
-				$element->add_control(
+				$element->add_responsive_control(
 					'vertical_pagination_position',
 					array(
 						'label'     => esc_html__( 'Vertical Position', 'mas-elementor' ),
@@ -621,6 +623,121 @@ trait Pagination_Trait {
 						'condition' => array(
 							'enable_carousel' => 'yes',
 							'show_pagination' => 'yes',
+							'mas_swiper_pagination_position' => 'absolute',
+						),
+					)
+				);
+
+				$left  = esc_html__( 'Left', 'mas-elementor' );
+				$right = esc_html__( 'Right', 'mas-elementor' );
+
+				$start = is_rtl() ? $right : $left;
+				$end   = ! is_rtl() ? $right : $left;
+
+				$element->add_control(
+					'pag_offset_orientation_h',
+					array(
+						'label'       => esc_html__( 'Horizontal Orientation', 'mas-elementor' ),
+						'type'        => Controls_Manager::CHOOSE,
+						'toggle'      => false,
+						'default'     => 'start',
+						'options'     => array(
+							'start' => array(
+								'title' => $start,
+								'icon'  => 'eicon-h-align-left',
+							),
+							'end'   => array(
+								'title' => $end,
+								'icon'  => 'eicon-h-align-right',
+							),
+						),
+						'classes'     => 'elementor-control-start-end',
+						'render_type' => 'ui',
+						'condition'   => array(
+							'enable_carousel' => 'yes',
+							'show_pagination' => 'yes',
+							'mas_swiper_pagination_position' => 'absolute',
+						),
+					)
+				);
+
+				$element->add_responsive_control(
+					'pag_offset_x',
+					array(
+						'label'      => esc_html__( 'Offset', 'mas-elementor' ),
+						'type'       => Controls_Manager::SLIDER,
+						'range'      => array(
+							'px' => array(
+								'min'  => -1000,
+								'max'  => 1000,
+								'step' => 1,
+							),
+							'%'  => array(
+								'min' => -200,
+								'max' => 200,
+							),
+							'vw' => array(
+								'min' => -200,
+								'max' => 200,
+							),
+							'vh' => array(
+								'min' => -200,
+								'max' => 200,
+							),
+						),
+						'default'    => array(
+							'size' => '0',
+						),
+						'size_units' => array( 'px', '%', 'vw', 'vh', 'custom' ),
+						'selectors'  => array(
+							'body:not(.rtl) {{WRAPPER}} ' . $args['concat'] . ' .swiper-pagination' => 'left: {{SIZE}}{{UNIT}} !important',
+							'body.rtl {{WRAPPER}} ' . $args['concat'] . ' .swiper-pagination' => 'right: {{SIZE}}{{UNIT}} !important',
+						),
+						'condition'  => array(
+							'pag_offset_orientation_h!' => 'end',
+							'enable_carousel'             => 'yes',
+							'show_pagination'             => 'yes',
+							'mas_swiper_pagination_position' => 'absolute',
+						),
+					)
+				);
+
+				$element->add_responsive_control(
+					'pag_offset_x_end',
+					array(
+						'label'      => esc_html__( 'Offset', 'mas-elementor' ),
+						'type'       => Controls_Manager::SLIDER,
+						'range'      => array(
+							'px' => array(
+								'min'  => -1000,
+								'max'  => 1000,
+								'step' => 0.1,
+							),
+							'%'  => array(
+								'min' => -200,
+								'max' => 200,
+							),
+							'vw' => array(
+								'min' => -200,
+								'max' => 200,
+							),
+							'vh' => array(
+								'min' => -200,
+								'max' => 200,
+							),
+						),
+						'default'    => array(
+							'size' => '0',
+						),
+						'size_units' => array( 'px', '%', 'vw', 'vh', 'custom' ),
+						'selectors'  => array(
+							'body:not(.rtl) {{WRAPPER}} ' . $args['concat'] . ' .swiper-pagination' => 'right: {{SIZE}}{{UNIT}} !important',
+							'body.rtl {{WRAPPER}} ' . $args['concat'] . ' .swiper-pagination' => 'left: {{SIZE}}{{UNIT}} !important',
+						),
+						'condition'  => array(
+							'pag_offset_orientation_h' => 'end',
+							'enable_carousel'            => 'yes',
+							'show_pagination'            => 'yes',
 							'mas_swiper_pagination_position' => 'absolute',
 						),
 					)

@@ -70,6 +70,14 @@ class Module extends Module_Base {
 			true
 		);
 
+		wp_register_script(
+			'mas-nav-init',
+			MAS_ELEMENTOR_MODULES_URL . 'mas-nav-menu/assets/js/nav-menu.js',
+			array(),
+			MAS_ELEMENTOR_VERSION,
+			true
+		);
+
 	}
 
 	/**

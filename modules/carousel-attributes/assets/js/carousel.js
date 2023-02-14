@@ -14,11 +14,14 @@ const carousel = (() => {
 
   // Carousel initialisation
   let carousels = document.querySelectorAll('.swiper');
+  let thumbs = document.querySelectorAll('.mas-js-swiper-thumbs');
   forEach(carousels, (index, value) => {
-    
     let userOptions,
-        pagerOptions;
+        pagerOptions,
+        userThumbs;
     if(value.dataset.swiperOptions != undefined) userOptions = JSON.parse(value.dataset.swiperOptions);
+    if(value.dataset.swiperWidget != undefined) userThumbs = (value.dataset.swiperWidget);
+  
 
 
     // Pager
@@ -35,9 +38,44 @@ const carousel = (() => {
         }
       }
     }
-
     // Slider init
+    
+
+    forEach(thumbs, (thumbsIndex, thumbsValue) => { 
+      let thumbsUserOptions,
+      thumbSwiperOptions;
+      if(thumbsValue.dataset.swiperOptions != undefined) thumbSwiperOptions = JSON.parse(thumbsValue.dataset.swiperOptions);
+      // console.log(thumbsValue.dataset.thumbsOptions);
+      if(thumbsValue.dataset.thumbsOptions != undefined) thumbsUserOptions = JSON.parse(thumbsValue.dataset.thumbsOptions);
+      
+
+      if ( 'horizontal' !== thumbSwiperOptions.direction && thumbsUserOptions.thumbs_selector == userThumbs ) {
+        thumbSwiperOptions['on'] = {
+          'afterInit': function (swiper) {
+            swiper.el.style.opacity = 1
+            swiper.el.querySelectorAll('.js-swiper-pagination-progress-body-helper')
+                    .forEach($progress => $progress.style.transitionDuration = `${userOptions.autoplay.delay}ms`)
+          }
+        };
+        thumbSwiperOptions['watchSlidesVisibility'] = true;
+        thumbSwiperOptions['watchSlidesProgress'] = true;
+        thumbSwiperOptions['history'] = false;
+        let sliderThumbs = new Swiper(thumbsValue, thumbSwiperOptions);
+        userOptions['thumbs'] = {'swiper': sliderThumbs};
+      }
+  
+      if ( 'horizontal' === thumbSwiperOptions.direction && thumbsUserOptions.thumbs_selector == userThumbs ) {
+
+        let sliderThumbs = new Swiper(thumbsValue, thumbSwiperOptions);
+    
+          userOptions['thumbs'] = {'swiper': sliderThumbs};
+
+      }
+
+    });
     let options = {...userOptions, ...pagerOptions};
+    
+    // console.log(value);
     let swiper = new Swiper(value, options);
 
     swiper.on('init', function(swiper){

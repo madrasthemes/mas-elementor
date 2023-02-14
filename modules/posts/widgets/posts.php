@@ -120,6 +120,158 @@ class Posts extends Posts_Base {
 			return;
 		}
 
+		$this->carousel_post( $settings, $query );
+		$this->thumb_post( $settings, $query );
+		$this->render_script( 'swiper-' . $this->get_id() );
+
+	}
+
+	/**
+	 * Thumb Post.
+	 *
+	 * @param array  $settings Settings of this widget.
+	 * @param object $query query of this widget.
+	 */
+	public function thumb_post( $settings, $query ) {
+		if ( 'yes' === $settings['enable_thumbs'] && 'yes' === $settings['enable_carousel'] ) {
+			?><div class="mas-posts-thumbs-wrapper">
+				<div class="mas-posts-thumbs-container">
+				<?php
+					$this->carousel_thumb_header( $settings );
+
+				if ( $query->in_the_loop ) {
+
+					$this->current_permalink = get_permalink();
+					print( mas_render_template( $settings['thumb_template'], false ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+					wp_reset_postdata();
+
+				} else {
+					$count = 1;
+					while ( $query->have_posts() ) {
+
+						$query->the_post();
+						$this->thumb_slide_loop_start( $settings );
+						$this->current_permalink = get_permalink();
+						if ( ! empty( $settings['thumb_template'] ) ) {
+							print( mas_render_template( $settings['thumb_template'], false ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+						} else {
+							if ( 'horizontal' === $settings['thumbs_direction'] ) {
+								?>
+								<span class="swiper-step-pagination-title"><?php the_title(); ?></span>
+								<?php
+							} else {
+								?>
+								<p class="swiper-step-pagination-title"><?php the_title(); ?></p>
+								<div class="swiper-pagination-progress-body">
+									<div class="js-swiper-pagination-progress-body-helper swiper-pagination-progress-body-helper"></div>
+								</div>
+								<?php
+							}
+						}
+
+						$this->thumb_slide_loop_end( $settings );
+
+						$count ++;
+					}
+					if ( 'yes' !== $settings['enable_carousel'] ) {
+						// mas-post-container close.
+						?>
+							</div>
+						<?php
+					}
+							wp_reset_postdata();
+				}
+
+					$this->carousel_thumb_footer( $settings );
+				?>
+				</div>
+			</div>
+			<?php
+		}
+
+	}
+
+	/**
+	 * Carousel Loop Header.
+	 *
+	 * @param array $settings Settings of this widget.
+	 */
+	public function carousel_thumb_header( array $settings = array() ) {
+		if ( 'yes' === $settings['enable_thumbs'] && 'yes' === $settings['enable_carousel'] ) {
+			$json        = wp_json_encode( $this->get_swiper_thumbs_options( $settings ) );
+			$thumbs_json = wp_json_encode( array( 'thumbs_selector' => 'thumb-' . $this->get_id() ) );
+			$classes     = array( 'mas-js-swiper-thumbs' );
+			if ( 'light' === $settings['thumbs_pag_color'] ) {
+				$classes[] = 'horizontal' === $settings['thumbs_direction'] ? 'swiper-step-pagination-light swiper-step-pagination' : 'swiper-pagination-progress-light';
+			} elseif ( 'dark' === $settings['thumbs_pag_color'] ) {
+				$classes[] = 'horizontal' === $settings['thumbs_direction'] ? 'swiper-step-pagination' : 'swiper-pagination-progress';
+			}
+
+			$this->add_render_attribute( 'thumb_swiper', 'data-thumbs-options', $thumbs_json );
+			$this->add_render_attribute( 'thumb_swiper', 'data-swiper-options', $json );
+			$this->add_render_attribute( 'thumb_swiper', 'class', $classes );
+
+			?>
+			<div <?php $this->print_render_attribute_string( 'thumb_swiper' ); ?>>
+				<div class="swiper-wrapper">
+			<?php
+			if ( 'yes' === $settings['enable_thumbs'] && 'yes' === $settings['enable_carousel'] ) {
+				$this->add_render_attribute( 'thumb_bg_image', 'class', 'swiper-slide' );
+				if ( 'vertical' === $settings['thumbs_direction'] ) {
+					$this->add_render_attribute( 'thumb_bg_image', 'class', 'swiper-pagination-progress swiper-pagination-progress-ight' );
+				}
+			}
+		}
+
+	}
+
+	/**
+	 * Carousel Loop Footer.
+	 *
+	 * @param array $settings Settings of this widget.
+	 */
+	public function carousel_thumb_footer( array $settings = array() ) {
+		if ( 'yes' === $settings['enable_thumbs'] && 'yes' === $settings['enable_carousel'] ) {
+			?>
+			</div></div>
+			<?php
+		}
+	}
+
+	/**
+	 * Swiper loop start.
+	 *
+	 * @param array $settings Settings of this widget.
+	 */
+	public function thumb_slide_loop_start( array $settings = array() ) {
+		if ( 'yes' === $settings['enable_thumbs'] && 'yes' === $settings['enable_carousel'] ) {
+			?>
+			<div <?php $this->print_render_attribute_string( 'thumb_bg_image' ); ?>>
+			<?php
+		}
+	}
+
+	/**
+	 * Swiper loop start.
+	 *
+	 * @param array $settings Settings of this widget.
+	 */
+	public function thumb_slide_loop_end( array $settings = array() ) {
+		if ( 'yes' === $settings['enable_thumbs'] && 'yes' === $settings['enable_carousel'] ) {
+
+			?>
+			</div>
+			<?php
+		}
+	}
+
+	/**
+	 * Carousel Post.
+	 *
+	 * @param array  $settings Settings of this widget.
+	 * @param object $query query of this widget.
+	 */
+	public function carousel_post( $settings, $query ) {
 		$post_wrapper = 'mas-posts-container mas-posts mas-grid';
 		$this->carousel_loop_header( $settings );
 
@@ -171,8 +323,5 @@ class Posts extends Posts_Base {
 		if ( 'yes' !== $settings['enable_carousel'] ) {
 			$this->render_loop_footer();
 		}
-
-		$this->render_script( 'swiper-' . $this->get_id() );
-
 	}
 }

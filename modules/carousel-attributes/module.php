@@ -189,6 +189,29 @@ class Module extends Module_Base {
 		);
 
 		$element->add_control(
+			'swiper_height_auto',
+			array(
+				'label'                => esc_html__( 'Height', 'mas-elementor' ),
+				'type'                 => Controls_Manager::SELECT,
+				'default'              => 'default',
+				'options'              => array(
+					'default' => 'Default',
+					'auto'    => 'Auto',
+				),
+				'selectors_dictionary' => array(
+					'default' => '100%',
+					'auto'    => 'auto',
+				),
+				'selectors'            => array(
+					'{{WRAPPER}} .swiper-slide' => 'height: {{VALUE}};',
+				),
+				'condition'            => array(
+					'enable_carousel' => 'yes',
+				),
+			)
+		);
+
+		$element->add_control(
 			'center_slides',
 			array(
 				'type'               => Controls_Manager::SWITCHER,
@@ -366,6 +389,24 @@ class Module extends Module_Base {
 			)
 		);
 
+		$element->add_control(
+			'pagination_style',
+			array(
+				'label'     => esc_html__( 'Pagination Style', 'mas-elementor' ),
+				'type'      => Controls_Manager::SELECT,
+				'default'   => 'horizontal',
+				'options'   => array(
+					'horizontal' => esc_html__( 'Horizontal', 'mas-elementor' ),
+					'vertical'   => esc_html__( 'Vertical', 'mas-elementor' ),
+				),
+				'condition' => array(
+					'enable_carousel' => 'yes',
+					'show_pagination' => 'yes',
+
+				),
+			)
+		);
+
 		$element->end_controls_section();
 		$element->end_injection();
 		$this->register_pagination_style_controls( $element );
@@ -442,6 +483,11 @@ class Module extends Module_Base {
 				$element->add_render_attribute( 'swiper-pagination', 'id', 'pagination-' . $section_id );
 			}
 			$element->add_render_attribute( 'swiper-pagination', 'class', 'swiper-pagination' );
+			if ( 'vertical' === $settings['pagination_style'] ) {
+				$element->add_render_attribute( 'swiper-pagination', 'class', 'swiper-pagination-vertical' );
+			} else {
+				$element->add_render_attribute( 'swiper-pagination', 'class', 'mas-pagination-horizontal' );
+			}
 			$element->add_render_attribute( 'swiper-pagination', 'style', 'position: ' . $settings['mas_swiper_pagination_position'] . ';' );
 			if ( 'yes' === $settings['show_pagination'] ) :
 				?>
