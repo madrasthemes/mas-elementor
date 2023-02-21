@@ -2061,7 +2061,7 @@ class Signin extends Base_Widget {
 		$this->render_form_header( $settings['login_title'], $settings['login_description'], $settings );
 
 		?>
-		<form class="elementor-form mas-login-form login" method="post" action="<?php echo esc_url( site_url( 'wp-login.php', 'login_post' ) ); ?>">
+		<form class="elementor-form mas-login-form login" method="post">
 			<?php
 			if ( isset( $_POST['login'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing
 					// show any error messages after form submission.
