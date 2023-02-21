@@ -424,7 +424,8 @@ if ( ! function_exists( 'mas_template_options' ) ) {
 		if ( ! empty( $mas_templates ) ) {
 			$options = array( '' => esc_html__( '— None —', 'mas-elementor' ) );
 			foreach ( $mas_templates as $mas_template ) {
-				$options[ $mas_template->ID ] = $mas_template->post_title;
+				$template                 = get_page_by_path( $mas_template->post_name, OBJECT, $args['post_type'] );
+				$options[ $template->ID ] = $mas_template->post_title;
 			}
 		} else {
 			$options = array( '' => esc_html__( 'No Templates Found', 'mas-elementor' ) );
@@ -459,26 +460,26 @@ if ( ! function_exists( 'mas_render_template' ) ) {
 }
 
 if ( ! function_exists( 'mas_render_content' ) ) {
-    /**
-     * MAS render content.
-     *
-     * @param array $post_id  post ID.
-     * @param bool  $echo  echo.
-     */
-    function mas_render_content( $post_id, $echo = false ) {
-        if ( did_action( 'elementor/loaded' ) ) {
-            $content = Plugin::instance()->frontend->get_builder_content_for_display( $post_id );
-        } else {
-            $content = get_the_content( null, false, $post_id );
-            $content = apply_filters( 'the_content', $content );
-            $content = str_replace( ']]>', ']]&gt;', $content );
-        }
-        if ( $echo ) {
-            echo wp_kses_post( $content );
-        } else {
-            return $content;
-        }
-    }
+	/**
+	 * MAS render content.
+	 *
+	 * @param array $post_id  post ID.
+	 * @param bool  $echo  echo.
+	 */
+	function mas_render_content( $post_id, $echo = false ) {
+		if ( did_action( 'elementor/loaded' ) ) {
+			$content = Plugin::instance()->frontend->get_builder_content_for_display( $post_id );
+		} else {
+			$content = get_the_content( null, false, $post_id );
+			$content = apply_filters( 'the_content', $content );
+			$content = str_replace( ']]>', ']]&gt;', $content );
+		}
+		if ( $echo ) {
+			echo wp_kses_post( $content );
+		} else {
+			return $content;
+		}
+	}
 }
 
 if ( ! function_exists( 'mas_option_enabled_post_types' ) ) {
