@@ -4,7 +4,7 @@ Tags: posts, products, nav-menu, carousel, tabs, multipurpose text
 Requires at least: 5.0
 Tested up to: 6.1
 Requires PHP: 7.4
-Stable tag: 1.0.5
+Stable tag: 1.0.6
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -67,6 +67,9 @@ All of our online documentation can be found on [our documentation site](https:/
 
 
 == Changelog ==
+
+= 1.0.6 - 2023-02-23 =
+* Fix : Fixed JS Carousel issue.
 
 = 1.0.5 - 2023-02-21 =
 * Feature : Added User Account Forms Widget.
