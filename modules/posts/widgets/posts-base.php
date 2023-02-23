@@ -1610,7 +1610,7 @@ abstract class Posts_Base extends Base_Widget {
 				'selectors' => array(
 					'{{WRAPPER}} .swiper-pagination-progress-body-helper' => 'background-color: {{VALUE}}',
 				),
-				'condition'          => array(
+				'condition' => array(
 					'thumbs_direction' => 'vertical',
 				),
 			)
@@ -1647,7 +1647,7 @@ abstract class Posts_Base extends Base_Widget {
 				'selectors' => array(
 					'{{WRAPPER}} .mas-posts-thumbs-wrapper .swiper-slide-thumb-active .swiper-pagination-progress-body-helper' => 'background-color: {{VALUE}}',
 				),
-				'condition'          => array(
+				'condition' => array(
 					'thumbs_direction' => 'vertical',
 				),
 			)
@@ -1697,14 +1697,14 @@ abstract class Posts_Base extends Base_Widget {
 						'step' => 1,
 					),
 				),
-				'condition'          => array(
+				'condition'  => array(
 					'thumbs_direction' => 'vertical',
 				),
 				'size_units' => array( 'px', '%', 'vw', 'custom' ),
 				'selectors'  => array(
 					'{{WRAPPER}} .swiper-step-pagination-title' => 'margin-bottom: {{SIZE}}{{UNIT}};',
 				),
-				'separator'   => 'before',
+				'separator'  => 'before',
 			)
 		);
 
@@ -2296,7 +2296,8 @@ abstract class Posts_Base extends Base_Widget {
 				'default'   => 'no',
 				'separator' => 'before',
 				'condition' => array(
-					'select_template!' => '',
+					'select_template!'    => '',
+					'enable_sticky_loop!' => 'yes',
 				),
 			)
 		);
@@ -2324,8 +2325,23 @@ abstract class Posts_Base extends Base_Widget {
 				'type'        => Controls_Manager::SELECT,
 				'options'     => $templates,
 				'description' => esc_html__( 'Select Templates for the above selected posts series', 'mas-elementor' ),
-				'condition'   => array(
-					'enable_loop_selection' => 'yes',
+				// 'condition'   => array(
+				// 'enable_loop_selection' => 'yes',
+				// ),
+				'conditions'  => array(
+					'relation' => 'or',
+					'terms'    => array(
+						array(
+							'name'     => 'enable_loop_selection',
+							'operator' => '==',
+							'value'    => 'yes',
+						),
+						array(
+							'name'     => 'enable_sticky_loop',
+							'operator' => '==',
+							'value'    => 'yes',
+						),
+					),
 				),
 			)
 		);
@@ -2818,7 +2834,7 @@ abstract class Posts_Base extends Base_Widget {
 					if(value.dataset.swiperWidget != undefined) userThumbs   = (value.dataset.swiperWidget);
 
 					// Pager
-					if(userOptions.pager) {
+					if(userOptions != undefined && userOptions.pager != undefined) {
 					pagerOptions = {
 						pagination: {
 						el: '.pagination .list-unstyled',
@@ -2859,7 +2875,7 @@ abstract class Posts_Base extends Base_Widget {
 
 
 					// Tabs (linked content)
-					if(userOptions.tabs) {
+					if(userOptions != undefined && userOptions.tabs != undefined) {
 
 					swiper.on('activeIndexChange', (e) => {
 						let targetTab = document.querySelector(e.slides[e.activeIndex].dataset.swiperTab),

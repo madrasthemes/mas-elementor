@@ -85,6 +85,37 @@ class Posts extends Posts_Base {
 		$this->register_layout_section_controls();
 		parent::register_controls();
 		$this->register_pagination_section_controls();
+		$this->update_posts_base_controls();
+	}
+
+	/**
+	 * Update controls for this widget.
+	 */
+	protected function update_posts_base_controls() {
+
+		$this->start_injection(
+			array(
+				'at' => 'after',
+				'of' => 'select_template',
+			)
+		);
+
+			$this->add_control(
+				'enable_sticky_loop',
+				array(
+					'type'      => Controls_Manager::SWITCHER,
+					'label'     => esc_html__( 'Enable Sticky Template', 'mas-elementor' ),
+					'default'   => 'no',
+					'separator' => 'none',
+					'condition' => array(
+						'select_template!'       => '',
+						'enable_loop_selection!' => 'yes',
+					),
+				)
+			);
+
+		$this->end_injection();
+
 	}
 
 	/**
@@ -297,6 +328,8 @@ class Posts extends Posts_Base {
 				$this->current_permalink = get_permalink();
 				if ( ! empty( $settings['select_template'] ) ) {
 					if ( ! empty( $settings['select_loop'] ) && in_array( (string) $count, $settings['select_loop'], true ) ) {
+						print( mas_render_template( $settings['select_loop_template'], false ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+					} elseif ( 'yes' === $settings['enable_sticky_loop'] && is_sticky() ) {
 						print( mas_render_template( $settings['select_loop_template'], false ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 					} else {
 						print( mas_render_template( $settings['select_template'], false ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped

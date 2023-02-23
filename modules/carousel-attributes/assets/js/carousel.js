@@ -25,7 +25,7 @@ const carousel = (() => {
 
 
     // Pager
-    if(userOptions.pager) {
+    if(userOptions != undefined && userOptions.pager != undefined) {
       pagerOptions = {
         pagination: {
           el: '.pagination .list-unstyled',
@@ -84,7 +84,7 @@ const carousel = (() => {
 
 
     // Tabs (linked content)
-    if(userOptions.tabs) {
+    if(userOptions != undefined && userOptions.tabs != undefined) {
 
       swiper.on('activeIndexChange', (e) => {
         let targetTab = document.querySelector(e.slides[e.activeIndex].dataset.swiperTab),
