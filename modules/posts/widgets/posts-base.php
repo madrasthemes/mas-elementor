@@ -2834,7 +2834,7 @@ abstract class Posts_Base extends Base_Widget {
 					if(value.dataset.swiperWidget != undefined) userThumbs   = (value.dataset.swiperWidget);
 
 					// Pager
-					if(userOptions.pager) {
+					if(userOptions != undefined && userOptions.pager != undefined) {
 					pagerOptions = {
 						pagination: {
 						el: '.pagination .list-unstyled',
@@ -2875,7 +2875,7 @@ abstract class Posts_Base extends Base_Widget {
 
 
 					// Tabs (linked content)
-					if(userOptions.tabs) {
+					if(userOptions != undefined && userOptions.tabs != undefined) {
 
 					swiper.on('activeIndexChange', (e) => {
 						let targetTab = document.querySelector(e.slides[e.activeIndex].dataset.swiperTab),
