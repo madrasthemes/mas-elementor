@@ -67,6 +67,7 @@ function mas_elementor_load_plugin() {
 }
 
 add_action( 'plugins_loaded', 'mas_elementor_load_plugin' );
+add_action( 'plugins_loaded', 'mas_extensions_includes', 20 );
 
 /**
  * Print Error.
@@ -580,6 +581,76 @@ if ( ! function_exists( 'mas_elementor_breadcrumb' ) ) {
 			$output .= wp_kses_post( $args['wrap_after'] );
 
 			echo wp_kses_post( apply_filters( 'mas_breadcrumb_html', $output ) );
+		}
+	}
+}
+
+if ( ! function_exists( 'mas_extensions_includes' ) ) {
+
+	/**
+	 * Include required files
+	 *
+	 * @since  1.0.0
+	 * @return void
+	 */
+	function mas_extensions_includes() {
+		/**
+		 * Class autoloader.
+		 */
+		include_once MAS_ELEMENTOR_PATH . 'portfolio/includes/class-mas-autoloader.php';
+
+		/**
+		 * Core classes.
+		 */
+		require MAS_ELEMENTOR_PATH . 'portfolio/includes/functions.php';
+
+		/**
+		 * Custom Post Types
+		 */
+		require MAS_ELEMENTOR_PATH . 'portfolio/modules/classes/class-mas-jetpack-portfolio.php';
+
+		if ( mas_is_request( 'admin' ) ) {
+			include_once MAS_ELEMENTOR_PATH . 'portfolio/includes/admin/class-mas-admin.php';
+		}
+	}
+}
+
+if ( ! function_exists( 'mas_is_request' ) ) {
+
+	/**
+	 * What type of request is this?
+	 *
+	 * @param  string $type admin, ajax, cron or masend.
+	 * @return bool
+	 */
+	function mas_is_request( $type ) {
+		switch ( $type ) {
+			case 'admin':
+				return is_admin();
+			case 'ajax':
+				return defined( 'DOING_AJAX' );
+			case 'cron':
+				return defined( 'DOING_CRON' );
+			case 'masend':
+				return ( ! is_admin() || defined( 'DOING_AJAX' ) ) && ! defined( 'DOING_CRON' ) && ! is_rest_api_request();
+		}
+	}
+
+}
+
+if ( ! function_exists( 'mas_clean' ) ) {
+	/**
+	 * Clean variables using sanitize_text_field. Arrays are cleaned recursively.
+	 * Non-scalar values are ignored.
+	 *
+	 * @param string|array $var Data to sanitize.
+	 * @return string|array
+	 */
+	function mas_clean( $var ) {
+		if ( is_array( $var ) ) {
+			return array_map( 'mas_clean', $var );
+		} else {
+			return is_scalar( $var ) ? sanitize_text_field( $var ) : $var;
 		}
 	}
 }
