@@ -635,7 +635,6 @@ if ( ! function_exists( 'mas_is_request' ) ) {
 				return ( ! is_admin() || defined( 'DOING_AJAX' ) ) && ! defined( 'DOING_CRON' ) && ! is_rest_api_request();
 		}
 	}
-
 }
 
 if ( ! function_exists( 'mas_clean' ) ) {

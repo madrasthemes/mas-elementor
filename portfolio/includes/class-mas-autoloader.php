@@ -63,30 +63,30 @@ class MAS_Autoloader {
 	 * @param string $class Class name.
 	 */
 	/**
-     * Auto-load WC classes on demand to reduce memory consumption.
-     *
-     * @param string $class Class name.
-     */
-    public function autoload( $class ) {
-        $class = strtolower( $class );
+	 * Auto-load WC classes on demand to reduce memory consumption.
+	 *
+	 * @param string $class Class name.
+	 */
+	public function autoload( $class ) {
+		$class = strtolower( $class );
 
-        if ( 0 !== strpos( $class, 'mas_' ) ) {
-            return;
-        }
+		if ( 0 !== strpos( $class, 'mas_' ) ) {
+			return;
+		}
 
-        $file = $this->get_file_name_from_class( $class );
-        $path = '';
+		$file = $this->get_file_name_from_class( $class );
+		$path = '';
 
-        if ( 0 === strpos( $class, 'mas_meta_box' ) ) {
-            $path = $this->include_path . 'admin/meta-boxes/';
-        } elseif ( 0 === strpos( $class, 'mas_admin' ) ) {
-            $path = $this->include_path . 'admin/';
-        }
+		if ( 0 === strpos( $class, 'mas_meta_box' ) ) {
+			$path = $this->include_path . 'admin/meta-boxes/';
+		} elseif ( 0 === strpos( $class, 'mas_admin' ) ) {
+			$path = $this->include_path . 'admin/';
+		}
 
-        if ( empty( $path ) || ! $this->load_file( $path . $file ) ) {
-            $this->load_file( $this->include_path . $file );
-        }
-    }
+		if ( empty( $path ) || ! $this->load_file( $path . $file ) ) {
+			$this->load_file( $this->include_path . $file );
+		}
+	}
 }
 
 new MAS_Autoloader();

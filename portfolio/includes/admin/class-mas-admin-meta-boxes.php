@@ -4,14 +4,11 @@
  *
  * Sets up the write panels used by products and orders (custom post types).
  *
- * @author      MadrasThemes
- * @category    Admin
- * @package     MAS/Admin/Meta Boxes
- * @version     1.0.0
+ * @package     Portfolio/Admin/Meta Boxes
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
-	exit; // Exit if accessed directly
+	exit; // Exit if accessed directly.
 }
 
 /**
@@ -50,7 +47,7 @@ class MAS_Admin_Meta_Boxes {
 	/**
 	 * Add an error message.
 	 *
-	 * @param string $text
+	 * @param string $text text.
 	 */
 	public static function add_error( $text ) {
 		self::$meta_box_errors[] = $text;
@@ -79,7 +76,7 @@ class MAS_Admin_Meta_Boxes {
 
 			echo '</div>';
 
-			// Clear
+			// Clear.
 			delete_option( 'mas_meta_box_errors' );
 		}
 	}
@@ -98,8 +95,8 @@ class MAS_Admin_Meta_Boxes {
 	/**
 	 * Check if we're saving, the trigger an action based on the post type.
 	 *
-	 * @param  int    $post_id
-	 * @param  object $post
+	 * @param  int    $post_id post id.
+	 * @param  object $post post object.
 	 */
 	public function save_meta_boxes( $post_id, $post ) {
 		// $post_id and $post are required
@@ -107,22 +104,22 @@ class MAS_Admin_Meta_Boxes {
 			return;
 		}
 
-		// Dont' save meta boxes for revisions or autosaves
+		// Dont' save meta boxes for revisions or autosaves.
 		if ( ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) || is_int( wp_is_post_revision( $post ) ) || is_int( wp_is_post_autosave( $post ) ) ) {
 			return;
 		}
 
-		// Check the nonce
-		if ( empty( $_POST['mas_meta_nonce'] ) || ! wp_verify_nonce( $_POST['mas_meta_nonce'], 'mas_save_data' ) ) {
+		// Check the nonce.
+		if ( empty( $_POST['mas_meta_nonce'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['mas_meta_nonce'] ) ), 'mas_save_data' ) ) {
 			return;
 		}
 
-		// Check the post being saved == the $post_id to prevent triggering this call for other save_post events
-		if ( empty( $_POST['post_ID'] ) || $_POST['post_ID'] != $post_id ) {
+		// Check the post being saved == the $post_id to prevent triggering this call for other save_post events.
+		if ( empty( $_POST['post_ID'] ) || $_POST['post_ID'] !== (string) $post_id ) {
 			return;
 		}
 
-		// Check user has permission to edit
+		// Check user has permission to edit.
 		if ( ! current_user_can( 'edit_post', $post_id ) ) {
 			return;
 		}
@@ -130,12 +127,12 @@ class MAS_Admin_Meta_Boxes {
 		// We need this save event to run once to avoid potential endless loops. This would have been perfect:
 		// remove_action( current_filter(), __METHOD__ );
 		// But cannot be used due to https://github.com/woocommerce/woocommerce/issues/6485
-		// When that is patched in core we can use the above. For now:
+		// When that is patched in core we can use the above. For now:.
 		self::$saved_meta_boxes = true;
 
-		// Check the post type
+		// Check the post type.
 
-		if ( in_array( $post->post_type, array( 'jetpack-portfolio' ) ) ) {
+		if ( in_array( $post->post_type, array( 'jetpack-portfolio' ), true ) ) {
 			do_action( 'mas_process_' . $post->post_type . '_meta', $post_id, $post );
 		}
 	}
