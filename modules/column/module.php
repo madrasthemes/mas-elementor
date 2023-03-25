@@ -66,6 +66,28 @@ class Module extends Module_Base {
 			)
 		);
 
+		$element->add_responsive_control(
+			'mas_column_height',
+			array(
+				'label'     => esc_html__( 'Height', 'mas-elementor' ),
+				'type'      => Controls_Manager::SLIDER,
+				'size_units' => [ 'px', '%', 'custom' ],
+				'range'     => array(
+					'%' => array(
+						'min' => 0,
+						'max' => 100,
+					),
+					'px' => array(
+						'min' => 0,
+						'max' => 10000,
+					),
+				),
+				'selectors' => array(
+					'{{WRAPPER}}.elementor-column' => 'height: {{SIZE}}{{UNIT}}',
+				),
+			)
+		);
+
 		$element->add_control(
 			'scrollspy',
 			array(

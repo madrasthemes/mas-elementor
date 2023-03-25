@@ -68,6 +68,29 @@ class Module extends Module_Base {
 				'description' => esc_html__( 'Applied to elementor-container element. You can use additional bootstrap utility classes here.', 'mas-elementor' ),
 			)
 		);
+
+		$element->add_responsive_control(
+			'mas_section_height',
+			array(
+				'label'     => esc_html__( 'Height', 'mas-elementor' ),
+				'type'      => Controls_Manager::SLIDER,
+				'size_units' => [ 'px', '%', 'custom' ],
+				'range'     => array(
+					'%' => array(
+						'min' => 0,
+						'max' => 100,
+					),
+					'px' => array(
+						'min' => 0,
+						'max' => 10000,
+					),
+				),
+				'selectors' => array(
+					'{{WRAPPER}}.elementor-section'  => 'height: {{SIZE}}{{UNIT}}',
+					'{{WRAPPER}}.elementor-container' => 'height: {{SIZE}}{{UNIT}}',
+				),
+			)
+		);
 	}
 
 	/**
