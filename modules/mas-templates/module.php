@@ -26,7 +26,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  *
  * @since 1.0.0
  */
-class Module extends BaseModule {
+class Module extends PageModule {
 
 	/**
 	 * Post Id,.
@@ -68,7 +68,7 @@ class Module extends BaseModule {
 	/**
 	 * Adding this content in single.
 	 *
-	 * @param string $content contetnt.
+	 * @param string $template template.
 	 */
 	public function single_content_filter( $template ) {
 		if ( is_singular('post') ) {
@@ -86,7 +86,7 @@ class Module extends BaseModule {
 				$template_path = $page_templates_module->get_template_path( $page_template );
 				if ( $template_path ) {
 					$page_templates_module->set_print_callback( function() use ( $location ) { 
-						$this->print_content( $location);
+						$this->do_location( $location);
 					} );
 
 					$template = $template_path;
@@ -96,6 +96,11 @@ class Module extends BaseModule {
 		return $template;
 	}
 
+	/**
+	 * Get global author data.
+	 *
+	 * @return void
+	 */
 	public static function set_global_authordata() {
 		global $authordata;
 		if ( ! isset( $authordata->ID ) ) {
@@ -104,7 +109,7 @@ class Module extends BaseModule {
 		}
 	}
 
-	public function print_content( $location ) {
+	public function do_location( $location ) {
 		$template    = get_page_by_path( $location, OBJECT, 'elementor_library' );
 
 		if ( is_singular() ) {
@@ -123,9 +128,9 @@ class Module extends BaseModule {
 		 * @param Locations_Manager $this An instance of locations manager.
 		 */
 		do_action( "elementor/theme/before_do_single", $this );
-
-		echo wp_kses_post( Plugin::instance()->frontend->get_builder_content_for_display( $template->ID ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		
+		echo wp_kses_post( Plugin::instance()->frontend->get_builder_content_for_display( $template->ID ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		the_content();
 		// /**
 		//  * After location content printed.
 		//  *
