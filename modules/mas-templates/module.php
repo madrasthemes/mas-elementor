@@ -76,8 +76,8 @@ class Module extends BaseModule {
 		} elseif( is_archive() ) {
 			$location = 'archive';
 		}
-
-		$template_url    = get_page_by_path( $location, OBJECT, 'elementor_library' );
+		if ( ! empty( $location ) ) {
+			$template_url    = get_page_by_path( $location, OBJECT, 'elementor_library' );
 			$page_templates_module = Plugin::$instance->modules_manager->get_modules( 'page-templates' );
 			$document = Plugin::$instance->documents->get_doc_for_frontend( get_the_ID() );
 			$page_template = $page_templates_module::TEMPLATE_HEADER_FOOTER;
@@ -92,6 +92,7 @@ class Module extends BaseModule {
 					$template = $template_path;
 				}
 			}
+		}
 		return $template;
 	}
 
