@@ -124,7 +124,7 @@ class Module extends BaseModule {
 		 *
 		 * @param Locations_Manager $this An instance of locations manager.
 		 */
-		do_action( "elementor/theme/before_do_single", $this );
+		do_action( "elementor/theme/before_do_{$location}", $this );
 		
 		echo wp_kses_post( Plugin::instance()->frontend->get_builder_content_for_display( $template->ID ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		the_content();
@@ -139,7 +139,7 @@ class Module extends BaseModule {
 		//  *
 		//  * @param Locations_Manager $this An instance of locations manager.
 		//  */
-		do_action( "elementor/theme/after_do_single", $this );
+		do_action( "elementor/theme/after_do_{$location}", $this );
 
 		return true;
 	}
