@@ -8,11 +8,8 @@
 namespace MASElementor\Modules\MasTemplates;
 
 use Elementor\Controls_Manager;
-use Elementor\Core\Base\Document;
 use Elementor\Core\Base\Module as BaseModule;
-use Elementor\Core\DocumentTypes\PageBase;
 use Elementor\Plugin;
-use Elementor\Modules\PageTemplates\Module as PageModule;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
@@ -26,7 +23,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  *
  * @since 1.0.0
  */
-class Module extends PageModule {
+class Module extends BaseModule {
 
 	/**
 	 * Post Id,.
