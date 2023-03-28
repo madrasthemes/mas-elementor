@@ -74,7 +74,6 @@ class Module extends BaseModule {
 			$location = 'archive';
 		}
 		if ( ! empty( $location ) ) {
-			$template_url    = get_page_by_path( $location, OBJECT, 'elementor_library' );
 			$page_templates_module = Plugin::$instance->modules_manager->get_modules( 'page-templates' );
 			$document = Plugin::$instance->documents->get_doc_for_frontend( get_the_ID() );
 			$page_template = $page_templates_module::TEMPLATE_HEADER_FOOTER;
@@ -108,6 +107,9 @@ class Module extends BaseModule {
 
 	public function do_location( $location ) {
 		$template    = get_page_by_path( $location, OBJECT, 'elementor_library' );
+		if ( empty( $template )) {
+			return false;
+		}
 
 		if ( is_singular() ) {
 			self::set_global_authordata();
@@ -125,9 +127,8 @@ class Module extends BaseModule {
 		 * @param Locations_Manager $this An instance of locations manager.
 		 */
 		do_action( "elementor/theme/before_do_{$location}", $this );
-		
-		echo wp_kses_post( Plugin::instance()->frontend->get_builder_content_for_display( $template->ID ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		the_content();
+		echo wp_kses_post( Plugin::instance()->frontend->get_builder_content_for_display( $template->ID ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		// /**
 		//  * After location content printed.
 		//  *
