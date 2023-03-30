@@ -218,15 +218,15 @@ class Post_Content extends Base_Widget {
 				$content = apply_filters( 'the_content', $content );
 				Plugin::instance()->frontend->restore_content_filters();
 			}
-		} // End if().
+		}
 
 		// Restore edit mode state.
 		Plugin::instance()->editor->set_edit_mode( $is_edit_mode );
 
 		if ( $with_wrapper ) {
-			echo '<div class="elementor-post__content">' . balanceTags( $content, true ) . '</div>';  // XSS ok.
+			echo '<div class="elementor-post__content">' . balanceTags( $content, true ) . '</div>'; //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		} else {
-			echo $content; // XSS ok.
+			echo $content;//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		}
 
 		$level--;
