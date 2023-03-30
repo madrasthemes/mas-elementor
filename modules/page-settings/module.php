@@ -12,6 +12,7 @@ use Elementor\Core\Base\Document;
 use Elementor\Core\Base\Module as BaseModule;
 use Elementor\Core\DocumentTypes\PageBase;
 use Elementor\Plugin;
+use Elementor\Modules\Library\Documents\Page as LibraryPageDocument;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
@@ -104,7 +105,7 @@ class Module extends BaseModule {
 	 */
 	public function action_register_template_control( $document ) {
 		$post_types = function_exists( 'mas_option_enabled_post_types' ) ? mas_option_enabled_post_types() : array( 'post', 'page' );
-		if ( $document instanceof PageBase && is_a( $document->get_main_post(), 'WP_Post' ) && in_array( $document->get_main_post()->post_type, $post_types, true ) ) {
+		if ( $document instanceof LibraryPageDocument ) {
 			$this->post_id = $document->get_main_post()->ID;
 			$this->register_template_control( $document );
 		}
@@ -133,13 +134,16 @@ class Module extends BaseModule {
 				'tab'   => Controls_Manager::TAB_SETTINGS,
 			)
 		);
-		$templates = function_exists( 'mas_template_options' ) ? mas_template_options( 'page' ) : array();
 		$page->add_control(
-			'mas_select_template',
+			'mas_select_template_override',
 			array(
-				'label'   => esc_html__( 'Mas Templates', 'mas-elementor' ),
+				'label'   => esc_html__( 'Templates Override', 'mas-elementor' ),
 				'type'    => Controls_Manager::SELECT,
-				'options' => $templates,
+				'options' => array(
+					''            => 'None',
+					'single-post' => 'Single',
+					'archive'     => 'Archive'
+				),
 			)
 		);
 

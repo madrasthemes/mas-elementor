@@ -106,14 +106,31 @@ class Module extends BaseModule {
 	}
 
 	public function do_location( $location ) {
-		$template    = get_page_by_path( $location, OBJECT, 'elementor_library' );
-		if ( empty( $template )) {
+		$slug = '';
+		$page_templates = mas_template_override_options('page');
+		foreach( $page_templates as $id => $name ) {
+			if ( empty( $id ) ) {
+				continue;
+			}
+			$page_settings_manager = \Elementor\Core\Settings\Manager::get_settings_managers( 'page' );
+			$page_settings_model = $page_settings_manager->get_model( $id );
+
+			$template_name = $page_settings_model->get_settings( 'mas_select_template_override' );
+			if ( $template_name === $location ) {
+				$slug = $name;
+			}
+		}
+		
+
+		$template    = get_page_by_path( $slug, OBJECT, 'elementor_library' );
+		if ( empty( $template ) ) {
 			return false;
 		}
 
 		if ( is_singular() ) {
 			self::set_global_authordata();
 		}
+		$location = str_replace('-', '_', $location);
 
 		/**
 		 * Before location content printed.
