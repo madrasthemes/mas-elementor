@@ -71,10 +71,16 @@ class Module extends BaseModule {
 	 * @param string $template template.
 	 */
 	public function single_content_filter( $template ) {
-		if ( is_singular( 'post' ) ) {
-			$location = 'single-post';
-		} elseif ( is_archive() ) {
-			$location = 'archive';
+		$post_types = mas_option_enabled_post_types();
+		foreach ( $post_types as $post_type ) {
+			if ( 'page' === $post_type ) {
+				continue;
+			}
+			if ( is_singular( $post_type ) ) {
+				$location = 'single-' . $post_type;
+			} elseif ( is_post_type_archive( $post_type ) ) {
+				$location = 'archive-' . $post_type;
+			}
 		}
 		if ( ! empty( $location ) ) {
 			$page_templates_module = Plugin::$instance->modules_manager->get_modules( 'page-templates' );
