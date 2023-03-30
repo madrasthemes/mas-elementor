@@ -10,6 +10,8 @@ namespace MASElementor\Modules\MasTemplates;
 use Elementor\Controls_Manager;
 use Elementor\Core\Base\Module as BaseModule;
 use Elementor\Plugin;
+use Elementor\Modules\Library\Documents\Page as LibraryPageDocument;
+use Elementor\Core\Base\Document;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
@@ -50,6 +52,7 @@ class Module extends BaseModule {
 	 * @return void
 	 */
 	public function __construct() {
+		add_action( 'elementor/documents/register_controls', array( $this, 'action_register_template_control' ) );
 		add_filter( 'template_include', array( $this, 'single_content_filter' ), 99999 );
 	}
 
@@ -77,13 +80,39 @@ class Module extends BaseModule {
 			$page_templates_module = Plugin::$instance->modules_manager->get_modules( 'page-templates' );
 			$document              = Plugin::$instance->documents->get_doc_for_frontend( get_the_ID() );
 			$page_template         = $page_templates_module::TEMPLATE_HEADER_FOOTER;
+			$present               = false;
 
 			if ( ! empty( $page_template ) ) {
 				$template_path = $page_templates_module->get_template_path( $page_template );
-				if ( $template_path ) {
+				if ( ! empty( $template_path ) ) {
+					$slug           = '';
+					$page_templates = mas_template_override_options( 'page' );
+					foreach ( $page_templates as $id => $name ) {
+						if ( empty( $id ) ) {
+							continue;
+						}
+						$page_settings_manager = \Elementor\Core\Settings\Manager::get_settings_managers( 'page' );
+						$page_settings_model   = $page_settings_manager->get_model( $id );
+
+						$template_type = $page_settings_model->get_settings( 'mas_select_template_override' );
+						if ( 'single' === $template_type ) {
+							$template_name = $page_settings_model->get_settings( 'mas_select_single_template_override' );
+						} elseif ( 'archive' === $template_type ) {
+							$template_name = $page_settings_model->get_settings( 'mas_select_archive_template_override' );
+						} else {
+							$template_name = '';
+						}
+						if ( $template_name === $location ) {
+							$slug    = $name;
+							$present = true;
+						}
+					}
+					if ( ! $present ) {
+						return $template;
+					}
 					$page_templates_module->set_print_callback(
-						function() use ( $location ) {
-							$this->print_template_content( $location );
+						function() use ( $location, $slug ) {
+							$this->print_template_content( $location, $slug );
 						}
 					);
 
@@ -111,23 +140,10 @@ class Module extends BaseModule {
 	 * Print template content.
 	 *
 	 * @param string $location location template name.
+	 * @param string $slug slug template slug.
 	 * @return bool
 	 */
-	public function print_template_content( $location ) {
-		$slug           = '';
-		$page_templates = mas_template_override_options( 'page' );
-		foreach ( $page_templates as $id => $name ) {
-			if ( empty( $id ) ) {
-				continue;
-			}
-			$page_settings_manager = \Elementor\Core\Settings\Manager::get_settings_managers( 'page' );
-			$page_settings_model   = $page_settings_manager->get_model( $id );
-
-			$template_name = $page_settings_model->get_settings( 'mas_select_template_override' );
-			if ( $template_name === $location ) {
-				$slug = $name;
-			}
-		}
+	public function print_template_content( $location, $slug ) {
 
 		$template = get_page_by_path( $slug, OBJECT, 'elementor_library' );
 		if ( empty( $template ) ) {
@@ -166,5 +182,130 @@ class Module extends BaseModule {
 		do_action( "elementor/theme/after_do_{$location}", $this );
 
 		return true;
+	}
+
+	/**
+	 * Get Name.
+	 *
+	 * @return array
+	 */
+	public function get_special_settings_names() {
+		return array(
+			'mas_select_template_override',
+			'mas_select_single_template_override',
+			'mas_select_archive_template_override',
+		);
+	}
+
+	/**
+	 * Register template control.
+	 *
+	 * Adds custom controls to any given document.
+	 *
+	 * Fired by `update_post_metadata` action.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @param Document $document The document instance.
+	 */
+	public function action_register_template_control( $document ) {
+		$post_types = function_exists( 'mas_option_enabled_post_types' ) ? mas_option_enabled_post_types() : array( 'post', 'page' );
+		if ( $document instanceof LibraryPageDocument ) {
+			$this->post_id = $document->get_main_post()->ID;
+			$this->register_template_control( $document );
+		}
+	}
+
+	/**
+	 * Register template control.
+	 *
+	 * @param Document $page   The document instance.
+	 */
+	public function register_template_control( $page ) {
+		$this->add_template_controls( $page );
+	}
+
+	/**
+	 * Add Header Controls.
+	 *
+	 * @param Document $page Page.
+	 * @return void
+	 */
+	public function add_template_controls( Document $page ) {
+		$page->start_controls_section(
+			'document_settings_header',
+			array(
+				'label' => esc_html__( 'Templates', 'mas-elementor' ),
+				'tab'   => Controls_Manager::TAB_SETTINGS,
+			)
+		);
+		$page->add_control(
+			'mas_select_template_override',
+			array(
+				'label'   => esc_html__( 'Templates Override', 'mas-elementor' ),
+				'type'    => Controls_Manager::SELECT,
+				'default' => '',
+				'options' => array(
+					'none'    => 'None',
+					'single'  => 'Single',
+					'archive' => 'Archive',
+				),
+			)
+		);
+
+		$post_types     = mas_option_enabled_post_types();
+		$single_options = array(
+			'single' => 'All Singluar',
+		);
+		foreach ( $post_types as $post_type ) {
+			if ( 'page' === $post_type ) {
+				continue;
+			}
+			$post_type_object = get_post_type_object( $post_type );
+			$key              = 'single-' . $post_type;
+
+			$single_options[ $key ] = $post_type_object->label;
+		}
+
+		$page->add_control(
+			'mas_select_single_template_override',
+			array(
+				'label'     => esc_html__( 'Select Single Template', 'mas-elementor' ),
+				'type'      => Controls_Manager::SELECT,
+				'options'   => $single_options,
+				'condition' => array(
+					'mas_select_template_override' => 'single',
+				),
+			)
+		);
+
+		$archive_options = array(
+			'archive' => 'All Archives',
+		);
+
+		foreach ( $post_types as $post_type ) {
+			if ( 'page' === $post_type ) {
+				continue;
+			}
+			$post_type_object = get_post_type_object( $post_type );
+			$key              = 'archive-' . $post_type;
+
+			$archive_options[ $key ] = $post_type_object->label;
+		}
+
+		$page->add_control(
+			'mas_select_archive_template_override',
+			array(
+				'label'     => esc_html__( 'Select Archive Template', 'mas-elementor' ),
+				'type'      => Controls_Manager::SELECT,
+				'options'   => $archive_options,
+				'condition' => array(
+					'mas_select_template_override' => 'archive',
+				),
+			)
+		);
+
+		$page->end_controls_section();
+
 	}
 }

@@ -53,7 +53,7 @@ final class Modules_Manager {
 			'image-box',
 			'jobs-filter',
 			'mas-related-project',
-			'page-settings',
+			// 'page-settings',
 			'mas-tv-shows-episodes',
 			'episodes',
 			'forms',

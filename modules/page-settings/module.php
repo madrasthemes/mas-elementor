@@ -124,9 +124,60 @@ class Module extends BaseModule {
 				'label'   => esc_html__( 'Templates Override', 'mas-elementor' ),
 				'type'    => Controls_Manager::SELECT,
 				'options' => array(
-					''            => 'None',
-					'single-post' => 'Single',
-					'archive'     => 'Archive',
+					''        => 'None',
+					'single'  => 'Single',
+					'archive' => 'Archive',
+				),
+			)
+		);
+		$post_types     = mas_option_enabled_post_types();
+		$single_options = array(
+			'single' => 'All Singluar',
+		);
+		foreach ( $post_types as $post_type ) {
+			if ( 'page' === $post_type ) {
+				continue;
+			}
+			$post_type_object = get_post_type_object( $post_type );
+			$key              = 'single-' . $post_type;
+
+			$single_options[ $key ] = $post_type_object->label;
+		}
+
+		$page->add_control(
+			'mas_select_single_template_override',
+			array(
+				'label'      => esc_html__( 'Select Single Template', 'mas-elementor' ),
+				'type'       => Controls_Manager::SELECT,
+				'options'    => $single_options,
+				'conditions' => array(
+					'mas_select_template_override' => 'single',
+				),
+			)
+		);
+
+		$archive_options = array(
+			'archive' => 'All Archives',
+		);
+
+		foreach ( $post_types as $post_type ) {
+			if ( 'page' === $post_type ) {
+				continue;
+			}
+			$post_type_object = get_post_type_object( $post_type );
+			$key              = 'archive-' . $post_type;
+
+			$archive_options[ $key ] = $post_type_object->label;
+		}
+
+		$page->add_control(
+			'mas_select_archive_template_override',
+			array(
+				'label'      => esc_html__( 'Select Archive Template', 'mas-elementor' ),
+				'type'       => Controls_Manager::SELECT,
+				'options'    => $archive_options,
+				'conditions' => array(
+					'mas_select_template_override' => 'archive',
 				),
 			)
 		);
