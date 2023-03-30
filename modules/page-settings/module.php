@@ -54,7 +54,6 @@ class Module extends BaseModule {
 	 */
 	public function __construct() {
 		add_action( 'elementor/documents/register_controls', array( $this, 'action_register_template_control' ) );
-		add_filter( 'the_content', array( $this, 'single_content_filter' ), 1 );
 	}
 
 	/**
@@ -67,28 +66,13 @@ class Module extends BaseModule {
 	}
 
 	/**
-	 * Adding this content in single.
-	 *
-	 * @param string $content contetnt.
-	 */
-	public function single_content_filter( $content ) {
-		$post_document = Plugin::instance()->documents->get( get_the_ID() );
-		$settings      = $post_document->get_settings();
-
-		// Check if we're inside the main loop in a single Post.
-		if ( isset( $settings['mas_select_template'] ) ) {
-			echo ( wp_kses_post( mas_render_template( $settings['mas_select_template'] ) ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-		}
-	}
-
-	/**
 	 * Get Name.
 	 *
 	 * @return array
 	 */
 	public function get_special_settings_names() {
 		return array(
-			'mas_select_template',
+			'mas_select_template_override',
 		);
 	}
 
@@ -142,7 +126,7 @@ class Module extends BaseModule {
 				'options' => array(
 					''            => 'None',
 					'single-post' => 'Single',
-					'archive'     => 'Archive'
+					'archive'     => 'Archive',
 				),
 			)
 		);

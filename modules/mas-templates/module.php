@@ -68,22 +68,24 @@ class Module extends BaseModule {
 	 * @param string $template template.
 	 */
 	public function single_content_filter( $template ) {
-		if ( is_singular('post') ) {
+		if ( is_singular( 'post' ) ) {
 			$location = 'single-post';
-		} elseif( is_archive() ) {
+		} elseif ( is_archive() ) {
 			$location = 'archive';
 		}
 		if ( ! empty( $location ) ) {
 			$page_templates_module = Plugin::$instance->modules_manager->get_modules( 'page-templates' );
-			$document = Plugin::$instance->documents->get_doc_for_frontend( get_the_ID() );
-			$page_template = $page_templates_module::TEMPLATE_HEADER_FOOTER;
-			
+			$document              = Plugin::$instance->documents->get_doc_for_frontend( get_the_ID() );
+			$page_template         = $page_templates_module::TEMPLATE_HEADER_FOOTER;
+
 			if ( ! empty( $page_template ) ) {
 				$template_path = $page_templates_module->get_template_path( $page_template );
 				if ( $template_path ) {
-					$page_templates_module->set_print_callback( function() use ( $location ) { 
-						$this->do_location( $location);
-					} );
+					$page_templates_module->set_print_callback(
+						function() use ( $location ) {
+							$this->print_template_content( $location );
+						}
+					);
 
 					$template = $template_path;
 				}
@@ -100,29 +102,34 @@ class Module extends BaseModule {
 	public static function set_global_authordata() {
 		global $authordata;
 		if ( ! isset( $authordata->ID ) ) {
-			$post = get_post();
+			$post       = get_post();
 			$authordata = get_userdata( $post->post_author ); // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
 		}
 	}
 
-	public function do_location( $location ) {
-		$slug = '';
-		$page_templates = mas_template_override_options('page');
-		foreach( $page_templates as $id => $name ) {
+	/**
+	 * Print template content.
+	 *
+	 * @param string $location location template name.
+	 * @return bool
+	 */
+	public function print_template_content( $location ) {
+		$slug           = '';
+		$page_templates = mas_template_override_options( 'page' );
+		foreach ( $page_templates as $id => $name ) {
 			if ( empty( $id ) ) {
 				continue;
 			}
 			$page_settings_manager = \Elementor\Core\Settings\Manager::get_settings_managers( 'page' );
-			$page_settings_model = $page_settings_manager->get_model( $id );
+			$page_settings_model   = $page_settings_manager->get_model( $id );
 
 			$template_name = $page_settings_model->get_settings( 'mas_select_template_override' );
 			if ( $template_name === $location ) {
 				$slug = $name;
 			}
 		}
-		
 
-		$template    = get_page_by_path( $slug, OBJECT, 'elementor_library' );
+		$template = get_page_by_path( $slug, OBJECT, 'elementor_library' );
 		if ( empty( $template ) ) {
 			return false;
 		}
@@ -130,7 +137,7 @@ class Module extends BaseModule {
 		if ( is_singular() ) {
 			self::set_global_authordata();
 		}
-		$location = str_replace('-', '_', $location);
+		$location = str_replace( '-', '_', $location );
 
 		/**
 		 * Before location content printed.
@@ -144,19 +151,18 @@ class Module extends BaseModule {
 		 * @param Locations_Manager $this An instance of locations manager.
 		 */
 		do_action( "elementor/theme/before_do_{$location}", $this );
-		the_content();
 		echo wp_kses_post( Plugin::instance()->frontend->get_builder_content_for_display( $template->ID ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		// /**
-		//  * After location content printed.
-		//  *
-		//  * Fires after Elementor theme location is printed.
-		//  *
-		//  * The dynamic portion of the hook name, `$location`, refers to the location name.
-		//  *
-		//  * @since 2.0.0
-		//  *
-		//  * @param Locations_Manager $this An instance of locations manager.
-		//  */
+		// * After location content printed.
+		// *
+		// * Fires after Elementor theme location is printed.
+		// *
+		// * The dynamic portion of the hook name, `$location`, refers to the location name.
+		// *
+		// * @since 2.0.0
+		// *
+		// * @param Locations_Manager $this An instance of locations manager.
+		// */
 		do_action( "elementor/theme/after_do_{$location}", $this );
 
 		return true;
