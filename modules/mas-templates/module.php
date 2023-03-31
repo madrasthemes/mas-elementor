@@ -12,6 +12,7 @@ use Elementor\Core\Base\Module as BaseModule;
 use Elementor\Plugin;
 use Elementor\Modules\Library\Documents\Page as LibraryPageDocument;
 use Elementor\Core\Base\Document;
+use MASElementor\Modules\MasLibrary\Documents\Mas_Template;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
@@ -92,7 +93,7 @@ class Module extends BaseModule {
 				$template_path = $page_templates_module->get_template_path( $page_template );
 				if ( ! empty( $template_path ) ) {
 					$slug           = '';
-					$page_templates = mas_template_override_options( 'page' );
+					$page_templates = mas_template_override_options( 'mas-template' );
 					foreach ( $page_templates as $id => $name ) {
 						if ( empty( $id ) ) {
 							continue;
@@ -111,6 +112,8 @@ class Module extends BaseModule {
 						if ( $template_name === $location ) {
 							$slug    = $name;
 							$present = true;
+							$page_template = $page_settings_model->get_settings( 'mas_page_template' );
+							$template_path = $page_templates_module->get_template_path( $page_template );
 						}
 					}
 					if ( ! $present ) {
@@ -216,7 +219,7 @@ class Module extends BaseModule {
 	 */
 	public function action_register_template_control( $document ) {
 		$post_types = function_exists( 'mas_option_enabled_post_types' ) ? mas_option_enabled_post_types() : array( 'post', 'page' );
-		if ( $document instanceof LibraryPageDocument ) {
+		if ( $document instanceof Mas_Template ) {
 			$this->post_id = $document->get_main_post()->ID;
 			$this->register_template_control( $document );
 		}
