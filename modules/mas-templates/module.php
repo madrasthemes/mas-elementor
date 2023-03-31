@@ -112,7 +112,7 @@ class Module extends BaseModule {
 						if ( $template_name === $location ) {
 							$slug    = $name;
 							$present = true;
-							$page_template = $page_settings_model->get_settings( 'mas_page_template' );
+							$page_template         = $page_settings_model->get_settings( 'mas_page_template' );
 							$template_path = $page_templates_module->get_template_path( $page_template );
 						}
 					}

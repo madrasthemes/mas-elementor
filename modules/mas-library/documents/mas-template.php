@@ -13,6 +13,7 @@ use Elementor\Core\DocumentTypes\Post;
 use Elementor\TemplateLibrary\Source_Local;
 use Elementor\Modules\PageTemplates\Module as PageTemplatesModule;
 use Elementor\Controls_Manager;
+use Elementor\Modules\Library\Documents\Page;
 
 
 
@@ -26,19 +27,8 @@ if ( ! defined( 'ABSPATH' ) ) {
  * Elementor mas-post library document handler class is responsible for
  * handling a document of a mas-post type.
  */
-class Mas_Template extends Library_Document {
-	/**
-	 * Get properties libraries.
-	 */
-	public static function get_properties() {
-		$properties = parent::get_properties();
+class Mas_Template extends Page {
 
-		$properties['support_wp_page_templates'] = true;
-		$properties['support_kit']               = true;
-		$properties['show_in_finder']            = true;
-
-		return $properties;
-	}
 	/**
 	 * Get library type libraries.
 	 */
@@ -66,13 +56,6 @@ class Mas_Template extends Library_Document {
 	}
 
 	/**
-	 * Get CSS wrapper selector.
-	 */
-	public function get_css_wrapper_selector() {
-		return 'body.elementor-page-' . $this->get_main_id();
-	}
-
-	/**
 	 * Register Controls.
 	 */
 	protected function register_controls() {
@@ -80,20 +63,18 @@ class Mas_Template extends Library_Document {
 
 		$this->start_injection(
 			array(
-				'of'       => 'post_status',
-				'fallback' => array(
-					'of' => 'post_title',
-				),
+				'at' => 'before',
+				'of' => 'mas_select_template_override',
 			)
 		);
 
 		$this->add_control(
 			'mas_page_template',
 			array(
-				'label'   => esc_html__( 'Page Layout', 'mas-elementor' ),
+				'label'   => esc_html__( 'Template Layout', 'mas-elementor' ),
 				'type'    => Controls_Manager::SELECT,
+				'default' => PageTemplatesModule::TEMPLATE_HEADER_FOOTER,
 				'options' => array(
-					''                                   => esc_html__( 'Default', 'mas-elementor' ),
 					PageTemplatesModule::TEMPLATE_CANVAS => esc_html__( 'Elementor Canvas', 'mas-elementor' ),
 					PageTemplatesModule::TEMPLATE_HEADER_FOOTER => esc_html__( 'Elementor Full Width', 'mas-elementor' ),
 				),
