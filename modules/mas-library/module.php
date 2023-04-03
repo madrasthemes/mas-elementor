@@ -44,6 +44,16 @@ class Module extends BaseModule {
 	}
 
 	/**
+	 * Get preview manager.
+	 *
+	 * @return Classes\Preview_Manager
+	 */
+	public function get_preview_manager() {
+		return $this->get_component( 'preview' );
+	}
+
+
+	/**
 	 * MAS Library module constructor.
 	 *
 	 * Initializing Elementor MAS library module.

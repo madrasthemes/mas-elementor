@@ -163,6 +163,7 @@ class Module extends BaseModule {
 			self::set_global_authordata();
 		}
 		$location = str_replace( '-', '_', $location );
+		$document = Plugin::instance()->documents->get( $template->ID );
 
 		/**
 		 * Before location content printed.
@@ -176,7 +177,8 @@ class Module extends BaseModule {
 		 * @param Locations_Manager $this An instance of locations manager.
 		 */
 		do_action( "elementor/theme/before_do_{$location}", $this );
-		echo wp_kses_post( Plugin::instance()->frontend->get_builder_content_for_display( $template->ID ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		$document->print_content();
+		// echo ( Plugin::instance()->frontend->get_builder_content_for_display( $template->ID ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		// /**
 		// * After location content printed.
 		// *
@@ -187,7 +189,7 @@ class Module extends BaseModule {
 		// * @since 2.0.0
 		// *
 		// * @param Locations_Manager $this An instance of locations manager.
-		// */
+		// */.
 		do_action( "elementor/theme/after_do_{$location}", $this );
 
 		return true;

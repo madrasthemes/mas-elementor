@@ -14,6 +14,7 @@ use Elementor\TemplateLibrary\Source_Local;
 use Elementor\Modules\PageTemplates\Module as PageTemplatesModule;
 use Elementor\Controls_Manager;
 use Elementor\Modules\Library\Documents\Page;
+use Elementor\Plugin;
 
 
 
@@ -28,6 +29,13 @@ if ( ! defined( 'ABSPATH' ) ) {
  * handling a document of a mas-post type.
  */
 class Mas_Template extends Page {
+
+	/**
+	 * Instance.
+	 *
+	 * @var Plugin
+	 */
+	private static $instance;
 
 	/**
 	 * Get library type libraries.
@@ -53,6 +61,19 @@ class Mas_Template extends Page {
 	 */
 	public static function get_plural_title() {
 		return __( 'Mas Templates', 'mas-elementor' );
+	}
+
+	/**
+	 * Get Instance.
+	 *
+	 * @return Plugin
+	 */
+	public static function instance() {
+		if ( is_null( self::$instance ) ) {
+			self::$instance = new self();
+		}
+
+		return self::$instance;
 	}
 
 	/**
@@ -121,5 +142,58 @@ class Mas_Template extends Page {
 		);
 
 		$this->end_injection();
+	}
+
+	/**
+	 * Before Content.
+	 *
+	 * @return void
+	 */
+	public function before_get_content() {
+		$preview_manager = Mas_Library_Module::instance()->get_preview_manager();
+		// $preview_manager->switch_to_preview_query();.
+	}
+
+	/**
+	 * After Content.
+	 *
+	 * @return void
+	 */
+	public function after_get_content() {
+		$preview_manager = Mas_Library_Module::instance()->get_preview_manager();
+		// $preview_manager->restore_current_query();.
+	}
+
+	/**
+	 * Get Content.
+	 *
+	 * @param bool $with_css with css.
+	 * @return string
+	 */
+	public function get_content( $with_css = false ) {
+		$this->before_get_content();
+
+		$content = parent::get_content( $with_css );
+
+		$this->after_get_content();
+
+		return $content;
+	}
+
+	/**
+	 * Print Content.
+	 *
+	 * @return void
+	 */
+	public function print_content() {
+		$plugin = Plugin::instance();
+
+		if ( $plugin->preview->is_preview_mode( $this->get_main_id() ) ) {
+			// PHPCS - the method builder_wrapper is safe.
+			echo $plugin->preview->builder_wrapper( '' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		} else {
+			// PHPCS - the method get_content is safe.
+			echo $this->get_content(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		}
 	}
 }
