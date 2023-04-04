@@ -83,8 +83,6 @@ class Module extends BaseModule {
 				$location = 'archive-' . $post_type;
 			} elseif ( is_archive() ) {
 				$location = 'archive';
-			} elseif ( is_single() ) {
-				$location = 'single';
 			}
 		}
 		if ( ! empty( $location ) ) {
