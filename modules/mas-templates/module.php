@@ -79,8 +79,12 @@ class Module extends BaseModule {
 			}
 			if ( is_singular( $post_type ) ) {
 				$location = 'single-' . $post_type;
-			} elseif ( is_post_type_archive( $post_type ) ) {
+			} elseif ( is_post_type_archive( $post_type ) || ( 'post' === $post_type && is_home() ) ) {
 				$location = 'archive-' . $post_type;
+			} elseif ( is_archive() ) {
+				$location = 'archive';
+			} elseif ( is_single() ) {
+				$location = 'single';
 			}
 		}
 		if ( ! empty( $location ) ) {
