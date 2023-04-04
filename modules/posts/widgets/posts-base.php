@@ -2325,24 +2325,24 @@ abstract class Posts_Base extends Base_Widget {
 				'type'        => Controls_Manager::SELECT,
 				'options'     => $templates,
 				'description' => esc_html__( 'Select Templates for the above selected posts series', 'mas-elementor' ),
-				// 'condition'   => array(
-				// 'enable_loop_selection' => 'yes',
-				// ),
-				'conditions'  => array(
-					'relation' => 'or',
-					'terms'    => array(
-						array(
-							'name'     => 'enable_loop_selection',
-							'operator' => '==',
-							'value'    => 'yes',
-						),
-						array(
-							'name'     => 'enable_sticky_loop',
-							'operator' => '==',
-							'value'    => 'yes',
-						),
-					),
+				'condition'   => array(
+					'enable_loop_selection' => 'yes',
 				),
+				// 'conditions'  => array(
+				// 'relation' => 'or',
+				// 'terms'    => array(
+				// array(
+				// 'name'     => 'enable_loop_selection',
+				// 'operator' => '==',
+				// 'value'    => 'yes',
+				// ),
+				// array(
+				// 'name'     => 'enable_sticky_loop',
+				// 'operator' => '==',
+				// 'value'    => 'yes',
+				// ),
+				// ),
+				// ),
 			)
 		);
 

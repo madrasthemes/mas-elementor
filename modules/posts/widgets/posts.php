@@ -93,6 +93,27 @@ class Posts extends Posts_Base {
 	 */
 	protected function update_posts_base_controls() {
 
+		$this->update_control(
+			'select_loop_template',
+			array(
+				'conditions'  => array(
+					'relation' => 'or',
+					'terms'    => array(
+						array(
+							'name'     => 'enable_loop_selection',
+							'operator' => '==',
+							'value'    => 'yes',
+						),
+						array(
+							'name'     => 'enable_sticky_loop',
+							'operator' => '==',
+							'value'    => 'yes',
+						),
+					),
+				),
+			)
+		);
+
 		$this->start_injection(
 			array(
 				'at' => 'after',
