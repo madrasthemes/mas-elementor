@@ -160,7 +160,7 @@ class Module extends Module_Base {
 		wp_register_script(
 			'load-more',
 			MAS_ELEMENTOR_MODULES_URL . 'posts/assets/js/load-more.js',
-			array( 'elementor-frontend-modules' ),
+			array(),
 			MAS_ELEMENTOR_VERSION,
 			true
 		);
