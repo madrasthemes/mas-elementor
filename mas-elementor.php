@@ -526,7 +526,7 @@ if ( ! function_exists( 'mas_option_enabled_post_types' ) ) {
 	 * @return array
 	 */
 	function mas_option_enabled_post_types() {
-		$post_types = array( 'post', 'page' );
+		$post_types = array( 'post', 'page', 'jetpack-portfolio' );
 		if ( class_exists( 'MasVideos' ) ) {
 			$movie      = array(
 				'movie',
@@ -686,6 +686,47 @@ if ( ! function_exists( 'mas_clean' ) ) {
 		} else {
 			return is_scalar( $var ) ? sanitize_text_field( $var ) : $var;
 		}
+	}
+}
+
+if ( ! function_exists( 'mas_option_enabled_taxonomies' ) ) {
+
+	/**
+	 * Option enabled post types.
+	 *
+	 * @return array
+	 */
+	function mas_option_enabled_taxonomies() {
+		$taxonomies = array( 'category', 'post_tag' );
+		if ( class_exists( 'MasVideos' ) ) {
+			$movie      = array(
+				'movie_genre',
+				'movie_tag',
+				'tv_show_genre',
+				'tv_show_tag',
+				'video_cat',
+				'video_tag',
+			);
+			$taxonomies = array_merge( $taxonomies, $movie );
+
+		}
+		if ( class_exists( 'Woocommerce' ) ) {
+			$product    = array(
+				'product_cat',
+				'product_tag',
+			);
+			$taxonomies = array_merge( $taxonomies, $product );
+
+		}
+		if ( class_exists( 'WP_Job_Manager' ) ) {
+			$job        = array(
+				'job_listing_type',
+			);
+			$taxonomies = array_merge( $taxonomies, $job );
+
+		}
+
+		return apply_filters( 'mas_option_enabled_taxonomies', $taxonomies );
 	}
 }
 
