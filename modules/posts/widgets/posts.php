@@ -96,6 +96,7 @@ class Posts extends Posts_Base {
 		$this->update_control(
 			'select_loop_template',
 			array(
+				'condition'   => array(),
 				'conditions'  => array(
 					'relation' => 'or',
 					'terms'    => array(
