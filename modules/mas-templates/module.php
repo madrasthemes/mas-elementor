@@ -73,6 +73,7 @@ class Module extends BaseModule {
 	 */
 	public function single_content_filter( $template ) {
 		$post_types = mas_option_enabled_post_types();
+		$taxonomies = array();
 		foreach ( $post_types as $post_type ) {
 			if ( 'page' === $post_type ) {
 				continue;
@@ -84,7 +85,28 @@ class Module extends BaseModule {
 			} elseif ( is_archive() ) {
 				$location = 'archive';
 			}
+			if ( 'post' !== $post_type ) {
+				$taxonomies = array_merge( get_object_taxonomies( $post_type ), $taxonomies );
+			}
 		}
+
+		$exclude = array( 'post_format', 'video_visibility', 'episode_visibility', 'movie_visibility', 'tv_show_visibility' );
+
+		foreach ( $taxonomies as $taxonomy ) {
+			if ( in_array( $taxonomy, $exclude, true ) ) {
+				continue;
+			}
+			if ( is_tag() ) {
+				$location = 'tax-post_tag';
+			}
+			if ( is_category() ) {
+				$location = 'tax-category';
+			}
+			if ( is_tax( $taxonomy ) ) {
+				$location = 'tax-' . $taxonomy;
+			}
+		}
+
 		if ( ! empty( $location ) ) {
 			$page_templates_module = Plugin::$instance->modules_manager->get_modules( 'page-templates' );
 			$document              = Plugin::$instance->documents->get_doc_for_frontend( get_the_ID() );
@@ -108,13 +130,15 @@ class Module extends BaseModule {
 							$template_name = $page_settings_model->get_settings( 'mas_select_single_template_override' );
 						} elseif ( 'archive' === $template_type ) {
 							$template_name = $page_settings_model->get_settings( 'mas_select_archive_template_override' );
+						} elseif ( 'tax' === $template_type ) {
+							$template_name = $page_settings_model->get_settings( 'mas_select_tax_template_override' );
 						} else {
 							$template_name = '';
 						}
 						if ( $template_name === $location ) {
-							$slug    = $name;
-							$present = true;
-							$page_template         = $page_settings_model->get_settings( 'mas_page_template' );
+							$slug          = $name;
+							$present       = true;
+							$page_template = $page_settings_model->get_settings( 'mas_page_template' );
 							$template_path = $page_templates_module->get_template_path( $page_template );
 						}
 					}
@@ -257,11 +281,12 @@ class Module extends BaseModule {
 			array(
 				'label'   => esc_html__( 'Templates Override', 'mas-elementor' ),
 				'type'    => Controls_Manager::SELECT,
-				'default' => '',
+				'default' => 'none',
 				'options' => array(
 					'none'    => 'None',
 					'single'  => 'Single',
 					'archive' => 'Archive',
+					'tax'     => 'Taxonomies',
 				),
 			)
 		);
@@ -285,6 +310,7 @@ class Module extends BaseModule {
 			array(
 				'label'     => esc_html__( 'Select Single Template', 'mas-elementor' ),
 				'type'      => Controls_Manager::SELECT,
+				'default'   => 'single-post',
 				'options'   => $single_options,
 				'condition' => array(
 					'mas_select_template_override' => 'single',
@@ -311,9 +337,40 @@ class Module extends BaseModule {
 			array(
 				'label'     => esc_html__( 'Select Archive Template', 'mas-elementor' ),
 				'type'      => Controls_Manager::SELECT,
+				'default'   => 'archive-post',
 				'options'   => $archive_options,
 				'condition' => array(
 					'mas_select_template_override' => 'archive',
+				),
+			)
+		);
+
+		$exclude = array( 'post_format', 'video_visibility', 'episode_visibility', 'movie_visibility', 'tv_show_visibility' );
+		foreach ( $post_types as $post_type ) {
+			if ( 'page' === $post_type ) {
+				continue;
+			}
+			$taxonomies = get_object_taxonomies( $post_type );
+			foreach ( $taxonomies as $taxonomy ) {
+				if ( in_array( $taxonomy, $exclude, true ) ) {
+					continue;
+				}
+				$key        = 'tax-' . $taxonomy;
+				$tax_object = get_taxonomy( $taxonomy );
+
+				$tax_options[ $key ] = $tax_object->label;
+			}
+		}
+
+		$page->add_control(
+			'mas_select_tax_template_override',
+			array(
+				'label'     => esc_html__( 'Select Archive Template', 'mas-elementor' ),
+				'type'      => Controls_Manager::SELECT,
+				'default'   => 'tax-category',
+				'options'   => $tax_options,
+				'condition' => array(
+					'mas_select_template_override' => 'tax',
 				),
 			)
 		);
