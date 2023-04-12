@@ -54,7 +54,7 @@ class Module extends BaseModule {
 	 */
 	public function __construct() {
 		add_action( 'elementor/documents/register_controls', array( $this, 'action_register_template_control' ) );
-		add_filter( 'template_include', array( $this, 'single_content_filter' ), 99999 );
+		add_filter( 'template_include', array( $this, 'template_override' ), 99999 );
 	}
 
 	/**
@@ -71,7 +71,7 @@ class Module extends BaseModule {
 	 *
 	 * @param string $template template.
 	 */
-	public function single_content_filter( $template ) {
+	public function template_override( $template ) {
 		$post_types = mas_option_enabled_post_types();
 		$taxonomies = array();
 		foreach ( $post_types as $post_type ) {
