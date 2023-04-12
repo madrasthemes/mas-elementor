@@ -67,11 +67,9 @@ class Module extends BaseModule {
 	}
 
 	/**
-	 * Adding this content in single.
-	 *
-	 * @param string $template template.
+	 * Conditional statements check.
 	 */
-	public function template_override( $template ) {
+	public function conditional_location() {
 		$post_types = mas_option_enabled_post_types();
 		$taxonomies = array();
 		foreach ( $post_types as $post_type ) {
@@ -90,7 +88,7 @@ class Module extends BaseModule {
 			}
 		}
 
-		$exclude = array( 'post_format', 'video_visibility', 'episode_visibility', 'movie_visibility', 'tv_show_visibility' );
+		$exclude = array( 'post_tag', 'category', 'post_format', 'video_visibility', 'episode_visibility', 'movie_visibility', 'tv_show_visibility' );
 
 		foreach ( $taxonomies as $taxonomy ) {
 			if ( in_array( $taxonomy, $exclude, true ) ) {
@@ -106,6 +104,15 @@ class Module extends BaseModule {
 				$location = 'tax-' . $taxonomy;
 			}
 		}
+		return $location;
+	}
+	/**
+	 * Template Override.
+	 *
+	 * @param string $template template.
+	 */
+	public function template_override( $template ) {
+		$location = $this->conditional_location();
 
 		if ( ! empty( $location ) ) {
 			$page_templates_module = Plugin::$instance->modules_manager->get_modules( 'page-templates' );
