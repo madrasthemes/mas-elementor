@@ -353,6 +353,7 @@ class Module extends BaseModule {
 			)
 		);
 
+		$tax_options = array();
 		$exclude = array( 'post_format', 'video_visibility', 'episode_visibility', 'movie_visibility', 'tv_show_visibility', 'person_visibility' );
 		foreach ( $post_types as $post_type ) {
 			if ( 'page' === $post_type ) {
