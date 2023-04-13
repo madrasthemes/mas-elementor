@@ -72,6 +72,7 @@ class Module extends BaseModule {
 	public function conditional_location() {
 		$post_types = mas_option_enabled_post_types();
 		$taxonomies = array();
+		$location   = '';
 		foreach ( $post_types as $post_type ) {
 			if ( 'page' === $post_type ) {
 				continue;
@@ -88,20 +89,20 @@ class Module extends BaseModule {
 			}
 		}
 
-		$exclude = array( 'post_tag', 'category', 'post_format', 'video_visibility', 'episode_visibility', 'movie_visibility', 'tv_show_visibility' );
+		$exclude = array( 'post_tag', 'category', 'post_format', 'video_visibility', 'episode_visibility', 'movie_visibility', 'tv_show_visibility', 'person_visibility' );
 
 		foreach ( $taxonomies as $taxonomy ) {
 			if ( in_array( $taxonomy, $exclude, true ) ) {
 				continue;
 			}
 			if ( is_tag() ) {
-				$location = 'tax-post_tag';
+				$location = 'taxonomy-post_tag';
 			}
 			if ( is_category() ) {
-				$location = 'tax-category';
+				$location = 'taxonomy-category';
 			}
 			if ( is_tax( $taxonomy ) ) {
-				$location = 'tax-' . $taxonomy;
+				$location = 'taxonomy-' . $taxonomy;
 			}
 		}
 		return $location;
@@ -137,8 +138,8 @@ class Module extends BaseModule {
 							$template_name = $page_settings_model->get_settings( 'mas_select_single_template_override' );
 						} elseif ( 'archive' === $template_type ) {
 							$template_name = $page_settings_model->get_settings( 'mas_select_archive_template_override' );
-						} elseif ( 'tax' === $template_type ) {
-							$template_name = $page_settings_model->get_settings( 'mas_select_tax_template_override' );
+						} elseif ( 'taxonomy' === $template_type ) {
+							$template_name = $page_settings_model->get_settings( 'mas_select_taxonomy_template_override' );
 						} else {
 							$template_name = '';
 						}
@@ -293,7 +294,7 @@ class Module extends BaseModule {
 					'none'    => 'None',
 					'single'  => 'Single',
 					'archive' => 'Archive',
-					'tax'     => 'Taxonomies',
+					'taxonomy'     => 'Taxonomies',
 				),
 			)
 		);
@@ -352,7 +353,7 @@ class Module extends BaseModule {
 			)
 		);
 
-		$exclude = array( 'post_format', 'video_visibility', 'episode_visibility', 'movie_visibility', 'tv_show_visibility' );
+		$exclude = array( 'post_format', 'video_visibility', 'episode_visibility', 'movie_visibility', 'tv_show_visibility', 'person_visibility' );
 		foreach ( $post_types as $post_type ) {
 			if ( 'page' === $post_type ) {
 				continue;
@@ -362,7 +363,7 @@ class Module extends BaseModule {
 				if ( in_array( $taxonomy, $exclude, true ) ) {
 					continue;
 				}
-				$key        = 'tax-' . $taxonomy;
+				$key        = 'taxonomy-' . $taxonomy;
 				$tax_object = get_taxonomy( $taxonomy );
 
 				$tax_options[ $key ] = $tax_object->label;
@@ -370,14 +371,14 @@ class Module extends BaseModule {
 		}
 
 		$page->add_control(
-			'mas_select_tax_template_override',
+			'mas_select_taxonomy_template_override',
 			array(
 				'label'     => esc_html__( 'Select Archive Template', 'mas-elementor' ),
 				'type'      => Controls_Manager::SELECT,
-				'default'   => 'tax-category',
+				'default'   => 'taxonomy-category',
 				'options'   => $tax_options,
 				'condition' => array(
-					'mas_select_template_override' => 'tax',
+					'mas_select_template_override' => 'taxonomy',
 				),
 			)
 		);

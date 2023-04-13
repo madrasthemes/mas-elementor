@@ -533,6 +533,7 @@ if ( ! function_exists( 'mas_option_enabled_post_types' ) ) {
 				'tv_show',
 				'episode',
 				'video',
+				'person',
 			);
 			$post_types = array_merge( $post_types, $movie );
 
