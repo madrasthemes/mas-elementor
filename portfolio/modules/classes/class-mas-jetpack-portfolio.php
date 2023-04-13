@@ -417,7 +417,7 @@ if ( ! class_exists( 'MAS_Jetpack_Portfolio' ) ) :
 				3  => esc_html__( 'Custom field deleted.', 'mas-elementor' ),
 				4  => esc_html__( 'Project updated.', 'mas-elementor' ),
 				/* translators: %s: date and time of the revision */
-				5  => isset( $_GET['revision'] ) || wp_verify_nonce( sanitize_text_field( wp_unslash( $_GET['revision'] ) ) ) ? sprintf( esc_html__( 'Project restored to revision from %s', 'mas-elementor' ), wp_post_revision_title( (int) $_GET['revision'], false ) ) : false,
+				5  => isset( $_GET['revision'] ) && wp_verify_nonce( sanitize_text_field( wp_unslash( $_GET['revision'] ) ) ) ? sprintf( esc_html__( 'Project restored to revision from %s', 'mas-elementor' ), wp_post_revision_title( (int) $_GET['revision'], false ) ) : false,
 				6  => sprintf( ( 'Project published. <a href="%s">View project</a>' ), esc_url( get_permalink( $post->ID ) ) ),
 				7  => esc_html__( 'Project saved.', 'mas-elementor' ),
 				8  => sprintf( ( 'Project submitted. <a target="_blank" href="%s">Preview project</a>' ), esc_url( add_query_arg( 'preview', 'true', get_permalink( $post->ID ) ) ) ),
