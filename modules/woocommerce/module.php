@@ -130,6 +130,7 @@ class Module extends Module_Base {
 			'Category_Image',
 			'Cart_Button_Url',
 			'Cart_Button_Text',
+			'Product_Content',
 		);
 
 		$module = Plugin::elementor()->dynamic_tags;

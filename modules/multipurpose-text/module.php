@@ -54,14 +54,14 @@ class Module extends Module_Base {
 		wp_register_script(
 			'mas-typed',
 			MAS_ELEMENTOR_MODULES_URL . 'multipurpose-text/assets/js/typed.min.js',
-			array( 'elementor-frontend-modules' ),
+			array(),
 			MAS_ELEMENTOR_VERSION,
 			true
 		);
 		wp_register_script(
 			'mas-typed-init',
 			MAS_ELEMENTOR_MODULES_URL . 'multipurpose-text/assets/js/typed-text.js',
-			array( 'elementor-frontend-modules' ),
+			array(),
 			MAS_ELEMENTOR_VERSION,
 			true
 		);

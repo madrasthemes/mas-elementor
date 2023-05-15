@@ -128,7 +128,9 @@ class Module extends Module_Base {
 		add_filter( 'mas_elementor/utils/get_public_post_types', array( $this, 'post_widget_post_types' ), 10, 1 );
 		add_filter( 'pre_handle_404', array( $this, 'allow_posts_widget_pagination' ), 10, 2 );
 		add_action( 'elementor/editor/after_save', array( $this, 'clear_elementor_cache' ), 15 );
-		add_action( 'elementor/frontend/before_register_scripts', array( $this, 'register_frontend_scripts' ) );
+		// Temporary Fix.
+		// add_action( 'elementor/frontend/before_register_scripts', array( $this, 'register_frontend_scripts' ) );.
+		add_action( 'wp_enqueue_scripts', array( $this, 'register_frontend_scripts' ), 9999 );
 		add_action( 'elementor/frontend/before_register_styles', array( $this, 'register_frontend_styles' ) );
 	}
 
@@ -160,7 +162,7 @@ class Module extends Module_Base {
 		wp_register_script(
 			'load-more',
 			MAS_ELEMENTOR_MODULES_URL . 'posts/assets/js/load-more.js',
-			array( 'elementor-frontend-modules' ),
+			array( 'elementor-frontend' ),
 			MAS_ELEMENTOR_VERSION,
 			true
 		);
