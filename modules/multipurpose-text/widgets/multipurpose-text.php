@@ -866,8 +866,8 @@ class Multipurpose_Text extends Base_Widget {
 	 * @param array $settings The widget settings.
 	 */
 	public function render_script( $settings ) {
-		$typed_options = $this->get_typed_options( $settings );
 		if ( Plugin::elementor()->editor->is_edit_mode() && 'yes' === $settings['enable_typing_text'] && ! empty( $settings['typing_text'] ) ) :
+			$typed_options = $this->get_typed_options( $settings );
 			?>
 
 		<script type="text/javascript">
