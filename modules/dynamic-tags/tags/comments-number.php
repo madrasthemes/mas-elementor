@@ -97,7 +97,7 @@ class Comments_Number extends \Elementor\Core\DynamicTags\Tag {
 
 		if ( ! $comments_number ) {
 			$count = $settings['format_no_comments'];
-		} elseif ( 1 === $comments_number ) {
+		} elseif ( 1 === (int) $comments_number ) {
 			$count = $settings['format_one_comments'];
 		} else {
 			$count = strtr(

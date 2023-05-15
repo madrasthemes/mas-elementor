@@ -33,6 +33,16 @@ class Product_Rating extends Base_Tag {
 	}
 
 	/**
+	 * Get the Categories.
+	 */
+	public function get_categories() {
+		return array(
+			\Elementor\Modules\DynamicTags\Module::TEXT_CATEGORY,
+			\Elementor\Modules\DynamicTags\Module::NUMBER_CATEGORY,
+		);
+	}
+
+	/**
 	 * Register Controls.
 	 */
 	protected function register_controls() {

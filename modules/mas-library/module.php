@@ -26,6 +26,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 class Module extends BaseModule {
 
 	/**
+	 * Document types..
+	 *
+	 * @var array
+	 */
+	private $docs_types = array();
+
+	/**
 	 * Get module name.
 	 *
 	 * Retrieve the mas-library module name.
@@ -37,12 +44,28 @@ class Module extends BaseModule {
 	}
 
 	/**
+	 * Get preview manager.
+	 *
+	 * @return Classes\Preview_Manager
+	 */
+	public function get_preview_manager() {
+		return $this->get_component( 'preview' );
+	}
+
+
+	/**
 	 * MAS Library module constructor.
 	 *
 	 * Initializing Elementor MAS library module.
 	 */
 	public function __construct() {
-		Plugin::$instance->documents
-		->register_document_type( 'mas-post', Documents\Mas_Post::get_class_full_name() );
+		$this->docs_types = array(
+			'mas-post'     => Documents\Mas_Post::get_class_full_name(),
+			'mas-template' => Documents\Mas_Template::get_class_full_name(),
+		);
+		foreach ( $this->docs_types as $type => $class_name ) {
+			Plugin::$instance->documents
+			->register_document_type( $type, $class_name );
+		}
 	}
 }

@@ -63,6 +63,8 @@ final class Modules_Manager {
 			'scrollspy',
 			'counter',
 			'icon-list',
+			'mas-templates',
+			'post-content',
 		);
 
 		foreach ( $modules as $module_name ) {

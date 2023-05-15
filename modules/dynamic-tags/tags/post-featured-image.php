@@ -51,13 +51,13 @@ class Post_Featured_Image extends \Elementor\Core\DynamicTags\Data_Tag {
 		$thumbnail_id  = get_post_thumbnail_id();
 		$thumbnail_url = wp_get_attachment_image_src( $thumbnail_id, 'full' );
 
-		if ( $thumbnail_id && ! empty( $thumbnail_url )) {
+		if ( $thumbnail_id && ! empty( $thumbnail_url ) ) {
 			$image_data = array(
 				'id'  => $thumbnail_id,
 				'url' => $thumbnail_url[0],
 			);
 		} else {
-			$image_data = $this->get_settings( 'fallback' );
+			$image_data = $this->get_settings( 'mas-fallback' );
 		}
 
 		return $image_data;
