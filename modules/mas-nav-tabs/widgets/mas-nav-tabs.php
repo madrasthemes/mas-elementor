@@ -648,6 +648,16 @@ class Mas_Nav_Tabs extends Base_Widget {
 
 		$this->end_controls_tabs();
 
+		$this->add_control(
+			'disable_side_border',
+			array(
+				'label'     => esc_html__( 'Disable side borders', 'mas-elementor' ),
+				'type'      => Controls_Manager::SWITCHER,
+				'default'   => 'yes',
+				'separator' => 'before',
+			)
+		);
+
 		$this->end_controls_section();
 
 		// Section for Icon Controls in STYLE Tab.
@@ -998,6 +1008,18 @@ class Mas_Nav_Tabs extends Base_Widget {
 						'aria-selected'  => $selected,
 					)
 				);
+
+				$disable_border_color    = $settings['mas_nav_link_border_color'];
+				$disable_border_selector = 'border-left-color:'. $disable_border_color . ';' . 'border-right-color:'. $disable_border_color . ';';
+
+				if ( 'yes' === $settings['disable_side_border'] ) {
+					$this->add_render_attribute(
+						'list_link_item' . $count,
+						array(
+							'style' => $disable_border_selector,
+						)
+					);
+				}
 
 				if ( 1 === $count ) {
 					$active   = 'active';
