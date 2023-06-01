@@ -289,10 +289,10 @@ class Module extends BaseModule {
 				'type'    => Controls_Manager::SELECT,
 				'default' => 'none',
 				'options' => array(
-					'none'    => 'None',
-					'single'  => 'Single',
-					'archive' => 'Archive',
-					'taxonomy'     => 'Taxonomies',
+					'none'     => 'None',
+					'single'   => 'Single',
+					'archive'  => 'Archive',
+					'taxonomy' => 'Taxonomies',
 				),
 			)
 		);
@@ -354,7 +354,7 @@ class Module extends BaseModule {
 		);
 
 		$tax_options = array();
-		$exclude = array( 'post_format', 'video_visibility', 'episode_visibility', 'movie_visibility', 'tv_show_visibility', 'person_visibility' );
+		$exclude     = array( 'post_format', 'video_visibility', 'episode_visibility', 'movie_visibility', 'tv_show_visibility', 'person_visibility' );
 		foreach ( $post_types as $post_type ) {
 			if ( in_array( $post_type, $archive_excludes, true ) ) {
 				continue;
