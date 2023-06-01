@@ -81,7 +81,7 @@ class Module extends BaseModule {
 				$location = 'single-' . $post_type;
 			} elseif ( is_post_type_archive( $post_type ) || ( 'post' === $post_type && is_home() ) ) {
 				$location = 'archive-' . $post_type;
-			} elseif ( is_archive() ) {
+			} elseif ( is_shop() ) {
 				$location = 'archive';
 			}
 			if ( 'post' !== $post_type ) {
@@ -301,7 +301,7 @@ class Module extends BaseModule {
 
 		$post_types     = mas_option_enabled_post_types();
 		$single_options = array(
-			'single' => 'All Singluar',
+			'none' => 'None',
 		);
 		foreach ( $post_types as $post_type ) {
 			if ( 'page' === $post_type ) {
@@ -327,11 +327,13 @@ class Module extends BaseModule {
 		);
 
 		$archive_options = array(
-			'archive' => 'All Archives',
+			'none' => 'None',
 		);
 
+		$archive_excludes = array( 'page', 'job_listing' );
+
 		foreach ( $post_types as $post_type ) {
-			if ( 'page' === $post_type ) {
+			if ( in_array( $post_type, $archive_excludes, true ) ) {
 				continue;
 			}
 			$post_type_object = get_post_type_object( $post_type );
@@ -356,7 +358,7 @@ class Module extends BaseModule {
 		$tax_options = array();
 		$exclude = array( 'post_format', 'video_visibility', 'episode_visibility', 'movie_visibility', 'tv_show_visibility', 'person_visibility' );
 		foreach ( $post_types as $post_type ) {
-			if ( 'page' === $post_type ) {
+			if ( in_array( $post_type, $archive_excludes, true ) ) {
 				continue;
 			}
 			$taxonomies = get_object_taxonomies( $post_type );
