@@ -54,6 +54,19 @@ class Menu_Cart extends Base_Widget {
 	}
 
 	/**
+	 * Get style dependencies.
+	 *
+	 * Retrieve the list of style dependencies the element requires.
+	 *
+	 * @since 1.9.0
+	 *
+	 * @return array Element styles dependencies.
+	 */
+	public function get_style_depends() {
+		return array( 'mas-cart-stylesheet' );
+	}
+
+	/**
 	 * Get the categories for the widget.
 	 *
 	 * @return array
