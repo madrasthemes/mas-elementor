@@ -74,7 +74,6 @@ class Module extends Module_Base {
 			'Products',
 			'Add_To_Cart',
 			'Product_Related',
-			'Menu_Cart',
 			// 'Product_Data_Tabs',
 		);
 	}

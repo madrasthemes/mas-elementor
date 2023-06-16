@@ -145,8 +145,31 @@ class Post_Content extends Base_Widget {
 			return;
 		}
 
+		$re_occur          = apply_filters( 'mas_post_content_recursive_variable', false );
+		$allowed_posttypes = apply_filters(
+			'mas_post_content_allowed_posttypes',
+			get_post_types(
+				array(
+					'public' => true,
+				)
+			)
+		);
+
+		$exclude_posttype = apply_filters( 'mas_post_content_exclude_posttype', array( 'page' ) );
+
+		if ( is_array( $allowed_posttypes ) ) {
+			foreach ( $allowed_posttypes as $allowed_posttype ) {
+				if ( in_array( $allowed_posttype, $exclude_posttype, true ) ) {
+					continue;
+				}
+				if ( is_singular( $allowed_posttype ) ) {
+					$re_occur = true;
+				}
+			}
+		}
+
 		// Avoid recursion.
-		if ( isset( $did_posts[ $post->ID ] ) ) {
+		if ( isset( $did_posts[ $post->ID ] ) && $re_occur ) {
 			return;
 		}
 
