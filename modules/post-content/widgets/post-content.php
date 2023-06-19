@@ -155,7 +155,7 @@ class Post_Content extends Base_Widget {
 			)
 		);
 
-		$exclude_posttype = apply_filters( 'mas_post_content_exclude_posttype', array( 'page' ) );
+		$exclude_posttype = apply_filters( 'mas_post_content_exclude_posttype', array() );
 
 		if ( is_array( $allowed_posttypes ) ) {
 			foreach ( $allowed_posttypes as $allowed_posttype ) {
