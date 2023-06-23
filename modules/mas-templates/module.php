@@ -81,6 +81,10 @@ class Module extends BaseModule {
 				$location = 'single-' . $post_type;
 			} elseif ( is_post_type_archive( $post_type ) || ( 'post' === $post_type && is_home() ) ) {
 				$location = 'archive-' . $post_type;
+			} elseif ( is_cart() ) {
+				$location = 'cart';
+			} elseif ( is_checkout() ) {
+				$location = 'checkout';
 			}
 			if ( 'post' !== $post_type ) {
 				$taxonomies = array_merge( get_object_taxonomies( $post_type ), $taxonomies );
@@ -138,6 +142,8 @@ class Module extends BaseModule {
 							$template_name = $page_settings_model->get_settings( 'mas_select_archive_template_override' );
 						} elseif ( 'taxonomy' === $template_type ) {
 							$template_name = $page_settings_model->get_settings( 'mas_select_taxonomy_template_override' );
+						} elseif ( 'woocommerce' === $template_type ) {
+							$template_name = $page_settings_model->get_settings( 'mas_select_woocommerce_template_override' );
 						} else {
 							$template_name = '';
 						}
@@ -282,18 +288,24 @@ class Module extends BaseModule {
 				'tab'   => Controls_Manager::TAB_SETTINGS,
 			)
 		);
+		$template_options = array(
+			'none'     => 'None',
+			'single'   => 'Single',
+			'archive'  => 'Archive',
+			'taxonomy' => 'Taxonomies',
+		);
+
+		if ( class_exists( 'woocommerce' ) ) {
+			$template_options['woocommerce'] = 'Woocommerce';
+		}
+
 		$page->add_control(
 			'mas_select_template_override',
 			array(
 				'label'   => esc_html__( 'Templates Override', 'mas-elementor' ),
 				'type'    => Controls_Manager::SELECT,
 				'default' => 'none',
-				'options' => array(
-					'none'     => 'None',
-					'single'   => 'Single',
-					'archive'  => 'Archive',
-					'taxonomy' => 'Taxonomies',
-				),
+				'options' => $template_options,
 			)
 		);
 
@@ -380,6 +392,22 @@ class Module extends BaseModule {
 				'options'   => $tax_options,
 				'condition' => array(
 					'mas_select_template_override' => 'taxonomy',
+				),
+			)
+		);
+
+		$page->add_control(
+			'mas_select_woocommerce_template_override',
+			array(
+				'label'     => esc_html__( 'Select Woocommerce Template', 'mas-elementor' ),
+				'type'      => Controls_Manager::SELECT,
+				'default'   => 'cart',
+				'options'   => array(
+					'cart'     => 'Cart',
+					'checkout' => 'Checkout',
+				),
+				'condition' => array(
+					'mas_select_template_override' => 'woocommerce',
 				),
 			)
 		);
