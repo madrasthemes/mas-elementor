@@ -185,21 +185,22 @@ class Signin extends Base_Widget {
 		$this->add_control(
 			'login_form_title_spacing',
 			array(
-				'label'     => esc_html__( 'Title Spacing', 'mas-elementor' ),
-				'type'      => Controls_Manager::SLIDER,
-				'default'   => array(
+				'label'      => esc_html__( 'Title Spacing', 'mas-elementor' ),
+				'type'       => Controls_Manager::SLIDER,
+				'size_units' => array( 'px', '%', 'em', 'rem', 'custom' ),
+				'default'    => array(
 					'size' => '0',
 				),
-				'range'     => array(
+				'range'      => array(
 					'px' => array(
 						'min' => 0,
 						'max' => 60,
 					),
 				),
-				'selectors' => array(
+				'selectors'  => array(
 					'{{WRAPPER}} .form-header__title' => 'margin-top: {{SIZE}}{{UNIT}};',
 				),
-				'condition' => array( 'show_form_title' => 'yes' ),
+				'condition'  => array( 'show_form_title' => 'yes' ),
 			)
 		);
 
@@ -274,21 +275,22 @@ class Signin extends Base_Widget {
 		$this->add_control(
 			'login_form_desc_spacing',
 			array(
-				'label'     => esc_html__( 'Description Spacing', 'mas-elementor' ),
-				'type'      => Controls_Manager::SLIDER,
-				'default'   => array(
+				'label'      => esc_html__( 'Description Spacing', 'mas-elementor' ),
+				'type'       => Controls_Manager::SLIDER,
+				'size_units' => array( 'px', '%', 'em', 'rem', 'custom' ),
+				'default'    => array(
 					'size' => '15',
 				),
-				'range'     => array(
+				'range'      => array(
 					'px' => array(
 						'min' => 0,
 						'max' => 60,
 					),
 				),
-				'selectors' => array(
+				'selectors'  => array(
 					'{{WRAPPER}} .form-header__desc' => 'margin-top: {{SIZE}}{{UNIT}};',
 				),
-				'condition' => array( 'show_form_description' => 'yes' ),
+				'condition'  => array( 'show_form_description' => 'yes' ),
 			)
 		);
 
@@ -415,18 +417,19 @@ class Signin extends Base_Widget {
 		$this->add_control(
 			'login_form_spacebetween',
 			array(
-				'label'     => esc_html__( 'Form Spacing', 'mas-elementor' ),
-				'type'      => Controls_Manager::SLIDER,
-				'default'   => array(
+				'label'      => esc_html__( 'Form Spacing', 'mas-elementor' ),
+				'type'       => Controls_Manager::SLIDER,
+				'size_units' => array( 'px', '%', 'em', 'rem', 'custom' ),
+				'default'    => array(
 					'size' => '12',
 				),
-				'range'     => array(
+				'range'      => array(
 					'px' => array(
 						'min' => 0,
 						'max' => 60,
 					),
 				),
-				'selectors' => array(
+				'selectors'  => array(
 					'{{WRAPPER}} .mas-form-fields-wrapper .elementor-field-type-text label' => 'margin-right: {{SIZE}}{{UNIT}};',
 				),
 			)
@@ -435,19 +438,20 @@ class Signin extends Base_Widget {
 		$this->add_control(
 			'login_label_width',
 			array(
-				'label'     => esc_html__( 'Label Width', 'mas-elementor' ),
-				'type'      => Controls_Manager::SLIDER,
-				'default'   => array(
+				'label'      => esc_html__( 'Label Width', 'mas-elementor' ),
+				'type'       => Controls_Manager::SLIDER,
+				'size_units' => array( 'px', '%', 'em', 'rem', 'custom' ),
+				'default'    => array(
 					'size' => '12',
 					'unit' => '%',
 				),
-				'range'     => array(
+				'range'      => array(
 					'%' => array(
 						'min' => 0,
 						'max' => 100,
 					),
 				),
-				'selectors' => array(
+				'selectors'  => array(
 					'{{WRAPPER}} .mas-form-fields-wrapper .elementor-field-type-text label' => 'width: {{SIZE}}{{UNIT}};',
 				),
 			)
@@ -468,19 +472,20 @@ class Signin extends Base_Widget {
 		$this->add_control(
 			'login_form_width',
 			array(
-				'label'     => esc_html__( 'Form Width', 'mas-elementor' ),
-				'type'      => Controls_Manager::SLIDER,
-				'default'   => array(
+				'label'      => esc_html__( 'Form Width', 'mas-elementor' ),
+				'type'       => Controls_Manager::SLIDER,
+				'size_units' => array( 'px', '%', 'em', 'rem', 'custom' ),
+				'default'    => array(
 					'size' => '36',
 					'unit' => '%',
 				),
-				'range'     => array(
+				'range'      => array(
 					'%' => array(
 						'min' => 0,
 						'max' => 100,
 					),
 				),
-				'selectors' => array(
+				'selectors'  => array(
 					'{{WRAPPER}} .mas-form-fields-wrapper .elementor-field-type-text input' => 'width: {{SIZE}}{{UNIT}};',
 				),
 			)
@@ -489,18 +494,19 @@ class Signin extends Base_Widget {
 		$this->add_control(
 			'login_form_spacing',
 			array(
-				'label'     => esc_html__( 'Spacing', 'mas-elementor' ),
-				'type'      => Controls_Manager::SLIDER,
-				'default'   => array(
+				'label'      => esc_html__( 'Spacing', 'mas-elementor' ),
+				'type'       => Controls_Manager::SLIDER,
+				'size_units' => array( 'px', '%', 'em', 'rem', 'custom' ),
+				'default'    => array(
 					'size' => '15',
 				),
-				'range'     => array(
+				'range'      => array(
 					'px' => array(
 						'min' => 0,
 						'max' => 100,
 					),
 				),
-				'selectors' => array(
+				'selectors'  => array(
 					'{{WRAPPER}} .mas-form-fields-wrapper .mas-form-fields > div' => 'margin-top: {{SIZE}}{{UNIT}};',
 					'{{WRAPPER}} .mas-form-fields-wrapper .elementor-field-type-text' => 'margin-top: {{SIZE}}{{UNIT}};',
 				),
@@ -579,7 +585,7 @@ class Signin extends Base_Widget {
 			array(
 				'label'      => esc_html__( 'Input Icon Margin', 'mas-elementor' ),
 				'type'       => Controls_Manager::DIMENSIONS,
-				'default' => array(
+				'default'    => array(
 					'top'      => '0',
 					'right'    => '0',
 					'bottom'   => '-4',
@@ -825,19 +831,20 @@ class Signin extends Base_Widget {
 		$this->add_responsive_control(
 			'signin_button_width',
 			array(
-				'label'     => esc_html__( 'Sign in Button Width', 'mas-elementor' ),
-				'type'      => Controls_Manager::SLIDER,
-				'default'   => array(
+				'label'      => esc_html__( 'Sign in Button Width', 'mas-elementor' ),
+				'type'       => Controls_Manager::SLIDER,
+				'size_units' => array( 'px', '%', 'em', 'rem', 'custom' ),
+				'default'    => array(
 					'size' => '',
 					'unit' => '%',
 				),
-				'range'     => array(
+				'range'      => array(
 					'%' => array(
 						'min' => 0,
 						'max' => 100,
 					),
 				),
-				'selectors' => array(
+				'selectors'  => array(
 					'{{WRAPPER}} .mas-signin-btn button[type="submit"]' => 'width: {{SIZE}}{{UNIT}};',
 				),
 			)
@@ -846,18 +853,19 @@ class Signin extends Base_Widget {
 		$this->add_control(
 			'signin_button_spacing',
 			array(
-				'label'     => esc_html__( 'Sign in Button Spacing', 'mas-elementor' ),
-				'type'      => Controls_Manager::SLIDER,
-				'default'   => array(
+				'label'      => esc_html__( 'Sign in Button Spacing', 'mas-elementor' ),
+				'type'       => Controls_Manager::SLIDER,
+				'size_units' => array( 'px', '%', 'em', 'rem', 'custom' ),
+				'default'    => array(
 					'size' => '15',
 				),
-				'range'     => array(
+				'range'      => array(
 					'px' => array(
 						'min' => 0,
 						'max' => 60,
 					),
 				),
-				'selectors' => array(
+				'selectors'  => array(
 					'{{WRAPPER}} .mas-signin-btn' => 'margin-top: {{SIZE}}{{UNIT}};',
 				),
 			)
@@ -915,18 +923,19 @@ class Signin extends Base_Widget {
 		$this->add_control(
 			'signup_link_spacing',
 			array(
-				'label'     => esc_html__( 'Sign up link Spacing', 'mas-elementor' ),
-				'type'      => Controls_Manager::SLIDER,
-				'default'   => array(
+				'label'      => esc_html__( 'Sign up link Spacing', 'mas-elementor' ),
+				'type'       => Controls_Manager::SLIDER,
+				'size_units' => array( 'px', '%', 'em', 'rem', 'custom' ),
+				'default'    => array(
 					'size' => '12',
 				),
-				'range'     => array(
+				'range'      => array(
 					'px' => array(
 						'min' => 0,
 						'max' => 60,
 					),
 				),
-				'selectors' => array(
+				'selectors'  => array(
 					'{{WRAPPER}} .form__footer' => 'margin-top: {{SIZE}}{{UNIT}};',
 				),
 			)
@@ -1117,11 +1126,11 @@ class Signin extends Base_Widget {
 					),
 				),
 
-				'register_label_name'            => array(
+				'register_label_name'             => array(
 					'for' => 'registerName-' . $unique_id,
 				),
 
-				'register_name_input'      => array(
+				'register_name_input'             => array(
 					'type'        => 'text',
 					'name'        => 'regname',
 					'id'          => 'registerName-' . $unique_id,
