@@ -75,6 +75,7 @@ class Module extends Module_Base {
 			'Add_To_Cart',
 			'Product_Related',
 			// 'Product_Data_Tabs',
+			'Cart',
 		);
 	}
 
@@ -375,6 +376,21 @@ class Module extends Module_Base {
 		}
 
 		return $default_widget_args;
+	}
+
+	/**
+	 * Is Preview
+	 *
+	 * Helper to check if we are doing either:
+	 * - Viewing the WP Preview page - also used as the Elementor preview page when clicking "Preview Changes" in the editor
+	 * - Viewing the page in the editor, but not the active page being edited e.g. if you click Edit Header while editing a page
+	 *
+	 * @since 3.7.0
+	 *
+	 * @return bool
+	 */
+	public static function is_preview() {
+		return Plugin::elementor()->preview->is_preview_mode() || is_preview();
 	}
 
 	/**
