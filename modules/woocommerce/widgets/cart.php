@@ -91,7 +91,7 @@ class Cart extends Base_Widget {
 	 * @return array
 	 */
 	public function get_style_depends() {
-		return array( 'select2' );
+		return array( 'mas-woocommerce-cart', 'select2' );
 	}
 
 	/**

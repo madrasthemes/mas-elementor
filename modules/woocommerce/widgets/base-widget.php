@@ -169,7 +169,7 @@ abstract class Base_Widget extends \MASElementor\Base\Base_Widget {
 	 * @return string
 	 */
 	public function filter_gettext( $translation, $text, $domain ) {
-		if ( 'woocommerce' !== $domain && 'mas-elementor' !== $domain ) {
+		if ( 'woocommerce' !== $domain ) {
 			return $translation;
 		}
 

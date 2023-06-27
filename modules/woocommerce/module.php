@@ -436,5 +436,12 @@ class Module extends Module_Base {
 			array(),
 			MAS_ELEMENTOR_VERSION
 		);
+
+		wp_register_style(
+			'mas-woocommerce-cart',
+			MAS_ELEMENTOR_ASSETS_URL . 'css/woo-cart/mas-woocommerce-cart.css',
+			array(),
+			MAS_ELEMENTOR_VERSION
+		);
 	}
 }
