@@ -116,7 +116,7 @@ class Post_Content extends Base_Widget {
 			'enable_trim_content',
 			array(
 				'type'        => Controls_Manager::SWITCHER,
-				'label'       => esc_html__( 'Enable Carousel', 'mas-elementor' ),
+				'label'       => esc_html__( 'Enable Trim content', 'mas-elementor' ),
 				'default'     => 'yes',
 				'description' => esc_html__( 'Only for mas-post looping', 'mas-elementor' ),
 			)
