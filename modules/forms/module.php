@@ -349,7 +349,7 @@ class Module extends Module_Base {
 		wp_register_script(
 			'forgot-password',
 			MAS_ELEMENTOR_MODULES_URL . 'forms/assets/js/forgot-password.js',
-			array( 'jquery' ),
+			array( '' ),
 			MAS_ELEMENTOR_VERSION,
 			true
 		);
