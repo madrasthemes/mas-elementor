@@ -137,8 +137,9 @@ class Post_Content extends Base_Widget {
 		$this->add_control(
 			'words_continuation',
 			array(
-				'label'     => esc_html__( 'Content Length', 'mas-elementor' ),
+				'label'     => esc_html__( 'Trimmed words', 'mas-elementor' ),
 				'type'      => Controls_Manager::TEXT,
+				'description' => esc_html__( 'Text to display in trimmed words', 'mas-elementor' ),
 				'default'   => '...',
 				'condition' => array(
 					'enable_trim_content' => 'yes',
