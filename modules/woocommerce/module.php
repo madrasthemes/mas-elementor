@@ -76,6 +76,7 @@ class Module extends Module_Base {
 			'Product_Related',
 			// 'Product_Data_Tabs',
 			'Cart',
+			'Checkout',
 		);
 	}
 
@@ -440,6 +441,13 @@ class Module extends Module_Base {
 		wp_register_style(
 			'mas-woocommerce-cart',
 			MAS_ELEMENTOR_ASSETS_URL . 'css/woo-cart/mas-woocommerce-cart.css',
+			array(),
+			MAS_ELEMENTOR_VERSION
+		);
+
+		wp_register_style(
+			'mas-woocommerce-checkout',
+			MAS_ELEMENTOR_ASSETS_URL . 'css/woo-checkout/mas-woocommerce-checkout.css',
 			array(),
 			MAS_ELEMENTOR_VERSION
 		);
