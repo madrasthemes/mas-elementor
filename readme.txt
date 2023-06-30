@@ -4,7 +4,7 @@ Tags: posts, products, nav-menu, carousel, tabs, multipurpose text
 Requires at least: 5.0
 Tested up to: 6.1
 Requires PHP: 7.4
-Stable tag: 1.0.6
+Stable tag: 1.0.10
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -67,6 +67,19 @@ All of our online documentation can be found on [our documentation site](https:/
 
 
 == Changelog ==
+
+= 1.0.10 - 2023-06-28 =
+* Feature : Added trim content in post content.
+
+= 1.0.9 - 2023-06-28 =
+* Feature : Added Cart and Checkout templates override.
+
+= 1.0.8 - 2023-06-19 =
+* Feature : Added Mas Templates.
+* Feature : Added post content widget.
+
+= 1.0.7 - 2023-02-23 =
+* Feature : Added portfolio custom post type.
 
 = 1.0.6 - 2023-02-23 =
 * Fix : Fixed JS Carousel issue.

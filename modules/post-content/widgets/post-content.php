@@ -112,6 +112,42 @@ class Post_Content extends Base_Widget {
 			)
 		);
 
+		$this->add_control(
+			'enable_trim_content',
+			array(
+				'type'        => Controls_Manager::SWITCHER,
+				'label'       => esc_html__( 'Enable Trim content', 'mas-elementor' ),
+				'default'     => 'yes',
+				'description' => esc_html__( 'Only for mas-post looping', 'mas-elementor' ),
+			)
+		);
+
+		$this->add_control(
+			'trim_words',
+			array(
+				'label'     => esc_html__( 'Content Length', 'mas-elementor' ),
+				'type'      => Controls_Manager::TEXT,
+				'default'   => '10',
+				'condition' => array(
+					'enable_trim_content' => 'yes',
+				),
+			)
+		);
+
+		$this->add_control(
+			'words_continuation',
+			array(
+				'label'     => esc_html__( 'Trimmed words', 'mas-elementor' ),
+				'type'      => Controls_Manager::TEXT,
+				'description' => esc_html__( 'Text to display in trimmed words', 'mas-elementor' ),
+				'default'   => '...',
+				'condition' => array(
+					'enable_trim_content' => 'yes',
+				),
+
+			)
+		);
+
 		$this->end_controls_section();
 	}
 
@@ -134,6 +170,7 @@ class Post_Content extends Base_Widget {
 	 * @return void
 	 */
 	public function render_post_content( $with_wrapper = false, $with_css = true ) {
+		$settings         = $this->get_settings_for_display();
 		static $did_posts = array();
 		static $level     = 0;
 
@@ -154,8 +191,7 @@ class Post_Content extends Base_Widget {
 				)
 			)
 		);
-
-		$exclude_posttype = apply_filters( 'mas_post_content_exclude_posttype', array() );
+		$exclude_posttype  = apply_filters( 'mas_post_content_exclude_posttype', array( 'page' ) );
 
 		if ( is_array( $allowed_posttypes ) ) {
 			foreach ( $allowed_posttypes as $allowed_posttype ) {
@@ -215,7 +251,11 @@ class Post_Content extends Base_Widget {
 
 				/** This filter is documented in wp-includes/post-template.php */
 				// PHPCS - `get_the_content` is safe.
-				echo apply_filters( 'the_content', get_the_content() ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+				if ( 'yes' === $settings['enable_trim_content'] && ! empty( $settings['trim_words'] ) ) {
+					echo apply_filters( 'the_content', wp_trim_words( get_the_content(), $settings['trim_words'], $settings['words_continuation'] ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+				} else {
+					echo apply_filters( 'the_content', get_the_content() ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+				}
 
 				wp_link_pages(
 					array(

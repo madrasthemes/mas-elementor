@@ -81,9 +81,9 @@ class Module extends BaseModule {
 				$location = 'single-' . $post_type;
 			} elseif ( is_post_type_archive( $post_type ) || ( 'post' === $post_type && is_home() ) ) {
 				$location = 'archive-' . $post_type;
-			} elseif ( is_cart() ) {
+			} elseif ( function_exists('is_cart') && is_cart() ) {
 				$location = 'cart';
-			} elseif ( is_checkout() ) {
+			} elseif ( function_exists('is_checkout') && is_checkout() ) {
 				$location = 'checkout';
 			}
 			if ( 'post' !== $post_type ) {
