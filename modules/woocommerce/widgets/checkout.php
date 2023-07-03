@@ -347,7 +347,7 @@ class Checkout extends Base_Widget {
 				'label_off' => esc_html__( 'Hide', 'mas-elementor' ),
 				'default'   => 'yes',
 				'selectors' => array(
-					'{{WRAPPER}}' => '--additional-information-display: block;',
+					'{{WRAPPER}}' => '--mas-additional-information-display: block;',
 				),
 			)
 		);
@@ -527,7 +527,7 @@ class Checkout extends Base_Widget {
 					),
 				),
 				'selectors' => array(
-					'{{WRAPPER}}' => '--order-review-title-alignment: {{VALUE}};',
+					'{{WRAPPER}}' => '--mas-order-review-title-alignment: {{VALUE}};',
 				),
 			)
 		);
@@ -614,10 +614,10 @@ class Checkout extends Base_Widget {
 					'{{WRAPPER}} .woocommerce-checkout' => '{{VALUE}}',
 				),
 				'selectors_dictionary' => array(
-					'start'   => '--place-order-title-alignment: flex-start; --purchase-button-width: fit-content;',
-					'center'  => '--place-order-title-alignment: center; --purchase-button-width: fit-content;',
-					'end'     => '--place-order-title-alignment: flex-end; --purchase-button-width: fit-content;',
-					'justify' => '--place-order-title-alignment: stretch; --purchase-button-width: 100%;',
+					'start'   => '--mas-place-order-title-alignment: flex-start; --purchase-button-width: fit-content;',
+					'center'  => '--mas-place-order-title-alignment: center; --purchase-button-width: fit-content;',
+					'end'     => '--mas-place-order-title-alignment: flex-end; --purchase-button-width: fit-content;',
+					'justify' => '--mas-place-order-title-alignment: stretch; --purchase-button-width: 100%;',
 				),
 			)
 		);
@@ -638,7 +638,7 @@ class Checkout extends Base_Widget {
 				'label'     => esc_html__( 'Background Color', 'mas-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
-					'{{WRAPPER}}' => '--sections-background-color: {{VALUE}};',
+					'{{WRAPPER}}' => '--mas-sections-background-color: {{VALUE}};',
 				),
 			)
 		);
@@ -658,7 +658,7 @@ class Checkout extends Base_Widget {
 				'type'      => Controls_Manager::SELECT,
 				'options'   => $this->get_custom_border_type_options(),
 				'selectors' => array(
-					'{{WRAPPER}}' => '--sections-border-type: {{VALUE}};',
+					'{{WRAPPER}}' => '--mas-sections-border-type: {{VALUE}};',
 				),
 				'separator' => 'before',
 			)
@@ -685,7 +685,7 @@ class Checkout extends Base_Widget {
 				'label'     => esc_html__( 'Color', 'mas-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
-					'{{WRAPPER}}' => '--sections-border-color: {{VALUE}};',
+					'{{WRAPPER}}' => '--mas-sections-border-color: {{VALUE}};',
 				),
 				'condition' => array(
 					'sections_border_type!' => 'none',
@@ -700,7 +700,7 @@ class Checkout extends Base_Widget {
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', '%', 'em', 'rem', 'custom' ),
 				'selectors'  => array(
-					'{{WRAPPER}}' => '--sections-border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}}' => '--mas-sections-border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				),
 			)
 		);
@@ -712,9 +712,9 @@ class Checkout extends Base_Widget {
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', '%', 'em', 'rem', 'vw', 'custom' ),
 				'selectors'  => array(
-					'{{WRAPPER}}' => '--sections-padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}}' => '--mas-sections-padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 					// move the 'Ship to a different address?' checkbox.
-					'{{WRAPPER}} .woocommerce-shipping-fields' => '--shipping-heading-padding-start: {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .woocommerce-shipping-fields' => '--mas-shipping-heading-padding-start: {{LEFT}}{{UNIT}};',
 				),
 			)
 		);
@@ -726,7 +726,7 @@ class Checkout extends Base_Widget {
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', '%', 'em', 'rem', 'vw', 'custom' ),
 				'selectors'  => array(
-					'{{WRAPPER}}' => '--sections-margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}}' => '--mas-sections-margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				),
 			)
 		);
@@ -755,7 +755,7 @@ class Checkout extends Base_Widget {
 				'label'     => esc_html__( 'Color', 'mas-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
-					'{{WRAPPER}}' => '--sections-title-color: {{VALUE}};',
+					'{{WRAPPER}}' => '--mas-sections-title-color: {{VALUE}};',
 				),
 			)
 		);
@@ -790,7 +790,7 @@ class Checkout extends Base_Widget {
 				),
 				'default'    => array( 'px' => 0 ),
 				'selectors'  => array(
-					'{{WRAPPER}}' => '--sections-title-spacing: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}}' => '--mas-sections-title-spacing: {{SIZE}}{{UNIT}};',
 				),
 			)
 		);
@@ -810,7 +810,7 @@ class Checkout extends Base_Widget {
 				'label'     => esc_html__( 'Color', 'mas-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
-					'{{WRAPPER}}' => '--sections-secondary-title-color: {{VALUE}};',
+					'{{WRAPPER}}' => '--mas-sections-secondary-title-color: {{VALUE}};',
 				),
 			)
 		);
@@ -819,7 +819,7 @@ class Checkout extends Base_Widget {
 			Group_Control_Typography::get_type(),
 			array(
 				'name'     => 'sections_secondary_titles_typography',
-				'selector' => '{{WRAPPER}} .e-checkout-secondary-title',
+				'selector' => '{{WRAPPER}} .e-mas-checkout-secondary-title',
 			)
 		);
 
@@ -837,7 +837,7 @@ class Checkout extends Base_Widget {
 				),
 				'default'    => array( 'px' => 0 ),
 				'selectors'  => array(
-					'{{WRAPPER}}' => '--sections-secondary-title-spacing: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}}' => '--mas-sections-secondary-title-spacing: {{SIZE}}{{UNIT}};',
 				),
 			)
 		);
@@ -857,7 +857,7 @@ class Checkout extends Base_Widget {
 				'label'     => esc_html__( 'Color', 'mas-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
-					'{{WRAPPER}}' => '--sections-descriptions-color: {{VALUE}};',
+					'{{WRAPPER}}' => '--mas-sections-descriptions-color: {{VALUE}};',
 				),
 			)
 		);
@@ -884,7 +884,7 @@ class Checkout extends Base_Widget {
 				),
 				'default'    => array( 'px' => 0 ),
 				'selectors'  => array(
-					'{{WRAPPER}}' => '--sections-descriptions-spacing: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}}' => '--mas-sections-descriptions-spacing: {{SIZE}}{{UNIT}};',
 				),
 			)
 		);
@@ -904,7 +904,7 @@ class Checkout extends Base_Widget {
 				'label'     => esc_html__( 'Color', 'mas-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
-					'{{WRAPPER}}' => '--sections-messages-color: {{VALUE}};',
+					'{{WRAPPER}}' => '--mas-sections-messages-color: {{VALUE}};',
 				),
 			)
 		);
@@ -932,7 +932,7 @@ class Checkout extends Base_Widget {
 				'label'     => esc_html__( 'Color', 'mas-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
-					'{{WRAPPER}}' => '--sections-checkboxes-color: {{VALUE}};',
+					'{{WRAPPER}}' => '--mas-sections-checkboxes-color: {{VALUE}};',
 				),
 			)
 		);
@@ -960,7 +960,7 @@ class Checkout extends Base_Widget {
 				'label'     => esc_html__( 'Color', 'mas-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
-					'{{WRAPPER}}' => '--sections-radio-buttons-color: {{VALUE}};',
+					'{{WRAPPER}}' => '--mas-sections-radio-buttons-color: {{VALUE}};',
 				),
 			)
 		);
@@ -998,7 +998,7 @@ class Checkout extends Base_Widget {
 				'label'     => esc_html__( 'Link Color', 'mas-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
-					'{{WRAPPER}}' => '--links-normal-color: {{VALUE}};',
+					'{{WRAPPER}}' => '--mas-links-normal-color: {{VALUE}};',
 				),
 			)
 		);
@@ -1051,7 +1051,7 @@ class Checkout extends Base_Widget {
 				),
 				'default'    => array( 'px' => 0 ),
 				'selectors'  => array(
-					'{{WRAPPER}}' => '--forms-columns-gap-padding: calc( {{SIZE}}{{UNIT}}/2 ); --forms-columns-gap-margin: calc( -{{SIZE}}{{UNIT}}/2 );',
+					'{{WRAPPER}}' => '--mas-forms-columns-gap-padding: calc( {{SIZE}}{{UNIT}}/2 ); --forms-columns-gap-margin: calc( -{{SIZE}}{{UNIT}}/2 );',
 				),
 			)
 		);
@@ -1070,7 +1070,7 @@ class Checkout extends Base_Widget {
 				),
 				'default'    => array( 'px' => 0 ),
 				'selectors'  => array(
-					'{{WRAPPER}}' => '--forms-rows-gap: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}}' => '--mas-forms-rows-gap: {{SIZE}}{{UNIT}};',
 				),
 			)
 		);
@@ -1089,7 +1089,7 @@ class Checkout extends Base_Widget {
 				'label'     => esc_html__( 'Color', 'mas-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
-					'{{WRAPPER}}' => '--forms-labels-color: {{VALUE}};',
+					'{{WRAPPER}}' => '--mas-forms-labels-color: {{VALUE}};',
 				),
 			)
 		);
@@ -1116,7 +1116,7 @@ class Checkout extends Base_Widget {
 				),
 				'default'    => array( 'px' => 0 ),
 				'selectors'  => array(
-					'{{WRAPPER}}' => '--forms-label-spacing: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}}' => '--mas-forms-label-spacing: {{SIZE}}{{UNIT}};',
 				),
 			)
 		);
@@ -1152,7 +1152,7 @@ class Checkout extends Base_Widget {
 				'label'     => esc_html__( 'Color', 'mas-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
-					'{{WRAPPER}}' => '--forms-fields-normal-color: {{VALUE}};',
+					'{{WRAPPER}}' => '--mas-forms-fields-normal-color: {{VALUE}};',
 					'.e-woo-select2-wrapper .select2-results__option' => 'color: {{VALUE}};',
 					// style select2 arrow.
 					'{{WRAPPER}} .select2-container--default .select2-selection--single .select2-selection__arrow b' => 'border-color: {{VALUE}} transparent transparent transparent;',
@@ -1191,7 +1191,7 @@ class Checkout extends Base_Widget {
 				'label'     => esc_html__( 'Color', 'mas-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
-					'{{WRAPPER}}' => '--forms-fields-focus-color: {{VALUE}}',
+					'{{WRAPPER}}' => '--mas-forms-fields-focus-color: {{VALUE}}',
 					'.e-woo-select2-wrapper .select2-results__option:focus' => 'color: {{VALUE}};',
 				),
 			)
@@ -1233,7 +1233,7 @@ class Checkout extends Base_Widget {
 				'label'     => esc_html__( 'Transition Duration', 'mas-elementor' ) . ' (ms)',
 				'type'      => Controls_Manager::SLIDER,
 				'selectors' => array(
-					'{{WRAPPER}}' => '--forms-fields-focus-transition-duration: {{SIZE}}ms',
+					'{{WRAPPER}}' => '--mas-forms-fields-focus-transition-duration: {{SIZE}}ms',
 				),
 				'range'     => array(
 					'px' => array(
@@ -1264,7 +1264,7 @@ class Checkout extends Base_Widget {
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', '%', 'em', 'rem', 'custom' ),
 				'selectors'  => array(
-					'{{WRAPPER}}' => '--forms-fields-border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}}' => '--mas-forms-fields-border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				),
 			)
 		);
@@ -1276,7 +1276,7 @@ class Checkout extends Base_Widget {
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', '%', 'em', 'rem', 'vw', 'custom' ),
 				'selectors'  => array(
-					'{{WRAPPER}}' => '--forms-fields-padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}}' => '--mas-forms-fields-padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 					// style select2.
 					'{{WRAPPER}} .select2-container--default .select2-selection--single .select2-selection__rendered' => 'line-height: calc( ({{TOP}}{{UNIT}}*2) + 16px ); padding-left: {{LEFT}}{{UNIT}}; padding-right: {{RIGHT}}{{UNIT}};',
 					'{{WRAPPER}} .select2-container--default .select2-selection--single .select2-selection__arrow' => 'height: calc( ({{TOP}}{{UNIT}}*2) + 16px ); right: {{RIGHT}}{{UNIT}};',
@@ -1325,7 +1325,7 @@ class Checkout extends Base_Widget {
 				'label'     => esc_html__( 'Text Color', 'mas-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
-					'{{WRAPPER}}' => '--forms-buttons-normal-text-color: {{VALUE}};',
+					'{{WRAPPER}}' => '--mas-forms-buttons-normal-text-color: {{VALUE}};',
 				),
 			)
 		);
@@ -1361,7 +1361,7 @@ class Checkout extends Base_Widget {
 				'label'     => esc_html__( 'Text Color', 'mas-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
-					'{{WRAPPER}}' => '--forms-buttons-hover-text-color: {{VALUE}};',
+					'{{WRAPPER}}' => '--mas-forms-buttons-hover-text-color: {{VALUE}};',
 				),
 			)
 		);
@@ -1402,7 +1402,7 @@ class Checkout extends Base_Widget {
 				'label'     => esc_html__( 'Transition Duration', 'mas-elementor' ) . ' (ms)',
 				'type'      => Controls_Manager::SLIDER,
 				'selectors' => array(
-					'{{WRAPPER}}' => '--forms-buttons-hover-transition-duration: {{SIZE}}ms',
+					'{{WRAPPER}}' => '--mas-forms-buttons-hover-transition-duration: {{SIZE}}ms',
 				),
 				'range'     => array(
 					'px' => array(
@@ -1432,7 +1432,7 @@ class Checkout extends Base_Widget {
 				'type'      => Controls_Manager::SELECT,
 				'options'   => $this->get_custom_border_type_options(),
 				'selectors' => array(
-					'{{WRAPPER}}' => '--forms-buttons-border-type: {{VALUE}};',
+					'{{WRAPPER}}' => '--mas-forms-buttons-border-type: {{VALUE}};',
 				),
 				'separator' => 'before',
 			)
@@ -1459,7 +1459,7 @@ class Checkout extends Base_Widget {
 				'label'     => esc_html__( 'Color', 'mas-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
-					'{{WRAPPER}} ' => '--forms-buttons-border-color: {{VALUE}};',
+					'{{WRAPPER}} ' => '--mas-forms-buttons-border-color: {{VALUE}};',
 				),
 				'condition' => array(
 					'forms_buttons_border_type!' => 'none',
@@ -1474,7 +1474,7 @@ class Checkout extends Base_Widget {
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', '%', 'em', 'rem', 'custom' ),
 				'selectors'  => array(
-					'{{WRAPPER}}' => '--forms-buttons-border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}}' => '--mas-forms-buttons-border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				),
 			)
 		);
@@ -1515,7 +1515,7 @@ class Checkout extends Base_Widget {
 				),
 				'default'    => array( 'px' => 0 ),
 				'selectors'  => array(
-					'{{WRAPPER}}' => '--order-summary-rows-gap-top: calc( {{SIZE}}{{UNIT}}/2 ); --order-summary-rows-gap-bottom: calc( {{SIZE}}{{UNIT}}/2 );',
+					'{{WRAPPER}}' => '--mas-order-summary-rows-gap-top: calc( {{SIZE}}{{UNIT}}/2 ); --order-summary-rows-gap-bottom: calc( {{SIZE}}{{UNIT}}/2 );',
 				),
 			)
 		);
@@ -1534,7 +1534,7 @@ class Checkout extends Base_Widget {
 				'label'     => esc_html__( 'Color', 'mas-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
-					'{{WRAPPER}}' => '--order-summary-items-color: {{VALUE}};',
+					'{{WRAPPER}}' => '--mas-order-summary-items-color: {{VALUE}};',
 				),
 			)
 		);
@@ -1561,7 +1561,7 @@ class Checkout extends Base_Widget {
 				'label'     => esc_html__( 'Color', 'mas-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
-					'{{WRAPPER}}' => '--order-summary-variations-color: {{VALUE}};',
+					'{{WRAPPER}}' => '--mas-order-summary-variations-color: {{VALUE}};',
 				),
 			)
 		);
@@ -1591,7 +1591,7 @@ class Checkout extends Base_Widget {
 				'label'     => esc_html__( 'Color', 'mas-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
-					'{{WRAPPER}}' => '--order-summary-items-divider-color: {{VALUE}};',
+					'{{WRAPPER}}' => '--mas-order-summary-items-divider-color: {{VALUE}};',
 				),
 			)
 		);
@@ -1603,7 +1603,7 @@ class Checkout extends Base_Widget {
 				'type'       => Controls_Manager::SLIDER,
 				'size_units' => array( 'px', 'em', 'rem', 'custom' ),
 				'selectors'  => array(
-					'{{WRAPPER}}' => '--order-summary-items-divider-weight: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}}' => '--mas-order-summary-items-divider-weight: {{SIZE}}{{UNIT}};',
 				),
 			)
 		);
@@ -1622,7 +1622,7 @@ class Checkout extends Base_Widget {
 				'label'     => esc_html__( 'Color', 'mas-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
-					'{{WRAPPER}}' => '--order-summary-totals-color: {{VALUE}};',
+					'{{WRAPPER}}' => '--mas-order-summary-totals-color: {{VALUE}};',
 				),
 			)
 		);
@@ -1649,7 +1649,7 @@ class Checkout extends Base_Widget {
 				'label'     => esc_html__( 'Color', 'mas-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
-					'{{WRAPPER}}' => '--order-summary-totals-divider-color: {{VALUE}};',
+					'{{WRAPPER}}' => '--mas-order-summary-totals-divider-color: {{VALUE}};',
 				),
 			)
 		);
@@ -1661,7 +1661,7 @@ class Checkout extends Base_Widget {
 				'type'       => Controls_Manager::SLIDER,
 				'size_units' => array( 'px', 'em', 'rem', 'custom' ),
 				'selectors'  => array(
-					'{{WRAPPER}}' => '--order-summary-totals-divider-weight: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}}' => '--mas-order-summary-totals-divider-weight: {{SIZE}}{{UNIT}};',
 				),
 			)
 		);
@@ -1707,7 +1707,7 @@ class Checkout extends Base_Widget {
 				'label'     => esc_html__( 'Text Color', 'mas-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
-					'{{WRAPPER}}' => '--purchase-button-normal-text-color: {{VALUE}};',
+					'{{WRAPPER}}' => '--mas-purchase-button-normal-text-color: {{VALUE}};',
 				),
 			)
 		);
@@ -1743,7 +1743,7 @@ class Checkout extends Base_Widget {
 				'label'     => esc_html__( 'Text Color', 'mas-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
-					'{{WRAPPER}}' => '--purchase-button-hover-text-color: {{VALUE}};',
+					'{{WRAPPER}}' => '--mas-purchase-button-hover-text-color: {{VALUE}};',
 				),
 			)
 		);
@@ -1770,7 +1770,7 @@ class Checkout extends Base_Widget {
 				'label'     => esc_html__( 'Border Color', 'mas-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
-					'{{WRAPPER}}' => '--purchase-button-hover-border-color: {{VALUE}}',
+					'{{WRAPPER}}' => '--mas-purchase-button-hover-border-color: {{VALUE}}',
 				),
 				'condition' => array(
 					'purchase_button_border_border!' => '',
@@ -1784,7 +1784,7 @@ class Checkout extends Base_Widget {
 				'label'     => esc_html__( 'Transition Duration', 'mas-elementor' ) . ' (ms)',
 				'type'      => Controls_Manager::SLIDER,
 				'selectors' => array(
-					'{{WRAPPER}}' => '--purchase-button-hover-transition-duration: {{SIZE}}ms',
+					'{{WRAPPER}}' => '--mas-purchase-button-hover-transition-duration: {{SIZE}}ms',
 				),
 				'range'     => array(
 					'px' => array(
@@ -1825,7 +1825,7 @@ class Checkout extends Base_Widget {
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', '%', 'em', 'rem', 'custom' ),
 				'selectors'  => array(
-					'{{WRAPPER}}' => '--purchase-button-border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}}' => '--mas-purchase-button-border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				),
 			)
 		);
@@ -1837,7 +1837,7 @@ class Checkout extends Base_Widget {
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', '%', 'em', 'rem', 'vw', 'custom' ),
 				'selectors'  => array(
-					'{{WRAPPER}}' => '--purchase-button-padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}}; --purchase-button-width: fit-content;',
+					'{{WRAPPER}}' => '--mas-purchase-button-padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}}; --purchase-button-width: fit-content;',
 				),
 			)
 		);
@@ -1924,7 +1924,7 @@ class Checkout extends Base_Widget {
 				'label'     => esc_html__( 'Background Color', 'mas-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
-					'{{WRAPPER}} .e-woocommerce-login-section' => '--sections-background-color: {{VALUE}};',
+					'{{WRAPPER}} .e-mas-woocommerce-login-section' => '--mas-sections-background-color: {{VALUE}};',
 				),
 			)
 		);
@@ -1933,7 +1933,7 @@ class Checkout extends Base_Widget {
 			Group_Control_Box_Shadow::get_type(),
 			array(
 				'name'     => 'returning_customers_section_normal_box_shadow',
-				'selector' => '{{WRAPPER}} .e-woocommerce-login-section',
+				'selector' => '{{WRAPPER}} .e-mas-woocommerce-login-section',
 			)
 		);
 
@@ -1944,7 +1944,7 @@ class Checkout extends Base_Widget {
 				'type'      => Controls_Manager::SELECT,
 				'options'   => $this->get_custom_border_type_options(),
 				'selectors' => array(
-					'{{WRAPPER}} .e-woocommerce-login-section' => '--sections-border-type: {{VALUE}};',
+					'{{WRAPPER}} .e-mas-woocommerce-login-section' => '--mas-sections-border-type: {{VALUE}};',
 				),
 				'separator' => 'before',
 			)
@@ -1957,7 +1957,7 @@ class Checkout extends Base_Widget {
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', '%', 'em', 'rem', 'vw', 'custom' ),
 				'selectors'  => array(
-					'{{WRAPPER}} .e-woocommerce-login-section' => 'border-width: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .e-mas-woocommerce-login-section' => 'border-width: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				),
 				'condition'  => array(
 					'returning_customers_border_type!' => 'none',
@@ -1971,7 +1971,7 @@ class Checkout extends Base_Widget {
 				'label'     => esc_html__( 'Color', 'mas-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
-					'{{WRAPPER}} .e-woocommerce-login-section' => '--sections-border-color: {{VALUE}};',
+					'{{WRAPPER}} .e-mas-woocommerce-login-section' => '--mas-sections-border-color: {{VALUE}};',
 				),
 				'condition' => array(
 					'returning_customers_border_type!' => 'none',
@@ -1986,7 +1986,7 @@ class Checkout extends Base_Widget {
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', '%', 'em', 'rem', 'custom' ),
 				'selectors'  => array(
-					'{{WRAPPER}} .e-woocommerce-login-section' => '--sections-border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .e-mas-woocommerce-login-section' => '--mas-sections-border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				),
 			)
 		);
@@ -1998,7 +1998,7 @@ class Checkout extends Base_Widget {
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', '%', 'em', 'rem', 'vw', 'custom' ),
 				'selectors'  => array(
-					'{{WRAPPER}} .e-woocommerce-login-section' => '--sections-padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .e-mas-woocommerce-login-section' => '--mas-sections-padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				),
 			)
 		);
@@ -2010,7 +2010,7 @@ class Checkout extends Base_Widget {
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', '%', 'em', 'rem', 'vw', 'custom' ),
 				'selectors'  => array(
-					'{{WRAPPER}} .e-woocommerce-login-section' => '--sections-margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .e-mas-woocommerce-login-section' => '--mas-sections-margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				),
 				'separator'  => 'after',
 			)
@@ -2030,7 +2030,7 @@ class Checkout extends Base_Widget {
 				'label'     => esc_html__( 'Color', 'mas-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
-					'{{WRAPPER}} .woocommerce-form-login-toggle' => '--sections-secondary-title-color: {{VALUE}};',
+					'{{WRAPPER}} .woocommerce-form-login-toggle' => '--mas-sections-secondary-title-color: {{VALUE}};',
 				),
 			)
 		);
@@ -2057,7 +2057,7 @@ class Checkout extends Base_Widget {
 				'label'     => esc_html__( 'Color', 'mas-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
-					'{{WRAPPER}} .e-woocommerce-login-nudge' => '--sections-descriptions-color: {{VALUE}};',
+					'{{WRAPPER}} .e-woocommerce-login-nudge' => '--mas-sections-descriptions-color: {{VALUE}};',
 				),
 			)
 		);
@@ -2084,7 +2084,7 @@ class Checkout extends Base_Widget {
 				'label'     => esc_html__( 'Color', 'mas-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
-					'{{WRAPPER}} .e-woocommerce-login-section' => '--sections-checkboxes-color: {{VALUE}};',
+					'{{WRAPPER}} .e-mas-woocommerce-login-section' => '--mas-sections-checkboxes-color: {{VALUE}};',
 				),
 			)
 		);
@@ -2093,7 +2093,7 @@ class Checkout extends Base_Widget {
 			Group_Control_Typography::get_type(),
 			array(
 				'name'     => 'returning_customers_checkboxes_typography',
-				'selector' => '{{WRAPPER}} .e-woocommerce-login-section .woocommerce-form__label-for-checkbox span',
+				'selector' => '{{WRAPPER}} .e-mas-woocommerce-login-section .woocommerce-form__label-for-checkbox span',
 			)
 		);
 
@@ -2120,7 +2120,7 @@ class Checkout extends Base_Widget {
 				'label'     => esc_html__( 'Color', 'mas-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
-					'{{WRAPPER}} .e-woocommerce-login-section' => '--links-normal-color: {{VALUE}};',
+					'{{WRAPPER}} .e-mas-woocommerce-login-section' => '--mas-links-normal-color: {{VALUE}};',
 				),
 			)
 		);
@@ -2140,7 +2140,7 @@ class Checkout extends Base_Widget {
 				'label'     => esc_html__( 'Color', 'mas-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
-					'{{WRAPPER}} .e-woocommerce-login-section' => '--links-hover-color: {{VALUE}};',
+					'{{WRAPPER}} .e-mas-woocommerce-login-section' => '--links-hover-color: {{VALUE}};',
 				),
 			)
 		);
@@ -2176,7 +2176,7 @@ class Checkout extends Base_Widget {
 				'label'     => esc_html__( 'Background Color', 'mas-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
-					'{{WRAPPER}} .col2-set .col-1' => '--sections-background-color: {{VALUE}};',
+					'{{WRAPPER}} .col2-set .col-1' => '--mas-sections-background-color: {{VALUE}};',
 				),
 			)
 		);
@@ -2196,7 +2196,7 @@ class Checkout extends Base_Widget {
 				'type'      => Controls_Manager::SELECT,
 				'options'   => $this->get_custom_border_type_options(),
 				'selectors' => array(
-					'{{WRAPPER}} .col2-set .col-1' => '--sections-border-type: {{VALUE}};',
+					'{{WRAPPER}} .col2-set .col-1' => '--mas-sections-border-type: {{VALUE}};',
 				),
 				'separator' => 'before',
 			)
@@ -2223,7 +2223,7 @@ class Checkout extends Base_Widget {
 				'label'     => esc_html__( 'Color', 'mas-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
-					'{{WRAPPER}} .col2-set .col-1' => '--sections-border-color: {{VALUE}}',
+					'{{WRAPPER}} .col2-set .col-1' => '--mas-sections-border-color: {{VALUE}}',
 				),
 				'condition' => array(
 					'billing_details_border_type!' => 'none',
@@ -2238,7 +2238,7 @@ class Checkout extends Base_Widget {
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', '%', 'em', 'rem', 'custom' ),
 				'selectors'  => array(
-					'{{WRAPPER}} .col2-set .col-1' => '--sections-border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .col2-set .col-1' => '--mas-sections-border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				),
 			)
 		);
@@ -2250,7 +2250,7 @@ class Checkout extends Base_Widget {
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', '%', 'em', 'rem', 'vw', 'custom' ),
 				'selectors'  => array(
-					'{{WRAPPER}} .col2-set .col-1' => '--sections-padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .col2-set .col-1' => '--mas-sections-padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				),
 			)
 		);
@@ -2262,7 +2262,7 @@ class Checkout extends Base_Widget {
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', '%', 'em', 'rem', 'vw', 'custom' ),
 				'selectors'  => array(
-					'{{WRAPPER}} .col2-set .col-1' => '--sections-margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .col2-set .col-1' => '--mas-sections-margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				),
 				'separator'  => 'after',
 			)
@@ -2282,7 +2282,7 @@ class Checkout extends Base_Widget {
 				'label'     => esc_html__( 'Color', 'mas-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
-					'{{WRAPPER}} .col2-set .col-1' => '--sections-title-color: {{VALUE}};',
+					'{{WRAPPER}} .col2-set .col-1' => '--mas-sections-title-color: {{VALUE}};',
 				),
 			)
 		);
@@ -2317,7 +2317,7 @@ class Checkout extends Base_Widget {
 				'label'     => esc_html__( 'Color', 'mas-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
-					'{{WRAPPER}} .col2-set .col-1' => '--sections-checkboxes-color: {{VALUE}};',
+					'{{WRAPPER}} .col2-set .col-1' => '--mas-sections-checkboxes-color: {{VALUE}};',
 				),
 			)
 		);
@@ -2357,7 +2357,7 @@ class Checkout extends Base_Widget {
 				'label'     => esc_html__( 'Background Color', 'mas-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
-					'{{WRAPPER}} .woocommerce-additional-fields' => '--sections-background-color: {{VALUE}};',
+					'{{WRAPPER}} .woocommerce-additional-fields' => '--mas-sections-background-color: {{VALUE}};',
 				),
 			)
 		);
@@ -2377,7 +2377,7 @@ class Checkout extends Base_Widget {
 				'type'      => Controls_Manager::SELECT,
 				'options'   => $this->get_custom_border_type_options(),
 				'selectors' => array(
-					'{{WRAPPER}} .woocommerce-additional-fields' => '--sections-border-type: {{VALUE}};',
+					'{{WRAPPER}} .woocommerce-additional-fields' => '--mas-sections-border-type: {{VALUE}};',
 				),
 				'separator' => 'before',
 			)
@@ -2404,7 +2404,7 @@ class Checkout extends Base_Widget {
 				'label'     => esc_html__( 'Color', 'mas-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
-					'{{WRAPPER}} .woocommerce-additional-fields' => '--sections-border-color: {{VALUE}};',
+					'{{WRAPPER}} .woocommerce-additional-fields' => '--mas-sections-border-color: {{VALUE}};',
 				),
 				'condition' => array(
 					'additional_information_border_type!' => 'none',
@@ -2419,7 +2419,7 @@ class Checkout extends Base_Widget {
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', '%', 'em', 'rem', 'custom' ),
 				'selectors'  => array(
-					'{{WRAPPER}} .woocommerce-additional-fields' => '--sections-border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .woocommerce-additional-fields' => '--mas-sections-border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				),
 			)
 		);
@@ -2431,7 +2431,7 @@ class Checkout extends Base_Widget {
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', '%', 'em', 'rem', 'vw', 'custom' ),
 				'selectors'  => array(
-					'{{WRAPPER}} .woocommerce-additional-fields' => '--sections-padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .woocommerce-additional-fields' => '--mas-sections-padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				),
 			)
 		);
@@ -2443,7 +2443,7 @@ class Checkout extends Base_Widget {
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', '%', 'em', 'rem', 'vw', 'custom' ),
 				'selectors'  => array(
-					'{{WRAPPER}} .woocommerce-additional-fields' => '--sections-margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .woocommerce-additional-fields' => '--mas-sections-margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 					'{{WRAPPER}}.e-checkout-layout-one-column .e-checkout__container' => 'grid-row-gap: {{BOTTOM}}{{UNIT}};',
 				),
 				'separator'  => 'after',
@@ -2464,7 +2464,7 @@ class Checkout extends Base_Widget {
 				'label'     => esc_html__( 'Color', 'mas-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
-					'{{WRAPPER}} .woocommerce-additional-fields' => '--sections-title-color: {{VALUE}};',
+					'{{WRAPPER}} .woocommerce-additional-fields' => '--mas-sections-title-color: {{VALUE}};',
 				),
 			)
 		);
@@ -2520,7 +2520,7 @@ class Checkout extends Base_Widget {
 				'label'     => esc_html__( 'Background Color', 'mas-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
-					'{{WRAPPER}} .e-checkout__order_review' => '--sections-background-color: {{VALUE}};',
+					'{{WRAPPER}} .e-checkout__order_review' => '--mas-sections-background-color: {{VALUE}};',
 				),
 			)
 		);
@@ -2540,7 +2540,7 @@ class Checkout extends Base_Widget {
 				'type'      => Controls_Manager::SELECT,
 				'options'   => $this->get_custom_border_type_options(),
 				'selectors' => array(
-					'{{WRAPPER}} .e-checkout__order_review' => '--sections-border-type: {{VALUE}};',
+					'{{WRAPPER}} .e-checkout__order_review' => '--mas-sections-border-type: {{VALUE}};',
 				),
 				'separator' => 'before',
 			)
@@ -2567,7 +2567,7 @@ class Checkout extends Base_Widget {
 				'label'     => esc_html__( 'Color', 'mas-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
-					'{{WRAPPER}} .e-checkout__order_review' => '--sections-border-color: {{VALUE}}',
+					'{{WRAPPER}} .e-checkout__order_review' => '--mas-sections-border-color: {{VALUE}}',
 				),
 				'condition' => array(
 					'order_summary_border_type!' => 'none',
@@ -2582,7 +2582,7 @@ class Checkout extends Base_Widget {
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', '%', 'em', 'rem', 'custom' ),
 				'selectors'  => array(
-					'{{WRAPPER}} .e-checkout__order_review' => '--sections-border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .e-checkout__order_review' => '--mas-sections-border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				),
 			)
 		);
@@ -2594,7 +2594,7 @@ class Checkout extends Base_Widget {
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', '%', 'em', 'rem', 'vw', 'custom' ),
 				'selectors'  => array(
-					'{{WRAPPER}} .e-checkout__order_review' => '--sections-padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .e-checkout__order_review' => '--mas-sections-padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				),
 			)
 		);
@@ -2606,7 +2606,7 @@ class Checkout extends Base_Widget {
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', '%', 'em', 'rem', 'vw', 'custom' ),
 				'selectors'  => array(
-					'{{WRAPPER}} .e-checkout__order_review' => '--sections-margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .e-checkout__order_review' => '--mas-sections-margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				),
 				'separator'  => 'after',
 			)
@@ -2626,7 +2626,7 @@ class Checkout extends Base_Widget {
 				'label'     => esc_html__( 'Color', 'mas-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
-					'{{WRAPPER}} .e-checkout__order_review' => '--sections-title-color: {{VALUE}};',
+					'{{WRAPPER}} .e-checkout__order_review' => '--mas-sections-title-color: {{VALUE}};',
 				),
 			)
 		);
@@ -2661,7 +2661,7 @@ class Checkout extends Base_Widget {
 				'label'     => esc_html__( 'Color', 'mas-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
-					'{{WRAPPER}} .e-checkout__order_review' => '--sections-descriptions-color: {{VALUE}}; --sections-messages-color: {{VALUE}};',
+					'{{WRAPPER}} .e-checkout__order_review' => '--mas-sections-descriptions-color: {{VALUE}}; --sections-messages-color: {{VALUE}};',
 				),
 			)
 		);
@@ -2688,7 +2688,7 @@ class Checkout extends Base_Widget {
 				'label'     => esc_html__( 'Color', 'mas-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
-					'{{WRAPPER}} .e-checkout__order_review' => '--sections-radio-buttons-color: {{VALUE}};',
+					'{{WRAPPER}} .e-checkout__order_review' => '--mas-sections-radio-buttons-color: {{VALUE}};',
 				),
 			)
 		);
@@ -2728,7 +2728,7 @@ class Checkout extends Base_Widget {
 				'label'     => esc_html__( 'Background Color', 'mas-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
-					'{{WRAPPER}} .woocommerce-checkout #payment' => '--sections-background-color: {{VALUE}};',
+					'{{WRAPPER}} .woocommerce-checkout #payment' => '--mas-sections-background-color: {{VALUE}};',
 				),
 			)
 		);
@@ -2748,7 +2748,7 @@ class Checkout extends Base_Widget {
 				'type'      => Controls_Manager::SELECT,
 				'options'   => $this->get_custom_border_type_options(),
 				'selectors' => array(
-					'{{WRAPPER}} .woocommerce-checkout #payment' => '--sections-border-type: {{VALUE}};',
+					'{{WRAPPER}} .woocommerce-checkout #payment' => '--mas-sections-border-type: {{VALUE}};',
 				),
 				'separator' => 'before',
 			)
@@ -2775,7 +2775,7 @@ class Checkout extends Base_Widget {
 				'label'     => esc_html__( 'Color', 'mas-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
-					'{{WRAPPER}} .woocommerce-checkout #payment' => '--sections-border-color: {{VALUE}};',
+					'{{WRAPPER}} .woocommerce-checkout #payment' => '--mas-sections-border-color: {{VALUE}};',
 				),
 				'condition' => array(
 					'payment_border_type!' => 'none',
@@ -2790,7 +2790,7 @@ class Checkout extends Base_Widget {
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', '%', 'em', 'rem', 'custom' ),
 				'selectors'  => array(
-					'{{WRAPPER}} .woocommerce-checkout #payment' => '--sections-border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .woocommerce-checkout #payment' => '--mas-sections-border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				),
 			)
 		);
@@ -2802,7 +2802,7 @@ class Checkout extends Base_Widget {
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', '%', 'em', 'rem', 'vw', 'custom' ),
 				'selectors'  => array(
-					'{{WRAPPER}} .woocommerce-checkout #payment' => '--sections-padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .woocommerce-checkout #payment' => '--mas-sections-padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				),
 			)
 		);
@@ -2814,7 +2814,7 @@ class Checkout extends Base_Widget {
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', '%', 'em', 'rem', 'vw', 'custom' ),
 				'selectors'  => array(
-					'{{WRAPPER}} .woocommerce-checkout #payment' => '--sections-margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .woocommerce-checkout #payment' => '--mas-sections-margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				),
 				'separator'  => 'after',
 			)
@@ -2850,7 +2850,7 @@ class Checkout extends Base_Widget {
 				'label'     => esc_html__( 'Color', 'mas-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
-					'{{WRAPPER}} .woocommerce-checkout-payment' => '--sections-descriptions-color: {{VALUE}};',
+					'{{WRAPPER}} .woocommerce-checkout-payment' => '--mas-sections-descriptions-color: {{VALUE}};',
 				),
 			)
 		);
@@ -2877,7 +2877,7 @@ class Checkout extends Base_Widget {
 				'label'     => esc_html__( 'Color', 'mas-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
-					'{{WRAPPER}} .woocommerce-checkout-payment' => '--sections-messages-color: {{VALUE}};',
+					'{{WRAPPER}} .woocommerce-checkout-payment' => '--mas-sections-messages-color: {{VALUE}};',
 				),
 			)
 		);
@@ -2904,7 +2904,7 @@ class Checkout extends Base_Widget {
 				'label'     => esc_html__( 'Color', 'mas-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
-					'{{WRAPPER}} .woocommerce-terms-and-conditions-wrapper' => '--sections-checkboxes-color: {{VALUE}};',
+					'{{WRAPPER}} .woocommerce-terms-and-conditions-wrapper' => '--mas-sections-checkboxes-color: {{VALUE}};',
 				),
 			)
 		);
@@ -2931,7 +2931,7 @@ class Checkout extends Base_Widget {
 				'label'     => esc_html__( 'Color', 'mas-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
-					'{{WRAPPER}} .woocommerce-checkout-payment' => '--sections-radio-buttons-color: {{VALUE}};',
+					'{{WRAPPER}} .woocommerce-checkout-payment' => '--mas-sections-radio-buttons-color: {{VALUE}};',
 				),
 			)
 		);
@@ -2967,7 +2967,7 @@ class Checkout extends Base_Widget {
 				'label'     => esc_html__( 'Link Color', 'mas-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
-					'{{WRAPPER}} .woocommerce-checkout-payment' => '--links-normal-color: {{VALUE}};',
+					'{{WRAPPER}} .woocommerce-checkout-payment' => '--mas-links-normal-color: {{VALUE}};',
 				),
 			)
 		);
@@ -3054,7 +3054,7 @@ class Checkout extends Base_Widget {
 					),
 				),
 				'selectors' => array(
-					'{{WRAPPER}}' => '--login-title-alignment: {{VALUE}};',
+					'{{WRAPPER}}' => '--mas-login-title-alignment: {{VALUE}};',
 				),
 			)
 		);
@@ -3095,10 +3095,10 @@ class Checkout extends Base_Widget {
 					'{{WRAPPER}} .e-login-wrap' => '{{VALUE}}',
 				),
 				'selectors_dictionary' => array(
-					'start'   => '--login-button-alignment: start; --login-button-width: 35%;',
-					'center'  => '--login-button-alignment: center;  --login-button-width: 35%;',
-					'end'     => '--login-button-alignment: end;  --login-button-width: 35%;',
-					'justify' => '--login-button-alignment: center; --login-button-width: 100%;',
+					'start'   => '--mas-login-button-alignment: start; --login-button-width: 35%;',
+					'center'  => '--mas-login-button-alignment: center;  --login-button-width: 35%;',
+					'end'     => '--mas-login-button-alignment: end;  --login-button-width: 35%;',
+					'justify' => '--mas-login-button-alignment: center; --login-button-width: 100%;',
 				),
 			)
 		);
@@ -3358,7 +3358,7 @@ class Checkout extends Base_Widget {
 					),
 				),
 				'selectors' => array(
-					'{{WRAPPER}}' => '--coupon-title-alignment: {{VALUE}};',
+					'{{WRAPPER}}' => '--mas-coupon-title-alignment: {{VALUE}};',
 				),
 				'condition' => array(
 					'coupon_section_display' => 'yes',
@@ -3405,10 +3405,10 @@ class Checkout extends Base_Widget {
 					'{{WRAPPER}} .coupon-container-grid' => '{{VALUE}}',
 				),
 				'selectors_dictionary' => array(
-					'start'   => '--coupon-button-alignment: start;',
-					'center'  => '--coupon-button-alignment: center;',
-					'end'     => '--coupon-button-alignment: end;',
-					'justify' => '--coupon-button-alignment: justify; --coupon-button-width: 100%;',
+					'start'   => '--mas-coupon-button-alignment: start;',
+					'center'  => '--mas-coupon-button-alignment: center;',
+					'end'     => '--mas-coupon-button-alignment: end;',
+					'justify' => '--mas-coupon-button-alignment: justify; --mas-coupon-button-width: 100%;',
 				),
 				'condition'            => array(
 					'coupon_section_display' => 'yes',
@@ -3460,7 +3460,7 @@ class Checkout extends Base_Widget {
 				'label'     => esc_html__( 'Background Color', 'mas-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
-					'{{WRAPPER}} .woocommerce-shipping-fields .shipping_address' => '--sections-background-color: {{VALUE}};',
+					'{{WRAPPER}} .woocommerce-shipping-fields .shipping_address' => '--mas-sections-background-color: {{VALUE}};',
 				),
 			)
 		);
@@ -3480,7 +3480,7 @@ class Checkout extends Base_Widget {
 				'type'      => Controls_Manager::SELECT,
 				'options'   => $this->get_custom_border_type_options(),
 				'selectors' => array(
-					'{{WRAPPER}} .woocommerce-shipping-fields .shipping_address' => '--sections-border-type: {{VALUE}};',
+					'{{WRAPPER}} .woocommerce-shipping-fields .shipping_address' => '--mas-sections-border-type: {{VALUE}};',
 				),
 				'separator' => 'before',
 			)
@@ -3507,7 +3507,7 @@ class Checkout extends Base_Widget {
 				'label'     => esc_html__( 'Color', 'mas-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
-					'{{WRAPPER}} .woocommerce-shipping-fields .shipping_address' => '--sections-border-color: {{VALUE}}',
+					'{{WRAPPER}} .woocommerce-shipping-fields .shipping_address' => '--mas-sections-border-color: {{VALUE}}',
 				),
 				'condition' => array(
 					'shipping_address_border_type!' => 'none',
@@ -3522,7 +3522,7 @@ class Checkout extends Base_Widget {
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', '%', 'em', 'rem', 'custom' ),
 				'selectors'  => array(
-					'{{WRAPPER}} .woocommerce-shipping-fields .shipping_address' => '--sections-border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .woocommerce-shipping-fields .shipping_address' => '--mas-sections-border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				),
 			)
 		);
@@ -3534,7 +3534,7 @@ class Checkout extends Base_Widget {
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', '%', 'em', 'rem', 'vw', 'custom' ),
 				'selectors'  => array(
-					'{{WRAPPER}} .woocommerce-shipping-fields .shipping_address' => '--sections-padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .woocommerce-shipping-fields .shipping_address' => '--mas-sections-padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				),
 			)
 		);
@@ -3546,7 +3546,7 @@ class Checkout extends Base_Widget {
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', '%', 'em', 'rem', 'vw', 'custom' ),
 				'selectors'  => array(
-					'{{WRAPPER}} .woocommerce-shipping-fields .shipping_address' => '--sections-margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .woocommerce-shipping-fields .shipping_address' => '--mas-sections-margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				),
 				'separator'  => 'after',
 			)
@@ -3567,7 +3567,7 @@ class Checkout extends Base_Widget {
 				'label'     => esc_html__( 'Color', 'mas-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
-					'{{WRAPPER}} .woocommerce-shipping-fields' => '--sections-checkboxes-color: {{VALUE}};',
+					'{{WRAPPER}} .woocommerce-shipping-fields' => '--mas-sections-checkboxes-color: {{VALUE}};',
 				),
 			)
 		);
@@ -3612,7 +3612,7 @@ class Checkout extends Base_Widget {
 				'label'     => esc_html__( 'Background Color', 'mas-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
-					'{{WRAPPER}} .e-coupon-box' => '--sections-background-color: {{VALUE}};',
+					'{{WRAPPER}} .e-coupon-box' => '--mas-sections-background-color: {{VALUE}};',
 				),
 			)
 		);
@@ -3632,7 +3632,7 @@ class Checkout extends Base_Widget {
 				'type'      => Controls_Manager::SELECT,
 				'options'   => $this->get_custom_border_type_options(),
 				'selectors' => array(
-					'{{WRAPPER}} .e-coupon-box' => '--sections-border-type: {{VALUE}};',
+					'{{WRAPPER}} .e-coupon-box' => '--mas-sections-border-type: {{VALUE}};',
 				),
 				'separator' => 'before',
 			)
@@ -3659,7 +3659,7 @@ class Checkout extends Base_Widget {
 				'label'     => esc_html__( 'Color', 'mas-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
-					'{{WRAPPER}} .e-coupon-box' => '--sections-border-color: {{VALUE}};',
+					'{{WRAPPER}} .e-coupon-box' => '--mas-sections-border-color: {{VALUE}};',
 				),
 				'condition' => array(
 					'coupon_border_type!' => 'none',
@@ -3674,7 +3674,7 @@ class Checkout extends Base_Widget {
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', '%', 'em', 'rem', 'custom' ),
 				'selectors'  => array(
-					'{{WRAPPER}} .e-coupon-box' => '--sections-border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .e-coupon-box' => '--mas-sections-border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				),
 			)
 		);
@@ -3686,7 +3686,7 @@ class Checkout extends Base_Widget {
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', '%', 'em', 'rem', 'vw', 'custom' ),
 				'selectors'  => array(
-					'{{WRAPPER}} .e-coupon-box' => '--sections-padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .e-coupon-box' => '--mas-sections-padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				),
 			)
 		);
@@ -3698,7 +3698,7 @@ class Checkout extends Base_Widget {
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', '%', 'em', 'rem', 'vw', 'custom' ),
 				'selectors'  => array(
-					'{{WRAPPER}} .e-coupon-box' => '--sections-margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .e-coupon-box' => '--mas-sections-margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				),
 				'separator'  => 'after',
 			)
@@ -3718,7 +3718,7 @@ class Checkout extends Base_Widget {
 				'label'     => esc_html__( 'Color', 'mas-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
-					'{{WRAPPER}} .e-woocommerce-coupon-nudge' => '--sections-secondary-title-color: {{VALUE}};',
+					'{{WRAPPER}} .e-woocommerce-coupon-nudge' => '--mas-sections-secondary-title-color: {{VALUE}};',
 				),
 			)
 		);
@@ -3727,7 +3727,7 @@ class Checkout extends Base_Widget {
 			Group_Control_Typography::get_type(),
 			array(
 				'name'     => 'coupon_content_typography',
-				'selector' => '{{WRAPPER}} .e-woocommerce-coupon-nudge.e-checkout-secondary-title',
+				'selector' => '{{WRAPPER}} .e-woocommerce-coupon-nudge.e-mas-checkout-secondary-title',
 			)
 		);
 
@@ -3754,7 +3754,7 @@ class Checkout extends Base_Widget {
 				'label'     => esc_html__( 'Color', 'mas-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
-					'{{WRAPPER}} .e-coupon-box' => '--links-normal-color: {{VALUE}};',
+					'{{WRAPPER}} .e-coupon-box' => '--mas-links-normal-color: {{VALUE}};',
 				),
 			)
 		);
@@ -3927,7 +3927,7 @@ class Checkout extends Base_Widget {
 	 * @return string
 	 */
 	private function get_main_woocommerce_sections_selectors() {
-		$selector = '{{WRAPPER}} .e-woocommerce-login-section, {{WRAPPER}} .woocommerce-checkout #customer_details .col-1, {{WRAPPER}} .woocommerce-additional-fields, {{WRAPPER}} .e-checkout__order_review, {{WRAPPER}} .e-coupon-box, {{WRAPPER}} .woocommerce-checkout #payment';
+		$selector = '{{WRAPPER}} .e-mas-woocommerce-login-section, {{WRAPPER}} .woocommerce-checkout #customer_details .col-1, {{WRAPPER}} .woocommerce-additional-fields, {{WRAPPER}} .e-checkout__order_review, {{WRAPPER}} .e-coupon-box, {{WRAPPER}} .woocommerce-checkout #payment';
 		if ( $this->is_wc_feature_active( 'shipping' ) ) {
 			$selector .= ', {{WRAPPER}} .woocommerce-shipping-fields .shipping_address';
 		}
@@ -4106,9 +4106,9 @@ class Checkout extends Base_Widget {
 			)
 		);
 		?>
-		<div class="e-woocommerce-login-section">
+		<div class="e-mas-woocommerce-login-section">
 			<div class="elementor-woocommerce-login-messages"></div>
-			<div class="woocommerce-form-login-toggle e-checkout-secondary-title">
+			<div class="woocommerce-form-login-toggle e-mas-checkout-secondary-title">
 				<?php echo esc_html__( 'Returning customer?', 'mas-elementor' ) . ' <a href="#" class="e-show-login">' . esc_html__( 'Click here to login', 'mas-elementor' ) . '</a>'; ?>
 			</div>
 			<div class="e-woocommerce-login-anchor" style="display:none;">
@@ -4189,7 +4189,7 @@ class Checkout extends Base_Widget {
 		);
 		?>
 		<div class="e-coupon-box">
-			<p class="e-woocommerce-coupon-nudge e-checkout-secondary-title"><?php esc_html_e( 'Have a coupon?', 'mas-elementor' ); ?> <a href="#" class="e-show-coupon-form"><?php esc_html_e( 'Click here to enter your coupon code', 'mas-elementor' ); ?></a></p>
+			<p class="e-woocommerce-coupon-nudge e-mas-checkout-secondary-title"><?php esc_html_e( 'Have a coupon?', 'mas-elementor' ); ?> <a href="#" class="e-show-coupon-form"><?php esc_html_e( 'Click here to enter your coupon code', 'mas-elementor' ); ?></a></p>
 			<div class="e-coupon-anchor" style="display:none">
 				<label class="e-coupon-anchor-description"><?php esc_html_e( 'If you have a coupon code, please apply it below.', 'mas-elementor' ); ?></label>
 				<div class="form-row">
