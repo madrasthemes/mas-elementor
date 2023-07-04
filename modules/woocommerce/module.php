@@ -77,6 +77,7 @@ class Module extends Module_Base {
 			// 'Product_Data_Tabs',
 			'Cart',
 			'Checkout',
+			'Categories',
 		);
 	}
 

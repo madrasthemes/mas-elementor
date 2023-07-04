@@ -69,7 +69,7 @@ abstract class Base_Widget extends \MASElementor\Base\Base_Widget {
 			array(
 				'label'               => esc_html__( 'Columns', 'mas-elementor' ),
 				'type'                => Controls_Manager::NUMBER,
-				'prefix_class'        => 'elementor-grid%s-',
+				'prefix_class'        => 'mas-grid%s-',
 				'min'                 => 1,
 				'max'                 => 12,
 				'default'             => Products_Renderer::DEFAULT_COLUMNS_AND_ROWS,
