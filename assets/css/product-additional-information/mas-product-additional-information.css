@@ -1,0 +1,6 @@
+.elementor-widget-mas-woocommerce-product-additional-information:not(.mas-elementor-show-heading-yes) h2 {
+    display: none;
+}
+.elementor-widget-mas-woocommerce-product-additional-information.mas-elementor-show-heading-yes h2 {
+display: block !important;
+}
