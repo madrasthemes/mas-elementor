@@ -74,10 +74,11 @@ class Module extends Module_Base {
 			'Products',
 			'Add_To_Cart',
 			'Product_Related',
-			// 'Product_Data_Tabs',
+			'Product_Data_Tabs',
 			'Cart',
 			'Checkout',
 			'Categories',
+			'Product_Meta',
 		);
 	}
 
@@ -449,6 +450,13 @@ class Module extends Module_Base {
 		wp_register_style(
 			'mas-woocommerce-checkout',
 			MAS_ELEMENTOR_ASSETS_URL . 'css/woo-checkout/mas-woocommerce-checkout.css',
+			array(),
+			MAS_ELEMENTOR_VERSION
+		);
+
+		wp_register_style(
+			'mas-product-meta',
+			MAS_ELEMENTOR_ASSETS_URL . 'css/product-meta/mas-product-meta.css',
 			array(),
 			MAS_ELEMENTOR_VERSION
 		);
