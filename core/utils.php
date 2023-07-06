@@ -372,4 +372,25 @@ class Utils {
 		return $text;
 	}
 
+	/**
+	 * Get super global value.
+	 *
+	 * @param array  $super_global super global.
+	 * @param string $key length.
+	 *
+	 * @return array
+	 */
+	public static function unstable_get_super_global_value( $super_global, $key ) {
+		if ( ! isset( $super_global[ $key ] ) ) {
+			return null;
+		}
+
+		if ( $_FILES === $super_global ) {
+			$super_global[ $key ]['name'] = sanitize_file_name( $super_global[ $key ]['name'] );
+			return $super_global[ $key ];
+		}
+
+		return wp_kses_post_deep( wp_unslash( $super_global[ $key ] ) );
+	}
+
 }

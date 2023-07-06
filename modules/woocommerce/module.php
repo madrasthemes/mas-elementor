@@ -80,6 +80,7 @@ class Module extends Module_Base {
 			'Categories',
 			'Product_Meta',
 			'Product_Additional_Information',
+			'Product_Images',
 		);
 	}
 
@@ -465,6 +466,13 @@ class Module extends Module_Base {
 		wp_register_style(
 			'mas-product-additional-information',
 			MAS_ELEMENTOR_ASSETS_URL . 'css/product-additional-information/mas-product-additional-information.css',
+			array(),
+			MAS_ELEMENTOR_VERSION
+		);
+
+		wp_register_style(
+			'mas-product-images',
+			MAS_ELEMENTOR_ASSETS_URL . 'css/product-images/mas-product-images.css',
 			array(),
 			MAS_ELEMENTOR_VERSION
 		);
