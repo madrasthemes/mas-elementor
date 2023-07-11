@@ -1,0 +1,20 @@
+.woocommerce .elementor-widget-mas-woocommerce-product-rating .elementor-widget-container .woocommerce-product-rating {
+    margin-bottom: 0;
+    display: flex;
+    align-items: center;
+}
+.woocommerce .elementor-widget-mas-woocommerce-product-rating .elementor-widget-container .star-rating {
+margin-top: 0;
+}
+.mas-elementor-product-rating--align-left .woocommerce-product-rating {
+    justify-content: flex-start;
+}
+.mas-elementor-product-rating--align-right .woocommerce-product-rating {
+justify-content: flex-end;
+}
+.mas-elementor-product-rating--align-center .woocommerce-product-rating {
+justify-content: center;
+}
+.mas-elementor-product-rating--align-justify .woocommerce-product-rating .woocommerce-review-link {
+margin-left: auto;
+}
