@@ -83,6 +83,8 @@ class Module extends Module_Base {
 			'Product_Additional_Information',
 			'Product_Images',
 			'Purchase_Summary',
+			'Product_Rating',
+			'Product_Short_Description',
 		);
 	}
 
@@ -482,6 +484,13 @@ class Module extends Module_Base {
 		wp_register_style(
 			'mas-purchase-summary',
 			MAS_ELEMENTOR_ASSETS_URL . 'css/purchase-summary/mas-purchase-summary.css',
+			array(),
+			MAS_ELEMENTOR_VERSION
+		);
+
+		wp_register_style(
+			'mas-product-rating',
+			MAS_ELEMENTOR_ASSETS_URL . 'css/product-rating/mas-product-rating.css',
 			array(),
 			MAS_ELEMENTOR_VERSION
 		);
