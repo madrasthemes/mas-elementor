@@ -85,6 +85,8 @@ class Module extends Module_Base {
 			'Purchase_Summary',
 			'Product_Rating',
 			'Product_Short_Description',
+			'Product_Stock',
+			'Product_Title',
 		);
 	}
 
