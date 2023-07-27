@@ -155,12 +155,17 @@ class Plugin {
 	 * Enqueue styles used by the plugin.
 	 */
 	public function enqueue_styles() {
+		$has_custom_file = \Elementor\Plugin::instance()->breakpoints->has_custom_breakpoints();
+
+		$frontend_file_url = $this->get_frontend_file_url( 'main.css', $has_custom_file );
+
 		wp_enqueue_style(
 			'mas-elementor-main',
-			MAS_ELEMENTOR_ASSETS_URL . 'css/main.css',
+			$frontend_file_url,
 			array(),
-			MAS_ELEMENTOR_VERSION
+			$has_custom_file ? null : MAS_ELEMENTOR_VERSION
 		);
+
 		wp_enqueue_style(
 			'mas-magnific-popup',
 			MAS_ELEMENTOR_ASSETS_URL . 'css/popup/magnific-popup.css',
@@ -248,6 +253,68 @@ class Plugin {
 
 		add_action( 'elementor/document/save_version', array( $this, 'on_document_save_version' ) );
 		add_filter( 'wp_kses_allowed_html', array( $this, 'mas_add_style_tag' ), 10, 2 );
+
+		add_filter( 'elementor/core/responsive/get_stylesheet_templates', array( $this, 'get_responsive_stylesheet_templates' ) );
+	}
+
+	/**
+	 * Responsive templates path.
+	 */
+	private function get_responsive_templates_path() {
+		return MAS_ELEMENTOR_ASSETS_PATH . 'css/';
+	}
+
+	/**
+	 * Get frontend file.
+	 *
+	 * @param string $frontend_file_name frontend_file_name.
+	 *
+	 * @return string
+	 */
+	private function get_frontend_file( $frontend_file_name ) {
+		$template_file_path = self::get_responsive_templates_path() . $frontend_file_name;
+
+		return self::elementor()->frontend->get_frontend_file( $frontend_file_name, 'mas-custom-', $template_file_path );
+	}
+
+	/**
+	 * Get frontend file url.
+	 *
+	 * @param string $frontend_file_name frontend_file_name.
+	 * @param string $custom_file custom_file.
+	 *
+	 * @return string
+	 */
+	public function get_frontend_file_url( $frontend_file_name, $custom_file ) {
+		if ( $custom_file ) {
+			$frontend_file = $this->get_frontend_file( $frontend_file_name );
+
+			$frontend_file_url = $frontend_file->get_url();
+		} else {
+			$frontend_file_url = MAS_ELEMENTOR_ASSETS_URL . 'css/' . $frontend_file_name;
+		}
+
+		return $frontend_file_url;
+	}
+
+	/**
+	 * Get responsive stylesheet templates.
+	 *
+	 * @param array $templates templates.
+	 *
+	 * @return array
+	 */
+	public function get_responsive_stylesheet_templates( $templates ) {
+		// $templates_paths = glob( MAS_ELEMENTOR_ASSETS_PATH . 'css/main.css' );
+		$templates_paths = glob( $this->get_responsive_templates_path() . '*.css' );
+
+		foreach ( $templates_paths as $template_path ) {
+			$file_name = 'mas-custom-' . basename( $template_path );
+
+			$templates[ $file_name ] = $template_path;
+		}
+
+		return $templates;
 	}
 
 	/**
