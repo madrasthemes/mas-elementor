@@ -159,7 +159,7 @@ class Plugin {
 		$direction_suffix = is_rtl() ? '-rtl' : '';
 		$responsive_file_name = 'mas-responsive' . $direction_suffix . '.css';
 
-		$frontend_file_url = $this->get_frontend_file_url( $responsive_file_name, $has_custom_file );
+		$frontend_file_url = $this->get_frontend_file_url( $responsive_file_name, true );
 
 		wp_enqueue_style(
 			'mas-elementor-responsive',
