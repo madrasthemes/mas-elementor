@@ -228,6 +228,22 @@ class Jobs_Filter extends Base_Widget {
 			)
 		);
 
+		$this->add_responsive_control(
+			'hide_search_text_responsive',
+			array(
+				'type'         => Controls_Manager::SWITCHER,
+				'label'        => esc_html__( 'Hide Text Responsive', 'mas-elementor' ),
+				'default'      => 'no',
+				'label_off'    => esc_html__( 'Hide', 'mas-elementor' ),
+				'label_on'     => esc_html__( 'Hidden', 'mas-elementor' ),
+				'return_value' => 'hide',
+				'prefix_class' => 'mas-job-filter-search-text%s-',
+				'condition' => array(
+					'search_text!' => '',
+				),
+			)
+		);
+
 		$this->add_control(
 			'search_icon',
 			array(
@@ -246,6 +262,19 @@ class Jobs_Filter extends Base_Widget {
 			array(
 				'label' => esc_html__( 'Form', 'mas-elementor' ),
 				'tab'   => Controls_Manager::TAB_STYLE,
+			)
+		);
+
+		$this->add_responsive_control(
+			'enable_flex_wrap_responsive',
+			array(
+				'type'         => Controls_Manager::SWITCHER,
+				'label'        => esc_html__( 'Flex Wrap', 'mas-elementor' ),
+				'default'      => 'no',
+				'label_off'    => esc_html__( 'No', 'mas-elementor' ),
+				'label_on'     => esc_html__( 'Wrap', 'mas-elementor' ),
+				'return_value' => 'wrap',
+				'prefix_class' => 'mas-job-filter-flex%s-',
 			)
 		);
 
