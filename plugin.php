@@ -156,14 +156,23 @@ class Plugin {
 	 */
 	public function enqueue_styles() {
 		$has_custom_file = \Elementor\Plugin::instance()->breakpoints->has_custom_breakpoints();
+		$direction_suffix = is_rtl() ? '-rtl' : '';
+		$responsive_file_name = 'mas-responsive' . $direction_suffix . '.css';
 
-		$frontend_file_url = $this->get_frontend_file_url( 'main.css', $has_custom_file );
+		$frontend_file_url = $this->get_frontend_file_url( $responsive_file_name, $has_custom_file );
 
 		wp_enqueue_style(
-			'mas-elementor-main',
+			'mas-elementor-responsive',
 			$frontend_file_url,
 			array(),
 			$has_custom_file ? null : MAS_ELEMENTOR_VERSION
+		);
+
+		wp_enqueue_style(
+			'mas-elementor-main',
+			MAS_ELEMENTOR_ASSETS_URL . 'css/main.css',
+			array(),
+			MAS_ELEMENTOR_VERSION
 		);
 
 		wp_enqueue_style(
@@ -261,7 +270,7 @@ class Plugin {
 	 * Responsive templates path.
 	 */
 	private function get_responsive_templates_path() {
-		return MAS_ELEMENTOR_ASSETS_PATH . 'css/';
+		return MAS_ELEMENTOR_ASSETS_PATH . 'css/templates/';
 	}
 
 	/**
@@ -291,7 +300,7 @@ class Plugin {
 
 			$frontend_file_url = $frontend_file->get_url();
 		} else {
-			$frontend_file_url = MAS_ELEMENTOR_ASSETS_URL . 'css/' . $frontend_file_name;
+			$frontend_file_url = MAS_ELEMENTOR_ASSETS_URL . 'css/templates/' . $frontend_file_name;
 		}
 
 		return $frontend_file_url;

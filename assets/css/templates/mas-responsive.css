@@ -1,0 +1,45 @@
+@media (max-width: ELEMENTOR_SCREEN_MOBILE_MAX) {
+    .mas-swiper-carousel--arrows-mobile-hide .swiper .mas-swiper-arrows,
+    .swiper.mas-swiper-carousel--arrows-mobile-hide ~ .mas-swiper-arrows {
+        display: none !important;
+  }
+    /* .elementor .elementor-hidden-phone {
+      display: none;
+    } */
+  }
+  @media (min-width: ELEMENTOR_SCREEN_MOBILE_EXTRA_MIN) and (max-width: ELEMENTOR_SCREEN_MOBILE_EXTRA_MAX) {
+    .mas-swiper-carousel--arrows-mobile_extra-hide .swiper .mas-swiper-arrows,
+    .swiper.mas-swiper-carousel--arrows-mobile_extra-hide ~ .mas-swiper-arrows  {
+      display: none !important;
+    }
+  }
+  @media (min-width: ELEMENTOR_SCREEN_TABLET_MIN) and (max-width: ELEMENTOR_SCREEN_TABLET_MAX) {
+    .mas-swiper-carousel--arrows-tablet-hide .swiper .mas-swiper-arrows,
+    .swiper.mas-swiper-carousel--arrows-tablet-hide ~ .mas-swiper-arrows {
+       display: none !important;
+    }
+  }
+  @media (min-width: ELEMENTOR_SCREEN_TABLET_EXTRA_MIN) and (max-width: ELEMENTOR_SCREEN_TABLET_EXTRA_MAX) {
+    .mas-swiper-carousel--arrows-tablet_extra-hide .swiper .mas-swiper-arrows,
+    .swiper.mas-swiper-carousel--arrows-tablet_extra-hide ~ .mas-swiper-arrows {
+       display: none !important;
+    }
+  }
+  @media (min-width: ELEMENTOR_SCREEN_LAPTOP_MIN) and (max-width: ELEMENTOR_SCREEN_LAPTOP_MAX) {
+    .mas-swiper-carousel--arrows-laptop-hide .swiper .mas-swiper-arrows,
+    .swiper.mas-swiper-carousel--arrows-laptop-hide ~ .mas-swiper-arrows {
+       display: none !important;
+    }
+  }
+  @media (min-width: ELEMENTOR_SCREEN_DESKTOP_MIN) and (max-width: ELEMENTOR_SCREEN_DESKTOP_MAX) {
+    .mas-swiper-carousel--arrows-hide .swiper .mas-swiper-arrows,
+    .swiper.mas-swiper-carousel--arrows-hide ~ .mas-swiper-arrows { 
+       display: none !important;
+    }
+  }
+  @media (min-width: ELEMENTOR_SCREEN_WIDESCREEN_MIN) {
+    .mas-swiper-carousel--arrows-widescreen-hide .swiper .mas-swiper-arrows,
+    .swiper.mas-swiper-carousel--arrows-widescreen-hide ~ .mas-swiper-arrows {
+       display: none !important;
+    }
+  }
