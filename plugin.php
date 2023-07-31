@@ -155,8 +155,8 @@ class Plugin {
 	 * Enqueue styles used by the plugin.
 	 */
 	public function enqueue_styles() {
-		$has_custom_file = \Elementor\Plugin::instance()->breakpoints->has_custom_breakpoints();
-		$direction_suffix = is_rtl() ? '-rtl' : '';
+		$has_custom_file      = \Elementor\Plugin::instance()->breakpoints->has_custom_breakpoints();
+		$direction_suffix     = is_rtl() ? '-rtl' : '';
 		$responsive_file_name = 'mas-responsive' . $direction_suffix . '.css';
 
 		$frontend_file_url = $this->get_frontend_file_url( $responsive_file_name, true );
@@ -340,7 +340,33 @@ class Plugin {
 
 		if ( 'post' === $context ) {
 			$allowed['style'] = '';
+
+			// Add or modify allowed HTML elements, attributes, or styles here.
+			$allowed['form']   = array(
+				'class'  => array(),
+				'method' => array(),
+			);
+			$allowed['select'] = array(
+				'name'       => array(),
+				'class'      => array(),
+				'aria-label' => array(),
+			);
+			$allowed['option'] = array(
+				'value'    => array(),
+				'selected' => array(),
+			);
+			$allowed['input']  = array(
+				'type'  => array(),
+				'name'  => array(),
+				'value' => array(),
+			);
+			$allowed['hidden'] = array(
+				'type'  => array(),
+				'name'  => array(),
+				'value' => array(),
+			);
 		}
+
 		return apply_filters( 'mas_add_style_tag', $allowed );
 	}
 
