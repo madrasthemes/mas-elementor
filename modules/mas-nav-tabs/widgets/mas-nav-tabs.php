@@ -831,6 +831,33 @@ class Mas_Nav_Tabs extends Base_Widget {
 			)
 		);
 
+		// Title align Controls.
+		$this->add_responsive_control(
+			'align',
+			array(
+				'label'     => esc_html__( 'Alignment', 'mas-elementor' ),
+				'type'      => Controls_Manager::CHOOSE,
+				'options'   => array(
+					'left'    => array(
+						'title' => esc_html__( 'Left', 'mas-elementor' ),
+						'icon'  => 'eicon-text-align-left',
+					),
+					'center'  => array(
+						'title' => esc_html__( 'Center', 'mas-elementor' ),
+						'icon'  => 'eicon-text-align-center',
+					),
+					'right'   => array(
+						'title' => esc_html__( 'Right', 'mas-elementor' ),
+						'icon'  => 'eicon-text-align-right',
+					),
+				),
+				'default'   => '',
+				'selectors' => array(
+					'{{WRAPPER}} .mas-elementor-nav-tab .mas_tab_title' => 'text-align: {{VALUE}};',
+				),
+			)
+		);
+
 		// Title Background Color Controls.
 		$this->add_control(
 			'normal_bg_color',
