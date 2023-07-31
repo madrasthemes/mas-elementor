@@ -278,7 +278,33 @@ class Jobs_Filter extends Base_Widget {
 			)
 		);
 
-		$this->add_control(
+		$this->add_responsive_control(
+			'form_wrap_align',
+			array(
+				'label'     => esc_html__( 'Form Wrap Alignment', 'mas-elementor' ),
+				'type'      => Controls_Manager::CHOOSE,
+				'options'   => array(
+					'left'   => array(
+						'title' => esc_html__( 'Left', 'mas-elementor' ),
+						'icon'  => 'eicon-text-align-left',
+					),
+					'center' => array(
+						'title' => esc_html__( 'Center', 'mas-elementor' ),
+						'icon'  => 'eicon-text-align-center',
+					),
+					'right'  => array(
+						'title' => esc_html__( 'Right', 'mas-elementor' ),
+						'icon'  => 'eicon-text-align-right',
+					),
+				),
+				'default'   => '',
+				'selectors' => array(
+					'{{WRAPPER}} .mas-job-search-form' => 'justify-content: {{VALUE}} !important;',
+				),
+			)
+		);
+
+		$this->add_responsive_control(
 			'form_border_radius',
 			array(
 				'label'      => esc_html__( 'Border Radius', 'mas-elementor' ),
@@ -610,7 +636,7 @@ class Jobs_Filter extends Base_Widget {
 
 		$this->end_controls_tab();
 		$this->end_controls_tabs();
-		$this->add_control(
+		$this->add_responsive_control(
 			'keyword_border_radius',
 			array(
 				'label'      => esc_html__( 'Border Radius', 'mas-elementor' ),
@@ -877,7 +903,7 @@ class Jobs_Filter extends Base_Widget {
 		$this->end_controls_tab();
 		$this->end_controls_tabs();
 
-		$this->add_control(
+		$this->add_responsive_control(
 			'location_border_radius',
 			array(
 				'label'      => esc_html__( 'Border Radius', 'mas-elementor' ),
@@ -1150,7 +1176,7 @@ class Jobs_Filter extends Base_Widget {
 
 		$this->end_controls_tab();
 		$this->end_controls_tabs();
-		$this->add_control(
+		$this->add_responsive_control(
 			'category_border_radius',
 			array(
 				'label'      => esc_html__( 'Border Radius', 'mas-elementor' ),
@@ -1494,7 +1520,7 @@ class Jobs_Filter extends Base_Widget {
 		$this->end_controls_tab();
 		$this->end_controls_tabs();
 
-		$this->add_control(
+		$this->add_responsive_control(
 			'search_border_radius',
 			array(
 				'label'      => esc_html__( 'Border Radius', 'mas-elementor' ),
