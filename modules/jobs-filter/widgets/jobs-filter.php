@@ -299,7 +299,7 @@ class Jobs_Filter extends Base_Widget {
 				),
 				'default'   => '',
 				'selectors' => array(
-					'{{WRAPPER}} .mas-job-search-form' => 'justify-content: {{VALUE}} !important;',
+					'{{WRAPPER}} .mas-job-search-form' => 'display:flex; justify-content: {{VALUE}} !important;',
 				),
 			)
 		);
