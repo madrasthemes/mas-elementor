@@ -238,7 +238,7 @@ class Jobs_Filter extends Base_Widget {
 				'label_on'     => esc_html__( 'Hidden', 'mas-elementor' ),
 				'return_value' => 'hide',
 				'prefix_class' => 'mas-job-filter-search-text%s-',
-				'condition' => array(
+				'condition'    => array(
 					'search_text!' => '',
 				),
 			)
@@ -431,6 +431,50 @@ class Jobs_Filter extends Base_Widget {
 				),
 				'selectors'      => array(
 					'{{WRAPPER}} .mas-job-search-keywords input' => 'min-width: {{SIZE}}{{UNIT}};',
+				),
+			)
+		);
+
+		$this->add_responsive_control(
+			'keyword_wrap_height',
+			array(
+				'label'      => esc_html__( 'Keyword Wrapper Height', 'mas-elementor' ),
+				'type'       => Controls_Manager::SLIDER,
+				'size_units' => array( 'px', '%', 'custom' ),
+				'range'      => array(
+					'%'  => array(
+						'min' => 0,
+						'max' => 100,
+					),
+					'px' => array(
+						'min' => 0,
+						'max' => 10000,
+					),
+				),
+				'selectors'  => array(
+					'{{WRAPPER}} .mas-job-search-keywords' => 'height: {{SIZE}}{{UNIT}}',
+				),
+			)
+		);
+
+		$this->add_responsive_control(
+			'keyword_height',
+			array(
+				'label'      => esc_html__( 'Keyword Height', 'mas-elementor' ),
+				'type'       => Controls_Manager::SLIDER,
+				'size_units' => array( 'px', '%', 'custom' ),
+				'range'      => array(
+					'%'  => array(
+						'min' => 0,
+						'max' => 100,
+					),
+					'px' => array(
+						'min' => 0,
+						'max' => 10000,
+					),
+				),
+				'selectors'  => array(
+					'{{WRAPPER}} .mas-job-search-keywords input' => 'height: {{SIZE}}{{UNIT}}',
 				),
 			)
 		);
@@ -696,6 +740,50 @@ class Jobs_Filter extends Base_Widget {
 				),
 				'selectors'      => array(
 					'{{WRAPPER}} .mas-job-search-location input' => 'min-width: {{SIZE}}{{UNIT}};',
+				),
+			)
+		);
+
+		$this->add_responsive_control(
+			'location_wrap_height',
+			array(
+				'label'      => esc_html__( 'Location Wrapper Height', 'mas-elementor' ),
+				'type'       => Controls_Manager::SLIDER,
+				'size_units' => array( 'px', '%', 'custom' ),
+				'range'      => array(
+					'%'  => array(
+						'min' => 0,
+						'max' => 100,
+					),
+					'px' => array(
+						'min' => 0,
+						'max' => 10000,
+					),
+				),
+				'selectors'  => array(
+					'{{WRAPPER}} .mas-job-search-location' => 'height: {{SIZE}}{{UNIT}}',
+				),
+			)
+		);
+
+		$this->add_responsive_control(
+			'location_height',
+			array(
+				'label'      => esc_html__( 'Location Height', 'mas-elementor' ),
+				'type'       => Controls_Manager::SLIDER,
+				'size_units' => array( 'px', '%', 'custom' ),
+				'range'      => array(
+					'%'  => array(
+						'min' => 0,
+						'max' => 100,
+					),
+					'px' => array(
+						'min' => 0,
+						'max' => 10000,
+					),
+				),
+				'selectors'  => array(
+					'{{WRAPPER}} .mas-job-search-location input' => 'height: {{SIZE}}{{UNIT}}',
 				),
 			)
 		);
@@ -971,6 +1059,50 @@ class Jobs_Filter extends Base_Widget {
 				),
 				'condition'      => array(
 					'show_category' => 'yes',
+				),
+			)
+		);
+
+		$this->add_responsive_control(
+			'category_wrap_height',
+			array(
+				'label'      => esc_html__( 'Category Wrapper Height', 'mas-elementor' ),
+				'type'       => Controls_Manager::SLIDER,
+				'size_units' => array( 'px', '%', 'custom' ),
+				'range'      => array(
+					'%'  => array(
+						'min' => 0,
+						'max' => 100,
+					),
+					'px' => array(
+						'min' => 0,
+						'max' => 10000,
+					),
+				),
+				'selectors'  => array(
+					'{{WRAPPER}} .mas-job-search-category' => 'height: {{SIZE}}{{UNIT}}',
+				),
+			)
+		);
+
+		$this->add_responsive_control(
+			'category_height',
+			array(
+				'label'      => esc_html__( 'Category Height', 'mas-elementor' ),
+				'type'       => Controls_Manager::SLIDER,
+				'size_units' => array( 'px', '%', 'custom' ),
+				'range'      => array(
+					'%'  => array(
+						'min' => 0,
+						'max' => 100,
+					),
+					'px' => array(
+						'min' => 0,
+						'max' => 10000,
+					),
+				),
+				'selectors'  => array(
+					'{{WRAPPER}} .mas-job-search-category select' => 'height: {{SIZE}}{{UNIT}}',
 				),
 			)
 		);
