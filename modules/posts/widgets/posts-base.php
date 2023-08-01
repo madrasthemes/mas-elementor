@@ -1018,6 +1018,10 @@ abstract class Posts_Base extends Base_Widget {
 			)
 		);
 
+		$this->end_controls_tab();
+
+		$this->end_controls_tabs();
+
 		$this->end_controls_section();
 	}
 
