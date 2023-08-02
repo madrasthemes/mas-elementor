@@ -65,6 +65,7 @@ final class Modules_Manager {
 			'icon-list',
 			'mas-templates',
 			'post-content',
+			'button',
 		);
 
 		foreach ( $modules as $module_name ) {
