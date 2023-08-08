@@ -17,6 +17,7 @@ use MASElementor\Core\Modules_Manager;
 use MASElementor\Core\Preview\Preview;
 use MASElementor\Core\Upgrade\Manager as UpgradeManager;
 use MASElementor\License\API;
+use WP_Job_Manager_Post_Types;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
@@ -264,6 +265,67 @@ class Plugin {
 		add_filter( 'wp_kses_allowed_html', array( $this, 'mas_add_style_tag' ), 10, 2 );
 
 		add_filter( 'elementor/core/responsive/get_stylesheet_templates', array( $this, 'get_responsive_stylesheet_templates' ) );
+
+		add_filter( 'register_post_type_job_listing', array( $this, 'mas_elementor_modify_register_post_type_job_listing' ) );
+	}
+
+	/**
+	 * Get Jobs page id.
+	 *
+	 * @param string $page page.
+	 *
+	 * @return int|string
+	 */
+	public function mas_wpjm_get_page_id( $page ) {
+
+		$option_name = '';
+		switch ( $page ) {
+			case 'jobs':
+				$option_name = 'job_manager_jobs_page_id';
+				break;
+			case 'jobs-dashboard':
+				$option_name = 'job_manager_job_dashboard_page_id';
+				break;
+			case 'post-a-job':
+				$option_name = 'job_manager_submit_job_form_page_id';
+				break;
+		}
+
+		$page_id = 0;
+
+		if ( ! empty( $option_name ) ) {
+			$page_id = get_option( $option_name );
+		}
+
+		$page_id = apply_filters( 'mas_elementor_wpjm_get_' . $page . '_page_id', $page_id );
+		return $page_id ? absint( $page_id ) : -1;
+	}
+
+	/**
+	 * Enabling Archive of Job listing.
+	 *
+	 * @param array $args arguments.
+	 *
+	 * @return array
+	 */
+	public function mas_elementor_modify_register_post_type_job_listing( $args ) {
+		if ( class_exists( 'WP_Job_Manager_Post_Types' ) ) {
+			$args['show_in_rest'] = true;
+
+			$jobs_page_id = $this->mas_wpjm_get_page_id( 'jobs' );
+			if ( $jobs_page_id && get_post( $jobs_page_id ) ) {
+				$permalinks          = WP_Job_Manager_Post_Types::get_permalink_structure();
+				$args['has_archive'] = urldecode( get_page_uri( $jobs_page_id ) );
+				$args['rewrite']     = $permalinks['job_rewrite_slug'] ? array(
+					'slug'       => $permalinks['job_rewrite_slug'],
+					'with_front' => false,
+					'feeds'      => true,
+				) : false;
+			}
+
+			return $args;
+
+		}
 	}
 
 	/**
