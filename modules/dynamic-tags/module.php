@@ -82,6 +82,8 @@ class Module extends TagsModule {
 				'Job_Location',
 				'Job_Terms',
 				'Job_Expiration',
+				'Job_Application_Email',
+				'Job_Application_Email_Url',
 			);
 			$tags = array_merge( $tags, $jobs );
 		}
