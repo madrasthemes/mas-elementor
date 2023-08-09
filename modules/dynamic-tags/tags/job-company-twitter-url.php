@@ -1,8 +1,8 @@
 <?php
 /**
- * Job Company Website.
+ * Job Application Email URL.
  *
- * @package MASElementor\Modules\DynamicTags\tags\job-company-website.php
+ * @package MASElementor\Modules\DynamicTags\tags\job-company-twitter-url.php
  */
 
 namespace MASElementor\Modules\DynamicTags\Tags;
@@ -14,20 +14,20 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 /**
- * Post title class.
+ * Job_Company_Twitter_Url class.
  */
-class Job_Company_Website extends \Elementor\Core\DynamicTags\Tag {
+class Job_Company_Twitter_Url extends \Elementor\Core\DynamicTags\Data_Tag {
 	/**
 	 * Get name.
 	 */
 	public function get_name() {
-		return 'mas-job-company-website';
+		return 'mas-job-company-twitter-url';
 	}
 	/**
 	 * Get the title.
 	 */
 	public function get_title() {
-		return esc_html__( 'Job Company Website', 'mas-elementor' );
+		return esc_html__( 'Job Company Twitter', 'mas-elementor' );
 	}
 	/**
 	 * Get the group.
@@ -39,17 +39,22 @@ class Job_Company_Website extends \Elementor\Core\DynamicTags\Tag {
 	 * Get the categories.
 	 */
 	public function get_categories() {
-		return array( Module::TEXT_CATEGORY );
+		return array( Module::URL_CATEGORY );
 	}
+
 	/**
-	 * Render the post  title.
+	 * Get value.
+	 *
+	 * @param array $options control opions.
 	 */
-	public function render() {
+	public function get_value( array $options = array() ) {
 		$post = get_post( get_the_ID() );
 		if ( ! $post || 'job_listing' !== $post->post_type ) {
 			return;
 		}
-		$company_website = $post->_company_website;
-		echo wp_kses_post( $company_website );
+		$name = str_replace( '@', '', $post->_company_twitter );
+
+		$url = 'https://twitter.com/' . $name;
+		return $url;
 	}
 }

@@ -87,6 +87,8 @@ class Module extends TagsModule {
 				'Job_Company_Website',
 				'Job_Company_Website_Url',
 				'Job_Company_Video_Url',
+				'Job_Company_Twitter_Url',
+				'Job_Company_Twitter',
 			);
 			$tags = array_merge( $tags, $jobs );
 		}

@@ -1,8 +1,8 @@
 <?php
 /**
- * Job Company Website.
+ * Job Company Twitter.
  *
- * @package MASElementor\Modules\DynamicTags\tags\job-company-website.php
+ * @package MASElementor\Modules\DynamicTags\tags\job-company-twitter.php
  */
 
 namespace MASElementor\Modules\DynamicTags\Tags;
@@ -14,20 +14,20 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 /**
- * Post title class.
+ * Job_Company_Twitter class.
  */
-class Job_Company_Website extends \Elementor\Core\DynamicTags\Tag {
+class Job_Company_Twitter extends \Elementor\Core\DynamicTags\Tag {
 	/**
 	 * Get name.
 	 */
 	public function get_name() {
-		return 'mas-job-company-website';
+		return 'mas-job-company-twitter';
 	}
 	/**
 	 * Get the title.
 	 */
 	public function get_title() {
-		return esc_html__( 'Job Company Website', 'mas-elementor' );
+		return esc_html__( 'Job Company Twitter', 'mas-elementor' );
 	}
 	/**
 	 * Get the group.
@@ -49,7 +49,7 @@ class Job_Company_Website extends \Elementor\Core\DynamicTags\Tag {
 		if ( ! $post || 'job_listing' !== $post->post_type ) {
 			return;
 		}
-		$company_website = $post->_company_website;
-		echo wp_kses_post( $company_website );
+		$company_twitter = $post->_company_twitter;
+		echo wp_kses_post( $company_twitter );
 	}
 }
