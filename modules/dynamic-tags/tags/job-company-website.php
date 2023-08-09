@@ -49,7 +49,7 @@ class Job_Company_Website extends \Elementor\Core\DynamicTags\Tag {
 		if ( ! $post || 'job_listing' !== $post->post_type ) {
 			return;
 		}
-		$email = $post->_company_website;
-		echo wp_kses_post( $email );
+		$company_website = $post->_company_website;
+		echo wp_kses_post( $company_website );
 	}
 }
