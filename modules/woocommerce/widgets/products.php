@@ -359,6 +359,35 @@ class Products extends Products_Base {
 	/**
 	 * Add carousel controls to the column element.
 	 */
+	public function register_carousel_attributes_style_controls() {
+
+		$this->start_controls_section(
+			'section_mas_product_style_controls',
+			array(
+				'label'     => __( 'Product Options', 'mas-elementor' ),
+				'tab'       => Controls_Manager::TAB_STYLE,
+			)
+		);
+
+		$this->add_responsive_control(
+			'mas_product_carousel_padding_option',
+			array(
+				'label'      => esc_html__( 'Grid Margin', 'mas-elementor' ),
+				'type'       => Controls_Manager::DIMENSIONS,
+				'size_units' => array( 'px', 'em', '%', 'rem' ),
+				'selectors'  => array(
+					'{{WRAPPER}} .swiper' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				),
+			)
+		);
+
+		$this->end_controls_section();
+
+	}
+
+	/**
+	 * Add carousel controls to the column element.
+	 */
 	public function register_carousel_attributes_controls() {
 
 		$this->start_injection(
