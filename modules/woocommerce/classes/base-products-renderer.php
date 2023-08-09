@@ -123,12 +123,13 @@ abstract class Base_Products_Renderer extends \WC_Shortcode_Products {
 
 			wp_reset_postdata();
 			wc_reset_loop();
+			$before_render = '<div class="' . esc_attr( implode( ' ', $classes ) ) . '">' . $this->carousel_loop_header( $widget, $settings );
+			$after_render  = $this->carousel_loop_footer( $widget, $settings ) . '</div>';
 		} else {
 			do_action( "woocommerce_shortcode_{$this->type}_loop_no_results", $this->attributes );
+			$before_render = '';
+			$after_render  = '';
 		}
-
-		$before_render = '<div class="' . esc_attr( implode( ' ', $classes ) ) . '">' . $this->carousel_loop_header( $widget, $settings );
-		$after_render  = $this->carousel_loop_footer( $widget, $settings ) . '</div>';
 
 		return $before_render . ob_get_clean() . $after_render;
 	}

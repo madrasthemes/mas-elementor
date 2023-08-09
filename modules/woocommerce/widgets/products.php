@@ -18,6 +18,10 @@ use MASElementor\Modules\QueryControl\Module as Module_Query;
 use MASElementor\Modules\CarouselAttributes\Traits\Button_Widget_Trait;
 use MASElementor\Modules\CarouselAttributes\Traits\Pagination_Trait;
 use Elementor\Plugin;
+use Elementor\Core\Kits\Documents\Tabs\Global_Colors;
+use Elementor\Core\Kits\Documents\Tabs\Global_Typography;
+use Elementor\Group_Control_Typography;
+use Elementor\Group_Control_Border;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
@@ -352,6 +356,7 @@ class Products extends Products_Base {
 
 		$this->register_query_controls();
 		$this->register_carousel_attributes_controls();
+		$this->register_carousel_attributes_style_controls();
 
 		parent::register_controls();
 	}
@@ -364,19 +369,161 @@ class Products extends Products_Base {
 		$this->start_controls_section(
 			'section_mas_product_style_controls',
 			array(
-				'label'     => __( 'Product Options', 'mas-elementor' ),
-				'tab'       => Controls_Manager::TAB_STYLE,
+				'label' => __( 'Swiper Style', 'mas-elementor' ),
+				'tab'   => Controls_Manager::TAB_STYLE,
 			)
 		);
 
 		$this->add_responsive_control(
 			'mas_product_carousel_padding_option',
 			array(
-				'label'      => esc_html__( 'Grid Margin', 'mas-elementor' ),
+				'label'      => esc_html__( 'Swiper Padding', 'mas-elementor' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', 'em', '%', 'rem' ),
 				'selectors'  => array(
 					'{{WRAPPER}} .swiper' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				),
+			)
+		);
+
+		$this->end_controls_section();
+
+		$this->start_controls_section(
+			'mas_section_advanced',
+			array(
+				'label' => esc_html__( 'Advanced', 'mas-elementor' ),
+				'tab'   => Controls_Manager::TAB_CONTENT,
+			)
+		);
+
+		$this->add_control(
+			'nothing_found_message',
+			array(
+				'label'   => esc_html__( 'Nothing Found Message', 'mas-elementor' ),
+				'type'    => Controls_Manager::TEXTAREA,
+				'default' => esc_html__( 'No Products Found', 'mas-elementor' ),
+			)
+		);
+
+		$this->end_controls_section();
+
+		$this->start_controls_section(
+			'section_nothing_found_style',
+			array(
+				'tab'       => Controls_Manager::TAB_STYLE,
+				'label'     => esc_html__( 'Nothing Found Message', 'mas-elementor' ),
+				'condition' => array(
+					'nothing_found_message!' => '',
+				),
+			)
+		);
+
+		$this->add_control(
+			'nothing_found_color',
+			array(
+				'label'     => esc_html__( 'Color', 'mas-elementor' ),
+				'type'      => Controls_Manager::COLOR,
+				'global'    => array(
+					'default' => Global_Colors::COLOR_TEXT,
+				),
+				'selectors' => array(
+					'{{WRAPPER}} .mas-elementor-products-nothing-found' => 'color: {{VALUE}};',
+				),
+			)
+		);
+
+		$this->add_group_control(
+			Group_Control_Typography::get_type(),
+			array(
+				'name'     => 'nothing_found_typography',
+				'global'   => array(
+					'default' => Global_Typography::TYPOGRAPHY_TEXT,
+				),
+				'selector' => '{{WRAPPER}} .mas-elementor-products-nothing-found',
+			)
+		);
+
+		$this->add_group_control(
+			Group_Control_Border::get_type(),
+			array(
+				'name'           => 'nothing_found_border',
+				'selector'       => '{{WRAPPER}} .mas-elementor-products-nothing-found',
+				'fields_options' => array(
+					'border' => array(
+						'default' => 'solid',
+					),
+					'width'  => array(
+						'default' => array(
+							'top'      => '2',
+							'right'    => '2',
+							'bottom'   => '2',
+							'left'     => '2',
+							'isLinked' => true,
+						),
+					),
+					'color'  => array(
+						'default' => '#d4d9dd',
+					),
+				),
+			)
+		);
+
+		$this->add_control(
+			'nothing_found_border_radius',
+			array(
+				'label'      => esc_html__( 'Border Radius', 'mas-elementor' ),
+				'type'       => Controls_Manager::SLIDER,
+				'size_units' => array( '%', 'px', 'em', 'rem', 'custom' ),
+				'range'      => array(
+					'%' => array(
+						'min' => 0,
+						'max' => 100,
+					),
+				),
+				'default'    => array(
+					'unit' => 'px',
+					'size' => 8,
+				),
+				'selectors'  => array(
+					'{{WRAPPER}} .mas-elementor-products-nothing-found' => 'border-radius: {{SIZE}}{{UNIT}}',
+				),
+
+			)
+		);
+
+		$this->add_control(
+			'nothing_found_bg_color',
+			array(
+				'label'     => __( 'Background Color', 'mas-elementor' ),
+				'separator' => 'before',
+				'type'      => Controls_Manager::COLOR,
+				'default'   => '##f9fafa',
+				'selectors' => array(
+					'{{WRAPPER}} .mas-elementor-products-nothing-found' => 'background-color: {{VALUE}}',
+				),
+			)
+		);
+
+		$this->add_responsive_control(
+			'mas_product_nothing_found_margin_option',
+			array(
+				'label'      => esc_html__( 'Margin', 'mas-elementor' ),
+				'type'       => Controls_Manager::DIMENSIONS,
+				'size_units' => array( 'px', 'em', '%', 'rem' ),
+				'selectors'  => array(
+					'{{WRAPPER}} .mas-elementor-products-nothing-found' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				),
+			)
+		);
+
+		$this->add_responsive_control(
+			'mas_product_nothing_found_padding_option',
+			array(
+				'label'      => esc_html__( 'Padding', 'mas-elementor' ),
+				'type'       => Controls_Manager::DIMENSIONS,
+				'size_units' => array( 'px', 'em', '%', 'rem' ),
+				'selectors'  => array(
+					'{{WRAPPER}} .mas-elementor-products-nothing-found' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				),
 			)
 		);

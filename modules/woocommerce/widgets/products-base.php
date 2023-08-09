@@ -713,7 +713,7 @@ abstract class Products_Base extends Base_Widget {
 		if ( $shortcode->get_content() ) {
 			echo $shortcode->get_content(); //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		} elseif ( $this->get_settings( 'nothing_found_message' ) ) {
-			echo '<div class="elementor-nothing-found elementor-products-nothing-found">' . esc_html( $this->get_settings( 'nothing_found_message' ) ) . '</div>';
+			echo '<div class="elementor-nothing-found mas-elementor-products-nothing-found">' . esc_html( $this->get_settings( 'nothing_found_message' ) ) . '</div>';
 		}
 
 		$this->render_script( 'swiper-products-' . $this->get_id() );
