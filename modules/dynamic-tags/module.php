@@ -22,6 +22,8 @@ class Module extends TagsModule {
 
 	const POST_GROUP = 'post';
 
+	const JOB_GROUP = 'job';
+
 	const COMMENTS_GROUP = 'comments';
 
 	const SITE_GROUP = 'site';
@@ -119,6 +121,9 @@ class Module extends TagsModule {
 		return array(
 			self::POST_GROUP     => array(
 				'title' => esc_html__( 'Post', 'mas-elementor' ),
+			),
+			self::JOB_GROUP     => array(
+				'title' => esc_html__( 'Job', 'mas-elementor' ),
 			),
 			self::ARCHIVE_GROUP  => array(
 				'title' => esc_html__( 'Archive', 'mas-elementor' ),

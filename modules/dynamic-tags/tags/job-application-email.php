@@ -33,7 +33,7 @@ class Job_Application_Email extends \Elementor\Core\DynamicTags\Tag {
 	 * Get the group.
 	 */
 	public function get_group() {
-		return Module::POST_GROUP;
+		return Module::JOB_GROUP;
 	}
 	/**
 	 * Get the categories.

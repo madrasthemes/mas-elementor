@@ -38,7 +38,7 @@ class Job_Expiration extends Tag {
 	 * Get tag group.
 	 */
 	public function get_group() {
-		return Module::POST_GROUP;
+		return Module::JOB_GROUP;
 	}
 
 	/**
