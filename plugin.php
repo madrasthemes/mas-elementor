@@ -17,6 +17,7 @@ use MASElementor\Core\Modules_Manager;
 use MASElementor\Core\Preview\Preview;
 use MASElementor\Core\Upgrade\Manager as UpgradeManager;
 use MASElementor\License\API;
+use WP_Job_Manager_Post_Types;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
@@ -155,12 +156,26 @@ class Plugin {
 	 * Enqueue styles used by the plugin.
 	 */
 	public function enqueue_styles() {
+		$has_custom_file      = \Elementor\Plugin::instance()->breakpoints->has_custom_breakpoints();
+		$direction_suffix     = is_rtl() ? '-rtl' : '';
+		$responsive_file_name = 'mas-responsive' . $direction_suffix . '.css';
+
+		$frontend_file_url = $this->get_frontend_file_url( $responsive_file_name, true );
+
+		wp_enqueue_style(
+			'mas-elementor-responsive',
+			$frontend_file_url,
+			array(),
+			$has_custom_file ? null : MAS_ELEMENTOR_VERSION
+		);
+
 		wp_enqueue_style(
 			'mas-elementor-main',
 			MAS_ELEMENTOR_ASSETS_URL . 'css/main.css',
 			array(),
 			MAS_ELEMENTOR_VERSION
 		);
+
 		wp_enqueue_style(
 			'mas-magnific-popup',
 			MAS_ELEMENTOR_ASSETS_URL . 'css/popup/magnific-popup.css',
@@ -248,6 +263,129 @@ class Plugin {
 
 		add_action( 'elementor/document/save_version', array( $this, 'on_document_save_version' ) );
 		add_filter( 'wp_kses_allowed_html', array( $this, 'mas_add_style_tag' ), 10, 2 );
+
+		add_filter( 'elementor/core/responsive/get_stylesheet_templates', array( $this, 'get_responsive_stylesheet_templates' ) );
+
+		add_filter( 'register_post_type_job_listing', array( $this, 'mas_elementor_modify_register_post_type_job_listing' ) );
+	}
+
+	/**
+	 * Get Jobs page id.
+	 *
+	 * @param string $page page.
+	 *
+	 * @return int|string
+	 */
+	public function mas_wpjm_get_page_id( $page ) {
+
+		$option_name = '';
+		switch ( $page ) {
+			case 'jobs':
+				$option_name = 'job_manager_jobs_page_id';
+				break;
+			case 'jobs-dashboard':
+				$option_name = 'job_manager_job_dashboard_page_id';
+				break;
+			case 'post-a-job':
+				$option_name = 'job_manager_submit_job_form_page_id';
+				break;
+		}
+
+		$page_id = 0;
+
+		if ( ! empty( $option_name ) ) {
+			$page_id = get_option( $option_name );
+		}
+
+		$page_id = apply_filters( 'mas_elementor_wpjm_get_' . $page . '_page_id', $page_id );
+		return $page_id ? absint( $page_id ) : -1;
+	}
+
+	/**
+	 * Enabling Archive of Job listing.
+	 *
+	 * @param array $args arguments.
+	 *
+	 * @return array
+	 */
+	public function mas_elementor_modify_register_post_type_job_listing( $args ) {
+		if ( class_exists( 'WP_Job_Manager_Post_Types' ) ) {
+			$args['show_in_rest'] = true;
+
+			$jobs_page_id = $this->mas_wpjm_get_page_id( 'jobs' );
+			if ( $jobs_page_id && get_post( $jobs_page_id ) ) {
+				$permalinks          = WP_Job_Manager_Post_Types::get_permalink_structure();
+				$args['has_archive'] = urldecode( get_page_uri( $jobs_page_id ) );
+				$args['rewrite']     = $permalinks['job_rewrite_slug'] ? array(
+					'slug'       => $permalinks['job_rewrite_slug'],
+					'with_front' => false,
+					'feeds'      => true,
+				) : false;
+			}
+
+			return $args;
+
+		}
+	}
+
+	/**
+	 * Responsive templates path.
+	 */
+	private function get_responsive_templates_path() {
+		return MAS_ELEMENTOR_ASSETS_PATH . 'css/templates/';
+	}
+
+	/**
+	 * Get frontend file.
+	 *
+	 * @param string $frontend_file_name frontend_file_name.
+	 *
+	 * @return string
+	 */
+	private function get_frontend_file( $frontend_file_name ) {
+		$template_file_path = self::get_responsive_templates_path() . $frontend_file_name;
+
+		return self::elementor()->frontend->get_frontend_file( $frontend_file_name, 'mas-custom-', $template_file_path );
+	}
+
+	/**
+	 * Get frontend file url.
+	 *
+	 * @param string $frontend_file_name frontend_file_name.
+	 * @param string $custom_file custom_file.
+	 *
+	 * @return string
+	 */
+	public function get_frontend_file_url( $frontend_file_name, $custom_file ) {
+		if ( $custom_file ) {
+			$frontend_file = $this->get_frontend_file( $frontend_file_name );
+
+			$frontend_file_url = $frontend_file->get_url();
+		} else {
+			$frontend_file_url = MAS_ELEMENTOR_ASSETS_URL . 'css/templates/' . $frontend_file_name;
+		}
+
+		return $frontend_file_url;
+	}
+
+	/**
+	 * Get responsive stylesheet templates.
+	 *
+	 * @param array $templates templates.
+	 *
+	 * @return array
+	 */
+	public function get_responsive_stylesheet_templates( $templates ) {
+		// $templates_paths = glob( MAS_ELEMENTOR_ASSETS_PATH . 'css/main.css' );
+		$templates_paths = glob( $this->get_responsive_templates_path() . '*.css' );
+
+		foreach ( $templates_paths as $template_path ) {
+			$file_name = 'mas-custom-' . basename( $template_path );
+
+			$templates[ $file_name ] = $template_path;
+		}
+
+		return $templates;
 	}
 
 	/**
@@ -264,7 +402,33 @@ class Plugin {
 
 		if ( 'post' === $context ) {
 			$allowed['style'] = '';
+
+			// Add or modify allowed HTML elements, attributes, or styles here.
+			$allowed['form']   = array(
+				'class'  => array(),
+				'method' => array(),
+			);
+			$allowed['select'] = array(
+				'name'       => array(),
+				'class'      => array(),
+				'aria-label' => array(),
+			);
+			$allowed['option'] = array(
+				'value'    => array(),
+				'selected' => array(),
+			);
+			$allowed['input']  = array(
+				'type'  => array(),
+				'name'  => array(),
+				'value' => array(),
+			);
+			$allowed['hidden'] = array(
+				'type'  => array(),
+				'name'  => array(),
+				'value' => array(),
+			);
 		}
+
 		return apply_filters( 'mas_add_style_tag', $allowed );
 	}
 

@@ -34,6 +34,28 @@ abstract class Products_Base extends Base_Widget {
 	protected function register_controls() {
 
 		$this->start_controls_section(
+			'section_mas_product_style',
+			array(
+				'label'     => __( 'Product', 'mas-elementor' ),
+				'tab'       => Controls_Manager::TAB_STYLE,
+			)
+		);
+
+		$this->add_responsive_control(
+			'mas_product_grid_margin',
+			array(
+				'label'      => esc_html__( 'Grid Margin', 'mas-elementor' ),
+				'type'       => Controls_Manager::DIMENSIONS,
+				'size_units' => array( 'px', 'em', '%', 'rem' ),
+				'selectors'  => array(
+					'{{WRAPPER}} .mas-products.mas-grid' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				),
+			)
+		);
+
+		$this->end_controls_section();
+
+		$this->start_controls_section(
 			'section_pagination_style',
 			array(
 				'label'     => __( 'Pagination', 'mas-elementor' ),
@@ -691,7 +713,7 @@ abstract class Products_Base extends Base_Widget {
 		if ( $shortcode->get_content() ) {
 			echo $shortcode->get_content(); //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		} elseif ( $this->get_settings( 'nothing_found_message' ) ) {
-			echo '<div class="elementor-nothing-found elementor-products-nothing-found">' . esc_html( $this->get_settings( 'nothing_found_message' ) ) . '</div>';
+			echo '<div class="elementor-nothing-found mas-elementor-products-nothing-found">' . esc_html( $this->get_settings( 'nothing_found_message' ) ) . '</div>';
 		}
 
 		$this->render_script( 'swiper-products-' . $this->get_id() );

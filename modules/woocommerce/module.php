@@ -74,7 +74,19 @@ class Module extends Module_Base {
 			'Products',
 			'Add_To_Cart',
 			'Product_Related',
-			// 'Product_Data_Tabs',
+			'Product_Data_Tabs',
+
+			'Cart',
+			'Checkout',
+			'Categories',
+			'Product_Meta',
+			'Product_Additional_Information',
+			'Product_Images',
+			'Purchase_Summary',
+			'Product_Rating',
+			'Product_Short_Description',
+			'Product_Stock',
+			'Product_Title',
 		);
 	}
 
@@ -378,6 +390,21 @@ class Module extends Module_Base {
 	}
 
 	/**
+	 * Is Preview
+	 *
+	 * Helper to check if we are doing either:
+	 * - Viewing the WP Preview page - also used as the Elementor preview page when clicking "Preview Changes" in the editor
+	 * - Viewing the page in the editor, but not the active page being edited e.g. if you click Edit Header while editing a page
+	 *
+	 * @since 3.7.0
+	 *
+	 * @return bool
+	 */
+	public static function is_preview() {
+		return Plugin::elementor()->preview->is_preview_mode() || is_preview();
+	}
+
+	/**
 	 * Constructor
 	 *
 	 * @return void
@@ -417,6 +444,55 @@ class Module extends Module_Base {
 		wp_register_style(
 			'mas-cart-stylesheet',
 			MAS_ELEMENTOR_ASSETS_URL . 'css/cart/mas-cart.css',
+			array(),
+			MAS_ELEMENTOR_VERSION
+		);
+
+		wp_register_style(
+			'mas-woocommerce-cart',
+			MAS_ELEMENTOR_ASSETS_URL . 'css/woo-cart/mas-woocommerce-cart.css',
+			array(),
+			MAS_ELEMENTOR_VERSION
+		);
+
+		wp_register_style(
+			'mas-woocommerce-checkout',
+			MAS_ELEMENTOR_ASSETS_URL . 'css/woo-checkout/mas-woocommerce-checkout.css',
+			array(),
+			MAS_ELEMENTOR_VERSION
+		);
+
+		wp_register_style(
+			'mas-product-meta',
+			MAS_ELEMENTOR_ASSETS_URL . 'css/product-meta/mas-product-meta.css',
+			array(),
+			MAS_ELEMENTOR_VERSION
+		);
+
+		wp_register_style(
+			'mas-product-additional-information',
+			MAS_ELEMENTOR_ASSETS_URL . 'css/product-additional-information/mas-product-additional-information.css',
+			array(),
+			MAS_ELEMENTOR_VERSION
+		);
+
+		wp_register_style(
+			'mas-product-images',
+			MAS_ELEMENTOR_ASSETS_URL . 'css/product-images/mas-product-images.css',
+			array(),
+			MAS_ELEMENTOR_VERSION
+		);
+
+		wp_register_style(
+			'mas-purchase-summary',
+			MAS_ELEMENTOR_ASSETS_URL . 'css/purchase-summary/mas-purchase-summary.css',
+			array(),
+			MAS_ELEMENTOR_VERSION
+		);
+
+		wp_register_style(
+			'mas-product-rating',
+			MAS_ELEMENTOR_ASSETS_URL . 'css/product-rating/mas-product-rating.css',
 			array(),
 			MAS_ELEMENTOR_VERSION
 		);

@@ -35,7 +35,7 @@ class Job_Terms extends \Elementor\Core\DynamicTags\Tag {
 	 * Get the job-term group name.
 	 */
 	public function get_group() {
-		return Module::POST_GROUP;
+		return Module::JOB_GROUP;
 	}
 	/**
 	 * Get the job-term categories name.

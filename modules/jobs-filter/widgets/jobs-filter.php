@@ -228,6 +228,22 @@ class Jobs_Filter extends Base_Widget {
 			)
 		);
 
+		$this->add_responsive_control(
+			'hide_search_text_responsive',
+			array(
+				'type'         => Controls_Manager::SWITCHER,
+				'label'        => esc_html__( 'Hide Text Responsive', 'mas-elementor' ),
+				'default'      => 'no',
+				'label_off'    => esc_html__( 'Hide', 'mas-elementor' ),
+				'label_on'     => esc_html__( 'Hidden', 'mas-elementor' ),
+				'return_value' => 'hide',
+				'prefix_class' => 'mas-job-filter-search-text%s-',
+				'condition'    => array(
+					'search_text!' => '',
+				),
+			)
+		);
+
 		$this->add_control(
 			'search_icon',
 			array(
@@ -249,7 +265,46 @@ class Jobs_Filter extends Base_Widget {
 			)
 		);
 
-		$this->add_control(
+		$this->add_responsive_control(
+			'enable_flex_wrap_responsive',
+			array(
+				'type'         => Controls_Manager::SWITCHER,
+				'label'        => esc_html__( 'Flex Wrap', 'mas-elementor' ),
+				'default'      => 'no',
+				'label_off'    => esc_html__( 'No', 'mas-elementor' ),
+				'label_on'     => esc_html__( 'Wrap', 'mas-elementor' ),
+				'return_value' => 'wrap',
+				'prefix_class' => 'mas-job-filter-flex%s-',
+			)
+		);
+
+		$this->add_responsive_control(
+			'form_wrap_align',
+			array(
+				'label'     => esc_html__( 'Form Wrap Alignment', 'mas-elementor' ),
+				'type'      => Controls_Manager::CHOOSE,
+				'options'   => array(
+					'left'   => array(
+						'title' => esc_html__( 'Left', 'mas-elementor' ),
+						'icon'  => 'eicon-text-align-left',
+					),
+					'center' => array(
+						'title' => esc_html__( 'Center', 'mas-elementor' ),
+						'icon'  => 'eicon-text-align-center',
+					),
+					'right'  => array(
+						'title' => esc_html__( 'Right', 'mas-elementor' ),
+						'icon'  => 'eicon-text-align-right',
+					),
+				),
+				'default'   => '',
+				'selectors' => array(
+					'{{WRAPPER}} .mas-job-search-form' => 'display:flex; justify-content: {{VALUE}} !important;',
+				),
+			)
+		);
+
+		$this->add_responsive_control(
 			'form_border_radius',
 			array(
 				'label'      => esc_html__( 'Border Radius', 'mas-elementor' ),
@@ -376,6 +431,50 @@ class Jobs_Filter extends Base_Widget {
 				),
 				'selectors'      => array(
 					'{{WRAPPER}} .mas-job-search-keywords input' => 'min-width: {{SIZE}}{{UNIT}};',
+				),
+			)
+		);
+
+		$this->add_responsive_control(
+			'keyword_wrap_height',
+			array(
+				'label'      => esc_html__( 'Keyword Wrapper Height', 'mas-elementor' ),
+				'type'       => Controls_Manager::SLIDER,
+				'size_units' => array( 'px', '%', 'custom' ),
+				'range'      => array(
+					'%'  => array(
+						'min' => 0,
+						'max' => 100,
+					),
+					'px' => array(
+						'min' => 0,
+						'max' => 10000,
+					),
+				),
+				'selectors'  => array(
+					'{{WRAPPER}} .mas-job-search-keywords' => 'height: {{SIZE}}{{UNIT}}',
+				),
+			)
+		);
+
+		$this->add_responsive_control(
+			'keyword_height',
+			array(
+				'label'      => esc_html__( 'Keyword Height', 'mas-elementor' ),
+				'type'       => Controls_Manager::SLIDER,
+				'size_units' => array( 'px', '%', 'custom' ),
+				'range'      => array(
+					'%'  => array(
+						'min' => 0,
+						'max' => 100,
+					),
+					'px' => array(
+						'min' => 0,
+						'max' => 10000,
+					),
+				),
+				'selectors'  => array(
+					'{{WRAPPER}} .mas-job-search-keywords input' => 'height: {{SIZE}}{{UNIT}}',
 				),
 			)
 		);
@@ -581,7 +680,7 @@ class Jobs_Filter extends Base_Widget {
 
 		$this->end_controls_tab();
 		$this->end_controls_tabs();
-		$this->add_control(
+		$this->add_responsive_control(
 			'keyword_border_radius',
 			array(
 				'label'      => esc_html__( 'Border Radius', 'mas-elementor' ),
@@ -641,6 +740,50 @@ class Jobs_Filter extends Base_Widget {
 				),
 				'selectors'      => array(
 					'{{WRAPPER}} .mas-job-search-location input' => 'min-width: {{SIZE}}{{UNIT}};',
+				),
+			)
+		);
+
+		$this->add_responsive_control(
+			'location_wrap_height',
+			array(
+				'label'      => esc_html__( 'Location Wrapper Height', 'mas-elementor' ),
+				'type'       => Controls_Manager::SLIDER,
+				'size_units' => array( 'px', '%', 'custom' ),
+				'range'      => array(
+					'%'  => array(
+						'min' => 0,
+						'max' => 100,
+					),
+					'px' => array(
+						'min' => 0,
+						'max' => 10000,
+					),
+				),
+				'selectors'  => array(
+					'{{WRAPPER}} .mas-job-search-location' => 'height: {{SIZE}}{{UNIT}}',
+				),
+			)
+		);
+
+		$this->add_responsive_control(
+			'location_height',
+			array(
+				'label'      => esc_html__( 'Location Height', 'mas-elementor' ),
+				'type'       => Controls_Manager::SLIDER,
+				'size_units' => array( 'px', '%', 'custom' ),
+				'range'      => array(
+					'%'  => array(
+						'min' => 0,
+						'max' => 100,
+					),
+					'px' => array(
+						'min' => 0,
+						'max' => 10000,
+					),
+				),
+				'selectors'  => array(
+					'{{WRAPPER}} .mas-job-search-location input' => 'height: {{SIZE}}{{UNIT}}',
 				),
 			)
 		);
@@ -848,7 +991,7 @@ class Jobs_Filter extends Base_Widget {
 		$this->end_controls_tab();
 		$this->end_controls_tabs();
 
-		$this->add_control(
+		$this->add_responsive_control(
 			'location_border_radius',
 			array(
 				'label'      => esc_html__( 'Border Radius', 'mas-elementor' ),
@@ -916,6 +1059,50 @@ class Jobs_Filter extends Base_Widget {
 				),
 				'condition'      => array(
 					'show_category' => 'yes',
+				),
+			)
+		);
+
+		$this->add_responsive_control(
+			'category_wrap_height',
+			array(
+				'label'      => esc_html__( 'Category Wrapper Height', 'mas-elementor' ),
+				'type'       => Controls_Manager::SLIDER,
+				'size_units' => array( 'px', '%', 'custom' ),
+				'range'      => array(
+					'%'  => array(
+						'min' => 0,
+						'max' => 100,
+					),
+					'px' => array(
+						'min' => 0,
+						'max' => 10000,
+					),
+				),
+				'selectors'  => array(
+					'{{WRAPPER}} .mas-job-search-category' => 'height: {{SIZE}}{{UNIT}}',
+				),
+			)
+		);
+
+		$this->add_responsive_control(
+			'category_height',
+			array(
+				'label'      => esc_html__( 'Category Height', 'mas-elementor' ),
+				'type'       => Controls_Manager::SLIDER,
+				'size_units' => array( 'px', '%', 'custom' ),
+				'range'      => array(
+					'%'  => array(
+						'min' => 0,
+						'max' => 100,
+					),
+					'px' => array(
+						'min' => 0,
+						'max' => 10000,
+					),
+				),
+				'selectors'  => array(
+					'{{WRAPPER}} .mas-job-search-category select' => 'height: {{SIZE}}{{UNIT}}',
 				),
 			)
 		);
@@ -1121,7 +1308,7 @@ class Jobs_Filter extends Base_Widget {
 
 		$this->end_controls_tab();
 		$this->end_controls_tabs();
-		$this->add_control(
+		$this->add_responsive_control(
 			'category_border_radius',
 			array(
 				'label'      => esc_html__( 'Border Radius', 'mas-elementor' ),
@@ -1186,6 +1373,31 @@ class Jobs_Filter extends Base_Widget {
 				),
 				'selectors'      => array(
 					'{{WRAPPER}} .mas-job-search-submit button' => 'min-width: {{SIZE}}{{UNIT}};',
+				),
+			)
+		);
+
+		$this->add_responsive_control(
+			'search_button_content_align',
+			array(
+				'type'      => Controls_Manager::CHOOSE,
+				'label'     => esc_html__( 'Alignment', 'mas-elementor' ),
+				'options'   => array(
+					'left'   => array(
+						'title' => esc_html__( 'Left', 'mas-elementor' ),
+						'icon'  => 'eicon-text-align-left',
+					),
+					'center' => array(
+						'title' => esc_html__( 'Center', 'mas-elementor' ),
+						'icon'  => 'eicon-text-align-center',
+					),
+					'right'  => array(
+						'title' => esc_html__( 'Right', 'mas-elementor' ),
+						'icon'  => 'eicon-text-align-right',
+					),
+				),
+				'selectors' => array(
+					'{{WRAPPER}} .mas-job-search-submit button' => 'display:flex; align-items: {{VALUE}};',
 				),
 			)
 		);
@@ -1465,7 +1677,7 @@ class Jobs_Filter extends Base_Widget {
 		$this->end_controls_tab();
 		$this->end_controls_tabs();
 
-		$this->add_control(
+		$this->add_responsive_control(
 			'search_border_radius',
 			array(
 				'label'      => esc_html__( 'Border Radius', 'mas-elementor' ),

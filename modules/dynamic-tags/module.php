@@ -22,6 +22,8 @@ class Module extends TagsModule {
 
 	const POST_GROUP = 'post';
 
+	const JOB_GROUP = 'job';
+
 	const COMMENTS_GROUP = 'comments';
 
 	const SITE_GROUP = 'site';
@@ -82,6 +84,16 @@ class Module extends TagsModule {
 				'Job_Location',
 				'Job_Terms',
 				'Job_Expiration',
+				'Job_Application_Email',
+				'Job_Application_Email_Url',
+				'Job_Company_Website',
+				'Job_Company_Website_Url',
+				'Job_Company_Video_Url',
+				'Job_Company_Twitter_Url',
+				'Job_Company_Twitter',
+				'Job_Company_Tagline',
+				'Job_Remote_Position',
+				'Job_Position_Filled',
 			);
 			$tags = array_merge( $tags, $jobs );
 		}
@@ -109,6 +121,9 @@ class Module extends TagsModule {
 		return array(
 			self::POST_GROUP     => array(
 				'title' => esc_html__( 'Post', 'mas-elementor' ),
+			),
+			self::JOB_GROUP     => array(
+				'title' => esc_html__( 'Job', 'mas-elementor' ),
 			),
 			self::ARCHIVE_GROUP  => array(
 				'title' => esc_html__( 'Archive', 'mas-elementor' ),

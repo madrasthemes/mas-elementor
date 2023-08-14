@@ -194,7 +194,7 @@ class Posts extends Posts_Base {
 
 				if ( $query->in_the_loop ) {
 
-					$this->current_permalink = get_permalink();
+					// $this->current_permalink = get_permalink();
 					print( mas_render_template( $settings['thumb_template'], false ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 					wp_reset_postdata();
 
@@ -204,7 +204,7 @@ class Posts extends Posts_Base {
 
 						$query->the_post();
 						$this->thumb_slide_loop_start( $settings );
-						$this->current_permalink = get_permalink();
+						// $this->current_permalink = get_permalink();
 						if ( ! empty( $settings['thumb_template'] ) ) {
 							print( mas_render_template( $settings['thumb_template'], false ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 						} else {
@@ -331,7 +331,7 @@ class Posts extends Posts_Base {
 		// It's the global `wp_query` it self. and the loop was started from the theme.
 		if ( $query->in_the_loop ) {
 
-			$this->current_permalink = get_permalink();
+			// $this->current_permalink = get_permalink();
 			print( mas_render_template( $settings['select_template'], false ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			wp_reset_postdata();
 
@@ -347,7 +347,7 @@ class Posts extends Posts_Base {
 
 				$query->the_post();
 				$this->carousel_slide_loop_start( $settings );
-				$this->current_permalink = get_permalink();
+				// $this->current_permalink = get_permalink();
 				if ( ! empty( $settings['select_template'] ) ) {
 					if ( ! empty( $settings['select_loop'] ) && in_array( (string) $count, $settings['select_loop'], true ) ) {
 						print( mas_render_template( $settings['select_loop_template'], false ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped

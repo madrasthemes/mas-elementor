@@ -242,6 +242,24 @@ class Module extends Module_Base {
 			)
 		);
 
+		$element->add_responsive_control(
+			'hide_responsive_arrows',
+			array(
+				'type'         => Controls_Manager::SWITCHER,
+				'label'        => esc_html__( 'Hide Arrow Responsive', 'mas-elementor' ),
+				'default'      => 'no',
+				'label_off'    => esc_html__( 'Show', 'mas-elementor' ),
+				'label_on'     => esc_html__( 'Hide', 'mas-elementor' ),
+				'condition'    => array(
+					'enable_carousel'     => 'yes',
+					'show_arrows'         => 'yes',
+					'show_custom_arrows!' => 'yes',
+				),
+				'return_value' => 'hide',
+				'prefix_class' => 'mas-swiper-carousel--arrows%s-',
+			)
+		);
+
 		$element->add_control(
 			'show_custom_arrows',
 			array(
@@ -254,6 +272,7 @@ class Module extends Module_Base {
 					'enable_carousel' => 'yes',
 					'show_arrows!'    => 'yes',
 				),
+
 			)
 		);
 

@@ -1,0 +1,124 @@
+/* For Swiper arrows  */
+@media (max-width: ELEMENTOR_SCREEN_MOBILE_MAX) {
+    .mas-swiper-carousel--arrows-mobile-hide .swiper .mas-swiper-arrows,
+    .swiper.mas-swiper-carousel--arrows-mobile-hide ~ .mas-swiper-arrows {
+        display: none !important;
+  }
+}
+@media (min-width: ELEMENTOR_SCREEN_MOBILE_EXTRA_MIN) and (max-width: ELEMENTOR_SCREEN_MOBILE_EXTRA_MAX) {
+  .mas-swiper-carousel--arrows-mobile_extra-hide .swiper .mas-swiper-arrows,
+  .swiper.mas-swiper-carousel--arrows-mobile_extra-hide ~ .mas-swiper-arrows  {
+    display: none !important;
+  }
+}
+@media (min-width: ELEMENTOR_SCREEN_TABLET_MIN) and (max-width: ELEMENTOR_SCREEN_TABLET_MAX) {
+  .mas-swiper-carousel--arrows-tablet-hide .swiper .mas-swiper-arrows,
+  .swiper.mas-swiper-carousel--arrows-tablet-hide ~ .mas-swiper-arrows {
+      display: none !important;
+  }
+}
+@media (min-width: ELEMENTOR_SCREEN_TABLET_EXTRA_MIN) and (max-width: ELEMENTOR_SCREEN_TABLET_EXTRA_MAX) {
+  .mas-swiper-carousel--arrows-tablet_extra-hide .swiper .mas-swiper-arrows,
+  .swiper.mas-swiper-carousel--arrows-tablet_extra-hide ~ .mas-swiper-arrows {
+      display: none !important;
+  }
+}
+@media (min-width: ELEMENTOR_SCREEN_LAPTOP_MIN) and (max-width: ELEMENTOR_SCREEN_LAPTOP_MAX) {
+  .mas-swiper-carousel--arrows-laptop-hide .swiper .mas-swiper-arrows,
+  .swiper.mas-swiper-carousel--arrows-laptop-hide ~ .mas-swiper-arrows {
+      display: none !important;
+  }
+}
+@media (min-width: ELEMENTOR_SCREEN_DESKTOP_MIN) and (max-width: ELEMENTOR_SCREEN_DESKTOP_MAX) {
+  .mas-swiper-carousel--arrows-hide .swiper .mas-swiper-arrows,
+  .swiper.mas-swiper-carousel--arrows-hide ~ .mas-swiper-arrows { 
+      display: none !important;
+  }
+}
+@media (min-width: ELEMENTOR_SCREEN_WIDESCREEN_MIN) {
+  .mas-swiper-carousel--arrows-widescreen-hide .swiper .mas-swiper-arrows,
+  .swiper.mas-swiper-carousel--arrows-widescreen-hide ~ .mas-swiper-arrows {
+      display: none !important;
+  }
+}
+
+/* For Job filters Flex Wrap */
+@media (max-width: ELEMENTOR_SCREEN_MOBILE_MAX) {
+  .mas-job-filter-flex-mobile-wrap .mas-job-search-form .mas-search-form{
+    display: flex;  
+    flex-wrap: wrap !important;
+}
+}
+@media (min-width: ELEMENTOR_SCREEN_MOBILE_EXTRA_MIN) and (max-width: ELEMENTOR_SCREEN_MOBILE_EXTRA_MAX) {
+  .mas-job-filter-flex-mobile_extra-wrap .mas-job-search-form .mas-search-form  {
+    display: flex;
+    flex-wrap: wrap !important;
+  }
+}
+@media (min-width: ELEMENTOR_SCREEN_TABLET_MIN) and (max-width: ELEMENTOR_SCREEN_TABLET_MAX) {
+  .mas-job-filter-flex-tablet-wrap .mas-job-search-form .mas-search-form {
+    display: flex; 
+    flex-wrap: wrap !important;
+  }
+}
+@media (min-width: ELEMENTOR_SCREEN_TABLET_EXTRA_MIN) and (max-width: ELEMENTOR_SCREEN_TABLET_EXTRA_MAX) {
+  .mas-job-filter-flex-tablet_extra-wrap .mas-job-search-form .mas-search-form {
+    display: flex; 
+    flex-wrap: wrap !important;
+  }
+}
+@media (min-width: ELEMENTOR_SCREEN_LAPTOP_MIN) and (max-width: ELEMENTOR_SCREEN_LAPTOP_MAX) {
+  .mas-job-filter-flex-laptop-wrap .mas-job-search-form .mas-search-form {
+    display: flex; 
+    flex-wrap: wrap !important;
+  }
+}
+@media (min-width: ELEMENTOR_SCREEN_DESKTOP_MIN) and (max-width: ELEMENTOR_SCREEN_DESKTOP_MAX) {
+  .mas-job-filter-flex-wrap .mas-job-search-form .mas-search-form{ 
+    display: flex; 
+    flex-wrap: wrap !important;
+  }
+}
+@media (min-width: ELEMENTOR_SCREEN_WIDESCREEN_MIN) {
+  .mas-job-filter-flex-widescreen-wrap .mas-job-search-form .mas-search-form {
+    display: flex; 
+    flex-wrap: wrap !important;
+  }
+}
+
+/* For Job filters Search text hide */
+@media (max-width: ELEMENTOR_SCREEN_MOBILE_MAX) {
+  .mas-job-filter-search-text-mobile-hide .mas-job-search-form .mas-job-search-text{
+    display: none !important;  
+}
+}
+@media (min-width: ELEMENTOR_SCREEN_MOBILE_EXTRA_MIN) and (max-width: ELEMENTOR_SCREEN_MOBILE_EXTRA_MAX) {
+  .mas-job-filter-search-text-mobile_extra-hide .mas-job-search-form .mas-job-search-text  {
+    display: none !important;
+  }
+}
+@media (min-width: ELEMENTOR_SCREEN_TABLET_MIN) and (max-width: ELEMENTOR_SCREEN_TABLET_MAX) {
+  .mas-job-filter-search-text-tablet-hide .mas-job-search-form .mas-job-search-text {
+    display: none !important; 
+  }
+}
+@media (min-width: ELEMENTOR_SCREEN_TABLET_EXTRA_MIN) and (max-width: ELEMENTOR_SCREEN_TABLET_EXTRA_MAX) {
+  .mas-job-filter-search-text-tablet_extra-hide .mas-job-search-form .mas-job-search-text {
+    display: none !important; 
+  }
+}
+@media (min-width: ELEMENTOR_SCREEN_LAPTOP_MIN) and (max-width: ELEMENTOR_SCREEN_LAPTOP_MAX) {
+  .mas-job-filter-search-text-laptop-hide .mas-job-search-form .mas-job-search-text {
+    display: none !important; 
+  }
+}
+@media (min-width: ELEMENTOR_SCREEN_DESKTOP_MIN) and (max-width: ELEMENTOR_SCREEN_DESKTOP_MAX) {
+  .mas-job-filter-search-text-hide .mas-job-search-form .mas-job-search-text{ 
+    display: none !important; 
+  }
+}
+@media (min-width: ELEMENTOR_SCREEN_WIDESCREEN_MIN) {
+  .mas-job-filter-search-text-widescreen-hide .mas-job-search-form .mas-job-search-text {
+    display: none !important; 
+  }
+}

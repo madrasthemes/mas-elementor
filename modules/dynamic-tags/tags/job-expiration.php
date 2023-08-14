@@ -38,7 +38,7 @@ class Job_Expiration extends Tag {
 	 * Get tag group.
 	 */
 	public function get_group() {
-		return Module::POST_GROUP;
+		return Module::JOB_GROUP;
 	}
 
 	/**
@@ -52,18 +52,6 @@ class Job_Expiration extends Tag {
 	 * Register Controls.
 	 */
 	protected function register_controls() {
-		$this->add_control(
-			'type',
-			array(
-				'label'   => esc_html__( 'Type', 'mas-elementor' ),
-				'type'    => Controls_Manager::SELECT,
-				'options' => array(
-					'post_date_gmt'     => esc_html__( 'Post Published', 'mas-elementor' ),
-					'post_modified_gmt' => esc_html__( 'Post Modified', 'mas-elementor' ),
-				),
-				'default' => 'post_date_gmt',
-			)
-		);
 
 		$this->add_control(
 			'format',
@@ -71,7 +59,6 @@ class Job_Expiration extends Tag {
 				'label'   => esc_html__( 'Format', 'mas-elementor' ),
 				'type'    => Controls_Manager::SELECT,
 				'options' => array(
-					'default' => esc_html__( 'Default', 'mas-elementor' ),
 					'F j, Y'  => gmdate( 'F j, Y' ),
 					'Y-m-d'   => gmdate( 'Y-m-d' ),
 					'm/d/Y'   => gmdate( 'm/d/Y' ),
@@ -79,7 +66,7 @@ class Job_Expiration extends Tag {
 					'human'   => esc_html__( 'Human Readable', 'mas-elementor' ),
 					'custom'  => esc_html__( 'Custom', 'mas-elementor' ),
 				),
-				'default' => 'default',
+				'default' => 'F j, Y',
 			)
 		);
 
@@ -100,12 +87,17 @@ class Job_Expiration extends Tag {
 	 * Render.
 	 */
 	public function render() {
-		$date_type = $this->get_settings( 'type' );
 		$format    = $this->get_settings( 'format' );
+
+		$post = get_post( get_the_ID() );
+		if ( ! $post || 'job_listing' !== $post->post_type ) {
+			return;
+		}
+		$job_expires = $post->_job_expires;
 
 		if ( 'human' === $format ) {
 			/* translators: %s: Human readable date/time. */
-			$value = sprintf( esc_html__( '%s ago', 'mas-elementor' ), human_time_diff( strtotime( get_post()->{$date_type} ) ) );
+			$value = sprintf( esc_html__( '%s ago', 'mas-elementor' ), human_time_diff( strtotime( $job_expires ) ) );
 		} else {
 			switch ( $format ) {
 				case 'default':
@@ -119,11 +111,7 @@ class Job_Expiration extends Tag {
 					break;
 			}
 
-			if ( 'post_date_gmt' === $date_type ) {
-				$value = get_the_date( $date_format );
-			} else {
-				$value = get_the_modified_date( $date_format );
-			}
+			$value = gmdate( $date_format, strtotime( $job_expires ) );
 		}
 		echo wp_kses_post( $value );
 	}

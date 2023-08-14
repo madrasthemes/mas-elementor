@@ -21,7 +21,7 @@ class Current_Query_Renderer extends Base_Products_Renderer {
 	 *
 	 * @var array
 	 */
-	private $settings = array();
+	public $settings = array();
 
 	/**
 	 * Current Query Renderer constructor.
