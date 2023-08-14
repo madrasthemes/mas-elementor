@@ -671,6 +671,8 @@ class Mas_Nav_Menu extends Base_Widget {
 			)
 		);
 
+		$this->end_controls_section();
+
 	}
 
 	/**
