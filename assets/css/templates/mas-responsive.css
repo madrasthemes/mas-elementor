@@ -122,3 +122,48 @@
     display: none !important; 
   }
 }
+
+
+/* For Job filters Flex Wrap */
+@media (max-width: ELEMENTOR_SCREEN_MOBILE_MAX) {
+  .mas-dynamic-heading-wrapper-mobile-wrap .mas-dynamic-heading-wrapper{
+    display: flex;  
+    flex-direction: column !important;
+}
+}
+@media (min-width: ELEMENTOR_SCREEN_MOBILE_EXTRA_MIN) and (max-width: ELEMENTOR_SCREEN_MOBILE_EXTRA_MAX) {
+  .mas-dynamic-heading-wrapper-mobile_extra-wrap .mas-dynamic-heading-wrapper {
+    display: flex;
+    flex-direction: column !important;
+  }
+}
+@media (min-width: ELEMENTOR_SCREEN_TABLET_MIN) and (max-width: ELEMENTOR_SCREEN_TABLET_MAX) {
+  .mas-dynamic-heading-wrapper-tablet-wrap .mas-dynamic-heading-wrapper {
+    display: flex; 
+    flex-direction: column !important;
+  }
+}
+@media (min-width: ELEMENTOR_SCREEN_TABLET_EXTRA_MIN) and (max-width: ELEMENTOR_SCREEN_TABLET_EXTRA_MAX) {
+  .mas-dynamic-heading-wrapper-tablet_extra-wrap .mas-dynamic-heading-wrapper {
+    display: flex; 
+    flex-direction: column !important;
+  }
+}
+@media (min-width: ELEMENTOR_SCREEN_LAPTOP_MIN) and (max-width: ELEMENTOR_SCREEN_LAPTOP_MAX) {
+  .mas-dynamic-heading-wrapper-laptop-wrap .mas-dynamic-heading-wrapper {
+    display: flex; 
+    flex-direction: column !important;
+  }
+}
+@media (min-width: ELEMENTOR_SCREEN_DESKTOP_MIN) and (max-width: ELEMENTOR_SCREEN_DESKTOP_MAX) {
+  .mas-dynamic-heading-wrapper-wrap .mas-dynamic-heading-wrapper { 
+    display: flex; 
+    flex-direction: column !important;
+  }
+}
+@media (min-width: ELEMENTOR_SCREEN_WIDESCREEN_MIN) {
+  .mas-dynamic-heading-wrapper-widescreen-wrap .mas-dynamic-heading-wrapper{
+    display: flex; 
+    flex-direction: column !important;
+  }
+}

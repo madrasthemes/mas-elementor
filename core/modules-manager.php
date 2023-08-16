@@ -66,6 +66,7 @@ final class Modules_Manager {
 			'mas-templates',
 			'post-content',
 			'button',
+			'dynamic-heading',
 		);
 
 		foreach ( $modules as $module_name ) {
