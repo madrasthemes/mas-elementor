@@ -111,6 +111,8 @@ class Movie_Linked_Videos extends Posts_Base {
 		}
 		$linked_videos = $movie->get_related_video_ids();
 		if ( ! $linked_videos ) {
+			?><div class="elementor-nothing-found mas-elementor-posts-nothing-found"><?php echo esc_html( $settings['nothing_found_message'] ); ?> </div>
+			<?php
 			return;
 		}
 

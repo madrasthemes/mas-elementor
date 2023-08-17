@@ -96,8 +96,8 @@ class Posts extends Posts_Base {
 		$this->update_control(
 			'select_loop_template',
 			array(
-				'condition'   => array(),
-				'conditions'  => array(
+				'condition'  => array(),
+				'conditions' => array(
 					'relation' => 'or',
 					'terms'    => array(
 						array(
@@ -170,6 +170,8 @@ class Posts extends Posts_Base {
 		$query = $this->get_query();
 
 		if ( ! $query->found_posts ) {
+			?><div class="elementor-nothing-found mas-elementor-posts-nothing-found"><?php echo esc_html( $settings['nothing_found_message'] ); ?> </div>
+			<?php
 			return;
 		}
 
@@ -187,7 +189,8 @@ class Posts extends Posts_Base {
 	 */
 	public function thumb_post( $settings, $query ) {
 		if ( 'yes' === $settings['enable_thumbs'] && 'yes' === $settings['enable_carousel'] ) {
-			?><div class="mas-posts-thumbs-wrapper">
+			?>
+			<div class="mas-posts-thumbs-wrapper">
 				<div class="mas-posts-thumbs-container">
 				<?php
 					$this->carousel_thumb_header( $settings );

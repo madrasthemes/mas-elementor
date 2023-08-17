@@ -111,6 +111,8 @@ class Movie_Recommended extends Posts_Base {
 		}
 		$recommended_movies = $movie->get_recommended_movie_ids();
 		if ( ! $recommended_movies ) {
+			?><div class="elementor-nothing-found mas-elementor-posts-nothing-found"><?php echo esc_html( $settings['nothing_found_message'] ); ?> </div>
+			<?php
 			return;
 		}
 

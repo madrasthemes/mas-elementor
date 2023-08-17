@@ -108,6 +108,8 @@ class Movie_Related extends Posts_Base {
 		}
 		$related_movies = masvideos_get_related_movies( $movie->get_id(), $args['posts_per_page'] );
 		if ( ! $related_movies ) {
+			?><div class="elementor-nothing-found mas-elementor-posts-nothing-found"><?php echo esc_html( $settings['nothing_found_message'] ); ?> </div>
+			<?php
 			return;
 		}
 
