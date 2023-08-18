@@ -137,6 +137,15 @@ class Product_Related extends Products_Base {
 			)
 		);
 
+		$this->add_control(
+			'mas_products_class',
+			array(
+				'type'         => Controls_Manager::HIDDEN,
+				'default'      => 'wc-products',
+				'prefix_class' => 'mas-products-grid mas-elementor-',
+			)
+		);
+
 		$this->end_controls_section();
 
 	}

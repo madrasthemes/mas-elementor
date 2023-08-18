@@ -22,16 +22,24 @@ if ( ! defined( 'ABSPATH' ) ) {
 if ( $related_products ) : ?>
 
 	<section class="related products">
+		<div class="mas-products mas-grid">
 		<?php
 		$instance_settings = $widget->get_settings_for_display();
 		foreach ( $related_products as $related_product ) :
 			$post_object = get_post( $related_product->get_id() );
 
 			setup_postdata( $GLOBALS['post'] =& $post_object ); // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited, Squiz.PHP.DisallowMultipleAssignments.Found
+			?>
+			<div class="mas-product">
+			<?php
 
 			print( mas_render_template( $instance_settings['select_template'], false ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			?>
+			</div>
+			<?php
 		endforeach;
 		?>
+		</div>
 	</section>
 	<?php
 endif;
