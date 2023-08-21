@@ -67,6 +67,7 @@ final class Modules_Manager {
 			'post-content',
 			'button',
 			'dynamic-heading',
+			'mas-star-rating',
 		);
 
 		foreach ( $modules as $module_name ) {

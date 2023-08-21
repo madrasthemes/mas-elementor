@@ -220,6 +220,45 @@ class Mas_Nav_Tabs extends Base_Widget {
 			)
 		);
 
+		$this->add_responsive_control(
+			'mas_nav_flex_wrap',
+			array(
+				'label'     => esc_html_x( 'Wrap', 'Flex Container Control', 'mas-elementor' ),
+				'type'      => Controls_Manager::CHOOSE,
+				'options'   => array(
+					'nowrap' => array(
+						'title' => esc_html_x( 'No Wrap', 'Flex Container Control', 'mas-elementor' ),
+						'icon'  => 'eicon-flex eicon-nowrap',
+					),
+					'wrap'   => array(
+						'title' => esc_html_x( 'Wrap', 'Flex Container Control', 'mas-elementor' ),
+						'icon'  => 'eicon-flex eicon-wrap',
+					),
+				),
+				'default'   => '',
+				'selectors' => array(
+					'{{WRAPPER}} .mas-elementor-nav-tab' => 'flex-wrap: {{VALUE}};',
+				),
+			)
+		);
+
+		// $this->add_control(
+		// 'mas_nav_overflow',
+		// [
+		// 'label' => esc_html__( 'Overflow', 'mas-elementor' ),
+		// 'type' => Controls_Manager::SELECT,
+		// 'default' => '',
+		// 'options' => [
+		// '' => esc_html__( 'Default', 'mas-elementor' ),
+		// 'hidden' => esc_html__( 'Hidden', 'mas-elementor' ),
+		// 'auto' => esc_html__( 'Auto', 'mas-elementor' ),
+		// ],
+		// 'selectors' => [
+		// '{{WRAPPER}} .mas-elementor-nav-tab' => 'overflow-y: scroll',
+		// ],
+		// ]
+		// );
+
 		$this->end_controls_section();
 
 		// Section for List Controls in STYLE Tab.
@@ -331,6 +370,77 @@ class Mas_Nav_Tabs extends Base_Widget {
 			array(
 				'label' => esc_html__( 'List Item', 'mas-elementor' ),
 				'tab'   => Controls_Manager::TAB_STYLE,
+			)
+		);
+
+		$this->add_responsive_control(
+			'list_item_size',
+			array(
+				'label'                => esc_html_x( 'Size', 'Flex Item Control', 'mas-elementor' ),
+				'type'                 => Controls_Manager::CHOOSE,
+				'default'              => '',
+				'options'              => array(
+					'none'   => array(
+						'title' => esc_html_x( 'None', 'Flex Item Control', 'mas-elementor' ),
+						'icon'  => 'eicon-ban',
+					),
+					'grow'   => array(
+						'title' => esc_html_x( 'Grow', 'Flex Item Control', 'mas-elementor' ),
+						'icon'  => 'eicon-grow',
+					),
+					'shrink' => array(
+						'title' => esc_html_x( 'Shrink', 'Flex Item Control', 'mas-elementor' ),
+						'icon'  => 'eicon-shrink',
+					),
+					'custom' => array(
+						'title' => esc_html_x( 'Custom', 'Flex Item Control', 'mas-elementor' ),
+						'icon'  => 'eicon-ellipsis-v',
+					),
+				),
+				'selectors_dictionary' => array(
+					'grow'   => 'flex-grow: 1; flex-shrink: 0;',
+					'shrink' => 'flex-grow: 0; flex-shrink: 1;',
+					'custom' => '',
+					'none'   => 'flex-grow: 0; flex-shrink: 0;',
+				),
+				'selectors'            => array(
+					'{{WRAPPER}} .mas-elementor-nav-tab-li' => '{{VALUE}};',
+				),
+				'responsive'           => true,
+			)
+		);
+
+		$this->add_responsive_control(
+			'list_item_grow',
+			array(
+				'label'       => esc_html_x( 'Flex Grow', 'Flex Item Control', 'mas-elementor' ),
+				'type'        => Controls_Manager::NUMBER,
+				'selectors'   => array(
+					'{{WRAPPER}} .mas-elementor-nav-tab-li' => '--flex-grow: {{VALUE}};',
+				),
+				'default'     => 1,
+				'placeholder' => 1,
+				'responsive'  => true,
+				'condition'   => array(
+					'list_item_size' => 'custom',
+				),
+			)
+		);
+
+		$this->add_responsive_control(
+			'list_item_shrink',
+			array(
+				'label'       => esc_html_x( 'Flex Shrink', 'Flex Item Control', 'mas-elementor' ),
+				'type'        => Controls_Manager::NUMBER,
+				'selectors'   => array(
+					'{{WRAPPER}} .mas-elementor-nav-tab-li' => '--flex-shrink: {{VALUE}};',
+				),
+				'default'     => 1,
+				'placeholder' => 1,
+				'responsive'  => true,
+				'condition'   => array(
+					'list_item_size' => 'custom',
+				),
 			)
 		);
 
@@ -838,15 +948,15 @@ class Mas_Nav_Tabs extends Base_Widget {
 				'label'     => esc_html__( 'Alignment', 'mas-elementor' ),
 				'type'      => Controls_Manager::CHOOSE,
 				'options'   => array(
-					'left'    => array(
+					'left'   => array(
 						'title' => esc_html__( 'Left', 'mas-elementor' ),
 						'icon'  => 'eicon-text-align-left',
 					),
-					'center'  => array(
+					'center' => array(
 						'title' => esc_html__( 'Center', 'mas-elementor' ),
 						'icon'  => 'eicon-text-align-center',
 					),
-					'right'   => array(
+					'right'  => array(
 						'title' => esc_html__( 'Right', 'mas-elementor' ),
 						'icon'  => 'eicon-text-align-right',
 					),
@@ -1037,7 +1147,7 @@ class Mas_Nav_Tabs extends Base_Widget {
 				);
 
 				$disable_border_color    = $settings['mas_nav_link_border_color'];
-				$disable_border_selector = 'border-left-color:'. $disable_border_color . ';' . 'border-right-color:'. $disable_border_color . ';';
+				$disable_border_selector = 'border-left-color:' . $disable_border_color . ';border-right-color:' . $disable_border_color . ';';
 
 				if ( 'yes' === $settings['disable_side_border'] ) {
 					$this->add_render_attribute(
