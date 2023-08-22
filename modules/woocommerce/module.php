@@ -87,6 +87,7 @@ class Module extends Module_Base {
 			'Product_Short_Description',
 			'Product_Stock',
 			'Product_Title',
+			'Product_Add_To_Cart',
 		);
 	}
 
