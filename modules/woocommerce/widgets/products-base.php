@@ -36,8 +36,8 @@ abstract class Products_Base extends Base_Widget {
 		$this->start_controls_section(
 			'section_mas_product_style',
 			array(
-				'label'     => __( 'Product', 'mas-elementor' ),
-				'tab'       => Controls_Manager::TAB_STYLE,
+				'label' => __( 'Product', 'mas-elementor' ),
+				'tab'   => Controls_Manager::TAB_STYLE,
 			)
 		);
 
@@ -49,6 +49,49 @@ abstract class Products_Base extends Base_Widget {
 				'size_units' => array( 'px', 'em', '%', 'rem' ),
 				'selectors'  => array(
 					'{{WRAPPER}} .mas-products.mas-grid' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				),
+			)
+		);
+
+		$this->add_responsive_control(
+			'products_gap',
+			array(
+				'label'      => __( 'Gap', 'mas-elementor' ),
+				'type'       => Controls_Manager::SLIDER,
+				'size_units' => array( 'px', '%', 'em' ),
+				'default'    => array(
+					'size' => 13,
+				),
+				'range'      => array(
+					'px' => array(
+						'min' => 0,
+						'max' => 200,
+					),
+				),
+				'selectors'  => array(
+					'{{WRAPPER}} .mas-products.mas-grid' => 'gap: {{SIZE}}{{UNIT}}',
+				),
+			)
+		);
+
+		$this->add_responsive_control(
+			'loop_product_height',
+			array(
+				'label'      => __( 'Product Height', 'mas-elementor' ),
+				'type'       => Controls_Manager::SLIDER,
+				'size_units' => array( 'px', '%', 'em', 'rem', 'vh', 'custom' ),
+				'default'    => array(
+					'size' => 100,
+					'unit' => '%',
+				),
+				'range'      => array(
+					'px' => array(
+						'min' => 0,
+						'max' => 200,
+					),
+				),
+				'selectors'  => array(
+					'{{WRAPPER}} .mas-product,{{WRAPPER}} .mas-product [data-elementor-type="mas-post"]' => 'height: {{SIZE}}{{UNIT}} !important',
 				),
 			)
 		);
