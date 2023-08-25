@@ -59,6 +59,15 @@ class Product_Add_To_Cart extends Base_Widget {
 	}
 
 	/**
+	 * Return the style dependencies of the module.
+	 *
+	 * @return array
+	 */
+	public function get_style_depends() {
+		return array( 'mas-product-add-to-cart' );
+	}
+
+	/**
 	 * Render.
 	 */
 	protected function render() {
