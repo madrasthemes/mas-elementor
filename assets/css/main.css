@@ -5,3 +5,9 @@
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 2;
 }
+.swiper-position-static-enable .elementor-widget-container .swiper {
+    position: static !important;
+}
+.swiper-position-static-enable.swiper.elementor-section {
+    position: static !important;
+}

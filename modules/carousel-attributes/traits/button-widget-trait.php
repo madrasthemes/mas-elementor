@@ -60,6 +60,20 @@ trait Button_Widget_Trait {
 		$args = array_merge( $default_args, $args );
 
 		$element->add_control(
+			'swiper_position_static',
+			array(
+				'type'         => Controls_Manager::SWITCHER,
+				'label'        => esc_html__( 'Enable Position Static', 'mas-elementor' ),
+				'default'      => 'enable',
+				'label_off'    => esc_html__( 'Enable', 'mas-elementor' ),
+				'label_on'     => esc_html__( 'Disable', 'mas-elementor' ),
+				'condition'   => $args['section_condition'],
+				'return_value' => 'enable',
+				'prefix_class' => 'swiper-position-static-',
+			)
+		);
+
+		$element->add_control(
 			'text',
 			array(
 				'label'       => esc_html__( 'Next Text', 'mas-elementor' ),
