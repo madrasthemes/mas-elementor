@@ -13,13 +13,13 @@
 :is(.elementor-widget-mas-woocommerce-product-add-to-cart, .woocommerce div.product .elementor-widget-mas-woocommerce-product-add-to-cart,
 .elementor-widget-wc-add-to-cart, .woocommerce div.product .elementor-widget-wc-add-to-cart) form.cart .button:where(:not(:first-child)) {
   margin-top: 0;
-  margin-left: var(--button-spacing, 10px);
+  /* margin-left: var(--button-spacing, 10px); */
 }
 :is(.elementor-widget-mas-woocommerce-product-add-to-cart, .woocommerce div.product .elementor-widget-mas-woocommerce-product-add-to-cart,
 .elementor-widget-wc-add-to-cart, .woocommerce div.product .elementor-widget-wc-add-to-cart) .e-loop-add-to-cart-form-container {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--view-cart-spacing, 10px);
+  /* gap: var(--view-cart-spacing, 10px); */
 }
 :is(.elementor-widget-mas-woocommerce-product-add-to-cart, .woocommerce div.product .elementor-widget-mas-woocommerce-product-add-to-cart,
 .elementor-widget-wc-add-to-cart, .woocommerce div.product .elementor-widget-wc-add-to-cart) .e-loop-add-to-cart-form-container > * {
@@ -79,7 +79,7 @@
 :is(.elementor-widget-mas-woocommerce-product-add-to-cart, .woocommerce div.product .elementor-widget-mas-woocommerce-product-add-to-cart,
 .elementor-widget-wc-add-to-cart, .woocommerce div.product .elementor-widget-wc-add-to-cart).elementor-add-to-cart--layout-stacked .e-atc-qty-button-holder .button:where(:not(:first-child)) {
   margin-left: 0;
-  margin-top: var(--button-spacing, 10px);
+  /* margin-top: var(--button-spacing, 10px); */
 }
 :is(.elementor-widget-mas-woocommerce-product-add-to-cart, .woocommerce div.product .elementor-widget-mas-woocommerce-product-add-to-cart,
 .elementor-widget-wc-add-to-cart, .woocommerce div.product .elementor-widget-wc-add-to-cart).elementor-add-to-cart--layout-auto .e-atc-qty-button-holder {

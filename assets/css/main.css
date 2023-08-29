@@ -11,3 +11,8 @@
 .swiper-position-static-enable.swiper.elementor-section {
     position: static !important;
 }
+
+.add_to_cart_button.hide-mas-cart.added {
+    display: none;
+}
+

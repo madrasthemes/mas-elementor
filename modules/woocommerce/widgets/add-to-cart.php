@@ -164,6 +164,18 @@ class Add_To_Cart extends Widget_Button {
 
 		$this->end_controls_section();
 
+		$this->start_controls_section(
+			'section_style_wrapper',
+			array(
+				'label' => esc_html__( 'Button Wrapper', 'mas-elementor' ),
+				'tab'   => Controls_Manager::TAB_STYLE,
+			)
+		);
+
+		$this->register_button_cart_wrapper_style_controls();
+
+		$this->end_controls_section();
+
 		$this->start_injection(
 			array(
 				'of' => 'section_style_cart',
@@ -492,7 +504,228 @@ class Add_To_Cart extends Widget_Button {
 	/**
 	 * Register button content update controls for this widget.
 	 */
+	protected function register_button_cart_wrapper_style_controls() {
+
+		$start   = is_rtl() ? 'right' : 'left';
+		$end     = is_rtl() ? 'left' : 'right';
+		$wrapper = '{{WRAPPER}} .mas-add-to-cart .elementor-button-wrapper';
+
+		$this->add_responsive_control(
+			'enable_flex',
+			array(
+				'label'     => esc_html__( 'Enable Flex', 'mas-elementor' ),
+				'type'      => Controls_Manager::CHOOSE,
+				'options'   => array(
+					'block' => array(
+						'title' => esc_html__( 'Block', 'mas-elementor' ),
+						'icon'  => 'eicon-ban',
+					),
+					'flex'  => array(
+						'title' => esc_html__( 'Flex', 'mas-elementor' ),
+						'icon'  => 'eicon-flex eicon-wrap',
+					),
+				),
+				'default'   => 'flex',
+				'selectors' => array(
+					$wrapper => 'display: {{VALUE}};',
+				),
+				// 'responsive' => true,
+
+			)
+		);
+
+		$this->add_responsive_control(
+			'flex_wrap',
+			array(
+				'label'       => esc_html__( 'Wrap', 'mas-elementor' ),
+				'type'        => Controls_Manager::CHOOSE,
+				'options'     => array(
+					'nowrap' => array(
+						'title' => esc_html__( 'No Wrap', 'mas-elementor' ),
+						'icon'  => 'eicon-flex eicon-nowrap',
+					),
+					'wrap'   => array(
+						'title' => esc_html__( 'Wrap', 'mas-elementor' ),
+						'icon'  => 'eicon-flex eicon-wrap',
+					),
+				),
+				'description' => esc_html_x(
+					'Items within the container can stay in a single line (No wrap), or break into multiple lines (Wrap).',
+					'Flex Container Control',
+					'mas-elementor'
+				),
+				'default'     => 'wrap',
+				'selectors'   => array(
+					$wrapper => 'flex-wrap: {{VALUE}};',
+				),
+				// 'responsive' => true,
+
+			)
+		);
+
+		$this->add_responsive_control(
+			'flex_direction',
+			array(
+				'label'     => esc_html__( 'Direction', 'mas-elementor' ),
+				'type'      => Controls_Manager::CHOOSE,
+				'options'   => array(
+					'row'            => array(
+						'title' => esc_html__( 'Row - horizontal', 'mas-elementor' ),
+						'icon'  => 'eicon-arrow-' . $end,
+					),
+					'column'         => array(
+						'title' => esc_html__( 'Column - vertical', 'mas-elementor' ),
+						'icon'  => 'eicon-arrow-down',
+					),
+					'row-reverse'    => array(
+						'title' => esc_html__( 'Row - reversed', 'mas-elementor' ),
+						'icon'  => 'eicon-arrow-' . $start,
+					),
+					'column-reverse' => array(
+						'title' => esc_html__( 'Column - reversed', 'mas-elementor' ),
+						'icon'  => 'eicon-arrow-up',
+					),
+				),
+				'default'   => '',
+				'selectors' => array(
+					$wrapper => 'flex-direction:{{VALUE}};',
+				),
+				'condition' => array(
+					'enable_flex' => 'flex',
+				),
+				'default'   => 'column',
+			)
+		);
+
+		$this->add_responsive_control(
+			'justify_content',
+			array(
+				'label'       => esc_html__( 'Justify Content', 'mas-elementor' ),
+				'type'        => Controls_Manager::CHOOSE,
+				'label_block' => true,
+				'default'     => '',
+				'options'     => array(
+					'flex-start'    => array(
+						'title' => esc_html__( 'Start', 'mas-elementor' ),
+						'icon'  => 'eicon-flex eicon-justify-start-h',
+					),
+					'center'        => array(
+						'title' => esc_html__( 'Center', 'mas-elementor' ),
+						'icon'  => 'eicon-flex eicon-justify-center-h',
+					),
+					'flex-end'      => array(
+						'title' => esc_html__( 'End', 'mas-elementor' ),
+						'icon'  => 'eicon-flex eicon-justify-end-h',
+					),
+					'space-between' => array(
+						'title' => esc_html__( 'Space Between', 'mas-elementor' ),
+						'icon'  => 'eicon-flex eicon-justify-space-between-h',
+					),
+					'space-around'  => array(
+						'title' => esc_html__( 'Space Around', 'mas-elementor' ),
+						'icon'  => 'eicon-flex eicon-justify-space-around-h',
+					),
+					'space-evenly'  => array(
+						'title' => esc_html__( 'Space Evenly', 'mas-elementor' ),
+						'icon'  => 'eicon-flex eicon-justify-space-evenly-h',
+					),
+				),
+				'selectors'   => array(
+					$wrapper => 'justify-content: {{VALUE}};',
+				),
+				'default'     => 'center',
+			)
+		);
+
+		$this->add_responsive_control(
+			'align_items',
+			array(
+				'label'     => esc_html__( 'Align Items', 'mas-elementor' ),
+				'type'      => Controls_Manager::CHOOSE,
+				'default'   => '',
+				'options'   => array(
+					'flex-start' => array(
+						'title' => esc_html__( 'Start', 'mas-elementor' ),
+						'icon'  => 'eicon-flex eicon-align-start-v',
+					),
+					'center'     => array(
+						'title' => esc_html__( 'Center', 'mas-elementor' ),
+						'icon'  => 'eicon-flex eicon-align-center-v',
+					),
+					'flex-end'   => array(
+						'title' => esc_html__( 'End', 'mas-elementor' ),
+						'icon'  => 'eicon-flex eicon-align-end-v',
+					),
+					'stretch'    => array(
+						'title' => esc_html__( 'Stretch', 'mas-elementor' ),
+						'icon'  => 'eicon-flex eicon-align-stretch-v',
+					),
+				),
+				'selectors' => array(
+					$wrapper => 'align-items: {{VALUE}};',
+				),
+				'default'   => 'stretch',
+			)
+		);
+
+		$this->add_responsive_control(
+			'gap',
+			array(
+				'label'      => esc_html__( 'Gap', 'mas-elementor' ),
+				'type'       => Controls_Manager::SLIDER,
+				'range'      => array(
+					'px' => array(
+						'min' => 0,
+						'max' => 500,
+					),
+					'%'  => array(
+						'min' => 0,
+						'max' => 100,
+					),
+					'vw' => array(
+						'min' => 0,
+						'max' => 100,
+					),
+					'em' => array(
+						'min' => 0,
+						'max' => 50,
+					),
+				),
+				'size_units' => array( 'px', '%', 'em', 'rem', 'vw', 'custom' ),
+				'selectors'  => array(
+					$wrapper => 'gap: {{SIZE}}{{UNIT}};',
+				),
+			)
+		);
+
+	}
+
+	/**
+	 * Register button content update controls for this widget.
+	 */
 	protected function register_button_cart_update_controls() {
+
+		$this->start_injection(
+			array(
+				'at' => 'after',
+				'of' => 'section_button',
+			)
+		);
+
+		$this->add_control(
+			'hide_cart_button',
+			array(
+				'label'       => esc_html__( 'Hide Cart Button', 'mas-elementor' ),
+				'type'        => Controls_Manager::SWITCHER,
+				'label_off'   => esc_html__( 'Hide', 'mas-elementor' ),
+				'label_on'    => esc_html__( 'Show', 'mas-elementor' ),
+				'description' => esc_html__( 'Hide add to cart button when clicked', 'mas-elementor' ),
+				'default'     => 'yes',
+			)
+		);
+
+		$this->end_injection();
+
 		$this->update_control(
 			'button_type',
 			array(
@@ -516,6 +749,8 @@ class Add_To_Cart extends Widget_Button {
 					'{{WRAPPER}} .elementor-button .elementor-align-icon-right' => 'margin-left: {{SIZE}}{{UNIT}};',
 					'{{WRAPPER}} .elementor-button .elementor-align-icon-left' => 'margin-right: {{SIZE}}{{UNIT}};',
 					'{{WRAPPER}} .cart .elementor-button-content-wrapper .elementor-button-icon' => 'margin-right: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}} .added_to_cart .elementor-align-icon-right' => 'margin-left: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}} .added_to_cart .elementor-align-icon-left' => 'margin-right: {{SIZE}}{{UNIT}};',
 				),
 			),
 		);
@@ -541,7 +776,7 @@ class Add_To_Cart extends Widget_Button {
 				'global'    => array(
 					'default' => Global_Typography::TYPOGRAPHY_ACCENT,
 				),
-				'selector'  => '{{WRAPPER}} .elementor-button, {{WRAPPER}} .cart button',
+				'selector'  => '{{WRAPPER}} .elementor-button, {{WRAPPER}} .cart button, {{WRAPPER}} .added_to_cart',
 				'condition' => $args['section_condition'],
 			)
 		);
@@ -550,7 +785,7 @@ class Add_To_Cart extends Widget_Button {
 			Group_Control_Text_Shadow::get_type(),
 			array(
 				'name'      => 'cart_text_shadow',
-				'selector'  => '{{WRAPPER}} .elementor-button, {{WRAPPER}} .cart button',
+				'selector'  => '{{WRAPPER}} .elementor-button, {{WRAPPER}} .cart button, {{WRAPPER}} .added_to_cart',
 				'condition' => $args['section_condition'],
 			)
 		);
@@ -578,6 +813,7 @@ class Add_To_Cart extends Widget_Button {
 				'default'   => '',
 				'selectors' => array(
 					'{{WRAPPER}} .elementor-button' => 'fill: {{VALUE}}; color: {{VALUE}};',
+					'{{WRAPPER}} .added_to_cart'    => 'fill: {{VALUE}}; color: {{VALUE}};',
 					'{{WRAPPER}} .cart button'      => 'fill: {{VALUE}}; color: {{VALUE}};',
 				),
 				'condition' => $args['section_condition'],
@@ -591,7 +827,7 @@ class Add_To_Cart extends Widget_Button {
 				'label'          => esc_html__( 'Background', 'mas-elementor' ),
 				'types'          => array( 'classic', 'gradient' ),
 				'exclude'        => array( 'image' ),
-				'selector'       => '{{WRAPPER}} .elementor-button, {{WRAPPER}} .cart button',
+				'selector'       => '{{WRAPPER}} .elementor-button, {{WRAPPER}} .cart button, {{WRAPPER}} .added_to_cart',
 				'fields_options' => array(
 					'background' => array(
 						'default' => 'classic',
@@ -626,6 +862,8 @@ class Add_To_Cart extends Widget_Button {
 					'{{WRAPPER}} .elementor-button:hover svg, {{WRAPPER}} .elementor-button:focus svg' => 'fill: {{VALUE}};',
 					'{{WRAPPER}} .cart button:hover, {{WRAPPER}} .cart button:focus' => 'color: {{VALUE}};',
 					'{{WRAPPER}} .cart button:hover svg, {{WRAPPER}} .cart button:focus svg' => 'fill: {{VALUE}};',
+					'{{WRAPPER}} .added_to_cart:hover, {{WRAPPER}} .added_to_cart:focus' => 'color: {{VALUE}};',
+					'{{WRAPPER}} .added_to_cart:hover svg, {{WRAPPER}} .added_to_cart:focus svg' => 'fill: {{VALUE}};',
 				),
 				'condition' => $args['section_condition'],
 			)
@@ -638,7 +876,7 @@ class Add_To_Cart extends Widget_Button {
 				'label'          => esc_html__( 'Background', 'mas-elementor' ),
 				'types'          => array( 'classic', 'gradient' ),
 				'exclude'        => array( 'image' ),
-				'selector'       => '{{WRAPPER}} .elementor-button:hover, {{WRAPPER}} .elementor-button:focus, {{WRAPPER}} .cart button:hover, {{WRAPPER}} .cart button:focus',
+				'selector'       => '{{WRAPPER}} .elementor-button:hover,{{WRAPPER}} .added_to_cart:hover, {{WRAPPER}} .elementor-button:focus,{{WRAPPER}} .added_to_cart:focus, {{WRAPPER}} .cart button:hover, {{WRAPPER}} .cart button:focus',
 				'fields_options' => array(
 					'background' => array(
 						'default' => 'classic',
@@ -657,7 +895,7 @@ class Add_To_Cart extends Widget_Button {
 					'border_border!' => '',
 				),
 				'selectors' => array(
-					'{{WRAPPER}} .elementor-button:hover, {{WRAPPER}} .elementor-button:focus' => 'border-color: {{VALUE}};',
+					'{{WRAPPER}} .elementor-button:hover, {{WRAPPER}} .added_to_cart:hover, {{WRAPPER}} .elementor-button:focus, {{WRAPPER}} .added_to_cart:focus' => 'border-color: {{VALUE}};',
 					'{{WRAPPER}} .cart button:hover, {{WRAPPER}} .cart button:focus' => 'border-color: {{VALUE}};',
 				),
 				'condition' => $args['section_condition'],
@@ -681,7 +919,7 @@ class Add_To_Cart extends Widget_Button {
 			Group_Control_Border::get_type(),
 			array(
 				'name'      => 'cart_border',
-				'selector'  => '{{WRAPPER}} .elementor-button, {{WRAPPER}} .cart button',
+				'selector'  => '{{WRAPPER}} .elementor-button, {{WRAPPER}} .cart button, {{WRAPPER}} .added_to_cart',
 				'separator' => 'before',
 				'condition' => $args['section_condition'],
 			)
@@ -696,6 +934,7 @@ class Add_To_Cart extends Widget_Button {
 				'selectors'  => array(
 					'{{WRAPPER}} .elementor-button' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 					'{{WRAPPER}} .cart button'      => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .added_to_cart'    => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				),
 				'condition'  => $args['section_condition'],
 			)
@@ -705,7 +944,7 @@ class Add_To_Cart extends Widget_Button {
 			Group_Control_Box_Shadow::get_type(),
 			array(
 				'name'      => 'cart_button_box_shadow',
-				'selector'  => '{{WRAPPER}} .elementor-button, {{WRAPPER}} .cart button',
+				'selector'  => '{{WRAPPER}} .elementor-button, {{WRAPPER}} .cart button, {{WRAPPER}} .added_to_cart',
 				'condition' => $args['section_condition'],
 			)
 		);
@@ -719,6 +958,7 @@ class Add_To_Cart extends Widget_Button {
 				'selectors'  => array(
 					'{{WRAPPER}} .elementor-button' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 					'{{WRAPPER}} .cart button'      => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .added_to_cart'    => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				),
 				'separator'  => 'before',
 				'condition'  => $args['section_condition'],
@@ -811,6 +1051,9 @@ class Add_To_Cart extends Widget_Button {
 					)
 				)
 			);
+			if ( 'yes' === $settings['hide_cart_button'] ) {
+				$class .= ' hide-mas-cart';
+			}
 
 			$this->add_render_attribute(
 				'button',
