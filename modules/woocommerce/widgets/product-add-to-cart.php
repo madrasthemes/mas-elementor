@@ -234,7 +234,7 @@ class Product_Add_To_Cart extends Base_Widget {
 
 		$start   = is_rtl() ? 'right' : 'left';
 		$end     = is_rtl() ? 'left' : 'right';
-		$wrapper = '{{WRAPPER}} .woocommerce-variation-add-to-cart, {{WRAPPER}} .e-atc-qty-button-holder, {{WRAPPER}} .cart ';
+		$wrapper = '{{WRAPPER}} .woocommerce-variation-add-to-cart, {{WRAPPER}} .e-atc-qty-button-holder, {{WRAPPER}} .cart:has(>.quantity) ';
 
 		$this->add_responsive_control(
 			'enable_flex',
@@ -782,6 +782,21 @@ class Product_Add_To_Cart extends Base_Widget {
 		);
 
 		$this->add_control(
+			'quantity_container_padding',
+			array(
+				'label'      => esc_html__( 'Quantity Container Padding', 'mas-elementor' ),
+				'type'       => Controls_Manager::DIMENSIONS,
+				'size_units' => array( 'px', '%', 'em', 'rem', 'vw', 'custom' ),
+				'selectors'  => array(
+					'{{WRAPPER}} .qty-container' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				),
+				'condition'  => array(
+					'show_quantity!' => '',
+				),
+			)
+		);
+
+		$this->add_control(
 			'quantity_padding',
 			array(
 				'label'      => esc_html__( 'Padding', 'mas-elementor' ),
@@ -789,6 +804,21 @@ class Product_Add_To_Cart extends Base_Widget {
 				'size_units' => array( 'px', '%', 'em', 'rem', 'vw', 'custom' ),
 				'selectors'  => array(
 					'{{WRAPPER}} .quantity .qty' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				),
+				'condition'  => array(
+					'show_quantity!' => '',
+				),
+			)
+		);
+
+		$this->add_control(
+			'quantity_button_padding',
+			array(
+				'label'      => esc_html__( 'Quantity Button Padding', 'mas-elementor' ),
+				'type'       => Controls_Manager::DIMENSIONS,
+				'size_units' => array( 'px', '%', 'em', 'rem', 'vw', 'custom' ),
+				'selectors'  => array(
+					'{{WRAPPER}} .cart .qty-minus, {{WRAPPER}} .cart .qty-plus, {{WRAPPER}} .cart .input-text' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				),
 				'condition'  => array(
 					'show_quantity!' => '',
