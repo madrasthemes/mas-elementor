@@ -228,6 +228,205 @@ class Product_Add_To_Cart extends Base_Widget {
 	}
 
 	/**
+	 * Register button content update controls for this widget.
+	 */
+	protected function register_button_cart_wrapper_style_controls() {
+
+		$start   = is_rtl() ? 'right' : 'left';
+		$end     = is_rtl() ? 'left' : 'right';
+		$wrapper = '{{WRAPPER}} .woocommerce-variation-add-to-cart, {{WRAPPER}} .e-atc-qty-button-holder, {{WRAPPER}} .cart ';
+
+		$this->add_responsive_control(
+			'enable_flex',
+			array(
+				'label'     => esc_html__( 'Enable Flex', 'mas-elementor' ),
+				'type'      => Controls_Manager::CHOOSE,
+				'options'   => array(
+					'block' => array(
+						'title' => esc_html__( 'Block', 'mas-elementor' ),
+						'icon'  => 'eicon-ban',
+					),
+					'flex'  => array(
+						'title' => esc_html__( 'Flex', 'mas-elementor' ),
+						'icon'  => 'eicon-flex eicon-wrap',
+					),
+				),
+				'default'   => 'flex',
+				'selectors' => array(
+					$wrapper => 'display: {{VALUE}};',
+				),
+				// 'responsive' => true,
+
+			)
+		);
+
+		$this->add_responsive_control(
+			'flex_wrap',
+			array(
+				'label'       => esc_html__( 'Wrap', 'mas-elementor' ),
+				'type'        => Controls_Manager::CHOOSE,
+				'options'     => array(
+					'nowrap' => array(
+						'title' => esc_html__( 'No Wrap', 'mas-elementor' ),
+						'icon'  => 'eicon-flex eicon-nowrap',
+					),
+					'wrap'   => array(
+						'title' => esc_html__( 'Wrap', 'mas-elementor' ),
+						'icon'  => 'eicon-flex eicon-wrap',
+					),
+				),
+				'description' => esc_html_x(
+					'Items within the container can stay in a single line (No wrap), or break into multiple lines (Wrap).',
+					'Flex Container Control',
+					'mas-elementor'
+				),
+				'default'     => 'wrap',
+				'selectors'   => array(
+					$wrapper => 'flex-wrap: {{VALUE}};',
+				),
+				// 'responsive' => true,
+
+			)
+		);
+
+		$this->add_responsive_control(
+			'flex_direction',
+			array(
+				'label'     => esc_html__( 'Direction', 'mas-elementor' ),
+				'type'      => Controls_Manager::CHOOSE,
+				'options'   => array(
+					'row'            => array(
+						'title' => esc_html__( 'Row - horizontal', 'mas-elementor' ),
+						'icon'  => 'eicon-arrow-' . $end,
+					),
+					'column'         => array(
+						'title' => esc_html__( 'Column - vertical', 'mas-elementor' ),
+						'icon'  => 'eicon-arrow-down',
+					),
+					'row-reverse'    => array(
+						'title' => esc_html__( 'Row - reversed', 'mas-elementor' ),
+						'icon'  => 'eicon-arrow-' . $start,
+					),
+					'column-reverse' => array(
+						'title' => esc_html__( 'Column - reversed', 'mas-elementor' ),
+						'icon'  => 'eicon-arrow-up',
+					),
+				),
+				'default'   => '',
+				'selectors' => array(
+					$wrapper => 'flex-direction:{{VALUE}};',
+				),
+				'condition' => array(
+					'enable_flex' => 'flex',
+				),
+				'default'   => 'column',
+			)
+		);
+
+		$this->add_responsive_control(
+			'justify_content',
+			array(
+				'label'       => esc_html__( 'Justify Content', 'mas-elementor' ),
+				'type'        => Controls_Manager::CHOOSE,
+				'label_block' => true,
+				'default'     => '',
+				'options'     => array(
+					'flex-start'    => array(
+						'title' => esc_html__( 'Start', 'mas-elementor' ),
+						'icon'  => 'eicon-flex eicon-justify-start-h',
+					),
+					'center'        => array(
+						'title' => esc_html__( 'Center', 'mas-elementor' ),
+						'icon'  => 'eicon-flex eicon-justify-center-h',
+					),
+					'flex-end'      => array(
+						'title' => esc_html__( 'End', 'mas-elementor' ),
+						'icon'  => 'eicon-flex eicon-justify-end-h',
+					),
+					'space-between' => array(
+						'title' => esc_html__( 'Space Between', 'mas-elementor' ),
+						'icon'  => 'eicon-flex eicon-justify-space-between-h',
+					),
+					'space-around'  => array(
+						'title' => esc_html__( 'Space Around', 'mas-elementor' ),
+						'icon'  => 'eicon-flex eicon-justify-space-around-h',
+					),
+					'space-evenly'  => array(
+						'title' => esc_html__( 'Space Evenly', 'mas-elementor' ),
+						'icon'  => 'eicon-flex eicon-justify-space-evenly-h',
+					),
+				),
+				'selectors'   => array(
+					$wrapper => 'justify-content: {{VALUE}};',
+				),
+				'default'     => 'center',
+			)
+		);
+
+		$this->add_responsive_control(
+			'align_items',
+			array(
+				'label'     => esc_html__( 'Align Items', 'mas-elementor' ),
+				'type'      => Controls_Manager::CHOOSE,
+				'default'   => '',
+				'options'   => array(
+					'flex-start' => array(
+						'title' => esc_html__( 'Start', 'mas-elementor' ),
+						'icon'  => 'eicon-flex eicon-align-start-v',
+					),
+					'center'     => array(
+						'title' => esc_html__( 'Center', 'mas-elementor' ),
+						'icon'  => 'eicon-flex eicon-align-center-v',
+					),
+					'flex-end'   => array(
+						'title' => esc_html__( 'End', 'mas-elementor' ),
+						'icon'  => 'eicon-flex eicon-align-end-v',
+					),
+					'stretch'    => array(
+						'title' => esc_html__( 'Stretch', 'mas-elementor' ),
+						'icon'  => 'eicon-flex eicon-align-stretch-v',
+					),
+				),
+				'selectors' => array(
+					$wrapper => 'align-items: {{VALUE}};',
+				),
+				'default'   => 'stretch',
+			)
+		);
+
+		$this->add_responsive_control(
+			'gap',
+			array(
+				'label'      => esc_html__( 'Gap', 'mas-elementor' ),
+				'type'       => Controls_Manager::SLIDER,
+				'range'      => array(
+					'px' => array(
+						'min' => 0,
+						'max' => 500,
+					),
+					'%'  => array(
+						'min' => 0,
+						'max' => 100,
+					),
+					'vw' => array(
+						'min' => 0,
+						'max' => 100,
+					),
+					'em' => array(
+						'min' => 0,
+						'max' => 50,
+					),
+				),
+				'size_units' => array( 'px', '%', 'em', 'rem', 'vw', 'custom' ),
+				'selectors'  => array(
+					$wrapper => 'gap: {{SIZE}}{{UNIT}};',
+				),
+			)
+		);
+
+	}
+
+	/**
 	 * Register Controls.
 	 */
 	protected function register_controls() {
@@ -850,6 +1049,18 @@ class Product_Add_To_Cart extends Base_Widget {
 				),
 			)
 		);
+
+		$this->end_controls_section();
+
+		$this->start_controls_section(
+			'section_style_wrapper',
+			array(
+				'label' => esc_html__( 'Quantity and Button Wrapper', 'mas-elementor' ),
+				'tab'   => Controls_Manager::TAB_STYLE,
+			)
+		);
+
+		$this->register_button_cart_wrapper_style_controls();
 
 		$this->end_controls_section();
 	}
