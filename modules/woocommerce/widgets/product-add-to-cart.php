@@ -237,7 +237,6 @@ class Product_Add_To_Cart extends Base_Widget {
 
 		$start = is_rtl() ? 'right' : 'left';
 		$end   = is_rtl() ? 'left' : 'right';
-		// $wrapper = '{{WRAPPER}} .woocommerce-variation-add-to-cart, {{WRAPPER}} .e-atc-qty-button-holder, {{WRAPPER}} .cart:has(>.quantity) ';
 
 		$this->add_responsive_control(
 			$prefix . 'enable_flex',
@@ -262,8 +261,6 @@ class Product_Add_To_Cart extends Base_Widget {
 				'selectors' => array(
 					$wrapper => 'display: {{VALUE}};',
 				),
-				// 'responsive' => true,
-
 			)
 		);
 
@@ -291,8 +288,6 @@ class Product_Add_To_Cart extends Base_Widget {
 				'selectors'   => array(
 					$wrapper => 'flex-wrap: {{VALUE}};',
 				),
-				// 'responsive' => true,
-
 			)
 		);
 
@@ -468,6 +463,35 @@ class Product_Add_To_Cart extends Base_Widget {
 			array(
 				'label' => esc_html__( 'Button', 'mas-elementor' ),
 				'tab'   => Controls_Manager::TAB_STYLE,
+			)
+		);
+
+		$this->add_responsive_control(
+			'add_to_cart_width',
+			array(
+				'label'      => esc_html__( 'Width', 'mas-elementor' ),
+				'type'       => Controls_Manager::SLIDER,
+				'size_units' => array( '%', 'px', 'em', 'rem', 'custom' ),
+				'range'      => array(
+					'%'  => array(
+						'min'  => 0,
+						'max'  => 100,
+						'step' => 1,
+					),
+					'px' => array(
+						'min'  => 0,
+						'max'  => 1000,
+						'step' => 1,
+					),
+					'em' => array(
+						'min'  => 0,
+						'max'  => 3.5,
+						'step' => 0.1,
+					),
+				),
+				'selectors'  => array(
+					'{{WRAPPER}} .single_add_to_cart_button' => 'width: {{SIZE}}{{UNIT}};',
+				),
 			)
 		);
 
@@ -1087,6 +1111,35 @@ class Product_Add_To_Cart extends Base_Widget {
 			)
 		);
 
+		$this->add_responsive_control(
+			'variable_product_clear_filter',
+			array(
+				'label'     => esc_html__( 'Clear filters Alignment', 'mas-elementor' ),
+				'type'      => Controls_Manager::CHOOSE,
+				'options'   => array(
+					'left'    => array(
+						'title' => esc_html__( 'Left', 'mas-elementor' ),
+						'icon'  => 'eicon-text-align-left',
+					),
+					'center'  => array(
+						'title' => esc_html__( 'Center', 'mas-elementor' ),
+						'icon'  => 'eicon-text-align-center',
+					),
+					'right'   => array(
+						'title' => esc_html__( 'Right', 'mas-elementor' ),
+						'icon'  => 'eicon-text-align-right',
+					),
+					'justify' => array(
+						'title' => esc_html__( 'Justified', 'mas-elementor' ),
+						'icon'  => 'eicon-text-align-justify',
+					),
+				),
+				'selectors' => array(
+					'{{WRAPPER}} .variations td:has(a.reset_variations)' => 'text-align: {{VALUE}};',
+				),
+			)
+		);
+
 		$this->end_controls_section();
 
 		$this->start_controls_section(
@@ -1167,20 +1220,148 @@ class Product_Add_To_Cart extends Base_Widget {
 	 */
 	protected function register_grouped_products_style_controls() {
 
-		$this->add_control(
-			'heading_grouped_product_label_typo',
-			array(
-				'label' => esc_html__( 'Product Quantity', 'mas-elementor' ),
-				'type'  => Controls_Manager::HEADING,
-			)
-		);
 		$this->add_group_control(
 			Group_Control_Typography::get_type(),
 			array(
+				'label'    => esc_html__( 'Label Typography', 'mas-elementor' ),
 				'name'     => 'grouped_product_label',
-				'selector' => '{{WRAPPER}} .woocommerce-grouped-product-list-item__label , {{WRAPPER}} .cart .button',
+				'selector' => '{{WRAPPER}} .woocommerce-grouped-product-list-item__label label a',
 			)
 		);
+
+		$this->add_responsive_control(
+			'grouped_product_label_alignment',
+			array(
+				'label'     => esc_html__( 'Label Alignment', 'mas-elementor' ),
+				'type'      => Controls_Manager::CHOOSE,
+				'options'   => array(
+					'left'    => array(
+						'title' => esc_html__( 'Left', 'mas-elementor' ),
+						'icon'  => 'eicon-text-align-left',
+					),
+					'center'  => array(
+						'title' => esc_html__( 'Center', 'mas-elementor' ),
+						'icon'  => 'eicon-text-align-center',
+					),
+					'right'   => array(
+						'title' => esc_html__( 'Right', 'mas-elementor' ),
+						'icon'  => 'eicon-text-align-right',
+					),
+					'justify' => array(
+						'title' => esc_html__( 'Justified', 'mas-elementor' ),
+						'icon'  => 'eicon-text-align-justify',
+					),
+				),
+				'selectors' => array(
+					'{{WRAPPER}} .woocommerce-grouped-product-list-item__label' => 'text-align: {{VALUE}};',
+				),
+			)
+		);
+
+		$this->add_group_control(
+			Group_Control_Typography::get_type(),
+			array(
+				'label'    => esc_html__( 'Price Typography', 'mas-elementor' ),
+				'name'     => 'grouped_product_price',
+				'selector' => '{{WRAPPER}} .woocommerce-grouped-product-list-item__price',
+			)
+		);
+
+		$this->add_responsive_control(
+			'grouped_product_price_alignment',
+			array(
+				'label'     => esc_html__( 'Price Alignment', 'mas-elementor' ),
+				'type'      => Controls_Manager::CHOOSE,
+				'options'   => array(
+					'left'    => array(
+						'title' => esc_html__( 'Left', 'mas-elementor' ),
+						'icon'  => 'eicon-text-align-left',
+					),
+					'center'  => array(
+						'title' => esc_html__( 'Center', 'mas-elementor' ),
+						'icon'  => 'eicon-text-align-center',
+					),
+					'right'   => array(
+						'title' => esc_html__( 'Right', 'mas-elementor' ),
+						'icon'  => 'eicon-text-align-right',
+					),
+					'justify' => array(
+						'title' => esc_html__( 'Justified', 'mas-elementor' ),
+						'icon'  => 'eicon-text-align-justify',
+					),
+				),
+				'selectors' => array(
+					'{{WRAPPER}} .woocommerce-grouped-product-list-item__price' => 'text-align: {{VALUE}};',
+				),
+			)
+		);
+
+		$this->start_controls_tabs(
+			'grouped_product_tabs',
+			array()
+		);
+
+			$this->start_controls_tab(
+				'grouped_product_tab_normal',
+				array(
+					'label' => esc_html__( 'Normal', 'mas-elementor' ),
+				)
+			);
+
+			$this->add_control(
+				'grouped_product_label_color',
+				array(
+					'label'     => esc_html__( 'Label Color', 'mas-elementor' ),
+					'type'      => Controls_Manager::COLOR,
+					'selectors' => array(
+						'{{WRAPPER}} .woocommerce-grouped-product-list-item__label label a' => 'color: {{VALUE}}',
+					),
+				)
+			);
+
+			$this->add_control(
+				'grouped_product_price_color',
+				array(
+					'label'     => esc_html__( 'Price Color', 'mas-elementor' ),
+					'type'      => Controls_Manager::COLOR,
+					'selectors' => array(
+						'{{WRAPPER}} .woocommerce-grouped-product-list-item__price' => 'color: {{VALUE}}',
+					),
+				)
+			);
+			$this->add_control(
+				'grouped_product_price_del_color',
+				array(
+					'label'     => esc_html__( 'Onsale Price Color', 'mas-elementor' ),
+					'type'      => Controls_Manager::COLOR,
+					'selectors' => array(
+						'{{WRAPPER}} .woocommerce-grouped-product-list-item__price del' => 'color: {{VALUE}}',
+					),
+				)
+			);
+
+			$this->end_controls_tab();
+
+			$this->start_controls_tab(
+				'grouped_product_tab_hover',
+				array(
+					'label' => esc_html__( 'Hover', 'mas-elementor' ),
+				)
+			);
+
+			$this->add_control(
+				'grouped_product_label_hover_color',
+				array(
+					'label'     => esc_html__( 'Label Color', 'mas-elementor' ),
+					'type'      => Controls_Manager::COLOR,
+					'selectors' => array(
+						'{{WRAPPER}} .woocommerce-grouped-product-list-item__label label a:hover' => 'color: {{VALUE}}',
+					),
+				)
+			);
+			$this->end_controls_tab();
+
+		$this->end_controls_tabs();
 	}
 	/**
 	 * Register button content update controls for this widget.
@@ -1204,7 +1385,7 @@ class Product_Add_To_Cart extends Base_Widget {
 			)
 		);
 
-		$this->add_control(
+		$this->add_responsive_control(
 			'grouped_product_quantity_padding',
 			array(
 				'label'      => esc_html__( 'Product Quantity Padding', 'mas-elementor' ),
@@ -1245,7 +1426,7 @@ class Product_Add_To_Cart extends Base_Widget {
 			)
 		);
 
-		$this->add_control(
+		$this->add_responsive_control(
 			'grouped_product_label_padding',
 			array(
 				'label'      => esc_html__( 'Product Label Padding', 'mas-elementor' ),
@@ -1286,7 +1467,7 @@ class Product_Add_To_Cart extends Base_Widget {
 			)
 		);
 
-		$this->add_control(
+		$this->add_responsive_control(
 			'grouped_product_price_padding',
 			array(
 				'label'      => esc_html__( 'Product Price Padding', 'mas-elementor' ),
