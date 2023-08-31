@@ -229,26 +229,33 @@ class Product_Add_To_Cart extends Base_Widget {
 
 	/**
 	 * Register button content update controls for this widget.
+	 *
+	 * @param string $prefix prefix.
+	 * @param string $wrapper wrapper.
 	 */
-	protected function register_button_cart_wrapper_style_controls() {
+	protected function register_flex_style_controls( $prefix = '', $wrapper = '' ) {
 
-		$start   = is_rtl() ? 'right' : 'left';
-		$end     = is_rtl() ? 'left' : 'right';
-		$wrapper = '{{WRAPPER}} .woocommerce-variation-add-to-cart, {{WRAPPER}} .e-atc-qty-button-holder, {{WRAPPER}} .cart:has(>.quantity) ';
+		$start = is_rtl() ? 'right' : 'left';
+		$end   = is_rtl() ? 'left' : 'right';
+		// $wrapper = '{{WRAPPER}} .woocommerce-variation-add-to-cart, {{WRAPPER}} .e-atc-qty-button-holder, {{WRAPPER}} .cart:has(>.quantity) ';
 
 		$this->add_responsive_control(
-			'enable_flex',
+			$prefix . 'enable_flex',
 			array(
 				'label'     => esc_html__( 'Enable Flex', 'mas-elementor' ),
 				'type'      => Controls_Manager::CHOOSE,
 				'options'   => array(
-					'block' => array(
+					'block'     => array(
 						'title' => esc_html__( 'Block', 'mas-elementor' ),
 						'icon'  => 'eicon-ban',
 					),
-					'flex'  => array(
+					'flex'      => array(
 						'title' => esc_html__( 'Flex', 'mas-elementor' ),
 						'icon'  => 'eicon-flex eicon-wrap',
+					),
+					'table-row' => array(
+						'title' => esc_html__( 'Table Row', 'mas-elementor' ),
+						'icon'  => 'eicon-flex eicon-nowrap',
 					),
 				),
 				'default'   => 'flex',
@@ -261,7 +268,7 @@ class Product_Add_To_Cart extends Base_Widget {
 		);
 
 		$this->add_responsive_control(
-			'flex_wrap',
+			$prefix . 'flex_wrap',
 			array(
 				'label'       => esc_html__( 'Wrap', 'mas-elementor' ),
 				'type'        => Controls_Manager::CHOOSE,
@@ -290,7 +297,7 @@ class Product_Add_To_Cart extends Base_Widget {
 		);
 
 		$this->add_responsive_control(
-			'flex_direction',
+			$prefix . 'flex_direction',
 			array(
 				'label'     => esc_html__( 'Direction', 'mas-elementor' ),
 				'type'      => Controls_Manager::CHOOSE,
@@ -317,14 +324,14 @@ class Product_Add_To_Cart extends Base_Widget {
 					$wrapper => 'flex-direction:{{VALUE}};',
 				),
 				'condition' => array(
-					'enable_flex' => 'flex',
+					$prefix . 'enable_flex' => 'flex',
 				),
 				'default'   => 'column',
 			)
 		);
 
 		$this->add_responsive_control(
-			'justify_content',
+			$prefix . 'justify_content',
 			array(
 				'label'       => esc_html__( 'Justify Content', 'mas-elementor' ),
 				'type'        => Controls_Manager::CHOOSE,
@@ -364,7 +371,7 @@ class Product_Add_To_Cart extends Base_Widget {
 		);
 
 		$this->add_responsive_control(
-			'align_items',
+			$prefix . 'align_items',
 			array(
 				'label'     => esc_html__( 'Align Items', 'mas-elementor' ),
 				'type'      => Controls_Manager::CHOOSE,
@@ -395,7 +402,7 @@ class Product_Add_To_Cart extends Base_Widget {
 		);
 
 		$this->add_responsive_control(
-			'gap',
+			$prefix . 'gap',
 			array(
 				'label'      => esc_html__( 'Gap', 'mas-elementor' ),
 				'type'       => Controls_Manager::SLIDER,
@@ -1090,9 +1097,204 @@ class Product_Add_To_Cart extends Base_Widget {
 			)
 		);
 
+		$wrapper = '{{WRAPPER}} .woocommerce-variation-add-to-cart, {{WRAPPER}} .e-atc-qty-button-holder, {{WRAPPER}} .cart:has(>.quantity) ';
+
 		$this->register_button_cart_wrapper_style_controls();
 
 		$this->end_controls_section();
+
+		$this->start_controls_section(
+			'section_grouped_style',
+			array(
+				'label' => esc_html__( 'Grouped', 'mas-elementor' ),
+				'tab'   => Controls_Manager::TAB_STYLE,
+			)
+		);
+
+		$this->register_grouped_product_style_controls();
+
+		$this->end_controls_section();
+
+		$this->start_controls_section(
+			'section_grouped_items_options',
+			array(
+				'label' => esc_html__( 'Grouped Product Items', 'mas-elementor' ),
+				'tab'   => Controls_Manager::TAB_STYLE,
+			)
+		);
+
+		$this->add_control(
+			'grouped_product_items_margin',
+			array(
+				'label'      => esc_html__( 'Product Items Spacing', 'mas-elementor' ),
+				'type'       => Controls_Manager::DIMENSIONS,
+				'size_units' => array( 'px', '%', 'em', 'rem', 'custom' ),
+				'selectors'  => array(
+					'{{WRAPPER}} .woocommerce-grouped-product-list tbody tr:not(:last-child)' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				),
+			)
+		);
+
+		$this->end_controls_section();
+
+		$this->start_controls_section(
+			'section_grouped_item_flex',
+			array(
+				'label' => esc_html__( 'Grouped Product Item Flex', 'mas-elementor' ),
+				'tab'   => Controls_Manager::TAB_STYLE,
+			)
+		);
+
+		$this->register_grouped_product_flex_style_controls();
+
+		$this->end_controls_section();
+	}
+
+	/**
+	 * Register button content update controls for this widget.
+	 */
+	protected function register_button_cart_wrapper_style_controls() {
+		$wrapper = '{{WRAPPER}} .woocommerce-variation-add-to-cart, {{WRAPPER}} .e-atc-qty-button-holder, {{WRAPPER}} .cart:has(>.quantity) ';
+
+		$this->register_flex_style_controls( $wrapper );
+	}
+
+	/**
+	 * Grouped product style.
+	 */
+	public function register_grouped_product_style_controls() {
+
+		$this->add_control(
+			'heading_grouped_product_quantity',
+			array(
+				'label' => esc_html__( 'Product Quantity', 'mas-elementor' ),
+				'type'  => Controls_Manager::HEADING,
+			)
+		);
+
+		$this->add_control(
+			'grouped_product_quantity_padding',
+			array(
+				'label'      => esc_html__( 'Product Quantity Padding', 'mas-elementor' ),
+				'type'       => Controls_Manager::DIMENSIONS,
+				'size_units' => array( 'px', '%', 'em', 'rem', 'custom' ),
+				'selectors'  => array(
+					'{{WRAPPER}} .woocommerce-grouped-product-list-item__quantity' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				),
+			)
+		);
+
+		$this->add_group_control(
+			Group_Control_Border::get_type(),
+			array(
+				'name'     => 'grouped_product_quantity_border',
+				'selector' => '{{WRAPPER}} .woocommerce-grouped-product-list-item__quantity',
+			)
+		);
+
+		$this->add_control(
+			'grouped_product_quantity_border_radius',
+			array(
+				'label'      => esc_html__( 'Border Radius', 'mas-elementor' ),
+				'type'       => Controls_Manager::DIMENSIONS,
+				'size_units' => array( 'px', '%', 'em', 'rem', 'custom' ),
+				'selectors'  => array(
+					'{{WRAPPER}} .woocommerce-grouped-product-list-item__quantity' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				),
+			)
+		);
+
+		$this->add_control(
+			'heading_grouped_product_label',
+			array(
+				'label'     => esc_html__( 'Product Label', 'mas-elementor' ),
+				'type'      => Controls_Manager::HEADING,
+				'separator' => 'before',
+			)
+		);
+
+		$this->add_control(
+			'grouped_product_label_padding',
+			array(
+				'label'      => esc_html__( 'Product Label Padding', 'mas-elementor' ),
+				'type'       => Controls_Manager::DIMENSIONS,
+				'size_units' => array( 'px', '%', 'em', 'rem', 'custom' ),
+				'selectors'  => array(
+					'{{WRAPPER}} .woocommerce-grouped-product-list-item__label' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				),
+			)
+		);
+
+		$this->add_group_control(
+			Group_Control_Border::get_type(),
+			array(
+				'name'     => 'grouped_product_label_border',
+				'selector' => '{{WRAPPER}} .woocommerce-grouped-product-list-item__label',
+			)
+		);
+
+		$this->add_control(
+			'grouped_product_label_border_radius',
+			array(
+				'label'      => esc_html__( 'Border Radius', 'mas-elementor' ),
+				'type'       => Controls_Manager::DIMENSIONS,
+				'size_units' => array( 'px', '%', 'em', 'rem', 'custom' ),
+				'selectors'  => array(
+					'{{WRAPPER}} .woocommerce-grouped-product-list-item__label' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				),
+			)
+		);
+
+		$this->add_control(
+			'heading_grouped_product_price',
+			array(
+				'label'     => esc_html__( 'Product Price', 'mas-elementor' ),
+				'type'      => Controls_Manager::HEADING,
+				'separator' => 'before',
+			)
+		);
+
+		$this->add_control(
+			'grouped_product_price_padding',
+			array(
+				'label'      => esc_html__( 'Product Price Padding', 'mas-elementor' ),
+				'type'       => Controls_Manager::DIMENSIONS,
+				'size_units' => array( 'px', '%', 'em', 'rem', 'custom' ),
+				'selectors'  => array(
+					'{{WRAPPER}} .woocommerce-grouped-product-list-item__price' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				),
+			)
+		);
+
+		$this->add_group_control(
+			Group_Control_Border::get_type(),
+			array(
+				'name'     => 'grouped_product_price_border',
+				'selector' => '{{WRAPPER}} .woocommerce-grouped-product-list-item__price',
+			)
+		);
+
+		$this->add_control(
+			'grouped_product_price_border_radius',
+			array(
+				'label'      => esc_html__( 'Border Radius', 'mas-elementor' ),
+				'type'       => Controls_Manager::DIMENSIONS,
+				'size_units' => array( 'px', '%', 'em', 'rem', 'custom' ),
+				'selectors'  => array(
+					'{{WRAPPER}} .woocommerce-grouped-product-list-item__price' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				),
+			)
+		);
+
+	}
+
+	/**
+	 * Grouped product style.
+	 */
+	public function register_grouped_product_flex_style_controls() {
+		$wrapper = '{{WRAPPER}} .woocommerce-grouped-product-list .woocommerce-grouped-product-list-item';
+
+		$this->register_flex_style_controls( 'grouped_item_', $wrapper );
 	}
 
 	/**
