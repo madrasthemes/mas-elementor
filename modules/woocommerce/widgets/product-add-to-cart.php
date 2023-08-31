@@ -1130,7 +1130,7 @@ class Product_Add_To_Cart extends Base_Widget {
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', '%', 'em', 'rem', 'custom' ),
 				'selectors'  => array(
-					'{{WRAPPER}} .woocommerce-grouped-product-list tbody tr:not(:last-child)' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .woocommerce-grouped-product-list' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				),
 			)
 		);
@@ -1148,15 +1148,47 @@ class Product_Add_To_Cart extends Base_Widget {
 		$this->register_grouped_product_flex_style_controls();
 
 		$this->end_controls_section();
+
+		$this->start_controls_section(
+			'section_grouped_item_typo',
+			array(
+				'label' => esc_html__( 'Grouped Product Typograhy', 'mas-elementor' ),
+				'tab'   => Controls_Manager::TAB_STYLE,
+			)
+		);
+
+		$this->register_grouped_products_style_controls();
+
+		$this->end_controls_section();
 	}
 
+	/**
+	 * Register button content update controls for this widget.
+	 */
+	protected function register_grouped_products_style_controls() {
+
+		$this->add_control(
+			'heading_grouped_product_label_typo',
+			array(
+				'label' => esc_html__( 'Product Quantity', 'mas-elementor' ),
+				'type'  => Controls_Manager::HEADING,
+			)
+		);
+		$this->add_group_control(
+			Group_Control_Typography::get_type(),
+			array(
+				'name'     => 'grouped_product_label',
+				'selector' => '{{WRAPPER}} .woocommerce-grouped-product-list-item__label , {{WRAPPER}} .cart .button',
+			)
+		);
+	}
 	/**
 	 * Register button content update controls for this widget.
 	 */
 	protected function register_button_cart_wrapper_style_controls() {
 		$wrapper = '{{WRAPPER}} .woocommerce-variation-add-to-cart, {{WRAPPER}} .e-atc-qty-button-holder, {{WRAPPER}} .cart:has(>.quantity) ';
 
-		$this->register_flex_style_controls( $wrapper );
+		$this->register_flex_style_controls( '', $wrapper );
 	}
 
 	/**
