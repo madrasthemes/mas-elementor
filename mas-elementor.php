@@ -23,7 +23,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
-define( 'MAS_ELEMENTOR_VERSION', '0.0.1' );
+define( 'MAS_ELEMENTOR_VERSION', '1.0.11' );
 
 define( 'MAS_ELEMENTOR__FILE__', __FILE__ );
 define( 'MAS_ELEMENTOR_BASE', plugin_basename( MAS_ELEMENTOR__FILE__ ) );
