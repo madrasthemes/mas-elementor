@@ -138,6 +138,9 @@ class Products extends Products_Base {
 							'sale'          => __( 'Sale', 'mas-elementor' ),
 							'featured'      => __( 'Featured', 'mas-elementor' ),
 							'by_id'         => _x( 'Manual Selection', 'Posts Query Control', 'mas-elementor' ),
+							'related_products' => esc_html__( 'Related Products', 'mas-elementor' ),
+							'upsells' => esc_html__( 'Upsells', 'mas-elementor' ),
+							'cross_sells' => esc_html__( 'Cross-Sells', 'mas-elementor' ),
 						),
 					),
 					'orderby'   => array(
