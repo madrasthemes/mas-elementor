@@ -76,6 +76,8 @@ abstract class Base_Products_Renderer extends \WC_Shortcode_Products {
 
 			do_action( "woocommerce_shortcode_before_{$this->type}_loop", $this->attributes );
 
+			add_filter( 'woocommerce_pagination_args', array( $this, 'custom_woocommerce_pagination_args' ) );
+
 			// Fire standard shop loop hooks when paginating results so we can show result counts and so on.
 			if ( wc_string_to_bool( $this->attributes['paginate'] && 'yes' !== $settings['enable_carousel'] ) ) {
 				do_action( 'woocommerce_before_shop_loop' );
@@ -132,6 +134,19 @@ abstract class Base_Products_Renderer extends \WC_Shortcode_Products {
 		}
 
 		return $before_render . ob_get_clean() . $after_render;
+	}
+
+	/**
+	 * Custom Woocommerce pagination arguments.
+	 *
+	 * @param array $args arguments.
+	 */
+	public function custom_woocommerce_pagination_args( $args ) {
+		$settings          = &$this->settings;
+		$args['mid_size']  = $settings['pag_mid_size'];
+		$args['end_size']  = $settings['pag_end_size'];  // Number of page links to show before and after the current page.
+		$args['prev_next'] = ( 'yes' === $settings['enable_prev_next'] );  // Remove "Previous" and "Next" links.
+		return $args;
 	}
 
 	/**

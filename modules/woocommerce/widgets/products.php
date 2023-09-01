@@ -301,6 +301,45 @@ class Products extends Products_Base {
 		);
 
 		$this->add_control(
+			'pag_mid_size',
+			array(
+				'label'       => __( 'Pagination Mid Size', 'mas-elementor' ),
+				'type'        => Controls_Manager::NUMBER,
+				'default'     => 1,
+				'condition' => array(
+					'enable_carousel!' => 'yes',
+					'paginate' => 'yes',
+				),
+			)
+		);
+
+		$this->add_control(
+			'pag_end_size',
+			array(
+				'label'       => __( 'Pagination End Size', 'mas-elementor' ),
+				'type'        => Controls_Manager::NUMBER,
+				'default'     => 1,
+				'condition' => array(
+					'enable_carousel!' => 'yes',
+					'paginate' => 'yes',
+				),
+			)
+		);
+
+		$this->add_control(
+			'enable_prev_next',
+			array(
+				'label'     => __( 'Enable Previous Next', 'mas-elementor' ),
+				'type'      => Controls_Manager::SWITCHER,
+				'default'   => 'yes',
+				'condition' => array(
+					'enable_carousel!' => 'yes',
+					'paginate' => 'yes',
+				),
+			)
+		);
+
+		$this->add_control(
 			'allow_order',
 			array(
 				'label'     => __( 'Allow Order', 'mas-elementor' ),
