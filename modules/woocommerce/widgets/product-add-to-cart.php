@@ -1213,6 +1213,18 @@ class Product_Add_To_Cart extends Base_Widget {
 		$this->register_grouped_products_style_controls();
 
 		$this->end_controls_section();
+
+		$this->start_controls_section(
+			'section_out_of_stock_style',
+			array(
+				'label' => esc_html__( 'Out Of Stock', 'mas-elementor' ),
+				'tab'   => Controls_Manager::TAB_STYLE,
+			)
+		);
+
+		$this->register_out_of_stock_product_style_controls();
+
+		$this->end_controls_section();
 	}
 
 	/**
@@ -1499,6 +1511,171 @@ class Product_Add_To_Cart extends Base_Widget {
 			)
 		);
 
+	}
+
+	/**
+	 * Out of stock product style.
+	 */
+	public function register_out_of_stock_product_style_controls() {
+
+		$this->add_responsive_control(
+			'display_out_of_stock',
+			array(
+				'label'     => esc_html__( 'Display', 'mas-elementor' ),
+				'type'      => Controls_Manager::CHOOSE,
+				'options'   => array(
+					'block'  => array(
+						'title' => esc_html__( 'Block', 'mas-elementor' ),
+						'icon'  => 'eicon-ban',
+					),
+					'inline' => array(
+						'title' => esc_html__( 'Inline', 'mas-elementor' ),
+						'icon'  => 'eicon-flex eicon-wrap',
+					),
+				),
+				'default'   => 'inline',
+				'selectors' => array(
+					'{{WRAPPER}} .out-of-stock' => 'display: {{VALUE}};',
+				),
+			)
+		);
+
+		$this->add_responsive_control(
+			'out_of_stock_product_text_align',
+			array(
+				'label'     => esc_html__( 'Text Alignment', 'mas-elementor' ),
+				'type'      => Controls_Manager::CHOOSE,
+				'options'   => array(
+					'left'    => array(
+						'title' => esc_html__( 'Left', 'mas-elementor' ),
+						'icon'  => 'eicon-text-align-left',
+					),
+					'center'  => array(
+						'title' => esc_html__( 'Center', 'mas-elementor' ),
+						'icon'  => 'eicon-text-align-center',
+					),
+					'right'   => array(
+						'title' => esc_html__( 'Right', 'mas-elementor' ),
+						'icon'  => 'eicon-text-align-right',
+					),
+					'justify' => array(
+						'title' => esc_html__( 'Justified', 'mas-elementor' ),
+						'icon'  => 'eicon-text-align-justify',
+					),
+				),
+				'selectors' => array(
+					'{{WRAPPER}} .out-of-stock,{{WRAPPER}} .elementor-add-to-cart' => 'text-align: {{VALUE}};',
+				),
+			)
+		);
+
+		$this->add_responsive_control(
+			'out_of_stock_product_quantity_padding',
+			array(
+				'label'      => esc_html__( 'Padding', 'mas-elementor' ),
+				'type'       => Controls_Manager::DIMENSIONS,
+				'size_units' => array( 'px', '%', 'em', 'rem', 'custom' ),
+				'selectors'  => array(
+					'{{WRAPPER}} .out-of-stock' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				),
+			)
+		);
+
+		$this->add_group_control(
+			Group_Control_Border::get_type(),
+			array(
+				'name'     => 'out_of_stock_product_border',
+				'selector' => '{{WRAPPER}} .out-of-stock',
+			)
+		);
+
+		$this->add_control(
+			'out_of_stock_product_border_radius',
+			array(
+				'label'      => esc_html__( 'Border Radius', 'mas-elementor' ),
+				'type'       => Controls_Manager::DIMENSIONS,
+				'size_units' => array( 'px', '%', 'em', 'rem', 'custom' ),
+				'selectors'  => array(
+					'{{WRAPPER}} .out-of-stock' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				),
+			)
+		);
+
+		$this->add_group_control(
+			Group_Control_Typography::get_type(),
+			array(
+				'name'     => 'out_of_stock_typography',
+				'selector' => '{{WRAPPER}} .out-of-stock',
+			)
+		);
+
+		$this->start_controls_tabs(
+			'out_of_stock_product_tabs',
+			array()
+		);
+
+			$this->start_controls_tab(
+				'out_of_stock_product_tab_normal',
+				array(
+					'label' => esc_html__( 'Normal', 'mas-elementor' ),
+				)
+			);
+
+			$this->add_control(
+				'out_of_stock_product_color',
+				array(
+					'label'     => esc_html__( 'Color', 'mas-elementor' ),
+					'type'      => Controls_Manager::COLOR,
+					'selectors' => array(
+						'{{WRAPPER}} .out-of-stock' => 'color: {{VALUE}}',
+					),
+				)
+			);
+			$this->add_control(
+				'out_of_stock_product_bg_color',
+				array(
+					'label'     => esc_html__( 'Background Color', 'mas-elementor' ),
+					'type'      => Controls_Manager::COLOR,
+					'selectors' => array(
+						'{{WRAPPER}} .out-of-stock' => 'background-color: {{VALUE}}',
+					),
+				)
+			);
+
+			$this->end_controls_tab();
+
+			$this->start_controls_tab(
+				'out_of_stock_product_tab_hover',
+				array(
+					'label' => esc_html__( 'Hover', 'mas-elementor' ),
+				)
+			);
+
+			$this->add_control(
+				'out_of_stock_hover_product_color',
+				array(
+					'label'     => esc_html__( 'Color', 'mas-elementor' ),
+					'type'      => Controls_Manager::COLOR,
+					'selectors' => array(
+						'{{WRAPPER}} .out-of-stock:hover' => 'color: {{VALUE}}',
+					),
+				)
+			);
+
+			$this->add_control(
+				'out_of_stock_product_hover_bg_color',
+				array(
+					'label'     => esc_html__( 'Background Color', 'mas-elementor' ),
+					'type'      => Controls_Manager::COLOR,
+					'selectors' => array(
+						'{{WRAPPER}} .out-of-stock:hover' => 'background-color: {{VALUE}}',
+					),
+				)
+			);
+
+			$this->end_controls_tab();
+
+		$this->end_controls_tabs();
 	}
 
 	/**
