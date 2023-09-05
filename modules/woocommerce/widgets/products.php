@@ -711,6 +711,29 @@ class Products extends Products_Base {
 		);
 
 		$this->add_control(
+			'mas_products_swiper_height',
+			array(
+				'label'                => esc_html__( 'Height', 'mas-elementor' ),
+				'type'                 => Controls_Manager::SELECT,
+				'default'              => 'auto',
+				'options'              => array(
+					'default' => 'Default',
+					'auto'    => 'Auto',
+				),
+				'selectors_dictionary' => array(
+					'default' => '100%',
+					'auto'    => 'auto',
+				),
+				'selectors'            => array(
+					'{{WRAPPER}} .swiper-slide' => 'height: {{VALUE}};',
+				),
+				'condition'            => array(
+					'enable_carousel' => 'yes',
+				),
+			)
+		);
+
+		$this->add_control(
 			'show_arrows',
 			array(
 				'type'      => Controls_Manager::SWITCHER,
@@ -722,6 +745,24 @@ class Products extends Products_Base {
 					'enable_carousel'     => 'yes',
 					'show_custom_arrows!' => 'yes',
 				),
+			)
+		);
+
+		$this->add_responsive_control(
+			'hide_responsive_arrows',
+			array(
+				'type'         => Controls_Manager::SWITCHER,
+				'label'        => esc_html__( 'Hide Arrow Responsive', 'mas-elementor' ),
+				'default'      => 'no',
+				'label_off'    => esc_html__( 'Hide', 'mas-elementor' ),
+				'label_on'     => esc_html__( 'Show', 'mas-elementor' ),
+				'condition'    => array(
+					'enable_carousel'     => 'yes',
+					'show_arrows'         => 'yes',
+					'show_custom_arrows!' => 'yes',
+				),
+				'return_value' => 'hide',
+				'prefix_class' => 'mas-swiper-carousel--arrows%s-',
 			)
 		);
 

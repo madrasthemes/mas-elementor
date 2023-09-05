@@ -248,8 +248,8 @@ class Module extends Module_Base {
 				'type'         => Controls_Manager::SWITCHER,
 				'label'        => esc_html__( 'Hide Arrow Responsive', 'mas-elementor' ),
 				'default'      => 'no',
-				'label_off'    => esc_html__( 'Show', 'mas-elementor' ),
-				'label_on'     => esc_html__( 'Hide', 'mas-elementor' ),
+				'label_off'    => esc_html__( 'Hide', 'mas-elementor' ),
+				'label_on'     => esc_html__( 'Show', 'mas-elementor' ),
 				'condition'    => array(
 					'enable_carousel'     => 'yes',
 					'show_arrows'         => 'yes',
