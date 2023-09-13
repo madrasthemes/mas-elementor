@@ -82,6 +82,20 @@ class Mega_Menu extends Widget_Nested_Base {
 	}
 
 	/**
+	 * Get style dependencies.
+	 *
+	 * Retrieve the list of style dependencies the element requires.
+	 *
+	 * @since 1.9.0
+	 *
+	 * @return array Element styles dependencies.
+	 */
+	public function get_style_depends() {
+		return array( 'mega-menu-stylesheet' );
+	}
+
+
+	/**
 	 * Get content horizontal controls.
 	 *
 	 * @return array
@@ -2432,5 +2446,109 @@ class Mega_Menu extends Widget_Nested_Base {
 	 * Content Template.
 	 */
 	protected function content_template() {
+		?>
+		<nav class="e-n-menu" role="tablist" aria-orientation="vertical">
+			<# if ( settings['menu_items'] ) {
+			const menuItemIcon = elementor.helpers.renderIcon( view, settings['menu_item_icon'], { 'aria-hidden': true }, 'i' , 'object' ) ?? '',
+				menuItemIconActive = elementor.helpers.renderIcon( view, settings['menu_item_icon_active'], { 'aria-hidden': true }, 'i' , 'object' ) ?? '',
+				elementUid = view.getIDInt().toString().substr( 0, 3 ),
+				permalinkUrl = '<?php echo esc_url( $this->get_permalink_for_current_page() ); ?>';
+			#>
+			<?php $this->render_menu_toggle_template(); ?>
+			<div class="e-n-menu-items-heading" role="tablist">
+				<# _.each( settings['menu_items'], function( item, index ) {
+					const menuItemCount = index + 1,
+						menuItemUid = elementUid + menuItemCount,
+						menuItemWrapperKey = menuItemUid,
+						menuItemTitleKey = 'menu-item-title-' + menuItemUid,
+						menuItemTitleContainerLinkKey = 'e-n-menu-item-title-container-' + menuItemUid,
+						menuItemIconKey = 'menu-item-icon-' + menuItemUid,
+						menuIcon = elementor.helpers.renderIcon( view, item.item_icon, { 'aria-hidden': true }, 'i' , 'object' ) ?? '',
+						menuIconActive = '' === item.item_icon_active.value
+							? menuIcon
+							: elementor.helpers.renderIcon( view, item.item_icon_active, { 'aria-hidden': true }, 'i' , 'object' ),
+						menuItemLink = 'string' === typeof item['item_link'] ? item['item_link'] : item['item_link']['url'],
+						menuItemDropdownContent =  item['item_dropdown_content'],
+						// currentPageClass = elementorPro.modules.megaMenu.getCurrentMenuItemClass( menuItemLink, permalinkUrl ),
+						menuItemClassList = ['e-n-menu-item-title','e-normal'];
+					let menuItemId = 'e-n-menu-item-title-' + menuItemUid;
+
+					settings['hover_animation'] && menuItemClassList.push( `elementor-animation-${ settings['hover_animation'] }` );
+
+					if ( '' !== item.element_id ) {
+						menuItemId = item.element_id;
+					}
+
+					if ( 'yes' !== menuItemDropdownContent ) {
+						menuItemClassList.push( 'link-only' );
+					} else {
+						menuItemClassList.push( 'e-click' );
+					}
+
+					// if ( !! currentPageClass ) {
+						// menuItemClassList.push( currentPageClass );
+					// }
+
+					view.addRenderAttribute( menuItemWrapperKey, {
+						'id': menuItemId,
+						'class': menuItemClassList,
+						'data-tab': menuItemCount,
+						'role': 'tab',
+						'tabindex': 1 === menuItemCount ? '0' : '-1',
+						'aria-controls': 'e-n-menu-item-content-' + menuItemUid,
+						'aria-expanded': 'false',
+					} );
+
+					view.addRenderAttribute( menuItemTitleKey, {
+						'class': [ 'e-n-menu-item-title-text' ],
+						'data-binding-type': 'repeater-item',
+						'data-binding-repeater-name': 'menu_items',
+						'data-binding-setting': ['item_title'],
+						'data-binding-index': menuItemCount,
+					} );
+
+					view.addRenderAttribute( menuItemTitleContainerLinkKey, {
+						'class': [ 'e-n-menu-item-title-container', 'e-link' ],
+						'aria-current': 'page',
+					} );
+				#>
+
+				<div {{{ view.getRenderAttributeString( menuItemWrapperKey ) }}}>
+					<# if ( menuItemLink ) { #>
+						<a {{{ view.getRenderAttributeString( menuItemTitleContainerLinkKey ) }}}>
+					<# } else { #>
+						<div class="e-n-menu-item-title-container">
+					<# } #>
+
+						<# if (menuIcon.value) { #>
+							<span class="e-n-menu-icon">
+								<span class="icon-active" >{{{ menuIconActive.value }}}</span>
+								<span class="icon-inactive">{{{ menuIcon.value }}}</span>
+							</span>
+						<# } #>
+
+						<span {{{ view.getRenderAttributeString( menuItemTitleKey ) }}}>
+							{{{ item.item_title }}}
+						</span>
+
+					<# if ( menuItemLink ) { #>
+						</a>
+					<# } else { #>
+						</div>
+					<# } #>
+
+					<# if ( 'yes' === menuItemDropdownContent ) { #>
+						<span class="e-n-menu-item-icon">
+							<span class="e-n-menu-item-icon-closed">{{{ menuItemIcon.value }}}</span>
+							<span class="e-n-menu-item-icon-opened">{{{  menuItemIconActive.value }}}</span>
+						</span>
+					<# } #>
+				</div>
+				<# } ); #>
+			</div>
+			<div class="e-n-menu-items-content"></div>
+			<# } #>
+		</nav>
+		<?php
 	}
 }

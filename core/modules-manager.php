@@ -68,6 +68,7 @@ final class Modules_Manager {
 			'button',
 			'dynamic-heading',
 			'mas-star-rating',
+			'mega-menu',
 		);
 
 		foreach ( $modules as $module_name ) {

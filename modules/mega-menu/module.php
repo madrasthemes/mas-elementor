@@ -43,6 +43,25 @@ class Module extends Module_Base {
 	}
 
 	/**
+	 * Add Actions.
+	 */
+	protected function add_actions() {
+		add_action( 'elementor/frontend/before_register_styles', array( $this, 'register_frontend_styles' ) );
+		add_action( 'elementor/editor/before_enqueue_styles', array( $this, 'register_frontend_styles' ) );
+		// add_action( 'elementor/frontend/before_register_scripts', array( $this, 'register_frontend_scripts' ) );
+		// add_action( 'elementor/editor/before_enqueue_scripts', array( $this, 'register_frontend_scripts' ) );.
+	}
+
+	/**
+	 * Instantiate the class.
+	 */
+	public function __construct() {
+		parent::__construct();
+		$this->add_actions();
+
+	}
+
+	/**
 	 * Is active.
 	 *
 	 * @return bool
@@ -80,5 +99,46 @@ class Module extends Module_Base {
 			$experiment_data['dependencies'] = array();
 		}
 		return $experiment_data;
+	}
+
+	/**
+	 * Register frontend styles.
+	 */
+	public function register_frontend_styles() {
+		wp_register_style(
+			'mega-menu-stylesheet',
+			MAS_ELEMENTOR_ASSETS_URL . 'css/megamenu/megamenu.min.css',
+			array(),
+			MAS_ELEMENTOR_VERSION
+		);
+
+	}
+
+	/**
+	 * Register frontend script.
+	 */
+	public function register_frontend_scripts() {
+		// wp_enqueue_script(
+		// 'editor-megamenu-script',
+		// MAS_ELEMENTOR_MODULES_URL . 'mega-menu/assets/js/editor.js',
+		// array('jquery'),
+		// MAS_ELEMENTOR_VERSION,
+		// true
+		// );
+		// wp_enqueue_script(
+		// 'megamenu-init-script',
+		// MAS_ELEMENTOR_MODULES_URL . 'mega-menu/assets/js/megamenu.bundle.js',
+		// array(),
+		// MAS_ELEMENTOR_VERSION,
+		// true
+		// );.
+		wp_enqueue_script(
+			'editor-megamenu-script',
+			MAS_ELEMENTOR_MODULES_URL . 'mega-menu/assets/js/test.js',
+			array( 'wp-i18n' ),
+			MAS_ELEMENTOR_VERSION,
+			true
+		);
+
 	}
 }
