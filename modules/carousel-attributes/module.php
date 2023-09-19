@@ -28,24 +28,6 @@ class Module extends Module_Base {
 	use Pagination_Trait;
 
 	/**
-	 * Return the script dependencies of the module.
-	 *
-	 * @return array
-	 */
-	public function get_script_depends() {
-		return array( 'swiper-script' );
-	}
-
-	/**
-	 * Return the style dependencies of the module.
-	 *
-	 * @return array
-	 */
-	public function get_style_depends() {
-		return array( 'swiper-stylesheet' );
-	}
-
-	/**
 	 * Return the name of the module.
 	 *
 	 * @return string
@@ -91,21 +73,59 @@ class Module extends Module_Base {
 			)
 		);
 
+		if ( 'container' === $element->get_name() ) {
+
+			$element->update_control(
+				'enable_carousel',
+				array(
+					'condition' => array(
+						'enable_swiper_wrapper!' => 'yes',
+						'enable_swiper_slide!'   => 'yes',
+					),
+				)
+			);
+
+			$element->add_control(
+				'enable_swiper_wrapper',
+				array(
+					'type'      => Controls_Manager::SWITCHER,
+					'label'     => esc_html__( 'Enable Swiper wrapper', 'mas-elementor' ),
+					'default'   => 'no',
+					'condition' => array(
+						'enable_carousel!'     => 'yes',
+						'enable_swiper_slide!' => 'yes',
+					),
+				)
+			);
+
+			$element->add_control(
+				'enable_swiper_slide',
+				array(
+					'type'      => Controls_Manager::SWITCHER,
+					'label'     => esc_html__( 'Enable Swiper Slide', 'mas-elementor' ),
+					'default'   => 'no',
+					'condition' => array(
+						'enable_carousel!'       => 'yes',
+						'enable_swiper_wrapper!' => 'yes',
+					),
+				)
+			);
+		}
+
 		$element->add_control(
 			'carousel_effect',
 			array(
-				'type'               => Controls_Manager::SELECT,
-				'label'              => esc_html__( 'Effect', 'mas-elementor' ),
-				'default'            => 'slide',
-				'options'            => array(
+				'type'      => Controls_Manager::SELECT,
+				'label'     => esc_html__( 'Effect', 'mas-elementor' ),
+				'default'   => 'slide',
+				'options'   => array(
 					''      => esc_html__( 'None', 'mas-elementor' ),
 					'slide' => esc_html__( 'Slide', 'mas-elementor' ),
 					'fade'  => esc_html__( 'Fade', 'mas-elementor' ),
 				),
-				'condition'          => array(
+				'condition' => array(
 					'enable_carousel' => 'yes',
 				),
-				'frontend_available' => true,
 			)
 		);
 
@@ -115,29 +135,27 @@ class Module extends Module_Base {
 		$active_devices = array_reverse( array_keys( $active_breakpoint_instances ) );
 
 		$slides_per_view  = array(
-			'type'               => Controls_Manager::NUMBER,
-			'label'              => esc_html__( 'Slides Per View', 'mas-elementor' ),
-			'min'                => 1,
-			'max'                => 10,
-			'default'            => 1,
-			'condition'          => array(
+			'type'      => Controls_Manager::NUMBER,
+			'label'     => esc_html__( 'Slides Per View', 'mas-elementor' ),
+			'min'       => 1,
+			'max'       => 10,
+			'default'   => 1,
+			'condition' => array(
 				'carousel_effect' => 'slide',
 				'enable_carousel' => 'yes',
 			),
-			'frontend_available' => true,
 		);
 		$slides_to_scroll = array(
-			'type'               => Controls_Manager::NUMBER,
-			'label'              => esc_html__( 'Slides To Scroll', 'mas-elementor' ),
-			'min'                => 1,
-			'max'                => 10,
-			'default'            => 1,
-			'condition'          => array(
+			'type'      => Controls_Manager::NUMBER,
+			'label'     => esc_html__( 'Slides To Scroll', 'mas-elementor' ),
+			'min'       => 1,
+			'max'       => 10,
+			'default'   => 1,
+			'condition' => array(
 				'carousel_effect' => 'slide',
 				'enable_carousel' => 'yes',
 			),
-			'default'            => 1,
-			'frontend_available' => true,
+			'default'   => 1,
 		);
 		$space_between    = array(
 			'type'        => Controls_Manager::NUMBER,
@@ -214,16 +232,15 @@ class Module extends Module_Base {
 		$element->add_control(
 			'center_slides',
 			array(
-				'type'               => Controls_Manager::SWITCHER,
-				'label'              => esc_html__( 'Center Slides', 'mas-elementor' ),
-				'default'            => 'no',
-				'label_off'          => esc_html__( 'Hide', 'mas-elementor' ),
-				'label_on'           => esc_html__( 'Show', 'mas-elementor' ),
-				'condition'          => array(
+				'type'      => Controls_Manager::SWITCHER,
+				'label'     => esc_html__( 'Center Slides', 'mas-elementor' ),
+				'default'   => 'no',
+				'label_off' => esc_html__( 'Hide', 'mas-elementor' ),
+				'label_on'  => esc_html__( 'Show', 'mas-elementor' ),
+				'condition' => array(
 					'carousel_effect' => 'slide',
 					'enable_carousel' => 'yes',
 				),
-				'frontend_available' => true,
 			)
 		);
 
@@ -305,88 +322,82 @@ class Module extends Module_Base {
 		$element->add_control(
 			'speed',
 			array(
-				'label'              => esc_html__( 'Transition Duration', 'mas-elementor' ),
-				'type'               => Controls_Manager::NUMBER,
-				'default'            => 500,
-				'step'               => 100,
-				'render_type'        => 'none',
-				'condition'          => array(
+				'label'       => esc_html__( 'Transition Duration', 'mas-elementor' ),
+				'type'        => Controls_Manager::NUMBER,
+				'default'     => 500,
+				'step'        => 100,
+				'render_type' => 'none',
+				'condition'   => array(
 					'enable_carousel' => 'yes',
 				),
-				'frontend_available' => true,
 			)
 		);
 
 		$element->add_control(
 			'autoplay',
 			array(
-				'label'              => esc_html__( 'Autoplay', 'mas-elementor' ),
-				'type'               => Controls_Manager::SWITCHER,
-				'default'            => 'yes',
-				'separator'          => 'before',
-				'render_type'        => 'none',
-				'condition'          => array(
+				'label'       => esc_html__( 'Autoplay', 'mas-elementor' ),
+				'type'        => Controls_Manager::SWITCHER,
+				'default'     => 'yes',
+				'separator'   => 'before',
+				'render_type' => 'none',
+				'condition'   => array(
 					'enable_carousel' => 'yes',
 				),
-				'frontend_available' => true,
 			)
 		);
 
 		$element->add_control(
 			'autoplay_speed',
 			array(
-				'label'              => esc_html__( 'Autoplay Speed', 'mas-elementor' ),
-				'type'               => Controls_Manager::NUMBER,
-				'default'            => 5000,
-				'condition'          => array(
+				'label'       => esc_html__( 'Autoplay Speed', 'mas-elementor' ),
+				'type'        => Controls_Manager::NUMBER,
+				'default'     => 5000,
+				'condition'   => array(
 					'autoplay'        => 'yes',
 					'enable_carousel' => 'yes',
 				),
-				'render_type'        => 'none',
-				'frontend_available' => true,
+				'render_type' => 'none',
 			)
 		);
 
 		$element->add_control(
 			'loop',
 			array(
-				'label'              => esc_html__( 'Infinite Loop', 'mas-elementor' ),
-				'type'               => Controls_Manager::SWITCHER,
-				'default'            => 'yes',
-				'condition'          => array(
+				'label'     => esc_html__( 'Infinite Loop', 'mas-elementor' ),
+				'type'      => Controls_Manager::SWITCHER,
+				'default'   => 'yes',
+				'condition' => array(
 					'enable_carousel' => 'yes',
 				),
-				'frontend_available' => true,
 			)
 		);
 
 		$element->add_control(
 			'pause_on_hover',
 			array(
-				'label'              => esc_html__( 'Pause on Hover', 'mas-elementor' ),
-				'type'               => Controls_Manager::SWITCHER,
-				'default'            => 'yes',
-				'condition'          => array(
+				'label'       => esc_html__( 'Pause on Hover', 'mas-elementor' ),
+				'type'        => Controls_Manager::SWITCHER,
+				'default'     => 'yes',
+				'condition'   => array(
 					'autoplay'        => 'yes',
 					'enable_carousel' => 'yes',
 				),
-				'render_type'        => 'none',
-				'frontend_available' => true,
+				'render_type' => 'none',
 			)
 		);
 
 		$element->add_control(
 			'show_pagination',
 			array(
-				'type'               => Controls_Manager::SWITCHER,
-				'label'              => esc_html__( 'Enable Pagination', 'mas-elementor' ),
-				'default'            => 'yes',
-				'label_off'          => esc_html__( 'Hide', 'mas-elementor' ),
-				'label_on'           => esc_html__( 'Show', 'mas-elementor' ),
-				'condition'          => array(
+				'type'      => Controls_Manager::SWITCHER,
+				'label'     => esc_html__( 'Enable Pagination', 'mas-elementor' ),
+				'default'   => 'yes',
+				'label_off' => esc_html__( 'Hide', 'mas-elementor' ),
+				'label_on'  => esc_html__( 'Show', 'mas-elementor' ),
+				'condition' => array(
 					'enable_carousel' => 'yes',
 				),
-				'frontend_available' => true,
 			)
 		);
 
@@ -470,19 +481,27 @@ class Module extends Module_Base {
 			<div <?php $element->print_render_attribute_string( 'section_carousel' ); ?>>
 			<?php
 		}
-
-		$container_class = $settings['gap'];
-
-		if ( 'no' === $settings['gap'] ) {
-			$container_class = $settings['gap'] . ' no-gutters';
+		if ( isset( $settings['enable_swiper_wrapper'] ) && 'yes' === $settings['enable_swiper_wrapper'] ) {
+			$element->add_render_attribute( '_wrapper', 'class', 'swiper-wrapper' );
+		}
+		if ( isset( $settings['enable_swiper_slide'] ) && 'yes' === $settings['enable_swiper_slide'] ) {
+			$element->add_render_attribute( '_wrapper', 'class', 'swiper-slide' );
 		}
 
-		if ( 'yes' === $settings['enable_carousel'] ) {
-			$container_class .= ' swiper-wrapper';
-		}
+		if ( isset( $settings['gap'] ) ) {
+			$container_class = $settings['gap'];
 
-		if ( ! empty( $container_class ) ) {
-			$element->set_settings( 'gap', $container_class );
+			if ( 'no' === $settings['gap'] ) {
+				$container_class = $settings['gap'] . ' no-gutters';
+			}
+
+			if ( 'yes' === $settings['enable_carousel'] ) {
+				$container_class .= ' swiper-wrapper';
+			}
+
+			if ( ! empty( $container_class ) ) {
+				$element->set_settings( 'gap', $container_class );
+			}
 		}
 
 	}
@@ -703,6 +722,12 @@ class Module extends Module_Base {
 		add_action( 'elementor/element/column/section_advanced/before_section_end', array( $this, 'add_column_wrapper_controls' ) );
 		add_action( 'elementor/element/section/section_layout/after_section_end', array( $this, 'register_button_layout_controls' ) );
 		add_action( 'elementor/element/section/swiper_section_navigation/after_section_end', array( $this, 'register_button_style_controls' ) );
+
+		// Container Carousel Hooks.
+		add_action( 'elementor/frontend/container/before_render', array( $this, 'before_render_section' ), 10 );
+		add_action( 'elementor/frontend/container/after_render', array( $this, 'after_render_section' ), 15 );
+		add_action( 'elementor/element/container/section_layout_container/after_section_end', array( $this, 'register_button_layout_controls' ) );
+		add_action( 'elementor/element/container/swiper_section_navigation/after_section_end', array( $this, 'register_button_style_controls' ) );
 	}
 
 	/**

@@ -67,7 +67,7 @@ trait Button_Widget_Trait {
 				'default'      => 'enable',
 				'label_off'    => esc_html__( 'Enable', 'mas-elementor' ),
 				'label_on'     => esc_html__( 'Disable', 'mas-elementor' ),
-				'condition'   => $args['section_condition'],
+				'condition'    => $args['section_condition'],
 				'return_value' => 'enable',
 				'prefix_class' => 'swiper-position-static-',
 			)
@@ -101,21 +101,21 @@ trait Button_Widget_Trait {
 			)
 		);
 
-		$element->add_control(
-			'link',
-			array(
-				'label'       => esc_html__( 'Link', 'mas-elementor' ),
-				'type'        => Controls_Manager::URL,
-				'dynamic'     => array(
-					'active' => true,
-				),
-				'placeholder' => esc_html__( 'https://your-link.com', 'mas-elementor' ),
-				'default'     => array(
-					'url' => '#',
-				),
-				'condition'   => $args['section_condition'],
-			)
-		);
+		// $element->add_control(
+		// 'link',
+		// array(
+		// 'label'       => esc_html__( 'Link', 'mas-elementor' ),
+		// 'type'        => Controls_Manager::URL,
+		// 'dynamic'     => array(
+		// 'active' => true,
+		// ),
+		// 'placeholder' => esc_html__( 'https://your-link.com', 'mas-elementor' ),
+		// 'default'     => array(
+		// 'url' => '#',
+		// ),
+		// 'condition'   => $args['section_condition'],
+		// )
+		// );
 
 		$element->add_control(
 			'size',
