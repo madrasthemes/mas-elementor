@@ -91,6 +91,80 @@ class Module extends Module_Base {
 				),
 			)
 		);
+
+		$element->add_control(
+			'mas_button_icon_color',
+			array(
+				'label'     => esc_html__( 'Icon Color', 'mas-elementor' ),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => array(
+					'{{WRAPPER}} .elementor-button-icon i'   => 'color: {{VALUE}};',
+					'{{WRAPPER}} .elementor-button-icon svg' => 'fill: {{VALUE}};',
+				),
+			)
+		);
+
+		$element->add_responsive_control(
+			'mas_button_wrapper_align_items',
+			array(
+				'label'     => esc_html__( 'Vertical Align Items', 'mas-elementor' ),
+				'type'      => Controls_Manager::CHOOSE,
+				'default'   => '',
+				'options'   => array(
+					'flex-start' => array(
+						'title' => esc_html__( 'Start', 'mas-elementor' ),
+						'icon'  => 'eicon-flex eicon-align-start-v',
+					),
+					'center'     => array(
+						'title' => esc_html__( 'Center', 'mas-elementor' ),
+						'icon'  => 'eicon-flex eicon-align-center-v',
+					),
+					'flex-end'   => array(
+						'title' => esc_html__( 'End', 'mas-elementor' ),
+						'icon'  => 'eicon-flex eicon-align-end-v',
+					),
+					'stretch'    => array(
+						'title' => esc_html__( 'Stretch', 'mas-elementor' ),
+						'icon'  => 'eicon-flex eicon-align-stretch-v',
+					),
+				),
+				'selectors' => array(
+					'{{WRAPPER}} .elementor-button-content-wrapper' => 'align-items: {{VALUE}};',
+				),
+				'default'   => 'center',
+			)
+		);
+
+		$element->add_responsive_control(
+			'mas_button_wrapper_align_icon',
+			array(
+				'label'     => esc_html__( 'Vertical Align Icon', 'mas-elementor' ),
+				'type'      => Controls_Manager::CHOOSE,
+				'default'   => '',
+				'options'   => array(
+					'flex-start' => array(
+						'title' => esc_html__( 'Start', 'mas-elementor' ),
+						'icon'  => 'eicon-flex eicon-align-start-v',
+					),
+					'center'     => array(
+						'title' => esc_html__( 'Center', 'mas-elementor' ),
+						'icon'  => 'eicon-flex eicon-align-center-v',
+					),
+					'flex-end'   => array(
+						'title' => esc_html__( 'End', 'mas-elementor' ),
+						'icon'  => 'eicon-flex eicon-align-end-v',
+					),
+					'stretch'    => array(
+						'title' => esc_html__( 'Stretch', 'mas-elementor' ),
+						'icon'  => 'eicon-flex eicon-align-stretch-v',
+					),
+				),
+				'selectors' => array(
+					'{{WRAPPER}} .elementor-button-icon' => 'display:flex; align-items: {{VALUE}};',
+				),
+				'default'   => 'center',
+			)
+		);
 	}
 
 }
