@@ -18,6 +18,8 @@ use Elementor\Core\Kits\Documents\Tabs\Global_Colors;
 use Elementor\Group_Control_Background;
 use Elementor\Group_Control_Box_Shadow;
 use Elementor\Group_Control_Text_Shadow;
+use Elementor\Widget_Base;
+use Elementor\Icons_Manager;
 
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -184,6 +186,75 @@ class Add_To_Cart extends Widget_Button {
 		);
 
 		$this->register_quantity_controls();
+
+		$this->end_injection();
+
+		$this->start_injection(
+			array(
+				'of' => 'selected_icon',
+				'at' => 'after',
+			)
+		);
+
+		$this->add_control(
+			'variable_icon',
+			array(
+				'label'            => esc_html__( 'Variable Product Icon', 'mas-elementor' ),
+				'type'             => Controls_Manager::ICONS,
+				'fa4compatibility' => 'icon',
+				'skin'             => 'inline',
+				'label_block'      => false,
+				'default'          => array(
+					'value'   => 'fas fa-shopping-cart',
+					'library' => 'fa-solid',
+				),
+			)
+		);
+
+		$this->add_control(
+			'grouped_icon',
+			array(
+				'label'            => esc_html__( 'Grouped Product Icon', 'mas-elementor' ),
+				'type'             => Controls_Manager::ICONS,
+				'fa4compatibility' => 'icon',
+				'skin'             => 'inline',
+				'label_block'      => false,
+				'default'          => array(
+					'value'   => 'fas fa-shopping-cart',
+					'library' => 'fa-solid',
+				),
+			)
+		);
+
+		$this->add_control(
+			'external_icon',
+			array(
+				'label'            => esc_html__( 'External Product Icon', 'mas-elementor' ),
+				'type'             => Controls_Manager::ICONS,
+				'fa4compatibility' => 'icon',
+				'skin'             => 'inline',
+				'label_block'      => false,
+				'default'          => array(
+					'value'   => 'fas fa-shopping-cart',
+					'library' => 'fa-solid',
+				),
+			)
+		);
+
+		$this->add_control(
+			'others_icon',
+			array(
+				'label'            => esc_html__( 'Out of Stock / Read More Icon', 'mas-elementor' ),
+				'type'             => Controls_Manager::ICONS,
+				'fa4compatibility' => 'icon',
+				'skin'             => 'inline',
+				'label_block'      => false,
+				'default'          => array(
+					'value'   => 'fas fa-shopping-cart',
+					'library' => 'fa-solid',
+				),
+			)
+		);
 
 		$this->end_injection();
 
@@ -724,6 +795,37 @@ class Add_To_Cart extends Widget_Button {
 			)
 		);
 
+		$this->add_responsive_control(
+			'hide_button_text',
+			array(
+				'label'       => esc_html__( 'Button Title Display Settings', 'mas-elementor' ),
+				'type'        => Controls_Manager::CHOOSE,
+				'options'     => array(
+					'inline'       => array(
+						'title' => esc_html__( 'Inline', 'mas-elementor' ),
+						'icon'  => 'eicon-flex eicon-align-start-v',
+					),
+					'block'        => array(
+						'title' => esc_html__( 'Block', 'mas-elementor' ),
+						'icon'  => 'eicon-flex eicon-align-center-v',
+					),
+					'inline-block' => array(
+						'title' => esc_html__( 'Inline Block', 'mas-elementor' ),
+						'icon'  => 'eicon-flex eicon-align-end-v',
+					),
+					'none'         => array(
+						'title' => esc_html__( 'None', 'mas-elementor' ),
+						'icon'  => 'eicon-flex eicon-align-stretch-v',
+					),
+				),
+				'default'     => 'inline-block',
+				'selectors'   => array(
+					'{{WRAPPER}} .elementor-button-text' => 'display: {{VALUE}};',
+				),
+				'description' => esc_html__( 'For Button text display styles', 'mas-elementor' ),
+			)
+		);
+
 		$this->end_injection();
 
 		$this->update_control(
@@ -734,6 +836,7 @@ class Add_To_Cart extends Widget_Button {
 				),
 			),
 		);
+		$this->remove_control( 'button_type' );
 		$this->update_control(
 			'icon_align',
 			array(
@@ -1032,7 +1135,8 @@ class Add_To_Cart extends Widget_Button {
 	 * @param \WC_Product $product product.
 	 */
 	private function render_ajax_button( $product ) {
-		$settings = $this->get_settings_for_display();
+		$settings       = $this->get_settings_for_display();
+		$product_values = array();
 
 		if ( $product ) {
 			if ( version_compare( WC()->version, '3.0.0', '>=' ) ) {
@@ -1040,8 +1144,9 @@ class Add_To_Cart extends Widget_Button {
 			} else {
 				$product_type = $product->product_type;
 			}
-
-			$class = implode(
+			$product_values['product_type']         = $product_type;
+			$product_values['in_stock_purchasable'] = $product->is_purchasable() && $product->is_in_stock();
+			$class                                  = implode(
 				' ',
 				array_filter(
 					array(
@@ -1071,7 +1176,132 @@ class Add_To_Cart extends Widget_Button {
 			$this->set_settings( $settings );
 		}
 
-		parent::render();
+		$this->render_button( $product_values );
+	}
+
+		/**
+		 * Render button widget output on the frontend.
+		 *
+		 * Written in PHP and used to generate the final HTML.
+		 *
+		 * @param array                       $product_values product values.
+		 * @param \Elementor\Widget_Base|null $instance instance.
+		 */
+	protected function render_button( $product_values = array(), Widget_Base $instance = null ) {
+		if ( empty( $instance ) ) {
+			$instance = $this;
+		}
+
+		$settings = $instance->get_settings_for_display();
+
+		$instance->add_render_attribute( 'wrapper', 'class', 'elementor-button-wrapper' );
+
+		$instance->add_render_attribute( 'button', 'class', 'elementor-button' );
+
+		if ( ! empty( $settings['link']['url'] ) ) {
+			$instance->add_link_attributes( 'button', $settings['link'] );
+			$instance->add_render_attribute( 'button', 'class', 'elementor-button-link' );
+		} else {
+			$instance->add_render_attribute( 'button', 'role', 'button' );
+		}
+
+		if ( ! empty( $settings['button_css_id'] ) ) {
+			$instance->add_render_attribute( 'button', 'id', $settings['button_css_id'] );
+		}
+
+		if ( ! empty( $settings['size'] ) ) {
+			$instance->add_render_attribute( 'button', 'class', 'elementor-size-' . $settings['size'] );
+		}
+
+		if ( ! empty( $settings['hover_animation'] ) ) {
+			$instance->add_render_attribute( 'button', 'class', 'elementor-animation-' . $settings['hover_animation'] );
+		}
+		?>
+		<div <?php $instance->print_render_attribute_string( 'wrapper' ); ?>>
+			<a <?php $instance->print_render_attribute_string( 'button' ); ?>>
+				<?php $this->render_text( $instance, $product_values ); ?>
+			</a>
+		</div>
+		<?php
+	}
+
+		/**
+		 * Render button text.
+		 *
+		 * Render button widget text.
+		 *
+		 * @param \Elementor\Widget_Base|null $instance instance.
+		 * @param array                       $product_values product values.
+		 */
+	protected function render_text( Widget_Base $instance = null, $product_values = array() ) {
+		// The default instance should be `$this` (a Button widget), unless the Trait is being used from outside of a widget (e.g. `Skin_Base`) which should pass an `$instance`.
+		if ( empty( $instance ) ) {
+			$instance = $this;
+		}
+		$product_type         = isset( $product_values['product_type'] ) ? $product_values['product_type'] : 'simple';
+		$in_stock_purchasable = isset( $product_values['in_stock_purchasable'] ) ? $product_values['in_stock_purchasable'] : false;
+		switch ( $product_type ) {
+			case 'grouped':
+				$icon_type = 'grouped_icon';
+				break;
+			case 'variable':
+				$icon_type = 'variable_icon';
+				break;
+			case 'external':
+				$icon_type = 'external_icon';
+				break;
+			default:
+				$icon_type = 'selected_icon';
+		}
+
+		$icon_type = ! $in_stock_purchasable && ( 'simple' === $product_type ) ? 'others_icon' : $icon_type;
+		$settings  = $instance->get_settings_for_display();
+
+		$migrated = isset( $settings['__fa4_migrated'][ $icon_type ] );
+		$is_new   = empty( $settings['icon'] ) && Icons_Manager::is_migration_allowed();
+
+		if ( ! $is_new && empty( $settings['icon_align'] ) ) {
+			// @todo: remove when deprecated
+			// added as bc in 2.6
+			// old default
+			$settings['icon_align'] = $instance->get_settings( 'icon_align' );
+		}
+
+		$instance->add_render_attribute(
+			array(
+				'content-wrapper' => array(
+					'class' => 'elementor-button-content-wrapper',
+				),
+				'icon-align'      => array(
+					'class' => array(
+						'elementor-button-icon',
+						'elementor-align-icon-' . $settings['icon_align'],
+					),
+				),
+				'text'            => array(
+					'class' => 'elementor-button-text',
+				),
+			)
+		);
+
+		// TODO: replace the protected with public
+		// $instance->add_inline_editing_attributes( 'text', 'none' );.
+		?>
+		<span <?php $instance->print_render_attribute_string( 'content-wrapper' ); ?>>
+			<?php if ( ! empty( $settings['icon'] ) || ! empty( $settings[ $icon_type ]['value'] ) ) : ?>
+			<span <?php $instance->print_render_attribute_string( 'icon-align' ); ?>>
+				<?php
+				if ( $is_new || $migrated ) :
+					Icons_Manager::render_icon( $settings[ $icon_type ], array( 'aria-hidden' => 'true' ) );
+				else :
+					?>
+					<i class="<?php echo esc_attr( $settings['icon'] ); ?>" aria-hidden="true"></i>
+				<?php endif; ?>
+			</span>
+			<?php endif; ?>
+			<span <?php $instance->print_render_attribute_string( 'text' ); ?>><?php $this->print_unescaped_setting( 'text' ); ?></span>
+		</span>
+		<?php
 	}
 
 	/**
