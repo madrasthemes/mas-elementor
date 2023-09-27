@@ -309,6 +309,23 @@ class Multipurpose_Text extends Base_Widget {
 			)
 		);
 
+		$this->add_control(
+			'text_overflow',
+			array(
+				'label'     => esc_html__( 'Text Overflow', 'mas-elementor' ),
+				'type'      => Controls_Manager::SELECT,
+				'default'   => '',
+				'options'   => array(
+					''       => esc_html__( 'Default', 'mas-elementor' ),
+					'hidden' => esc_html__( 'Hidden', 'mas-elementor' ),
+					'auto'   => esc_html__( 'Auto', 'mas-elementor' ),
+				),
+				'selectors' => array(
+					'{{WRAPPER}} .mas-elementor-multipurpose-text__title' => 'overflow: {{VALUE}}',
+				),
+			)
+		);
+
 		$this->end_controls_section();
 
 		$this->start_controls_section(
