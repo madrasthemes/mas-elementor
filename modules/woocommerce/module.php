@@ -88,6 +88,7 @@ class Module extends Module_Base {
 			'Product_Stock',
 			'Product_Title',
 			'Product_Add_To_Cart',
+			'Product_Price',
 		);
 	}
 
