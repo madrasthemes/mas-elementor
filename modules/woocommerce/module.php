@@ -89,6 +89,7 @@ class Module extends Module_Base {
 			'Product_Title',
 			'Product_Add_To_Cart',
 			'Product_Price',
+			'Progress_Bar',
 		);
 	}
 
@@ -416,6 +417,7 @@ class Module extends Module_Base {
 
 		add_action( 'elementor/dynamic_tags/register', array( $this, 'register_tags' ) );
 		add_action( 'elementor/frontend/before_register_styles', array( $this, 'register_frontend_styles' ) );
+		add_action( 'wp_enqueue_scripts', array( $this, 'register_frontend_scripts' ), 9999 );
 		add_action( 'elementor/editor/before_enqueue_scripts', array( $this, 'maybe_init_cart' ) );
 
 		// On Editor - Register WooCommerce frontend hooks before the Editor init.
@@ -430,6 +432,19 @@ class Module extends Module_Base {
 		}
 
 		add_filter( 'elementor/widgets/wordpress/widget_args', array( $this, 'woocommerce_wordpress_widget_css_class' ), 10, 2 );
+	}
+
+	/**
+	 * Register frontend styles.
+	 */
+	public function register_frontend_scripts() {
+		wp_register_script(
+			'mas-progress-script',
+			MAS_ELEMENTOR_ASSETS_URL . 'js/progress/progress.js',
+			array( 'elementor-frontend' ),
+			MAS_ELEMENTOR_VERSION,
+			true
+		);
 	}
 
 	/**
