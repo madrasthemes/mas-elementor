@@ -146,6 +146,7 @@ class Module extends Module_Base {
 			'Cart_Button_Url',
 			'Cart_Button_Text',
 			'Product_Content',
+			'Product_Sold_Count',
 		);
 
 		$module = Plugin::elementor()->dynamic_tags;
@@ -432,6 +433,9 @@ class Module extends Module_Base {
 		}
 
 		add_filter( 'elementor/widgets/wordpress/widget_args', array( $this, 'woocommerce_wordpress_widget_css_class' ), 10, 2 );
+
+		// Add options on Inventry Tab.
+		add_action( 'woocommerce_product_options_inventory_product_data', array( $this, 'product_options_inventory_product_data' ) );
 	}
 
 	/**
@@ -520,5 +524,24 @@ class Module extends Module_Base {
 			array(),
 			MAS_ELEMENTOR_VERSION
 		);
+	}
+
+	/**
+	 * Add product options in inventory tab of single product data.
+	 */
+	public function product_options_inventory_product_data() {
+		if ( apply_filters( 'mas_elementor_product_options_inventory_product_data', true ) ) {
+			echo '<div class="options_group">';
+				woocommerce_wp_text_input(
+					array(
+						'id'          => '_total_stock_quantity',
+						'label'       => esc_html__( 'Total Stock Quantity', 'mas-elementor' ),
+						'desc_tip'    => 'true',
+						'description' => esc_html__( 'Total Stock Quantity Available. This will be used to calculate prograss bar in onsale element.', 'mas-elementor' ),
+						'type'        => 'text',
+					)
+				);
+			echo '</div>';
+		}
 	}
 }

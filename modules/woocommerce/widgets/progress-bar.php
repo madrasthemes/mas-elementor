@@ -112,7 +112,7 @@ class Progress_Bar extends Widget_Progress {
 	 * Render.
 	 */
 	protected function render() {
-		$allow                = true;
+		$allow                = false;
 		$total_stock_quantity = get_post_meta( get_the_ID(), '_total_stock_quantity', true );
 		$stock                = get_post_meta( get_the_ID(), '_stock', true );
 		$total_sales          = get_post_meta( get_the_ID(), 'total_sales', true );
