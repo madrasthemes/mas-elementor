@@ -13,6 +13,8 @@ use Elementor\Core\Kits\Documents\Tabs\Global_Typography;
 use Elementor\Group_Control_Typography;
 use Elementor\Widget_Progress;
 use Elementor\Utils;
+use Elementor\Group_Control_Box_Shadow;
+use Elementor\Group_Control_Text_Shadow;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
@@ -30,6 +32,20 @@ class Progress_Bar extends Widget_Progress {
 	 */
 	public function get_name() {
 		return 'mas-woocommerce-progress-bar';
+	}
+
+	/**
+	 * Get inline css to the widget.
+	 *
+	 * @return array
+	 */
+	public function get_inline_css_depends() {
+		return array(
+			array(
+				'name'               => 'progress',
+				'is_core_dependency' => true,
+			),
+		);
 	}
 
 	/**
@@ -86,7 +102,7 @@ class Progress_Bar extends Widget_Progress {
 		$this->start_injection(
 			array(
 				'of' => 'title',
-				'at' => 'before',
+				'at' => 'after',
 			)
 		);
 
@@ -105,6 +121,280 @@ class Progress_Bar extends Widget_Progress {
 		);
 
 		$this->end_injection();
+		$this->start_injection(
+			array(
+				'of' => 'bar_border_radius',
+				'at' => 'after',
+			)
+		);
+		$this->add_responsive_control(
+			'progress_bar_spacing',
+			array(
+				'label'      => esc_html__( 'Spacing', 'mas-elementor' ),
+				'type'       => Controls_Manager::DIMENSIONS,
+				'size_units' => array( 'px', '%', 'em', 'rem', 'custom' ),
+				'selectors'  => array(
+					'{{WRAPPER}} .elementor-progress-wrapper' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				),
+			)
+		);
+		$this->end_injection();
+
+		$this->start_injection(
+			array(
+				'of' => 'title_color',
+				'at' => 'before',
+			)
+		);
+
+		$this->add_responsive_control(
+			'titles_spacing',
+			array(
+				'label'      => esc_html__( 'Spacing', 'mas-elementor' ),
+				'type'       => Controls_Manager::DIMENSIONS,
+				'size_units' => array( 'px', '%', 'em', 'rem', 'custom' ),
+				'selectors'  => array(
+					'{{WRAPPER}} .deal-stock' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				),
+			)
+		);
+
+		$this->add_control(
+			'second_label',
+			array(
+				'label'     => __( 'Second Title', 'mas-elementor' ),
+				'type'      => Controls_Manager::HEADING,
+				'separator' => 'before',
+			)
+		);
+
+		$this->add_control(
+			'second_title_color',
+			array(
+				'label'     => esc_html__( 'Second Text Color', 'mas-elementor' ),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => array(
+					'{{WRAPPER}} .elementor-second-title' => 'color: {{VALUE}};',
+				),
+				'global'    => array(
+					'default' => Global_Colors::COLOR_PRIMARY,
+				),
+			)
+		);
+
+		$this->add_group_control(
+			Group_Control_Typography::get_type(),
+			array(
+				'name'     => 'second_typography',
+				'selector' => '{{WRAPPER}} .elementor-second-title',
+				'global'   => array(
+					'default' => Global_Typography::TYPOGRAPHY_TEXT,
+				),
+			)
+		);
+
+		$this->add_group_control(
+			Group_Control_Text_Shadow::get_type(),
+			array(
+				'name'     => 'second_title_shadow',
+				'selector' => '{{WRAPPER}} .elementor-second-title',
+			)
+		);
+
+		$this->add_control(
+			'title_label',
+			array(
+				'label'     => __( 'Title', 'mas-elementor' ),
+				'type'      => Controls_Manager::HEADING,
+				'separator' => 'before',
+			)
+		);
+
+		$this->end_injection();
+
+		$this->start_controls_section(
+			'section_titles_flex',
+			array(
+				'label' => esc_html__( 'Titles Flex Style', 'mas-elementor' ),
+				'tab'   => Controls_Manager::TAB_STYLE,
+			)
+		);
+
+		$this->register_flex_style_controls();
+
+		$this->end_controls_section();
+
+	}
+
+	/**
+	 * Register flex style controls for this widget.
+	 */
+	protected function register_flex_style_controls() {
+
+		$start   = is_rtl() ? 'right' : 'left';
+		$end     = is_rtl() ? 'left' : 'right';
+		$wrapper = '{{WRAPPER}} .deal-stock';
+
+		$this->add_responsive_control(
+			'enable_flex',
+			array(
+				'label'     => esc_html__( 'Enable Flex', 'mas-elementor' ),
+				'type'      => Controls_Manager::CHOOSE,
+				'options'   => array(
+					'block' => array(
+						'title' => esc_html__( 'Block', 'mas-elementor' ),
+						'icon'  => 'eicon-ban',
+					),
+					'flex'  => array(
+						'title' => esc_html__( 'Flex', 'mas-elementor' ),
+						'icon'  => 'eicon-flex eicon-wrap',
+					),
+				),
+				'default'   => 'flex',
+				'selectors' => array(
+					$wrapper => 'display: {{VALUE}};',
+				),
+				// 'responsive' => true,
+
+			)
+		);
+
+		$this->add_responsive_control(
+			'flex_direction',
+			array(
+				'label'     => esc_html__( 'Direction', 'mas-elementor' ),
+				'type'      => Controls_Manager::CHOOSE,
+				'options'   => array(
+					'row'            => array(
+						'title' => esc_html__( 'Row - horizontal', 'mas-elementor' ),
+						'icon'  => 'eicon-arrow-' . $end,
+					),
+					'column'         => array(
+						'title' => esc_html__( 'Column - vertical', 'mas-elementor' ),
+						'icon'  => 'eicon-arrow-down',
+					),
+					'row-reverse'    => array(
+						'title' => esc_html__( 'Row - reversed', 'mas-elementor' ),
+						'icon'  => 'eicon-arrow-' . $start,
+					),
+					'column-reverse' => array(
+						'title' => esc_html__( 'Column - reversed', 'mas-elementor' ),
+						'icon'  => 'eicon-arrow-up',
+					),
+				),
+				'default'   => 'row',
+				'selectors' => array(
+					$wrapper => 'flex-direction:{{VALUE}};',
+				),
+				'condition' => array(
+					'enable_flex' => 'flex',
+				),
+				'default'   => 'column',
+			)
+		);
+
+		$this->add_responsive_control(
+			'justify_content',
+			array(
+				'label'       => esc_html__( 'Justify Content', 'mas-elementor' ),
+				'type'        => Controls_Manager::CHOOSE,
+				'label_block' => true,
+				'description' => esc_html__( 'Used for alignment in Flex Direction row and row-reversed', 'mas-elementor' ),
+				'default'     => '',
+				'options'     => array(
+					'flex-start'    => array(
+						'title' => esc_html__( 'Start', 'mas-elementor' ),
+						'icon'  => 'eicon-flex eicon-justify-start-h',
+					),
+					'center'        => array(
+						'title' => esc_html__( 'Center', 'mas-elementor' ),
+						'icon'  => 'eicon-flex eicon-justify-center-h',
+					),
+					'flex-end'      => array(
+						'title' => esc_html__( 'End', 'mas-elementor' ),
+						'icon'  => 'eicon-flex eicon-justify-end-h',
+					),
+					'space-between' => array(
+						'title' => esc_html__( 'Space Between', 'mas-elementor' ),
+						'icon'  => 'eicon-flex eicon-justify-space-between-h',
+					),
+					'space-around'  => array(
+						'title' => esc_html__( 'Space Around', 'mas-elementor' ),
+						'icon'  => 'eicon-flex eicon-justify-space-around-h',
+					),
+					'space-evenly'  => array(
+						'title' => esc_html__( 'Space Evenly', 'mas-elementor' ),
+						'icon'  => 'eicon-flex eicon-justify-space-evenly-h',
+					),
+				),
+				'selectors'   => array(
+					$wrapper => 'justify-content: {{VALUE}};',
+				),
+				'default'     => 'space-between',
+			)
+		);
+
+		$this->add_responsive_control(
+			'align_items',
+			array(
+				'label'       => esc_html__( 'Align Items', 'mas-elementor' ),
+				'type'        => Controls_Manager::CHOOSE,
+				'default'     => '',
+				'description' => esc_html__( 'Used for alignment in Flex Direction column and column-reversed', 'mas-elementor' ),
+				'options'     => array(
+					'flex-start' => array(
+						'title' => esc_html__( 'Start', 'mas-elementor' ),
+						'icon'  => 'eicon-flex eicon-align-start-v',
+					),
+					'center'     => array(
+						'title' => esc_html__( 'Center', 'mas-elementor' ),
+						'icon'  => 'eicon-flex eicon-align-center-v',
+					),
+					'flex-end'   => array(
+						'title' => esc_html__( 'End', 'mas-elementor' ),
+						'icon'  => 'eicon-flex eicon-align-end-v',
+					),
+					'stretch'    => array(
+						'title' => esc_html__( 'Stretch', 'mas-elementor' ),
+						'icon'  => 'eicon-flex eicon-align-stretch-v',
+					),
+				),
+				'selectors'   => array(
+					$wrapper => 'align-items: {{VALUE}};',
+				),
+				'default'     => 'stretch',
+			)
+		);
+
+		$this->add_responsive_control(
+			'gap',
+			array(
+				'label'      => esc_html__( 'Gap', 'mas-elementor' ),
+				'type'       => Controls_Manager::SLIDER,
+				'range'      => array(
+					'px' => array(
+						'min' => 0,
+						'max' => 500,
+					),
+					'%'  => array(
+						'min' => 0,
+						'max' => 100,
+					),
+					'vw' => array(
+						'min' => 0,
+						'max' => 100,
+					),
+					'em' => array(
+						'min' => 0,
+						'max' => 50,
+					),
+				),
+				'size_units' => array( 'px', '%', 'em', 'rem', 'vw', 'custom' ),
+				'selectors'  => array(
+					$wrapper => 'gap: {{SIZE}}{{UNIT}};',
+				),
+			)
+		);
 
 	}
 
@@ -140,7 +430,11 @@ class Progress_Bar extends Widget_Progress {
 
 		$this->add_render_attribute( 'title', 'class', 'elementor-title' );
 
+		$this->add_render_attribute( 'second_title', 'class', 'elementor-second-title' );
+
 		$this->add_inline_editing_attributes( 'title' );
+
+		$this->add_inline_editing_attributes( 'second_title' );
 
 		$this->add_render_attribute(
 			'wrapper',
