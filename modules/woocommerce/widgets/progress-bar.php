@@ -102,6 +102,27 @@ class Progress_Bar extends Widget_Progress {
 		$this->start_injection(
 			array(
 				'of' => 'title',
+				'at' => 'before',
+			)
+		);
+
+		$this->add_control(
+			'hide_when_stocks_not_available',
+			array(
+				'label'        => esc_html__( 'Hide Progress', 'mas-elementor' ),
+				'type'         => Controls_Manager::SWITCHER,
+				'label_on'     => esc_html__( 'Yes', 'mas-elementor' ),
+				'label_off'    => esc_html__( 'No', 'mas-elementor' ),
+				'description'  => 'Hide when the product do not have available stock',
+				'default'      => 'yes',
+			)
+		);
+
+		$this->end_injection();
+
+		$this->start_injection(
+			array(
+				'of' => 'title',
 				'at' => 'after',
 			)
 		);
@@ -289,7 +310,6 @@ class Progress_Bar extends Widget_Progress {
 				'condition' => array(
 					'enable_flex' => 'flex',
 				),
-				'default'   => 'column',
 			)
 		);
 
@@ -402,7 +422,8 @@ class Progress_Bar extends Widget_Progress {
 	 * Render.
 	 */
 	protected function render() {
-		$allow                = false;
+		$settings = $this->get_settings_for_display();
+		$allow                = 'yes' === $settings['hide_when_stocks_not_available'] ? true : false;
 		$total_stock_quantity = get_post_meta( get_the_ID(), '_total_stock_quantity', true );
 		$stock                = get_post_meta( get_the_ID(), '_stock', true );
 		$total_sales          = get_post_meta( get_the_ID(), 'total_sales', true );
@@ -418,10 +439,9 @@ class Progress_Bar extends Widget_Progress {
 			$percentage      = ( ( $stock_available > 0 && $stock_quantity > 0 ) ? round( $stock_sold / $stock_quantity * 100 ) : 0 );
 		}
 
-		if ( ! ( $stock_available > 0 ) || $allow ) {
+		if ( ! ( $stock_available > 0 ) && $allow ) {
 			return;
 		}
-		$settings = $this->get_settings_for_display();
 
 		$progress_percentage = is_numeric( $settings['percent']['size'] ) ? $settings['percent']['size'] : '0';
 		if ( 100 < $progress_percentage ) {
@@ -495,6 +515,68 @@ class Progress_Bar extends Widget_Progress {
 				<?php if ( 'show' === $settings['display_percentage'] ) { ?>
 					<span class="elementor-progress-percentage"><?php echo $progress_percentage; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>%</span>
 				<?php } ?>
+			</div>
+		</div>
+		<?php
+	}
+
+	/**
+	 * Render progress widget output in the editor.
+	 *
+	 * Written as a Backbone JavaScript template and used to generate the live preview.
+	 */
+	protected function content_template() {
+		?>
+		<#
+		const title_tag = elementor.helpers.validateHTMLTag( settings.title_tag );
+
+		let progress_percentage = 0;
+		if ( ! isNaN( settings.percent.size ) ) {
+			progress_percentage = 100 < settings.percent.size ? 100 : settings.percent.size;
+		}
+
+		view.addRenderAttribute( 'title', 'class', 'elementor-title' );
+
+		view.addRenderAttribute( 'second_title', 'class', 'elementor-second-title' );
+
+		view.addInlineEditingAttributes( 'title' );
+		view.addInlineEditingAttributes( 'second_title' );
+
+		view.addRenderAttribute(
+			'progressWrapper',
+			{
+				'class': [ 'elementor-progress-wrapper', 'progress-' + settings.progress_type ],
+				'role': 'progressbar',
+				'aria-valuemin': '0',
+				'aria-valuemax': '100',
+				'aria-valuenow': progress_percentage,
+			}
+		);
+
+		if ( '' !== settings.inner_text ) {
+			view.addRenderAttribute( 'progressWrapper', 'aria-valuetext', progress_percentage + '% (' + settings.inner_text + ')' );
+		}
+
+		view.addRenderAttribute( 'inner_text', 'class', 'elementor-progress-text' );
+
+		view.addInlineEditingAttributes( 'inner_text' );
+		#>
+		<# if ( settings.title || settings.second_title ) { #>
+			<div class="deal-stock">
+				<# if ( settings.title ) { #>
+				<{{ title_tag }} {{{ view.getRenderAttributeString( 'title' ) }}}>{{{ settings.title }}}</{{ title_tag }}>
+				<# } #>
+				<# if ( settings.second_title ) { #>
+					<{{ title_tag }} {{{ view.getRenderAttributeString( 'second_title' ) }}}>{{{ settings.second_title }}}</{{ title_tag }}>
+				<# } #>
+			</div>
+		<# } #>
+		<div {{{ view.getRenderAttributeString( 'progressWrapper' ) }}}>
+			<div class="elementor-progress-bar" data-max="{{ progress_percentage }}">
+				<span {{{ view.getRenderAttributeString( 'inner_text' ) }}}>{{{ settings.inner_text }}}</span>
+				<# if ( 'show' === settings.display_percentage ) { #>
+					<span class="elementor-progress-percentage">{{{ progress_percentage }}}%</span>
+				<# } #>
 			</div>
 		</div>
 		<?php
