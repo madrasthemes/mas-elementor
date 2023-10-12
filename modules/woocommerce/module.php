@@ -88,6 +88,8 @@ class Module extends Module_Base {
 			'Product_Stock',
 			'Product_Title',
 			'Product_Add_To_Cart',
+			'Product_Price',
+			'Progress_Bar',
 		);
 	}
 
@@ -144,6 +146,7 @@ class Module extends Module_Base {
 			'Cart_Button_Url',
 			'Cart_Button_Text',
 			'Product_Content',
+			'Product_Sold_Count',
 		);
 
 		$module = Plugin::elementor()->dynamic_tags;
@@ -415,6 +418,7 @@ class Module extends Module_Base {
 
 		add_action( 'elementor/dynamic_tags/register', array( $this, 'register_tags' ) );
 		add_action( 'elementor/frontend/before_register_styles', array( $this, 'register_frontend_styles' ) );
+		add_action( 'wp_enqueue_scripts', array( $this, 'register_frontend_scripts' ), 9999 );
 		add_action( 'elementor/editor/before_enqueue_scripts', array( $this, 'maybe_init_cart' ) );
 
 		// On Editor - Register WooCommerce frontend hooks before the Editor init.
@@ -429,6 +433,22 @@ class Module extends Module_Base {
 		}
 
 		add_filter( 'elementor/widgets/wordpress/widget_args', array( $this, 'woocommerce_wordpress_widget_css_class' ), 10, 2 );
+
+		// Add options on Inventry Tab.
+		add_action( 'woocommerce_product_options_inventory_product_data', array( $this, 'product_options_inventory_product_data' ) );
+	}
+
+	/**
+	 * Register frontend styles.
+	 */
+	public function register_frontend_scripts() {
+		wp_register_script(
+			'mas-progress-script',
+			MAS_ELEMENTOR_ASSETS_URL . 'js/progress/progress.js',
+			array( 'elementor-frontend' ),
+			MAS_ELEMENTOR_VERSION,
+			true
+		);
 	}
 
 	/**
@@ -504,5 +524,24 @@ class Module extends Module_Base {
 			array(),
 			MAS_ELEMENTOR_VERSION
 		);
+	}
+
+	/**
+	 * Add product options in inventory tab of single product data.
+	 */
+	public function product_options_inventory_product_data() {
+		if ( apply_filters( 'mas_elementor_product_options_inventory_product_data', true ) ) {
+			echo '<div class="options_group">';
+				woocommerce_wp_text_input(
+					array(
+						'id'          => '_total_stock_quantity',
+						'label'       => esc_html__( 'Total Stock Quantity', 'mas-elementor' ),
+						'desc_tip'    => 'true',
+						'description' => esc_html__( 'Total Stock Quantity Available. This will be used to calculate prograss bar in onsale element.', 'mas-elementor' ),
+						'type'        => 'text',
+					)
+				);
+			echo '</div>';
+		}
 	}
 }

@@ -56,6 +56,58 @@ trait Pagination_Trait {
 					)
 				);
 
+				$element->add_group_control(
+					\Elementor\Group_Control_Box_Shadow::get_type(),
+					array(
+						'name'           => 'mas_swiper_box_shadow',
+						'label'          => esc_html__( 'Box Shadow', 'mas-elementor' ),
+						'selector'       => '{{WRAPPER}} ' . $args['concat'] . ' .swiper-pagination .swiper-pagination-bullet',
+						'fields_options' => array(
+							'box_shadow_type'     => array( 'default' => 'yes' ),
+							'box_shadow_position' => array(
+								'default' => 'inset',
+							),
+							'box_shadow'          => array(
+								'default' => array(
+									'horizontal' => 0,
+									'vertical'   => 0,
+									'blur'       => 0,
+									'spread'     => 4,
+									'color'      => '#FFFFFF',
+								),
+							),
+						),
+						'condition'      => array(
+							'enable_carousel' => 'yes',
+							'show_pagination' => 'yes',
+							'pagination'      => 'bullets',
+						),
+					)
+				);
+
+				$element->start_controls_tabs(
+					'mas_swiper_pagination_style',
+					array(
+						'condition' => array(
+							'enable_carousel' => 'yes',
+							'show_pagination' => 'yes',
+							'pagination'      => 'bullets',
+						),
+					)
+				);
+
+				$element->start_controls_tab(
+					'mas_swiper_pagination_dots_normal',
+					array(
+						'label'     => esc_html__( 'Normal', 'mas-elementor' ),
+						'condition' => array(
+							'enable_carousel' => 'yes',
+							'show_pagination' => 'yes',
+							'pagination'      => 'bullets',
+						),
+					)
+				);
+
 				$element->add_control(
 					'swiper_dots_width',
 					array(
@@ -110,58 +162,6 @@ trait Pagination_Trait {
 				);
 
 				$element->add_group_control(
-					\Elementor\Group_Control_Box_Shadow::get_type(),
-					array(
-						'name'           => 'mas_swiper_box_shadow',
-						'label'          => esc_html__( 'Box Shadow', 'mas-elementor' ),
-						'selector'       => '{{WRAPPER}} ' . $args['concat'] . ' .swiper-pagination .swiper-pagination-bullet',
-						'fields_options' => array(
-							'box_shadow_type'     => array( 'default' => 'yes' ),
-							'box_shadow_position' => array(
-								'default' => 'inset',
-							),
-							'box_shadow'          => array(
-								'default' => array(
-									'horizontal' => 0,
-									'vertical'   => 0,
-									'blur'       => 0,
-									'spread'     => 4,
-									'color'      => '#FFFFFF',
-								),
-							),
-						),
-						'condition'      => array(
-							'enable_carousel' => 'yes',
-							'show_pagination' => 'yes',
-							'pagination'      => 'bullets',
-						),
-					)
-				);
-
-				$element->start_controls_tabs(
-					'mas_swiper_pagination_style',
-					array(
-						'condition' => array(
-							'enable_carousel' => 'yes',
-							'show_pagination' => 'yes',
-							'pagination'      => 'bullets',
-						),
-					)
-				);
-
-				$element->start_controls_tab(
-					'mas_swiper_pagination_dots_normal',
-					array(
-						'label'     => esc_html__( 'Normal', 'mas-elementor' ),
-						'condition' => array(
-							'enable_carousel' => 'yes',
-							'show_pagination' => 'yes',
-							'pagination'      => 'bullets',
-						),
-					)
-				);
-
-				$element->add_group_control(
 					\Elementor\Group_Control_Border::get_type(),
 					array(
 						'name'           => 'mas_swiper_border',
@@ -184,6 +184,31 @@ trait Pagination_Trait {
 							),
 						),
 						'condition'      => array(
+							'enable_carousel' => 'yes',
+							'show_pagination' => 'yes',
+							'pagination'      => 'bullets',
+						),
+					)
+				);
+
+				$element->add_control(
+					'mas_swiper_border_radius',
+					array(
+						'label'      => __( 'Border Radius', 'mas-elementor' ),
+						'type'       => Controls_Manager::DIMENSIONS,
+						'size_units' => array( 'px', '%' ),
+						'default'    => array(
+							'top'      => '50',
+							'right'    => '50',
+							'bottom'   => '50',
+							'left'     => '50',
+							'unit'     => '%',
+							'isLinked' => false,
+						),
+						'selectors'  => array(
+							'{{WRAPPER}} ' . $args['concat'] . ' .swiper-pagination .swiper-pagination-bullet' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}}',
+						),
+						'condition'  => array(
 							'enable_carousel' => 'yes',
 							'show_pagination' => 'yes',
 							'pagination'      => 'bullets',
@@ -249,6 +274,59 @@ trait Pagination_Trait {
 					)
 				);
 
+				$element->add_control(
+					'swiper_dots_width_active',
+					array(
+						'label'      => esc_html__( 'Width', 'mas-elementor' ),
+						'type'       => Controls_Manager::SLIDER,
+						'size_units' => array( 'px', '%' ),
+						'range'      => array(
+							'%' => array(
+								'max' => 100,
+							),
+						),
+						'default'    => array(
+							'unit' => 'px',
+							'size' => 15,
+						),
+						'selectors'  => array(
+							'{{WRAPPER}} ' . $args['concat'] . ' .swiper-pagination .swiper-pagination-bullet-active' => 'width: {{SIZE}}{{UNIT}}!important;',
+						),
+						'condition'  => array(
+							'enable_carousel' => 'yes',
+							'show_pagination' => 'yes',
+							'pagination'      => 'bullets',
+						),
+
+					)
+				);
+
+				$element->add_control(
+					'swiper_dots_height_active',
+					array(
+						'label'      => esc_html__( 'Dots Height', 'mas-elementor' ),
+						'type'       => Controls_Manager::SLIDER,
+						'size_units' => array( 'px', '%' ),
+						'range'      => array(
+							'px' => array(
+								'max' => 100,
+							),
+						),
+						'default'    => array(
+							'unit' => 'px',
+							'size' => 15,
+						),
+						'selectors'  => array(
+							'{{WRAPPER}} ' . $args['concat'] . ' .swiper-pagination .swiper-pagination-bullet-active' => 'height: {{SIZE}}{{UNIT}}!important;',
+						),
+						'condition'  => array(
+							'enable_carousel' => 'yes',
+							'show_pagination' => 'yes',
+							'pagination'      => 'bullets',
+						),
+					)
+				);
+
 				$element->add_group_control(
 					\Elementor\Group_Control_Border::get_type(),
 					array(
@@ -272,6 +350,31 @@ trait Pagination_Trait {
 							),
 						),
 						'condition'      => array(
+							'enable_carousel' => 'yes',
+							'show_pagination' => 'yes',
+							'pagination'      => 'bullets',
+						),
+					)
+				);
+
+				$element->add_control(
+					'mas_swiper_border_radius_active',
+					array(
+						'label'      => __( 'Border Radius', 'mas-elementor' ),
+						'type'       => Controls_Manager::DIMENSIONS,
+						'size_units' => array( 'px', '%' ),
+						'default'    => array(
+							'top'      => '50',
+							'right'    => '50',
+							'bottom'   => '50',
+							'left'     => '50',
+							'unit'     => '%',
+							'isLinked' => false,
+						),
+						'selectors'  => array(
+							'{{WRAPPER}} ' . $args['concat'] . ' .swiper-pagination .swiper-pagination-bullet-active' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}}',
+						),
+						'condition'  => array(
 							'enable_carousel' => 'yes',
 							'show_pagination' => 'yes',
 							'pagination'      => 'bullets',
@@ -326,31 +429,6 @@ trait Pagination_Trait {
 				$element->end_controls_tab();
 
 				$element->end_controls_tabs();
-
-				$element->add_control(
-					'mas_swiper_border_radius',
-					array(
-						'label'      => __( 'Border Radius', 'mas-elementor' ),
-						'type'       => Controls_Manager::DIMENSIONS,
-						'size_units' => array( 'px', '%' ),
-						'default'    => array(
-							'top'      => '50',
-							'right'    => '50',
-							'bottom'   => '50',
-							'left'     => '50',
-							'unit'     => '%',
-							'isLinked' => false,
-						),
-						'selectors'  => array(
-							'{{WRAPPER}} ' . $args['concat'] . ' .swiper-pagination .swiper-pagination-bullet' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}}',
-						),
-						'condition'  => array(
-							'enable_carousel' => 'yes',
-							'show_pagination' => 'yes',
-							'pagination'      => 'bullets',
-						),
-					)
-				);
 
 				$element->add_control(
 					'dots_pagination_spacing',
