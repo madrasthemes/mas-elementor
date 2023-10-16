@@ -286,10 +286,18 @@ abstract class Base_Products_Renderer extends \WC_Shortcode_Products {
 			$swiper_settings['fadeEffect']['crossFade'] = true;
 		}
 		if ( 'slide' === $settings['carousel_effect'] ) {
+			$grid       = 'yes' === $settings['enable_grid'] && 'yes' !== $settings['loop'] && 'yes' !== $settings['center_slides'];
 			$breakpoint = '1441';
 			$swiper_settings['breakpoints'][ $breakpoint ]['slidesPerView'] = isset( $settings['slides_per_view'] ) ? $settings['slides_per_view'] : 3;
+
+			if ( $grid ) {
+				$swiper_settings['grid']['fill']                               = 'row';
+				$swiper_settings['breakpoints'][ $breakpoint ]['grid']['rows'] = isset( $settings['carousel_rows'] ) ? $settings['carousel_rows'] : 1;
+			}
+
 			foreach ( $active_breakpoint_instances as $active_breakpoint_instance ) {
 				$array_key = 'slides_per_view_' . $active_breakpoint_instance->get_name();
+				$rows_key  = 'carousel_rows_' . $active_breakpoint_instance->get_name();
 				if ( 'mobile' === $active_breakpoint_instance->get_name() ) {
 					$breakpoint = '0';
 				}
@@ -299,9 +307,15 @@ abstract class Base_Products_Renderer extends \WC_Shortcode_Products {
 						$breakpoint = (string) ( $active_breakpoint_instance->get_value() );
 					}
 					$swiper_settings['breakpoints'][ $breakpoint ]['slidesPerView'] = isset( $settings[ $array_key ] ) ? $settings[ $array_key ] : 1;
+					if ( $grid ) {
+						$swiper_settings['breakpoints'][ $breakpoint ]['grid']['rows'] = isset( $settings[ $rows_key ] ) ? $settings[ $rows_key ] : 1;
+					}
 					continue;
 				}
 				$swiper_settings['breakpoints'][ $breakpoint ]['slidesPerView'] = isset( $settings[ $array_key ] ) ? $settings[ $array_key ] : 1;
+				if ( $grid ) {
+					$swiper_settings['breakpoints'][ $breakpoint ]['grid']['rows'] = isset( $settings[ $rows_key ] ) ? $settings[ $rows_key ] : 1;
+				}
 				$breakpoint = (string) $active_breakpoint_instance->get_default_value() + 1;
 				if ( property_exists( $active_breakpoint_instance, 'value' ) ) {
 					$breakpoint = (string) ( $active_breakpoint_instance->get_value() + 1 );
