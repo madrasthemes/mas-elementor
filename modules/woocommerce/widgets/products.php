@@ -133,14 +133,14 @@ class Products extends Products_Base {
 					'post_type' => array(
 						'default' => 'product',
 						'options' => array(
-							'current_query' => __( 'Current Query', 'mas-elementor' ),
-							'product'       => __( 'Latest Products', 'mas-elementor' ),
-							'sale'          => __( 'Sale', 'mas-elementor' ),
-							'featured'      => __( 'Featured', 'mas-elementor' ),
-							'by_id'         => _x( 'Manual Selection', 'Posts Query Control', 'mas-elementor' ),
+							'current_query'    => __( 'Current Query', 'mas-elementor' ),
+							'product'          => __( 'Latest Products', 'mas-elementor' ),
+							'sale'             => __( 'Sale', 'mas-elementor' ),
+							'featured'         => __( 'Featured', 'mas-elementor' ),
+							'by_id'            => _x( 'Manual Selection', 'Posts Query Control', 'mas-elementor' ),
 							'related_products' => esc_html__( 'Related Products', 'mas-elementor' ),
-							'upsells' => esc_html__( 'Upsells', 'mas-elementor' ),
-							'cross_sells' => esc_html__( 'Cross-Sells', 'mas-elementor' ),
+							'upsells'          => esc_html__( 'Upsells', 'mas-elementor' ),
+							'cross_sells'      => esc_html__( 'Cross-Sells', 'mas-elementor' ),
 						),
 					),
 					'orderby'   => array(
@@ -306,12 +306,12 @@ class Products extends Products_Base {
 		$this->add_control(
 			'pag_mid_size',
 			array(
-				'label'       => __( 'Pagination Mid Size', 'mas-elementor' ),
-				'type'        => Controls_Manager::NUMBER,
-				'default'     => 1,
+				'label'     => __( 'Pagination Mid Size', 'mas-elementor' ),
+				'type'      => Controls_Manager::NUMBER,
+				'default'   => 1,
 				'condition' => array(
 					'enable_carousel!' => 'yes',
-					'paginate' => 'yes',
+					'paginate'         => 'yes',
 				),
 			)
 		);
@@ -319,12 +319,12 @@ class Products extends Products_Base {
 		$this->add_control(
 			'pag_end_size',
 			array(
-				'label'       => __( 'Pagination End Size', 'mas-elementor' ),
-				'type'        => Controls_Manager::NUMBER,
-				'default'     => 1,
+				'label'     => __( 'Pagination End Size', 'mas-elementor' ),
+				'type'      => Controls_Manager::NUMBER,
+				'default'   => 1,
 				'condition' => array(
 					'enable_carousel!' => 'yes',
-					'paginate' => 'yes',
+					'paginate'         => 'yes',
 				),
 			)
 		);
@@ -337,7 +337,7 @@ class Products extends Products_Base {
 				'default'   => 'yes',
 				'condition' => array(
 					'enable_carousel!' => 'yes',
-					'paginate' => 'yes',
+					'paginate'         => 'yes',
 				),
 			)
 		);
@@ -612,6 +612,33 @@ class Products extends Products_Base {
 			)
 		);
 
+		$this->add_control(
+			'enable_grid',
+			array(
+				'type'      => Controls_Manager::SWITCHER,
+				'label'     => esc_html__( 'Enable Grid', 'mas-elementor' ),
+				'default'   => 'no',
+				'condition' => array(
+					'enable_carousel' => 'yes',
+					'carousel_effect' => 'slide',
+				),
+			)
+		);
+
+		$carousel_rows = array(
+			'type'               => Controls_Manager::NUMBER,
+			'label'              => esc_html__( 'Rows', 'mas-elementor' ),
+			'min'                => 1,
+			'max'                => 10,
+			'default'            => 1,
+			'condition'          => array(
+				'carousel_effect' => 'slide',
+				'enable_carousel' => 'yes',
+				'enable_grid'     => 'yes',
+			),
+			'frontend_available' => true,
+		);
+
 		// TODO: Once Core 3.4.0 is out, get the active devices using Breakpoints/Manager::get_active_devices_list().
 		$active_breakpoint_instances = Plugin::$instance->breakpoints->get_active_breakpoints();
 		// Devices need to be ordered from largest to smallest.
@@ -662,7 +689,13 @@ class Products extends Products_Base {
 			$space_between[ $active_device . '_default' ]    = 8;
 			$slides_per_view[ $active_device . '_default' ]  = 1;
 			$slides_to_scroll[ $active_device . '_default' ] = 1;
+			$carousel_rows[ $active_device . '_default' ]    = 1;
 		}
+
+		$this->add_responsive_control(
+			'carousel_rows',
+			$carousel_rows
+		);
 
 		$this->add_responsive_control(
 			'slides_per_view',
@@ -705,6 +738,7 @@ class Products extends Products_Base {
 				'condition'          => array(
 					'carousel_effect' => 'slide',
 					'enable_carousel' => 'yes',
+					'enable_grid!'    => 'yes',
 				),
 				'frontend_available' => true,
 			)

@@ -1107,6 +1107,33 @@ abstract class Posts_Base extends Base_Widget {
 			)
 		);
 
+		$this->add_control(
+			'enable_grid',
+			array(
+				'type'      => Controls_Manager::SWITCHER,
+				'label'     => esc_html__( 'Enable Grid', 'mas-elementor' ),
+				'default'   => 'no',
+				'condition' => array(
+					'enable_carousel' => 'yes',
+					'carousel_effect' => 'slide',
+				),
+			)
+		);
+
+		$carousel_rows = array(
+			'type'               => Controls_Manager::NUMBER,
+			'label'              => esc_html__( 'Rows', 'mas-elementor' ),
+			'min'                => 1,
+			'max'                => 10,
+			'default'            => 1,
+			'condition'          => array(
+				'carousel_effect' => 'slide',
+				'enable_carousel' => 'yes',
+				'enable_grid'     => 'yes',
+			),
+			'frontend_available' => true,
+		);
+
 		// TODO: Once Core 3.4.0 is out, get the active devices using Breakpoints/Manager::get_active_devices_list().
 		$active_breakpoint_instances = Plugin::$instance->breakpoints->get_active_breakpoints();
 		// Devices need to be ordered from largest to smallest.
@@ -1158,7 +1185,13 @@ abstract class Posts_Base extends Base_Widget {
 			$space_between[ $active_device . '_default' ]    = 8;
 			$slides_per_view[ $active_device . '_default' ]  = 1;
 			$slides_to_scroll[ $active_device . '_default' ] = 1;
+			$carousel_rows[ $active_device . '_default' ]    = 1;
 		}
+
+		$this->add_responsive_control(
+			'carousel_rows',
+			$carousel_rows
+		);
 
 		$this->add_responsive_control(
 			'slides_per_view',
@@ -1201,6 +1234,7 @@ abstract class Posts_Base extends Base_Widget {
 				'condition'          => array(
 					'carousel_effect' => 'slide',
 					'enable_carousel' => 'yes',
+					'enable_grid!'    => 'yes',
 
 				),
 				'frontend_available' => true,
@@ -1341,6 +1375,7 @@ abstract class Posts_Base extends Base_Widget {
 				'default'            => 'yes',
 				'condition'          => array(
 					'enable_carousel' => 'yes',
+					'enable_grid!'    => 'yes',
 				),
 				'frontend_available' => true,
 			)
@@ -2862,10 +2897,16 @@ abstract class Posts_Base extends Base_Widget {
 			$swiper_settings['fadeEffect']['crossFade'] = true;
 		}
 		if ( 'slide' === $settings['carousel_effect'] ) {
+			$grid       = 'yes' === $settings['enable_grid'] && 'yes' !== $settings['loop'] && 'yes' !== $settings['center_slides'];
 			$breakpoint = '1441';
 			$swiper_settings['breakpoints'][ $breakpoint ]['slidesPerView'] = isset( $settings['slides_per_view'] ) ? $settings['slides_per_view'] : 3;
+			if ( $grid ) {
+				$swiper_settings['grid']['fill']                               = 'row';
+				$swiper_settings['breakpoints'][ $breakpoint ]['grid']['rows'] = isset( $settings['carousel_rows'] ) ? $settings['carousel_rows'] : 1;
+			}
 			foreach ( $active_breakpoint_instances as $active_breakpoint_instance ) {
 				$array_key = 'slides_per_view_' . $active_breakpoint_instance->get_name();
+				$rows_key  = 'carousel_rows_' . $active_breakpoint_instance->get_name();
 				if ( 'mobile' === $active_breakpoint_instance->get_name() ) {
 					$breakpoint = '0';
 				}
@@ -2875,9 +2916,15 @@ abstract class Posts_Base extends Base_Widget {
 						$breakpoint = (string) ( $active_breakpoint_instance->get_value() );
 					}
 					$swiper_settings['breakpoints'][ $breakpoint ]['slidesPerView'] = isset( $settings[ $array_key ] ) ? $settings[ $array_key ] : 1;
+					if ( $grid ) {
+						$swiper_settings['breakpoints'][ $breakpoint ]['grid']['rows'] = isset( $settings[ $rows_key ] ) ? $settings[ $rows_key ] : 1;
+					}
 					continue;
 				}
 				$swiper_settings['breakpoints'][ $breakpoint ]['slidesPerView'] = isset( $settings[ $array_key ] ) ? $settings[ $array_key ] : 1;
+				if ( $grid ) {
+					$swiper_settings['breakpoints'][ $breakpoint ]['grid']['rows'] = isset( $settings[ $rows_key ] ) ? $settings[ $rows_key ] : 1;
+				}
 				$breakpoint = (string) $active_breakpoint_instance->get_default_value() + 1;
 				if ( property_exists( $active_breakpoint_instance, 'value' ) ) {
 					$breakpoint = (string) ( $active_breakpoint_instance->get_value() + 1 );
