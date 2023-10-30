@@ -387,6 +387,18 @@ class Product_Categories extends Base_Widget {
 			)
 		);
 
+		$this->add_responsive_control(
+			'categories_padding',
+			array(
+				'label'      => esc_html__( 'Padding', 'mas-elementor' ),
+				'type'       => Controls_Manager::DIMENSIONS,
+				'size_units' => array( 'px', '%', 'em', 'rem', 'custom' ),
+				'selectors'  => array(
+					'{{WRAPPER}} .cat-wrapper' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}}',
+				),
+			)
+		);
+
 		$this->flex_controls( '', '{{WRAPPER}} .mas-categories-wrapper' );
 
 		$this->end_controls_section();
@@ -640,63 +652,62 @@ class Product_Categories extends Base_Widget {
 		);
 		$all_categories = get_terms( $args );
 		foreach ( $all_categories as $cat ) {
-			if ( 0 === $cat->category_parent ) {
+			if ( 0 === $cat->parent ) {
 
 				?>
 			<div class="cat-wrapper">
-			<div class="img-cat-wrap">
-				<?php
-				$category_name      = $cat->name;
-				$category_thumbnail = get_term_meta( $cat->term_id, 'thumbnail_id', true );
-				$image              = wp_get_attachment_url( $category_thumbnail );
-				$image              = wp_get_attachment_image( $category_thumbnail );
-				// $image_html = '<img class="" src="'.$image.'" alt="'.$category_name.'">';
-				if ( $image ) {
-					  echo wp_kses_post( '<a href="' . get_term_link( $cat->slug, 'product_cat' ) . '">' . $image . '</a>' );
-				}
-				$category_id = $cat->term_id;
-				?>
-			  <div class="categories">
-				<?php
-				echo wp_kses_post( '<a href="' . get_term_link( $cat->slug, 'product_cat' ) . '">' . $cat->name . '</a>' );
-
-				$args2    = array(
-					'taxonomy'   => $taxonomy,
-					'child_of'   => 0,
-					'parent'     => $category_id,
-					'orderby'    => $orderby,
-					'hide_empty' => $empty,
-				);
-				$sub_cats = get_categories( $args2 );
-				if ( $sub_cats ) {
-					?>
-				<div class="sub-categories">
+				<div class="img-cat-wrap">
 					<?php
-					foreach ( $sub_cats as $sub_category ) {
-						?>
-					  <div class="sub-category"><?php echo wp_kses_post( '<a href="' . get_term_link( $sub_category->slug, 'product_cat' ) . '">' . $sub_category->name . '</a>' ); ?></div>
-											<?php
+					$category_name      = $cat->name;
+					$category_thumbnail = get_term_meta( $cat->term_id, 'thumbnail_id', true );
+					$image              = wp_get_attachment_image( $category_thumbnail );
+					if ( $image ) {
+						echo wp_kses_post( '<a href="' . get_term_link( $cat->slug, 'product_cat' ) . '">' . $image . '</a>' );
 					}
+					$category_id = $cat->term_id;
 					?>
-				  </div>
-					<?php
-				}
-				?>
-			  </div></div>
+					<div class="categories">
+						<?php
+						echo wp_kses_post( '<a href="' . get_term_link( $cat->slug, 'product_cat' ) . '">' . $cat->name . '</a>' );
+
+						$args2    = array(
+							'taxonomy'   => $taxonomy,
+							'child_of'   => 0,
+							'parent'     => $category_id,
+							'orderby'    => $orderby,
+							'hide_empty' => $empty,
+						);
+						$sub_cats = get_categories( $args2 );
+						if ( $sub_cats ) {
+							?>
+						<div class="sub-categories">
+							<?php
+							foreach ( $sub_cats as $sub_category ) {
+								?>
+								<div class="sub-category"><?php echo wp_kses_post( '<a href="' . get_term_link( $sub_category->slug, 'product_cat' ) . '">' . $sub_category->name . '</a>' ); ?></div>
+								<?php
+							}
+							?>
+						</div>
+							<?php
+						}
+						?>
+					</div>
+				</div>
 				<?php
 
 				if ( ! empty( $settings['see_more'] ) ) {
 					?>
 				<div class="see-all-wrapper">
 					<?php
-							   echo wp_kses_post( '<a class="see-all" href="' . get_term_link( $cat->slug, 'product_cat' ) . '">' . $settings['see_more'] . '</a>' );
+						echo wp_kses_post( '<a class="see-all" href="' . get_term_link( $cat->slug, 'product_cat' ) . '">' . $settings['see_more'] . '</a>' );
 					?>
 				</div>
 					<?php
 				}
 
 				?>
-			  </div>
+			</div>
 				<?php
 			}
 		}
