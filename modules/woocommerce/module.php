@@ -90,6 +90,7 @@ class Module extends Module_Base {
 			'Product_Add_To_Cart',
 			'Product_Price',
 			'Progress_Bar',
+			'Product_Categories',
 		);
 	}
 
