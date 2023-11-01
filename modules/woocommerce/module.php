@@ -91,6 +91,7 @@ class Module extends Module_Base {
 			'Product_Price',
 			'Progress_Bar',
 			'Product_Categories',
+			'Product_Categories_Dropdown',
 		);
 	}
 
@@ -446,6 +447,14 @@ class Module extends Module_Base {
 		wp_register_script(
 			'mas-progress-script',
 			MAS_ELEMENTOR_ASSETS_URL . 'js/progress/progress.js',
+			array( 'elementor-frontend' ),
+			MAS_ELEMENTOR_VERSION,
+			true
+		);
+
+		wp_register_script(
+			'mas-accordion-script',
+			MAS_ELEMENTOR_ASSETS_URL . 'js/tabs/base-tabs.js',
 			array( 'elementor-frontend' ),
 			MAS_ELEMENTOR_VERSION,
 			true
