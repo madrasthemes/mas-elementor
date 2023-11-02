@@ -123,8 +123,120 @@ class Product_Categories_Dropdown extends Widget_Accordion {
 
 	/**
 	 * Register controls for this widget.
+	 *
+	 * @param string $wrapper wrapper selectors.
+	 */
+	protected function position_style_controls( $wrapper = '{{WRAPPER}} .elementor-tab-content' ) {
+		$this->add_control(
+			'content_position',
+			array(
+				'label'              => esc_html__( 'Position', 'mas-elementor' ),
+				'type'               => Controls_Manager::SELECT,
+				'default'            => '',
+				'options'            => array(
+					''         => esc_html__( 'Default', 'mas-elementor' ),
+					'absolute' => esc_html__( 'Absolute', 'mas-elementor' ),
+					'fixed'    => esc_html__( 'Fixed', 'mas-elementor' ),
+				),
+				'frontend_available' => true,
+				'separator'          => 'before',
+			)
+		);
+
+		$this->add_control(
+			'content_position_width',
+			array(
+				'label'              => esc_html__( 'Position', 'mas-elementor' ),
+				'type'               => Controls_Manager::SELECT,
+				'default'            => 'inherit',
+				'options'            => array(
+					'inherit' => esc_html__( 'Inherit', 'mas-elementor' ),
+					'auto'    => esc_html__( 'Auto', 'mas-elementor' ),
+					'100%'    => esc_html__( '100', 'mas-elementor' ),
+				),
+				'frontend_available' => true,
+				'separator'          => 'before',
+				'condition'          => array(
+					'content_position' => 'absolute',
+				),
+			)
+		);
+
+		$this->add_responsive_control(
+			'_z_index',
+			array(
+				'label'     => esc_html__( 'Z-Index', 'mas-elementor' ),
+				'type'      => Controls_Manager::NUMBER,
+				'selectors' => array(
+					$wrapper => 'z-index: {{VALUE}};',
+				),
+			)
+		);
+	}
+
+	/**
+	 * Register controls for this widget.
 	 */
 	protected function add_subcategories_controls() {
+		$this->start_controls_section(
+			'section_content_style',
+			array(
+				'label' => esc_html__( 'Content', 'mas-elementor' ),
+				'tab'   => Controls_Manager::TAB_STYLE,
+			)
+		);
+			$this->add_control(
+				'content_sub_background_color',
+				array(
+					'label'     => esc_html__( 'Background', 'mas-elementor' ),
+					'type'      => Controls_Manager::COLOR,
+					'selectors' => array(
+						'{{WRAPPER}} .elementor-tab-content' => 'background-color: {{VALUE}};',
+					),
+				)
+			);
+
+			$this->add_group_control(
+				Group_Control_Border::get_type(),
+				array(
+					'name'           => 'accordion__content_border',
+					'selector'       => '{{WRAPPER}} .elementor-accordion .elementor-tab-content',
+					'fields_options' => array(
+						'border' => array(
+							'default' => 'none',
+						),
+					),
+				)
+			);
+
+			$this->add_responsive_control(
+				'content_border_radius',
+				array(
+					'label'      => esc_html__( 'Border Radius', 'mas-elementor' ),
+					'type'       => Controls_Manager::DIMENSIONS,
+					'size_units' => array( 'px', '%', 'em', 'rem', 'custom' ),
+					'selectors'  => array(
+						'{{WRAPPER}} .elementor-accordion .elementor-tab-content' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}}',
+					),
+				)
+			);
+
+			$this->add_responsive_control(
+				'content_sub_padding',
+				array(
+					'label'      => esc_html__( 'Padding', 'mas-elementor' ),
+					'type'       => Controls_Manager::DIMENSIONS,
+					'size_units' => array( 'px', '%', 'em', 'rem', 'vw', 'custom' ),
+					'selectors'  => array(
+						'{{WRAPPER}} .elementor-tab-content' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					),
+				)
+			);
+
+			$this->position_style_controls();
+
+		$this->end_controls_section();
+
 		$this->start_controls_section(
 			'section_sub_cats_style',
 			array(
@@ -196,13 +308,6 @@ class Product_Categories_Dropdown extends Widget_Accordion {
 	 */
 	protected function add_images_controls() {
 
-		$this->start_controls_section(
-			'section_image_style',
-			array(
-				'label' => esc_html__( 'Image', 'mas-elementor' ),
-				'tab'   => Controls_Manager::TAB_STYLE,
-			)
-		);
 		$this->add_responsive_control(
 			'image_width',
 			array(
@@ -269,8 +374,6 @@ class Product_Categories_Dropdown extends Widget_Accordion {
 			)
 		);
 
-		$this->end_controls_section();
-
 	}
 
 	/**
@@ -281,8 +384,12 @@ class Product_Categories_Dropdown extends Widget_Accordion {
 		$this->remove_control( 'border_width' );
 		$this->remove_control( 'title_background' );
 		$this->remove_control( 'icon_align' );
+		$this->remove_control( 'faq_schema' );
+		$this->remove_control( 'title_html_tag' );
+		$this->remove_control( 'icon_space' );
 
-		$this->add_images_controls();
+		$this->remove_control( 'section_toggle_style_content' );
+
 		$this->add_subcategories_controls();
 
 		$this->start_injection(
@@ -381,11 +488,25 @@ class Product_Categories_Dropdown extends Widget_Accordion {
 		);
 
 		$this->add_control(
-			'see_more',
+			'show_content_no_subs',
 			array(
-				'label'   => esc_html__( 'See More', 'mas-elementor' ),
-				'type'    => Controls_Manager::TEXT,
-				'default' => 'See More',
+				'label'     => esc_html__( 'No Sub Categories Dropdown', 'mas-elementor' ),
+				'type'      => Controls_Manager::SWITCHER,
+				'default'   => 'yes',
+				'label_on'  => 'Hide',
+				'label_off' => 'Show',
+			)
+		);
+
+		$this->add_control(
+			'no_sub_categories_text',
+			array(
+				'label'     => esc_html__( 'No Subs Text', 'mas-elementor' ),
+				'type'      => Controls_Manager::TEXT,
+				'default'   => 'No Sub Categories',
+				'condition' => array(
+					'show_content_no_subs' => 'yes',
+				),
 			)
 		);
 
@@ -448,14 +569,7 @@ class Product_Categories_Dropdown extends Widget_Accordion {
 			)
 		);
 
-		$this->add_control(
-			'heading_image_style',
-			array(
-				'label'     => esc_html__( 'Image', 'mas-elementor' ),
-				'type'      => Controls_Manager::HEADING,
-				'separator' => 'before',
-			)
-		);
+		$this->add_images_controls();
 
 		$this->add_group_control(
 			Group_Control_Border::get_type(),
@@ -484,145 +598,7 @@ class Product_Categories_Dropdown extends Widget_Accordion {
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', '%', 'em', 'rem', 'custom' ),
 				'selectors'  => array(
-					'{{WRAPPER}} .img-cat-wrap img' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}}',
-				),
-			)
-		);
-
-		$this->add_control(
-			'heading_title_style',
-			array(
-				'label'     => esc_html__( 'Category', 'mas-elementor' ),
-				'type'      => Controls_Manager::HEADING,
-				'separator' => 'before',
-			)
-		);
-
-		$this->add_control(
-			'title__color',
-			array(
-				'label'     => esc_html__( 'Category Color', 'mas-elementor' ),
-				'type'      => Controls_Manager::COLOR,
-				'global'    => array(
-					'default' => Global_Colors::COLOR_PRIMARY,
-				),
-				'selectors' => array(
-					'{{WRAPPER}} .categories > a' => 'color: {{VALUE}}',
-				),
-			)
-		);
-
-		$this->add_group_control(
-			Group_Control_Typography::get_type(),
-			array(
-				'name'     => 'title__typography',
-				'global'   => array(
-					'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
-				),
-				'selector' => '{{WRAPPER}} .categories > a',
-			)
-		);
-
-		$this->add_control(
-			'heading_sub_cat_style',
-			array(
-				'label'     => esc_html__( 'Sub Category', 'mas-elementor' ),
-				'type'      => Controls_Manager::HEADING,
-				'separator' => 'before',
-			)
-		);
-
-		$this->add_control(
-			'sub_cat_color',
-			array(
-				'label'     => esc_html__( 'Category Color', 'mas-elementor' ),
-				'type'      => Controls_Manager::COLOR,
-				'global'    => array(
-					'default' => Global_Colors::COLOR_PRIMARY,
-				),
-				'selectors' => array(
-					'{{WRAPPER}} .sub-categories .sub-category a' => 'color: {{VALUE}}',
-				),
-			)
-		);
-
-		$this->add_group_control(
-			Group_Control_Typography::get_type(),
-			array(
-				'name'     => 'sub_cat_typography',
-				'global'   => array(
-					'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
-				),
-				'selector' => '{{WRAPPER}} .sub-categories .sub-category, {{WRAPPER}} .sub-categories .sub-category a',
-			)
-		);
-
-		$this->end_controls_section();
-
-		$this->start_controls_section(
-			'section_categories_see_all_style',
-			array(
-				'label' => esc_html__( 'See all', 'mas-elementor' ),
-				'tab'   => Controls_Manager::TAB_STYLE,
-			)
-		);
-
-		$this->add_control(
-			'heading_see_all_style',
-			array(
-				'label'     => esc_html__( 'See All', 'mas-elementor' ),
-				'type'      => Controls_Manager::HEADING,
-				'separator' => 'before',
-			)
-		);
-
-		$this->add_control(
-			'see_all_color',
-			array(
-				'label'     => esc_html__( 'See All Color', 'mas-elementor' ),
-				'type'      => Controls_Manager::COLOR,
-				'global'    => array(
-					'default' => Global_Colors::COLOR_PRIMARY,
-				),
-				'selectors' => array(
-					'{{WRAPPER}} .see-all' => 'color: {{VALUE}}',
-				),
-			)
-		);
-
-		$this->add_group_control(
-			Group_Control_Typography::get_type(),
-			array(
-				'name'     => 'see_all_typography',
-				'global'   => array(
-					'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
-				),
-				'selector' => '{{WRAPPER}} .see-all',
-			)
-		);
-
-		$this->add_responsive_control(
-			'see_all_align',
-			array(
-				'label'     => esc_html__( 'See All Alignment', 'mas-elementor' ),
-				'type'      => Controls_Manager::CHOOSE,
-				'default'   => '',
-				'options'   => array(
-					'left'   => array(
-						'title' => esc_html__( 'Left', 'mas-elementor' ),
-						'icon'  => 'eicon-text-align-left',
-					),
-					'center' => array(
-						'title' => esc_html__( 'Center', 'mas-elementor' ),
-						'icon'  => 'eicon-text-align-center',
-					),
-					'right'  => array(
-						'title' => esc_html__( 'Right', 'mas-elementor' ),
-						'icon'  => 'eicon-text-align-right',
-					),
-				),
-				'selectors' => array(
-					'{{WRAPPER}} .see-all-wrapper' => 'text-align: {{VALUE}}',
+					'{{WRAPPER}} .cat-image img' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}}',
 				),
 			)
 		);
@@ -656,13 +632,13 @@ class Product_Categories_Dropdown extends Widget_Accordion {
 					),
 				),
 				'default'        => array(
-					'size' => 500,
+					'size' => 30,
 				),
 				'tablet_default' => array(
-					'size' => 500,
+					'size' => 40,
 				),
 				'mobile_default' => array(
-					'size' => 500,
+					'size' => 100,
 				),
 				'selectors'      => array(
 					'{{WRAPPER}} .elementor-accordion-item' => 'width: {{SIZE}}{{UNIT}};',
@@ -690,12 +666,15 @@ class Product_Categories_Dropdown extends Widget_Accordion {
 				),
 				'default'        => array(
 					'size' => 100,
+					'unit' => '%',
 				),
 				'tablet_default' => array(
 					'size' => 100,
+					'unit' => '%',
 				),
 				'mobile_default' => array(
 					'size' => 100,
+					'unit' => '%',
 				),
 				'selectors'      => array(
 					'{{WRAPPER}} .elementor-accordion-item' => 'height: {{SIZE}}{{UNIT}};',
@@ -995,7 +974,7 @@ class Product_Categories_Dropdown extends Widget_Accordion {
 
 				if ( 0 === $cat->parent ) {
 
-					$child_categories = get_term_children( $cat->term_id, 'product_cat' );
+					$child_categories = get_term_children( $cat->term_id, $taxonomy );
 
 					if ( $tab_count === (bool) $settings['number'] ) {
 						break;
@@ -1017,6 +996,9 @@ class Product_Categories_Dropdown extends Widget_Accordion {
 						)
 					);
 
+					$position  = ! empty( $settings['content_position'] ) ? 'position:' . $settings['content_position'] . ';' : 'position:relative;';
+					$pos_width = 'width:' . $settings['content_position_width'] . ';';
+
 					$this->add_render_attribute(
 						$tab_content_setting_key,
 						array(
@@ -1025,6 +1007,7 @@ class Product_Categories_Dropdown extends Widget_Accordion {
 							'data-tab'        => $tab_count,
 							'role'            => 'region',
 							'aria-labelledby' => 'elementor-tab-title-' . $id_int . $tab_count,
+							'style'           => $position . $pos_width,
 						)
 					);
 
@@ -1033,7 +1016,7 @@ class Product_Categories_Dropdown extends Widget_Accordion {
 						<div class="elementor-accordion-item mas-elementor-accordion-item">
 							<div class="cat-img-icon">
 								<div class="cat-image">
-									<a href="<?php echo esc_url( get_term_link( $cat->slug, 'product_cat' ) ); ?>" class="elementor-accordion-title" tabindex="0">
+									<a href="<?php echo esc_url( get_term_link( $cat->slug, $taxonomy ) ); ?>" class="elementor-accordion-title" tabindex="0">
 														<?php
 														echo esc_html( $cat->name );
 														?>
@@ -1048,12 +1031,12 @@ class Product_Categories_Dropdown extends Widget_Accordion {
 									}
 
 									if ( $image ) {
-										echo wp_kses_post( '<a href="' . get_term_link( $cat->slug, 'product_cat' ) . '">' . $image . '</a>' );
+										echo wp_kses_post( '<a href="' . get_term_link( $cat->slug, $taxonomy ) . '">' . $image . '</a>' );
 									}
 									?>
 								</div>
-								<<?php Utils::print_validated_html_tag( $settings['title_html_tag'] ); ?> <?php $this->print_render_attribute_string( $tab_title_setting_key ); ?>>
-									<?php if ( $has_icon && ! empty( $child_categories ) ) : ?>
+								<div <?php $this->print_render_attribute_string( $tab_title_setting_key ); ?>>
+									<?php if ( $has_icon ) : ?>
 										<span class="elementor-accordion-icon" aria-hidden="true">
 										<?php
 										if ( $is_new || $migrated ) {
@@ -1066,7 +1049,7 @@ class Product_Categories_Dropdown extends Widget_Accordion {
 										<?php } ?>
 										</span>
 									<?php endif; ?>
-								</<?php Utils::print_validated_html_tag( $settings['title_html_tag'] ); ?>>
+								</div>
 							</div>
 							<?php
 							$category_id = $cat->term_id;
@@ -1086,13 +1069,24 @@ class Product_Categories_Dropdown extends Widget_Accordion {
 								<?php
 								foreach ( $sub_cats as $sub_category ) {
 									?>
-										<div class="sub-category"><?php echo wp_kses_post( '<a href="' . get_term_link( $sub_category->slug, 'product_cat' ) . '">' . $sub_category->name . '</a>' ); ?></div>
+										<div class="sub-category"><?php echo wp_kses_post( '<a href="' . get_term_link( $sub_category->slug, $taxonomy ) . '">' . $sub_category->name . '</a>' ); ?></div>
 										<?php
 								}
 								?>
 								</div>
 							</div>
 								<?php
+							} else {
+								if ( 'yes' === $settings['show_content_no_subs'] && ! empty( $settings['no_sub_categories_text'] ) ) {
+									?>
+								<div <?php $this->print_render_attribute_string( $tab_content_setting_key ); ?>>
+									<div class="sub-categories">
+											<div class="sub-category">
+												<?php echo wp_kses_post( '<a href="' . get_term_link( $cat->slug, $taxonomy ) . '">' . $settings['no_sub_categories_text'] . '</a>' ); ?></div>
+																				</div>
+								</div>
+									<?php
+								}
 							}
 							?>
 						</div>

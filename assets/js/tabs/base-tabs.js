@@ -188,7 +188,7 @@ class baseTabs extends elementorModules.frontend.handlers.Base {
 	onInit( ...args ) {
 		super.onInit( ...args );
 
-		this.activateDefaultTab();
+		// this.activateDefaultTab();
 	}
 
 	onEditSettingsChange( propertyName ) {
