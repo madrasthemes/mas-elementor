@@ -211,6 +211,14 @@ class Plugin {
 			MAS_ELEMENTOR_VERSION,
 			true
 		);
+
+		wp_enqueue_script(
+			'mas-collapse-script',
+			MAS_ELEMENTOR_ASSETS_URL . 'js/tabs/mas-button-toggle.js',
+			array(),
+			MAS_ELEMENTOR_VERSION,
+			true
+		);
 	}
 
 	/**
