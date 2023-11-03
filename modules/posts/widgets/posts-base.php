@@ -94,7 +94,80 @@ abstract class Posts_Base extends Base_Widget {
 		$this->register_carousel_attributes_controls();
 		$this->register_no_post_found_controls();
 		$this->register_carousel_attributes_style_controls();
+		$this->register_loop_posts_style_controls();
 	}
+
+	/**
+	 * Register loop posts style controls.
+	 */
+	protected function register_loop_posts_style_controls() {
+		$this->start_controls_section(
+			'section_mas_post_style',
+			array(
+				'label' => __( 'Posts', 'mas-elementor' ),
+				'tab'   => Controls_Manager::TAB_STYLE,
+			)
+		);
+
+		$this->add_responsive_control(
+			'mas_post_grid_margin',
+			array(
+				'label'      => esc_html__( 'Grid Margin', 'mas-elementor' ),
+				'type'       => Controls_Manager::DIMENSIONS,
+				'size_units' => array( 'px', 'em', '%', 'rem' ),
+				'selectors'  => array(
+					'{{WRAPPER}} .mas-posts.mas-grid' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				),
+			)
+		);
+
+		$this->add_responsive_control(
+			'posts_gap',
+			array(
+				'label'      => __( 'Gap', 'mas-elementor' ),
+				'type'       => Controls_Manager::SLIDER,
+				'size_units' => array( 'px', '%', 'em' ),
+				'default'    => array(
+					'size' => 13,
+				),
+				'range'      => array(
+					'px' => array(
+						'min' => 0,
+						'max' => 200,
+					),
+				),
+				'selectors'  => array(
+					'{{WRAPPER}} .mas-posts.mas-grid' => 'gap: {{SIZE}}{{UNIT}}',
+				),
+			)
+		);
+
+		$this->add_responsive_control(
+			'loop_post_height',
+			array(
+				'label'      => __( 'Post Height', 'mas-elementor' ),
+				'type'       => Controls_Manager::SLIDER,
+				'size_units' => array( 'px', '%', 'em', 'rem', 'vh', 'custom' ),
+				'default'    => array(
+					'size' => 100,
+					'unit' => '%',
+				),
+				'range'      => array(
+					'px' => array(
+						'min' => 0,
+						'max' => 200,
+					),
+				),
+				'selectors'  => array(
+					'{{WRAPPER}} .mas-posts,{{WRAPPER}} [data-elementor-type="mas-post"]' => 'height: {{SIZE}}{{UNIT}} !important',
+				),
+			)
+		);
+
+		$this->end_controls_section();
+	}
+
+
 
 	/**
 	 * Render

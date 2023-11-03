@@ -104,6 +104,19 @@ class Product_Price extends Base_Widget {
 			)
 		);
 
+		$this->add_responsive_control(
+			'mas_price_margin',
+			array(
+				'label'      => esc_html__( 'Price Margin', 'mas-elementor' ),
+				'description' => esc_html__( 'Used for margin in p tag', 'mas-elementor' ),
+				'type'       => Controls_Manager::DIMENSIONS,
+				'size_units' => array( 'px', 'em', '%', 'rem' ),
+				'selectors'  => array(
+					'{{WRAPPER}} p.price' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				),
+			)
+		);
+
 		$this->add_control(
 			'price_color',
 			array(
