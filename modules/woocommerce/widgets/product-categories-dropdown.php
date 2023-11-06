@@ -508,13 +508,29 @@ class Product_Categories_Dropdown extends Widget_Accordion {
 		);
 
 		$this->add_control(
-			'show_content_no_subs',
+			'show_icons_no_subs',
 			array(
-				'label'     => esc_html__( 'No Sub Categories Dropdown', 'mas-elementor' ),
+				'label'     => esc_html__( 'Show Icons for No Subs', 'mas-elementor' ),
 				'type'      => Controls_Manager::SWITCHER,
 				'default'   => 'yes',
 				'label_on'  => 'Hide',
 				'label_off' => 'Show',
+				'description' => esc_html__( 'Show Dropdown Icons for categories with no sub-categories', 'mas-elementor' ),
+			)
+		);
+
+		$this->add_control(
+			'show_content_no_subs',
+			array(
+				'label'     => esc_html__( 'No Sub Categories Dropdown', 'mas-elementor' ),
+				'type'      => Controls_Manager::SWITCHER,
+				'default'   => 'no',
+				'label_on'  => 'Hide',
+				'label_off' => 'Show',
+				'description' => esc_html__( 'Show Dropdown Content for categories with no sub-categories', 'mas-elementor' ),
+				'condition' => array(
+					'show_icons_no_subs' => 'yes',
+				),
 			)
 		);
 
@@ -526,6 +542,7 @@ class Product_Categories_Dropdown extends Widget_Accordion {
 				'default'   => 'No Sub Categories',
 				'condition' => array(
 					'show_content_no_subs' => 'yes',
+					'show_icons_no_subs' => 'yes',
 				),
 			)
 		);
@@ -1056,8 +1073,14 @@ class Product_Categories_Dropdown extends Widget_Accordion {
 									if ( $image ) {
 										echo wp_kses_post( '<a href="' . get_term_link( $cat->slug, $taxonomy ) . '">' . $image . '</a>' );
 									}
+									if ( empty( $child_categories ) ) {
+										$show_no_subs_icon = 'yes' === $settings['show_icons_no_subs'];
+									} else {
+										$show_no_subs_icon = true;
+									}
 									?>
 								</div>
+								<?php if ( $show_no_subs_icon ) : ?>
 								<div <?php $this->print_render_attribute_string( $tab_title_setting_key ); ?>>
 									<?php if ( $has_icon ) : ?>
 										<span class="elementor-accordion-icon" aria-hidden="true">
@@ -1073,6 +1096,7 @@ class Product_Categories_Dropdown extends Widget_Accordion {
 										</span>
 									<?php endif; ?>
 								</div>
+								<?php endif; ?>
 							</div>
 							<?php
 							$category_id = $cat->term_id;
