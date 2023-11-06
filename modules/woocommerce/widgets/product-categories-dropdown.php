@@ -394,6 +394,26 @@ class Product_Categories_Dropdown extends Widget_Accordion {
 
 		$this->start_injection(
 			array(
+				'of' => 'tab_active_color',
+				'at' => 'before',
+			)
+		);
+
+		$this->add_control(
+			'tab_hover_color',
+			array(
+				'label' => esc_html__( 'Hover Color', 'mas-elementor' ),
+				'type' => Controls_Manager::COLOR,
+				'selectors' => array(
+					'{{WRAPPER}} .elementor-accordion-title:hover' => 'color: {{VALUE}};',
+				),
+			)
+		);
+
+		$this->end_injection();
+
+		$this->start_injection(
+			array(
 				'of' => 'border_color',
 				'at' => 'before',
 			)
@@ -633,12 +653,15 @@ class Product_Categories_Dropdown extends Widget_Accordion {
 				),
 				'default'        => array(
 					'size' => 30,
+					'unit' => '%',
 				),
 				'tablet_default' => array(
 					'size' => 40,
+					'unit' => '%',
 				),
 				'mobile_default' => array(
 					'size' => 100,
+					'unit' => '%',
 				),
 				'selectors'      => array(
 					'{{WRAPPER}} .elementor-accordion-item' => 'width: {{SIZE}}{{UNIT}};',
@@ -976,7 +999,7 @@ class Product_Categories_Dropdown extends Widget_Accordion {
 
 					$child_categories = get_term_children( $cat->term_id, $taxonomy );
 
-					if ( $tab_count === (bool) $settings['number'] ) {
+					if ( $tab_count === $settings['number'] ) {
 						break;
 					}
 
