@@ -127,35 +127,50 @@ class Product_Categories_Dropdown extends Widget_Accordion {
 	 * @param string $wrapper wrapper selectors.
 	 */
 	protected function position_style_controls( $wrapper = '{{WRAPPER}} .elementor-tab-content' ) {
-		$this->add_control(
+
+		$this->add_responsive_control(
 			'content_position',
 			array(
-				'label'              => esc_html__( 'Position', 'mas-elementor' ),
-				'type'               => Controls_Manager::SELECT,
-				'default'            => '',
+				'label' => esc_html__( 'Position', 'mas-elementor' ),
+				'type' => Controls_Manager::SELECT,
+				'default' => 'relative',
 				'options'            => array(
-					''         => esc_html__( 'Default', 'mas-elementor' ),
+					'relative'         => esc_html__( 'Default', 'mas-elementor' ),
 					'absolute' => esc_html__( 'Absolute', 'mas-elementor' ),
 					'fixed'    => esc_html__( 'Fixed', 'mas-elementor' ),
 				),
-				'frontend_available' => true,
+				'selectors' => array(
+					'{{WRAPPER}} .elementor-tab-content' => 'position: {{VALUE}};',
+				),
 				'separator'          => 'before',
 			)
 		);
 
-		$this->add_control(
+		$this->add_responsive_control(
 			'content_position_width',
 			array(
-				'label'              => esc_html__( 'Position', 'mas-elementor' ),
-				'type'               => Controls_Manager::SELECT,
-				'default'            => 'inherit',
-				'options'            => array(
-					'inherit' => esc_html__( 'Inherit', 'mas-elementor' ),
-					'auto'    => esc_html__( 'Auto', 'mas-elementor' ),
-					'100%'    => esc_html__( '100', 'mas-elementor' ),
+				'label'          => esc_html__( 'Width', 'mas-elementor' ),
+				'type'           => Controls_Manager::SLIDER,
+				'size_units'     => array( 'px', '%', 'em', 'rem', 'vw', 'custom' ),
+				'range'          => array(
+					'%'  => array(
+						'min'  => 0,
+						'max'  => 100,
+						'step' => 1,
+					),
+					'px' => array(
+						'min'  => 0,
+						'max'  => 5000,
+						'step' => 1,
+					),
 				),
-				'frontend_available' => true,
-				'separator'          => 'before',
+				'default'        => array(
+					'size' => 100,
+					'unit' => '%',
+				),
+				'selectors'      => array(
+					'{{WRAPPER}} .elementor-tab-content' => 'width: {{SIZE}}{{UNIT}};',
+				),
 				'condition'          => array(
 					'content_position' => 'absolute',
 				),
@@ -1036,9 +1051,6 @@ class Product_Categories_Dropdown extends Widget_Accordion {
 						)
 					);
 
-					$position  = ! empty( $settings['content_position'] ) ? 'position:' . $settings['content_position'] . ';' : 'position:relative;';
-					$pos_width = 'width:' . $settings['content_position_width'] . ';';
-
 					$this->add_render_attribute(
 						$tab_content_setting_key,
 						array(
@@ -1047,7 +1059,6 @@ class Product_Categories_Dropdown extends Widget_Accordion {
 							'data-tab'        => $tab_count,
 							'role'            => 'region',
 							'aria-labelledby' => 'elementor-tab-title-' . $id_int . $tab_count,
-							'style'           => $position . $pos_width,
 						)
 					);
 
