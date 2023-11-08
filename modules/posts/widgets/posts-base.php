@@ -3072,6 +3072,7 @@ abstract class Posts_Base extends Base_Widget {
 
 		if ( 'yes' === $settings['center_slides'] ) {
 			$swiper_settings['centeredSlides'] = true;
+			$swiper_settings['centeredSlidesBounds'] = true;
 		}
 
 		if ( $settings['loop'] ) {
