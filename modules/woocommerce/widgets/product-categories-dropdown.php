@@ -127,35 +127,50 @@ class Product_Categories_Dropdown extends Widget_Accordion {
 	 * @param string $wrapper wrapper selectors.
 	 */
 	protected function position_style_controls( $wrapper = '{{WRAPPER}} .elementor-tab-content' ) {
-		$this->add_control(
+
+		$this->add_responsive_control(
 			'content_position',
 			array(
-				'label'              => esc_html__( 'Position', 'mas-elementor' ),
-				'type'               => Controls_Manager::SELECT,
-				'default'            => '',
+				'label' => esc_html__( 'Position', 'mas-elementor' ),
+				'type' => Controls_Manager::SELECT,
+				'default' => 'relative',
 				'options'            => array(
-					''         => esc_html__( 'Default', 'mas-elementor' ),
+					'relative'         => esc_html__( 'Default', 'mas-elementor' ),
 					'absolute' => esc_html__( 'Absolute', 'mas-elementor' ),
 					'fixed'    => esc_html__( 'Fixed', 'mas-elementor' ),
 				),
-				'frontend_available' => true,
+				'selectors' => array(
+					'{{WRAPPER}} .elementor-tab-content' => 'position: {{VALUE}};',
+				),
 				'separator'          => 'before',
 			)
 		);
 
-		$this->add_control(
+		$this->add_responsive_control(
 			'content_position_width',
 			array(
-				'label'              => esc_html__( 'Position', 'mas-elementor' ),
-				'type'               => Controls_Manager::SELECT,
-				'default'            => 'inherit',
-				'options'            => array(
-					'inherit' => esc_html__( 'Inherit', 'mas-elementor' ),
-					'auto'    => esc_html__( 'Auto', 'mas-elementor' ),
-					'100%'    => esc_html__( '100', 'mas-elementor' ),
+				'label'          => esc_html__( 'Width', 'mas-elementor' ),
+				'type'           => Controls_Manager::SLIDER,
+				'size_units'     => array( 'px', '%', 'em', 'rem', 'vw', 'custom' ),
+				'range'          => array(
+					'%'  => array(
+						'min'  => 0,
+						'max'  => 100,
+						'step' => 1,
+					),
+					'px' => array(
+						'min'  => 0,
+						'max'  => 5000,
+						'step' => 1,
+					),
 				),
-				'frontend_available' => true,
-				'separator'          => 'before',
+				'default'        => array(
+					'size' => 100,
+					'unit' => '%',
+				),
+				'selectors'      => array(
+					'{{WRAPPER}} .elementor-tab-content' => 'width: {{SIZE}}{{UNIT}};',
+				),
 				'condition'          => array(
 					'content_position' => 'absolute',
 				),
@@ -394,6 +409,26 @@ class Product_Categories_Dropdown extends Widget_Accordion {
 
 		$this->start_injection(
 			array(
+				'of' => 'tab_active_color',
+				'at' => 'before',
+			)
+		);
+
+		$this->add_control(
+			'tab_hover_color',
+			array(
+				'label' => esc_html__( 'Hover Color', 'mas-elementor' ),
+				'type' => Controls_Manager::COLOR,
+				'selectors' => array(
+					'{{WRAPPER}} .elementor-accordion-title:hover' => 'color: {{VALUE}};',
+				),
+			)
+		);
+
+		$this->end_injection();
+
+		$this->start_injection(
+			array(
 				'of' => 'border_color',
 				'at' => 'before',
 			)
@@ -488,13 +523,29 @@ class Product_Categories_Dropdown extends Widget_Accordion {
 		);
 
 		$this->add_control(
-			'show_content_no_subs',
+			'show_icons_no_subs',
 			array(
-				'label'     => esc_html__( 'No Sub Categories Dropdown', 'mas-elementor' ),
+				'label'     => esc_html__( 'Show Icons for No Subs', 'mas-elementor' ),
 				'type'      => Controls_Manager::SWITCHER,
 				'default'   => 'yes',
 				'label_on'  => 'Hide',
 				'label_off' => 'Show',
+				'description' => esc_html__( 'Show Dropdown Icons for categories with no sub-categories', 'mas-elementor' ),
+			)
+		);
+
+		$this->add_control(
+			'show_content_no_subs',
+			array(
+				'label'     => esc_html__( 'No Sub Categories Dropdown', 'mas-elementor' ),
+				'type'      => Controls_Manager::SWITCHER,
+				'default'   => 'no',
+				'label_on'  => 'Hide',
+				'label_off' => 'Show',
+				'description' => esc_html__( 'Show Dropdown Content for categories with no sub-categories', 'mas-elementor' ),
+				'condition' => array(
+					'show_icons_no_subs' => 'yes',
+				),
 			)
 		);
 
@@ -506,6 +557,7 @@ class Product_Categories_Dropdown extends Widget_Accordion {
 				'default'   => 'No Sub Categories',
 				'condition' => array(
 					'show_content_no_subs' => 'yes',
+					'show_icons_no_subs' => 'yes',
 				),
 			)
 		);
@@ -633,12 +685,15 @@ class Product_Categories_Dropdown extends Widget_Accordion {
 				),
 				'default'        => array(
 					'size' => 30,
+					'unit' => '%',
 				),
 				'tablet_default' => array(
 					'size' => 40,
+					'unit' => '%',
 				),
 				'mobile_default' => array(
 					'size' => 100,
+					'unit' => '%',
 				),
 				'selectors'      => array(
 					'{{WRAPPER}} .elementor-accordion-item' => 'width: {{SIZE}}{{UNIT}};',
@@ -976,7 +1031,7 @@ class Product_Categories_Dropdown extends Widget_Accordion {
 
 					$child_categories = get_term_children( $cat->term_id, $taxonomy );
 
-					if ( $tab_count === (bool) $settings['number'] ) {
+					if ( $tab_count === $settings['number'] ) {
 						break;
 					}
 
@@ -996,9 +1051,6 @@ class Product_Categories_Dropdown extends Widget_Accordion {
 						)
 					);
 
-					$position  = ! empty( $settings['content_position'] ) ? 'position:' . $settings['content_position'] . ';' : 'position:relative;';
-					$pos_width = 'width:' . $settings['content_position_width'] . ';';
-
 					$this->add_render_attribute(
 						$tab_content_setting_key,
 						array(
@@ -1007,7 +1059,6 @@ class Product_Categories_Dropdown extends Widget_Accordion {
 							'data-tab'        => $tab_count,
 							'role'            => 'region',
 							'aria-labelledby' => 'elementor-tab-title-' . $id_int . $tab_count,
-							'style'           => $position . $pos_width,
 						)
 					);
 
@@ -1033,8 +1084,14 @@ class Product_Categories_Dropdown extends Widget_Accordion {
 									if ( $image ) {
 										echo wp_kses_post( '<a href="' . get_term_link( $cat->slug, $taxonomy ) . '">' . $image . '</a>' );
 									}
+									if ( empty( $child_categories ) ) {
+										$show_no_subs_icon = 'yes' === $settings['show_icons_no_subs'];
+									} else {
+										$show_no_subs_icon = true;
+									}
 									?>
 								</div>
+								<?php if ( $show_no_subs_icon ) : ?>
 								<div <?php $this->print_render_attribute_string( $tab_title_setting_key ); ?>>
 									<?php if ( $has_icon ) : ?>
 										<span class="elementor-accordion-icon" aria-hidden="true">
@@ -1050,6 +1107,7 @@ class Product_Categories_Dropdown extends Widget_Accordion {
 										</span>
 									<?php endif; ?>
 								</div>
+								<?php endif; ?>
 							</div>
 							<?php
 							$category_id = $cat->term_id;

@@ -692,6 +692,7 @@ class Module extends Module_Base {
 
 		if ( 'yes' === $settings['center_slides'] ) {
 			$swiper_settings['centeredSlides'] = true;
+			$swiper_settings['centeredSlidesBounds'] = true;
 		}
 
 		if ( $settings['loop'] ) {

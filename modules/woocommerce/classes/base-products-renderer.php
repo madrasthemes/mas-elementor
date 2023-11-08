@@ -390,6 +390,7 @@ abstract class Base_Products_Renderer extends \WC_Shortcode_Products {
 
 		if ( 'yes' === $settings['center_slides'] ) {
 			$swiper_settings['centeredSlides'] = true;
+			$swiper_settings['centeredSlidesBounds'] = true;
 		}
 
 		if ( $settings['loop'] ) {

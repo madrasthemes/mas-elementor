@@ -47,6 +47,55 @@ class Module extends Module_Base {
 	 */
 	public function add_actions() {
 		add_action( 'elementor/element/button/section_style/before_section_end', array( $this, 'add_content_style_controls' ), 15 );
+		add_action( 'elementor/element/button/section_button/before_section_end', array( $this, 'add_content_button_controls' ), 15 );
+		add_action( 'elementor/frontend/widget/before_render', array( $this, 'before_render' ), 20 );
+	}
+
+	/**
+	 * Add style controls to the element.
+	 *
+	 * @param Element $element element object.
+	 */
+	public function add_content_button_controls( $element ) {
+
+		$element->add_control(
+			'enable_collapse',
+			array(
+				'type'         => Controls_Manager::SWITCHER,
+				'label'        => esc_html__( 'Enable Collapse', 'mas-elementor' ),
+				'default'      => 'enable',
+				'label_off'    => esc_html__( 'Enable', 'mas-elementor' ),
+				'label_on'     => esc_html__( 'Disable', 'mas-elementor' ),
+			)
+		);
+
+		$element->add_control(
+			'data_target',
+			array(
+				'label'       => esc_html__( 'Data Content Id', 'mas-elementor' ),
+				'type'        => Controls_Manager::TEXT,
+				'default'     => 'content-1',
+				'condition' => array(
+					'enable_collapse' => 'yes',
+				),
+			)
+		);
+	}
+
+	/**
+	 * Before Render.
+	 *
+	 * @param array $widget The widget.
+	 * @return void
+	 */
+	public function before_render( $widget ) {
+		if ( 'button' === $widget->get_name() ) {
+			$settings = $widget->get_settings_for_display();
+			if ( 'yes' === $settings['enable_collapse'] ) {
+				$widget->add_render_attribute( 'button', 'class', 'mas-toggle-button' );
+				$widget->add_render_attribute( 'button', 'data-target', $settings['data_target'] );
+			}
+		}
 	}
 
 	/**
