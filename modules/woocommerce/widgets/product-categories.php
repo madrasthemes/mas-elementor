@@ -98,6 +98,15 @@ class Product_Categories extends Base_Widget {
 		);
 
 		$this->add_control(
+			'sub_cat_count',
+			array(
+				'label'   => esc_html__( 'SubCategories Count', 'mas-elementor' ),
+				'type'    => Controls_Manager::NUMBER,
+				'default' => '4',
+			)
+		);
+
+		$this->add_control(
 			'see_more',
 			array(
 				'label'   => esc_html__( 'See More', 'mas-elementor' ),
@@ -164,6 +173,8 @@ class Product_Categories extends Base_Widget {
 				'tab'   => Controls_Manager::TAB_STYLE,
 			)
 		);
+
+		$this->add_images_controls();
 
 		$this->add_control(
 			'heading_image_style',
@@ -246,6 +257,30 @@ class Product_Categories extends Base_Widget {
 				'label'     => esc_html__( 'Sub Category', 'mas-elementor' ),
 				'type'      => Controls_Manager::HEADING,
 				'separator' => 'before',
+			)
+		);
+
+		$this->add_responsive_control(
+			'show_hide_sub_cat',
+			array(
+				'label'       => esc_html__( 'Show / Hide SubCategories', 'mas-elementor' ),
+				'type'        => Controls_Manager::CHOOSE,
+				'label_block' => true,
+				'default'     => '',
+				'options'     => array(
+					'block'    => array(
+						'title' => esc_html__( 'Block', 'mas-elementor' ),
+						'icon'  => 'eicon-ban',
+					),
+					'none'        => array(
+						'title' => esc_html__( 'None', 'mas-elementor' ),
+						'icon'  => 'eicon-flex eicon-wrap',
+					),
+
+				),
+				'selectors'   => array(
+					'{{WRAPPER}} .sub-categories' => 'display: {{VALUE}};',
+				),
 			)
 		);
 
@@ -344,6 +379,30 @@ class Product_Categories extends Base_Widget {
 			)
 		);
 
+		$this->add_responsive_control(
+			'see_all_hide',
+			array(
+				'label'       => esc_html__( 'Show / Hide', 'mas-elementor' ),
+				'type'        => Controls_Manager::CHOOSE,
+				'label_block' => true,
+				'default'     => '',
+				'options'     => array(
+					'block'    => array(
+						'title' => esc_html__( 'Block', 'mas-elementor' ),
+						'icon'  => 'eicon-ban',
+					),
+					'none'        => array(
+						'title' => esc_html__( 'None', 'mas-elementor' ),
+						'icon'  => 'eicon-flex eicon-wrap',
+					),
+
+				),
+				'selectors'   => array(
+					'{{WRAPPER}} .see-all-wrapper' => 'display: {{VALUE}};',
+				),
+			)
+		);
+
 		$this->end_controls_section();
 
 		$this->start_controls_section(
@@ -399,6 +458,18 @@ class Product_Categories extends Base_Widget {
 			)
 		);
 
+		$this->add_responsive_control(
+			'categories_margin',
+			array(
+				'label'      => esc_html__( 'Margin', 'mas-elementor' ),
+				'type'       => Controls_Manager::DIMENSIONS,
+				'size_units' => array( 'px', '%', 'em', 'rem', 'custom' ),
+				'selectors'  => array(
+					'{{WRAPPER}} .cat-wrapper' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}}',
+				),
+			)
+		);
+
 		$this->flex_controls( '', '{{WRAPPER}} .mas-categories-wrapper' );
 
 		$this->end_controls_section();
@@ -426,6 +497,78 @@ class Product_Categories extends Base_Widget {
 		$this->flex_controls( 'cat_sub', '{{WRAPPER}} .categories' );
 
 		$this->end_controls_section();
+	}
+
+	/**
+	 * Register controls for this widget.
+	 */
+	protected function add_images_controls() {
+
+		$this->add_responsive_control(
+			'image_width',
+			array(
+				'label'          => esc_html__( 'Width', 'mas-elementor' ),
+				'type'           => Controls_Manager::SLIDER,
+				'size_units'     => array( 'px', '%', 'em', 'rem', 'vw', 'custom' ),
+				'range'          => array(
+					'%'  => array(
+						'min'  => 0,
+						'max'  => 100,
+						'step' => 1,
+					),
+					'px' => array(
+						'min'  => 0,
+						'max'  => 5000,
+						'step' => 1,
+					),
+				),
+				'default'        => array(
+					'size' => 48,
+				),
+				'tablet_default' => array(
+					'size' => 48,
+				),
+				'mobile_default' => array(
+					'size' => 48,
+				),
+				'selectors'      => array(
+					'{{WRAPPER}} .img-cat-wrap img' => 'width: {{SIZE}}{{UNIT}};',
+				),
+			)
+		);
+
+		$this->add_responsive_control(
+			'image_height',
+			array(
+				'label'          => esc_html__( 'Height', 'mas-elementor' ),
+				'type'           => Controls_Manager::SLIDER,
+				'size_units'     => array( 'px', '%', 'em', 'rem', 'vw', 'custom' ),
+				'range'          => array(
+					'%'  => array(
+						'min'  => 0,
+						'max'  => 100,
+						'step' => 1,
+					),
+					'px' => array(
+						'min'  => 0,
+						'max'  => 5000,
+						'step' => 1,
+					),
+				),
+				'default'        => array(
+					'size' => 48,
+				),
+				'tablet_default' => array(
+					'size' => 48,
+				),
+				'mobile_default' => array(
+					'size' => 48,
+				),
+				'selectors'      => array(
+					'{{WRAPPER}} .img-cat-wrap img' => 'height: {{SIZE}}{{UNIT}};',
+				),
+			)
+		);
 	}
 
 	/**
@@ -648,11 +791,14 @@ class Product_Categories extends Base_Widget {
 			'orderby'    => $orderby,
 			'order'      => $order,
 			'hide_empty' => $empty,
-			'number'     => $settings['number'],
 		);
 		$all_categories = get_terms( $args );
+		$tab_count = 0;
 		foreach ( $all_categories as $cat ) {
 			if ( 0 === $cat->parent ) {
+				if ( $tab_count === $settings['number'] ) {
+					break;
+				}
 
 				?>
 			<div class="cat-wrapper">
@@ -663,6 +809,8 @@ class Product_Categories extends Base_Widget {
 					$image              = wp_get_attachment_image( $category_thumbnail );
 					if ( $image ) {
 						echo wp_kses_post( '<a href="' . get_term_link( $cat->slug, 'product_cat' ) . '">' . $image . '</a>' );
+					} else {
+						echo wp_kses_post( wc_placeholder_img() );
 					}
 					$category_id = $cat->term_id;
 					?>
@@ -679,13 +827,18 @@ class Product_Categories extends Base_Widget {
 						);
 						$sub_cats = get_categories( $args2 );
 						if ( $sub_cats ) {
+							$sub_tab_count = 0;
 							?>
 						<div class="sub-categories">
 							<?php
 							foreach ( $sub_cats as $sub_category ) {
+								if ( $sub_tab_count === $settings['sub_cat_count'] ) {
+									break;
+								}
 								?>
 								<div class="sub-category"><?php echo wp_kses_post( '<a href="' . get_term_link( $sub_category->slug, 'product_cat' ) . '">' . $sub_category->name . '</a>' ); ?></div>
 								<?php
+								$sub_tab_count++;
 							}
 							?>
 						</div>
@@ -696,7 +849,7 @@ class Product_Categories extends Base_Widget {
 				</div>
 				<?php
 
-				if ( ! empty( $settings['see_more'] ) ) {
+				if ( ! empty( $settings['see_more'] && ( ! empty( $sub_cats ) && ( count( $sub_cats ) > $settings['sub_cat_count'] ) ) ) ) {
 					?>
 				<div class="see-all-wrapper">
 					<?php
@@ -709,6 +862,7 @@ class Product_Categories extends Base_Widget {
 				?>
 			</div>
 				<?php
+				$tab_count++;
 			}
 		}
 
