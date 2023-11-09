@@ -648,11 +648,14 @@ class Product_Categories extends Base_Widget {
 			'orderby'    => $orderby,
 			'order'      => $order,
 			'hide_empty' => $empty,
-			'number'     => $settings['number'],
 		);
 		$all_categories = get_terms( $args );
+		$tab_count = 0;
 		foreach ( $all_categories as $cat ) {
 			if ( 0 === $cat->parent ) {
+				if ( $tab_count === $settings['number'] ) {
+					break;
+				}
 
 				?>
 			<div class="cat-wrapper">
@@ -709,6 +712,7 @@ class Product_Categories extends Base_Widget {
 				?>
 			</div>
 				<?php
+				$tab_count++;
 			}
 		}
 
