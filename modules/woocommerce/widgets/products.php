@@ -929,6 +929,23 @@ class Products extends Products_Base {
 			)
 		);
 
+		$this->add_responsive_control(
+			'hide_responsive_pagination',
+			array(
+				'type'         => Controls_Manager::SWITCHER,
+				'label'        => esc_html__( 'Hide Pagination Responsive', 'mas-elementor' ),
+				'default'      => 'no',
+				'label_off'    => esc_html__( 'Hide', 'mas-elementor' ),
+				'label_on'     => esc_html__( 'Show', 'mas-elementor' ),
+				'condition'    => array(
+					'enable_carousel'     => 'yes',
+					'show_pagination'     => 'yes',
+				),
+				'return_value' => 'hide',
+				'prefix_class' => 'mas-swiper-carousel--pagination%s-',
+			)
+		);
+
 		$this->add_control(
 			'pagination',
 			array(
