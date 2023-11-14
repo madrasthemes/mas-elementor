@@ -32,11 +32,12 @@ if ( ! MASPlugin::elementor()->editor->is_edit_mode() ) {
 if ( $actions ) {
 	$widget->add_render_attribute( 'div', 'data-expire-actions', wp_json_encode( $actions ) );
 }
-
+$wrap_class = 'mas-elementor-countdown-wrapper';
+$wrap_class = 'yes' === $instance['disable_last_child_margin'] ? 'cd-mr-child-0 ' . $wrap_class : $wrap_class;
 $widget->add_render_attribute(
 	'div',
 	array(
-		'class'     => 'mas-elementor-countdown-wrapper',
+		'class'     => $wrap_class,
 		'data-date' => $dated,
 	)
 );

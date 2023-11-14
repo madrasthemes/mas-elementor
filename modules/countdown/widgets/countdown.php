@@ -556,6 +556,17 @@ class Countdown extends Base_Widget {
 			)
 		);
 
+		$this->add_control(
+			'disable_last_child_margin',
+			array(
+				'label'     => __( 'Disable Last Item Margin', 'mas-elementor' ),
+				'type'      => Controls_Manager::SWITCHER,
+				'label_on'  => __( 'Disabled', 'mas-elementor' ),
+				'label_off' => __( 'Disable', 'mas-elementor' ),
+				'default'   => 'no',
+			)
+		);
+
 		$this->add_responsive_control(
 			'mas_countdwon_item_margin',
 			array(
@@ -564,6 +575,8 @@ class Countdown extends Base_Widget {
 				'size_units' => array( 'px', 'em', '%', 'rem' ),
 				'selectors'  => array(
 					'{{WRAPPER}} .mas-elementor-countdown-wrapper .mas-elementor-countdown-item' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .mas-elementor-countdown-wrapper.cd-mr-child-0 .mas-countdown-block  .mas-elementor-countdown-item:last-child' => 'margin-bottom: 0px;',
+					'{{WRAPPER}} .mas-elementor-countdown-wrapper.cd-mr-child-0 .mas-countdown-inline  .mas-elementor-countdown-item:last-child' => 'margin-right: 0px;',
 				),
 				'default'    => array(
 					'top'      => '0',
@@ -572,6 +585,26 @@ class Countdown extends Base_Widget {
 					'left'     => '0',
 					'unit'     => 'px',
 					'isLinked' => true,
+				),
+			)
+		);
+
+		$this->add_group_control(
+			\Elementor\Group_Control_Border::get_type(),
+			array(
+				'name'           => 'mas_countdown_border',
+				'selector'       => '{{WRAPPER}} .mas-elementor-countdown-item',
+			)
+		);
+
+		$this->add_control(
+			'mas_countdown_border_radius',
+			array(
+				'type'       => Controls_Manager::DIMENSIONS,
+				'label'      => esc_html__( 'Border Radius', 'mas-elementor' ),
+				'size_units' => array( 'px', '%' ),
+				'selectors'  => array(
+					'{{WRAPPER}} .mas-elementor-countdown-item' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				),
 			)
 		);
