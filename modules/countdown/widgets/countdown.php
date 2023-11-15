@@ -589,6 +589,17 @@ class Countdown extends Base_Widget {
 			)
 		);
 
+		$this->add_control(
+			'cd_bg_color',
+			array(
+				'label'     => __( 'Background Color', 'mas-elementor' ),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => array(
+					'{{WRAPPER}} .mas-elementor-countdown-item' => 'background-color: {{VALUE}};',
+				),
+			)
+		);
+
 		$this->add_group_control(
 			\Elementor\Group_Control_Border::get_type(),
 			array(
