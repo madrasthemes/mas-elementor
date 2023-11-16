@@ -12,6 +12,9 @@ use Elementor\Core\Kits\Documents\Tabs\Global_Colors;
 use Elementor\Core\Kits\Documents\Tabs\Global_Typography;
 use Elementor\Group_Control_Border;
 use Elementor\Group_Control_Typography;
+use Elementor\Group_Control_Background;
+use Elementor\Core\Breakpoints\Manager as Breakpoints_Manager;
+use Elementor\Group_Control_Box_Shadow;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
@@ -109,9 +112,12 @@ class Product_Categories extends Base_Widget {
 		$this->add_control(
 			'see_more',
 			array(
-				'label'   => esc_html__( 'See More', 'mas-elementor' ),
-				'type'    => Controls_Manager::TEXT,
-				'default' => 'See More',
+				'label'     => esc_html__( 'See More', 'mas-elementor' ),
+				'type'      => Controls_Manager::TEXT,
+				'default'   => 'See More',
+				'condition' => array(
+					'sub_cat_count!' => 0,
+				),
 			)
 		);
 
@@ -185,6 +191,8 @@ class Product_Categories extends Base_Widget {
 			)
 		);
 
+		$this->register_transform_controls();
+
 		$this->add_group_control(
 			Group_Control_Border::get_type(),
 			array(
@@ -208,11 +216,23 @@ class Product_Categories extends Base_Widget {
 		$this->add_responsive_control(
 			'image_spacing',
 			array(
-				'label'      => esc_html__( 'Spacing', 'mas-elementor' ),
+				'label'      => esc_html__( 'Margin', 'mas-elementor' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', '%', 'em', 'rem', 'custom' ),
 				'selectors'  => array(
 					'{{WRAPPER}} .img-cat-wrap img' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}}',
+				),
+			)
+		);
+
+		$this->add_responsive_control(
+			'image_padding',
+			array(
+				'label'      => esc_html__( 'Padding', 'mas-elementor' ),
+				'type'       => Controls_Manager::DIMENSIONS,
+				'size_units' => array( 'px', '%', 'em', 'rem', 'custom' ),
+				'selectors'  => array(
+					'{{WRAPPER}} .img-cat-wrap img' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}}',
 				),
 			)
 		);
@@ -235,7 +255,8 @@ class Product_Categories extends Base_Widget {
 					'default' => Global_Colors::COLOR_PRIMARY,
 				),
 				'selectors' => array(
-					'{{WRAPPER}} .categories > a' => 'color: {{VALUE}}',
+					'{{WRAPPER}} .categories > a'         => 'color: {{VALUE}}',
+					'{{WRAPPER}} .categories > .cat-name' => 'color: {{VALUE}}',
 				),
 			)
 		);
@@ -247,7 +268,7 @@ class Product_Categories extends Base_Widget {
 				'global'   => array(
 					'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
 				),
-				'selector' => '{{WRAPPER}} .categories > a',
+				'selector' => '{{WRAPPER}} .categories > a, {{WRAPPER}} .categories > .cat-name',
 			)
 		);
 
@@ -257,6 +278,9 @@ class Product_Categories extends Base_Widget {
 				'label'     => esc_html__( 'Sub Category', 'mas-elementor' ),
 				'type'      => Controls_Manager::HEADING,
 				'separator' => 'before',
+				'condition' => array(
+					'sub_cat_count!' => 0,
+				),
 			)
 		);
 
@@ -268,11 +292,11 @@ class Product_Categories extends Base_Widget {
 				'label_block' => true,
 				'default'     => '',
 				'options'     => array(
-					'block'    => array(
+					'block' => array(
 						'title' => esc_html__( 'Block', 'mas-elementor' ),
 						'icon'  => 'eicon-ban',
 					),
-					'none'        => array(
+					'none'  => array(
 						'title' => esc_html__( 'None', 'mas-elementor' ),
 						'icon'  => 'eicon-flex eicon-wrap',
 					),
@@ -280,6 +304,9 @@ class Product_Categories extends Base_Widget {
 				),
 				'selectors'   => array(
 					'{{WRAPPER}} .sub-categories' => 'display: {{VALUE}};',
+				),
+				'condition'   => array(
+					'sub_cat_count!' => 0,
 				),
 			)
 		);
@@ -295,17 +322,23 @@ class Product_Categories extends Base_Widget {
 				'selectors' => array(
 					'{{WRAPPER}} .sub-categories .sub-category a' => 'color: {{VALUE}}',
 				),
+				'condition' => array(
+					'sub_cat_count!' => 0,
+				),
 			)
 		);
 
 		$this->add_group_control(
 			Group_Control_Typography::get_type(),
 			array(
-				'name'     => 'sub_cat_typography',
-				'global'   => array(
+				'name'      => 'sub_cat_typography',
+				'global'    => array(
 					'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
 				),
-				'selector' => '{{WRAPPER}} .sub-categories .sub-category, {{WRAPPER}} .sub-categories .sub-category a',
+				'selector'  => '{{WRAPPER}} .sub-categories .sub-category, {{WRAPPER}} .sub-categories .sub-category a',
+				'condition' => array(
+					'sub_cat_count!' => 0,
+				),
 			)
 		);
 
@@ -314,8 +347,12 @@ class Product_Categories extends Base_Widget {
 		$this->start_controls_section(
 			'section_categories_see_all_style',
 			array(
-				'label' => esc_html__( 'See all', 'mas-elementor' ),
-				'tab'   => Controls_Manager::TAB_STYLE,
+				'label'     => esc_html__( 'See all', 'mas-elementor' ),
+				'tab'       => Controls_Manager::TAB_STYLE,
+				'condition' => array(
+					'sub_cat_count!' => 0,
+					'see_more!'      => '',
+				),
 			)
 		);
 
@@ -387,11 +424,11 @@ class Product_Categories extends Base_Widget {
 				'label_block' => true,
 				'default'     => '',
 				'options'     => array(
-					'block'    => array(
+					'block' => array(
 						'title' => esc_html__( 'Block', 'mas-elementor' ),
 						'icon'  => 'eicon-ban',
 					),
-					'none'        => array(
+					'none'  => array(
 						'title' => esc_html__( 'None', 'mas-elementor' ),
 						'icon'  => 'eicon-flex eicon-wrap',
 					),
@@ -410,6 +447,20 @@ class Product_Categories extends Base_Widget {
 			array(
 				'label' => esc_html__( 'All Categories', 'mas-elementor' ),
 				'tab'   => Controls_Manager::TAB_CONTENT,
+			)
+		);
+
+		$this->add_control(
+			'enable_card_link',
+			array(
+				'label'     => esc_html__( 'Enable Card Link', 'mas-elementor' ),
+				'type'      => Controls_Manager::SWITCHER,
+				'default'   => 'no',
+				'label_on'  => 'Enabled',
+				'label_off' => 'Enable',
+				'condition' => array(
+					'sub_cat_count' => 0,
+				),
 			)
 		);
 
@@ -489,14 +540,183 @@ class Product_Categories extends Base_Widget {
 		$this->start_controls_section(
 			'cat_subcat',
 			array(
-				'label' => esc_html__( 'Category & Sub Categories', 'mas-elementor' ),
-				'tab'   => Controls_Manager::TAB_CONTENT,
+				'label'     => esc_html__( 'Category & Sub Categories', 'mas-elementor' ),
+				'tab'       => Controls_Manager::TAB_CONTENT,
+				'condition' => array(
+					'sub_cat_count!' => 0,
+				),
 			)
 		);
 
 		$this->flex_controls( 'cat_sub', '{{WRAPPER}} .categories' );
 
 		$this->end_controls_section();
+
+		// $this->start_controls_section(
+		// 'cat_wrapper_section',
+		// array(
+		// 'label' => esc_html__( 'All Categories', 'mas-elementor' ),
+		// 'tab'   => Controls_Manager::TAB_STYLE,
+		// )
+		// );
+
+		// $this->add_group_control(
+		// Group_Control_Background::get_type(),
+		// array(
+		// 'name'     => 'cat_wrapper',
+		// 'selector' => '{{WRAPPER}} .cat-wrapper',
+		// )
+		// );
+
+		// $this->end_controls_section();
+
+		$this->register_background_controls();
+	}
+
+	/**
+	 * Register the Container's background controls.
+	 *
+	 * @return void
+	 */
+	protected function register_background_controls() {
+		$this->start_controls_section(
+			'section_background',
+			array(
+				'label' => esc_html__( 'Background', 'mas-elementor' ),
+				'tab'   => Controls_Manager::TAB_STYLE,
+			)
+		);
+
+		$this->start_controls_tabs( 'tabs_background' );
+
+		/**
+		 * Normal.
+		 */
+		$this->start_controls_tab(
+			'tab_background_normal',
+			array(
+				'label' => esc_html__( 'Normal', 'mas-elementor' ),
+			)
+		);
+
+		$this->add_group_control(
+			Group_Control_Box_Shadow::get_type(),
+			array(
+				'name'     => 'cat_box_shadow',
+				'selector' => '{{WRAPPER}} .cat-wrapper',
+			)
+		);
+
+		$this->add_group_control(
+			Group_Control_Background::get_type(),
+			array(
+				'name'           => 'background',
+				'types'          => array( 'classic', 'gradient', 'video', 'slideshow' ),
+				'fields_options' => array(
+					'background' => array(
+						'frontend_available' => true,
+					),
+					'image'      => array(
+						'background_lazyload' => array(
+							'active' => true,
+							'keys'   => array( 'background_image', 'url' ),
+						),
+					),
+				),
+				'selector'       => '{{WRAPPER}} .cat-wrapper',
+			)
+		);
+
+		$this->end_controls_tab();
+
+		/**
+		 * Hover.
+		 */
+		$this->start_controls_tab(
+			'tab_background_hover',
+			array(
+				'label' => esc_html__( 'Hover', 'mas-elementor' ),
+			)
+		);
+
+		$this->add_group_control(
+			Group_Control_Box_Shadow::get_type(),
+			array(
+				'name'     => 'cat_box_shadow_hover',
+				'selector' => '{{WRAPPER}} .cat-wrapper:hover',
+			)
+		);
+
+		$this->add_group_control(
+			Group_Control_Background::get_type(),
+			array(
+				'name'     => 'background_hover',
+				'selector' => '{{WRAPPER}} .cat-wrapper:hover',
+			)
+		);
+
+		$this->add_control(
+			'background_hover_transition',
+			array(
+				'label'       => esc_html__( 'Transition Duration', 'mas-elementor' ),
+				'type'        => Controls_Manager::SLIDER,
+				'default'     => array(
+					'size' => 0.3,
+				),
+				'render_type' => 'ui',
+				'separator'   => 'before',
+				'selectors'   => array(
+					'{{WRAPPER}} .cat-wrapper' => '--background-transition: {{SIZE}}s;',
+				),
+			)
+		);
+
+		$this->end_controls_tab();
+
+		$this->end_controls_tabs();
+
+		$this->end_controls_section();
+	}
+
+	/**
+	 * Register Transform controls for this widget.
+	 */
+	protected function register_transform_controls() {
+
+		$default_unit_values_deg = array();
+		$default_unit_values_ms  = array();
+
+		// Set the default unit sizes for all active breakpoints.
+		foreach ( Breakpoints_Manager::get_default_config() as $breakpoint_name => $breakpoint_config ) {
+			$default_unit_values_deg[ $breakpoint_name ] = array(
+				'default' => array(
+					'unit' => 'deg',
+				),
+			);
+
+			$default_unit_values_ms[ $breakpoint_name ] = array(
+				'default' => array(
+					'unit' => 'ms',
+				),
+			);
+		}
+		$this->add_responsive_control(
+			'transform_rotate_image',
+			array(
+				'label'       => esc_html__( 'Image Rotate', 'mas-elementor' ),
+				'type'        => Controls_Manager::SLIDER,
+				'device_args' => $default_unit_values_deg,
+				'range'       => array(
+					'px' => array(
+						'min' => -360,
+						'max' => 360,
+					),
+				),
+				'selectors'   => array(
+					'{{WRAPPER}} .img-cat-wrap img' => 'transform: rotate({{SIZE}}deg)',
+				),
+			)
+		);
 	}
 
 	/**
@@ -793,22 +1013,44 @@ class Product_Categories extends Base_Widget {
 			'hide_empty' => $empty,
 		);
 		$all_categories = get_terms( $args );
-		$tab_count = 0;
-		foreach ( $all_categories as $cat ) {
+		$tab_count      = 0;
+		if ( 'yes' === $settings['enable_card_link'] ) {
+			$img_cat_wrap_tag = 'a';
+			$categories_tag   = 'div';
+			$img_wrap_tag     = 'div';
+
+		} else {
+			$img_cat_wrap_tag = 'div';
+			$categories_tag   = 'a';
+			$img_wrap_tag     = 'a';
+		}
+
+		foreach ( $all_categories as $index => $cat ) {
 			if ( 0 === $cat->parent ) {
 				if ( $tab_count === $settings['number'] ) {
 					break;
 				}
+				if ( 'a' === $img_cat_wrap_tag ) {
+					$this->add_render_attribute( 'img-cat-wrap' . $index, 'href', get_term_link( $cat->slug, $taxonomy ) );
+				}
+
+				$this->add_render_attribute( 'img-cat-wrap' . $index, 'class', 'img-cat-wrap' );
 
 				?>
 			<div class="cat-wrapper">
-				<div class="img-cat-wrap">
+				<<?php echo esc_html( $img_cat_wrap_tag ); ?> <?php $this->print_render_attribute_string( 'img-cat-wrap' . $index ); ?>>
 					<?php
 					$category_name      = $cat->name;
 					$category_thumbnail = get_term_meta( $cat->term_id, 'thumbnail_id', true );
 					$image              = wp_get_attachment_image( $category_thumbnail );
 					if ( $image ) {
-						echo wp_kses_post( '<a href="' . get_term_link( $cat->slug, 'product_cat' ) . '">' . $image . '</a>' );
+						if ( 'a' === $img_wrap_tag ) {
+							$this->add_render_attribute( 'cat-img' . $index, 'href', get_term_link( $cat->slug, $taxonomy ) );
+						}
+						$this->add_render_attribute( 'cat-img' . $index, 'class', 'image-wrap' );
+						?>
+						<<?php echo esc_html( $img_wrap_tag ); ?> <?php $this->print_render_attribute_string( 'cat-img' . $index ); ?>><?php echo wp_kses_post( $image ); ?></<?php echo esc_html( $img_wrap_tag ); ?>>
+						<?php
 					} else {
 						echo wp_kses_post( wc_placeholder_img() );
 					}
@@ -816,8 +1058,13 @@ class Product_Categories extends Base_Widget {
 					?>
 					<div class="categories">
 						<?php
-						echo wp_kses_post( '<a href="' . get_term_link( $cat->slug, 'product_cat' ) . '">' . $cat->name . '</a>' );
-
+						if ( 'a' === $categories_tag ) {
+							$this->add_render_attribute( 'categories' . $index, 'href', get_term_link( $cat->slug, $taxonomy ) );
+						}
+						$this->add_render_attribute( 'categories' . $index, 'class', 'cat-name' );
+						?>
+						<<?php echo esc_html( $categories_tag ); ?> <?php $this->print_render_attribute_string( 'categories' . $index ); ?>><?php echo esc_html( $cat->name ); ?></<?php echo esc_html( $categories_tag ); ?>>
+						<?php
 						$args2    = array(
 							'taxonomy'   => $taxonomy,
 							'child_of'   => 0,
@@ -826,7 +1073,7 @@ class Product_Categories extends Base_Widget {
 							'hide_empty' => $empty,
 						);
 						$sub_cats = get_categories( $args2 );
-						if ( $sub_cats ) {
+						if ( $sub_cats && 0 < $settings['sub_cat_count'] ) {
 							$sub_tab_count = 0;
 							?>
 						<div class="sub-categories">
@@ -846,7 +1093,7 @@ class Product_Categories extends Base_Widget {
 						}
 						?>
 					</div>
-				</div>
+				</<?php echo esc_html( $img_cat_wrap_tag ); ?>>
 				<?php
 
 				if ( ! empty( $settings['see_more'] && ( ! empty( $sub_cats ) && ( count( $sub_cats ) > $settings['sub_cat_count'] ) ) ) ) {
