@@ -552,24 +552,6 @@ class Product_Categories extends Base_Widget {
 
 		$this->end_controls_section();
 
-		// $this->start_controls_section(
-		// 'cat_wrapper_section',
-		// array(
-		// 'label' => esc_html__( 'All Categories', 'mas-elementor' ),
-		// 'tab'   => Controls_Manager::TAB_STYLE,
-		// )
-		// );
-
-		// $this->add_group_control(
-		// Group_Control_Background::get_type(),
-		// array(
-		// 'name'     => 'cat_wrapper',
-		// 'selector' => '{{WRAPPER}} .cat-wrapper',
-		// )
-		// );
-
-		// $this->end_controls_section();
-
 		$this->register_background_controls();
 	}
 
@@ -1042,18 +1024,16 @@ class Product_Categories extends Base_Widget {
 					<?php
 					$category_name      = $cat->name;
 					$category_thumbnail = get_term_meta( $cat->term_id, 'thumbnail_id', true );
-					$image              = wp_get_attachment_image( $category_thumbnail );
-					if ( $image ) {
-						if ( 'a' === $img_wrap_tag ) {
-							$this->add_render_attribute( 'cat-img' . $index, 'href', get_term_link( $cat->slug, $taxonomy ) );
-						}
-						$this->add_render_attribute( 'cat-img' . $index, 'class', 'image-wrap' );
-						?>
-						<<?php echo esc_html( $img_wrap_tag ); ?> <?php $this->print_render_attribute_string( 'cat-img' . $index ); ?>><?php echo wp_kses_post( $image ); ?></<?php echo esc_html( $img_wrap_tag ); ?>>
-						<?php
-					} else {
-						echo wp_kses_post( wc_placeholder_img() );
+					$image              = ! empty( wp_get_attachment_image( $category_thumbnail ) ) ? wp_get_attachment_image( $category_thumbnail ) : wc_placeholder_img();
+
+					if ( 'a' === $img_wrap_tag ) {
+						$this->add_render_attribute( 'cat-img' . $index, 'href', get_term_link( $cat->slug, $taxonomy ) );
 					}
+					$this->add_render_attribute( 'cat-img' . $index, 'class', 'image-wrap' );
+					?>
+					<<?php echo esc_html( $img_wrap_tag ); ?> <?php $this->print_render_attribute_string( 'cat-img' . $index ); ?>><?php echo wp_kses_post( $image ); ?></<?php echo esc_html( $img_wrap_tag ); ?>>
+					<?php
+
 					$category_id = $cat->term_id;
 					?>
 					<div class="categories">
