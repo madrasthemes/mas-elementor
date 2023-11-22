@@ -81,6 +81,19 @@ class Products extends Products_Base {
 	}
 
 	/**
+	 * Called on import to override.
+	 *
+	 * @param array $element The element being imported.
+	 */
+	public function on_import( $element ) {
+		if ( ! get_post_type_object( $element['settings']['posts_post_type'] ) ) {
+			$element['settings']['posts_post_type'] = 'product';
+		}
+
+		return $element;
+	}
+
+	/**
 	 * Get Query.
 	 *
 	 * @return array
