@@ -167,3 +167,47 @@
     flex-direction: column !important;
   }
 }
+
+/* For Swiper Pagination  */
+@media (max-width: ELEMENTOR_SCREEN_MOBILE_MAX) {
+  .mas-swiper-carousel--pagination-mobile-hide .swiper .swiper-pagination,
+  .swiper.mas-swiper-carousel--pagination-mobile-hide ~ .swiper-pagination {
+      display: none !important;
+}
+}
+@media (min-width: ELEMENTOR_SCREEN_MOBILE_EXTRA_MIN) and (max-width: ELEMENTOR_SCREEN_MOBILE_EXTRA_MAX) {
+.mas-swiper-carousel--pagination-mobile_extra-hide .swiper .swiper-pagination,
+.swiper.mas-swiper-carousel--pagination-mobile_extra-hide ~ .swiper-pagination  {
+  display: none !important;
+}
+}
+@media (min-width: ELEMENTOR_SCREEN_TABLET_MIN) and (max-width: ELEMENTOR_SCREEN_TABLET_MAX) {
+.mas-swiper-carousel--pagination-tablet-hide .swiper .swiper-pagination,
+.swiper.mas-swiper-carousel--pagination-tablet-hide ~ .swiper-pagination {
+    display: none !important;
+}
+}
+@media (min-width: ELEMENTOR_SCREEN_TABLET_EXTRA_MIN) and (max-width: ELEMENTOR_SCREEN_TABLET_EXTRA_MAX) {
+.mas-swiper-carousel--pagination-tablet_extra-hide .swiper .swiper-pagination,
+.swiper.mas-swiper-carousel--pagination-tablet_extra-hide ~ .swiper-pagination {
+    display: none !important;
+}
+}
+@media (min-width: ELEMENTOR_SCREEN_LAPTOP_MIN) and (max-width: ELEMENTOR_SCREEN_LAPTOP_MAX) {
+.mas-swiper-carousel--pagination-laptop-hide .swiper .swiper-pagination,
+.swiper.mas-swiper-carousel--pagination-laptop-hide ~ .swiper-pagination {
+    display: none !important;
+}
+}
+@media (min-width: ELEMENTOR_SCREEN_DESKTOP_MIN) and (max-width: ELEMENTOR_SCREEN_DESKTOP_MAX) {
+.mas-swiper-carousel--pagination-hide .swiper .swiper-pagination,
+.swiper.mas-swiper-carousel--pagination-hide ~ .swiper-pagination { 
+    display: none !important;
+}
+}
+@media (min-width: ELEMENTOR_SCREEN_WIDESCREEN_MIN) {
+.mas-swiper-carousel--pagination-widescreen-hide .swiper .swiper-pagination,
+.swiper.mas-swiper-carousel--pagination-widescreen-hide ~ .swiper-pagination {
+    display: none !important;
+}
+}
