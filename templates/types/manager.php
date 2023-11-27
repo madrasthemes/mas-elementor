@@ -2,6 +2,8 @@
 
 namespace MASElementor\Templates\Types;
 
+use Elementor\Plugin;
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // No access of directly access
 }
@@ -54,6 +56,12 @@ if ( ! class_exists( 'Premium_Templates_Types' ) ) {
 				__NAMESPACE__ . '\Premium_Structure_Section' => $base_path . 'section.php',
 				__NAMESPACE__ . '\Premium_Structure_Page' => $base_path . 'page.php',
 			);
+
+			$is_container_active = Plugin::$instance->experiments->is_feature_active( 'container' );
+
+			if ( $is_container_active ) {
+				$temp_types = array_merge(array(__NAMESPACE__ . '\Premium_Structure_Container' => $base_path . 'container.php'), $temp_types );
+			}
 
 			array_walk(
 				$temp_types,
