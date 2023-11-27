@@ -15,6 +15,10 @@ use Elementor\Group_Control_Typography;
 use Elementor\Group_Control_Background;
 use Elementor\Core\Breakpoints\Manager as Breakpoints_Manager;
 use Elementor\Group_Control_Box_Shadow;
+use MASElementor\Modules\CarouselAttributes\Traits\Button_Widget_Trait;
+use MASElementor\Modules\CarouselAttributes\Traits\Pagination_Trait;
+use MASElementor\Modules\CarouselAttributes\Traits\Swiper_Options_Trait;
+use ELementor\Plugin;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
@@ -24,6 +28,10 @@ if ( ! defined( 'ABSPATH' ) ) {
  * Class Categories
  */
 class Product_Categories extends Base_Widget {
+
+	use Button_Widget_Trait;
+	use Pagination_Trait;
+	use Swiper_Options_Trait;
 
 	/**
 	 * Has content template
@@ -83,6 +91,8 @@ class Product_Categories extends Base_Widget {
 	 * Register controls for this widget.
 	 */
 	protected function register_controls() {
+
+		$this->register_carousel_attributes_controls();
 		$this->start_controls_section(
 			'section_layout',
 			array(
@@ -108,6 +118,8 @@ class Product_Categories extends Base_Widget {
 				'default' => '4',
 			)
 		);
+
+		$this->register_enable_carousel_control( $this );
 
 		$this->add_control(
 			'see_more',
@@ -465,7 +477,7 @@ class Product_Categories extends Base_Widget {
 		);
 
 		$this->add_responsive_control(
-			'size',
+			'cat_size',
 			array(
 				'label'          => esc_html__( 'Width', 'mas-elementor' ),
 				'type'           => Controls_Manager::SLIDER,
@@ -971,8 +983,21 @@ class Product_Categories extends Base_Widget {
 	 * Render.
 	 */
 	public function render() {
-		?><div class="mas-categories-wrapper">
-		<?php $this->render_categories(); ?>
+		$settings = $this->get_settings_for_display();
+		$json     = wp_json_encode( $this->get_swiper_carousel_options( $this, $settings ) );
+		$this->add_render_attribute( 'mas-categories', 'class', 'mas-categories' );
+		$this->add_render_attribute( 'mas-categories-wrapper', 'class', 'mas-categories-wrapper' );
+		if ( 'yes' === $settings['enable_carousel'] ) {
+			$this->add_render_attribute( 'mas-categories', 'class', 'swiper' );
+			$this->add_render_attribute( 'mas-categories', 'data-swiper-options', $json );
+			$this->add_render_attribute( 'mas-categories-wrapper', 'class', 'swiper-wrapper' );
+		}
+		?>
+		<div <?php $this->print_render_attribute_string( 'mas-categories' ); ?>>
+			<div <?php $this->print_render_attribute_string( 'mas-categories-wrapper' ); ?>>
+				<?php $this->render_categories(); ?>
+			</div>
+			<?php echo wp_kses_post( $this->carousel_loop_footer( $this, $settings ) ); ?>
 		</div>
 		<?php
 
@@ -1018,8 +1043,14 @@ class Product_Categories extends Base_Widget {
 
 				$this->add_render_attribute( 'img-cat-wrap' . $index, 'class', 'img-cat-wrap' );
 
+				$this->add_render_attribute( 'cat-wrapper' . $index, 'class', 'cat-wrapper' );
+
+				if ( 'yes' === $settings['enable_carousel'] ) {
+					$this->add_render_attribute( 'cat-wrapper' . $index, 'class', 'swiper-slide' );
+				}
+
 				?>
-			<div class="cat-wrapper">
+			<div <?php $this->print_render_attribute_string( 'cat-wrapper' . $index ); ?>>
 				<<?php echo esc_html( $img_cat_wrap_tag ); ?> <?php $this->print_render_attribute_string( 'img-cat-wrap' . $index ); ?>>
 					<?php
 					$category_name      = $cat->name;
@@ -1106,5 +1137,97 @@ class Product_Categories extends Base_Widget {
 	 */
 	public function get_group_name() {
 		return 'woocommerce';
+	}
+
+	/**
+	 * Add carousel arrow and pagination controls to the product categories element.
+	 */
+	public function register_carousel_arrow_pagination_controls() {
+
+		$args = array(
+			'concat'        => '',
+			'button_concat' => '',
+		);
+
+		$this->register_pagination_style_controls( $this, $args );
+
+		$this->start_controls_section(
+			'masposts_swiper_button',
+			array(
+				'label'     => esc_html__( 'Button', 'mas-elementor' ),
+				'tab'       => Controls_Manager::TAB_CONTENT,
+				'condition' => array(
+					'enable_carousel' => 'yes',
+					'show_arrows'     => 'yes',
+				),
+			)
+		);
+
+			$this->register_button_content_controls( $this, $args );
+
+		$this->end_controls_section();
+
+		$this->register_button_style_controls( $this, $args );
+
+	}
+
+	/**
+	 * Add carousel controls to the product categories element.
+	 */
+	public function register_carousel_attributes_controls() {
+
+		$this->start_injection(
+			array(
+				'at' => 'before',
+				'of' => 'section_query',
+			)
+		);
+
+		$this->register_swiper_controls( $this );
+
+		$this->end_injection();
+
+		$this->register_carousel_arrow_pagination_controls();
+	}
+
+	/**
+	 * Carousel Loop Footer.
+	 *
+	 * @param array $widget widget.
+	 * @param array $settings Settings of this widget.
+	 * @return string
+	 */
+	public function carousel_loop_footer( $widget, array $settings = array() ) {
+		ob_start();
+		if ( 'yes' === $settings['enable_carousel'] ) {
+			?>
+			<?php
+			$widget_id = $widget->get_id();
+			if ( ! empty( $widget_id ) && 'yes' === $settings['show_pagination'] ) {
+				$widget->add_render_attribute( 'swiper-pagination', 'id', 'pagination-' . $widget_id );
+			}
+			$widget->add_render_attribute( 'swiper-pagination', 'class', 'swiper-pagination' );
+			$widget->add_render_attribute( 'swiper-pagination', 'style', 'position: ' . $settings['mas_swiper_pagination_position'] . ';' );
+			if ( 'yes' === $settings['show_pagination'] ) :
+				?>
+			<div <?php $widget->print_render_attribute_string( 'swiper-pagination' ); ?>></div>
+				<?php
+			endif;
+			if ( 'yes' === $settings['show_arrows'] ) :
+				$prev_id = ! empty( $widget_id ) ? 'prev-' . $widget_id : '';
+				$next_id = ! empty( $widget_id ) ? 'next-' . $widget_id : '';
+				?>
+				<!-- If we need navigation buttons -->
+				<div class="d-flex mas-swiper-arrows">
+					<?php
+					$widget->render_button( $widget, $prev_id, $next_id );
+					?>
+				</div>
+				<?php
+			endif;
+			?>
+			<?php
+		}
+		return ob_get_clean();
 	}
 }

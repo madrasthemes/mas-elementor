@@ -76,7 +76,7 @@ trait Button_Widget_Trait {
 		$element->add_control(
 			'text',
 			array(
-				'label'       => esc_html__( 'Next Text', 'mas-elementor' ),
+				'label'       => esc_html__( 'Previous Text', 'mas-elementor' ),
 				'type'        => Controls_Manager::TEXT,
 				'dynamic'     => array(
 					'active' => true,
@@ -90,7 +90,7 @@ trait Button_Widget_Trait {
 		$element->add_control(
 			'next_text',
 			array(
-				'label'       => esc_html__( 'Previous Text', 'mas-elementor' ),
+				'label'       => esc_html__( 'Next Text', 'mas-elementor' ),
 				'type'        => Controls_Manager::TEXT,
 				'dynamic'     => array(
 					'active' => true,
@@ -101,37 +101,22 @@ trait Button_Widget_Trait {
 			)
 		);
 
-		// $element->add_control(
-		// 'link',
-		// array(
-		// 'label'       => esc_html__( 'Link', 'mas-elementor' ),
-		// 'type'        => Controls_Manager::URL,
-		// 'dynamic'     => array(
-		// 'active' => true,
-		// ),
-		// 'placeholder' => esc_html__( 'https://your-link.com', 'mas-elementor' ),
-		// 'default'     => array(
-		// 'url' => '#',
-		// ),
-		// 'condition'   => $args['section_condition'],
-		// )
-		// );
-
 		$element->add_control(
 			'size',
 			array(
-				'label'     => esc_html__( 'Icon Size', 'mas-elementor' ),
-				'type'      => Controls_Manager::SLIDER,
-				'range'     => array(
+				'label'      => esc_html__( 'Icon Size', 'mas-elementor' ),
+				'type'       => Controls_Manager::SLIDER,
+				'range'      => array(
 					'px' => array(
 						'max' => 50,
 					),
 				),
-				'default'   => array(
+				'size_units' => array( 'px', '%' ),
+				'default'    => array(
 					'unit' => 'px',
 					'size' => 30,
 				),
-				'selectors' => array(
+				'selectors'  => array(
 					'{{WRAPPER}} ' . $args['button_concat'] . ' .mas-swiper-arrows .elementor-button-icon i' => 'font-size: {{SIZE}}{{UNIT}} !important;',
 					'{{WRAPPER}} ' . $args['button_concat'] . ' .mas-swiper-arrows .elementor-button-content-wrapper .elementor-button-icon i' => 'width: {{SIZE}}{{UNIT}} !important;',
 					'{{WRAPPER}} ' . $args['button_concat'] . ' .mas-swiper-arrows .elementor-button-content-wrapper .elementor-button-icon i' => 'height: {{SIZE}}{{UNIT}} !important;',
@@ -139,7 +124,7 @@ trait Button_Widget_Trait {
 					'{{WRAPPER}} ' . $args['button_concat'] . ' .mas-swiper-arrows .elementor-button-content-wrapper .elementor-button-icon svg' => 'width: {{SIZE}}{{UNIT}} !important;',
 					'{{WRAPPER}} ' . $args['button_concat'] . ' .mas-swiper-arrows .elementor-button-content-wrapper .elementor-button-icon svg' => 'height: {{SIZE}}{{UNIT}} !important;',
 				),
-				'condition' => $args['section_condition'],
+				'condition'  => $args['section_condition'],
 			)
 		);
 
@@ -661,14 +646,26 @@ trait Button_Widget_Trait {
 			$instance->add_render_attribute(
 				'icon-align',
 				array(
-					'style' => 'order:1;',
+					'style' => 'order:1 !important;',
+				)
+			);
+			$instance->add_render_attribute(
+				'content-wrapper',
+				array(
+					'style' => 'flex-direction:row;',
 				)
 			);
 		} else {
 			$instance->add_render_attribute(
 				'icon-align',
 				array(
-					'style' => 'order:15;',
+					'style' => 'order:15 !important;',
+				)
+			);
+			$instance->add_render_attribute(
+				'content-wrapper',
+				array(
+					'style' => 'flex-direction:row-reverse;',
 				)
 			);
 		}
@@ -737,11 +734,23 @@ trait Button_Widget_Trait {
 					'style' => 'order:1;',
 				)
 			);
+			$instance->add_render_attribute(
+				'next-content-wrapper',
+				array(
+					'style' => 'flex-direction:row;',
+				)
+			);
 		} else {
 			$instance->add_render_attribute(
 				'next-icon-align',
 				array(
 					'style' => 'order:15;',
+				)
+			);
+			$instance->add_render_attribute(
+				'next-content-wrapper',
+				array(
+					'style' => 'flex-direction:row-reverse;',
 				)
 			);
 		}
