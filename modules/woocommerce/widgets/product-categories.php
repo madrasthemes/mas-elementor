@@ -119,6 +119,32 @@ class Product_Categories extends Base_Widget {
 			)
 		);
 
+		$this->add_control(
+			'select_image_icon',
+			array(
+				'label'   => esc_html__( 'Select Image / Icon', 'mas-elementor' ),
+				'type'    => Controls_Manager::SELECT,
+				'default' => 'image',
+				'options' => array(
+					'image' => esc_html__( 'Image', 'mas-elementor' ),
+					'icon'  => esc_html__( 'Icon', 'mas-elementor' ),
+				),
+			)
+		);
+
+		$this->add_control(
+			'icon_term_name',
+			array(
+				'label'       => esc_html__( 'Icon Term Name', 'mas-elementor' ),
+				'description' => esc_html__( 'By default the term meta we have used is "icon", you can create your own term meta for product category', 'mas-elementor' ),
+				'type'        => Controls_Manager::TEXT,
+				'default'     => 'icon',
+				'condition'   => array(
+					'select_image_icon' => 'icon',
+				),
+			)
+		);
+
 		$this->register_enable_carousel_control( $this );
 
 		$this->add_control(
@@ -140,6 +166,17 @@ class Product_Categories extends Base_Widget {
 			array(
 				'label' => esc_html__( 'Query', 'mas-elementor' ),
 				'tab'   => Controls_Manager::TAB_CONTENT,
+			)
+		);
+
+		$this->add_control(
+			'show_child_cat',
+			array(
+				'label'     => esc_html__( 'Show Child Categories', 'mas-elementor' ),
+				'type'      => Controls_Manager::SWITCHER,
+				'default'   => 'no',
+				'label_on'  => 'Hide',
+				'label_off' => 'Show',
 			)
 		);
 
@@ -187,8 +224,11 @@ class Product_Categories extends Base_Widget {
 		$this->start_controls_section(
 			'section_categories_image_style',
 			array(
-				'label' => esc_html__( 'Categories Image', 'mas-elementor' ),
-				'tab'   => Controls_Manager::TAB_STYLE,
+				'label'     => esc_html__( 'Categories Image', 'mas-elementor' ),
+				'tab'       => Controls_Manager::TAB_STYLE,
+				'condition' => array(
+					'select_image_icon' => 'image',
+				),
 			)
 		);
 
@@ -249,6 +289,16 @@ class Product_Categories extends Base_Widget {
 			)
 		);
 
+		$this->end_controls_section();
+
+		$this->start_controls_section(
+			'cat_subcat_styles',
+			array(
+				'label' => esc_html__( 'Cat & Subs', 'mas-elementor' ),
+				'tab'   => Controls_Manager::TAB_STYLE,
+			)
+		);
+
 		$this->add_control(
 			'heading_title_style',
 			array(
@@ -281,6 +331,73 @@ class Product_Categories extends Base_Widget {
 					'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
 				),
 				'selector' => '{{WRAPPER}} .categories > a, {{WRAPPER}} .categories > .cat-name',
+			)
+		);
+
+		$this->add_responsive_control(
+			'cat_title_height',
+			array(
+				'label'      => esc_html__( 'Category Text Height', 'mas-elementor' ),
+				'type'       => Controls_Manager::SLIDER,
+				'size_units' => array( 'px', '%', 'em', 'rem', 'vw', 'custom' ),
+				'range'      => array(
+					'%'  => array(
+						'min'  => 0,
+						'max'  => 100,
+						'step' => 1,
+					),
+					'px' => array(
+						'min'  => 0,
+						'max'  => 5000,
+						'step' => 1,
+					),
+				),
+				'selectors'  => array(
+					'{{WRAPPER}} .cat-name' => 'height: {{SIZE}}{{UNIT}};',
+				),
+			)
+		);
+
+		$this->add_responsive_control(
+			'category_title_overflow',
+			array(
+				'label'     => esc_html__( 'Overflow', 'mas-elementor' ),
+				'type'      => Controls_Manager::SELECT,
+				'default'   => 'hidden',
+				'options'   => array(
+					''       => esc_html__( 'Default', 'mas-elementor' ),
+					'hidden' => esc_html__( 'Hidden', 'mas-elementor' ),
+					'auto'   => esc_html__( 'Auto', 'mas-elementor' ),
+				),
+				'selectors' => array(
+					'{{WRAPPER}} .cat-name' => 'overflow: {{VALUE}}',
+				),
+			)
+		);
+
+		$this->add_responsive_control(
+			'category_title_align',
+			array(
+				'label'     => esc_html__( 'Alignment', 'mas-elementor' ),
+				'type'      => Controls_Manager::CHOOSE,
+				'default'   => '',
+				'options'   => array(
+					'left'   => array(
+						'title' => esc_html__( 'Left', 'mas-elementor' ),
+						'icon'  => 'eicon-text-align-left',
+					),
+					'center' => array(
+						'title' => esc_html__( 'Center', 'mas-elementor' ),
+						'icon'  => 'eicon-text-align-center',
+					),
+					'right'  => array(
+						'title' => esc_html__( 'Right', 'mas-elementor' ),
+						'icon'  => 'eicon-text-align-right',
+					),
+				),
+				'selectors' => array(
+					'{{WRAPPER}} .cat-name' => 'text-align: {{VALUE}}',
+				),
 			)
 		);
 
@@ -540,7 +657,7 @@ class Product_Categories extends Base_Widget {
 		$this->start_controls_section(
 			'cat_image_wrapper',
 			array(
-				'label' => esc_html__( 'Image & Categories', 'mas-elementor' ),
+				'label' => esc_html__( 'Image / Icon & Categories', 'mas-elementor' ),
 				'tab'   => Controls_Manager::TAB_CONTENT,
 			)
 		);
@@ -565,6 +682,307 @@ class Product_Categories extends Base_Widget {
 		$this->end_controls_section();
 
 		$this->register_background_controls();
+
+		$this->register_category_icon_style_controls();
+
+	}
+
+	/**
+	 * Register the category icon and wrapper style controls.
+	 *
+	 * @return void
+	 */
+	protected function register_category_icon_style_controls() {
+		$this->start_controls_section(
+			'section_categories_icon_style',
+			array(
+				'label'     => esc_html__( 'Categories Icon', 'mas-elementor' ),
+				'tab'       => Controls_Manager::TAB_STYLE,
+				'condition' => array(
+					'select_image_icon' => 'icon',
+				),
+			)
+		);
+
+			$this->add_control(
+				'heading_icon',
+				array(
+					'label' => esc_html__( 'Icon', 'mas-elementor' ),
+					'type'  => Controls_Manager::HEADING,
+				)
+			);
+
+			$this->add_responsive_control(
+				'icon_font_size',
+				array(
+					'label'          => esc_html__( 'Font Size', 'mas-elementor' ),
+					'type'           => Controls_Manager::SLIDER,
+					'size_units'     => array( 'px', '%', 'em', 'rem', 'vw', 'custom' ),
+					'range'          => array(
+						'%'  => array(
+							'min'  => 0,
+							'max'  => 100,
+							'step' => 1,
+						),
+						'px' => array(
+							'min'  => 0,
+							'max'  => 200,
+							'step' => 1,
+						),
+					),
+					'default'        => array(
+						'size' => 40,
+						'unit' => 'px',
+					),
+					'tablet_default' => array(
+						'size' => 40,
+						'unit' => 'px',
+					),
+					'mobile_default' => array(
+						'size' => 40,
+						'unit' => 'px',
+					),
+					'selectors'      => array(
+						'{{WRAPPER}} .mas-category-icon i' => 'font-size: {{SIZE}}{{UNIT}};',
+					),
+				)
+			);
+
+			$this->add_responsive_control(
+				'icon_margin',
+				array(
+					'label'      => esc_html__( 'Margin', 'mas-elementor' ),
+					'type'       => Controls_Manager::DIMENSIONS,
+					'size_units' => array( 'px', '%', 'em', 'rem', 'custom' ),
+					'selectors'  => array(
+						'{{WRAPPER}} .mas-category-icon i' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}}',
+					),
+				)
+			);
+
+			$this->add_control(
+				'icon_color',
+				array(
+					'label'     => esc_html__( 'Icon Color', 'mas-elementor' ),
+					'type'      => Controls_Manager::COLOR,
+					'selectors' => array(
+						'{{WRAPPER}} .mas-category-icon i' => 'color: {{VALUE}}',
+					),
+				)
+			);
+
+			$this->add_control(
+				'icon_hover_color',
+				array(
+					'label'     => esc_html__( 'Icon Hover Color', 'mas-elementor' ),
+					'type'      => Controls_Manager::COLOR,
+					'selectors' => array(
+						'{{WRAPPER}} .mas-category-icon i:hover' => 'color: {{VALUE}}',
+						'{{WRAPPER}} .mas-categories-wrapper a:hover .mas-category-icon i' => 'color: {{VALUE}}',
+					),
+				)
+			);
+
+			$this->add_control(
+				'heading_icon_wrapper',
+				array(
+					'label'     => esc_html__( 'Icon Wrapper', 'mas-elementor' ),
+					'type'      => Controls_Manager::HEADING,
+					'separator' => 'before',
+				)
+			);
+
+			$this->add_responsive_control(
+				'icon_wrap_width',
+				array(
+					'label'          => esc_html__( 'Width', 'mas-elementor' ),
+					'type'           => Controls_Manager::SLIDER,
+					'size_units'     => array( 'px', '%', 'em', 'rem', 'vw', 'custom' ),
+					'range'          => array(
+						'%'  => array(
+							'min'  => 0,
+							'max'  => 100,
+							'step' => 1,
+						),
+						'px' => array(
+							'min'  => 0,
+							'max'  => 5000,
+							'step' => 1,
+						),
+					),
+					'default'        => array(
+						'size' => 122,
+					),
+					'tablet_default' => array(
+						'size' => 122,
+					),
+					'mobile_default' => array(
+						'size' => 122,
+					),
+					'selectors'      => array(
+						'{{WRAPPER}} .mas-category-icon' => 'width: {{SIZE}}{{UNIT}};',
+					),
+				)
+			);
+
+			$this->add_responsive_control(
+				'icon_wrap_height',
+				array(
+					'label'          => esc_html__( 'Height', 'mas-elementor' ),
+					'type'           => Controls_Manager::SLIDER,
+					'size_units'     => array( 'px', '%', 'em', 'rem', 'vw', 'custom' ),
+					'range'          => array(
+						'%'  => array(
+							'min'  => 0,
+							'max'  => 100,
+							'step' => 1,
+						),
+						'px' => array(
+							'min'  => 0,
+							'max'  => 5000,
+							'step' => 1,
+						),
+					),
+					'default'        => array(
+						'size' => 74,
+					),
+					'tablet_default' => array(
+						'size' => 74,
+					),
+					'mobile_default' => array(
+						'size' => 74,
+					),
+					'selectors'      => array(
+						'{{WRAPPER}} .mas-category-icon' => 'height: {{SIZE}}{{UNIT}};',
+					),
+				)
+			);
+
+			$this->add_group_control(
+				Group_Control_Border::get_type(),
+				array(
+					'name'     => 'icon_wrap_border',
+					'selector' => '{{WRAPPER}} .mas-category-icon',
+				)
+			);
+
+			$this->add_responsive_control(
+				'icon_wrap_radius',
+				array(
+					'label'      => esc_html__( 'Border Radius', 'mas-elementor' ),
+					'type'       => Controls_Manager::DIMENSIONS,
+					'size_units' => array( 'px', '%', 'em', 'rem', 'custom' ),
+					'selectors'  => array(
+						'{{WRAPPER}} .mas-category-icon' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}}',
+					),
+				)
+			);
+
+			$this->add_responsive_control(
+				'icon_wrap_margin',
+				array(
+					'label'      => esc_html__( 'Margin', 'mas-elementor' ),
+					'type'       => Controls_Manager::DIMENSIONS,
+					'size_units' => array( 'px', '%', 'em', 'rem', 'custom' ),
+					'selectors'  => array(
+						'{{WRAPPER}} .mas-category-icon' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}}',
+					),
+				)
+			);
+
+			$this->add_control(
+				'icon_wrap_bg_color',
+				array(
+					'label'     => esc_html__( 'Icon Wrapper BG Color', 'mas-elementor' ),
+					'type'      => Controls_Manager::COLOR,
+					'selectors' => array(
+						'{{WRAPPER}} .mas-category-icon' => 'background-color: {{VALUE}}',
+					),
+				)
+			);
+
+			$this->add_control(
+				'icon_wrap_bg_hover_color',
+				array(
+					'label'     => esc_html__( 'Icon Wrapper BG hover Color', 'mas-elementor' ),
+					'type'      => Controls_Manager::COLOR,
+					'selectors' => array(
+						'{{WRAPPER}} .mas-category-icon:hover' => 'background-color: {{VALUE}}',
+						'{{WRAPPER}} .mas-categories-wrapper a:hover .mas-category-icon' => 'background-color: {{VALUE}}',
+					),
+				)
+			);
+
+			$this->add_responsive_control(
+				'icon_wrap_justify_content',
+				array(
+					'label'       => esc_html__( 'Justify Content', 'mas-elementor' ),
+					'type'        => Controls_Manager::CHOOSE,
+					'label_block' => true,
+					'default'     => 'center',
+					'options'     => array(
+						'flex-start'    => array(
+							'title' => esc_html_x( 'Start', 'Flex Container Control', 'mas-elementor' ),
+							'icon'  => 'eicon-flex eicon-justify-start-h',
+						),
+						'center'        => array(
+							'title' => esc_html_x( 'Center', 'Flex Container Control', 'mas-elementor' ),
+							'icon'  => 'eicon-flex eicon-justify-center-h',
+						),
+						'flex-end'      => array(
+							'title' => esc_html_x( 'End', 'Flex Container Control', 'mas-elementor' ),
+							'icon'  => 'eicon-flex eicon-justify-end-h',
+						),
+						'space-between' => array(
+							'title' => esc_html__( 'Space Between', 'mas-elementor' ),
+							'icon'  => 'eicon-flex eicon-justify-space-between-h',
+						),
+						'space-around'  => array(
+							'title' => esc_html__( 'Space Around', 'mas-elementor' ),
+							'icon'  => 'eicon-flex eicon-justify-space-around-h',
+						),
+						'space-evenly'  => array(
+							'title' => esc_html__( 'Space Evenly', 'mas-elementor' ),
+							'icon'  => 'eicon-flex eicon-justify-space-evenly-h',
+						),
+					),
+					'selectors'   => array(
+						'{{WRAPPER}} .mas-category-icon' => 'display:flex;justify-content: {{VALUE}};',
+					),
+				)
+			);
+
+			$this->add_responsive_control(
+				'icon_wrap_align_items',
+				array(
+					'label'     => esc_html__( 'Align Items', 'mas-elementor' ),
+					'type'      => Controls_Manager::CHOOSE,
+					'default'   => 'flex-end',
+					'options'   => array(
+						'flex-start' => array(
+							'title' => esc_html_x( 'Start', 'Flex Container Control', 'mas-elementor' ),
+							'icon'  => 'eicon-flex eicon-align-start-v',
+						),
+						'center'     => array(
+							'title' => esc_html_x( 'Center', 'Flex Container Control', 'mas-elementor' ),
+							'icon'  => 'eicon-flex eicon-align-center-v',
+						),
+						'flex-end'   => array(
+							'title' => esc_html_x( 'End', 'Flex Container Control', 'mas-elementor' ),
+							'icon'  => 'eicon-flex eicon-align-end-v',
+						),
+						'stretch'    => array(
+							'title' => esc_html__( 'Stretch', 'mas-elementor' ),
+							'icon'  => 'eicon-flex eicon-align-stretch-v',
+						),
+					),
+					'selectors' => array(
+						'{{WRAPPER}} .mas-category-icon' => 'display:flex;align-items: {{VALUE}};',
+					),
+				)
+			);
+
+		$this->end_controls_section();
 	}
 
 	/**
@@ -1025,15 +1443,23 @@ class Product_Categories extends Base_Widget {
 			$img_cat_wrap_tag = 'a';
 			$categories_tag   = 'div';
 			$img_wrap_tag     = 'div';
+			$icon_wrap_tag    = 'div';
 
 		} else {
 			$img_cat_wrap_tag = 'div';
 			$categories_tag   = 'a';
 			$img_wrap_tag     = 'a';
+			$icon_wrap_tag    = 'a';
 		}
 
 		foreach ( $all_categories as $index => $cat ) {
-			if ( 0 === $cat->parent ) {
+			if ( 'yes' === $settings['show_child_cat'] ) {
+				$condition = true;
+			} else {
+				$condition = 0 === $cat->parent;
+			}
+
+			if ( $condition ) {
 				if ( $tab_count === $settings['number'] ) {
 					break;
 				}
@@ -1059,11 +1485,29 @@ class Product_Categories extends Base_Widget {
 
 					if ( 'a' === $img_wrap_tag ) {
 						$this->add_render_attribute( 'cat-img' . $index, 'href', get_term_link( $cat->slug, $taxonomy ) );
+						$this->add_render_attribute( 'cat-icon' . $index, 'href', get_term_link( $cat->slug, $taxonomy ) );
 					}
+					$icon = get_term_meta( $cat->term_id, $settings['icon_term_name'], true );
 					$this->add_render_attribute( 'cat-img' . $index, 'class', 'image-wrap' );
-					?>
-					<<?php echo esc_html( $img_wrap_tag ); ?> <?php $this->print_render_attribute_string( 'cat-img' . $index ); ?>><?php echo wp_kses_post( $image ); ?></<?php echo esc_html( $img_wrap_tag ); ?>>
-					<?php
+					$this->add_render_attribute( 'cat-icon' . $index, 'class', 'mas-category-icon' );
+
+					if ( 'icon' === $settings['select_image_icon'] ) {
+						if ( ! empty( $icon ) ) {
+							?>
+							<<?php echo esc_html( $icon_wrap_tag ); ?> <?php $this->print_render_attribute_string( 'cat-icon' . $index ); ?>>
+								<i class="<?php echo esc_attr( $icon ); ?>"></i>
+							</<?php echo esc_html( $icon_wrap_tag ); ?>>
+							<?php
+						}
+					} else {
+						?>
+						<<?php echo esc_html( $img_wrap_tag ); ?> <?php $this->print_render_attribute_string( 'cat-img' . $index ); ?>>
+						<?php
+							echo wp_kses_post( $image );
+						?>
+						</<?php echo esc_html( $img_wrap_tag ); ?>>
+						<?php
+					}
 
 					$category_id = $cat->term_id;
 					?>

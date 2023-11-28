@@ -239,7 +239,6 @@ trait Button_Widget_Trait {
 						'max' => 1000,
 					),
 				),
-				'devices'         => array( 'desktop', 'tablet', 'mobile' ),
 				'desktop_default' => array(
 					'size' => 5,
 					'unit' => '%',
