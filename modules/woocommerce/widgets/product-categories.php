@@ -126,8 +126,23 @@ class Product_Categories extends Base_Widget {
 				'type'    => Controls_Manager::SELECT,
 				'default' => 'image',
 				'options' => array(
+					'none'  => esc_html__( 'None', 'mas-elementor' ),
 					'image' => esc_html__( 'Image', 'mas-elementor' ),
 					'icon'  => esc_html__( 'Icon', 'mas-elementor' ),
+				),
+			)
+		);
+
+		$this->add_control(
+			'enable_placeholder_image',
+			array(
+				'label'     => esc_html__( 'Show Image Placeholder', 'mas-elementor' ),
+				'type'      => Controls_Manager::SWITCHER,
+				'default'   => 'yes',
+				'label_on'  => 'Hide',
+				'label_off' => 'Show',
+				'condition' => array(
+					'select_image_icon' => 'image',
 				),
 			)
 		);
@@ -323,6 +338,22 @@ class Product_Categories extends Base_Widget {
 			)
 		);
 
+		$this->add_control(
+			'title_hover_color',
+			array(
+				'label'     => esc_html__( 'Category Hover Color', 'mas-elementor' ),
+				'type'      => Controls_Manager::COLOR,
+				'global'    => array(
+					'default' => Global_Colors::COLOR_PRIMARY,
+				),
+				'selectors' => array(
+					'{{WRAPPER}} .categories > a:hover' => 'color: {{VALUE}}',
+					'{{WRAPPER}} .categories > .cat-name:hover' => 'color: {{VALUE}}',
+					'{{WRAPPER}} .cat-wrapper:hover .categories .cat-name' => 'color: {{VALUE}}',
+				),
+			)
+		);
+
 		$this->add_group_control(
 			Group_Control_Typography::get_type(),
 			array(
@@ -443,13 +474,30 @@ class Product_Categories extends Base_Widget {
 		$this->add_control(
 			'sub_cat_color',
 			array(
-				'label'     => esc_html__( 'Category Color', 'mas-elementor' ),
+				'label'     => esc_html__( 'Sub Category Color', 'mas-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'global'    => array(
 					'default' => Global_Colors::COLOR_PRIMARY,
 				),
 				'selectors' => array(
 					'{{WRAPPER}} .sub-categories .sub-category a' => 'color: {{VALUE}}',
+				),
+				'condition' => array(
+					'sub_cat_count!' => 0,
+				),
+			)
+		);
+
+		$this->add_control(
+			'sub_cat_hover_color',
+			array(
+				'label'     => esc_html__( 'Sub Category Hover Color', 'mas-elementor' ),
+				'type'      => Controls_Manager::COLOR,
+				'global'    => array(
+					'default' => Global_Colors::COLOR_PRIMARY,
+				),
+				'selectors' => array(
+					'{{WRAPPER}} .sub-categories .sub-category a:hover' => 'color: {{VALUE}}',
 				),
 				'condition' => array(
 					'sub_cat_count!' => 0,
@@ -659,6 +707,18 @@ class Product_Categories extends Base_Widget {
 			array(
 				'label' => esc_html__( 'Image / Icon & Categories', 'mas-elementor' ),
 				'tab'   => Controls_Manager::TAB_CONTENT,
+			)
+		);
+
+		$this->add_responsive_control(
+			'categories_img_padding',
+			array(
+				'label'      => esc_html__( 'Padding', 'mas-elementor' ),
+				'type'       => Controls_Manager::DIMENSIONS,
+				'size_units' => array( 'px', '%', 'em', 'rem', 'custom' ),
+				'selectors'  => array(
+					'{{WRAPPER}} .img-cat-wrap' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}}',
+				),
 			)
 		);
 
@@ -996,6 +1056,26 @@ class Product_Categories extends Base_Widget {
 			array(
 				'label' => esc_html__( 'Background', 'mas-elementor' ),
 				'tab'   => Controls_Manager::TAB_STYLE,
+			)
+		);
+
+		$this->add_group_control(
+			Group_Control_Border::get_type(),
+			array(
+				'name'     => 'category_border',
+				'selector' => '{{WRAPPER}} .cat-wrapper',
+			)
+		);
+
+		$this->add_responsive_control(
+			'category_border_radius',
+			array(
+				'label'      => esc_html__( 'Border Radius', 'mas-elementor' ),
+				'type'       => Controls_Manager::DIMENSIONS,
+				'size_units' => array( 'px', '%', 'em', 'rem', 'custom' ),
+				'selectors'  => array(
+					'{{WRAPPER}} .cat-wrapper' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}}',
+				),
 			)
 		);
 
@@ -1481,7 +1561,12 @@ class Product_Categories extends Base_Widget {
 					<?php
 					$category_name      = $cat->name;
 					$category_thumbnail = get_term_meta( $cat->term_id, 'thumbnail_id', true );
-					$image              = ! empty( wp_get_attachment_image( $category_thumbnail ) ) ? wp_get_attachment_image( $category_thumbnail ) : wc_placeholder_img();
+					$image              = '';
+					if ( ! empty( wp_get_attachment_image( $category_thumbnail ) ) ) {
+						$image = wp_get_attachment_image( $category_thumbnail );
+					} elseif ( $settings['enable_placeholder_image'] ) {
+						$image = wc_placeholder_img();
+					}
 
 					if ( 'a' === $img_wrap_tag ) {
 						$this->add_render_attribute( 'cat-img' . $index, 'href', get_term_link( $cat->slug, $taxonomy ) );
@@ -1499,14 +1584,16 @@ class Product_Categories extends Base_Widget {
 							</<?php echo esc_html( $icon_wrap_tag ); ?>>
 							<?php
 						}
-					} else {
-						?>
+					} elseif ( 'image' === $settings['select_image_icon'] ) {
+						if ( ! empty( $image ) ) {
+							?>
 						<<?php echo esc_html( $img_wrap_tag ); ?> <?php $this->print_render_attribute_string( 'cat-img' . $index ); ?>>
-						<?php
+							<?php
 							echo wp_kses_post( $image );
-						?>
+							?>
 						</<?php echo esc_html( $img_wrap_tag ); ?>>
-						<?php
+							<?php
+						}
 					}
 
 					$category_id = $cat->term_id;
