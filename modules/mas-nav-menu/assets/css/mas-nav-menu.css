@@ -265,9 +265,7 @@ margin-top: 20px;
   .mas-hamburger-menu ul li.menu-item-has-children:focus > .dropdown-menu,
   .header-menu .dropdown-menu.show,
   .handheld.horizontal.collapse ul li ul li.menu-item-has-children:hover > ul.dropdown-menu,
-  .handheld.horizontal.collapse ul li ul li.menu-item-has-children:focus > ul.dropdown-menu { 
-    display: block;
-    
+  .handheld.horizontal.collapse ul li ul li.menu-item-has-children:focus > ul.dropdown-menu {     
      position: static !important;
       transform: none !important;
   }
