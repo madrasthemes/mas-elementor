@@ -181,6 +181,20 @@ class Countdown extends Base_Widget {
 			)
 		);
 
+		$this->add_control(
+			'separator_color',
+			array(
+				'label'     => __( 'Separator Color', 'mas-elementor' ),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => array(
+					'{{WRAPPER}}.mas-countdown-separator-yes .mas-js-countdown > .mas-elementor-countdown-item:not(:last-child):after' => 'color: {{VALUE}};',
+				),
+				'condition'   => array(
+					'show_separator'   => 'yes',
+				),
+			)
+		);
+
 		$this->add_responsive_control(
 			'separator_padding',
 			array(
