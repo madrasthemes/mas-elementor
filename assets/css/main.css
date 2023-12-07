@@ -3,3 +3,18 @@
 .mas-countdown-separator-yes .mas-js-countdown > .mas-elementor-countdown-item:not(:last-child):after {
       content: ':';
 }
+
+
+.mas-carousel-short-description .woocommerce-product-details__short-description {
+      height: 3.5em;
+      overflow: hidden;
+  
+}
+.mas-carousel-short-description .woocommerce-product-details__short-description ul > li{
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+}
+.mas-carousel-short-description .woocommerce-product-details__short-description ul{
+	padding-left: 0px;
+}
