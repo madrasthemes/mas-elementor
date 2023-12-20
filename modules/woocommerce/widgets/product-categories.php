@@ -342,7 +342,7 @@ class Product_Categories extends Base_Widget {
 				'label'       => esc_html__( 'Categories display type', 'mas-elementor' ),
 				'type'        => Controls_Manager::CHOOSE,
 				'label_block' => true,
-				'default'     => 'flex',
+				'default'     => 'inline',
 				'options'     => array(
 					'block' => array(
 						'title' => esc_html__( 'Block', 'mas-elementor' ),
@@ -351,6 +351,10 @@ class Product_Categories extends Base_Widget {
 					'flex'  => array(
 						'title' => esc_html__( 'Flex', 'mas-elementor' ),
 						'icon'  => 'eicon-exchange',
+					),
+					'inline'  => array(
+						'title' => esc_html__( 'Inline', 'mas-elementor' ),
+						'icon'  => 'eicon-nowrap',
 					),
 
 				),
@@ -609,7 +613,7 @@ class Product_Categories extends Base_Widget {
 				'label'       => esc_html__( 'SubCategories display type', 'mas-elementor' ),
 				'type'        => Controls_Manager::CHOOSE,
 				'label_block' => true,
-				'default'     => 'flex',
+				'default'     => 'inline',
 				'options'     => array(
 					'block' => array(
 						'title' => esc_html__( 'Block', 'mas-elementor' ),
@@ -618,6 +622,10 @@ class Product_Categories extends Base_Widget {
 					'flex'  => array(
 						'title' => esc_html__( 'Flex', 'mas-elementor' ),
 						'icon'  => 'eicon-exchange',
+					),
+					'inline'  => array(
+						'title' => esc_html__( 'Inline', 'mas-elementor' ),
+						'icon'  => 'eicon-nowrap',
 					),
 
 				),
