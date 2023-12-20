@@ -336,47 +336,104 @@ class Product_Categories extends Base_Widget {
 			)
 		);
 
-		$this->add_control(
-			'title_color',
+		$this->add_responsive_control(
+			'cat_d_block',
 			array(
-				'label'     => esc_html__( 'Category Color', 'mas-elementor' ),
-				'type'      => Controls_Manager::COLOR,
-				'global'    => array(
-					'default' => Global_Colors::COLOR_PRIMARY,
+				'label'       => esc_html__( 'Categories display type', 'mas-elementor' ),
+				'type'        => Controls_Manager::CHOOSE,
+				'label_block' => true,
+				'default'     => 'flex',
+				'options'     => array(
+					'block' => array(
+						'title' => esc_html__( 'Block', 'mas-elementor' ),
+						'icon'  => 'eicon-ban',
+					),
+					'flex'  => array(
+						'title' => esc_html__( 'Flex', 'mas-elementor' ),
+						'icon'  => 'eicon-exchange',
+					),
+
 				),
-				'selectors' => array(
-					'{{WRAPPER}} .categories > a'         => 'color: {{VALUE}}',
-					'{{WRAPPER}} .categories > .cat-name' => 'color: {{VALUE}}',
+				'selectors'   => array(
+					'{{WRAPPER}} .categories a' => 'display: {{VALUE}};',
 				),
+				'separator'   => 'after',
 			)
 		);
 
-		$this->add_control(
-			'title_hover_color',
-			array(
-				'label'     => esc_html__( 'Category Hover Color', 'mas-elementor' ),
-				'type'      => Controls_Manager::COLOR,
-				'global'    => array(
-					'default' => Global_Colors::COLOR_PRIMARY,
-				),
-				'selectors' => array(
-					'{{WRAPPER}} .categories > a:hover' => 'color: {{VALUE}}',
-					'{{WRAPPER}} .categories > .cat-name:hover' => 'color: {{VALUE}}',
-					'{{WRAPPER}} .cat-wrapper:hover .categories .cat-name' => 'color: {{VALUE}}',
-				),
-			)
-		);
+		$this->start_controls_tabs( 'category_title_tab' );
 
-		$this->add_group_control(
-			Group_Control_Typography::get_type(),
-			array(
-				'name'     => 'title_typography',
-				'global'   => array(
-					'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
-				),
-				'selector' => '{{WRAPPER}} .categories > a, {{WRAPPER}} .categories > .cat-name',
-			)
-		);
+			$this->start_controls_tab(
+				'cat_title_normal',
+				array(
+					'label' => esc_html__( 'Normal', 'mas-elementor' ),
+				)
+			);
+
+				$this->add_control(
+					'title_color',
+					array(
+						'label'     => esc_html__( 'Category Color', 'mas-elementor' ),
+						'type'      => Controls_Manager::COLOR,
+						'global'    => array(
+							'default' => Global_Colors::COLOR_PRIMARY,
+						),
+						'selectors' => array(
+							'{{WRAPPER}} .categories > a' => 'color: {{VALUE}}',
+							'{{WRAPPER}} .categories > .cat-name' => 'color: {{VALUE}}',
+						),
+					)
+				);
+
+				$this->add_group_control(
+					Group_Control_Typography::get_type(),
+					array(
+						'name'     => 'title_typography',
+						'global'   => array(
+							'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
+						),
+						'selector' => '{{WRAPPER}} .categories > a, {{WRAPPER}} .categories > .cat-name',
+					)
+				);
+
+			$this->end_controls_tab();
+
+			$this->start_controls_tab(
+				'cat_title_hover',
+				array(
+					'label' => esc_html__( 'Hover', 'mas-elementor' ),
+				)
+			);
+
+				$this->add_control(
+					'title_hover_color',
+					array(
+						'label'     => esc_html__( 'Category Hover Color', 'mas-elementor' ),
+						'type'      => Controls_Manager::COLOR,
+						'global'    => array(
+							'default' => Global_Colors::COLOR_PRIMARY,
+						),
+						'selectors' => array(
+							'{{WRAPPER}} .categories > a:hover' => 'color: {{VALUE}}',
+							'{{WRAPPER}} .categories > .cat-name:hover' => 'color: {{VALUE}}',
+							// '{{WRAPPER}} .cat-wrapper:hover .categories .cat-name' => 'color: {{VALUE}}',
+						),
+					)
+				);
+
+				$this->add_group_control(
+					Group_Control_Typography::get_type(),
+					array(
+						'name'     => 'title_typography_hover',
+						'global'   => array(
+							'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
+						),
+						'selector' => '{{WRAPPER}} .categories > a:hover, {{WRAPPER}} .categories > .cat-name:hover',
+					)
+				);
+
+			$this->end_controls_tab();
+		$this->end_controls_tabs();
 
 		$this->add_responsive_control(
 			'cat_title_wrapper_width',
@@ -399,6 +456,7 @@ class Product_Categories extends Base_Widget {
 				'selectors'  => array(
 					'{{WRAPPER}} .categories' => 'width: {{SIZE}}{{UNIT}};',
 				),
+				'separator'  => 'before',
 			)
 		);
 
@@ -541,57 +599,125 @@ class Product_Categories extends Base_Widget {
 				'condition'   => array(
 					'sub_cat_count!' => 0,
 				),
+				'separator'   => 'after',
 			)
 		);
 
-		$this->add_control(
-			'sub_cat_color',
+		$this->add_responsive_control(
+			'sub_cat_d_block',
 			array(
-				'label'     => esc_html__( 'Sub Category Color', 'mas-elementor' ),
-				'type'      => Controls_Manager::COLOR,
-				'global'    => array(
-					'default' => Global_Colors::COLOR_PRIMARY,
+				'label'       => esc_html__( 'SubCategories display type', 'mas-elementor' ),
+				'type'        => Controls_Manager::CHOOSE,
+				'label_block' => true,
+				'default'     => 'flex',
+				'options'     => array(
+					'block' => array(
+						'title' => esc_html__( 'Block', 'mas-elementor' ),
+						'icon'  => 'eicon-ban',
+					),
+					'flex'  => array(
+						'title' => esc_html__( 'Flex', 'mas-elementor' ),
+						'icon'  => 'eicon-exchange',
+					),
+
 				),
-				'selectors' => array(
-					'{{WRAPPER}} .sub-categories .sub-category a' => 'color: {{VALUE}}',
+				'selectors'   => array(
+					'{{WRAPPER}} .sub-category a' => 'display: {{VALUE}};',
 				),
-				'condition' => array(
+				'condition'   => array(
 					'sub_cat_count!' => 0,
 				),
+				'separator'   => 'after',
 			)
 		);
 
-		$this->add_control(
-			'sub_cat_hover_color',
-			array(
-				'label'     => esc_html__( 'Sub Category Hover Color', 'mas-elementor' ),
-				'type'      => Controls_Manager::COLOR,
-				'global'    => array(
-					'default' => Global_Colors::COLOR_PRIMARY,
-				),
-				'selectors' => array(
-					'{{WRAPPER}} .sub-categories .sub-category a:hover' => 'color: {{VALUE}}',
-				),
-				'condition' => array(
-					'sub_cat_count!' => 0,
-				),
-			)
-		);
+		$this->start_controls_tabs( 'subcategory_title_tab' );
 
-		$this->add_group_control(
-			Group_Control_Typography::get_type(),
-			array(
-				'name'      => 'sub_cat_typography',
-				'global'    => array(
-					'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
-				),
-				'selector'  => '{{WRAPPER}} .sub-categories .sub-category, {{WRAPPER}} .sub-categories .sub-category a',
-				'condition' => array(
-					'sub_cat_count!' => 0,
-				),
-			)
-		);
+			$this->start_controls_tab(
+				'subcat_title_normal',
+				array(
+					'label'     => esc_html__( 'Normal', 'mas-elementor' ),
+					'condition' => array(
+						'sub_cat_count!' => 0,
+					),
+				)
+			);
 
+				$this->add_control(
+					'sub_cat_color',
+					array(
+						'label'     => esc_html__( 'Sub Category Color', 'mas-elementor' ),
+						'type'      => Controls_Manager::COLOR,
+						'global'    => array(
+							'default' => Global_Colors::COLOR_PRIMARY,
+						),
+						'selectors' => array(
+							'{{WRAPPER}} .sub-categories .sub-category a' => 'color: {{VALUE}}',
+						),
+						'condition' => array(
+							'sub_cat_count!' => 0,
+						),
+					)
+				);
+
+				$this->add_group_control(
+					Group_Control_Typography::get_type(),
+					array(
+						'name'      => 'sub_cat_typography',
+						'global'    => array(
+							'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
+						),
+						'selector'  => '{{WRAPPER}} .sub-categories .sub-category, {{WRAPPER}} .sub-categories .sub-category a',
+						'condition' => array(
+							'sub_cat_count!' => 0,
+						),
+					)
+				);
+
+			$this->end_controls_tab();
+
+			$this->start_controls_tab(
+				'subcat_title_hover',
+				array(
+					'label'     => esc_html__( 'Hover', 'mas-elementor' ),
+					'condition' => array(
+						'sub_cat_count!' => 0,
+					),
+				)
+			);
+				$this->add_control(
+					'sub_cat_hover_color',
+					array(
+						'label'     => esc_html__( 'Sub Category Hover Color', 'mas-elementor' ),
+						'type'      => Controls_Manager::COLOR,
+						'global'    => array(
+							'default' => Global_Colors::COLOR_PRIMARY,
+						),
+						'selectors' => array(
+							'{{WRAPPER}} .sub-categories .sub-category a:hover' => 'color: {{VALUE}}',
+						),
+						'condition' => array(
+							'sub_cat_count!' => 0,
+						),
+					)
+				);
+
+				$this->add_group_control(
+					Group_Control_Typography::get_type(),
+					array(
+						'name'      => 'sub_cat_hover_typography',
+						'global'    => array(
+							'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
+						),
+						'selector'  => '{{WRAPPER}} .sub-categories .sub-category:hover, {{WRAPPER}} .sub-categories .sub-category a:hover',
+						'condition' => array(
+							'sub_cat_count!' => 0,
+						),
+					)
+				);
+
+			$this->end_controls_tab();
+		$this->end_controls_tabs();
 		$this->end_controls_section();
 
 		$this->start_controls_section(
@@ -841,6 +967,7 @@ class Product_Categories extends Base_Widget {
 				'selectors'  => array(
 					'{{WRAPPER}} .cat-wrapper' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}}',
 				),
+				'separator'  => 'before',
 			)
 		);
 
@@ -853,6 +980,28 @@ class Product_Categories extends Base_Widget {
 				'selectors'  => array(
 					'{{WRAPPER}} .cat-wrapper' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}}',
 				),
+				'separator'  => 'after',
+			)
+		);
+
+		$this->add_responsive_control(
+			'cat_wrap_border_last_child',
+			array(
+				'label'      => esc_html__( 'Last Child Border Width', 'mas-elementor' ),
+				'type'       => Controls_Manager::DIMENSIONS,
+				'size_units' => array( 'px', '%', 'em', 'rem', 'custom' ),
+				'selectors'  => array(
+					'{{WRAPPER}} .cat-wrapper:last-child' => 'border-width: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}}',
+				),
+			)
+		);
+
+		$this->add_group_control(
+			Group_Control_Border::get_type(),
+			array(
+				'name'      => 'cat_wrap_border',
+				'selector'  => '{{WRAPPER}} .cat-wrapper',
+				'separator' => 'after',
 			)
 		);
 
