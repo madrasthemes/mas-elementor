@@ -209,6 +209,52 @@ class Product_Categories extends Base_Widget {
 		);
 
 		$this->add_control(
+			'show_cat_product_count',
+			array(
+				'label'       => esc_html__( 'Show Cat product count', 'mas-elementor' ),
+				'description' => esc_html__( 'Show product count for Categories', 'mas-elementor' ),
+				'type'        => Controls_Manager::SWITCHER,
+				'default'     => 'no',
+				'label_on'    => 'Hide',
+				'label_off'   => 'Show',
+			)
+		);
+
+		$this->add_control(
+			'show_subcat_product_count',
+			array(
+				'label'       => esc_html__( 'Show SubCat product count', 'mas-elementor' ),
+				'description' => esc_html__( 'Show product count for Sub categories', 'mas-elementor' ),
+				'type'        => Controls_Manager::SWITCHER,
+				'default'     => 'no',
+				'label_on'    => 'Hide',
+				'label_off'   => 'Show',
+			)
+		);
+
+		$this->add_control(
+			'product_count_singular_pattern',
+			array(
+				'label'       => esc_html__( 'Product Count Singular Pattern', 'mas-elementor' ),
+				'type'        => Controls_Manager::TEXT,
+				'placeholder' => '%s product',
+				'description' => '%s displays the count',
+				'default'     => '',
+			)
+		);
+
+		$this->add_control(
+			'product_count_plural_pattern',
+			array(
+				'label'       => esc_html__( 'Product Count Singular Pattern', 'mas-elementor' ),
+				'type'        => Controls_Manager::TEXT,
+				'placeholder' => '%s products',
+				'description' => '%s displays the count',
+				'default'     => '',
+			)
+		);
+
+		$this->add_control(
 			'hide_empty',
 			array(
 				'label'     => esc_html__( 'Hide Empty', 'mas-elementor' ),
@@ -271,13 +317,39 @@ class Product_Categories extends Base_Widget {
 			)
 		);
 
+		$this->add_responsive_control(
+			'cat_image_align',
+			array(
+				'label'     => esc_html__( 'Alignment', 'mas-elementor' ),
+				'type'      => Controls_Manager::CHOOSE,
+				'default'   => '',
+				'options'   => array(
+					'left'   => array(
+						'title' => esc_html__( 'Left', 'mas-elementor' ),
+						'icon'  => 'eicon-text-align-left',
+					),
+					'center' => array(
+						'title' => esc_html__( 'Center', 'mas-elementor' ),
+						'icon'  => 'eicon-text-align-center',
+					),
+					'right'  => array(
+						'title' => esc_html__( 'Right', 'mas-elementor' ),
+						'icon'  => 'eicon-text-align-right',
+					),
+				),
+				'selectors' => array(
+					'{{WRAPPER}} .image-wrap' => 'text-align: {{VALUE}}',
+				),
+			)
+		);
+
 		$this->register_transform_controls();
 
 		$this->add_group_control(
 			Group_Control_Border::get_type(),
 			array(
 				'name'     => 'image_border',
-				'selector' => '{{WRAPPER}} a > img',
+				'selector' => '{{WRAPPER}} a > img, {{WRAPPER}} .image-wrap > img',
 			)
 		);
 
@@ -288,7 +360,7 @@ class Product_Categories extends Base_Widget {
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', '%', 'em', 'rem', 'custom' ),
 				'selectors'  => array(
-					'{{WRAPPER}} a > img' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}}',
+					'{{WRAPPER}} a > img, {{WRAPPER}} .image-wrap > img' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}}',
 				),
 			)
 		);
@@ -313,6 +385,47 @@ class Product_Categories extends Base_Widget {
 				'size_units' => array( 'px', '%', 'em', 'rem', 'custom' ),
 				'selectors'  => array(
 					'{{WRAPPER}} .img-cat-wrap img' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}}',
+				),
+			)
+		);
+
+		$this->add_control(
+			'heading_image_wrap_style',
+			array(
+				'label'     => esc_html__( 'Image Wrap', 'mas-elementor' ),
+				'type'      => Controls_Manager::HEADING,
+				'separator' => 'before',
+			)
+		);
+
+		$this->add_responsive_control(
+			'image_wrap_padding',
+			array(
+				'label'      => esc_html__( 'Padding', 'mas-elementor' ),
+				'type'       => Controls_Manager::DIMENSIONS,
+				'size_units' => array( 'px', '%', 'em', 'rem', 'custom' ),
+				'selectors'  => array(
+					'{{WRAPPER}} .img-cat-wrap .image-wrap' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}}',
+				),
+			)
+		);
+
+		$this->add_group_control(
+			Group_Control_Border::get_type(),
+			array(
+				'name'     => 'image_wrap_border',
+				'selector' => '{{WRAPPER}} .image-wrap',
+			)
+		);
+
+		$this->add_responsive_control(
+			'image_wrap_border_radius',
+			array(
+				'label'      => esc_html__( 'Border Radius', 'mas-elementor' ),
+				'type'       => Controls_Manager::DIMENSIONS,
+				'size_units' => array( 'px', '%', 'em', 'rem', 'custom' ),
+				'selectors'  => array(
+					'{{WRAPPER}} .image-wrap' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}}',
 				),
 			)
 		);
@@ -344,15 +457,15 @@ class Product_Categories extends Base_Widget {
 				'label_block' => true,
 				'default'     => 'inline',
 				'options'     => array(
-					'block' => array(
+					'block'  => array(
 						'title' => esc_html__( 'Block', 'mas-elementor' ),
 						'icon'  => 'eicon-ban',
 					),
-					'flex'  => array(
+					'flex'   => array(
 						'title' => esc_html__( 'Flex', 'mas-elementor' ),
 						'icon'  => 'eicon-exchange',
 					),
-					'inline'  => array(
+					'inline' => array(
 						'title' => esc_html__( 'Inline', 'mas-elementor' ),
 						'icon'  => 'eicon-nowrap',
 					),
@@ -375,6 +488,14 @@ class Product_Categories extends Base_Widget {
 			);
 
 				$this->add_control(
+					'cat_title_heading',
+					array(
+						'label' => esc_html__( 'Category', 'mas-elementor' ),
+						'type'  => Controls_Manager::HEADING,
+					)
+				);
+
+				$this->add_control(
 					'title_color',
 					array(
 						'label'     => esc_html__( 'Category Color', 'mas-elementor' ),
@@ -383,8 +504,8 @@ class Product_Categories extends Base_Widget {
 							'default' => Global_Colors::COLOR_PRIMARY,
 						),
 						'selectors' => array(
-							'{{WRAPPER}} .categories > a' => 'color: {{VALUE}}',
-							'{{WRAPPER}} .categories > .cat-name' => 'color: {{VALUE}}',
+							// '{{WRAPPER}} .categories a' => 'color: {{VALUE}}',
+							'{{WRAPPER}} .categories .cat-name' => 'color: {{VALUE}}',
 						),
 					)
 				);
@@ -396,7 +517,50 @@ class Product_Categories extends Base_Widget {
 						'global'   => array(
 							'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
 						),
-						'selector' => '{{WRAPPER}} .categories > a, {{WRAPPER}} .categories > .cat-name',
+						'selector' => '{{WRAPPER}} .categories .cat-name',
+					)
+				);
+
+				// Product Count Styling.
+				$this->add_control(
+					'cat_prod_count_heading',
+					array(
+						'label'     => esc_html__( 'Product Count', 'mas-elementor' ),
+						'type'      => Controls_Manager::HEADING,
+						'condition' => array(
+							'show_cat_product_count' => 'yes',
+						),
+					)
+				);
+
+				$this->add_control(
+					'cat_prod_count_color',
+					array(
+						'label'     => esc_html__( 'Count Hover Color', 'mas-elementor' ),
+						'type'      => Controls_Manager::COLOR,
+						'global'    => array(
+							'default' => Global_Colors::COLOR_PRIMARY,
+						),
+						'selectors' => array(
+							'{{WRAPPER}} .categories .cat-prod-count' => 'color: {{VALUE}}',
+						),
+						'condition' => array(
+							'show_cat_product_count' => 'yes',
+						),
+					)
+				);
+
+				$this->add_group_control(
+					Group_Control_Typography::get_type(),
+					array(
+						'name'      => 'cat_prod_count_typography',
+						'global'    => array(
+							'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
+						),
+						'selector'  => '{{WRAPPER}} .categories .cat-prod-count',
+						'condition' => array(
+							'show_cat_product_count' => 'yes',
+						),
 					)
 				);
 
@@ -408,6 +572,13 @@ class Product_Categories extends Base_Widget {
 					'label' => esc_html__( 'Hover', 'mas-elementor' ),
 				)
 			);
+				$this->add_control(
+					'cat_title_hover_heading',
+					array(
+						'label' => esc_html__( 'Category', 'mas-elementor' ),
+						'type'  => Controls_Manager::HEADING,
+					)
+				);
 
 				$this->add_control(
 					'title_hover_color',
@@ -418,8 +589,9 @@ class Product_Categories extends Base_Widget {
 							'default' => Global_Colors::COLOR_PRIMARY,
 						),
 						'selectors' => array(
-							'{{WRAPPER}} .categories > a:hover' => 'color: {{VALUE}}',
-							'{{WRAPPER}} .categories > .cat-name:hover' => 'color: {{VALUE}}',
+							// '{{WRAPPER}} .categories a:hover' => 'color: {{VALUE}}',
+							'{{WRAPPER}} .categories .cat-name:hover' => 'color: {{VALUE}}',
+							'{{WRAPPER}} a.img-cat-wrap:hover .cat-name' => 'color: {{VALUE}}',
 							// '{{WRAPPER}} .cat-wrapper:hover .categories .cat-name' => 'color: {{VALUE}}',
 						),
 					)
@@ -432,7 +604,51 @@ class Product_Categories extends Base_Widget {
 						'global'   => array(
 							'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
 						),
-						'selector' => '{{WRAPPER}} .categories > a:hover, {{WRAPPER}} .categories > .cat-name:hover',
+						'selector' => '{{WRAPPER}} .categories .cat-name:hover, {{WRAPPER}} a.img-cat-wrap:hover .cat-name',
+					)
+				);
+
+				// Product Count Styling.
+				$this->add_control(
+					'cat_prod_count_hover_heading',
+					array(
+						'label'     => esc_html__( 'Product Count', 'mas-elementor' ),
+						'type'      => Controls_Manager::HEADING,
+						'condition' => array(
+							'show_cat_product_count' => 'yes',
+						),
+					)
+				);
+
+				$this->add_control(
+					'cat_prod_count_hover_color',
+					array(
+						'label'     => esc_html__( 'Count Hover Color', 'mas-elementor' ),
+						'type'      => Controls_Manager::COLOR,
+						'global'    => array(
+							'default' => Global_Colors::COLOR_PRIMARY,
+						),
+						'selectors' => array(
+							'{{WRAPPER}} .categories .cat-prod-count:hover' => 'color: {{VALUE}}',
+							'{{WRAPPER}} a.img-cat-wrap:hover .cat-prod-count' => 'color: {{VALUE}}',
+						),
+						'condition' => array(
+							'show_cat_product_count' => 'yes',
+						),
+					)
+				);
+
+				$this->add_group_control(
+					Group_Control_Typography::get_type(),
+					array(
+						'name'      => 'cat_prod_count_typography_hover',
+						'global'    => array(
+							'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
+						),
+						'selector'  => '{{WRAPPER}} .categories .cat-prod-count:hover, {{WRAPPER}} a.img-cat-wrap:hover .cat-prod-count',
+						'condition' => array(
+							'show_cat_product_count' => 'yes',
+						),
 					)
 				);
 
@@ -520,6 +736,18 @@ class Product_Categories extends Base_Widget {
 				'size_units' => array( 'px', '%', 'em', 'rem', 'custom' ),
 				'selectors'  => array(
 					'{{WRAPPER}} .categories' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}}',
+				),
+			)
+		);
+
+		$this->add_responsive_control(
+			'cat_title_padding',
+			array(
+				'label'      => esc_html__( 'Padding', 'mas-elementor' ),
+				'type'       => Controls_Manager::DIMENSIONS,
+				'size_units' => array( 'px', '%', 'em', 'rem', 'custom' ),
+				'selectors'  => array(
+					'{{WRAPPER}} .categories' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}}',
 				),
 			)
 		);
@@ -615,15 +843,15 @@ class Product_Categories extends Base_Widget {
 				'label_block' => true,
 				'default'     => 'inline',
 				'options'     => array(
-					'block' => array(
+					'block'  => array(
 						'title' => esc_html__( 'Block', 'mas-elementor' ),
 						'icon'  => 'eicon-ban',
 					),
-					'flex'  => array(
+					'flex'   => array(
 						'title' => esc_html__( 'Flex', 'mas-elementor' ),
 						'icon'  => 'eicon-exchange',
 					),
-					'inline'  => array(
+					'inline' => array(
 						'title' => esc_html__( 'Inline', 'mas-elementor' ),
 						'icon'  => 'eicon-nowrap',
 					),
@@ -1013,6 +1241,18 @@ class Product_Categories extends Base_Widget {
 			)
 		);
 
+		$this->add_responsive_control(
+			'cat_wrap_wrap_radius',
+			array(
+				'label'      => esc_html__( 'Border Radius', 'mas-elementor' ),
+				'type'       => Controls_Manager::DIMENSIONS,
+				'size_units' => array( 'px', '%', 'em', 'rem', 'custom' ),
+				'selectors'  => array(
+					'{{WRAPPER}} .cat-wrapper' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}}',
+				),
+			)
+		);
+
 		$this->flex_controls( '', '{{WRAPPER}} .mas-categories-wrapper' );
 
 		$this->end_controls_section();
@@ -1083,6 +1323,27 @@ class Product_Categories extends Base_Widget {
 			)
 		);
 
+		$this->add_group_control(
+			Group_Control_Border::get_type(),
+			array(
+				'name'      => 'img_icon_border',
+				'selector'  => '{{WRAPPER}} .img-cat-wrap',
+				'separator' => 'after',
+			)
+		);
+
+		$this->add_responsive_control(
+			'img_icon_radius',
+			array(
+				'label'      => esc_html__( 'Border Radius', 'mas-elementor' ),
+				'type'       => Controls_Manager::DIMENSIONS,
+				'size_units' => array( 'px', '%', 'em', 'rem', 'custom' ),
+				'selectors'  => array(
+					'{{WRAPPER}} .img-cat-wrap' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}}',
+				),
+			)
+		);
+
 		$this->end_controls_section();
 
 		$this->start_controls_section(
@@ -1091,7 +1352,7 @@ class Product_Categories extends Base_Widget {
 				'label'     => esc_html__( 'Category & Sub Categories', 'mas-elementor' ),
 				'tab'       => Controls_Manager::TAB_CONTENT,
 				'condition' => array(
-					'sub_cat_count!' => 0,
+					'show_cat_product_count' => 'yes',
 				),
 			)
 		);
@@ -1103,6 +1364,36 @@ class Product_Categories extends Base_Widget {
 		$this->register_background_controls();
 
 		$this->register_category_icon_style_controls();
+
+		$this->start_controls_section(
+			'cat_product_count',
+			array(
+				'label'     => esc_html__( 'Category & Product Count', 'mas-elementor' ),
+				'tab'       => Controls_Manager::TAB_CONTENT,
+				'condition' => array(
+					'show_cat_product_count' => 'yes',
+				),
+			)
+		);
+
+		$this->flex_controls( 'cat_prod_count', '{{WRAPPER}} .categories .cat-name-wrapper' );
+
+		$this->end_controls_section();
+
+		$this->start_controls_section(
+			'subcat_product_count',
+			array(
+				'label'     => esc_html__( 'Sub Category & Product Count', 'mas-elementor' ),
+				'tab'       => Controls_Manager::TAB_CONTENT,
+				'condition' => array(
+					'show_subcat_product_count' => 'yes',
+				),
+			)
+		);
+
+		$this->flex_controls( 'subcat_prod_count', '{{WRAPPER}} .categories .sub-category' );
+
+		$this->end_controls_section();
 
 	}
 
@@ -1982,6 +2273,7 @@ class Product_Categories extends Base_Widget {
 					$category_id = $cat->term_id;
 					?>
 					<div class="categories">
+						<div class="cat-name-wrapper">
 						<?php
 						if ( 'a' === $categories_tag ) {
 							$this->add_render_attribute( 'categories' . $index, 'href', get_term_link( $cat->slug, $taxonomy ) );
@@ -1989,6 +2281,23 @@ class Product_Categories extends Base_Widget {
 						$this->add_render_attribute( 'categories' . $index, 'class', 'cat-name' );
 						?>
 						<<?php echo esc_html( $categories_tag ); ?> <?php $this->print_render_attribute_string( 'categories' . $index ); ?>><?php echo esc_html( $cat->name ); ?></<?php echo esc_html( $categories_tag ); ?>>
+						<?php
+						if ( 'yes' === $settings['show_cat_product_count'] ) {
+							$cat_product_count = sprintf(
+								_n(
+									$settings['product_count_singular_pattern'], //phpcs:ignore
+									$settings['product_count_plural_pattern'],  //phpcs:ignore
+									$cat->count,
+									'mas-elementor'
+								),
+								$cat->count
+							);
+							?>
+						<div class="cat-prod-count"><?php echo wp_kses_post( $cat_product_count ); ?></div>
+							<?php
+						}
+						?>
+						</div>
 						<?php
 						$args2    = array(
 							'taxonomy'   => $taxonomy,
@@ -2008,7 +2317,24 @@ class Product_Categories extends Base_Widget {
 									break;
 								}
 								?>
-								<div class="sub-category"><?php echo wp_kses_post( '<a href="' . get_term_link( $sub_category->slug, 'product_cat' ) . '">' . $sub_category->name . '</a>' ); ?></div>
+								<div class="sub-category"><?php echo wp_kses_post( '<a href="' . get_term_link( $sub_category->slug, 'product_cat' ) . '">' . $sub_category->name . '</a>' ); ?>
+								<?php
+								if ( 'yes' === $settings['show_subcat_product_count'] ) {
+									$sub_cat_product_count = sprintf(
+										_n(
+											$settings['product_count_singular_pattern'],  //phpcs:ignore
+											$settings['product_count_plural_pattern'],  //phpcs:ignore
+											$sub_category->count,
+											'mas-elementor'
+										),
+										$sub_category->count
+									);
+									?>
+								<div class="subcat-prod-count"><?php echo wp_kses_post( $sub_cat_product_count ); ?></div>
+									<?php
+								}
+								?>
+								</div>
 								<?php
 								$sub_tab_count++;
 							}
