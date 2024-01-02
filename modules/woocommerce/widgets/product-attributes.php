@@ -401,7 +401,7 @@ class Product_Attributes extends Base_Widget {
 			)
 		);
 
-		$this->position_controls( ' .card-item', 'card_item' );
+		$this->position_controls( 'card_item', ' .card-item' );
 	}
 
 	/**
@@ -857,7 +857,7 @@ class Product_Attributes extends Base_Widget {
 			)
 		);
 
-		$this->attributes_image_controls( '{{WRAPPER}} .mas-thumbnail-image', 'thumbnail_image' );
+		$this->attributes_image_controls( 'thumbnail_image', '{{WRAPPER}} .mas-thumbnail-image' );
 
 		$this->end_controls_section();
 
@@ -869,9 +869,9 @@ class Product_Attributes extends Base_Widget {
 			)
 		);
 
-		$this->attributes_image_controls( '{{WRAPPER}} .mas-cover-image', 'cover_image' );
+		$this->attributes_image_controls( 'cover_image', '{{WRAPPER}} .mas-cover-image' );
 
-		$this->position_controls( ' .mas-cover-image', 'cover_image' );
+		$this->position_controls( 'cover_image', ' .mas-cover-image' );
 
 		$this->add_responsive_control(
 			'cover_image_translate',
@@ -899,7 +899,7 @@ class Product_Attributes extends Base_Widget {
 			'normal' => '{{WRAPPER}} .mas-term-description',
 			'hover'  => '{{WRAPPER}} .card-link:hover .mas-term-description, {{WRAPPER}} .card-normal .mas-term-description:hover',
 		);
-		$this->text_typography_and_spacing_controls( $desc_selector, 'description' );
+		$this->text_typography_and_spacing_controls( 'description', $desc_selector );
 
 		$this->end_controls_section();
 
@@ -909,7 +909,7 @@ class Product_Attributes extends Base_Widget {
 	 * Text Typography and Spacing Controls.
 	 *
 	 * @param string $name name of the control.
-	 * @param string $wrapper wrapper for control.
+	 * @param array  $wrapper wrapper for control.
 	 */
 	protected function text_typography_and_spacing_controls( $name, $wrapper ) {
 
@@ -1101,7 +1101,7 @@ class Product_Attributes extends Base_Widget {
 	 * Render.
 	 */
 	public function render() {
-		$settings = $this->get_settings_for_display();
+		$settings       = $this->get_settings_for_display();
 		$brand_taxonomy = $settings['select_product_attribute'];
 		if ( empty( $brand_taxonomy ) ) {
 			return;
@@ -1115,10 +1115,10 @@ class Product_Attributes extends Base_Widget {
 		$terms            = get_terms( $brands_options );
 		?>
 		<div class="mas-product-attributes">
-		<?php foreach ( $terms as $term ) : ?>
+		<?php foreach ( $terms as $index => $term ) : ?>
 			<div class="attribute-card-list">
 				<?php if ( $brand->public ) : ?>
-					<a href="<?php echo esc_url( apply_filters( 'mas_brand_link', get_term_link( $term ), $term ) ); ?>" class="card-item card-link mme-xl-4 rounded-sm px-4 py-4 position-relative h-100 d-block">
+					<a href="<?php echo esc_url( apply_filters( 'mas_brand_link', get_term_link( $term ), $term ) ); ?>" class="card-item card-link">
 				<?php else : ?>
 					<div class="card-item card-normal">
 				<?php endif; ?>
@@ -1143,14 +1143,37 @@ class Product_Attributes extends Base_Widget {
 
 					$image_src = str_replace( ' ', '%20', $image_src );
 
-					$cover_image_url = mas_elementor_get_field( $cover_image_name, $term )
+					$this->add_render_attribute( 'thumbnail-img' . $index, 'class', 'mas-thumbnail-image' );
+					$this->add_render_attribute( 'thumbnail-img' . $index, 'src', $image_src );
+
+				if ( ! empty( $thumbnail_id ) ) {
+					// Get alt text from attachment meta.
+					$thumbnail_alt = get_post_meta( $thumbnail_id, '_wp_attachment_image_alt', true );
+				}
+				if ( ! empty( $thumbnail_alt ) ) {
+					$this->add_render_attribute( 'thumbnail-img' . $index, 'alt', $thumbnail_alt );
+				}
+
+					$cover_image_url = mas_elementor_get_field( $cover_image_name, $term );
+					$cover_image_id  = attachment_url_to_postid( $cover_image_url );
+					$this->add_render_attribute( 'cover-img' . $index, 'class', 'mas-cover-image' );
+					$this->add_render_attribute( 'cover-img' . $index, 'src', $cover_image_url );
+
+					// Check if the attachment ID is valid.
+				if ( $cover_image_id ) {
+					// Get alt text from attachment meta.
+					$cover_image_alt = get_post_meta( $cover_image_id, '_wp_attachment_image_alt', true );
+				}
+				if ( ! empty( $cover_image_alt ) ) {
+					$this->add_render_attribute( 'cover-img' . $index, 'alt', $cover_image_alt );
+				}
 				?>
-					<img class="mas-thumbnail-image" src="<?php echo esc_url( $image_src ); ?>" alt="<?php echo esc_attr( $term->name ); ?>">
+					<img <?php $this->print_render_attribute_string( 'thumbnail-img' . $index ); ?>>
 					<?php if ( $term->description ) : ?>
-						<div class="me-xl-4 me-xxl-7 mas-term-description"><?php echo esc_html( $term->description ); ?></div>
+						<div class="mas-term-description"><?php echo esc_html( $term->description ); ?></div>
 					<?php endif; ?>
 					<?php if ( $cover_image_url && ! empty( $cover_image_url ) ) : ?>
-						<img class="mas-cover-image" src="<?php echo esc_url( $cover_image_url ); ?>" alt="<?php esc_attr_e( 'Attribute Image', 'mas-elementor' ); ?>">
+						<img <?php $this->print_render_attribute_string( 'cover-img' . $index ); ?>>
 					<?php endif; ?>
 				<?php if ( $brand->public ) : ?>
 					</a>
