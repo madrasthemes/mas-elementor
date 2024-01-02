@@ -92,6 +92,7 @@ class Module extends Module_Base {
 			'Progress_Bar',
 			'Product_Categories',
 			'Product_Categories_Dropdown',
+			'Product_Attributes',
 		);
 	}
 
