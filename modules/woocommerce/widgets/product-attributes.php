@@ -127,11 +127,66 @@ class Product_Attributes extends Base_Widget {
 		);
 
 		$this->add_control(
+			'enable_term_description',
+			array(
+				'label'     => esc_html__( 'Show Description', 'mas-elementor' ),
+				'type'      => Controls_Manager::SWITCHER,
+				'default'   => 'yes',
+				'label_on'  => 'Hide',
+				'label_off' => 'Show',
+
+			)
+		);
+
+		$this->add_control(
+			'enable_thumbnail_image',
+			array(
+				'label'     => esc_html__( 'Show Thumbnail Image', 'mas-elementor' ),
+				'type'      => Controls_Manager::SWITCHER,
+				'default'   => 'yes',
+				'label_on'  => 'Hide',
+				'label_off' => 'Show',
+
+			)
+		);
+
+		$this->add_control(
 			'thumbnail_name',
 			array(
-				'label'   => esc_html__( 'Term thumbnail name', 'mas-elementor' ),
-				'type'    => Controls_Manager::TEXT,
-				'default' => 'thumbnail_id',
+				'label'     => esc_html__( 'Term thumbnail name', 'mas-elementor' ),
+				'type'      => Controls_Manager::TEXT,
+				'default'   => 'thumbnail_id',
+				'condition' => array(
+					'enable_thumbnail_image' => 'yes',
+				),
+			)
+		);
+
+		$this->add_control(
+			'enable_thumbnail_placeholder',
+			array(
+				'label'       => esc_html__( 'Show Thumbnail Placeholder', 'mas-elementor' ),
+				'type'        => Controls_Manager::SWITCHER,
+				'default'     => 'yes',
+				'label_on'    => 'Hide',
+				'label_off'   => 'Show',
+				'description' => esc_html__( 'Displays Placeholder for terms with no images', 'mas-elementor' ),
+				'condition'   => array(
+					'enable_thumbnail_image' => 'yes',
+				),
+
+			)
+		);
+
+		$this->add_control(
+			'enable_cover_image',
+			array(
+				'label'     => esc_html__( 'Show Cover Image', 'mas-elementor' ),
+				'type'      => Controls_Manager::SWITCHER,
+				'default'   => 'yes',
+				'label_on'  => 'Hide',
+				'label_off' => 'Show',
+
 			)
 		);
 
@@ -142,6 +197,25 @@ class Product_Attributes extends Base_Widget {
 				'type'        => Controls_Manager::TEXT,
 				'default'     => 'product_attribute_cover_image',
 				'description' => esc_html__( 'Can add thumbnail by using ACF in product attribute', 'mas-elementor' ),
+				'condition'   => array(
+					'enable_cover_image' => 'yes',
+				),
+			)
+		);
+
+		$this->add_control(
+			'enable_cover_placeholder',
+			array(
+				'label'       => esc_html__( 'Show Cover Placeholder', 'mas-elementor' ),
+				'type'        => Controls_Manager::SWITCHER,
+				'default'     => 'no',
+				'label_on'    => 'Hide',
+				'label_off'   => 'Show',
+				'description' => esc_html__( 'Displays Placeholder for terms with no images', 'mas-elementor' ),
+				'condition'   => array(
+					'enable_cover_image' => 'yes',
+				),
+
 			)
 		);
 
@@ -629,7 +703,7 @@ class Product_Attributes extends Base_Widget {
 					'absolute' => esc_html__( 'Absolute', 'mas-elementor' ),
 					'fixed'    => esc_html__( 'Fixed', 'mas-elementor' ),
 				),
-				'prefix_class'       => 'elementor-',
+				'prefix_class'       => 'mas-elementor-',
 				'frontend_available' => true,
 				'separator'          => 'before',
 				'selectors'          => array(
@@ -1095,6 +1169,24 @@ class Product_Attributes extends Base_Widget {
 				),
 			)
 		);
+
+		$this->add_responsive_control(
+			$name . 'object-fit',
+			array(
+				'label'     => esc_html__( 'Object Fit', 'mas-elementor' ),
+				'type'      => Controls_Manager::SELECT,
+				'options'   => array(
+					''        => esc_html__( 'Default', 'mas-elementor' ),
+					'fill'    => esc_html__( 'Fill', 'mas-elementor' ),
+					'cover'   => esc_html__( 'Cover', 'mas-elementor' ),
+					'contain' => esc_html__( 'Contain', 'mas-elementor' ),
+				),
+				'default'   => '',
+				'selectors' => array(
+					$wrapper => 'object-fit: {{VALUE}};',
+				),
+			)
+		);
 	}
 
 	/**
@@ -1138,7 +1230,11 @@ class Product_Attributes extends Base_Widget {
 				}
 
 				if ( empty( $image_attributes ) ) {
-					$image_src = wc_placeholder_img_src();
+					if ( 'yes' === $settings['enable_thumbnail_placeholder'] ) {
+						$image_src = wc_placeholder_img_src();
+					} else {
+						$image_src = '';
+					}
 				}
 
 					$image_src = str_replace( ' ', '%20', $image_src );
@@ -1154,25 +1250,35 @@ class Product_Attributes extends Base_Widget {
 					$this->add_render_attribute( 'thumbnail-img' . $index, 'alt', $thumbnail_alt );
 				}
 
-					$cover_image_url = mas_elementor_get_field( $cover_image_name, $term );
-					$cover_image_id  = attachment_url_to_postid( $cover_image_url );
+					$cover_image_url       = mas_elementor_get_field( $cover_image_name, $term );
+					$cover_image_url_valid = wp_http_validate_url( $cover_image_url );
+				if ( $cover_image_url_valid ) {
+					$cover_image_id = attachment_url_to_postid( $cover_image_url );
+
+					$cover_image_alt = get_post_meta( $cover_image_id, '_wp_attachment_image_alt', true );
+				} else {
+
+					if ( 'yes' === $settings['enable_cover_placeholder'] ) {
+						$cover_image_url = wc_placeholder_img_src();
+					} else {
+						$cover_image_url = '';
+					}
+				}
+
 					$this->add_render_attribute( 'cover-img' . $index, 'class', 'mas-cover-image' );
 					$this->add_render_attribute( 'cover-img' . $index, 'src', $cover_image_url );
 
-					// Check if the attachment ID is valid.
-				if ( $cover_image_id ) {
-					// Get alt text from attachment meta.
-					$cover_image_alt = get_post_meta( $cover_image_id, '_wp_attachment_image_alt', true );
-				}
 				if ( ! empty( $cover_image_alt ) ) {
 					$this->add_render_attribute( 'cover-img' . $index, 'alt', $cover_image_alt );
 				}
-				?>
-					<img <?php $this->print_render_attribute_string( 'thumbnail-img' . $index ); ?>>
-					<?php if ( $term->description ) : ?>
+				if ( 'yes' === $settings['enable_thumbnail_image'] && ! empty( $image_src ) ) :
+					?>
+						<img <?php $this->print_render_attribute_string( 'thumbnail-img' . $index ); ?>>
+					<?php endif; ?>
+					<?php if ( $term->description && 'yes' === $settings['enable_term_description'] ) : ?>
 						<div class="mas-term-description"><?php echo esc_html( $term->description ); ?></div>
 					<?php endif; ?>
-					<?php if ( $cover_image_url && ! empty( $cover_image_url ) ) : ?>
+					<?php if ( 'yes' === $settings['enable_thumbnail_image'] && ! empty( $cover_image_url ) ) : ?>
 						<img <?php $this->print_render_attribute_string( 'cover-img' . $index ); ?>>
 					<?php endif; ?>
 				<?php if ( $brand->public ) : ?>
