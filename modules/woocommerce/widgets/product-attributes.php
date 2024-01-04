@@ -697,7 +697,7 @@ class Product_Attributes extends Base_Widget {
 			array(
 				'label'              => esc_html__( 'Position', 'mas-elementor' ),
 				'type'               => Controls_Manager::SELECT,
-				'default'            => '',
+				'default'            => 'relative',
 				'options'            => array(
 					'relative' => esc_html__( 'Default', 'mas-elementor' ),
 					'absolute' => esc_html__( 'Absolute', 'mas-elementor' ),
