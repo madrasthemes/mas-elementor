@@ -19,6 +19,7 @@ use MASElementor\Modules\CarouselAttributes\Traits\Button_Widget_Trait;
 use MASElementor\Modules\CarouselAttributes\Traits\Pagination_Trait;
 use MASElementor\Modules\CarouselAttributes\Traits\Swiper_Options_Trait;
 use ELementor\Plugin;
+use Elementor\Icons_Manager;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
@@ -224,6 +225,17 @@ class Product_Categories extends Base_Widget {
 				'condition' => array(
 					'sub_cat_count!' => 0,
 				),
+			)
+		);
+
+		$this->add_control(
+			'enable_cat_link_button',
+			array(
+				'label'     => esc_html__( 'Show Category Link Button', 'mas-elementor' ),
+				'type'      => Controls_Manager::SWITCHER,
+				'default'   => 'no',
+				'label_on'  => 'Hide',
+				'label_off' => 'Show',
 			)
 		);
 
@@ -488,6 +500,52 @@ class Product_Categories extends Base_Widget {
 				'separator' => 'before',
 			)
 		);
+
+		$this->add_responsive_control(
+			'cat_subs_height',
+			array(
+				'label'      => esc_html__( 'Height', 'mas-elementor' ),
+				'type'       => Controls_Manager::SLIDER,
+				'size_units' => array( 'px', '%', 'em', 'rem', 'vw', 'custom' ),
+				'range'      => array(
+					'%'  => array(
+						'min'  => 0,
+						'max'  => 100,
+						'step' => 1,
+					),
+					'px' => array(
+						'min'  => 0,
+						'max'  => 5000,
+						'step' => 1,
+					),
+				),
+				'selectors'  => array(
+					'{{WRAPPER}} .categories' => 'height: {{SIZE}}{{UNIT}};',
+				),
+			)
+		);
+
+		$this->add_group_control(
+			Group_Control_Border::get_type(),
+			array(
+				'name'     => 'cat_subs_border',
+				'selector' => '{{WRAPPER}} .categories',
+			)
+		);
+
+		$this->add_responsive_control(
+			'cat_subs_radius',
+			array(
+				'label'      => esc_html__( 'Border Radius', 'mas-elementor' ),
+				'type'       => Controls_Manager::DIMENSIONS,
+				'size_units' => array( 'px', '%', 'em', 'rem', 'custom' ),
+				'selectors'  => array(
+					'{{WRAPPER}} .categories' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}}',
+				),
+			)
+		);
+
+		$this->position_controls( 'cat_subs', ' .categories' );
 
 		$this->add_responsive_control(
 			'cat_d_block',
@@ -1092,6 +1150,38 @@ class Product_Categories extends Base_Widget {
 			)
 		);
 
+		$this->add_group_control(
+			Group_Control_Border::get_type(),
+			array(
+				'name'     => 'see_all_border',
+				'selector' => '{{WRAPPER}} .see-all-wrapper',
+			)
+		);
+
+		$this->add_responsive_control(
+			'see_all_radius',
+			array(
+				'label'      => esc_html__( 'Border Radius', 'mas-elementor' ),
+				'type'       => Controls_Manager::DIMENSIONS,
+				'size_units' => array( 'px', '%', 'em', 'rem', 'custom' ),
+				'selectors'  => array(
+					'{{WRAPPER}} .see-all-wrapper' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}}',
+				),
+			)
+		);
+
+		$this->add_responsive_control(
+			'see_all_padding',
+			array(
+				'label'      => esc_html__( 'Padding', 'mas-elementor' ),
+				'type'       => Controls_Manager::DIMENSIONS,
+				'size_units' => array( 'px', '%', 'em', 'rem', 'custom' ),
+				'selectors'  => array(
+					'{{WRAPPER}} .see-all-wrapper' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}}',
+				),
+			)
+		);
+
 		$this->end_controls_section();
 
 		$this->start_controls_section(
@@ -1113,6 +1203,17 @@ class Product_Categories extends Base_Widget {
 				'condition' => array(
 					'sub_cat_count' => 0,
 				),
+			)
+		);
+
+		$this->add_control(
+			'enable_image_link',
+			array(
+				'label'     => esc_html__( 'Enable Image Link', 'mas-elementor' ),
+				'type'      => Controls_Manager::SWITCHER,
+				'default'   => 'no',
+				'label_on'  => 'Enabled',
+				'label_off' => 'Enable',
 			)
 		);
 
@@ -1235,6 +1336,30 @@ class Product_Categories extends Base_Widget {
 		);
 
 		$this->add_responsive_control(
+			'cat_height',
+			array(
+				'label'      => esc_html__( 'Height', 'mas-elementor' ),
+				'type'       => Controls_Manager::SLIDER,
+				'size_units' => array( 'px', '%', 'em', 'rem', 'vw', 'custom' ),
+				'range'      => array(
+					'%'  => array(
+						'min'  => 0,
+						'max'  => 100,
+						'step' => 1,
+					),
+					'px' => array(
+						'min'  => 0,
+						'max'  => 5000,
+						'step' => 1,
+					),
+				),
+				'selectors'  => array(
+					'{{WRAPPER}} .cat-wrapper' => 'height: {{SIZE}}{{UNIT}};',
+				),
+			)
+		);
+
+		$this->add_responsive_control(
 			'categories_padding',
 			array(
 				'label'      => esc_html__( 'Padding', 'mas-elementor' ),
@@ -1302,6 +1427,30 @@ class Product_Categories extends Base_Widget {
 			array(
 				'label' => esc_html__( 'Image / Icon & Categories', 'mas-elementor' ),
 				'tab'   => Controls_Manager::TAB_CONTENT,
+			)
+		);
+
+		$this->add_responsive_control(
+			'img_icon_wrap_height',
+			array(
+				'label'      => esc_html__( 'Height', 'mas-elementor' ),
+				'type'       => Controls_Manager::SLIDER,
+				'size_units' => array( 'px', '%', 'em', 'rem', 'vw', 'custom' ),
+				'range'      => array(
+					'%'  => array(
+						'min'  => 0,
+						'max'  => 100,
+						'step' => 1,
+					),
+					'px' => array(
+						'min'  => 0,
+						'max'  => 5000,
+						'step' => 1,
+					),
+				),
+				'selectors'  => array(
+					'{{WRAPPER}} .img-cat-wrap' => 'height: {{SIZE}}{{UNIT}};',
+				),
 			)
 		);
 
@@ -1389,11 +1538,8 @@ class Product_Categories extends Base_Widget {
 		$this->start_controls_section(
 			'cat_subcat',
 			array(
-				'label'     => esc_html__( 'Category & Sub Categories', 'mas-elementor' ),
-				'tab'       => Controls_Manager::TAB_CONTENT,
-				'condition' => array(
-					'show_cat_product_count' => 'yes',
-				),
+				'label' => esc_html__( 'Category & Sub Categories', 'mas-elementor' ),
+				'tab'   => Controls_Manager::TAB_CONTENT,
 			)
 		);
 
@@ -1434,6 +1580,9 @@ class Product_Categories extends Base_Widget {
 		$this->flex_controls( 'subcat_prod_count', '{{WRAPPER}} .categories .sub-category' );
 
 		$this->end_controls_section();
+
+		$this->category_link_button_content_controls();
+		$this->category_link_button_style_controls();
 
 	}
 
@@ -2246,6 +2395,13 @@ class Product_Categories extends Base_Widget {
 			$icon_wrap_tag    = 'a';
 		}
 
+		if ( 'yes' === $settings['enable_image_link'] ) {
+			$img_wrap_tag = 'a';
+
+		} else {
+			$img_wrap_tag = 'div';
+		}
+
 		foreach ( $all_categories as $index => $cat ) {
 			if ( 'yes' === $settings['show_child_cat'] ) {
 				$condition = true;
@@ -2324,6 +2480,7 @@ class Product_Categories extends Base_Widget {
 					$category_id = $cat->term_id;
 					?>
 					<div class="categories">
+						<?php $this->category_link_button( $settings, $cat, $taxonomy ); ?>
 						<div class="cat-name-wrapper">
 						<?php
 						if ( 'a' === $categories_tag ) {
@@ -2368,7 +2525,7 @@ class Product_Categories extends Base_Widget {
 									break;
 								}
 								?>
-								<div class="sub-category"><?php echo wp_kses_post( '<a href="' . get_term_link( $sub_category->slug, 'product_cat' ) . '">' . $sub_category->name . '</a>' ); ?>
+								<div class="sub-category"><?php echo wp_kses_post( '<a href="' . get_term_link( $sub_category->slug, $taxonomy ) . '">' . $sub_category->name . '</a>' ); ?>
 								<?php
 								if ( 'yes' === $settings['show_subcat_product_count'] ) {
 									$sub_cat_product_count = sprintf(
@@ -2402,7 +2559,7 @@ class Product_Categories extends Base_Widget {
 					?>
 				<div class="see-all-wrapper">
 					<?php
-						echo wp_kses_post( '<a class="see-all" href="' . get_term_link( $cat->slug, 'product_cat' ) . '">' . $settings['see_more'] . '</a>' );
+						echo wp_kses_post( '<a class="see-all" href="' . get_term_link( $cat->slug, $taxonomy ) . '">' . $settings['see_more'] . '</a>' );
 					?>
 				</div>
 					<?php
@@ -2520,5 +2677,534 @@ class Product_Categories extends Base_Widget {
 			<?php
 		}
 		return ob_get_clean();
+	}
+
+	/**
+	 * Category Link Button Content Controls.
+	 */
+	protected function category_link_button_content_controls() {
+		$this->start_controls_section(
+			'section_category_link_button_content',
+			array(
+				'label'     => esc_html__( 'Category Link Button', 'mas-elementor' ),
+				'tab'       => Controls_Manager::TAB_CONTENT,
+				'condition' => array(
+					'enable_cat_link_button' => 'yes',
+				),
+			)
+		);
+
+		$this->add_control(
+			'category_link_button_icon',
+			array(
+				'label'            => esc_html__( 'Category Link Button Icon', 'mas-elementor' ),
+				'type'             => Controls_Manager::ICONS,
+				'fa4compatibility' => 'icon',
+				'skin'             => 'inline',
+				'default'          => array(
+					'value'   => 'fas fa-chevron-right',
+					'library' => 'fa-solid',
+				),
+				'label_block'      => false,
+			)
+		);
+
+		$this->end_controls_section();
+	}
+
+	/**
+	 * Category Link Button Style Controls.
+	 */
+	protected function category_link_button_style_controls() {
+		$this->start_controls_section(
+			'section_category_link_button_style',
+			array(
+				'label'     => esc_html__( 'Category Link Button', 'mas-elementor' ),
+				'tab'       => Controls_Manager::TAB_STYLE,
+				'condition' => array(
+					'enable_cat_link_button' => 'yes',
+				),
+			)
+		);
+
+		$this->start_controls_tabs( 'category_link_button_tab' );
+
+			$this->start_controls_tab(
+				'category_link_button_normal',
+				array(
+					'label' => esc_html__( 'Normal', 'mas-elementor' ),
+				)
+			);
+
+				$this->add_control(
+					'category_link_button_icon_color',
+					array(
+						'label'     => esc_html__( 'Icon Color', 'mas-elementor' ),
+						'type'      => Controls_Manager::COLOR,
+						'global'    => array(
+							'default' => Global_Colors::COLOR_PRIMARY,
+						),
+						'selectors' => array(
+							'{{WRAPPER}} .category-link-button i' => 'color: {{VALUE}}',
+							'{{WRAPPER}} .category-link-button svg' => 'fill: {{VALUE}}',
+						),
+					)
+				);
+
+				$this->add_group_control(
+					Group_Control_Background::get_type(),
+					array(
+						'name'     => 'category_link_button_bg',
+						'selector' => '{{WRAPPER}} .category-link-button',
+					)
+				);
+
+				$this->add_group_control(
+					Group_Control_Box_Shadow::get_type(),
+					array(
+						'name'     => 'category_link_button_box_shadow',
+						'selector' => '{{WRAPPER}} .category-link-button',
+					)
+				);
+
+			$this->end_controls_tab();
+
+			$this->start_controls_tab(
+				'category_link_button_hover',
+				array(
+					'label' => esc_html__( 'Hover', 'mas-elementor' ),
+				)
+			);
+
+				$this->add_control(
+					'category_link_button_icon_color_hover',
+					array(
+						'label'     => esc_html__( 'Icon Hover Color', 'mas-elementor' ),
+						'type'      => Controls_Manager::COLOR,
+						'global'    => array(
+							'default' => Global_Colors::COLOR_PRIMARY,
+						),
+						'selectors' => array(
+							'{{WRAPPER}} .category-link-button:hover i' => 'color: {{VALUE}}',
+							'{{WRAPPER}} .category-link-button:hover svg' => 'fill: {{VALUE}}',
+						),
+					)
+				);
+
+				$this->add_group_control(
+					Group_Control_Background::get_type(),
+					array(
+						'name'     => 'category_link_button_bg_hover',
+						'selector' => '{{WRAPPER}} .category-link-button:hover',
+					)
+				);
+
+				$this->add_group_control(
+					Group_Control_Box_Shadow::get_type(),
+					array(
+						'name'     => 'category_link_button_box_shadow_hover',
+						'selector' => '{{WRAPPER}} .category-link-button:hover',
+					)
+				);
+
+			$this->end_controls_tab();
+		$this->end_controls_tabs();
+
+		$this->add_responsive_control(
+			'category_link_button_icon_size',
+			array(
+				'label'     => esc_html__( 'Icon Size', 'mas-elementor' ),
+				'type'      => Controls_Manager::SLIDER,
+				'range'     => array(
+					'px' => array(
+						'min' => 6,
+						'max' => 300,
+					),
+				),
+				'selectors' => array(
+					'{{WRAPPER}} .category-link-button i' => 'font-size: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}} .category-link-button svg' => 'width: {{SIZE}}{{UNIT}} !important;',
+					'{{WRAPPER}} .category-link-button svg' => 'height: {{SIZE}}{{UNIT}} !important;',
+				),
+				'separator' => 'before',
+			)
+		);
+
+		$this->add_group_control(
+			Group_Control_Border::get_type(),
+			array(
+				'name'     => 'category_link_button_border',
+				'selector' => '{{WRAPPER}} .category-link-button',
+			)
+		);
+
+		$this->add_responsive_control(
+			'category_link_button_border_radius',
+			array(
+				'label'      => esc_html__( 'Border Radius', 'mas-elementor' ),
+				'type'       => Controls_Manager::DIMENSIONS,
+				'size_units' => array( 'px', '%', 'em', 'rem', 'custom' ),
+				'selectors'  => array(
+					'{{WRAPPER}} .category-link-button' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}}',
+				),
+			)
+		);
+
+		$this->add_responsive_control(
+			'category_link_button_spacing',
+			array(
+				'label'      => esc_html__( 'Margin', 'mas-elementor' ),
+				'type'       => Controls_Manager::DIMENSIONS,
+				'size_units' => array( 'px', '%', 'em', 'rem', 'custom' ),
+				'selectors'  => array(
+					'{{WRAPPER}} .category-link-button' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}}',
+				),
+			)
+		);
+
+		$this->add_responsive_control(
+			'category_link_button_padding',
+			array(
+				'label'      => esc_html__( 'Padding', 'mas-elementor' ),
+				'type'       => Controls_Manager::DIMENSIONS,
+				'size_units' => array( 'px', '%', 'em', 'rem', 'custom' ),
+				'selectors'  => array(
+					'{{WRAPPER}} .category-link-button' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}}',
+				),
+			)
+		);
+
+		$this->add_responsive_control(
+			'category_link_button_width',
+			array(
+				'label'      => esc_html__( 'Width', 'mas-elementor' ),
+				'type'       => Controls_Manager::SLIDER,
+				'size_units' => array( 'px', '%', 'em', 'rem', 'vw', 'custom' ),
+				'range'      => array(
+					'%'  => array(
+						'min'  => 0,
+						'max'  => 100,
+						'step' => 1,
+					),
+					'px' => array(
+						'min'  => 0,
+						'max'  => 5000,
+						'step' => 1,
+					),
+				),
+				'selectors'  => array(
+					'{{WRAPPER}} .category-link-button' => 'width: {{SIZE}}{{UNIT}};',
+				),
+			)
+		);
+
+		$this->add_responsive_control(
+			'category_link_button_height',
+			array(
+				'label'      => esc_html__( 'Height', 'mas-elementor' ),
+				'type'       => Controls_Manager::SLIDER,
+				'size_units' => array( 'px', '%', 'em', 'rem', 'vw', 'custom' ),
+				'range'      => array(
+					'%'  => array(
+						'min'  => 0,
+						'max'  => 100,
+						'step' => 1,
+					),
+					'px' => array(
+						'min'  => 0,
+						'max'  => 5000,
+						'step' => 1,
+					),
+				),
+				'selectors'  => array(
+					'{{WRAPPER}} .category-link-button' => 'height: {{SIZE}}{{UNIT}};',
+				),
+			)
+		);
+
+		$this->flex_controls( 'category_link_button', '{{WRAPPER}} .category-link-button' );
+
+		$this->position_controls( 'category_link_button', ' .category-link-button' );
+
+		$this->end_controls_section();
+
+	}
+
+	/**
+	 * Category Link Button.
+	 *
+	 * @param array  $settings Settings of this widget.
+	 * @param array  $cat cat term.
+	 * @param string $taxonomy taxonomy .
+	 */
+	protected function category_link_button( $settings, $cat, $taxonomy ) {
+		if ( 'yes' !== $settings['enable_cat_link_button'] ) {
+			return;
+		}
+		$migrated = isset( $settings['__fa4_migrated']['category_link_button_icon'] );
+		$is_new   = empty( $settings['icon'] ) && Icons_Manager::is_migration_allowed();
+		?>
+		<a href="<?php echo esc_url( get_term_link( $cat->slug, $taxonomy ) ); ?>" class="category-link-button">
+			<!-- <i class="fas fa-chevron-right"></i> -->
+			<?php if ( ! empty( $settings['icon'] ) || ! empty( $settings['category_link_button_icon']['value'] ) ) : ?>
+			
+				<?php
+				if ( $is_new || $migrated ) :
+					Icons_Manager::render_icon( $settings['category_link_button_icon'], array( 'aria-hidden' => 'true' ) );
+				else :
+					?>
+					<i class="<?php echo esc_attr( $settings['icon'] ); ?>" aria-hidden="true"></i>
+				<?php endif; ?>
+			
+			<?php endif; ?>
+		</a>
+		<?php
+	}
+
+	/**
+	 * Position Controls.
+	 *
+	 * @param string $name name of the control.
+	 * @param string $wrapper wrapper for control.
+	 */
+	protected function position_controls( $name, $wrapper ) {
+		$this->add_control(
+			$name . '_position_description',
+			array(
+				'raw'             => '<strong>' . esc_html__( 'Please note!', 'mas-elementor' ) . '</strong> ' . esc_html__( 'Custom positioning is not considered best practice for responsive web design and should not be used too frequently.', 'mas-elementor' ),
+				'type'            => Controls_Manager::RAW_HTML,
+				'content_classes' => 'elementor-panel-alert elementor-panel-alert-warning',
+				'render_type'     => 'ui',
+				'condition'       => array(
+					$name . '_position!' => 'relative',
+				),
+			)
+		);
+
+		$this->add_control(
+			$name . '_position',
+			array(
+				'label'              => esc_html__( 'Position', 'mas-elementor' ),
+				'type'               => Controls_Manager::SELECT,
+				'default'            => 'relative',
+				'options'            => array(
+					'relative' => esc_html__( 'Default', 'mas-elementor' ),
+					'absolute' => esc_html__( 'Absolute', 'mas-elementor' ),
+					'fixed'    => esc_html__( 'Fixed', 'mas-elementor' ),
+				),
+				'prefix_class'       => 'mas-elementor-',
+				'frontend_available' => true,
+				'separator'          => 'before',
+				'selectors'          => array(
+					'{{WRAPPER}}' . $wrapper => 'position: {{VALUE}}',
+				),
+			)
+		);
+
+		$start = is_rtl() ? esc_html__( 'Right', 'mas-elementor' ) : esc_html__( 'Left', 'mas-elementor' );
+		$end   = ! is_rtl() ? esc_html__( 'Right', 'mas-elementor' ) : esc_html__( 'Left', 'mas-elementor' );
+
+		$this->add_control(
+			$name . '_offset_orientation_h',
+			array(
+				'label'       => esc_html__( 'Horizontal Orientation', 'mas-elementor' ),
+				'type'        => Controls_Manager::CHOOSE,
+				'toggle'      => false,
+				'default'     => 'start',
+				'options'     => array(
+					'start' => array(
+						'title' => $start,
+						'icon'  => 'eicon-h-align-left',
+					),
+					'end'   => array(
+						'title' => $end,
+						'icon'  => 'eicon-h-align-right',
+					),
+				),
+				'classes'     => 'elementor-control-start-end',
+				'render_type' => 'ui',
+				'condition'   => array(
+					$name . '_position!' => 'relative',
+				),
+			)
+		);
+
+		$this->add_responsive_control(
+			$name . '_offset_x',
+			array(
+				'label'      => esc_html__( 'Offset', 'mas-elementor' ),
+				'type'       => Controls_Manager::SLIDER,
+				'range'      => array(
+					'px' => array(
+						'min'  => -1000,
+						'max'  => 1000,
+						'step' => 1,
+					),
+					'%'  => array(
+						'min' => -200,
+						'max' => 200,
+					),
+					'vw' => array(
+						'min' => -200,
+						'max' => 200,
+					),
+					'vh' => array(
+						'min' => -200,
+						'max' => 200,
+					),
+				),
+				'default'    => array(
+					'size' => '0',
+				),
+				'size_units' => array( 'px', '%', 'em', 'rem', 'vw', 'vh', 'custom' ),
+				'selectors'  => array(
+					'body:not(.rtl) {{WRAPPER}}' . $wrapper => 'left: {{SIZE}}{{UNIT}}',
+					'body.rtl {{WRAPPER}}' . $wrapper => 'right: {{SIZE}}{{UNIT}}',
+				),
+				'condition'  => array(
+					$name . '_offset_orientation_h!' => 'end',
+					$name . '_position!'             => 'relative',
+				),
+			)
+		);
+
+		$this->add_responsive_control(
+			$name . '_offset_x_end',
+			array(
+				'label'      => esc_html__( 'Offset', 'mas-elementor' ),
+				'type'       => Controls_Manager::SLIDER,
+				'range'      => array(
+					'px' => array(
+						'min'  => -1000,
+						'max'  => 1000,
+						'step' => 0.1,
+					),
+					'%'  => array(
+						'min' => -200,
+						'max' => 200,
+					),
+					'vw' => array(
+						'min' => -200,
+						'max' => 200,
+					),
+					'vh' => array(
+						'min' => -200,
+						'max' => 200,
+					),
+				),
+				'default'    => array(
+					'size' => '0',
+				),
+				'size_units' => array( 'px', '%', 'em', 'rem', 'vw', 'vh', 'custom' ),
+				'selectors'  => array(
+					'body:not(.rtl) {{WRAPPER}}' . $wrapper => 'right: {{SIZE}}{{UNIT}}',
+					'body.rtl {{WRAPPER}}' . $wrapper => 'left: {{SIZE}}{{UNIT}}',
+				),
+				'condition'  => array(
+					$name . '_offset_orientation_h' => 'end',
+					$name . '_position!'            => 'relative',
+				),
+			)
+		);
+
+		$this->add_control(
+			$name . '_offset_orientation_v',
+			array(
+				'label'       => esc_html__( 'Vertical Orientation', 'mas-elementor' ),
+				'type'        => Controls_Manager::CHOOSE,
+				'toggle'      => false,
+				'default'     => 'start',
+				'options'     => array(
+					'start' => array(
+						'title' => esc_html__( 'Top', 'mas-elementor' ),
+						'icon'  => 'eicon-v-align-top',
+					),
+					'end'   => array(
+						'title' => esc_html__( 'Bottom', 'mas-elementor' ),
+						'icon'  => 'eicon-v-align-bottom',
+					),
+				),
+				'render_type' => 'ui',
+				'condition'   => array(
+					$name . '_position!' => 'relative',
+				),
+			)
+		);
+
+		$this->add_responsive_control(
+			$name . '_offset_y',
+			array(
+				'label'      => esc_html__( 'Offset', 'mas-elementor' ),
+				'type'       => Controls_Manager::SLIDER,
+				'range'      => array(
+					'px' => array(
+						'min'  => -1000,
+						'max'  => 1000,
+						'step' => 1,
+					),
+					'%'  => array(
+						'min' => -200,
+						'max' => 200,
+					),
+					'vh' => array(
+						'min' => -200,
+						'max' => 200,
+					),
+					'vw' => array(
+						'min' => -200,
+						'max' => 200,
+					),
+				),
+				'size_units' => array( 'px', '%', 'em', 'rem', 'vh', 'vw', 'custom' ),
+				'default'    => array(
+					'size' => '0',
+				),
+				'selectors'  => array(
+					'{{WRAPPER}}' . $wrapper => 'top: {{SIZE}}{{UNIT}}',
+				),
+				'condition'  => array(
+					$name . '_offset_orientation_v!' => 'end',
+					$name . '_position!'             => 'relative',
+				),
+			)
+		);
+
+		$this->add_responsive_control(
+			$name . '_offset_y_end',
+			array(
+				'label'      => esc_html__( 'Offset', 'mas-elementor' ),
+				'type'       => Controls_Manager::SLIDER,
+				'range'      => array(
+					'px' => array(
+						'min'  => -1000,
+						'max'  => 1000,
+						'step' => 1,
+					),
+					'%'  => array(
+						'min' => -200,
+						'max' => 200,
+					),
+					'vh' => array(
+						'min' => -200,
+						'max' => 200,
+					),
+					'vw' => array(
+						'min' => -200,
+						'max' => 200,
+					),
+				),
+				'size_units' => array( 'px', '%', 'em', 'rem', 'vh', 'vw', 'custom' ),
+				'default'    => array(
+					'size' => '0',
+				),
+				'selectors'  => array(
+					'{{WRAPPER}}' . $wrapper => 'bottom: {{SIZE}}{{UNIT}}',
+				),
+				'condition'  => array(
+					$name . '_offset_orientation_v' => 'end',
+					$name . '_position!'            => 'relative',
+				),
+			)
+		);
 	}
 }
