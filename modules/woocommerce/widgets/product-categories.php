@@ -147,6 +147,46 @@ class Product_Categories extends Base_Widget {
 		);
 
 		$this->add_control(
+			'image_option',
+			array(
+				'label'     => esc_html__( 'Select Thumbnail / Cover', 'mas-elementor' ),
+				'type'      => Controls_Manager::SELECT,
+				'default'   => 'thumbnail',
+				'options'   => array(
+					'thumbnail' => esc_html__( 'Thumbnail', 'mas-elementor' ),
+					'cover'     => esc_html__( 'Cover', 'mas-elementor' ),
+				),
+				'condition' => array(
+					'select_image_icon' => 'image',
+				),
+			)
+		);
+
+		$this->add_control(
+			'image_sizes',
+			array(
+				'label'     => esc_html__( 'Enter Image Sizes', 'mas-elementor' ),
+				'type'      => Controls_Manager::TEXT,
+				'default'   => 'thumbnail',
+				'condition' => array(
+					'select_image_icon' => 'image',
+				),
+			)
+		);
+
+		$this->add_control(
+			'cover_image_field_name',
+			array(
+				'label'     => esc_html__( 'Cover Image Field Name', 'mas-elementor' ),
+				'type'      => Controls_Manager::TEXT,
+				'default'   => 'product_cat_cover_image',
+				'condition' => array(
+					'image_option' => 'cover',
+				),
+			)
+		);
+
+		$this->add_control(
 			'enable_placeholder_image',
 			array(
 				'label'     => esc_html__( 'Show Image Placeholder', 'mas-elementor' ),
@@ -2233,11 +2273,22 @@ class Product_Categories extends Base_Widget {
 			<div <?php $this->print_render_attribute_string( 'cat-wrapper' . $index ); ?>>
 				<<?php echo esc_html( $img_cat_wrap_tag ); ?> <?php $this->print_render_attribute_string( 'img-cat-wrap' . $index ); ?>>
 					<?php
-					$category_name      = $cat->name;
-					$category_thumbnail = get_term_meta( $cat->term_id, 'thumbnail_id', true );
 					$image              = '';
+					$category_thumbnail = '';
+					if ( 'cover' === $settings['image_option'] ) {
+						$cover_image_name      = $settings['cover_image_field_name'];
+						$cover_image_url       = mas_elementor_get_field( $cover_image_name, $cat );
+						$cover_image_url_valid = wp_http_validate_url( $cover_image_url );
+						if ( $cover_image_url_valid ) {
+							$category_thumbnail = attachment_url_to_postid( $cover_image_url );
+						}
+					} else {
+						$category_name      = $cat->name;
+						$category_thumbnail = get_term_meta( $cat->term_id, 'thumbnail_id', true );
+					}
+
 					if ( ! empty( wp_get_attachment_image( $category_thumbnail ) ) ) {
-						$image = wp_get_attachment_image( $category_thumbnail );
+						$image = wp_get_attachment_image( $category_thumbnail, $settings['image_sizes'] );
 					} elseif ( $settings['enable_placeholder_image'] ) {
 						$image = wc_placeholder_img();
 					}
