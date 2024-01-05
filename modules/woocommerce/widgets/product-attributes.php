@@ -98,6 +98,198 @@ class Product_Attributes extends Base_Widget {
 	}
 
 	/**
+	 * Register more attribute controls for this widget.
+	 */
+	protected function register_attributes_title_controls() {
+		$this->start_controls_section(
+			'section_attributes_title',
+			array(
+				'label'     => esc_html__( 'Attributes Title', 'mas-elementor' ),
+				'tab'       => Controls_Manager::TAB_STYLE,
+				'condition' => array(
+					'attributes_title!' => '',
+				),
+			)
+		);
+
+		$this->add_control(
+			'attributes_title_color',
+			array(
+				'label'     => esc_html__( 'Color', 'mas-elementor' ),
+				'type'      => Controls_Manager::COLOR,
+				'global'    => array(
+					'default' => Global_Colors::COLOR_PRIMARY,
+				),
+				'selectors' => array(
+					'{{WRAPPER}} .attributes-title' => 'color: {{VALUE}}',
+				),
+			)
+		);
+
+		$this->add_group_control(
+			Group_Control_Typography::get_type(),
+			array(
+				'name'     => 'attributes_title_typography',
+				'global'   => array(
+					'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
+				),
+				'selector' => '{{WRAPPER}} .attributes-title',
+			)
+		);
+
+		$this->add_responsive_control(
+			'attributes_title_margin',
+			array(
+				'label'      => esc_html__( 'Margin', 'mas-elementor' ),
+				'type'       => Controls_Manager::DIMENSIONS,
+				'size_units' => array( 'px', '%', 'em', 'rem', 'custom' ),
+				'selectors'  => array(
+					'{{WRAPPER}} .attributes-title' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}}',
+				),
+			)
+		);
+
+		$this->add_responsive_control(
+			'attributes_title_padding',
+			array(
+				'label'      => esc_html__( 'Padding', 'mas-elementor' ),
+				'type'       => Controls_Manager::DIMENSIONS,
+				'size_units' => array( 'px', '%', 'em', 'rem', 'custom' ),
+				'selectors'  => array(
+					'{{WRAPPER}} .attributes-title' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}}',
+				),
+			)
+		);
+
+		$this->add_responsive_control(
+			'attributes_title_width',
+			array(
+				'label'      => esc_html__( 'Width', 'mas-elementor' ),
+				'type'       => Controls_Manager::SLIDER,
+				'size_units' => array( 'px', '%', 'em', 'rem', 'vw', 'custom' ),
+				'range'      => array(
+					'%'  => array(
+						'min'  => 0,
+						'max'  => 100,
+						'step' => 1,
+					),
+					'px' => array(
+						'min'  => 0,
+						'max'  => 5000,
+						'step' => 1,
+					),
+				),
+				'selectors'  => array(
+					'{{WRAPPER}} .attributes-title' => 'width: {{SIZE}}{{UNIT}};',
+				),
+			)
+		);
+
+		$this->add_responsive_control(
+			'attributes_title_height',
+			array(
+				'label'      => esc_html__( 'Height', 'mas-elementor' ),
+				'type'       => Controls_Manager::SLIDER,
+				'size_units' => array( 'px', '%', 'em', 'rem', 'vw', 'custom' ),
+				'range'      => array(
+					'%'  => array(
+						'min'  => 0,
+						'max'  => 100,
+						'step' => 1,
+					),
+					'px' => array(
+						'min'  => 0,
+						'max'  => 5000,
+						'step' => 1,
+					),
+				),
+				'selectors'  => array(
+					'{{WRAPPER}} .attributes-title' => 'height: {{SIZE}}{{UNIT}};',
+				),
+			)
+		);
+
+		$this->add_control(
+			'attributes_title_tag',
+			array(
+				'label'   => esc_html__( 'HTML Tag', 'mas-elementor' ),
+				'type'    => Controls_Manager::SELECT,
+				'options' => array(
+					'h1'    => 'H1',
+					'h2'    => 'H2',
+					'h3'    => 'H3',
+					'h4'    => 'H4',
+					'h5'    => 'H5',
+					'h6'    => 'H6',
+					'div'   => 'div',
+					'span'  => 'span',
+					'small' => 'small',
+					'p'     => 'p',
+				),
+				'default' => 'div',
+			)
+		);
+
+		$this->end_controls_section();
+	}
+
+	/**
+	 * Register more attribute controls for this widget.
+	 */
+	protected function register_more_attributes_controls() {
+		$this->start_controls_section(
+			'section_more_attributes',
+			array(
+				'label'     => esc_html__( 'More Attributes Text', 'mas-elementor' ),
+				'tab'       => Controls_Manager::TAB_STYLE,
+				'condition' => array(
+					'more_attributes!' => '',
+				),
+			)
+		);
+
+		$more_attributes_selector = array(
+			'normal'  => '{{WRAPPER}} .all-attributes-link a',
+			'hover'   => '{{WRAPPER}} .all-attributes-link a:hover',
+			'spacing' => '{{WRAPPER}} .all-attributes-link',
+		);
+
+		$this->text_typography_and_spacing_controls( 'more_attributes_text', $more_attributes_selector );
+
+		$this->add_responsive_control(
+			'more_attributes_align_items',
+			array(
+				'label'     => esc_html__( 'Align Items', 'mas-elementor' ),
+				'type'      => Controls_Manager::CHOOSE,
+				'default'   => '',
+				'options'   => array(
+					'flex-start' => array(
+						'title' => esc_html_x( 'Start', 'Flex Container Control', 'mas-elementor' ),
+						'icon'  => 'eicon-flex eicon-align-start-v',
+					),
+					'center'     => array(
+						'title' => esc_html_x( 'Center', 'Flex Container Control', 'mas-elementor' ),
+						'icon'  => 'eicon-flex eicon-align-center-v',
+					),
+					'flex-end'   => array(
+						'title' => esc_html_x( 'End', 'Flex Container Control', 'mas-elementor' ),
+						'icon'  => 'eicon-flex eicon-align-end-v',
+					),
+					'stretch'    => array(
+						'title' => esc_html__( 'Stretch', 'mas-elementor' ),
+						'icon'  => 'eicon-flex eicon-align-stretch-v',
+					),
+				),
+				'selectors' => array(
+					'{{WRAPPER}} .all-attributes-link' => 'display:flex; align-items: {{VALUE}};',
+				),
+			)
+		);
+
+		$this->end_controls_section();
+	}
+
+	/**
 	 * Register controls for this widget.
 	 */
 	protected function register_controls() {
@@ -217,6 +409,26 @@ class Product_Attributes extends Base_Widget {
 					'enable_cover_image' => 'yes',
 				),
 
+			)
+		);
+
+		$this->add_control(
+			'attributes_title',
+			array(
+				'label'       => esc_html__( 'More Attribute Text', 'mas-elementor' ),
+				'type'        => Controls_Manager::TEXT,
+				'default'     => '',
+				'description' => esc_html__( 'Link for Shop page', 'mas-elementor' ),
+			)
+		);
+
+		$this->add_control(
+			'more_attributes',
+			array(
+				'label'       => esc_html__( 'More Attribute Text', 'mas-elementor' ),
+				'type'        => Controls_Manager::TEXT,
+				'default'     => '',
+				'description' => esc_html__( 'Link for Shop page', 'mas-elementor' ),
 			)
 		);
 
@@ -422,6 +634,10 @@ class Product_Attributes extends Base_Widget {
 		$this->end_controls_section();
 
 		$this->attributes_style_controls();
+
+		$this->register_attributes_title_controls();
+
+		$this->register_more_attributes_controls();
 	}
 
 	/**
@@ -1069,6 +1285,10 @@ class Product_Attributes extends Base_Widget {
 	 */
 	protected function text_typography_and_spacing_controls( $name, $wrapper ) {
 
+		if ( ! isset( $wrapper['spacing'] ) ) {
+			$wrapper['spacing'] = $wrapper['normal'];
+		}
+
 		$this->start_controls_tabs( $name . '_tab' );
 
 			$this->start_controls_tab(
@@ -1147,7 +1367,7 @@ class Product_Attributes extends Base_Widget {
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', '%', 'em', 'rem', 'custom' ),
 				'selectors'  => array(
-					$wrapper['normal'] => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}}',
+					$wrapper['spacing'] => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}}',
 				),
 			)
 		);
@@ -1159,7 +1379,7 @@ class Product_Attributes extends Base_Widget {
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', '%', 'em', 'rem', 'custom' ),
 				'selectors'  => array(
-					$wrapper['normal'] => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}}',
+					$wrapper['spacing'] => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}}',
 				),
 			)
 		);
@@ -1275,34 +1495,37 @@ class Product_Attributes extends Base_Widget {
 	 * Render.
 	 */
 	public function render() {
-		$settings       = $this->get_settings_for_display();
-		$brand_taxonomy = $settings['select_product_attribute'];
-		if ( empty( $brand_taxonomy ) ) {
+		$settings      = $this->get_settings_for_display();
+		$attr_taxonomy = $settings['select_product_attribute'];
+		if ( empty( $attr_taxonomy ) ) {
 			return;
 		}
-		$orderby        = $settings['orderby'];
-		$order          = $settings['order'];
-		$empty          = 'yes' === $settings['hide_empty'] ? true : false;
-		$brand          = get_taxonomy( $brand_taxonomy );
-		$brands_options = array(
-			'taxonomy'   => $brand_taxonomy,
+		$orderby            = $settings['orderby'];
+		$order              = $settings['order'];
+		$empty              = 'yes' === $settings['hide_empty'] ? true : false;
+		$attribute          = get_taxonomy( $attr_taxonomy );
+		$attributes_options = array(
+			'taxonomy'   => $attr_taxonomy,
 			'orderby'    => $orderby,
 			'order'      => $order,
 			'hide_empty' => $empty,
 			'number'     => $settings['number'],
 		);
 		if ( ! empty( $settings['select_terms'] ) ) {
-			$brands_options['include'] = $settings['select_terms'];
+			$attributes_options['include'] = $settings['select_terms'];
 		}
 
 		$thumbnail_name   = $settings['thumbnail_name'];
 		$cover_image_name = $settings['cover_image_name'];
-		$terms            = get_terms( $brands_options );
+		$terms            = get_terms( $attributes_options );
 		?>
 		<div class="mas-product-attributes">
+			<?php if ( ! empty( $settings['attributes_title'] ) ) : ?>
+				<<?php echo esc_html( $settings['attributes_title_tag'] ); ?> class="attributes-title"><?php echo esc_html( $settings['attributes_title'] ); ?></<?php echo esc_html( $settings['attributes_title_tag'] ); ?>>
+			<?php endif; ?>
 		<?php foreach ( $terms as $index => $term ) : ?>
 			<div class="attribute-card-list">
-				<?php if ( $brand->public ) : ?>
+				<?php if ( $attribute->public ) : ?>
 					<a href="<?php echo esc_url( apply_filters( 'mas_brand_link', get_term_link( $term ), $term ) ); ?>" class="card-item card-link">
 				<?php else : ?>
 					<div class="card-item card-normal">
@@ -1374,13 +1597,19 @@ class Product_Attributes extends Base_Widget {
 					<?php if ( 'yes' === $settings['enable_thumbnail_image'] && ! empty( $cover_image_url ) ) : ?>
 						<img <?php $this->print_render_attribute_string( 'cover-img' . $index ); ?>>
 					<?php endif; ?>
-				<?php if ( $brand->public ) : ?>
+				<?php if ( $attribute->public ) : ?>
 					</a>
 				<?php else : ?>
 					</div>
 				<?php endif; ?>
 			</div>
 		<?php endforeach; ?>
+		<?php if ( ! empty( $settings['more_attributes'] ) ) : ?>
+			<div class="all-attributes-link">
+				<?php $shop_page_url = get_permalink( wc_get_page_id( 'shop' ) ); ?>
+				<a href="<?php echo esc_url( $shop_page_url ); ?>" class="ms-auto"><?php echo esc_html( $settings['more_attributes'] ); ?></a>
+			</div>
+		<?php endif; ?>
 	</div>
 		<?php
 
