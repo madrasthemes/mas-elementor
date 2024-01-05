@@ -230,6 +230,21 @@ class Product_Categories extends Base_Widget {
 		);
 
 		$this->add_control(
+			'enable_see_more_all',
+			array(
+				'label'       => esc_html__( 'Enable See More', 'mas-elementor' ),
+				'type'        => Controls_Manager::SWITCHER,
+				'description' => esc_html__( 'Enable See More text for all categories', 'mas-elementor' ),
+				'default'     => 'no',
+				'label_on'    => 'Hide',
+				'label_off'   => 'Show',
+				'condition'   => array(
+					'see_more!' => '',
+				),
+			)
+		);
+
+		$this->add_control(
 			'see_more_position',
 			array(
 				'label'       => esc_html__( 'See More Position', 'mas-elementor' ),
@@ -2598,14 +2613,16 @@ class Product_Categories extends Base_Widget {
 								<?php
 								$sub_tab_count++;
 							}
-							if ( 'in' === $settings['see_more_position'] && ! empty( $settings['see_more'] && ( ! empty( $sub_cats ) && ( count( $sub_cats ) > $settings['sub_cat_count'] ) ) ) ) {
-								?>
-							<div class="sub-category">
-								<?php
-									echo wp_kses_post( '<a class="see-all" href="' . get_term_link( $cat->slug, $taxonomy ) . '">' . $settings['see_more'] . '</a>' );
-								?>
-							</div>
-								<?php
+							if ( 'in' === $settings['see_more_position'] && ! empty( $settings['see_more'] ) ) {
+								if ( ( ! empty( $sub_cats ) && ( count( $sub_cats ) > $settings['sub_cat_count'] ) ) || 'yes' === $settings['enable_see_more_all'] ) {
+									?>
+									<div class="sub-category">
+										<?php
+											echo wp_kses_post( '<a class="see-all" href="' . get_term_link( $cat->slug, $taxonomy ) . '">' . $settings['see_more'] . '</a>' );
+										?>
+									</div>
+										<?php
+								}
 							}
 							?>
 						</div>
@@ -2616,14 +2633,16 @@ class Product_Categories extends Base_Widget {
 				</<?php echo esc_html( $img_cat_wrap_tag ); ?>>
 				<?php
 
-				if ( 'out' === $settings['see_more_position'] && ! empty( $settings['see_more'] && ( ! empty( $sub_cats ) && ( count( $sub_cats ) > $settings['sub_cat_count'] ) ) ) ) {
-					?>
-				<div class="see-all-wrapper">
-					<?php
-						echo wp_kses_post( '<a class="see-all" href="' . get_term_link( $cat->slug, $taxonomy ) . '">' . $settings['see_more'] . '</a>' );
-					?>
-				</div>
-					<?php
+				if ( 'out' === $settings['see_more_position'] && ! empty( $settings['see_more'] ) ) {
+					if ( ( ! empty( $sub_cats ) && ( count( $sub_cats ) > $settings['sub_cat_count'] ) ) || 'yes' === $settings['enable_see_more_all'] ) {
+						?>
+						<div class="see-all-wrapper">
+							<?php
+								echo wp_kses_post( '<a class="see-all" href="' . get_term_link( $cat->slug, $taxonomy ) . '">' . $settings['see_more'] . '</a>' );
+							?>
+						</div>
+						<?php
+					}
 				}
 
 				?>
