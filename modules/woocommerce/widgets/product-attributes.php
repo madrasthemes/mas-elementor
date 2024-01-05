@@ -19,6 +19,7 @@ use MASElementor\Modules\CarouselAttributes\Traits\Button_Widget_Trait;
 use MASElementor\Modules\CarouselAttributes\Traits\Pagination_Trait;
 use MASElementor\Modules\CarouselAttributes\Traits\Swiper_Options_Trait;
 use ELementor\Plugin;
+use MASElementor\Modules\QueryControl\Module as Query_Module;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
@@ -216,6 +217,87 @@ class Product_Attributes extends Base_Widget {
 					'enable_cover_image' => 'yes',
 				),
 
+			)
+		);
+
+		$this->end_controls_section();
+
+		$this->start_controls_section(
+			'section_filter',
+			array(
+				'label' => esc_html__( 'Query', 'mas-elementor' ),
+				'tab'   => Controls_Manager::TAB_CONTENT,
+			)
+		);
+
+		$this->add_control(
+			'number',
+			array(
+				'label'   => esc_html__( 'Attribute Count', 'mas-elementor' ),
+				'type'    => Controls_Manager::NUMBER,
+				'default' => '4',
+			)
+		);
+
+		$this->add_control(
+			'hide_empty',
+			array(
+				'label'     => esc_html__( 'Hide Empty', 'mas-elementor' ),
+				'type'      => Controls_Manager::SWITCHER,
+				'default'   => '',
+				'label_on'  => 'Hide',
+				'label_off' => 'Show',
+			)
+		);
+
+		$this->add_control(
+			'orderby',
+			array(
+				'label'   => esc_html__( 'Order By', 'mas-elementor' ),
+				'type'    => Controls_Manager::SELECT,
+				'default' => 'name',
+				'options' => array(
+					'name'        => esc_html__( 'Name', 'mas-elementor' ),
+					'slug'        => esc_html__( 'Slug', 'mas-elementor' ),
+					'description' => esc_html__( 'Description', 'mas-elementor' ),
+					'count'       => esc_html__( 'Count', 'mas-elementor' ),
+					'menu_order'  => esc_html__( 'Menu Order', 'mas-elementor' ),
+				),
+			)
+		);
+
+		$this->add_control(
+			'order',
+			array(
+				'label'   => esc_html__( 'Order', 'mas-elementor' ),
+				'type'    => Controls_Manager::SELECT,
+				'default' => 'desc',
+				'options' => array(
+					'asc'  => esc_html__( 'ASC', 'mas-elementor' ),
+					'desc' => esc_html__( 'DESC', 'mas-elementor' ),
+				),
+			)
+		);
+
+		$tabs_wrapper    = 'select_terms_query_args';
+		$include_wrapper = 'select_terms_query_include';
+
+		$this->add_control(
+			'select_terms',
+			array(
+				'label'        => esc_html__( 'Term', 'mas-elementor' ),
+				'description'  => esc_html__( 'Terms are items in a taxonomy. The available taxonomies are: Product Attributes', 'mas-elementor' ),
+				'type'         => Query_Module::QUERY_CONTROL_ID,
+				'options'      => array(),
+				'label_block'  => true,
+				'multiple'     => true,
+				'autocomplete' => array(
+					'object'  => Query_Module::QUERY_OBJECT_CPT_TAX,
+					'display' => 'detailed',
+				),
+				'group_prefix' => 'select_terms',
+				'tabs_wrapper' => $tabs_wrapper,
+				'inner_tab'    => $include_wrapper,
 			)
 		);
 
@@ -1198,9 +1280,20 @@ class Product_Attributes extends Base_Widget {
 		if ( empty( $brand_taxonomy ) ) {
 			return;
 		}
-		$brand = get_taxonomy( $brand_taxonomy );
-
-		$brands_options['taxonomy'] = $brand_taxonomy;
+		$orderby        = $settings['orderby'];
+		$order          = $settings['order'];
+		$empty          = 'yes' === $settings['hide_empty'] ? true : false;
+		$brand          = get_taxonomy( $brand_taxonomy );
+		$brands_options = array(
+			'taxonomy'   => $brand_taxonomy,
+			'orderby'    => $orderby,
+			'order'      => $order,
+			'hide_empty' => $empty,
+			'number'     => $settings['number'],
+		);
+		if ( ! empty( $settings['select_terms'] ) ) {
+			$brands_options['include'] = $settings['select_terms'];
+		}
 
 		$thumbnail_name   = $settings['thumbnail_name'];
 		$cover_image_name = $settings['cover_image_name'];
