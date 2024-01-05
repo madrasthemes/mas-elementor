@@ -2208,6 +2208,24 @@ class Product_Categories extends Base_Widget {
 				),
 			)
 		);
+
+		$this->add_responsive_control(
+			'image_object_fit',
+			array(
+				'label'     => esc_html__( 'Object Fit', 'mas-elementor' ),
+				'type'      => Controls_Manager::SELECT,
+				'options'   => array(
+					''        => esc_html__( 'Default', 'mas-elementor' ),
+					'fill'    => esc_html__( 'Fill', 'mas-elementor' ),
+					'cover'   => esc_html__( 'Cover', 'mas-elementor' ),
+					'contain' => esc_html__( 'Contain', 'mas-elementor' ),
+				),
+				'default'   => '',
+				'selectors' => array(
+					'{{WRAPPER}} .img-cat-wrap img' => 'object-fit: {{VALUE}};',
+				),
+			)
+		);
 	}
 
 	/**
