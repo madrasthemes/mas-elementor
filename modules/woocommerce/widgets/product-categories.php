@@ -20,6 +20,7 @@ use MASElementor\Modules\CarouselAttributes\Traits\Pagination_Trait;
 use MASElementor\Modules\CarouselAttributes\Traits\Swiper_Options_Trait;
 use ELementor\Plugin;
 use Elementor\Icons_Manager;
+use MASElementor\Modules\QueryControl\Module as Query_Module;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
@@ -229,6 +230,23 @@ class Product_Categories extends Base_Widget {
 		);
 
 		$this->add_control(
+			'see_more_position',
+			array(
+				'label'       => esc_html__( 'See More Position', 'mas-elementor' ),
+				'type'        => Controls_Manager::SELECT,
+				'default'     => 'out',
+				'description' => esc_html__( 'Positioning the see more text inside/outside sub-category', 'mas-elementor' ),
+				'options'     => array(
+					'out' => esc_html__( 'Outside', 'mas-elementor' ),
+					'in'  => esc_html__( 'Inside', 'mas-elementor' ),
+				),
+				'condition'   => array(
+					'see_more!' => '',
+				),
+			)
+		);
+
+		$this->add_control(
 			'enable_cat_link_button',
 			array(
 				'label'     => esc_html__( 'Show Category Link Button', 'mas-elementor' ),
@@ -328,6 +346,7 @@ class Product_Categories extends Base_Widget {
 					'slug'        => esc_html__( 'Slug', 'mas-elementor' ),
 					'description' => esc_html__( 'Description', 'mas-elementor' ),
 					'count'       => esc_html__( 'Count', 'mas-elementor' ),
+					'menu_order'  => esc_html__( 'Menu Order', 'mas-elementor' ),
 				),
 			)
 		);
@@ -342,6 +361,35 @@ class Product_Categories extends Base_Widget {
 					'asc'  => esc_html__( 'ASC', 'mas-elementor' ),
 					'desc' => esc_html__( 'DESC', 'mas-elementor' ),
 				),
+			)
+		);
+
+		$tabs_wrapper    = 'select_terms_query_args';
+		$include_wrapper = 'select_terms_query_include';
+
+		$this->add_control(
+			'select_terms',
+			array(
+				'label'        => esc_html__( 'Term', 'mas-elementor' ),
+				'description'  => esc_html__( 'Terms are items in a taxonomy. The available taxonomies are: Categories', 'mas-elementor' ),
+				'type'         => Query_Module::QUERY_CONTROL_ID,
+				'options'      => array(),
+				'label_block'  => true,
+				'multiple'     => true,
+				'autocomplete' => array(
+					'object'  => Query_Module::QUERY_OBJECT_CPT_TAX,
+					'display' => 'detailed',
+				),
+				'group_prefix' => 'select_terms',
+				// 'condition'    => array(
+				// 'include'    => 'terms',
+				// 'post_type!' => array(
+				// 'by_id',
+				// 'current_query',
+				// ),
+				// ),
+				'tabs_wrapper' => $tabs_wrapper,
+				'inner_tab'    => $include_wrapper,
 			)
 		);
 
@@ -1060,8 +1108,9 @@ class Product_Categories extends Base_Widget {
 				'label'     => esc_html__( 'See all', 'mas-elementor' ),
 				'tab'       => Controls_Manager::TAB_STYLE,
 				'condition' => array(
-					'sub_cat_count!' => 0,
-					'see_more!'      => '',
+					'sub_cat_count!'    => 0,
+					'see_more!'         => '',
+					'see_more_position' => 'out',
 				),
 			)
 		);
@@ -2374,12 +2423,15 @@ class Product_Categories extends Base_Widget {
 		$order    = $settings['order'];
 		$empty    = 'yes' === $settings['hide_empty'] ? true : false;
 
-		$args           = array(
+		$args = array(
 			'taxonomy'   => $taxonomy,
 			'orderby'    => $orderby,
 			'order'      => $order,
 			'hide_empty' => $empty,
 		);
+		if ( ! empty( $settings['select_terms'] ) ) {
+			$args['include'] = $settings['select_terms'];
+		}
 		$all_categories = get_terms( $args );
 		$tab_count      = 0;
 		if ( 'yes' === $settings['enable_card_link'] ) {
@@ -2546,6 +2598,15 @@ class Product_Categories extends Base_Widget {
 								<?php
 								$sub_tab_count++;
 							}
+							if ( 'in' === $settings['see_more_position'] && ! empty( $settings['see_more'] && ( ! empty( $sub_cats ) && ( count( $sub_cats ) > $settings['sub_cat_count'] ) ) ) ) {
+								?>
+							<div class="sub-category">
+								<?php
+									echo wp_kses_post( '<a class="see-all" href="' . get_term_link( $cat->slug, $taxonomy ) . '">' . $settings['see_more'] . '</a>' );
+								?>
+							</div>
+								<?php
+							}
 							?>
 						</div>
 							<?php
@@ -2555,7 +2616,7 @@ class Product_Categories extends Base_Widget {
 				</<?php echo esc_html( $img_cat_wrap_tag ); ?>>
 				<?php
 
-				if ( ! empty( $settings['see_more'] && ( ! empty( $sub_cats ) && ( count( $sub_cats ) > $settings['sub_cat_count'] ) ) ) ) {
+				if ( 'out' === $settings['see_more_position'] && ! empty( $settings['see_more'] && ( ! empty( $sub_cats ) && ( count( $sub_cats ) > $settings['sub_cat_count'] ) ) ) ) {
 					?>
 				<div class="see-all-wrapper">
 					<?php
