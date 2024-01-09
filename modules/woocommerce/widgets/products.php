@@ -396,6 +396,25 @@ class Products extends Products_Base {
 		);
 
 		$this->add_control(
+			'result_count_position',
+			array(
+				'label'     => __( 'Result Count Position', 'mas-elementor' ),
+				'type'      => Controls_Manager::SELECT,
+				'description' => esc_html__( 'Display result count before or after product', 'mas-elementor' ),
+				'default'   => 'before',
+				'options'            => array(
+					'before' => esc_html__( 'Before', 'mas-elementor' ),
+					'after'  => esc_html__( 'After', 'mas-elementor' ),
+				),
+				'condition' => array(
+					'paginate'          => 'yes',
+					'enable_carousel!'  => 'yes',
+					'show_result_count' => 'yes',
+				),
+			)
+		);
+
+		$this->add_control(
 			'enable_carousel',
 			array(
 				'type'      => Controls_Manager::SWITCHER,
@@ -412,6 +431,63 @@ class Products extends Products_Base {
 		$this->register_query_controls();
 		$this->register_carousel_attributes_controls();
 		$this->register_carousel_attributes_style_controls();
+
+		$this->start_controls_section(
+			'result_count_style_section',
+			array(
+				'label' => esc_html__( 'Result Count', 'mas-elementor' ),
+				'tab'   => Controls_Manager::TAB_STYLE,
+				'condition' => array(
+					'paginate'              => 'yes',
+					'enable_carousel!'      => 'yes',
+					'show_result_count'     => 'yes',
+				),
+			)
+		);
+
+		$this->add_responsive_control(
+			'result_count_style_margin_option',
+			array(
+				'label'      => esc_html__( 'Margin', 'mas-elementor' ),
+				'type'       => Controls_Manager::DIMENSIONS,
+				'size_units' => array( 'px', 'em', '%', 'rem' ),
+				'selectors'  => array(
+					'{{WRAPPER}} .woocommerce-result-count' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				),
+			)
+		);
+
+		$this->add_responsive_control(
+			'result_count_style_padding_option',
+			array(
+				'label'      => esc_html__( 'Padding', 'mas-elementor' ),
+				'type'       => Controls_Manager::DIMENSIONS,
+				'size_units' => array( 'px', 'em', '%', 'rem' ),
+				'selectors'  => array(
+					'{{WRAPPER}} .woocommerce-result-count' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				),
+			)
+		);
+
+		$this->end_controls_section();
+
+		$this->start_controls_section(
+			'shop_control_bar_bottom_flex_controls',
+			array(
+				'label' => esc_html__( 'Pagination and Result Count', 'mas-elementor' ),
+				'tab'   => Controls_Manager::TAB_CONTENT,
+				'condition' => array(
+					'paginate'              => 'yes',
+					'enable_carousel!'      => 'yes',
+					'show_result_count'     => 'yes',
+					'result_count_position' => 'after',
+				),
+			)
+		);
+
+		$this->flex_controls( 'shop_control_bar_bottom', '{{WRAPPER}} .mas-shop-control-bar-bottom' );
+
+		$this->end_controls_section();
 
 		parent::register_controls();
 	}

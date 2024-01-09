@@ -111,6 +111,18 @@ abstract class Products_Base extends Base_Widget {
 		);
 
 		$this->add_responsive_control(
+			'pagination_width',
+			array(
+				'label'      => __( 'Pagination Width', 'mas-elementor' ),
+				'type'       => Controls_Manager::SLIDER,
+				'size_units' => array( 'px', '%', 'em', 'rem', 'vh', 'custom' ),
+				'selectors'  => array(
+					'{{WRAPPER}} .woocommerce nav.woocommerce-pagination' => 'width: {{SIZE}}{{UNIT}} !important',
+				),
+			)
+		);
+
+		$this->add_responsive_control(
 			'pagination_text_align',
 			array(
 				'label'           => esc_html__( 'Text Alignment', 'mas-elementor' ),
@@ -720,6 +732,200 @@ abstract class Products_Base extends Base_Widget {
 
 		$this->end_controls_section();
 
+	}
+
+	/**
+	 * Flex Controls.
+	 *
+	 * @param string $name name of the control.
+	 * @param string $wrapper wrapper for control.
+	 */
+	public function flex_controls( $name, $wrapper ) {
+		$start = is_rtl() ? 'right' : 'left';
+		$end   = is_rtl() ? 'left' : 'right';
+		$this->add_control(
+			$name . 'items',
+			array(
+				'type'      => Controls_Manager::HEADING,
+				'label'     => esc_html__( 'Items', 'mas-elementor' ),
+				'separator' => 'before',
+			)
+		);
+
+		$this->add_responsive_control(
+			$name . 'product_wrap_direction',
+			array(
+				'label'     => esc_html__( 'Direction', 'mas-elementor' ),
+				'type'      => Controls_Manager::CHOOSE,
+				'options'   => array(
+					'row'            => array(
+						'title' => esc_html__( 'Row - horizontal', 'mas-elementor' ),
+						'icon'  => 'eicon-arrow-' . $end,
+					),
+					'column'         => array(
+						'title' => esc_html__( 'Column - vertical', 'mas-elementor' ),
+						'icon'  => 'eicon-arrow-down',
+					),
+					'row-reverse'    => array(
+						'title' => esc_html__( 'Row - reversed', 'mas-elementor' ),
+						'icon'  => 'eicon-arrow-' . $start,
+					),
+					'column-reverse' => array(
+						'title' => esc_html__( 'Column - reversed', 'mas-elementor' ),
+						'icon'  => 'eicon-arrow-up',
+					),
+				),
+				'default'   => 'row',
+				'selectors' => array(
+					$wrapper => 'display:flex; flex-direction:{{VALUE}};',
+				),
+			)
+		);
+
+		$this->add_responsive_control(
+			$name . 'product_wrap_justify_content',
+			array(
+				'label'       => esc_html__( 'Justify Content', 'mas-elementor' ),
+				'type'        => Controls_Manager::CHOOSE,
+				'label_block' => true,
+				'default'     => '',
+				'options'     => array(
+					'flex-start'    => array(
+						'title' => esc_html_x( 'Start', 'Flex Container Control', 'mas-elementor' ),
+						'icon'  => 'eicon-flex eicon-justify-start-h',
+					),
+					'center'        => array(
+						'title' => esc_html_x( 'Center', 'Flex Container Control', 'mas-elementor' ),
+						'icon'  => 'eicon-flex eicon-justify-center-h',
+					),
+					'flex-end'      => array(
+						'title' => esc_html_x( 'End', 'Flex Container Control', 'mas-elementor' ),
+						'icon'  => 'eicon-flex eicon-justify-end-h',
+					),
+					'space-between' => array(
+						'title' => esc_html__( 'Space Between', 'mas-elementor' ),
+						'icon'  => 'eicon-flex eicon-justify-space-between-h',
+					),
+					'space-around'  => array(
+						'title' => esc_html__( 'Space Around', 'mas-elementor' ),
+						'icon'  => 'eicon-flex eicon-justify-space-around-h',
+					),
+					'space-evenly'  => array(
+						'title' => esc_html__( 'Space Evenly', 'mas-elementor' ),
+						'icon'  => 'eicon-flex eicon-justify-space-evenly-h',
+					),
+				),
+				'selectors'   => array(
+					$wrapper => 'justify-content: {{VALUE}};',
+				),
+			)
+		);
+
+		$this->add_responsive_control(
+			$name . 'product_wrap_align_items',
+			array(
+				'label'     => esc_html__( 'Align Items', 'mas-elementor' ),
+				'type'      => Controls_Manager::CHOOSE,
+				'default'   => '',
+				'options'   => array(
+					'flex-start' => array(
+						'title' => esc_html_x( 'Start', 'Flex Container Control', 'mas-elementor' ),
+						'icon'  => 'eicon-flex eicon-align-start-v',
+					),
+					'center'     => array(
+						'title' => esc_html_x( 'Center', 'Flex Container Control', 'mas-elementor' ),
+						'icon'  => 'eicon-flex eicon-align-center-v',
+					),
+					'flex-end'   => array(
+						'title' => esc_html_x( 'End', 'Flex Container Control', 'mas-elementor' ),
+						'icon'  => 'eicon-flex eicon-align-end-v',
+					),
+					'stretch'    => array(
+						'title' => esc_html__( 'Stretch', 'mas-elementor' ),
+						'icon'  => 'eicon-flex eicon-align-stretch-v',
+					),
+				),
+				'selectors' => array(
+					$wrapper => 'align-items: {{VALUE}};',
+				),
+			)
+		);
+
+		$this->add_responsive_control(
+			$name . 'product_wrap_gap',
+			array(
+				'label'                  => esc_html__( 'Gaps', 'mas-elementor' ),
+				'type'                   => Controls_Manager::GAPS,
+				'size_units'             => array( 'px', '%', 'em', 'rem', 'vw', 'custom' ),
+				'default'                => array(
+					'unit' => 'px',
+				),
+				'separator'              => 'before',
+				'selectors'              => array(
+					$wrapper => 'gap: {{ROW}}{{UNIT}} {{COLUMN}}{{UNIT}}',
+				),
+				'conversion_map'         => array(
+					'old_key' => 'size',
+					'new_key' => 'column',
+				),
+				'upgrade_conversion_map' => array(
+					'old_key'  => 'size',
+					'new_keys' => array( 'column', 'row' ),
+				),
+				'validators'             => array(
+					'Number' => array(
+						'min' => 0,
+					),
+				),
+			)
+		);
+
+		$this->add_responsive_control(
+			$name . 'product_wrapper_wrap',
+			array(
+				'label'       => esc_html_x( 'Wrap', 'Flex Container Control', 'mas-elementor' ),
+				'type'        => Controls_Manager::CHOOSE,
+				'options'     => array(
+					'nowrap' => array(
+						'title' => esc_html_x( 'No Wrap', 'Flex Container Control', 'mas-elementor' ),
+						'icon'  => 'eicon-flex eicon-nowrap',
+					),
+					'wrap'   => array(
+						'title' => esc_html_x( 'Wrap', 'Flex Container Control', 'mas-elementor' ),
+						'icon'  => 'eicon-flex eicon-wrap',
+					),
+				),
+				'description' => esc_html__( 'Items within the container can stay in a single line (No wrap), or break into multiple lines (Wrap).', 'mas-elementor' ),
+				'default'     => '',
+				'selectors'   => array(
+					$wrapper => 'flex-wrap: {{VALUE}};',
+				),
+			)
+		);
+
+		$this->add_responsive_control(
+			$name . 'product_wrapper_align_content',
+			array(
+				'label'     => esc_html__( 'Align Content', 'mas-elementor' ),
+				'type'      => Controls_Manager::SELECT,
+				'default'   => '',
+				'options'   => array(
+					''              => esc_html__( 'Default', 'mas-elementor' ),
+					'center'        => esc_html__( 'Center', 'mas-elementor' ),
+					'flex-start'    => esc_html__( 'Start', 'mas-elementor' ),
+					'flex-end'      => esc_html__( 'End', 'mas-elementor' ),
+					'space-between' => esc_html__( 'Space Between', 'mas-elementor' ),
+					'space-around'  => esc_html__( 'Space Around', 'mas-elementor' ),
+					'space-evenly'  => esc_html__( 'Space Evenly', 'mas-elementor' ),
+				),
+				'selectors' => array(
+					$wrapper => 'align-content: {{VALUE}};',
+				),
+				'condition' => array(
+					'product_wrapper_wrap' => 'wrap',
+				),
+			)
+		);
 	}
 
 	/**
