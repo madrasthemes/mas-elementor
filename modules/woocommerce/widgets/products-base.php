@@ -599,7 +599,6 @@ abstract class Products_Base extends Base_Widget {
 				'type'      => Controls_Manager::COLOR,
 				'default'   => '#576366',
 				'selectors' => array(
-					'{{WRAPPER}} .woocommerce-result-count' => 'color: {{VALUE}}',
 					'{{WRAPPER}} .woocommerce-ordering select' => 'color: {{VALUE}}',
 				),
 			)
@@ -612,7 +611,7 @@ abstract class Products_Base extends Base_Widget {
 				'global'   => array(
 					'default' => Global_Typography::TYPOGRAPHY_ACCENT,
 				),
-				'selector' => '{{WRAPPER}} .woocommerce-result-count, {{WRAPPER}} .woocommerce-ordering select',
+				'selector' => '{{WRAPPER}} .woocommerce-ordering select',
 			)
 		);
 

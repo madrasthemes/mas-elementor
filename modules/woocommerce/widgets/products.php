@@ -445,6 +445,28 @@ class Products extends Products_Base {
 			)
 		);
 
+		$this->add_control(
+			'result_count_color',
+			array(
+				'label'     => esc_html__( 'Color', 'mas-elementor' ),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => array(
+					'{{WRAPPER}} .woocommerce-result-count' => 'color: {{VALUE}} !important;',
+				),
+			)
+		);
+
+		$this->add_group_control(
+			Group_Control_Typography::get_type(),
+			array(
+				'name'     => 'result_count_typography',
+				'global'   => array(
+					'default' => Global_Typography::TYPOGRAPHY_TEXT,
+				),
+				'selector' => '{{WRAPPER}} .woocommerce-result-count',
+			)
+		);
+
 		$this->add_responsive_control(
 			'result_count_style_margin_option',
 			array(
