@@ -154,6 +154,7 @@ class Products extends Products_Base {
 							'related_products' => esc_html__( 'Related Products', 'mas-elementor' ),
 							'upsells'          => esc_html__( 'Upsells', 'mas-elementor' ),
 							'cross_sells'      => esc_html__( 'Cross-Sells', 'mas-elementor' ),
+							'recently_viewed'  => esc_html__( 'Recently Viewed', 'mas-elementor' ),
 						),
 					),
 					'orderby'   => array(

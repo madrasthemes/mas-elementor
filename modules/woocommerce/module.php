@@ -439,6 +439,11 @@ class Module extends Module_Base {
 
 		// Add options on Inventry Tab.
 		add_action( 'woocommerce_product_options_inventory_product_data', array( $this, 'product_options_inventory_product_data' ) );
+
+		/**
+		 * Recently Viewed Products
+		 */
+		add_action( 'template_redirect', array( $this, 'mas_elementor_wc_track_product_view' ), 10 );
 	}
 
 	/**
@@ -554,5 +559,35 @@ class Module extends Module_Base {
 				);
 			echo '</div>';
 		}
+	}
+
+	/**
+	 * Set Product ids in cookies.
+	 */
+	public function mas_elementor_wc_track_product_view() {
+		if ( ! is_singular( 'product' ) ) {
+			return;
+		}
+
+		global $post;
+
+		$recently_viewed_cookie = isset( $_COOKIE['mas_elementor_wc_recently_viewed'] ) ? wp_unslash( $_COOKIE['mas_elementor_wc_recently_viewed'] ) : ''; // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+
+		if ( empty( $recently_viewed_cookie ) ) {
+			$viewed_products = array();
+		} else {
+			$viewed_products = (array) explode( '|', $recently_viewed_cookie );
+		}
+
+		if ( ! in_array( $post->ID, $viewed_products ) ) {
+			$viewed_products[] = $post->ID;
+		}
+
+		if ( count( $viewed_products ) > 15 ) {
+			array_shift( $viewed_products );
+		}
+
+		// Store for session only.
+		wc_setcookie( 'mas_elementor_wc_recently_viewed', implode( '|', $viewed_products ) );
 	}
 }
