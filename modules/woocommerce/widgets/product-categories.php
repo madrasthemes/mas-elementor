@@ -1298,6 +1298,18 @@ class Product_Categories extends Base_Widget {
 			)
 		);
 
+		$this->flex_controls( '', '{{WRAPPER}} .mas-categories-wrapper' );
+
+		$this->end_controls_section();
+
+		$this->start_controls_section(
+			'category_wrapper',
+			array(
+				'label' => esc_html__( 'Category', 'mas-elementor' ),
+				'tab'   => Controls_Manager::TAB_CONTENT,
+			)
+		);
+
 		$this->add_responsive_control(
 			'cat_flex_size',
 			array(
@@ -1482,19 +1494,14 @@ class Product_Categories extends Base_Widget {
 			)
 		);
 
-		$this->flex_controls( '', '{{WRAPPER}} .mas-categories-wrapper' );
+		$this->flex_controls( 'category_wrap_', '{{WRAPPER}} .cat-wrapper' );
 
-		$this->end_controls_section();
-
-		$this->start_controls_section(
-			'category_wrapper',
+		$this->update_control(
+			'category_wrap_categories_wrap_direction',
 			array(
-				'label' => esc_html__( 'Category', 'mas-elementor' ),
-				'tab'   => Controls_Manager::TAB_CONTENT,
+				'default' => '',
 			)
 		);
-
-		$this->flex_controls( 'category_wrap', '{{WRAPPER}} .cat-wrapper' );
 
 		$this->end_controls_section();
 
