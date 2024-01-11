@@ -1487,6 +1487,18 @@ class Product_Categories extends Base_Widget {
 		$this->end_controls_section();
 
 		$this->start_controls_section(
+			'category_wrapper',
+			array(
+				'label' => esc_html__( 'Category', 'mas-elementor' ),
+				'tab'   => Controls_Manager::TAB_CONTENT,
+			)
+		);
+
+		$this->flex_controls( 'category_wrap', '{{WRAPPER}} .cat-wrapper' );
+
+		$this->end_controls_section();
+
+		$this->start_controls_section(
 			'cat_image_wrapper',
 			array(
 				'label' => esc_html__( 'Image / Icon & Categories', 'mas-elementor' ),
@@ -1538,6 +1550,18 @@ class Product_Categories extends Base_Widget {
 				),
 				'selectors'  => array(
 					'{{WRAPPER}} .img-cat-wrap' => 'min-height: {{SIZE}}{{UNIT}};',
+				),
+			)
+		);
+
+		$this->add_responsive_control(
+			'categories_img_margin',
+			array(
+				'label'      => esc_html__( 'Margin', 'mas-elementor' ),
+				'type'       => Controls_Manager::DIMENSIONS,
+				'size_units' => array( 'px', '%', 'em', 'rem', 'custom' ),
+				'selectors'  => array(
+					'{{WRAPPER}} .img-cat-wrap' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}}',
 				),
 			)
 		);
