@@ -30,6 +30,10 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 class Product_Attributes extends Base_Widget {
 
+	use Button_Widget_Trait;
+	use Pagination_Trait;
+	use Swiper_Options_Trait;
+
 	/**
 	 * Has content template
 	 *
@@ -290,9 +294,63 @@ class Product_Attributes extends Base_Widget {
 	}
 
 	/**
+	 * Add carousel arrow and pagination controls to the product categories element.
+	 */
+	public function register_carousel_arrow_pagination_controls() {
+
+		$args = array(
+			'concat'        => '',
+			'button_concat' => '',
+		);
+
+		$this->register_pagination_style_controls( $this, $args );
+
+		$this->start_controls_section(
+			'masposts_swiper_button',
+			array(
+				'label'     => esc_html__( 'Button', 'mas-elementor' ),
+				'tab'       => Controls_Manager::TAB_CONTENT,
+				'condition' => array(
+					'enable_carousel' => 'yes',
+					'show_arrows'     => 'yes',
+				),
+			)
+		);
+
+			$this->register_button_content_controls( $this, $args );
+
+		$this->end_controls_section();
+
+		$this->register_button_style_controls( $this, $args );
+
+	}
+
+	/**
+	 * Add carousel controls to the product categories element.
+	 */
+	public function register_carousel_attributes_controls() {
+
+		$this->start_injection(
+			array(
+				'at' => 'before',
+				'of' => 'section_query',
+			)
+		);
+
+		$this->register_swiper_controls( $this );
+
+		$this->end_injection();
+
+		$this->register_carousel_arrow_pagination_controls();
+	}
+
+	/**
 	 * Register controls for this widget.
 	 */
 	protected function register_controls() {
+
+		$this->register_carousel_attributes_controls();
+
 		$this->start_controls_section(
 			'section_layout',
 			array(
@@ -412,6 +470,8 @@ class Product_Attributes extends Base_Widget {
 			)
 		);
 
+		$this->register_enable_carousel_control( $this );
+
 		$this->add_control(
 			'attributes_title',
 			array(
@@ -419,6 +479,9 @@ class Product_Attributes extends Base_Widget {
 				'type'        => Controls_Manager::TEXT,
 				'default'     => '',
 				'description' => esc_html__( 'Link for Shop page', 'mas-elementor' ),
+				'condition'   => array(
+					'enable_carousel!' => 'yes',
+				),
 			)
 		);
 
@@ -429,6 +492,9 @@ class Product_Attributes extends Base_Widget {
 				'type'        => Controls_Manager::TEXT,
 				'default'     => '',
 				'description' => esc_html__( 'Link for Shop page', 'mas-elementor' ),
+				'condition'   => array(
+					'enable_carousel!' => 'yes',
+				),
 			)
 		);
 
@@ -1500,6 +1566,60 @@ class Product_Attributes extends Base_Widget {
 		if ( empty( $attr_taxonomy ) ) {
 			return;
 		}
+		$json = wp_json_encode( $this->get_swiper_carousel_options( $this, $settings ) );
+		$this->add_render_attribute( 'mas-attributes', 'class', 'mas-attributes-options' );
+		$this->add_render_attribute( 'mas-attributes-wrapper', 'class', 'mas-product-attributes' );
+		if ( 'yes' === $settings['enable_carousel'] ) {
+			$this->add_render_attribute( 'mas-attributes', 'class', 'swiper' );
+			$this->add_render_attribute( 'mas-attributes', 'data-swiper-options', $json );
+			$this->add_render_attribute( 'mas-attributes-wrapper', 'class', 'swiper-wrapper' );
+		}
+		?>
+		<div <?php $this->print_render_attribute_string( 'mas-attributes' ); ?>>
+			<div <?php $this->print_render_attribute_string( 'mas-attributes-wrapper' ); ?>>
+				<?php $this->render_attributes( $settings ); ?>
+			</div>
+			<?php echo wp_kses_post( $this->carousel_loop_footer( $this, $settings ) ); ?>
+		</div>
+		<?php
+
+	}
+
+	/**
+	 * Render attributes.
+	 *
+	 * @param array $settings Settings of this widget.
+	 */
+	public function render_attributes( $settings ) {
+		?>
+		<?php if ( ! empty( $settings['attributes_title'] ) ) : ?>
+			<<?php echo esc_html( $settings['attributes_title_tag'] ); ?> class="attributes-title"><?php echo esc_html( $settings['attributes_title'] ); ?></<?php echo esc_html( $settings['attributes_title_tag'] ); ?>>
+			<?php
+		endif;
+
+		$this->attribute_loop( $settings );
+
+		if ( ! empty( $settings['more_attributes'] ) ) :
+			?>
+		<div class="all-attributes-link">
+			<?php $shop_page_url = get_permalink( wc_get_page_id( 'shop' ) ); ?>
+			<a href="<?php echo esc_url( $shop_page_url ); ?>" class="ms-auto"><?php echo esc_html( $settings['more_attributes'] ); ?></a>
+		</div>
+		<?php endif; ?>
+		<?php
+
+	}
+
+	/**
+	 * Attribute Loop .
+	 *
+	 * @param array $settings Settings of this widget.
+	 */
+	protected function attribute_loop( $settings ) {
+		$attr_taxonomy = $settings['select_product_attribute'];
+		if ( empty( $attr_taxonomy ) ) {
+			return;
+		}
 		$orderby            = $settings['orderby'];
 		$order              = $settings['order'];
 		$empty              = 'yes' === $settings['hide_empty'] ? true : false;
@@ -1518,13 +1638,13 @@ class Product_Attributes extends Base_Widget {
 		$thumbnail_name   = $settings['thumbnail_name'];
 		$cover_image_name = $settings['cover_image_name'];
 		$terms            = get_terms( $attributes_options );
-		?>
-		<div class="mas-product-attributes">
-			<?php if ( ! empty( $settings['attributes_title'] ) ) : ?>
-				<<?php echo esc_html( $settings['attributes_title_tag'] ); ?> class="attributes-title"><?php echo esc_html( $settings['attributes_title'] ); ?></<?php echo esc_html( $settings['attributes_title_tag'] ); ?>>
-			<?php endif; ?>
-		<?php foreach ( $terms as $index => $term ) : ?>
-			<div class="attribute-card-list">
+		foreach ( $terms as $index => $term ) :
+			$this->add_render_attribute( 'attribute-card-list' . $index, 'class', 'attribute-card-list' );
+			if ( 'yes' === $settings['enable_carousel'] ) {
+				$this->add_render_attribute( 'attribute-card-list' . $index, 'class', 'swiper-slide' );
+			}
+			?>
+			<div <?php $this->print_render_attribute_string( 'attribute-card-list' . $index ); ?>>
 				<?php if ( $attribute->public ) : ?>
 					<a href="<?php echo esc_url( apply_filters( 'mas_brand_link', get_term_link( $term ), $term ) ); ?>" class="card-item card-link">
 				<?php else : ?>
@@ -1603,15 +1723,48 @@ class Product_Attributes extends Base_Widget {
 					</div>
 				<?php endif; ?>
 			</div>
-		<?php endforeach; ?>
-		<?php if ( ! empty( $settings['more_attributes'] ) ) : ?>
-			<div class="all-attributes-link">
-				<?php $shop_page_url = get_permalink( wc_get_page_id( 'shop' ) ); ?>
-				<a href="<?php echo esc_url( $shop_page_url ); ?>" class="ms-auto"><?php echo esc_html( $settings['more_attributes'] ); ?></a>
-			</div>
-		<?php endif; ?>
-	</div>
-		<?php
+			<?php
+		endforeach;
+	}
 
+	/**
+	 * Carousel Loop Footer.
+	 *
+	 * @param array $widget widget.
+	 * @param array $settings Settings of this widget.
+	 * @return string
+	 */
+	public function carousel_loop_footer( $widget, array $settings = array() ) {
+		ob_start();
+		if ( 'yes' === $settings['enable_carousel'] ) {
+			?>
+			<?php
+			$widget_id = $widget->get_id();
+			if ( ! empty( $widget_id ) && 'yes' === $settings['show_pagination'] ) {
+				$widget->add_render_attribute( 'swiper-pagination', 'id', 'pagination-' . $widget_id );
+			}
+			$widget->add_render_attribute( 'swiper-pagination', 'class', 'swiper-pagination' );
+			$widget->add_render_attribute( 'swiper-pagination', 'style', 'position: ' . $settings['mas_swiper_pagination_position'] . ';' );
+			if ( 'yes' === $settings['show_pagination'] ) :
+				?>
+			<div <?php $widget->print_render_attribute_string( 'swiper-pagination' ); ?>></div>
+				<?php
+			endif;
+			if ( 'yes' === $settings['show_arrows'] ) :
+				$prev_id = ! empty( $widget_id ) ? 'prev-' . $widget_id : '';
+				$next_id = ! empty( $widget_id ) ? 'next-' . $widget_id : '';
+				?>
+				<!-- If we need navigation buttons -->
+				<div class="d-flex mas-swiper-arrows">
+					<?php
+					$widget->render_button( $widget, $prev_id, $next_id );
+					?>
+				</div>
+				<?php
+			endif;
+			?>
+			<?php
+		}
+		return ob_get_clean();
 	}
 }
