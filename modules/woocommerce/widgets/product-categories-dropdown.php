@@ -17,6 +17,8 @@ use Elementor\Icons_Manager;
 use Elementor\Utils;
 use Elementor\Group_Control_Text_Stroke;
 use Elementor\Group_Control_Text_Shadow;
+use MASElementor\Modules\QueryControl\Module as Query_Module;
+
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
@@ -637,6 +639,35 @@ class Product_Categories_Dropdown extends Widget_Accordion {
 			)
 		);
 
+		$tabs_wrapper    = 'select_terms_query_args';
+		$include_wrapper = 'select_terms_query_include';
+
+		$this->add_control(
+			'select_terms',
+			array(
+				'label'        => esc_html__( 'Term', 'mas-elementor' ),
+				'description'  => esc_html__( 'Terms are items in a taxonomy. The available taxonomies are: Categories, Enter parent categories only', 'mas-elementor' ),
+				'type'         => Query_Module::QUERY_CONTROL_ID,
+				'options'      => array(),
+				'label_block'  => true,
+				'multiple'     => true,
+				'autocomplete' => array(
+					'object'  => Query_Module::QUERY_OBJECT_CPT_TAX,
+					'display' => 'detailed',
+				),
+				'group_prefix' => 'select_terms',
+				// 'condition'    => array(
+				// 'include'    => 'terms',
+				// 'post_type!' => array(
+				// 'by_id',
+				// 'current_query',
+				// ),
+				// ),
+				'tabs_wrapper' => $tabs_wrapper,
+				'inner_tab'    => $include_wrapper,
+			)
+		);
+
 		$this->end_controls_section();
 
 		$this->start_controls_section(
@@ -1147,6 +1178,9 @@ class Product_Categories_Dropdown extends Widget_Accordion {
 			'order'      => $order,
 			'hide_empty' => $empty,
 		);
+		if ( ! empty( $settings['select_terms'] ) ) {
+			$args['include'] = $settings['select_terms'];
+		}
 		$all_categories = get_terms( $args );
 		$migrated       = isset( $settings['__fa4_migrated']['selected_icon'] );
 
