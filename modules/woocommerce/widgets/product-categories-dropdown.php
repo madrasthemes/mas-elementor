@@ -252,6 +252,19 @@ class Product_Categories_Dropdown extends Widget_Accordion {
 
 			$this->position_style_controls();
 
+			$this->add_responsive_control(
+				'content_sub_z_index',
+				array(
+					'label'     => esc_html__( 'Z-Index', 'mas-elementor' ),
+					'type'      => Controls_Manager::NUMBER,
+					'min'       => 0,
+					'default'   => 1,
+					'selectors' => array(
+						'{{WRAPPER}} .elementor-tab-content' => 'z-index: {{VALUE}};',
+					),
+				)
+			);
+
 		$this->end_controls_section();
 
 		$this->start_controls_section(
@@ -1172,7 +1185,7 @@ class Product_Categories_Dropdown extends Widget_Accordion {
 		$order    = $settings['order'];
 		$empty    = 'yes' === $settings['hide_empty'] ? true : false;
 
-		$args           = array(
+		$args = array(
 			'taxonomy'   => $taxonomy,
 			'orderby'    => $orderby,
 			'order'      => $order,
