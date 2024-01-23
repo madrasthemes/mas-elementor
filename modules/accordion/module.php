@@ -10,6 +10,7 @@ namespace MASElementor\Modules\Accordion;
 use MASElementor\Base\Module_Base;
 use Elementor\Controls_Manager;
 use Elementor\Plugin;
+use Elementor\Group_Control_Typography;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
@@ -78,6 +79,37 @@ class Module extends Module_Base {
 			)
 		);
 
+		$element->add_control(
+			'mas_accordion_icon_background_color',
+			array(
+				'label'     => esc_html__( 'Background Color', 'mas-elementor' ),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => array(
+					'{{WRAPPER}} .elementor-accordion .elementor-accordion-icon' => 'background-color: {{VALUE}};',
+				),
+			)
+		);
+
+		$element->add_group_control(
+			\Elementor\Group_Control_Border::get_type(),
+			array(
+				'name'     => 'mas_accordion_icon_border',
+				'selector' => '{{WRAPPER}} .elementor-accordion .elementor-accordion-icon',
+			)
+		);
+
+		$element->add_control(
+			'mas_accordion_icon_border_radius',
+			array(
+				'type'       => Controls_Manager::DIMENSIONS,
+				'label'      => esc_html__( 'Border Radius', 'mas-elementor' ),
+				'size_units' => array( 'px', '%' ),
+				'selectors'  => array(
+					'{{WRAPPER}} .elementor-accordion .elementor-accordion-icon' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				),
+			)
+		);
+
 		$element->add_responsive_control(
 			'mas_accordion_icon_padding',
 			array(
@@ -99,6 +131,34 @@ class Module extends Module_Base {
 				'selectors'  => array(
 					'{{WRAPPER}} .elementor-accordion-icon' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				),
+			)
+		);
+
+		$element->add_control(
+			'mas_accordion_icon_active_heading',
+			array(
+				'label'     => esc_html__( 'Tab Active', 'mas-elementor' ),
+				'type'      => Controls_Manager::HEADING,
+				'separator' => 'before',
+			)
+		);
+
+		$element->add_control(
+			'mas_accordion_icon_active_background_color',
+			array(
+				'label'     => esc_html__( 'Background Active Color', 'mas-elementor' ),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => array(
+					'{{WRAPPER}} .elementor-accordion .elementor-tab-title.elementor-active .elementor-accordion-icon' => 'background-color: {{VALUE}};',
+				),
+			)
+		);
+
+		$element->add_group_control(
+			\Elementor\Group_Control_Border::get_type(),
+			array(
+				'name'     => 'mas_accordion_icon_active_border',
+				'selector' => '{{WRAPPER}} .elementor-accordion .elementor-tab-title.elementor-active .elementor-accordion-icon',
 			)
 		);
 	}
@@ -166,6 +226,17 @@ class Module extends Module_Base {
 		);
 
 		$element->add_control(
+			'tab_hover_title_color',
+			array(
+				'label'     => esc_html__( 'Title Hover Color', 'mas-elementor' ),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => array(
+					'{{WRAPPER}} .elementor-tab-title:hover .elementor-accordion-title' => 'color: {{VALUE}};',
+				),
+			)
+		);
+
+		$element->add_control(
 			'mas_accordion_title_border_radius',
 			array(
 				'type'       => Controls_Manager::DIMENSIONS,
@@ -174,6 +245,23 @@ class Module extends Module_Base {
 				'selectors'  => array(
 					'{{WRAPPER}} .elementor-accordion .elementor-accordion-item .elementor-tab-title' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				),
+			)
+		);
+
+		$element->add_control(
+			'tab_title_active',
+			array(
+				'label'     => esc_html__( 'Tab Active', 'mas-elementor' ),
+				'type'      => Controls_Manager::HEADING,
+				'separator' => 'before',
+			)
+		);
+
+		$element->add_group_control(
+			Group_Control_Typography::get_type(),
+			array(
+				'name'     => 'tab_active_title_typography',
+				'selector' => '{{WRAPPER}} .elementor-accordion .elementor-tab-title.elementor-active .elementor-accordion-title',
 			)
 		);
 	}

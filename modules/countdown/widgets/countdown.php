@@ -170,6 +170,55 @@ class Countdown extends Base_Widget {
 		);
 
 		$this->add_control(
+			'show_separator',
+			array(
+				'label'     => __( 'Show Separator', 'mas-elementor' ),
+				'type'      => Controls_Manager::SWITCHER,
+				'label_on'  => __( 'Show', 'mas-elementor' ),
+				'label_off' => __( 'Hide', 'mas-elementor' ),
+				'default'   => 'no',
+				'prefix_class' => 'mas-countdown-separator-',
+			)
+		);
+
+		$this->add_control(
+			'separator_color',
+			array(
+				'label'     => __( 'Separator Color', 'mas-elementor' ),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => array(
+					'{{WRAPPER}}.mas-countdown-separator-yes .mas-js-countdown > .mas-elementor-countdown-item:not(:last-child):after' => 'color: {{VALUE}};',
+				),
+				'condition'   => array(
+					'show_separator'   => 'yes',
+				),
+			)
+		);
+
+		$this->add_responsive_control(
+			'separator_padding',
+			array(
+				'label'      => esc_html__( 'Separator Padding', 'mas-elementor' ),
+				'type'       => Controls_Manager::DIMENSIONS,
+				'size_units' => array( 'px', 'em', '%', 'rem' ),
+				'selectors'  => array(
+					'{{WRAPPER}}.mas-countdown-separator-yes .mas-js-countdown > .mas-elementor-countdown-item:not(:last-child):after' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				),
+				'default'    => array(
+					'top'      => '0',
+					'right'    => '4',
+					'bottom'   => '0',
+					'left'     => '4',
+					'unit'     => 'px',
+					'isLinked' => false,
+				),
+				'condition'   => array(
+					'show_separator'   => 'yes',
+				),
+			)
+		);
+
+		$this->add_control(
 			'show_days',
 			array(
 				'label'     => __( 'Days', 'mas-elementor' ),

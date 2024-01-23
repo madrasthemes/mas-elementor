@@ -118,7 +118,19 @@ abstract class Base_Products_Renderer extends \WC_Shortcode_Products {
 
 			// Fire standard shop loop hooks when paginating results so we can show result counts and so on.
 			if ( wc_string_to_bool( $this->attributes['paginate'] ) && 'yes' !== $settings['enable_carousel'] ) {
-				do_action( 'woocommerce_after_shop_loop' );
+				if ( 'yes' === $settings['show_result_count'] && 'after' === $settings['result_count_position'] ) :
+					?>
+					<div class="mas-shop-control-bar-bottom">
+				<?php endif; ?>
+					<?php
+					do_action( 'woocommerce_after_shop_loop' );
+					if ( 'yes' === $settings['show_result_count'] && 'after' === $settings['result_count_position'] ) :
+						?>
+				 
+				</div>
+					<?php endif; ?>
+
+				<?php
 			}
 
 			do_action( "woocommerce_shortcode_after_{$this->type}_loop", $this->attributes );
@@ -389,7 +401,7 @@ abstract class Base_Products_Renderer extends \WC_Shortcode_Products {
 		}
 
 		if ( 'yes' === $settings['center_slides'] ) {
-			$swiper_settings['centeredSlides'] = true;
+			$swiper_settings['centeredSlides']       = true;
 			$swiper_settings['centeredSlidesBounds'] = true;
 		}
 

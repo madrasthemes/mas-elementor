@@ -731,3 +731,21 @@ if ( ! function_exists( 'mas_option_enabled_taxonomies' ) ) {
 	}
 }
 
+if ( ! function_exists( 'mas_elementor_get_field' ) ) {
+	/**
+	 * Wrapper for ACF's get_field function.
+	 *
+	 * @param string   $field custom field key.
+	 * @param int|bool $post_id ID of the post.
+	 * @param bool     $format_value should format the meta value or not.
+	 * @return mixed
+	 */
+	function mas_elementor_get_field( $field, $post_id = false, $format_value = true ) {
+		if ( function_exists( 'get_field' ) ) {
+			return get_field( $field, $post_id, $format_value );
+		}
+
+		return false;
+	}
+}
+

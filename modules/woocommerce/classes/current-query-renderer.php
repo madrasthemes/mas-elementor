@@ -105,6 +105,11 @@ class Current_Query_Renderer extends Base_Products_Renderer {
 			if ( 'yes' !== $settings['show_result_count'] ) {
 				remove_action( 'woocommerce_before_shop_loop', 'woocommerce_result_count', 20 );
 			}
+
+			if ( 'yes' === $settings['show_result_count'] && 'after' === $settings['result_count_position'] ) {
+				remove_action( 'woocommerce_before_shop_loop', 'woocommerce_result_count', 20 );
+				add_action( 'woocommerce_after_shop_loop', 'woocommerce_result_count', 20 );
+			}
 		}
 
 		// Always query only IDs.

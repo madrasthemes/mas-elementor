@@ -161,6 +161,8 @@ class Products_Renderer extends Base_Products_Renderer {
 
 		$this->set_pagination_args( $query_args );
 
+		$this->set_recently_viewed_products_query_args( $query_args );
+
 		$query_args = apply_filters( 'woocommerce_shortcode_products_query', $query_args, $this->attributes, $this->type );
 
 		// Always query only IDs.
@@ -415,6 +417,11 @@ class Products_Renderer extends Base_Products_Renderer {
 		if ( 'yes' !== $this->settings['show_result_count'] ) {
 			remove_action( 'woocommerce_before_shop_loop', 'woocommerce_result_count', 20 );
 		}
+
+		if ( 'yes' === $this->settings['show_result_count'] && 'after' === $this->settings['result_count_position'] ) {
+			remove_action( 'woocommerce_before_shop_loop', 'woocommerce_result_count', 20 );
+			add_action( 'woocommerce_after_shop_loop', 'woocommerce_result_count', 20 );
+		}
 	}
 
 	/**
@@ -444,5 +451,36 @@ class Products_Renderer extends Base_Products_Renderer {
 			&& ! empty( $this->settings[ $this->settings_key_prefix . 'include' ] )
 			&& in_array( $type, $this->settings[ $this->settings_key_prefix . 'include' ], true )
 		);
+	}
+
+	/**
+	 * Get recently viewed products.
+	 */
+	protected function mas_elementor_get_recently_viewed_products() {
+		$recently_viewed_cookie = isset( $_COOKIE['mas_elementor_wc_recently_viewed'] ) ? wp_unslash( $_COOKIE['mas_elementor_wc_recently_viewed'] ) : ''; // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+
+		$viewed_products = ! empty( $recently_viewed_cookie ) ? (array) explode( '|', $recently_viewed_cookie ) : array();
+		$viewed_products = array_reverse( array_filter( array_map( 'absint', $viewed_products ) ) );
+
+		return $viewed_products;
+	}
+
+	/**
+	 * Set featured Query Arguments.
+	 *
+	 * @param array $query_args the reference of query arguments.
+	 */
+	protected function set_recently_viewed_products_query_args( &$query_args ) {
+		if ( 'recently_viewed' !== $this->settings[ $this->settings_key_prefix . 'post_type' ] ) {
+			return;
+		}
+
+		$recently_viewed_ids = $this->mas_elementor_get_recently_viewed_products();
+
+		if ( empty( $recently_viewed_ids ) ) {
+			$recently_viewed_ids = array( -1 );
+		}
+
+		$query_args['post__in'] = $recently_viewed_ids;
 	}
 }
