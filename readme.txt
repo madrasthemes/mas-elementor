@@ -4,7 +4,7 @@ Tags: posts, products, nav-menu, carousel, tabs, multipurpose text
 Requires at least: 5.0
 Tested up to: 6.4
 Requires PHP: 7.4
-Stable tag: 1.1.0
+Stable tag: 1.1.1
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -67,6 +67,14 @@ All of our online documentation can be found on [our documentation site](https:/
 
 
 == Changelog ==
+
+= 1.1.1 - 2024-01-24 =
+* Feature : Carousel options added for Product Category widget
+* Feature : Product Count in product category widget
+* Feature : Added product attribute widget
+* Feature : Term selection for product category dropdown widget
+* Feature : Added icon option for category dropdown
+* Fix     : Add to cart svg issue
 
 = 1.1 - 2023-11-24 =
 * Feature : Added progress bar widget.
