@@ -74,19 +74,35 @@ abstract class Base_Products_Renderer extends \WC_Shortcode_Products {
 
 			$original_post = $GLOBALS['post'];
 
+			if ( 'yes' === $settings['enable_shop_control_bar'] ) {
+
+				remove_action( 'woocommerce_before_shop_loop', 'woocommerce_catalog_ordering', 30 );
+				add_action( 'mas_elementor_shop_control_bar', array( $this, 'mas_elementor_shop_view_switcher' ) );
+				add_action( 'mas_elementor_shop_control_bar', 'woocommerce_catalog_ordering', 50 );
+				add_action( 'woocommerce_before_shop_loop', array( $this, 'mas_elementor_shop_control_bar' ) );
+				add_action( 'mas_elementor_shop_control_bar', array( $this, 'mas_elementor_advanced_pagination' ) );
+
+			}
+
 			do_action( "woocommerce_shortcode_before_{$this->type}_loop", $this->attributes );
 
 			add_filter( 'woocommerce_pagination_args', array( $this, 'custom_woocommerce_pagination_args' ) );
 
 			// Fire standard shop loop hooks when paginating results so we can show result counts and so on.
-			if ( wc_string_to_bool( $this->attributes['paginate'] && 'yes' !== $settings['enable_carousel'] ) ) {
+			if ( wc_string_to_bool( ( $this->attributes['paginate'] ) && 'yes' !== $settings['enable_carousel'] ) ) {
 				do_action( 'woocommerce_before_shop_loop' );
 			}
 
 			if ( 'yes' !== $settings['enable_carousel'] ) {
-				?>
-				<div class="mas-products mas-grid">
-				<?php
+				if ( 'yes' === $settings['enable_shop_control_bar'] ) {
+					?>
+					<div data-bs-toggle="mas-shop-products" class="mas-products mas-grid">
+					<?php
+				} else {
+					?>
+					<div class="mas-products mas-grid">
+					<?php
+				}
 			}
 
 			if ( wc_get_loop_prop( 'total' ) ) {
@@ -420,6 +436,174 @@ abstract class Base_Products_Renderer extends \WC_Shortcode_Products {
 		}
 
 		return $swiper_settings;
+	}
+
+
+	/**
+	 * Outputs shop control bar.
+	 */
+	public function mas_elementor_shop_control_bar() {
+
+		$products = $this->get_query_results();
+
+		if ( empty( $products->ids ) ) {
+			return;
+		}
+
+		?>
+		<div class="mas-shop-control-bar">
+			<?php
+			/**
+			 * Hooks.
+			 *
+			 * @hooked mas_elementor_shop_view_switcher - 10
+			 * @hooked woocommerce_sorting - 20
+			 */
+			do_action( 'mas_elementor_shop_control_bar' );
+			?>
+		</div>
+		<?php
+	}
+
+	/**
+	 * Outputs view switcher
+	 */
+	public function mas_elementor_shop_view_switcher() {
+
+		$products = $this->get_query_results();
+
+		if ( empty( $products->ids ) ) {
+			return;
+		}
+
+		$shop_views = $this->mas_elementor_get_shop_views();
+		?>
+		<ul class="shop-view-switcher nav nav-tabs" role="tablist">
+		<?php foreach ( $shop_views as $view_id => $shop_view ) : ?>
+			<li class="nav-item"><a class="nav-link 
+			<?php
+			$active_class = $shop_view['active'] ? 'active' : '';
+			echo esc_attr( $active_class );
+			?>
+			" data-bs-toggle="tab" data-archive-class="<?php echo esc_attr( $view_id ); ?>" title="<?php echo esc_attr( $shop_view['label'] ); ?>" href="#<?php echo esc_attr( $view_id ); ?>"><i class="<?php echo esc_attr( $shop_view['icon'] ); ?>"></i></a></li>
+		<?php endforeach; ?>
+		</ul>
+		<?php
+	}
+
+	/**
+	 * Get shop views available by mas_elementor
+	 */
+	public function mas_elementor_get_shop_views() {
+
+		$shop_views = apply_filters(
+			'mas_elementor_shop_views_args',
+			array(
+				'mas-grid'            => array(
+					'label'   => esc_html__( 'Grid View', 'mas-elementor' ),
+					'icon'    => 'fa fa-th',
+					'enabled' => true,
+					'active'  => true,
+					// 'template'      => array( 'slug' => 'content', 'name' => 'product' ),
+				),
+				'mas-grid-extended'   => array(
+					'label'   => esc_html__( 'Grid Extended View', 'mas-elementor' ),
+					'icon'    => 'fa fa-align-justify',
+					'enabled' => true,
+					'active'  => false,
+					   // 'template'      => array( 'slug' => 'templates/contents/content', 'name' => 'product-grid-extended' ),
+				),
+				'mas-list-view'       => array(
+					'label'   => esc_html__( 'List View', 'mas-elementor' ),
+					'icon'    => 'fa fa-list',
+					'enabled' => true,
+					'active'  => false,
+					   // 'template'      => array( 'slug' => 'templates/contents/content', 'name' => 'product-list-view' ),
+				),
+				'mas-list-view-small' => array(
+					'label'   => esc_html__( 'List View Small', 'mas-elementor' ),
+					'icon'    => 'fa fa-th-list',
+					'enabled' => true,
+					'active'  => false,
+					   // 'template'      => array( 'slug' => 'templates/contents/content', 'name' => 'product-list-small' ),
+				),
+			)
+		);
+
+		return $shop_views;
+	}
+
+	/**
+	 * Displays an advanced pagination
+	 */
+	public function mas_elementor_advanced_pagination() {
+
+		global $wp_query, $wp_rewrite;
+
+		$products = $this->get_query_results();
+
+		$total_pages = $products->total_pages;
+
+		if ( $total_pages <= 1 ) {
+			return;
+		}
+
+		// Setting up default values based on the current URL.
+		$pagenum_link = html_entity_decode( get_pagenum_link() );
+		$url_parts    = explode( '?', $pagenum_link );
+
+		// Get max pages and current page out of the current query, if available.
+		$total   = isset( $total_pages ) ? $total_pages : 1;
+		$current = get_query_var( 'paged' ) ? intval( get_query_var( 'paged' ) ) : 1;
+
+		// Append the format placeholder to the base URL.
+		$pagenum_link = trailingslashit( $url_parts[0] ) . '%_%';
+
+		// URL base depends on permalink settings.
+		$format  = $wp_rewrite->using_index_permalinks() && ! strpos( $pagenum_link, 'index.php' ) ? 'index.php/' : '';
+		$format .= $wp_rewrite->using_permalinks() ? user_trailingslashit( $wp_rewrite->pagination_base . '/%#%', 'paged' ) : '?paged=%#%';
+
+		$base     = esc_url_raw( str_replace( 999999999, '%#%', remove_query_arg( 'add-to-cart', get_pagenum_link( 999999999, false ) ) ) );
+		$add_args = false;
+
+		$output     = '';
+		$prev_arrow = is_rtl() ? '&rarr;' : '&larr;';
+		$next_arrow = is_rtl() ? '&larr;' : '&rarr;';
+
+		if ( $current && 1 < $current ) :
+			$link    = str_replace( '%_%', 2 == $current ? '' : $format, $base );
+			$link    = str_replace( '%#%', $current - 1, $link );
+			$output .= '<a class="prev page-numbers" href="' . esc_url( apply_filters( 'paginate_links', $link ) ) . '">' . $prev_arrow . '</a>';
+		endif;
+
+		$number_input = '<form method="post" class="form-adv-pagination"><input id="goto-page" size="2" min="1" max="' . esc_attr( $total ) . '" step="1" type="number" class="form-control" value="' . esc_attr( $current ) . '" /></form>';
+		// Translators: %1$s represents the number input, %2$s represents the total.
+		$output      .= sprintf( esc_html__( '%1$s of %2$s', 'mas-elementor' ), $number_input, $total );
+
+		if ( $current && ( $current < $total || -1 == $total ) ) :
+			$link    = str_replace( '%_%', $format, $base );
+			$link    = str_replace( '%#%', $current + 1, $link );
+			$output .= '<a class="next page-numbers" href="' . esc_url( apply_filters( 'paginate_links', $link ) ) . '">' . $next_arrow . '</a>';
+		endif;
+
+		$link = str_replace( '%_%', $format, $base );
+		?>
+		<nav class="mas-elementor-advanced-pagination">
+			<?php print $output; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+			<script>
+				jQuery(document).ready(function($){
+					$( '.form-adv-pagination' ).on( 'submit', function() {
+						var link        = '<?php echo esc_url( apply_filters( 'paginate_links', $link ) ); ?>',
+							goto_page   = $( '#goto-page' ).val(),
+							new_link    = link.replace( '%#%', goto_page ).replace(/&#038;/g, '&');
+
+						window.location.href = new_link;
+						return false;
+					});
+				});
+			</script>
+		</nav>
+		<?php
 	}
 
 

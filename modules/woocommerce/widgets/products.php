@@ -81,6 +81,24 @@ class Products extends Products_Base {
 	}
 
 	/**
+	 * Get the script dependencies for this widget.
+	 *
+	 * @return array
+	 */
+	public function get_script_depends() {
+		return array( 'mas-shop-view-switcher' );
+	}
+
+	/**
+	 * Return the style dependencies of the module.
+	 *
+	 * @return array
+	 */
+	public function get_style_depends() {
+		return array( 'mas-shop-view-switcher' );
+	}
+
+	/**
 	 * Called on import to override.
 	 *
 	 * @param array $element The element being imported.
@@ -318,6 +336,20 @@ class Products extends Products_Base {
 		);
 
 		$this->add_control(
+			'enable_shop_control_bar',
+			array(
+				'label'     => __( 'Enable shop control bar', 'mas-elementor' ),
+				'type'      => Controls_Manager::SWITCHER,
+				'default'   => '',
+				'condition' => array(
+					'enable_carousel!' => 'yes',
+					'allow_order!'     => 'yes',
+					'paginate'         => 'yes',
+				),
+			)
+		);
+
+		$this->add_control(
 			'pag_mid_size',
 			array(
 				'label'     => __( 'Pagination Mid Size', 'mas-elementor' ),
@@ -363,8 +395,9 @@ class Products extends Products_Base {
 				'type'      => Controls_Manager::SWITCHER,
 				'default'   => '',
 				'condition' => array(
-					'paginate'         => 'yes',
-					'enable_carousel!' => 'yes',
+					'paginate'                 => 'yes',
+					'enable_carousel!'         => 'yes',
+					'enable_shop_control_bar!' => 'yes',
 				),
 			)
 		);
@@ -399,15 +432,15 @@ class Products extends Products_Base {
 		$this->add_control(
 			'result_count_position',
 			array(
-				'label'     => __( 'Result Count Position', 'mas-elementor' ),
-				'type'      => Controls_Manager::SELECT,
+				'label'       => __( 'Result Count Position', 'mas-elementor' ),
+				'type'        => Controls_Manager::SELECT,
 				'description' => esc_html__( 'Display result count before or after product', 'mas-elementor' ),
-				'default'   => 'before',
-				'options'            => array(
+				'default'     => 'before',
+				'options'     => array(
 					'before' => esc_html__( 'Before', 'mas-elementor' ),
 					'after'  => esc_html__( 'After', 'mas-elementor' ),
 				),
-				'condition' => array(
+				'condition'   => array(
 					'paginate'          => 'yes',
 					'enable_carousel!'  => 'yes',
 					'show_result_count' => 'yes',
@@ -436,12 +469,12 @@ class Products extends Products_Base {
 		$this->start_controls_section(
 			'result_count_style_section',
 			array(
-				'label' => esc_html__( 'Result Count', 'mas-elementor' ),
-				'tab'   => Controls_Manager::TAB_STYLE,
+				'label'     => esc_html__( 'Result Count', 'mas-elementor' ),
+				'tab'       => Controls_Manager::TAB_STYLE,
 				'condition' => array(
-					'paginate'              => 'yes',
-					'enable_carousel!'      => 'yes',
-					'show_result_count'     => 'yes',
+					'paginate'          => 'yes',
+					'enable_carousel!'  => 'yes',
+					'show_result_count' => 'yes',
 				),
 			)
 		);
@@ -497,8 +530,8 @@ class Products extends Products_Base {
 		$this->start_controls_section(
 			'shop_control_bar_bottom_flex_controls',
 			array(
-				'label' => esc_html__( 'Pagination and Result Count', 'mas-elementor' ),
-				'tab'   => Controls_Manager::TAB_CONTENT,
+				'label'     => esc_html__( 'Pagination and Result Count', 'mas-elementor' ),
+				'tab'       => Controls_Manager::TAB_CONTENT,
 				'condition' => array(
 					'paginate'              => 'yes',
 					'enable_carousel!'      => 'yes',
@@ -1050,8 +1083,8 @@ class Products extends Products_Base {
 				'label_off'    => esc_html__( 'Hide', 'mas-elementor' ),
 				'label_on'     => esc_html__( 'Show', 'mas-elementor' ),
 				'condition'    => array(
-					'enable_carousel'     => 'yes',
-					'show_pagination'     => 'yes',
+					'enable_carousel' => 'yes',
+					'show_pagination' => 'yes',
 				),
 				'return_value' => 'hide',
 				'prefix_class' => 'mas-swiper-carousel--pagination%s-',
