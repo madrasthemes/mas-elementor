@@ -22,6 +22,7 @@ use Elementor\Core\Kits\Documents\Tabs\Global_Colors;
 use Elementor\Core\Kits\Documents\Tabs\Global_Typography;
 use Elementor\Group_Control_Typography;
 use Elementor\Group_Control_Border;
+use Elementor\Group_Control_Background;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
@@ -1137,6 +1138,541 @@ class Products extends Products_Base {
 
 		$this->register_button_style_controls( $this, $args );
 
+		$this->start_controls_section(
+			'section_shop_control_bar__style',
+			array(
+				'label'     => __( 'Shop Control Bar', 'mas-elementor' ),
+				'tab'       => Controls_Manager::TAB_STYLE,
+				'condition' => array(
+					'paginate'                => 'yes',
+					'enable_carousel!'        => 'yes',
+					'enable_shop_control_bar' => 'yes',
+				),
+			)
+		);
+
+		$this->register_shop_control_bar_style_controls();
+
+		$this->end_controls_section();
+
+		$this->start_controls_section(
+			'section_shop_view_switcher_style',
+			array(
+				'label'     => __( 'Shop view switcher', 'mas-elementor' ),
+				'tab'       => Controls_Manager::TAB_STYLE,
+				'condition' => array(
+					'paginate'                => 'yes',
+					'enable_carousel!'        => 'yes',
+					'enable_shop_control_bar' => 'yes',
+				),
+			)
+		);
+
+		$this->register_shop_view_switcher_style_controls();
+
+		$this->end_controls_section();
+
+		$this->start_controls_section(
+			'section_shop_control_bar_advanced_pagination_style',
+			array(
+				'label'     => __( 'Shop Control Advanced Pagination', 'mas-elementor' ),
+				'tab'       => Controls_Manager::TAB_STYLE,
+				'condition' => array(
+					'paginate'                => 'yes',
+					'enable_carousel!'        => 'yes',
+					'enable_shop_control_bar' => 'yes',
+				),
+			)
+		);
+
+		$this->register_shop_control_bar_advanced_pagination_style_controls();
+
+		$this->end_controls_section();
+
+		$this->start_controls_section(
+			'section_shop_control_bar_ordering_style',
+			array(
+				'label'     => __( 'Shop Control Ordering', 'mas-elementor' ),
+				'tab'       => Controls_Manager::TAB_STYLE,
+				'condition' => array(
+					'paginate'                => 'yes',
+					'enable_carousel!'        => 'yes',
+					'enable_shop_control_bar' => 'yes',
+				),
+			)
+		);
+
+		$this->register_shop_control_bar_ordering_style_controls();
+
+		$this->end_controls_section();
+
+	}
+
+	/**
+	 * Add shop control bar controls.
+	 */
+	public function register_shop_control_bar_style_controls() {
+		$wrapper = '{{WRAPPER}} .mas-shop-control-bar';
+		$this->flex_controls( 'shop_control_bar_', $wrapper );
+
+		$this->add_control(
+			'shop_control_bar_bg_color',
+			array(
+				'label'     => __( 'Background Color', 'mas-elementor' ),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => array(
+					$wrapper => 'background-color: {{VALUE}}',
+				),
+			)
+		);
+
+		$this->add_group_control(
+			Group_Control_Border::get_type(),
+			array(
+				'name'     => 'shop_control_bar_border',
+				'selector' => $wrapper,
+			),
+		);
+
+		$this->add_control(
+			'shop_control_bar_border_radius',
+			array(
+				'type'       => Controls_Manager::DIMENSIONS,
+				'label'      => esc_html__( 'Border Radius', 'mas-elementor' ),
+				'size_units' => array( 'px', '%', 'em', 'custom' ),
+				'selectors'  => array(
+					$wrapper => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				),
+			)
+		);
+
+		$this->add_control(
+			'shop_control_bar__padding',
+			array(
+				'type'       => Controls_Manager::DIMENSIONS,
+				'label'      => esc_html__( 'Padding', 'mas-elementor' ),
+				'size_units' => array( 'px', '%', 'em', 'custom' ),
+				'default'    => array(
+					'top'      => 2.800,
+					'right'    => 20.006,
+					'bottom'   => 2.800,
+					'left'     => 20.006,
+					'unit'     => 'px',
+					'isLinked' => false,
+				),
+				'selectors'  => array(
+					$wrapper => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				),
+			)
+		);
+
+		$this->add_control(
+			'shop_control_bar__margin',
+			array(
+				'type'       => Controls_Manager::DIMENSIONS,
+				'label'      => esc_html__( 'Margin', 'mas-elementor' ),
+				'size_units' => array( 'px', '%', 'em', 'custom' ),
+				'selectors'  => array(
+					$wrapper => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				),
+			)
+		);
+
+	}
+
+	/**
+	 * Add shop view switcher controls.
+	 */
+	public function register_shop_view_switcher_style_controls() {
+		$wrapper = '{{WRAPPER}} .shop-view-switcher';
+		$this->flex_controls( 'shop_view_switcher_', $wrapper );
+
+		$this->add_control(
+			'shop_view_switcher_icons_color',
+			array(
+				'label'     => __( 'Icon Color', 'mas-elementor' ),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => array(
+					$wrapper . ' a i' => 'color: {{VALUE}}',
+				),
+			)
+		);
+
+		$this->add_control(
+			'shop_view_switcher_icons_active_color',
+			array(
+				'label'     => __( 'Icon Active Color', 'mas-elementor' ),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => array(
+					$wrapper . ' a.active i' => 'color: {{VALUE}}',
+				),
+			)
+		);
+
+		$this->add_control(
+			'shop_view_switcher_icons_hover_color',
+			array(
+				'label'     => __( 'Icon Hover Color', 'mas-elementor' ),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => array(
+					$wrapper . ' a:hover i' => 'color: {{VALUE}}',
+				),
+			)
+		);
+
+		$this->add_responsive_control(
+			'shop_view_switcher_icons_size',
+			array(
+				'label'      => __( 'Icons Size', 'mas-elementor' ),
+				'type'       => Controls_Manager::SLIDER,
+				'size_units' => array( 'px', '%', 'em' ),
+				'default'    => array(
+					'size' => 18,
+				),
+				'selectors'  => array(
+					$wrapper . ' a i' => 'font-size: {{SIZE}}{{UNIT}}',
+				),
+			)
+		);
+
+		$this->add_responsive_control(
+			'shop_view_switcher_icons_line_height',
+			array(
+				'label'      => __( 'Icons Line Height', 'mas-elementor' ),
+				'type'       => Controls_Manager::SLIDER,
+				'size_units' => array( 'px', '%', 'em' ),
+				'default'    => array(
+					'size' => 40.329,
+				),
+				'selectors'  => array(
+					$wrapper . ' a' => 'line-height: {{SIZE}}{{UNIT}}',
+				),
+			)
+		);
+
+		$this->add_control(
+			'shop_view_switcher__padding',
+			array(
+				'type'       => Controls_Manager::DIMENSIONS,
+				'label'      => esc_html__( 'Padding', 'mas-elementor' ),
+				'size_units' => array( 'px', '%', 'em', 'custom' ),
+				'selectors'  => array(
+					$wrapper => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				),
+			)
+		);
+
+		$this->add_control(
+			'shop_view_switcher__margin',
+			array(
+				'type'       => Controls_Manager::DIMENSIONS,
+				'label'      => esc_html__( 'Margin', 'mas-elementor' ),
+				'size_units' => array( 'px', '%', 'em', 'custom' ),
+				'selectors'  => array(
+					$wrapper => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				),
+			)
+		);
+	}
+
+	/**
+	 * Add shop control bar controls.
+	 */
+	public function register_shop_control_bar_advanced_pagination_style_controls() {
+		$wrapper = '{{WRAPPER}} .mas-elementor-advanced-pagination';
+		$this->flex_controls( 'shop_control_bar_advanced_pagination_', $wrapper );
+
+		$this->add_control(
+			'shop_control_bar_advanced_pagination__padding',
+			array(
+				'type'       => Controls_Manager::DIMENSIONS,
+				'label'      => esc_html__( 'Padding', 'mas-elementor' ),
+				'size_units' => array( 'px', '%', 'em', 'custom' ),
+				'selectors'  => array(
+					$wrapper => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				),
+			)
+		);
+
+		$this->add_control(
+			'shop_control_bar_advanced_pagination__margin',
+			array(
+				'type'       => Controls_Manager::DIMENSIONS,
+				'label'      => esc_html__( 'Margin', 'mas-elementor' ),
+				'size_units' => array( 'px', '%', 'em', 'custom' ),
+				'selectors'  => array(
+					$wrapper => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				),
+			)
+		);
+
+		$this->add_control(
+			'shop_control_bar_advanced_pagination_icons_heading',
+			array(
+				'label'     => __( 'Page Icons', 'mas-elementor' ),
+				'type'      => Controls_Manager::HEADING,
+				'separator' => 'before',
+			)
+		);
+
+		$this->add_group_control(
+			Group_Control_Typography::get_type(),
+			array(
+				'name'     => 'shop_control_bar_advanced_pagination_icons_typo',
+				'selector' => $wrapper . ' .prev.page-numbers, ' . $wrapper . ' .next.page-numbers',
+			)
+		);
+
+		$this->add_control(
+			'shop_control_bar_advanced_pagination_icons_color',
+			array(
+				'label'     => __( 'Icon Color', 'mas-elementor' ),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => array(
+					$wrapper . ' .prev.page-numbers' => 'color: {{VALUE}}',
+					$wrapper . ' .next.page-numbers' => 'color: {{VALUE}}',
+				),
+			)
+		);
+
+		$this->add_control(
+			'shop_control_bar_advanced_pagination_icons_hover_color',
+			array(
+				'label'     => __( 'Icon Hover Color', 'mas-elementor' ),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => array(
+					$wrapper . ' .prev.page-numbers:hover' => 'color: {{VALUE}}',
+					$wrapper . ' .next.page-numbers:hover' => 'color: {{VALUE}}',
+				),
+			)
+		);
+
+		$this->add_control(
+			'shop_control_bar_advanced_pagination_input_heading',
+			array(
+				'label'     => __( 'Input', 'mas-elementor' ),
+				'type'      => Controls_Manager::HEADING,
+				'separator' => 'before',
+			)
+		);
+
+		$this->add_group_control(
+			Group_Control_Typography::get_type(),
+			array(
+				'name'     => 'shop_control_bar_advanced_pagination_input_typo',
+				'selector' => $wrapper . ' .form-adv-pagination input',
+			)
+		);
+
+		$this->add_responsive_control(
+			'shop_control_bar_advanced_pagination_input_width',
+			array(
+				'label'      => __( 'Width', 'mas-elementor' ),
+				'type'       => Controls_Manager::SLIDER,
+				'size_units' => array( 'px', '%', 'em' ),
+				'default'    => array(
+					'size' => 18,
+				),
+				'selectors'  => array(
+					$wrapper . ' .form-adv-pagination input' => 'width: {{SIZE}}{{UNIT}}',
+				),
+			)
+		);
+
+		$this->add_control(
+			'shop_control_bar_advanced_pagination_input_color',
+			array(
+				'label'     => __( 'Input Text Color', 'mas-elementor' ),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => array(
+					$wrapper . ' .form-adv-pagination input' => 'color: {{VALUE}}',
+				),
+			)
+		);
+
+		$this->add_group_control(
+			Group_Control_Background::get_type(),
+			array(
+				'name'     => 'shop_control_bar_advanced_pagination_input_background',
+				'label'    => esc_html__( 'Background', 'mas-elementor' ),
+				'selector' => $wrapper . ' .form-adv-pagination input',
+			)
+		);
+
+		$this->add_group_control(
+			Group_Control_Border::get_type(),
+			array(
+				'name'     => 'shop_control_bar_advanced_pagination_input_border',
+				'selector' => $wrapper . ' .form-adv-pagination input',
+			),
+		);
+
+		$this->add_responsive_control(
+			'shop_control_bar_advanced_pagination_input_text_align',
+			array(
+				'label'     => esc_html__( 'Text Alignment', 'mas-elementor' ),
+				'type'      => Controls_Manager::CHOOSE,
+				'options'   => array(
+					'left'   => array(
+						'title' => esc_html__( 'Left', 'mas-elementor' ),
+						'icon'  => 'eicon-text-align-left',
+					),
+					'center' => array(
+						'title' => esc_html__( 'Center', 'mas-elementor' ),
+						'icon'  => 'eicon-text-align-center',
+					),
+					'right'  => array(
+						'title' => esc_html__( 'Right', 'mas-elementor' ),
+						'icon'  => 'eicon-text-align-right',
+					),
+				),
+				'selectors' => array(
+					$wrapper . ' .form-adv-pagination input' => 'text-align: {{VALUE}};',
+				),
+			)
+		);
+
+		$this->add_control(
+			'shop_control_bar_advanced_pagination_input_border_radius',
+			array(
+				'type'       => Controls_Manager::DIMENSIONS,
+				'label'      => esc_html__( 'Border Radius', 'mas-elementor' ),
+				'size_units' => array( 'px', '%', 'em', 'custom' ),
+				'selectors'  => array(
+					$wrapper . ' .form-adv-pagination input' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				),
+			)
+		);
+
+		$this->add_control(
+			'shop_control_bar_advanced_pagination_input_padding',
+			array(
+				'type'       => Controls_Manager::DIMENSIONS,
+				'label'      => esc_html__( 'Padding', 'mas-elementor' ),
+				'size_units' => array( 'px', '%', 'em', 'custom' ),
+				'selectors'  => array(
+					$wrapper . ' .form-adv-pagination input' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				),
+			)
+		);
+
+		$this->add_control(
+			'shop_control_bar_advanced_pagination_input_total_heading',
+			array(
+				'label'     => __( 'Total Text', 'mas-elementor' ),
+				'type'      => Controls_Manager::HEADING,
+				'separator' => 'before',
+			)
+		);
+
+		$this->add_control(
+			'shop_control_bar_advanced_pagination_input_total_color',
+			array(
+				'label'     => __( 'Total Text Color', 'mas-elementor' ),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => array(
+					$wrapper => 'color: {{VALUE}}',
+				),
+			)
+		);
+
+		$this->add_group_control(
+			Group_Control_Typography::get_type(),
+			array(
+				'name'     => 'shop_control_bar_advanced_pagination_input_total_typo',
+				'selector' => $wrapper,
+			)
+		);
+	}
+
+	/**
+	 * Add shop view switcher controls.
+	 */
+	public function register_shop_control_bar_ordering_style_controls() {
+
+		$this->add_group_control(
+			Group_Control_Typography::get_type(),
+			array(
+				'name'     => 'shop_control_bar_ordering_typo',
+				'selector' => '{{WRAPPER}} .mas-shop-control-bar .woocommerce-ordering select',
+			)
+		);
+
+		$this->add_control(
+			'shop_control_bar_ordering_color',
+			array(
+				'label'     => __( 'Text Color', 'mas-elementor' ),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => array(
+					'{{WRAPPER}} .mas-shop-control-bar .woocommerce-ordering select' => 'color: {{VALUE}}',
+				),
+			)
+		);
+
+		$this->add_group_control(
+			Group_Control_Background::get_type(),
+			array(
+				'name'     => 'shop_control_bar_ordering_background',
+				'label'    => esc_html__( 'Background', 'mas-elementor' ),
+				'selector' => '{{WRAPPER}} .mas-shop-control-bar .woocommerce-ordering select',
+			)
+		);
+
+		$this->add_group_control(
+			Group_Control_Border::get_type(),
+			array(
+				'name'     => 'shop_control_bar_ordering_border',
+				'selector' => '{{WRAPPER}} .mas-shop-control-bar .woocommerce-ordering select',
+			),
+		);
+
+		$this->add_control(
+			'shop_control_bar_ordering_border_radius',
+			array(
+				'type'       => Controls_Manager::DIMENSIONS,
+				'label'      => esc_html__( 'Border Radius', 'mas-elementor' ),
+				'size_units' => array( 'px', '%', 'em', 'custom' ),
+				'selectors'  => array(
+					'{{WRAPPER}} .mas-shop-control-bar .woocommerce-ordering select' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				),
+			)
+		);
+
+		$this->add_control(
+			'shop_control_bar_ordering_wrapper_padding',
+			array(
+				'type'       => Controls_Manager::DIMENSIONS,
+				'label'      => esc_html__( 'Wrapper Padding', 'mas-elementor' ),
+				'size_units' => array( 'px', '%', 'em', 'custom' ),
+				'selectors'  => array(
+					'{{WRAPPER}} .mas-shop-control-bar .woocommerce-ordering' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				),
+			)
+		);
+
+		$this->add_control(
+			'shop_control_bar_ordering_wrapper_margin',
+			array(
+				'type'       => Controls_Manager::DIMENSIONS,
+				'label'      => esc_html__( 'Wrapper Margin', 'mas-elementor' ),
+				'size_units' => array( 'px', '%', 'em', 'custom' ),
+				'selectors'  => array(
+					'{{WRAPPER}} .mas-shop-control-bar .woocommerce-ordering' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				),
+			)
+		);
+
+		$this->add_control(
+			'shop_control_bar_ordering_padding',
+			array(
+				'type'       => Controls_Manager::DIMENSIONS,
+				'label'      => esc_html__( 'Padding', 'mas-elementor' ),
+				'size_units' => array( 'px', '%', 'em', 'custom' ),
+				'selectors'  => array(
+					'{{WRAPPER}} .mas-shop-control-bar .woocommerce-ordering select' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				),
+			)
+		);
 	}
 
 	/**

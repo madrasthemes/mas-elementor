@@ -77,10 +77,10 @@ abstract class Base_Products_Renderer extends \WC_Shortcode_Products {
 			if ( 'yes' === $settings['enable_shop_control_bar'] ) {
 
 				remove_action( 'woocommerce_before_shop_loop', 'woocommerce_catalog_ordering', 30 );
-				add_action( 'mas_elementor_shop_control_bar', array( $this, 'mas_elementor_shop_view_switcher' ) );
+				add_action( 'mas_elementor_shop_control_bar', array( $this, 'mas_elementor_shop_view_switcher' ), 10 );
 				add_action( 'mas_elementor_shop_control_bar', 'woocommerce_catalog_ordering', 50 );
 				add_action( 'woocommerce_before_shop_loop', array( $this, 'mas_elementor_shop_control_bar' ) );
-				add_action( 'mas_elementor_shop_control_bar', array( $this, 'mas_elementor_advanced_pagination' ) );
+				add_action( 'mas_elementor_shop_control_bar', array( $this, 'mas_elementor_advanced_pagination' ), 70 );
 
 			}
 

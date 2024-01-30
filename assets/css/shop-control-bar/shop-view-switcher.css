@@ -28,3 +28,7 @@
 .mas-products[data-view=mas-list-view] .mas-shop-list-view {
 	display:flex;
 }
+
+.shop-view-switcher{
+	list-style: none;
+}
