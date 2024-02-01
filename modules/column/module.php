@@ -46,7 +46,7 @@ class Module extends Module_Base {
 		add_action( 'elementor/element/column/layout/before_section_start', array( $this, 'add_column_controls' ), 10 );
 		add_action( 'elementor/element/column/section_advanced/before_section_end', array( $this, 'add_widget_wrap_controls' ) );
 		add_action( 'elementor/element/after_add_attributes', array( $this, 'modify_attributes' ), 20 );
-		add_filter( 'elementor/column/print_template', array( $this, 'print_template' ) );
+		add_filter( 'elementor/column/print_template', array( $this, 'print_template' ), 10, 2 );
 		add_action( 'elementor/frontend/before_register_scripts', array( $this, 'register_frontend_scripts' ) );
 	}
 
@@ -69,11 +69,11 @@ class Module extends Module_Base {
 		$element->add_responsive_control(
 			'mas_column_height',
 			array(
-				'label'     => esc_html__( 'Height', 'mas-elementor' ),
-				'type'      => Controls_Manager::SLIDER,
-				'size_units' => [ 'px', '%', 'custom' ],
-				'range'     => array(
-					'%' => array(
+				'label'      => esc_html__( 'Height', 'mas-elementor' ),
+				'type'       => Controls_Manager::SLIDER,
+				'size_units' => array( 'px', '%', 'custom' ),
+				'range'      => array(
+					'%'  => array(
 						'min' => 0,
 						'max' => 100,
 					),
@@ -82,7 +82,7 @@ class Module extends Module_Base {
 						'max' => 10000,
 					),
 				),
-				'selectors' => array(
+				'selectors'  => array(
 					'{{WRAPPER}}.elementor-column' => 'height: {{SIZE}}{{UNIT}}',
 				),
 			)
@@ -249,20 +249,24 @@ class Module extends Module_Base {
 
 	/**
 	 * Print the column.
+	 *
+	 * @param string         $template template.
+	 * @param Element_Column $widget The Column element object.
 	 */
-	public function print_template() {
-		ob_start();
-		$this->content_template();
-		return ob_get_clean();
+	public function print_template( $template, $widget ) {
+		if ( 'column' === $widget->get_name() ) {
+			ob_start();
+			   $this->content_template();
+			   $template = ob_get_clean();
+		}
+		   return $template;
+
 	}
 
 	/**
 	 * The column template.
 	 */
 	public function content_template() {
-		$is_dom_optimization_active = Plugin::$instance->experiments->is_feature_active( 'e_dom_optimization' );
-		$wrapper_element            = $is_dom_optimization_active ? 'widget' : 'column';
-
 		?>
 		<# 
 			let wrapper_class = '';
@@ -272,11 +276,8 @@ class Module extends Module_Base {
 			}
 
 		#>
-		<div class="elementor-<?php echo esc_attr( $wrapper_element ); ?>-wrap{{ wrapper_class }}">
+		<div class="elementor-widget-wrap{{ wrapper_class }}">
 			<div class="elementor-background-overlay"></div>
-			<?php if ( ! $is_dom_optimization_active ) { ?>
-				<div class="elementor-widget-wrap"></div>
-			<?php } ?>
 		</div>
 		<?php
 	}

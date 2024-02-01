@@ -70,7 +70,7 @@ class Module extends Module_Base {
 	 * @return array
 	 */
 	public function get_widgets() {
-		return array(
+		$widgets = array(
 			'Products',
 			'Add_To_Cart',
 			'Product_Related',
@@ -94,6 +94,12 @@ class Module extends Module_Base {
 			'Product_Categories_Dropdown',
 			'Product_Attributes',
 		);
+
+		if ( function_exists( 'electro_header_mini_cart_icon' ) ) {
+			$widgets[] = 'Header_Cart';
+		}
+
+		return $widgets;
 	}
 
 	/**

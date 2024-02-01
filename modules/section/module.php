@@ -48,7 +48,7 @@ class Module extends Module_Base {
 	public function add_actions() {
 		add_action( 'elementor/frontend/section/before_render', array( $this, 'before_render' ), 5 );
 		add_action( 'elementor/element/section/section_advanced/before_section_end', array( $this, 'add_section_controls' ), 10, 2 );
-		add_filter( 'elementor/section/print_template', array( $this, 'print_template' ) );
+		add_filter( 'elementor/section/print_template', array( $this, 'print_template' ), 10, 2 );
 
 	}
 
@@ -72,11 +72,11 @@ class Module extends Module_Base {
 		$element->add_responsive_control(
 			'mas_section_height',
 			array(
-				'label'     => esc_html__( 'Height', 'mas-elementor' ),
-				'type'      => Controls_Manager::SLIDER,
-				'size_units' => [ 'px', '%', 'custom' ],
-				'range'     => array(
-					'%' => array(
+				'label'      => esc_html__( 'Height', 'mas-elementor' ),
+				'type'       => Controls_Manager::SLIDER,
+				'size_units' => array( 'px', '%', 'custom' ),
+				'range'      => array(
+					'%'  => array(
 						'min' => 0,
 						'max' => 100,
 					),
@@ -85,8 +85,8 @@ class Module extends Module_Base {
 						'max' => 10000,
 					),
 				),
-				'selectors' => array(
-					'{{WRAPPER}}.elementor-section'  => 'height: {{SIZE}}{{UNIT}}',
+				'selectors'  => array(
+					'{{WRAPPER}}.elementor-section'   => 'height: {{SIZE}}{{UNIT}}',
 					'{{WRAPPER}}.elementor-container' => 'height: {{SIZE}}{{UNIT}}',
 				),
 			)
@@ -122,12 +122,18 @@ class Module extends Module_Base {
 	/**
 	 * Print Template.
 	 *
+	 * @param string $template template.
+	 * @param array  $widget The section element object.
+	 *
 	 * @return string
 	 */
-	public function print_template() {
-		ob_start();
+	public function print_template( $template, $widget ) {
+		if ( 'section' === $widget->get_name() ) {
+			ob_start();
 			$this->content_template();
-		return ob_get_clean();
+			$template = ob_get_clean();
+		}
+		return $template;
 	}
 
 	/**
@@ -172,9 +178,6 @@ class Module extends Module_Base {
 		<div class="elementor-shape elementor-shape-top"></div>
 		<div class="elementor-shape elementor-shape-bottom"></div>
 		<div class="elementor-container {{swiper_wrapper}} elementor-column-gap-{{ settings.gap }}">
-			<?php if ( ! Plugin::$instance->experiments->is_feature_active( 'e_dom_optimization' ) ) { ?>
-				<div class="elementor-row"></div>
-			<?php } ?>
 		</div>
 		<?php
 	}
