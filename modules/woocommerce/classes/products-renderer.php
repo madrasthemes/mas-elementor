@@ -108,7 +108,7 @@ class Products_Renderer extends Base_Products_Renderer {
 		$query_args['meta_query'] = WC()->query->get_meta_query(); // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_query
 		$query_args['tax_query']  = array(); // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_tax_query
 
-		if ( 'yes' === $settings['paginate'] && 'yes' === $settings['allow_order'] && ! is_front_page() ) {
+		if ( ( 'yes' === $settings['paginate'] && 'yes' === $settings['allow_order'] && ! is_front_page() ) || 'yes' === $settings['enable_shop_control_bar'] ) {
 			$ordering_args = WC()->query->get_catalog_ordering_args();
 		} else {
 			$ordering_args = WC()->query->get_catalog_ordering_args( $query_args['orderby'], $query_args['order'] );

@@ -1,0 +1,34 @@
+.mas-shop-list-view-small {
+	display: none;
+}
+
+.mas-shop-list-view {
+	display: none;
+}
+
+.mas-shop-grid-extended {
+	display: none;
+}
+
+.mas-shop-grid {
+	display: flex;
+}
+
+.mas-products[data-view=mas-grid-extended] .mas-shop-grid, .mas-products[data-view=mas-list-view-small] .mas-shop-grid, .mas-products[data-view=mas-list-view] .mas-shop-grid {
+	display:none !important;
+}
+
+.mas-products[data-view=mas-grid-extended] .mas-shop-grid-extended {
+	display:flex;
+}
+.mas-products[data-view=mas-list-view-small] .mas-shop-list-view-small {
+	display:flex;
+}
+
+.mas-products[data-view=mas-list-view] .mas-shop-list-view {
+	display:flex;
+}
+
+.shop-view-switcher{
+	list-style: none;
+}

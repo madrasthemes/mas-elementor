@@ -70,7 +70,7 @@ class Module extends Module_Base {
 	 * @return array
 	 */
 	public function get_widgets() {
-		return array(
+		$widgets = array(
 			'Products',
 			'Add_To_Cart',
 			'Product_Related',
@@ -94,6 +94,12 @@ class Module extends Module_Base {
 			'Product_Categories_Dropdown',
 			'Product_Attributes',
 		);
+
+		if ( function_exists( 'electro_header_mini_cart_icon' ) ) {
+			$widgets[] = 'Header_Cart';
+		}
+
+		return $widgets;
 	}
 
 	/**
@@ -465,6 +471,14 @@ class Module extends Module_Base {
 			MAS_ELEMENTOR_VERSION,
 			true
 		);
+
+		wp_register_script(
+			'mas-shop-view-switcher',
+			MAS_ELEMENTOR_ASSETS_URL . 'js/shop-control-bar/shop-view-switcher.js',
+			array(),
+			MAS_ELEMENTOR_VERSION,
+			true
+		);
 	}
 
 	/**
@@ -537,6 +551,13 @@ class Module extends Module_Base {
 		wp_register_style(
 			'mas-product-add-to-cart',
 			MAS_ELEMENTOR_ASSETS_URL . 'css/product-add-to-cart/add-to-cart.css',
+			array(),
+			MAS_ELEMENTOR_VERSION
+		);
+
+		wp_register_style(
+			'mas-shop-view-switcher',
+			MAS_ELEMENTOR_ASSETS_URL . 'css/shop-control-bar/shop-view-switcher.css',
 			array(),
 			MAS_ELEMENTOR_VERSION
 		);
