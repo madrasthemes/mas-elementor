@@ -2344,6 +2344,33 @@ abstract class Posts_Base extends Base_Widget {
 	}
 
 	/**
+	 * Register Post Format Controls Section.
+	 *
+	 * @param array $templates template in mas post for this widget.
+	 */
+	protected function register_post_format_template_controls( $templates ) {
+
+		$post_formats = get_theme_support( 'post-formats' );
+
+		if ( ! empty( $post_formats ) && ! empty( $post_formats[0] ) ) {
+			foreach ( $post_formats[0] as $post_format ) {
+				$label = ucfirst( $post_format ) . ' Mas Templates';
+				$this->add_control(
+					$post_format . '_select_template',
+					array(
+						'label'     => $label,
+						'type'      => Controls_Manager::SELECT,
+						'options'   => $templates,
+						'condition' => array(
+							'enable_post_format_selection' => 'yes',
+						),
+					)
+				);
+			}
+		}
+	}
+
+	/**
 	 * Register Controls in Layout Section.
 	 */
 	protected function register_layout_section_controls() {
@@ -2364,6 +2391,17 @@ abstract class Posts_Base extends Base_Widget {
 				'options' => $templates,
 			)
 		);
+
+		$this->add_control(
+			'enable_post_format_selection',
+			array(
+				'type'    => Controls_Manager::SWITCHER,
+				'label'   => esc_html__( 'Enable Post Format Selection', 'mas-elementor' ),
+				'default' => 'no',
+			)
+		);
+
+		$this->register_post_format_template_controls( $templates );
 
 		$this->add_control(
 			'mas_posts_class',
@@ -2429,8 +2467,9 @@ abstract class Posts_Base extends Base_Widget {
 				'default'   => 'no',
 				'separator' => 'before',
 				'condition' => array(
-					'select_template!'    => '',
-					'enable_sticky_loop!' => 'yes',
+					'select_template!'              => '',
+					'enable_sticky_loop!'           => 'yes',
+					'enable_post_format_selection!' => 'yes',
 				),
 			)
 		);
@@ -3071,7 +3110,7 @@ abstract class Posts_Base extends Base_Widget {
 		}
 
 		if ( 'yes' === $settings['center_slides'] ) {
-			$swiper_settings['centeredSlides'] = true;
+			$swiper_settings['centeredSlides']       = true;
 			$swiper_settings['centeredSlidesBounds'] = true;
 		}
 
