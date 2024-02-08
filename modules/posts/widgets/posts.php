@@ -377,6 +377,9 @@ class Posts extends Posts_Base {
 				$count ++;
 			}
 			if ( 'yes' !== $settings['enable_carousel'] ) {
+				if ( 'in' === $settings['pagination_position_in_out'] ) {
+					$this->render_loop_footer();
+				}
 				// mas-post-container close.
 				?>
 				</div>
@@ -388,7 +391,9 @@ class Posts extends Posts_Base {
 		$this->carousel_loop_footer( $settings );
 
 		if ( 'yes' !== $settings['enable_carousel'] ) {
-			$this->render_loop_footer();
+			if ( 'out' === $settings['pagination_position_in_out'] ) {
+				$this->render_loop_footer();
+			}
 		}
 	}
 }

@@ -665,6 +665,19 @@ abstract class Posts_Base extends Base_Widget {
 			)
 		);
 
+		$this->add_control(
+			'pagination_position_in_out',
+			array(
+				'label'     => esc_html__( 'Pagination Position', 'mas-elementor' ),
+				'type'      => Controls_Manager::SELECT,
+				'default'   => 'out',
+				'options'   => array(
+					'in'  => esc_html__( 'In', 'mas-elementor' ),
+					'out' => esc_html__( 'Out', 'mas-elementor' ),
+				),
+			)
+		);
+
 		$this->add_group_control(
 			Group_Control_Border::get_type(),
 			array(
