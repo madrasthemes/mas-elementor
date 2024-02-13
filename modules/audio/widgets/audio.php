@@ -206,15 +206,9 @@ class Audio extends Base_Widget {
 							<?php } ?>
 							swfPath: "<?php echo get_template_directory_uri(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>/assets/js",
 							cssSelectorAncestor: "#jp_interface_<?php echo esc_attr( $post_id ); ?>",
-							supplied: "
-							<?php
-							if ( ! empty( $ogg ) ) :
-								?>
-		oga,<?php endif; ?>
-			<?php
-			if ( ! empty( $mp3 ) ) :
-				?>
-						mp3, <?php endif; ?> all"
+							supplied: "<?php if ( ! empty( $ogg ) ) : ?>
+								oga,<?php endif; ?><?php if ( ! empty( $mp3 ) ) : ?>
+									mp3, <?php endif; ?> all"
 						});
 
 					}
