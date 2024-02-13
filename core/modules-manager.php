@@ -69,6 +69,7 @@ final class Modules_Manager {
 			'dynamic-heading',
 			'mas-star-rating',
 			'image',
+			'audio',
 		);
 
 		foreach ( $modules as $module_name ) {
