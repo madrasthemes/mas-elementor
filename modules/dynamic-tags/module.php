@@ -75,6 +75,7 @@ class Module extends TagsModule {
 			'Author_Name',
 			'Author_Profile_Picture',
 			'Author_URL',
+			'Post_Gallery',
 		);
 		$jobs = array();
 		if ( class_exists( 'WP_Job_Manager' ) ) {

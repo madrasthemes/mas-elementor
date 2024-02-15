@@ -167,7 +167,7 @@ class Audio extends Base_Widget {
 
 		if ( ! empty( $embed ) ) {
 			// Embed Audio.
-			if ( ! empty( $embed ) ) {
+			if ( ! empty( $embed ) && ! is_array( $embed ) ) {
 				// run oEmbed for known sources to generate embed code from audio links.
 				echo $GLOBALS['wp_embed']->autoembed( stripslashes( htmlspecialchars_decode( $embed ) ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 
