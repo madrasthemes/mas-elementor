@@ -70,6 +70,7 @@ final class Modules_Manager {
 			'mas-star-rating',
 			'image',
 			'audio',
+			'blockquote',
 		);
 
 		foreach ( $modules as $module_name ) {
