@@ -7,6 +7,10 @@
     'use strict';
 
       var wrapper = $('.mas-products-grid'); // Select the wrapper element
+    
+      if( ! wrapper ) {
+        return;
+      }
 
       var currentClass = wrapper.attr('class').split(' ').find(function (className) {
         return className.startsWith('mas-grid-');

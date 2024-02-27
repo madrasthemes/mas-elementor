@@ -98,6 +98,9 @@ class Module extends Module_Base {
 		if ( function_exists( 'electro_header_mini_cart_icon' ) ) {
 			$widgets[] = 'Header_Cart';
 		}
+		if ( is_yith_woocompare_activated() ) {
+			$widgets[] = 'Add_To_Compare';
+		}
 
 		return $widgets;
 	}
