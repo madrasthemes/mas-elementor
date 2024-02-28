@@ -350,14 +350,23 @@ class Posts extends Posts_Base {
 
 				$query->the_post();
 				$this->carousel_slide_loop_start( $settings );
+				$template    = $settings['select_template'];
+				$post_format = get_post_format();
+				if ( ! empty( $post_format ) ) {
+					$post_format_setting = $post_format . '_select_template';
+					if ( ! empty( $settings[ $post_format_setting ] ) ) {
+						$template = $settings[ $post_format_setting ];
+					}
+				}
+
 				// $this->current_permalink = get_permalink();
-				if ( ! empty( $settings['select_template'] ) ) {
+				if ( ! empty( $template ) ) {
 					if ( ! empty( $settings['select_loop'] ) && in_array( (string) $count, $settings['select_loop'], true ) ) {
 						print( mas_render_template( $settings['select_loop_template'], false ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 					} elseif ( 'yes' === $settings['enable_sticky_loop'] && is_sticky() ) {
 						print( mas_render_template( $settings['select_loop_template'], false ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 					} else {
-						print( mas_render_template( $settings['select_template'], false ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+						print( mas_render_template( $template, false ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 					}
 				} else {
 					mas_elementor_get_template( 'widgets/posts/post-classic.php', array( 'widget' => $this ) );
@@ -368,6 +377,9 @@ class Posts extends Posts_Base {
 				$count ++;
 			}
 			if ( 'yes' !== $settings['enable_carousel'] ) {
+				if ( 'in' === $settings['pagination_position_in_out'] ) {
+					$this->render_loop_footer();
+				}
 				// mas-post-container close.
 				?>
 				</div>
@@ -379,7 +391,9 @@ class Posts extends Posts_Base {
 		$this->carousel_loop_footer( $settings );
 
 		if ( 'yes' !== $settings['enable_carousel'] ) {
-			$this->render_loop_footer();
+			if ( 'out' === $settings['pagination_position_in_out'] ) {
+				$this->render_loop_footer();
+			}
 		}
 	}
 }
