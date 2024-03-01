@@ -156,6 +156,7 @@ class Add_To_Compare extends Widget_Button {
 
 		if ( ! empty( $settings['link']['url'] ) ) {
 			// $instance->add_link_attributes( 'button', $settings['link'] );
+			$instance->add_render_attribute( 'button', 'data-compare_url', $settings['link']['url'] );
 			$instance->add_render_attribute( 'button', 'class', 'elementor-button-link' );
 		} else {
 			$instance->add_render_attribute( 'button', 'role', 'button' );
@@ -175,6 +176,7 @@ class Add_To_Compare extends Widget_Button {
 		$instance->add_render_attribute( 'button', 'href', $yith_woocompare->obj->add_product_url( $product_id ) );
 		$instance->add_render_attribute( 'button', 'class', 'add-to-compare-link' );
 		$instance->add_render_attribute( 'button', 'data-product_id', $product_id );
+
 		?>
 		<div <?php $instance->print_render_attribute_string( 'wrapper' ); ?>>
 			<a <?php $instance->print_render_attribute_string( 'button' ); ?>>
