@@ -482,6 +482,14 @@ class Module extends Module_Base {
 			MAS_ELEMENTOR_VERSION,
 			true
 		);
+
+		wp_register_script(
+			'mas-add-to-compare',
+			MAS_ELEMENTOR_ASSETS_URL . 'js/add-to-compare/add-to-compare.js',
+			array(),
+			MAS_ELEMENTOR_VERSION,
+			true
+		);
 	}
 
 	/**
