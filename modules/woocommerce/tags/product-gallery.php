@@ -8,6 +8,7 @@
 namespace MASElementor\Modules\Woocommerce\Tags;
 
 use MASElementor\Modules\Woocommerce\Module;
+use Elementor\Controls_Manager;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
@@ -59,12 +60,34 @@ class Product_Gallery extends Base_Data_Tag {
 
 		$attachment_ids = $product->get_gallery_image_ids();
 
-		foreach ( $attachment_ids as $attachment_id ) {
-			$value[] = array(
-				'id' => $attachment_id,
-			);
+		if ( $attachment_ids ) {
+			foreach ( $attachment_ids as $attachment_id ) {
+				$value[] = array(
+					'id' => $attachment_id,
+				);
+			}
+		} else {
+			$fall_back = $this->get_settings( 'mas-fallback' );
+			if ( ! empty( $fall_back['id'] ) ) {
+				$value[] = array(
+					'id' => $fall_back['id'],
+				);
+			}
 		}
 
 		return $value;
+	}
+
+	/**
+	 * Register control.
+	 */
+	protected function register_controls() {
+		$this->add_control(
+			'mas-fallback',
+			array(
+				'label' => esc_html__( 'Fallback', 'mas-elementor' ),
+				'type'  => Controls_Manager::MEDIA,
+			)
+		);
 	}
 }
