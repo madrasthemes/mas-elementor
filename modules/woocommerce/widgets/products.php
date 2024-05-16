@@ -928,6 +928,23 @@ class Products extends Products_Base {
 			)
 		);
 
+		$this->add_control(
+			'hide_inactive_arrows',
+			array(
+				'type'      => Controls_Manager::SWITCHER,
+				'label'     => esc_html__( 'Hide Inactive Arrow', 'mas-elementor' ),
+				'default'   => 'no',
+				'label_off' => esc_html__( 'Hide', 'mas-elementor' ),
+				'label_on'  => esc_html__( 'Show', 'mas-elementor' ),
+				'condition' => array(
+					'enable_carousel'     => 'yes',
+					'show_custom_arrows!' => 'yes',
+				),
+				'return_value' => 'hide',
+				'prefix_class' => 'mas-swiper-inactive-arrows-',
+			)
+		);
+
 		$this->add_responsive_control(
 			'hide_responsive_arrows',
 			array(

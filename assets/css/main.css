@@ -36,3 +36,7 @@
 .mas-swiper-overflow .swiper {
 	overflow: visible;
 }
+
+.mas-swiper-inactive-arrows-hide .swiper-button-disabled {
+      display: none;
+}
