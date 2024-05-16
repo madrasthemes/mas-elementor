@@ -936,8 +936,9 @@ class Products extends Products_Base {
 				'default'   => 'no',
 				'label_off' => esc_html__( 'Hide', 'mas-elementor' ),
 				'label_on'  => esc_html__( 'Show', 'mas-elementor' ),
-				'condition' => array(
+				'condition'    => array(
 					'enable_carousel'     => 'yes',
+					'show_arrows'         => 'yes',
 					'show_custom_arrows!' => 'yes',
 				),
 				'return_value' => 'hide',
