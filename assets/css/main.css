@@ -18,3 +18,21 @@
 .mas-carousel-short-description .woocommerce-product-details__short-description ul{
 	padding-left: 0px;
 }
+
+.elementor-widget-mas-woocommerce-products .mas-product .elementor-widget-image-carousel .swiper-slide {
+	width: 100% !important;
+	box-sizing: border-box;
+}
+
+.elementor-widget-mas-woocommerce-products .mas-product .elementor-widget-image-carousel .swiper-pagination-bullet-active {
+		width: 30px !important;
+    border-radius: 3px;
+}
+
+.mas-swiper-overflow {
+	overflow: hidden;
+}
+
+.mas-swiper-overflow .swiper {
+	overflow: visible;
+}
