@@ -96,6 +96,18 @@ abstract class Products_Base extends Base_Widget {
 			)
 		);
 
+		$this->add_responsive_control(
+			'loop_product_width',
+			array(
+				'label'      => __( 'Product Width', 'mas-elementor' ),
+				'type'       => Controls_Manager::SLIDER,
+				'size_units' => array( 'px', '%', 'em', 'rem', 'vh', 'custom' ),
+				'selectors'  => array(
+					'{{WRAPPER}} .mas-product,{{WRAPPER}} .mas-product [data-elementor-type="mas-post"]' => 'width: {{SIZE}}{{UNIT}} !important',
+				),
+			)
+		);
+
 		$this->end_controls_section();
 
 		$this->start_controls_section(
