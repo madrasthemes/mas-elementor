@@ -54,13 +54,26 @@ if ( ! empty( $settings['menu'] ) ) {
 		return;
 	}
 
+	$dropdown_trigger = $settings['nav_action'];
+
 	if ( ( 'horizontal' === $settings['layout'] && 'bootstrap' === $settings['walker'] ) || 'default' === $settings['walker'] ) {
 		?>
 		<div class="<?php echo esc_attr( $wrap_class ); ?>">
-			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#<?php echo esc_attr( 'toggle-' . $widget->get_id() ); ?>" aria-controls="<?php echo esc_attr( 'toggle-' . $widget->get_id() ); ?>" aria-expanded="false" aria-label="Toggle navigation">
-				<i class="eicon-menu-bar"></i>
-				<span class="navbar-toggler-icon"></span>
-			</button>
+			<?php if ( 'click' === $dropdown_trigger ) { ?>
+				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#<?php echo esc_attr( 'toggle-' . $widget->get_id() ); ?>" aria-controls="<?php echo esc_attr( 'toggle-' . $widget->get_id() ); ?>" aria-expanded="false" aria-label="Toggle navigation">
+					<i class="eicon-menu-bar"></i>
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<?php
+			} else {
+				?>
+					<button class="navbar-toggler" type="button" data-hover="dropdown" data-bs-target="#<?php echo esc_attr( 'toggle-' . $widget->get_id() ); ?>" aria-controls="<?php echo esc_attr( 'toggle-' . $widget->get_id() ); ?>" aria-expanded="false" aria-label="Toggle navigation">
+					<i class="eicon-menu-bar"></i>
+					<span class="navbar-toggler-icon"></span>
+				</button>
+					<?php
+			}
+			?>
 			<div class="mas-align collapse handheld horizontal" id="<?php echo esc_attr( 'toggle-' . $widget->get_id() ); ?>">
 
 		<?php
@@ -71,13 +84,26 @@ if ( ! empty( $settings['menu'] ) ) {
 		<?php
 	}
 	if ( ( 'dropdown' === $settings['layout'] && 'bootstrap' === $settings['walker'] ) ) {
+
+
 		?>
 		<div class="mas-hamburger-menu">
 			<nav class="navbar mas-elementor-menu-toggle">
+				<?php if ( 'click' === $dropdown_trigger ) { ?>
 				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#<?php echo esc_attr( 'toggle-' . $widget->get_id() ); ?>" aria-controls="<?php echo esc_attr( 'toggle-' . $widget->get_id() ); ?>" aria-expanded="false" aria-label="Toggle navigation">
 					<i class="eicon-menu-bar"></i>
 					<span class="navbar-toggler-icon"></span>
 				</button>
+					<?php
+				} else {
+					?>
+					<button class="navbar-toggler" type="button" data-hover="dropdown" data-bs-target="#<?php echo esc_attr( 'toggle-' . $widget->get_id() ); ?>" aria-controls="<?php echo esc_attr( 'toggle-' . $widget->get_id() ); ?>" aria-expanded="false" aria-label="Toggle navigation">
+					<i class="eicon-menu-bar"></i>
+					<span class="navbar-toggler-icon"></span>
+				</button>
+					<?php
+				}
+				?>
 				<div class="collapse handheld" id="<?php echo esc_attr( 'toggle-' . $widget->get_id() ); ?>">
 					<?php echo wp_kses_post( $menu_html ); ?>
 				</div>
