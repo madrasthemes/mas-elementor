@@ -111,7 +111,7 @@ class Product_Onsale_Percentage extends Base_Tag {
 				}
 			}
 
-			$best_key = array_search( max( $var_diff_price ), $var_diff_price );
+			$best_key = array_search( max( $var_diff_price ), $var_diff_price, true );
 
 			$regular_price = $var_regular_price[ $best_key ];
 			$sale_price    = $var_sale_price[ $best_key ];
