@@ -159,6 +159,7 @@ class Module extends Module_Base {
 			'Cart_Button_Text',
 			'Product_Content',
 			'Product_Sold_Count',
+			'Product_Onsale_Percentage',
 		);
 
 		$module = Plugin::elementor()->dynamic_tags;
