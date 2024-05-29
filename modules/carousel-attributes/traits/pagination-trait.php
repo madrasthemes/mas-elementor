@@ -662,6 +662,75 @@ trait Pagination_Trait {
 					)
 				);
 
+				$element->add_responsive_control(
+					'swiper_pagination_z_index',
+					array(
+						'label'     => esc_html__( 'Z-Index', 'mas-elementor' ),
+						'type'      => Controls_Manager::NUMBER,
+						'selectors'  => array(
+							'{{WRAPPER}} ' . $args['concat'] . ' .swiper-pagination' => 'z-index: {{VALUE}};',
+						),
+					)
+				);
+
+				$element->add_responsive_control(
+					'swiper_pagination_spacing_top',
+					array(
+						'label'      => esc_html__( 'Top Spacing', 'mas-elementor' ),
+						'type'       => Controls_Manager::SLIDER,
+						'default'    => array(
+							'size' => 0,
+						),
+						'size_units' => array( 'px', '%', 'rem' ),
+						'range'      => array(
+							'%' => array(
+								'min' => 0,
+								'max' => 100,
+							),
+						),
+						'selectors'  => array(
+							'{{WRAPPER}} ' . $args['concat'] . ' .swiper-pagination-horizontal' => 'bottom: 0px !important;',
+							'{{WRAPPER}} ' . $args['concat'] . ' .swiper-pagination.swiper-pagination-bullets' => 'margin-top: {{SIZE}}{{UNIT}} !important;',
+							'{{WRAPPER}} ' . $args['concat'] . ' .swiper-pagination-progressbar.swiper-pagination-horizontal' => 'margin-top: {{SIZE}}{{UNIT}} !important;',
+							'{{WRAPPER}} ' . $args['concat'] . ' .swiper-pagination.swiper-pagination-fraction' => 'margin-top: {{SIZE}}{{UNIT}} !important;',
+						),
+						'condition'  => array(
+							'enable_carousel' => 'yes',
+							'show_pagination' => 'yes',
+							'mas_swiper_pagination_position' => 'relative',
+						),
+					)
+				);
+
+				$element->add_responsive_control(
+					'pagination_spacing_bottom',
+					array(
+						'label'      => esc_html__( 'Bottom Spacing', 'mas-elementor' ),
+						'type'       => Controls_Manager::SLIDER,
+						'default'    => array(
+							'size' => 0,
+						),
+						'size_units' => array( 'px', '%', 'rem' ),
+						'range'      => array(
+							'%' => array(
+								'min' => 0,
+								'max' => 100,
+							),
+						),
+						'selectors'  => array(
+							'{{WRAPPER}} ' . $args['concat'] . ' .swiper-pagination-horizontal' => 'bottom: 0px !important;',
+							'{{WRAPPER}} ' . $args['concat'] . ' .swiper-pagination.swiper-pagination-bullets' => 'margin-bottom: {{SIZE}}{{UNIT}} !important;',
+							'{{WRAPPER}} ' . $args['concat'] . ' .swiper-pagination-progressbar.swiper-pagination-horizontal' => 'margin-bottom: {{SIZE}}{{UNIT}} !important;',
+							'{{WRAPPER}} ' . $args['concat'] . ' .swiper-pagination.swiper-pagination-fraction' => 'margin-bottom: {{SIZE}}{{UNIT}} !important;',
+						),
+						'condition'  => array(
+							'enable_carousel' => 'yes',
+							'show_pagination' => 'yes',
+							'mas_swiper_pagination_position' => 'relative',
+						),
+					)
+				);
+
 				$element->add_control(
 					'mas_swiper_pagination_position',
 					array(
@@ -817,64 +886,6 @@ trait Pagination_Trait {
 							'enable_carousel'            => 'yes',
 							'show_pagination'            => 'yes',
 							'mas_swiper_pagination_position' => 'absolute',
-						),
-					)
-				);
-
-				$element->add_control(
-					'swiper_pagination_spacing_top',
-					array(
-						'label'      => esc_html__( 'Top Spacing', 'mas-elementor' ),
-						'type'       => Controls_Manager::SLIDER,
-						'default'    => array(
-							'size' => 0,
-						),
-						'size_units' => array( 'px', '%', 'rem' ),
-						'range'      => array(
-							'%' => array(
-								'min' => 0,
-								'max' => 100,
-							),
-						),
-						'selectors'  => array(
-							'{{WRAPPER}} ' . $args['concat'] . ' .swiper-pagination-horizontal' => 'bottom: 0px !important;',
-							'{{WRAPPER}} ' . $args['concat'] . ' .swiper-pagination.swiper-pagination-bullets' => 'margin-top: {{SIZE}}{{UNIT}} !important;',
-							'{{WRAPPER}} ' . $args['concat'] . ' .swiper-pagination-progressbar.swiper-pagination-horizontal' => 'margin-top: {{SIZE}}{{UNIT}} !important;',
-							'{{WRAPPER}} ' . $args['concat'] . ' .swiper-pagination.swiper-pagination-fraction' => 'margin-top: {{SIZE}}{{UNIT}} !important;',
-						),
-						'condition'  => array(
-							'enable_carousel' => 'yes',
-							'show_pagination' => 'yes',
-							'mas_swiper_pagination_position' => 'relative',
-						),
-					)
-				);
-
-				$element->add_control(
-					'pagination_spacing_bottom',
-					array(
-						'label'      => esc_html__( 'Bottom Spacing', 'mas-elementor' ),
-						'type'       => Controls_Manager::SLIDER,
-						'default'    => array(
-							'size' => 0,
-						),
-						'size_units' => array( 'px', '%', 'rem' ),
-						'range'      => array(
-							'%' => array(
-								'min' => 0,
-								'max' => 100,
-							),
-						),
-						'selectors'  => array(
-							'{{WRAPPER}} ' . $args['concat'] . ' .swiper-pagination-horizontal' => 'bottom: 0px !important;',
-							'{{WRAPPER}} ' . $args['concat'] . ' .swiper-pagination.swiper-pagination-bullets' => 'margin-bottom: {{SIZE}}{{UNIT}} !important;',
-							'{{WRAPPER}} ' . $args['concat'] . ' .swiper-pagination-progressbar.swiper-pagination-horizontal' => 'margin-bottom: {{SIZE}}{{UNIT}} !important;',
-							'{{WRAPPER}} ' . $args['concat'] . ' .swiper-pagination.swiper-pagination-fraction' => 'margin-bottom: {{SIZE}}{{UNIT}} !important;',
-						),
-						'condition'  => array(
-							'enable_carousel' => 'yes',
-							'show_pagination' => 'yes',
-							'mas_swiper_pagination_position' => 'relative',
 						),
 					)
 				);
