@@ -135,6 +135,10 @@ class Product_Onsale_Percentage extends Base_Tag {
 			)
 		);
 
+		if ( empty( $sale_price ) ) {
+			return;
+		}
+
 		if ( 'amount' === $this->get_settings( 'output' ) ) {
 
 			$savings = wc_price( $regular_price - $sale_price );
