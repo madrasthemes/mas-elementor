@@ -239,7 +239,7 @@ if ( ! class_exists( 'MAS_Bootstrap_Navwalker' ) ) :
 						$atts['href']           = '#';
 						$atts['data-bs-toggle'] = 'dropdown';
 						$atts['aria-expanded']  = 'false';
-						$atts['class']          = 'dropdown-toggle dropdown-item nav-link';
+						$atts['class']          = 'dropdown-item nav-link';
 						$atts['id']             = 'menu-dropdown-' . $item->ID;
 					} else {
 						$atts['class'] = 'nav-link';

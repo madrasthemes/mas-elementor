@@ -211,6 +211,19 @@ class Mas_Nav_Menu extends Base_Widget {
 		}
 
 		$this->add_control(
+			'nav_action',
+			array(
+				'label'   => esc_html__( 'Nav Action', 'mas-elementor' ),
+				'type'    => Controls_Manager::SELECT,
+				'options' => array(
+					'hover' => 'Hover',
+					'click' => 'Click',
+				),
+				'default' => 'hover',
+			)
+		);
+
+		$this->add_control(
 			'walker',
 			array(
 				'label'   => esc_html__( 'Walker', 'mas-elementor' ),
@@ -676,11 +689,38 @@ class Mas_Nav_Menu extends Base_Widget {
 	}
 
 	/**
+	 * Add Data Hover Attribute.
+	 *
+	 * @param array $atts attributes.
+	 * @param array $item item.
+	 * @param array $args arguments.
+	 * @param int   $depth depth.
+	 */
+	public function mas_elementor_add_data_hover_attribute( $atts, $item, $args, $depth ) {
+
+		$settings = $this->get_settings_for_display();
+
+		$dropdown_trigger = $settings['nav_action'];
+
+		if ( 'hover' === $dropdown_trigger ) {
+			$atts['data-hover'] = 'dropdown';
+
+			if ( isset( $atts['data-bs-toggle'] ) ) {
+				unset( $atts['data-bs-toggle'] );
+			}
+		}
+
+		return $atts;
+	}
+
+	/**
 	 * Render.
 	 *
 	 * @return void
 	 */
 	protected function render() {
+		add_filter( 'nav_menu_link_attributes', array( $this, 'mas_elementor_add_data_hover_attribute' ), 10, 4 );
 		mas_elementor_get_template( 'widgets/mas-nav-menu/mas-nav-menu.php', array( 'widget' => $this ) );
+		remove_filter( 'nav_menu_link_attributes', array( $this, 'mas_elementor_add_data_hover_attribute' ), 10, 4 );
 	}
 }
