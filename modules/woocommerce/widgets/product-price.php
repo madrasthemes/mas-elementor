@@ -245,7 +245,7 @@ class Product_Price extends Base_Widget {
 
 		$start   = is_rtl() ? 'right' : 'left';
 		$end     = is_rtl() ? 'left' : 'right';
-		$wrapper = '{{WRAPPER}} .price:has(ins)';
+		$wrapper = '{{WRAPPER}} .price:has(ins), {{WRAPPER}} .electro-price:has(ins)';
 
 		$this->add_responsive_control(
 			'enable_flex',
