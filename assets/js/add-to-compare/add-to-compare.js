@@ -6,13 +6,13 @@
 ( function( $, window ) {
     'use strict';
 
-    $(document).on('click', '.add-to-compare-link:not(.added)', function (e) {
+    $(document).on('click', '.elementor-widget-mas-add-to-compare .add-to-compare-link:not(.added)', function (e) {
 
         e.preventDefault();
     
         var button = $(this),
             data = {
-                _yitnonce_ajax: yith_woocompare.nonceadd,
+                security: yith_woocompare.add_nonce,
                 action: yith_woocompare.actionadd,
                 id: button.data('product_id'),
                 context: 'frontend'
@@ -51,6 +51,9 @@
     
                 // add the product in the widget
                 widget_list.html(response.widget_table);
+
+                if ( yith_woocompare.auto_open == 'yes')
+                    $('body').trigger( 'yith_woocompare_open_popup', { response: response.table_url, button: button } );
             }
         });
     });
