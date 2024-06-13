@@ -188,6 +188,12 @@ if ( ! class_exists( 'MAS_Bootstrap_Navwalker' ) ) :
 				$classes[] = 'menu-item-' . $item->ID;
 				$classes[] = 'nav-item ';
 
+				if ( $this->has_children ) {
+					if ( $depth > 0 ) {
+						$classes[] = 'dropdown-submenu dropend';
+					}
+				}
+
 				// Allow filtering the classes.
 				$classes = apply_filters( 'nav_menu_css_class', array_filter( $classes ), $item, $args, $depth );
 
@@ -243,6 +249,14 @@ if ( ! class_exists( 'MAS_Bootstrap_Navwalker' ) ) :
 						$atts['id']             = 'menu-dropdown-' . $item->ID;
 					} else {
 						$atts['class'] = 'nav-link';
+					}
+
+					if ( isset( $args->anchor_class ) && is_array( $args->anchor_class ) ) {
+						$atts['class'] = join( ' ', $args->anchor_class );
+					}
+
+					if ( $item->current && isset( $args->anchor_active ) && $args->anchor_active ) {
+						$atts['class'] .= ' active';
 					}
 				}
 
