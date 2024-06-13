@@ -437,6 +437,39 @@ class Plugin {
 				'name'  => array(),
 				'value' => array(),
 			);
+
+			// Add SVG args directly to $allowed array.
+			$allowed['svg'] = array(
+				'class'             => true,
+				'aria-hidden'       => true,
+				'aria-labelledby'   => true,
+				'role'              => true,
+				'xmlns'             => true,
+				'width'             => true,
+				'height'            => true,
+				'viewbox'           => true,
+				'style'             => true,
+				'x'                 => true,
+				'y'                 => true,
+				'xmlns:xlink'       => true,
+				'xml:space'         => true,
+			);
+			$allowed['g'] = array(
+				'fill'              => true,
+			);
+			$allowed['title'] = array(
+				'title'             => true,
+			);
+			$allowed['path'] = array(
+				'class'             => true,
+				'd'                 => true,
+				'fill'              => true,
+				'opacity'           => true,
+			);
+			$allowed['style'] = array(
+				'type'              => true,
+			);
+
 		}
 
 		return apply_filters( 'mas_add_style_tag', $allowed );

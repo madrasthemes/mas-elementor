@@ -40,3 +40,12 @@
 .mas-swiper-inactive-arrows-hide .swiper-button-disabled {
       display: none;
 }
+
+@media (max-width: 1199px) {
+.dropdown-submenu .dropdown-menu {
+            display: none !important;
+      }
+.dropdown-submenu.open .dropdown-menu {
+            display: block !important;
+      }
+}
