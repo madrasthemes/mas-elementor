@@ -324,7 +324,7 @@ trait Button_Widget_Trait {
 			Group_Control_Text_Shadow::get_type(),
 			array(
 				'name'      => 'swiper_arrow_text_shadow',
-				'selector'  => '{{WRAPPER}} .elementor-button-link',
+				'selector'  => '{{WRAPPER}} ' . $args['button_concat'] . ' .mas-swiper-arrows .elementor-button-link',
 				'condition' => $args['section_condition'],
 			)
 		);
@@ -515,7 +515,7 @@ trait Button_Widget_Trait {
 			Group_Control_Box_Shadow::get_type(),
 			array(
 				'name'      => 'swiper_arrow_button_box_shadow',
-				'selector'  => '{{WRAPPER}} .elementor-button-link',
+				'selector'  => '{{WRAPPER}} ' . $args['button_concat'] . ' .mas-swiper-arrows .elementor-button-link',
 				'condition' => $args['section_condition'],
 			)
 		);
