@@ -1267,6 +1267,8 @@ class Add_To_Cart extends Widget_Button {
 			$settings['icon_align'] = $instance->get_settings( 'icon_align' );
 		}
 
+		$icon_align_class = ! empty( $settings['icon_align'] ) ? 'elementor-align-icon-' . $settings['icon_align'] : '';
+
 		$instance->add_render_attribute(
 			array(
 				'content-wrapper' => array(
@@ -1275,7 +1277,7 @@ class Add_To_Cart extends Widget_Button {
 				'icon-align'      => array(
 					'class' => array(
 						'elementor-button-icon',
-						'elementor-align-icon-' . $settings['icon_align'],
+						$icon_align_class,
 					),
 				),
 				'text'            => array(
