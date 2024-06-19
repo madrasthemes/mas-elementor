@@ -49,3 +49,8 @@
             display: block !important;
       }
 }
+
+/** Elementor content wrapper gap fix **/
+.elementor-widget-mas-woocommerce-products .elementor-button-content-wrapper {
+	gap: 0px;
+}
