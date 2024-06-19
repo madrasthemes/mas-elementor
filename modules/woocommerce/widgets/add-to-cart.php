@@ -851,6 +851,8 @@ class Add_To_Cart extends Widget_Button {
 				'selectors' => array(
 					'{{WRAPPER}} .elementor-button .elementor-align-icon-right' => 'margin-left: {{SIZE}}{{UNIT}};',
 					'{{WRAPPER}} .elementor-button .elementor-align-icon-left' => 'margin-right: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}} .elementor-button .elementor-align-icon-row-reverse' => 'margin-left: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}} .elementor-button .elementor-align-icon-row' => 'margin-right: {{SIZE}}{{UNIT}};',
 					'{{WRAPPER}} .cart .elementor-button-content-wrapper .elementor-button-icon' => 'margin-right: {{SIZE}}{{UNIT}};',
 					'{{WRAPPER}} .added_to_cart .elementor-align-icon-right' => 'margin-left: {{SIZE}}{{UNIT}};',
 					'{{WRAPPER}} .added_to_cart .elementor-align-icon-left' => 'margin-right: {{SIZE}}{{UNIT}};',
