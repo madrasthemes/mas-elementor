@@ -51,6 +51,6 @@
 }
 
 /** Elementor content wrapper gap fix **/
-.elementor-widget-mas-woocommerce-products .elementor-button-content-wrapper {
+.elementor-widget-mas-woocommerce-products:not(:has(.enable-cart-gap)) .elementor-button-content-wrapper {
 	gap: 0px;
 }
