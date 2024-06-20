@@ -51,6 +51,10 @@
 }
 
 /** Elementor content wrapper gap fix **/
-.elementor-widget-mas-woocommerce-products:not(:has(.enable-cart-gap)) .elementor-button-content-wrapper {
+.elementor-widget-mas-woocommerce-products .elementor-widget-mas-add-to-cart:not(.enable-cart-gap) .mas-add-to-cart .elementor-button-content-wrapper {
+	gap: 0px;
+}
+
+.elementor-widget-mas-woocommerce-products .mas-swiper-arrows .elementor-button-content-wrapper {
 	gap: 0px;
 }
