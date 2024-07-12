@@ -600,6 +600,22 @@ class Add_To_Cart extends Widget_Button {
 			)
 		);
 
+		$this->add_responsive_control(
+			'hide_cart_icon',
+			array(
+				'type'         => Controls_Manager::SWITCHER,
+				'label'        => esc_html__( 'Hide Cart Icon', 'mas-elementor' ),
+				'default'      => 'no',
+				'label_off'    => esc_html__( 'Hide', 'mas-elementor' ),
+				'label_on'     => esc_html__( 'Show', 'mas-elementor' ),
+				'condition'  => array(
+					'enable_size_color_options' => 'yes',
+				),
+				'return_value' => 'hide',
+				'prefix_class' => 'mas-cart--icon%s-',
+			)
+		);
+
 		$this->add_control(
 			'icon_width',
 			array(
