@@ -174,7 +174,7 @@ class Add_To_Cart extends Widget_Button {
 			)
 		);
 
-		$this->register_button_cart_wrapper_style_controls();
+		$this->register_button_cart_wrapper_style_controls( '', '{{WRAPPER}} .mas-add-to-cart .elementor-button-wrapper' );
 
 		$this->end_controls_section();
 
@@ -574,15 +574,18 @@ class Add_To_Cart extends Widget_Button {
 
 	/**
 	 * Register button content update controls for this widget.
+	 *
+	 * @param string $name Name of the control.
+	 * @param string $wrapper Selectors.
 	 */
-	protected function register_button_cart_wrapper_style_controls() {
+	protected function register_button_cart_wrapper_style_controls( $name, $wrapper ) {
 
-		$start   = is_rtl() ? 'right' : 'left';
-		$end     = is_rtl() ? 'left' : 'right';
-		$wrapper = '{{WRAPPER}} .mas-add-to-cart .elementor-button-wrapper';
+		$start = is_rtl() ? 'right' : 'left';
+		$end   = is_rtl() ? 'left' : 'right';
+		// $wrapper = '{{WRAPPER}} .mas-add-to-cart .elementor-button-wrapper';
 
 		$this->add_responsive_control(
-			'enable_flex',
+			$name . 'enable_flex',
 			array(
 				'label'     => esc_html__( 'Enable Flex', 'mas-elementor' ),
 				'type'      => Controls_Manager::CHOOSE,
@@ -606,7 +609,7 @@ class Add_To_Cart extends Widget_Button {
 		);
 
 		$this->add_responsive_control(
-			'flex_wrap',
+			$name . 'flex_wrap',
 			array(
 				'label'       => esc_html__( 'Wrap', 'mas-elementor' ),
 				'type'        => Controls_Manager::CHOOSE,
@@ -635,7 +638,7 @@ class Add_To_Cart extends Widget_Button {
 		);
 
 		$this->add_responsive_control(
-			'flex_direction',
+			$name . 'flex_direction',
 			array(
 				'label'     => esc_html__( 'Direction', 'mas-elementor' ),
 				'type'      => Controls_Manager::CHOOSE,
@@ -669,7 +672,7 @@ class Add_To_Cart extends Widget_Button {
 		);
 
 		$this->add_responsive_control(
-			'justify_content',
+			$name . 'justify_content',
 			array(
 				'label'       => esc_html__( 'Justify Content', 'mas-elementor' ),
 				'type'        => Controls_Manager::CHOOSE,
@@ -709,7 +712,7 @@ class Add_To_Cart extends Widget_Button {
 		);
 
 		$this->add_responsive_control(
-			'align_items',
+			$name . 'align_items',
 			array(
 				'label'     => esc_html__( 'Align Items', 'mas-elementor' ),
 				'type'      => Controls_Manager::CHOOSE,
@@ -740,7 +743,7 @@ class Add_To_Cart extends Widget_Button {
 		);
 
 		$this->add_responsive_control(
-			'gap',
+			$name . 'gap',
 			array(
 				'label'      => esc_html__( 'Gap', 'mas-elementor' ),
 				'type'       => Controls_Manager::SLIDER,
@@ -1262,10 +1265,6 @@ class Add_To_Cart extends Widget_Button {
 		$migrated = isset( $settings['__fa4_migrated'][ $icon_type ] );
 		$is_new   = empty( $settings['icon'] ) && Icons_Manager::is_migration_allowed();
 
-		
-
-		
-
 		if ( ! $is_new && empty( $settings['icon_align'] ) ) {
 			// @todo: remove when deprecated
 			// added as bc in 2.6
@@ -1287,7 +1286,7 @@ class Add_To_Cart extends Widget_Button {
 				'icon-align'      => array(
 					'class' => array(
 						'elementor-button-icon',
-						'elementor-align-icon-' . $icon_align
+						'elementor-align-icon-' . $icon_align,
 					),
 				),
 				'text'            => array(
