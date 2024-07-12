@@ -868,7 +868,6 @@ class Multipurpose_Text extends Base_Widget {
 				'options' => array(
 					'vertical'    => 'Vertical',
 				),
-				'default'   => 'vertical',
 				'selectors' => array(
 					$wrapper => '-webkit-box-orient: {{VALUE}}; overflow:hidden;',
 				),
@@ -886,7 +885,7 @@ class Multipurpose_Text extends Base_Widget {
 				'selectors'   => array(
 					$wrapper => '-webkit-line-clamp: {{VALUE}};',
 				),
-				'default'     => 2,
+				'min'     => 1,				
 				'placeholder' => 2,
 				'condition'          => array(
 					$name . '_enable_webkit' => '-webkit-box',
