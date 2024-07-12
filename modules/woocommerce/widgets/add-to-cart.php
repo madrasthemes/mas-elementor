@@ -178,6 +178,18 @@ class Add_To_Cart extends Widget_Button {
 
 		$this->end_controls_section();
 
+		$this->start_controls_section(
+			'section_icon_style',
+			array(
+				'label' => esc_html__( 'Icon', 'mas-elementor' ),
+				'tab'   => Controls_Manager::TAB_STYLE,
+			)
+		);
+
+		$this->register_button_icon_style_controls();
+
+		$this->end_controls_section();
+
 		$this->start_injection(
 			array(
 				'of' => 'section_style_cart',
@@ -573,6 +585,494 @@ class Add_To_Cart extends Widget_Button {
 	}
 
 	/**
+	 * Register button icon style controls for this widget.
+	 */
+	protected function register_button_icon_style_controls() {
+		$wrapper       = '{{WRAPPER}} .mas-add-to-cart .elementor-button-icon';
+		$hover_wrapper = '{{WRAPPER}} .mas-add-to-cart a:hover .elementor-button-icon';
+
+		$this->add_control(
+			'enable_size_color_options',
+			array(
+				'label'   => esc_html__( 'Size, Color Options', 'mas-elementor' ),
+				'type'    => Controls_Manager::SWITCHER,
+				'default' => 'no',
+			)
+		);
+
+		$this->add_control(
+			'icon_width',
+			array(
+				'label'      => esc_html__( 'Icon Width', 'mas-elementor' ),
+				'type'       => Controls_Manager::SLIDER,
+				'default'    => array(
+					'unit' => 'px',
+					'size' => '52',
+				),
+				'size_units' => array( '%', 'px', 'vw' ),
+				'range'      => array(
+					'%'  => array(
+						'min' => 1,
+						'max' => 100,
+					),
+					'px' => array(
+						'min' => 1,
+						'max' => 1000,
+					),
+					'vw' => array(
+						'min' => 1,
+						'max' => 100,
+					),
+				),
+				'selectors'  => array(
+					$wrapper => 'width: {{SIZE}}{{UNIT}}',
+				),
+				'condition'  => array(
+					'enable_size_color_options' => 'yes',
+				),
+			)
+		);
+
+		$this->add_control(
+			'icon_font_size',
+			array(
+				'label'      => esc_html__( 'Font Size', 'mas-elementor' ),
+				'type'       => Controls_Manager::SLIDER,
+				'default'    => array(
+					'unit' => 'px',
+					'size' => '18',
+				),
+				'size_units' => array( '%', 'px', 'vw' ),
+				'range'      => array(
+					'%'  => array(
+						'min' => 1,
+						'max' => 100,
+					),
+					'px' => array(
+						'min' => 1,
+						'max' => 1000,
+					),
+					'vw' => array(
+						'min' => 1,
+						'max' => 100,
+					),
+				),
+				'selectors'  => array(
+					$wrapper => 'font-size: {{SIZE}}{{UNIT}}',
+				),
+				'condition'  => array(
+					'enable_size_color_options' => 'yes',
+				),
+			)
+		);
+
+		$this->add_control(
+			'icon_background_color',
+			array(
+				'label'     => esc_html__( 'Background Color', 'mas-elementor' ),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => array(
+					$wrapper => 'background-color: {{VALUE}};',
+				),
+				'condition' => array(
+					'enable_size_color_options' => 'yes',
+				),
+			)
+		);
+
+		$this->add_control(
+			'icon_hover_background_color',
+			array(
+				'label'     => esc_html__( 'Hover Background Color', 'mas-elementor' ),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => array(
+					$hover_wrapper => 'background-color: {{VALUE}};',
+				),
+				'condition' => array(
+					'enable_size_color_options' => 'yes',
+				),
+			)
+		);
+
+		$this->add_group_control(
+			\Elementor\Group_Control_Border::get_type(),
+			array(
+				'name'      => 'cart_icon_border',
+				'selector'  => $wrapper,
+				'condition' => array(
+					'enable_size_color_options' => 'yes',
+				),
+			)
+		);
+
+		$this->add_control(
+			'cart_icon_border_radius',
+			array(
+				'label'      => __( 'Border Radius', 'mas-elementor' ),
+				'type'       => Controls_Manager::DIMENSIONS,
+				'size_units' => array( 'px', '%' ),
+				'default'    => array(
+					'top'      => '8',
+					'right'    => '0',
+					'bottom'   => '0',
+					'left'     => '8',
+					'unit'     => 'px',
+					'isLinked' => false,
+				),
+				'selectors'  => array(
+					$wrapper => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}}',
+				),
+				'condition'  => array(
+					'enable_size_color_options' => 'yes',
+				),
+			)
+		);
+
+		$this->add_control(
+			'enable_flex_options',
+			array(
+				'label'     => esc_html__( 'Enable Flex Options', 'mas-elementor' ),
+				'type'      => Controls_Manager::SWITCHER,
+				'default'   => 'no',
+				'separator' => 'before',
+			)
+		);
+
+		$this->add_responsive_control(
+			'icon_enable_flex',
+			array(
+				'label'     => esc_html__( 'Enable Flex', 'mas-elementor' ),
+				'type'      => Controls_Manager::CHOOSE,
+				'options'   => array(
+					'block' => array(
+						'title' => esc_html__( 'Block', 'mas-elementor' ),
+						'icon'  => 'eicon-ban',
+					),
+					'flex'  => array(
+						'title' => esc_html__( 'Flex', 'mas-elementor' ),
+						'icon'  => 'eicon-flex eicon-wrap',
+					),
+				),
+				'default'   => 'flex',
+				'selectors' => array(
+					$wrapper => 'display: {{VALUE}};',
+				),
+				'condition' => array(
+					'enable_flex_options' => 'yes',
+				),
+
+			)
+		);
+
+		$this->add_responsive_control(
+			'icon_justify_content',
+			array(
+				'label'       => esc_html__( 'Justify Content', 'mas-elementor' ),
+				'type'        => Controls_Manager::CHOOSE,
+				'label_block' => true,
+				'default'     => '',
+				'options'     => array(
+					'flex-start'    => array(
+						'title' => esc_html__( 'Start', 'mas-elementor' ),
+						'icon'  => 'eicon-flex eicon-justify-start-h',
+					),
+					'center'        => array(
+						'title' => esc_html__( 'Center', 'mas-elementor' ),
+						'icon'  => 'eicon-flex eicon-justify-center-h',
+					),
+					'flex-end'      => array(
+						'title' => esc_html__( 'End', 'mas-elementor' ),
+						'icon'  => 'eicon-flex eicon-justify-end-h',
+					),
+					'space-between' => array(
+						'title' => esc_html__( 'Space Between', 'mas-elementor' ),
+						'icon'  => 'eicon-flex eicon-justify-space-between-h',
+					),
+					'space-around'  => array(
+						'title' => esc_html__( 'Space Around', 'mas-elementor' ),
+						'icon'  => 'eicon-flex eicon-justify-space-around-h',
+					),
+					'space-evenly'  => array(
+						'title' => esc_html__( 'Space Evenly', 'mas-elementor' ),
+						'icon'  => 'eicon-flex eicon-justify-space-evenly-h',
+					),
+				),
+				'selectors'   => array(
+					$wrapper => 'justify-content: {{VALUE}};',
+				),
+				'default'     => 'center',
+				'condition'   => array(
+					'enable_flex_options' => 'yes',
+				),
+			)
+		);
+
+		$this->add_responsive_control(
+			'icon_align_items',
+			array(
+				'label'     => esc_html__( 'Align Items', 'mas-elementor' ),
+				'type'      => Controls_Manager::CHOOSE,
+				'default'   => '',
+				'options'   => array(
+					'flex-start' => array(
+						'title' => esc_html__( 'Start', 'mas-elementor' ),
+						'icon'  => 'eicon-flex eicon-align-start-v',
+					),
+					'center'     => array(
+						'title' => esc_html__( 'Center', 'mas-elementor' ),
+						'icon'  => 'eicon-flex eicon-align-center-v',
+					),
+					'flex-end'   => array(
+						'title' => esc_html__( 'End', 'mas-elementor' ),
+						'icon'  => 'eicon-flex eicon-align-end-v',
+					),
+					'stretch'    => array(
+						'title' => esc_html__( 'Stretch', 'mas-elementor' ),
+						'icon'  => 'eicon-flex eicon-align-stretch-v',
+					),
+				),
+				'selectors' => array(
+					$wrapper => 'align-items: {{VALUE}};',
+				),
+				'default'   => 'center',
+				'condition' => array(
+					'enable_flex_options' => 'yes',
+				),
+			)
+		);
+
+		$this->add_control(
+			'enable_icon_position',
+			array(
+				'label'     => esc_html__( 'Enable Icon Position', 'mas-elementor' ),
+				'type'      => Controls_Manager::SWITCHER,
+				'default'   => 'no',
+				'separator' => 'before',
+			)
+		);
+
+		$this->add_control(
+			'button_icon_position',
+			array(
+				'label'     => esc_html__( 'Position', 'mas-elementor' ),
+				'type'      => Controls_Manager::SELECT,
+				'default'   => 'relative',
+				'options'   => array(
+					'relative' => esc_html__( 'Relative', 'mas-elementor' ),
+					'absolute' => esc_html__( 'Absolute', 'mas-elementor' ),
+				),
+				'condition' => array(
+					'enable_icon_position' => 'yes',
+				),
+				'selectors' => array(
+					$wrapper => 'position: {{VALUE}};',
+				),
+			)
+		);
+
+		$this->add_control(
+			'button_icon_wrapper_position',
+			array(
+				'label'     => esc_html__( 'Wrapper Position', 'mas-elementor' ),
+				'type'      => Controls_Manager::HIDDEN,
+				'selectors' => array(
+					'{{WRAPPER}} .mas-add-to-cart' => 'position: relative;',
+				),
+				'condition' => array(
+					'enable_icon_position' => 'yes',
+					'button_icon_position' => 'absolute',
+				),
+			)
+		);
+
+		$left  = esc_html__( 'Left', 'mas-elementor' );
+		$right = esc_html__( 'Right', 'mas-elementor' );
+
+		$start = is_rtl() ? $right : $left;
+		$end   = ! is_rtl() ? $right : $left;
+
+		$this->add_control(
+			'icon_offset_orientation_h',
+			array(
+				'label'       => esc_html__( 'Horizontal Orientation', 'mas-elementor' ),
+				'type'        => Controls_Manager::CHOOSE,
+				'toggle'      => false,
+				'default'     => 'start',
+				'options'     => array(
+					'start' => array(
+						'title' => $start,
+						'icon'  => 'eicon-h-align-left',
+					),
+					'end'   => array(
+						'title' => $end,
+						'icon'  => 'eicon-h-align-right',
+					),
+				),
+				'classes'     => 'elementor-control-start-end',
+				'render_type' => 'ui',
+				'condition'   => array(
+					'enable_icon_position' => 'yes',
+					'button_icon_position' => 'absolute',
+				),
+			)
+		);
+
+		$this->add_responsive_control(
+			'icon_offset_x',
+			array(
+				'label'      => esc_html__( 'Offset', 'mas-elementor' ),
+				'type'       => Controls_Manager::SLIDER,
+				'range'      => array(
+					'px' => array(
+						'min'  => -1000,
+						'max'  => 1000,
+						'step' => 1,
+					),
+					'%'  => array(
+						'min' => -200,
+						'max' => 200,
+					),
+					'vw' => array(
+						'min' => -200,
+						'max' => 200,
+					),
+					'vh' => array(
+						'min' => -200,
+						'max' => 200,
+					),
+				),
+				'default'    => array(
+					'size' => '0',
+				),
+				'size_units' => array( 'px', '%', 'vw', 'vh', 'custom' ),
+				'selectors'  => array(
+					'body:not(.rtl) ' . $wrapper => 'left: {{SIZE}}{{UNIT}} !important',
+					'body.rtl ' . $wrapper       => 'right: {{SIZE}}{{UNIT}} !important',
+				),
+				'condition'  => array(
+					'icon_offset_orientation_h!' => 'end',
+					'enable_icon_position'       => 'yes',
+					'button_icon_position'       => 'absolute',
+				),
+			)
+		);
+
+		$this->add_responsive_control(
+			'icon_offset_x_end',
+			array(
+				'label'      => esc_html__( 'Offset', 'mas-elementor' ),
+				'type'       => Controls_Manager::SLIDER,
+				'range'      => array(
+					'px' => array(
+						'min'  => -1000,
+						'max'  => 1000,
+						'step' => 0.1,
+					),
+					'%'  => array(
+						'min' => -200,
+						'max' => 200,
+					),
+					'vw' => array(
+						'min' => -200,
+						'max' => 200,
+					),
+					'vh' => array(
+						'min' => -200,
+						'max' => 200,
+					),
+				),
+				'default'    => array(
+					'size' => '0',
+				),
+				'size_units' => array( 'px', '%', 'vw', 'vh', 'custom' ),
+				'selectors'  => array(
+					'body:not(.rtl) ' . $wrapper => 'right: {{SIZE}}{{UNIT}} !important',
+					'body.rtl ' . $wrapper       => 'left: {{SIZE}}{{UNIT}} !important',
+				),
+				'condition'  => array(
+					'icon_offset_orientation_h' => 'end',
+					'enable_icon_position'      => 'yes',
+					'button_icon_position'      => 'absolute',
+				),
+			)
+		);
+
+		$this->add_responsive_control(
+			'icon_offset_y',
+			array(
+				'label'      => esc_html__( 'Top', 'mas-elementor' ),
+				'type'       => Controls_Manager::SLIDER,
+				'range'      => array(
+					'px' => array(
+						'min' => -1000,
+						'max' => 1000,
+					),
+					'%'  => array(
+						'min' => -200,
+						'max' => 200,
+					),
+					'vh' => array(
+						'min' => -200,
+						'max' => 200,
+					),
+					'vw' => array(
+						'min' => -200,
+						'max' => 200,
+					),
+				),
+				'size_units' => array( 'px', '%', 'em', 'rem', 'vh', 'vw', 'custom' ),
+				'default'    => array(
+					'size' => 0,
+				),
+				'selectors'  => array(
+					$wrapper => 'top: {{SIZE}}{{UNIT}}',
+				),
+				'condition'  => array(
+					'enable_icon_position' => 'yes',
+					'button_icon_position' => 'absolute',
+				),
+			)
+		);
+
+		$this->add_responsive_control(
+			'icon_offset_y_end',
+			array(
+				'label'      => esc_html__( 'Bottom', 'mas-elementor' ),
+				'type'       => Controls_Manager::SLIDER,
+				'range'      => array(
+					'px' => array(
+						'min' => -1000,
+						'max' => 1000,
+					),
+					'%'  => array(
+						'min' => -200,
+						'max' => 200,
+					),
+					'vh' => array(
+						'min' => -200,
+						'max' => 200,
+					),
+					'vw' => array(
+						'min' => -200,
+						'max' => 200,
+					),
+				),
+				'size_units' => array( 'px', '%', 'em', 'rem', 'vh', 'vw', 'custom' ),
+				'default'    => array(
+					'size' => 0,
+				),
+				'selectors'  => array(
+					$wrapper => 'bottom: {{SIZE}}{{UNIT}}',
+				),
+				'condition'  => array(
+					'enable_icon_position' => 'yes',
+					'button_icon_position' => 'absolute',
+				),
+			)
+		);
+	}
+
+	/**
 	 * Register button content update controls for this widget.
 	 *
 	 * @param string $name Name of the control.
@@ -582,7 +1082,6 @@ class Add_To_Cart extends Widget_Button {
 
 		$start = is_rtl() ? 'right' : 'left';
 		$end   = is_rtl() ? 'left' : 'right';
-		// $wrapper = '{{WRAPPER}} .mas-add-to-cart .elementor-button-wrapper';
 
 		$this->add_responsive_control(
 			$name . 'enable_flex',
@@ -603,8 +1102,6 @@ class Add_To_Cart extends Widget_Button {
 				'selectors' => array(
 					$wrapper => 'display: {{VALUE}};',
 				),
-				// 'responsive' => true,
-
 			)
 		);
 
@@ -632,8 +1129,6 @@ class Add_To_Cart extends Widget_Button {
 				'selectors'   => array(
 					$wrapper => 'flex-wrap: {{VALUE}};',
 				),
-				// 'responsive' => true,
-
 			)
 		);
 
