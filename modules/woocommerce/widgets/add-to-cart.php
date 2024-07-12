@@ -1262,6 +1262,10 @@ class Add_To_Cart extends Widget_Button {
 		$migrated = isset( $settings['__fa4_migrated'][ $icon_type ] );
 		$is_new   = empty( $settings['icon'] ) && Icons_Manager::is_migration_allowed();
 
+		
+
+		
+
 		if ( ! $is_new && empty( $settings['icon_align'] ) ) {
 			// @todo: remove when deprecated
 			// added as bc in 2.6
@@ -1269,7 +1273,11 @@ class Add_To_Cart extends Widget_Button {
 			$settings['icon_align'] = $instance->get_settings( 'icon_align' );
 		}
 
-		$icon_align_class = ! empty( $settings['icon_align'] ) ? 'elementor-align-icon-' . $settings['icon_align'] : '';
+		$icon_align = 'row';
+
+		if ( isset( $settings['icon_align'] ) ) {
+			$icon_align = 'row' === $settings['icon_align'] ? 'row' : 'row-reverse';
+		}
 
 		$instance->add_render_attribute(
 			array(
@@ -1279,7 +1287,7 @@ class Add_To_Cart extends Widget_Button {
 				'icon-align'      => array(
 					'class' => array(
 						'elementor-button-icon',
-						$icon_align_class,
+						'elementor-align-icon-' . $icon_align
 					),
 				),
 				'text'            => array(
