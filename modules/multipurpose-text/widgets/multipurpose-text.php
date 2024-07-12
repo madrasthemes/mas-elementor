@@ -420,6 +420,8 @@ class Multipurpose_Text extends Base_Widget {
 			)
 		);
 
+		$this->register_webkit_style_controls('title', '{{WRAPPER}} .mas-elementor-multipurpose-text__title');
+
 		$this->end_controls_section();
 
 		$this->start_controls_section(
@@ -828,6 +830,69 @@ class Multipurpose_Text extends Base_Widget {
 			)
 		);
 
+	}
+
+	/**
+	 * Register controls for this widget.
+	 *
+	 * @return void
+	 */
+	protected function register_webkit_style_controls( $name, $wrapper ) { 
+		$this->add_responsive_control(
+			$name . '_enable_webkit',
+			array(
+				'label'     => esc_html__( 'Webkit', 'mas-elementor' ),
+				'type'      => Controls_Manager::CHOOSE,
+				'options'   => array(
+					'flex' => array(
+						'title' => esc_html__( 'Flex', 'mas-elementor' ),
+						'icon'  => 'eicon-flex eicon-wrap',
+					),
+					'-webkit-box'  => array(
+						'title' => esc_html__( 'Webkit Box', 'mas-elementor' ),
+						'icon'  => 'eicon-ban',
+					),
+				),
+				'default'   => 'flex',
+				'selectors' => array(
+					$wrapper => 'display: {{VALUE}};',
+				),
+			)
+		);
+
+		$this->add_responsive_control(
+			$name . '_webkit_orient',
+			array(
+				'label'   => esc_html__( 'Webkit Orient', 'mas-elementor' ),
+				'type'    => Controls_Manager::SELECT,
+				'options' => array(
+					'vertical'    => 'Vertical',
+				),
+				'default'   => 'vertical',
+				'selectors' => array(
+					$wrapper => '-webkit-box-orient: {{VALUE}}; overflow:hidden;',
+				),
+				'condition'          => array(
+					$name . '_enable_webkit' => '-webkit-box',
+				),
+			)
+		);
+
+		$this->add_responsive_control(
+			$name . '_webkit_line_clamp',
+			array(
+				'label'       => esc_html__( 'Webkit Line Clamp', 'mas-elementor' ),
+				'type'        => Controls_Manager::NUMBER,
+				'selectors'   => array(
+					$wrapper => '-webkit-line-clamp: {{VALUE}};',
+				),
+				'default'     => 2,
+				'placeholder' => 2,
+				'condition'          => array(
+					$name . '_enable_webkit' => '-webkit-box',
+				),
+			)
+		);
 	}
 
 	/**
