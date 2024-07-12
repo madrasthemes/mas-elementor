@@ -886,7 +886,7 @@ class Multipurpose_Text extends Base_Widget {
 					$wrapper => '-webkit-line-clamp: {{VALUE}};',
 				),
 				'min'     => 1,				
-				'placeholder' => 2,
+				'placeholder' => 1,
 				'condition'          => array(
 					$name . '_enable_webkit' => '-webkit-box',
 				),
