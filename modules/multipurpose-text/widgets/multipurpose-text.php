@@ -420,7 +420,7 @@ class Multipurpose_Text extends Base_Widget {
 			)
 		);
 
-		$this->register_webkit_style_controls('title', '{{WRAPPER}} .mas-elementor-multipurpose-text__title');
+		$this->register_webkit_style_controls( 'title', '{{WRAPPER}} .mas-elementor-multipurpose-text__title' );
 
 		$this->end_controls_section();
 
@@ -835,20 +835,23 @@ class Multipurpose_Text extends Base_Widget {
 	/**
 	 * Register controls for this widget.
 	 *
+	 * @param string $name Control name.
+	 * @param string $wrapper Selectors.
+	 *
 	 * @return void
 	 */
-	protected function register_webkit_style_controls( $name, $wrapper ) { 
+	protected function register_webkit_style_controls( $name, $wrapper ) {
 		$this->add_responsive_control(
 			$name . '_enable_webkit',
 			array(
 				'label'     => esc_html__( 'Webkit', 'mas-elementor' ),
 				'type'      => Controls_Manager::CHOOSE,
 				'options'   => array(
-					'flex' => array(
+					'flex'        => array(
 						'title' => esc_html__( 'Flex', 'mas-elementor' ),
 						'icon'  => 'eicon-flex eicon-wrap',
 					),
-					'-webkit-box'  => array(
+					'-webkit-box' => array(
 						'title' => esc_html__( 'Webkit Box', 'mas-elementor' ),
 						'icon'  => 'eicon-ban',
 					),
@@ -863,15 +866,15 @@ class Multipurpose_Text extends Base_Widget {
 		$this->add_responsive_control(
 			$name . '_webkit_orient',
 			array(
-				'label'   => esc_html__( 'Webkit Orient', 'mas-elementor' ),
-				'type'    => Controls_Manager::SELECT,
-				'options' => array(
-					'vertical'    => 'Vertical',
+				'label'     => esc_html__( 'Webkit Orient', 'mas-elementor' ),
+				'type'      => Controls_Manager::SELECT,
+				'options'   => array(
+					'vertical' => 'Vertical',
 				),
 				'selectors' => array(
 					$wrapper => '-webkit-box-orient: {{VALUE}}; overflow:hidden;',
 				),
-				'condition'          => array(
+				'condition' => array(
 					$name . '_enable_webkit' => '-webkit-box',
 				),
 			)
@@ -885,9 +888,9 @@ class Multipurpose_Text extends Base_Widget {
 				'selectors'   => array(
 					$wrapper => '-webkit-line-clamp: {{VALUE}};',
 				),
-				'min'     => 1,				
+				'min'         => 1,
 				'placeholder' => 1,
-				'condition'          => array(
+				'condition'   => array(
 					$name . '_enable_webkit' => '-webkit-box',
 				),
 			)
