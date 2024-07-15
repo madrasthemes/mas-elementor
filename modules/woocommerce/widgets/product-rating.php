@@ -204,6 +204,20 @@ class Product_Rating extends Base_Widget {
 			)
 		);
 
+		$this->add_control(
+			'hide_review',
+			array(
+				'type'         => Controls_Manager::SWITCHER,
+				'label'        => esc_html__( 'Hide Review', 'mas-elementor' ),
+				'default'      => 'yes',
+				'label_on'     => esc_html__( 'Show', 'mas-elementor' ),
+				'label_off'    => esc_html__( 'Hide', 'mas-elementor' ),
+				'return_value' => 'hide',
+				'prefix_class' => 'mas-product-review-',
+				'description' => esc_html__( 'Hides the review link', 'mas-elementor' ),
+			)
+		);
+
 		$this->end_controls_section();
 	}
 

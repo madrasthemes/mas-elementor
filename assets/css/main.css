@@ -541,3 +541,11 @@
 .mas-add-to-cart .view-cart-btn {
       display: none;
 }
+
+.mas-product-review-hide .woocommerce-review-link {
+    display: none;
+}
+
+.mt-auto {
+    margin-top: auto;
+}
