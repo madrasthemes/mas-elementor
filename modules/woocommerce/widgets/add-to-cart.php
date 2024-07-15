@@ -102,6 +102,15 @@ class Add_To_Cart extends Widget_Button {
 	}
 
 	/**
+	 * Return the script dependencies of the module.
+	 *
+	 * @return array
+	 */
+	public function get_script_depends() {
+		return array( 'mas-add-to-cart' );
+	}
+
+	/**
 	 * Register controls for this widget.
 	 */
 	protected function register_controls() {
@@ -590,6 +599,18 @@ class Add_To_Cart extends Widget_Button {
 	protected function register_button_icon_style_controls() {
 		$wrapper       = '{{WRAPPER}} .mas-add-to-cart .elementor-button-icon';
 		$hover_wrapper = '{{WRAPPER}} .mas-add-to-cart a:hover .elementor-button-icon';
+
+		$this->add_control(
+			'show_view_cart_icon',
+			array(
+				'type'         => Controls_Manager::SWITCHER,
+				'label'        => esc_html__( 'Show View Cart Icon', 'mas-elementor' ),
+				'default'      => 'no',
+				'return_value' => 'show',
+				'prefix_class' => 'mas-view-cart--icon-',
+				'description' => esc_html__( 'Displays cart icon after clicking near view cart text', 'mas-elementor' ),
+			)
+		);
 
 		$this->add_control(
 			'enable_size_color_options',
@@ -1801,7 +1822,7 @@ class Add_To_Cart extends Widget_Button {
 					),
 				),
 				'text'            => array(
-					'class' => 'elementor-button-text',
+					'class' => 'elementor-button-text add-cart-btn',
 				),
 			)
 		);

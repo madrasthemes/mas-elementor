@@ -58,3 +58,7 @@
 .elementor-widget-mas-woocommerce-products .mas-swiper-arrows .elementor-button-content-wrapper {
 	gap: 0px;
 }
+
+.mas-add-to-cart .view-cart-btn {
+      display: none;
+}

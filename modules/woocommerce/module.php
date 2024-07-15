@@ -490,6 +490,14 @@ class Module extends Module_Base {
 			MAS_ELEMENTOR_VERSION,
 			true
 		);
+
+		wp_register_script(
+			'mas-add-to-cart',
+			MAS_ELEMENTOR_ASSETS_URL . 'js/add-to-cart/add-to-cart.js',
+			array(),
+			MAS_ELEMENTOR_VERSION,
+			true
+		);
 	}
 
 	/**
