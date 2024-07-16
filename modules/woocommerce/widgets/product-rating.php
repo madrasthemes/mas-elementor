@@ -127,6 +127,22 @@ class Product_Rating extends Base_Widget {
 			)
 		);
 
+		$this->add_control(
+			'star_position',
+			array(
+				'label'     => esc_html__( 'Star Position', 'mas-elementor' ),
+				'type'      => Controls_Manager::SELECT,
+				'default'   => '',
+				'options'   => array(
+					''         => 'Relative',
+					'absolute' => 'Absolute',
+				),
+				'selectors' => array(
+					'{{WRAPPER}} .star-rating > span' => 'position:{{VALUE}}',
+				),
+			)
+		);
+
 		$this->add_responsive_control(
 			'star_size',
 			array(
@@ -204,6 +220,19 @@ class Product_Rating extends Base_Widget {
 			)
 		);
 
+		$this->add_responsive_control(
+			'icons_margin',
+			array(
+				'label'      => esc_html__( 'Icons Margin', 'mas-elementor' ),
+				'type'       => Controls_Manager::DIMENSIONS,
+				'size_units' => array( 'px', 'em', '%', 'rem' ),
+				'selectors'  => array(
+					'{{WRAPPER}} .star-rating' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				),
+				'separator'  => 'before',
+			)
+		);
+
 		$this->add_control(
 			'hide_review',
 			array(
@@ -214,7 +243,7 @@ class Product_Rating extends Base_Widget {
 				'label_off'    => esc_html__( 'Hide', 'mas-elementor' ),
 				'return_value' => 'hide',
 				'prefix_class' => 'mas-product-review-',
-				'description' => esc_html__( 'Hides the review link', 'mas-elementor' ),
+				'description'  => esc_html__( 'Hides the review link', 'mas-elementor' ),
 			)
 		);
 
