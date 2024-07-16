@@ -264,6 +264,45 @@ class Products extends Products_Base {
 			)
 		);
 
+		$this->add_control(
+			'enable_responsive_column',
+			array(
+				'label'     => __( 'Repeat style column', 'mas-elementor' ),
+				'type'      => Controls_Manager::SWITCHER,
+				'default'   => 'no',
+				'condition' => array(
+					'enable_carousel!' => 'yes',
+				),
+			)
+		);
+
+		$this->add_responsive_control(
+			'responsive_columns',
+			array(
+				'label'                => esc_html__( 'Columns', 'mas-elementor' ),
+				'type'                 => Controls_Manager::SELECT,
+				'options'              => array(
+					'1' => '1',
+					'2' => '2',
+					'3' => '3',
+					'4' => '4',
+					'5' => '5',
+					'6' => '6',
+					'7' => '7',
+					'8' => '8',
+					'9' => '9',
+					'10' => '10',
+				),
+				'selectors'            => array(
+					'{{WRAPPER}} .mas-grid' => 'grid-template-columns: repeat({{VALUE}}, minmax(0, 1fr))',
+				),
+				'condition'            => array(
+					'enable_carousel!' => 'yes',
+					'enable_responsive_column' => 'yes',
+				),
+			)
+		);
+
 		$this->add_responsive_control(
 			'columns',
 			array(
@@ -289,6 +328,7 @@ class Products extends Products_Base {
 				),
 				'condition'           => array(
 					'enable_carousel!' => 'yes',
+					'enable_responsive_column!' => 'yes',
 				),
 			)
 		);
