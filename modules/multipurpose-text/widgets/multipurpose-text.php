@@ -408,6 +408,21 @@ class Multipurpose_Text extends Base_Widget {
 				)
 			);
 
+			$this->add_control(
+				'underline_offset',
+				array(
+					'label'     => esc_html__( 'Underline Offset', 'mas-elementor' ),
+					'type'      => Controls_Manager::SLIDER,
+					'default'   => array(
+						'size' => 1,
+						'unit' => 'px',
+					),
+					'selectors' => array(
+						'{{WRAPPER}} .mas-elementor-multipurpose-text__title' => 'text-underline-offset: {{SIZE}}{{UNIT}};',
+					),
+				)
+			);
+
 			$this->end_controls_tab();
 
 		$this->end_controls_tabs();
