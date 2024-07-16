@@ -91,6 +91,43 @@ class Module extends Module_Base {
 			)
 		);
 
+		$element->add_responsive_control(
+			'opacity_cart',
+			array(
+				'label'     => esc_html__( 'Icon Opacity', 'mas-elementor' ),
+				'type'      => Controls_Manager::SLIDER,
+				'range'     => array(
+					'px' => array(
+						'max'  => 1,
+						'min'  => 0.10,
+						'step' => 0.01,
+					),
+				),
+				'selectors' => array(
+					'{{WRAPPER}}' => 'opacity: {{SIZE}};',
+				),
+			)
+		);
+
+		$element->add_responsive_control(
+			'opacity_cart_hover',
+			array(
+				'label'     => esc_html__( 'Card Hover Opacity', 'mas-elementor' ),
+				'type'      => Controls_Manager::SLIDER,
+				'range'     => array(
+					'px' => array(
+						'max'  => 1,
+						'min'  => 0.10,
+						'step' => 0.01,
+					),
+				),
+				'selectors' => array(
+					'{{WRAPPER}}:hover' => 'opacity: {{SIZE}} !important;',
+					'.mas-product .elementor > *:hover .elementor-widget-yith_wcwl_add_to_wishlist' => 'opacity: {{SIZE}} !important;',
+				),
+			)
+		);
+
 		$element->add_control(
 			'wishlist_icon_wishlisted_color',
 			array(

@@ -549,3 +549,7 @@
 .mt-auto {
     margin-top: auto;
 }
+
+.mas-icon-transition {
+   transition: 0.3s ease-in-out;
+}
