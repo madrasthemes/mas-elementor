@@ -127,7 +127,7 @@ class Product_Rating extends Base_Widget {
 			)
 		);
 
-		$this->add_control(
+		$this->add_responsive_control(
 			'star_size',
 			array(
 				'label'      => esc_html__( 'Star Size', 'mas-elementor' ),
