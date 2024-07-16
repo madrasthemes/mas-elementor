@@ -71,6 +71,7 @@ final class Modules_Manager {
 			'image',
 			'audio',
 			'blockquote',
+			'add-to-wishlist',
 		);
 
 		foreach ( $modules as $module_name ) {
