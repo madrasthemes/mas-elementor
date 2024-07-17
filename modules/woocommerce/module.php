@@ -99,7 +99,9 @@ class Module extends Module_Base {
 			$widgets[] = 'Header_Cart';
 		}
 
-		$widgets[] = 'Add_To_Compare';
+		if ( function_exists( 'is_yith_woocompare_activated' ) && is_yith_woocompare_activated() ) {
+			$widgets[] = 'Add_To_Compare';
+		}
 
 		return $widgets;
 	}
