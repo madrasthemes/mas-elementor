@@ -183,7 +183,34 @@ class Add_To_Cart extends Widget_Button {
 			)
 		);
 
-		$this->register_button_cart_wrapper_style_controls( '', '{{WRAPPER}} .mas-add-to-cart .elementor-button-wrapper' );
+		$this->register_button_cart_wrapper_style_controls( '', '{{WRAPPER}} .mas-add-to-cart .elementor-button-wrapper', array() );
+
+		$this->end_controls_section();
+
+		$this->start_controls_section(
+			'section_style_content_wrapper',
+			array(
+				'label' => esc_html__( 'Button Content Wrapper', 'mas-elementor' ),
+				'tab'   => Controls_Manager::TAB_STYLE,
+			)
+		);
+
+		$this->add_control(
+			'enable_button_content_flex',
+			array(
+				'label'   => esc_html__( 'Content Wrapper Flex Options', 'mas-elementor' ),
+				'type'    => Controls_Manager::SWITCHER,
+				'default' => 'no',
+			)
+		);
+
+		$this->register_button_cart_wrapper_style_controls(
+			'content_',
+			'{{WRAPPER}} .mas-add-to-cart .elementor-button-content-wrapper',
+			array(
+				'enable_button_content_flex' => 'yes',
+			)
+		);
 
 		$this->end_controls_section();
 
@@ -608,7 +635,7 @@ class Add_To_Cart extends Widget_Button {
 				'default'      => 'no',
 				'return_value' => 'show',
 				'prefix_class' => 'mas-view-cart--icon-',
-				'description' => esc_html__( 'Displays cart icon after clicking near view cart text', 'mas-elementor' ),
+				'description'  => esc_html__( 'Displays cart icon after clicking near view cart text', 'mas-elementor' ),
 			)
 		);
 
@@ -629,7 +656,7 @@ class Add_To_Cart extends Widget_Button {
 				'default'      => 'no',
 				'label_off'    => esc_html__( 'Hide', 'mas-elementor' ),
 				'label_on'     => esc_html__( 'Show', 'mas-elementor' ),
-				'condition'  => array(
+				'condition'    => array(
 					'enable_size_color_options' => 'yes',
 				),
 				'return_value' => 'hide',
@@ -1114,8 +1141,9 @@ class Add_To_Cart extends Widget_Button {
 	 *
 	 * @param string $name Name of the control.
 	 * @param string $wrapper Selectors.
+	 * @param array  $condition Condition.
 	 */
-	protected function register_button_cart_wrapper_style_controls( $name, $wrapper ) {
+	protected function register_button_cart_wrapper_style_controls( $name, $wrapper, $condition ) {
 
 		$start = is_rtl() ? 'right' : 'left';
 		$end   = is_rtl() ? 'left' : 'right';
@@ -1139,6 +1167,7 @@ class Add_To_Cart extends Widget_Button {
 				'selectors' => array(
 					$wrapper => 'display: {{VALUE}};',
 				),
+				'condition' => $condition,
 			)
 		);
 
@@ -1166,6 +1195,7 @@ class Add_To_Cart extends Widget_Button {
 				'selectors'   => array(
 					$wrapper => 'flex-wrap: {{VALUE}};',
 				),
+				'condition'   => $condition,
 			)
 		);
 
@@ -1196,8 +1226,11 @@ class Add_To_Cart extends Widget_Button {
 				'selectors' => array(
 					$wrapper => 'flex-direction:{{VALUE}};',
 				),
-				'condition' => array(
-					'enable_flex' => 'flex',
+				'condition' => array_merge(
+					array(
+						'enable_flex' => 'flex',
+					),
+					$condition
 				),
 				'default'   => 'column',
 			)
@@ -1240,6 +1273,7 @@ class Add_To_Cart extends Widget_Button {
 					$wrapper => 'justify-content: {{VALUE}};',
 				),
 				'default'     => 'center',
+				'condition'   => $condition,
 			)
 		);
 
@@ -1271,6 +1305,7 @@ class Add_To_Cart extends Widget_Button {
 					$wrapper => 'align-items: {{VALUE}};',
 				),
 				'default'   => 'stretch',
+				'condition' => $condition,
 			)
 		);
 
@@ -1301,6 +1336,7 @@ class Add_To_Cart extends Widget_Button {
 				'selectors'  => array(
 					$wrapper => 'gap: {{SIZE}}{{UNIT}};',
 				),
+				'condition'  => $condition,
 			)
 		);
 
