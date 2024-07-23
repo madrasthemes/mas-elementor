@@ -557,3 +557,7 @@
 .mas-transition-none, .mas-transition-none a {
     transition: none !important;
 }
+
+.mas-position-static {
+    position: static !important;
+}
