@@ -255,7 +255,7 @@ class Product_Rating extends Base_Widget {
 		$this->start_controls_section(
 			'product_rating_flex_options',
 			array(
-				'label' => esc_html__( 'Style', 'mas-elementor' ),
+				'label' => esc_html__( 'Flex Options', 'mas-elementor' ),
 				'tab'   => Controls_Manager::TAB_STYLE,
 			)
 		);
