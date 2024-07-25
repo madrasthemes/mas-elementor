@@ -8,7 +8,6 @@
 				button.addEventListener('click', function () {
 					const targetId = this.getAttribute('data-target');
 					const content = document.getElementById(targetId);
-					console.log(content);
 					if (content) {
 					 content.classList.toggle('mas-collapsed');
 					}
@@ -22,7 +21,6 @@
 				button.addEventListener('mouseover', function () {
 					const targetId = this.getAttribute('data-hover');
 					const content = document.getElementById(targetId);
-					console.log(content);
 					if (content) {
 						content.classList.remove('v-hidden');
                         content.classList.add('mas-button-hover-content');
@@ -32,7 +30,6 @@
 				button.addEventListener('mouseout', function () {
 					const targetId = this.getAttribute('data-hover');
 					const content = document.getElementById(targetId);
-					console.log(content);
 					if (content) {
 						content.classList.remove('mas-button-hover-content');
                         content.classList.add('v-hidden');
