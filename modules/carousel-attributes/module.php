@@ -110,6 +110,30 @@ class Module extends Module_Base {
 					),
 				)
 			);
+
+			$element->add_control(
+				'enable_hover',
+				array(
+					'type'         => Controls_Manager::SWITCHER,
+					'label'        => esc_html__( 'Enable Hover', 'mas-elementor' ),
+					'default'      => 'enable',
+					'label_off'    => esc_html__( 'Enable', 'mas-elementor' ),
+					'label_on'     => esc_html__( 'Disable', 'mas-elementor' ),
+					'description'  => esc_html__( 'Should have child element inside this container', 'mas-elementor' ),
+				)
+			);
+
+			$element->add_control(
+				'data_hover',
+				array(
+					'label'       => esc_html__( 'Data Hover Id', 'mas-elementor' ),
+					'type'        => Controls_Manager::TEXT,
+					'default'     => 'content-hover',
+					'condition' => array(
+						'enable_hover' => 'yes',
+					),
+				)
+			);
 		}
 
 		$element->add_control(
@@ -486,6 +510,11 @@ class Module extends Module_Base {
 		}
 		if ( isset( $settings['enable_swiper_slide'] ) && 'yes' === $settings['enable_swiper_slide'] ) {
 			$element->add_render_attribute( '_wrapper', 'class', 'swiper-slide' );
+		}
+
+		if ( isset( $settings['enable_hover'] ) && 'yes' === $settings['enable_hover'] ) {
+			$element->add_render_attribute( '_wrapper', 'class', 'mas-hover-button' );
+			$element->add_render_attribute( '_wrapper', 'data-hover', $settings['data_hover'] );
 		}
 
 		if ( isset( $settings['gap'] ) ) {

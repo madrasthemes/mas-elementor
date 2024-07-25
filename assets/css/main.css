@@ -561,3 +561,14 @@
 .mas-position-static {
     position: static !important;
 }
+
+.v-hidden {
+    visibility: hidden;
+    opacity: 0;
+}
+
+.mas-button-hover-content {
+    visibility: visible;
+    opacity: 1;
+    transition: opacity .1s linear;
+}
