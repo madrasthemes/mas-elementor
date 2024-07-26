@@ -381,6 +381,17 @@ class Multipurpose_Text extends Base_Widget {
 			);
 
 			$this->add_control(
+				'card_hover',
+				array(
+					'label'        => esc_html__( 'Card Hover', 'mas-elementor' ),
+					'type'         => Controls_Manager::SWITCHER,
+					'return_value' => 'enable',
+					'description'  => esc_html__( 'Below title color and typography will work on hovering card on mas-post for products', 'mas-elementor' ),
+					'prefix_class' => 'mas-product-card-hover-',
+				)
+			);
+
+			$this->add_control(
 				'hover_title_color',
 				array(
 					'label'     => esc_html__( 'Title Color', 'mas-elementor' ),
@@ -391,8 +402,8 @@ class Multipurpose_Text extends Base_Widget {
 					'selectors' => array(
 						'{{WRAPPER}}:hover .mas-elementor-multipurpose-text__title' => 'color: {{VALUE}} !important;',
 						'{{WRAPPER}}:hover .mas-elementor-multipurpose-text__title a' => 'color: {{VALUE}} !important;',
-						'.mas-product .elementor > *:hover .elementor-widget-multipurpose-text .mas-elementor-multipurpose-text__title' => 'color: {{VALUE}} !important;',
-						'.mas-product .elementor > *:hover .elementor-widget-multipurpose-text .mas-elementor-multipurpose-text__title a' => 'color: {{VALUE}} !important;',
+						'.mas-product:hover {{WRAPPER}}.mas-product-card-hover-enable .mas-elementor-multipurpose-text__title' => 'color: {{VALUE}} !important;',
+						'.mas-product:hover {{WRAPPER}}.mas-product-card-hover-enable .mas-elementor-multipurpose-text__title a' => 'color: {{VALUE}} !important;',
 					),
 				)
 			);
@@ -401,7 +412,7 @@ class Multipurpose_Text extends Base_Widget {
 				Group_Control_Typography::get_type(),
 				array(
 					'name'     => 'hover_title_typography',
-					'selector' => '{{WRAPPER}}:hover .mas-elementor-multipurpose-text__title, .mas-product .elementor > *:hover .elementor-widget-multipurpose-text .mas-elementor-multipurpose-text__title',
+					'selector' => '{{WRAPPER}}:hover .mas-elementor-multipurpose-text__title, .mas-product:hover {{WRAPPER}}.mas-product-card-hover-enable .mas-elementor-multipurpose-text__title',
 					'global'   => array(
 						'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
 					),
