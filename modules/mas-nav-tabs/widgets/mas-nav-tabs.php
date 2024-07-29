@@ -1366,16 +1366,19 @@ class Mas_Nav_Tabs extends Base_Widget {
 					)
 				);
 
-				$disable_border_color    = $settings['mas_nav_link_border_color'];
-				$disable_border_selector = 'border-left-color:' . $disable_border_color . ';border-right-color:' . $disable_border_color . ';';
+				if ( ! empty( $settings['mas_nav_link_border_color'] ) ) {
 
-				if ( 'yes' === $settings['disable_side_border'] ) {
-					$this->add_render_attribute(
-						'list_link_item' . $count,
-						array(
-							'style' => $disable_border_selector,
-						)
-					);
+					$disable_border_color    = $settings['mas_nav_link_border_color'];
+					$disable_border_selector = 'border-left-color:' . $disable_border_color . ';border-right-color:' . $disable_border_color . ';';
+
+					if ( 'yes' === $settings['disable_side_border'] ) {
+						$this->add_render_attribute(
+							'list_link_item' . $count,
+							array(
+								'style' => $disable_border_selector,
+							)
+						);
+					}
 				}
 
 				if ( 1 === $count ) {
