@@ -489,7 +489,38 @@ class Module extends Module_Base {
 		$element->end_controls_section();
 		$element->end_injection();
 		$this->register_pagination_style_controls( $element );
+		$this->register_mas_swiper_wrapper_style_controls( $element );
 
+	}
+
+	/**
+	 * Register button content controls.
+	 *
+	 * @param array $element Elements.
+	 */
+	public function register_mas_swiper_wrapper_style_controls( $element ) {
+
+		$element->start_controls_section(
+			'section_mas_swiper_wrapper',
+			array(
+				'label' => esc_html__( 'MAS Swiper Wrapper', 'mas-elementor' ),
+				'tab'   => Controls_Manager::TAB_STYLE,
+				'condition' => array(
+					'enable_carousel' => 'yes',
+				),
+			)
+		);
+
+		$element->add_control(
+			'mas_swiper_wrapper_attributes',
+			array(
+				'label'       => esc_html__( 'MAS Swiper wrapper', 'mas-elementor' ),
+				'type'        => Controls_Manager::TEXT,
+				'description' => esc_html__( 'Add the styles to be added to mas-swiper-wrapper', 'mas-elementor' ),
+			)
+		);
+
+		$element->end_controls_section();
 	}
 
 	/**
@@ -529,6 +560,9 @@ class Module extends Module_Base {
 			$element->add_render_attribute( '_wrapper', 'data-swiper-options', $json );
 			$element->add_render_attribute( 'section_carousel', 'class', 'mas-swiper-wrapper elementor-element' );
 			$element->add_render_attribute( 'section_carousel', 'style', 'position: relative;' );
+			if ( ! empty( $settings['mas_swiper_wrapper_attributes'] ) ) {
+				$element->add_render_attribute( 'section_carousel', 'style', $settings['mas_swiper_wrapper_attributes'] );
+			}
 			if ( 'yes' === $settings['enable_thumbs'] && ! empty( $settings['thumb_swiper_widget'] ) ) {
 				$thumbs_json = wp_json_encode( array( 'thumbs_selector' => 'thumb-' . $settings['thumb_swiper_widget'] ) );
 				$element->add_render_attribute( '_wrapper', 'data-thumbs-options', $thumbs_json );
