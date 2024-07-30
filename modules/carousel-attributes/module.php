@@ -134,6 +134,31 @@ class Module extends Module_Base {
 					),
 				)
 			);
+
+			$element->add_control(
+				'enable_thumbs',
+				array(
+					'type'    => Controls_Manager::SWITCHER,
+					'label'   => esc_html__( 'Enable Thumbs', 'mas-elementor' ),
+					'default' => 'no',
+					'condition' => array(
+						'enable_carousel'     => 'yes',
+						'enable_swiper_slide!' => 'yes',
+						'enable_swiper_wrapper!' => 'yes',
+					),
+				)
+			);
+
+			$element->add_control(
+				'thumb_swiper_widget',
+				array(
+					'label'     => esc_html__( 'Thumbs ID', 'mas-elementor' ),
+					'type'      => Controls_Manager::TEXT,
+					'condition' => array(
+						'enable_carousel'    => 'yes',
+					),
+				)
+			);
 		}
 
 		$element->add_control(
@@ -497,10 +522,18 @@ class Module extends Module_Base {
 		$json     = wp_json_encode( $this->get_swiper_carousel_options( $settings, $element ) );
 		$id       = $element->get_id();
 		if ( 'yes' === $settings['enable_carousel'] ) {
+			if ( ! empty( $settings['thumb_swiper_widget'] ) && 'yes' !== $settings['enable_thumbs'] ) {
+				$element->add_render_attribute( '_wrapper', 'data-swiper-widget', 'thumb-' . $settings['thumb_swiper_widget'] );
+			}
 			$element->add_render_attribute( '_wrapper', 'class', 'swiper' );
 			$element->add_render_attribute( '_wrapper', 'data-swiper-options', $json );
 			$element->add_render_attribute( 'section_carousel', 'class', 'mas-swiper-wrapper elementor-element' );
 			$element->add_render_attribute( 'section_carousel', 'style', 'position: relative;' );
+			if ( 'yes' === $settings['enable_thumbs'] && ! empty( $settings['thumb_swiper_widget'] ) ) {
+				$thumbs_json = wp_json_encode( array( 'thumbs_selector' => 'thumb-' . $settings['thumb_swiper_widget'] ) );
+				$element->add_render_attribute( '_wrapper', 'data-thumbs-options', $thumbs_json );
+				$element->add_render_attribute( '_wrapper', 'class', 'mas-js-swiper-thumbs' );
+			}
 			?>
 			<div <?php $element->print_render_attribute_string( 'section_carousel' ); ?>>
 			<?php
