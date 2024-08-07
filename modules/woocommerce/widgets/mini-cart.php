@@ -116,6 +116,14 @@ class Mini_Cart extends Base_Widget {
 			)
 		);
 
+		$this->add_control(
+			'block_css',
+			array(
+				'label' => esc_html__( 'Block CSS', 'mas-elementor' ),
+				'type'  => Controls_Manager::TEXT,
+			)
+		);
+
 		$this->end_controls_section();
 
 		$this->start_controls_section(
@@ -235,6 +243,17 @@ class Mini_Cart extends Base_Widget {
 			}
 		}
 		$rendered_block = render_block( $parsed_blocks[0] );
+
+		// Add a CSS class to the rendered block.
+		$custom_class = ! empty( $settings['block_css'] ) ? $settings['block_css'] : '';
+		if ( ! empty( $custom_class ) ) {
+			$rendered_block = preg_replace(
+				'/(<div[^>]*class="[^"]*)\s*([^"]*)\s*([^"]*)"/',
+				'$1' . esc_attr( $custom_class ) . '$2"',
+				$rendered_block,
+				1
+			);
+		}
 
 		return $rendered_block;
 	}
