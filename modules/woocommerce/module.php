@@ -94,6 +94,7 @@ class Module extends Module_Base {
 			'Product_Categories_Dropdown',
 			'Product_Attributes',
 			'Mini_Cart',
+			'Customer_Account',
 		);
 
 		if ( function_exists( 'electro_header_mini_cart_icon' ) ) {
