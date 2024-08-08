@@ -87,6 +87,20 @@ class Mas_Nav_Tabs extends Base_Widget {
 			)
 		);
 
+		$this->add_control(
+			'tab_hover',
+			array(
+				'label'        => esc_html__( 'Tab Options', 'mas-elementor' ),
+				'type'         => Controls_Manager::SELECT,
+				'default'      => 'click',
+				'options'      => array(
+					'click' => esc_html__( 'Click', 'mas-elementor' ),
+					'hover' => esc_html__( 'Hover', 'mas-elementor' ),
+				),
+				'prefix_class' => 'mas-tab-',
+			)
+		);
+
 		$repeater = new Repeater();
 
 		$repeater->add_control(

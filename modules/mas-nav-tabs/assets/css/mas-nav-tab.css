@@ -45,3 +45,23 @@
     width: 1.25em;
     font-size: var(--e-icon-tab-icon-size);
 }
+
+/* Enable hover effect for the nav-tabs */
+.mas-elementor-nav-tab-li.nav-item > a.mas-nav-link.nav-link {
+    cursor: pointer;
+}
+
+.mas-elementor-nav-tab-li.nav-item > a.mas-nav-link.nav-link:hover + .tab-content > .tab-pane {
+    display: none;
+}
+
+.mas-elementor-nav-tab-li.nav-item:hover > a.mas-nav-link.nav-link[data-bs-toggle="tab"]::after {
+    content: attr(data-bs-target);
+    visibility: visible;
+    display: block;
+    height: auto;
+}
+
+.mas-elementor-nav-tab-li.nav-item:hover > a.mas-nav-link.nav-link[data-bs-toggle="tab"]::after {
+    display: none;
+}

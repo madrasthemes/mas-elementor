@@ -61,6 +61,7 @@ class Module extends Module_Base {
 		$this->add_actions();
 
 		add_action( 'elementor/frontend/before_register_styles', array( $this, 'register_frontend_styles' ) );
+		add_action( 'elementor/frontend/before_register_scripts', array( $this, 'register_frontend_scripts' ) );
 
 	}
 
@@ -73,6 +74,19 @@ class Module extends Module_Base {
 			MAS_ELEMENTOR_MODULES_URL . 'mas-nav-tabs/assets/css/mas-nav-tab.css',
 			array(),
 			MAS_ELEMENTOR_VERSION
+		);
+	}
+
+	/**
+	 * Register frontend script.
+	 */
+	public function register_frontend_scripts() {
+		wp_enqueue_script(
+			'mas-nav-tab-script',
+			MAS_ELEMENTOR_MODULES_URL . 'mas-nav-tabs/assets/js/mas-nav-tab.js',
+			array(),
+			MAS_ELEMENTOR_VERSION,
+			true
 		);
 	}
 }
