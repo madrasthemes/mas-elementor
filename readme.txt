@@ -4,7 +4,7 @@ Tags: posts, products, nav-menu, carousel, tabs, multipurpose text
 Requires at least: 5.0
 Tested up to: 6.4
 Requires PHP: 7.4
-Stable tag: 1.1.2
+Stable tag: 1.1.3
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -67,6 +67,18 @@ All of our online documentation can be found on [our documentation site](https:/
 
 
 == Changelog ==
+
+= 1.1.3 - 2024-07-29 =
+* Feature : Added audio widget
+* Feature : Added post gallery dynamic tag
+* Feature : Added compare widget
+* Feature : Added audio widget
+* Feature : Added carousel inactive arrows hiding option in product widget
+* Feature : Added sale percentage option in dynamic tag
+* Feature : Added audio widget
+* Fix     : Menu Hover and submenu dropdown
+* Fix     : Button wrapper styles in button widget
+* Fix     : Border controls fix in MAS NavTabs
 
 = 1.1.2 - 2024-02-02 =
 * Feature : Elementor 3.19.0 Compatibility
