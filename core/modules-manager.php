@@ -72,6 +72,7 @@ final class Modules_Manager {
 			'audio',
 			'blockquote',
 			'add-to-wishlist',
+			'shortcode',
 		);
 
 		foreach ( $modules as $module_name ) {
