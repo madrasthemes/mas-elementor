@@ -1,37 +1,44 @@
-// Function to show the tab on hover
-document.querySelectorAll('.mas-tab-hover .mas-elementor-nav-tab-li.nav-item').forEach(function(tab) {
-    tab.addEventListener('mouseenter', function() {
-        var link = this.querySelector('.mas-nav-link');
-        var target = link.getAttribute('data-bs-target');
-        var tabContent = document.querySelector(target);
-  
-        // Hide all other tabs
-        document.querySelectorAll('.tab-pane').forEach(function(pane) {
-            pane.classList.remove('active', 'show');
-        });
-  
-        // Show the current tab
-        tabContent.classList.add('active', 'show');
-  
-        // Deactivate other nav links
-        document.querySelectorAll('.mas-nav-link').forEach(function(navLink) {
-            navLink.classList.remove('active');
-        });
-  
-        // Activate the hovered nav link
-        link.classList.add('active');
+const tabHoverContainer = document.querySelector('.mas-tab-hover');
+const tabContentContainer = document.querySelector('.tab-content');
+
+// Add event listener for hovering over tabs
+document.querySelectorAll('.mas-tab-hover .mas-elementor-nav-tab-li').forEach(tab => {
+  tab.addEventListener('mouseenter', function () {
+    const target = this.querySelector('.mas-nav-link').getAttribute('data-bs-target');
+
+    // Deactivate all tabs and hide all tab panes
+    document.querySelectorAll('.mas-tab-hover .mas-nav-link').forEach(link => {
+      link.classList.remove('active');
+      document.querySelector(link.getAttribute('data-bs-target')).classList.remove('active', 'show');
     });
-  
-    // Function to hide the tab when mouse leaves the tab area
-    tab.addEventListener('mouseleave', function() {
-        var link = this.querySelector('.mas-nav-link');
-        var target = link.getAttribute('data-bs-target');
-        var tabContent = document.querySelector(target);
-  
-        // Hide the current tab
-        tabContent.classList.remove('active', 'show');
-  
-        // Deactivate the nav link
-        link.classList.remove('active');
-    });
+
+    // Activate the hovered tab and show its content
+    this.querySelector('.mas-nav-link').classList.add('active');
+    document.querySelector(target).classList.add('active', 'show');
   });
+});
+
+// Event listener to hide content when cursor leaves both containers
+let timeoutId;
+
+function hideTabsContent() {
+  timeoutId = setTimeout(() => {
+    document.querySelectorAll('.mas-tab-hover .mas-nav-link').forEach(link => {
+      link.classList.remove('active');
+      document.querySelector(link.getAttribute('data-bs-target')).classList.remove('active', 'show');
+    });
+  }, 100); // Adjust delay as needed to prevent flickering
+}
+
+function clearHideTimeout() {
+  if (timeoutId) {
+    clearTimeout(timeoutId);
+  }
+}
+
+// Apply the hide and clear functions on mouseleave and mouseenter respectively
+tabHoverContainer.addEventListener('mouseleave', hideTabsContent);
+tabContentContainer.addEventListener('mouseleave', hideTabsContent);
+
+tabHoverContainer.addEventListener('mouseenter', clearHideTimeout);
+tabContentContainer.addEventListener('mouseenter', clearHideTimeout);
