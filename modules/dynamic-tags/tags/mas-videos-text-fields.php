@@ -28,7 +28,7 @@ class Mas_Videos_Text_Fields extends \Elementor\Core\DynamicTags\Tag {
 	 * Get the title.
 	 */
 	public function get_title() {
-		return esc_html__( 'Mas Videos', 'mas-elementor' );
+		return esc_html__( 'MAS Videos', 'mas-elementor' );
 	}
 	/**
 	 * Get the group.
@@ -49,7 +49,7 @@ class Mas_Videos_Text_Fields extends \Elementor\Core\DynamicTags\Tag {
 		$this->add_control(
 			'mas_videos_post_types',
 			array(
-				'label'   => esc_html__( 'Mas Videos Post Types', 'mas-elementor' ),
+				'label'   => esc_html__( 'MAS Videos Post Types', 'mas-elementor' ),
 				'type'    => Controls_Manager::SELECT,
 				'default' => 'movie',
 				'options' => array(

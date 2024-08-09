@@ -1862,7 +1862,7 @@ msgid "Icon Position"
 msgstr ""
 
 #: modules/dynamic-tags/tags/mas-videos-episodes-text-fields.php:31
-msgid "Mas Episodes"
+msgid "MAS Episodes"
 msgstr ""
 
 #: modules/dynamic-tags/tags/mas-videos-episodes-text-fields.php:57
@@ -1897,11 +1897,11 @@ msgid "Date Format"
 msgstr ""
 
 #: modules/dynamic-tags/tags/mas-videos-episodes-url-fields.php:48
-msgid "Mas Episodes URL"
+msgid "MAS Episodes URL"
 msgstr ""
 
 #: modules/dynamic-tags/tags/mas-videos-media-fields.php:43
-msgid "Mas Videos Featured Image"
+msgid "MAS Videos Featured Image"
 msgstr ""
 
 #: modules/dynamic-tags/tags/mas-videos-media-fields.php:155
@@ -1953,11 +1953,11 @@ msgid "Person here shown are in movie crew options and in ordered"
 msgstr ""
 
 #: modules/dynamic-tags/tags/mas-videos-text-fields.php:31
-msgid "Mas Videos"
+msgid "MAS Videos"
 msgstr ""
 
 #: modules/dynamic-tags/tags/mas-videos-text-fields.php:52
-msgid "Mas Videos Post Types"
+msgid "MAS Videos Post Types"
 msgstr ""
 
 #: modules/dynamic-tags/tags/mas-videos-text-fields.php:56
@@ -2013,11 +2013,11 @@ msgid "Character"
 msgstr ""
 
 #: modules/dynamic-tags/tags/mas-videos-tv-shows-episode-url-fields.php:48
-msgid "Mas Tv-Shows Episode URL"
+msgid "MAS Tv-Shows Episode URL"
 msgstr ""
 
 #: modules/dynamic-tags/tags/mas-videos-url-fields.php:48
-msgid "Mas Videos URL"
+msgid "MAS Videos URL"
 msgstr ""
 
 #: modules/dynamic-tags/tags/movie-rating.php:32
@@ -2068,7 +2068,7 @@ msgstr ""
 #: modules/posts/widgets/posts-base.php:2389
 #: modules/woocommerce/widgets/product-related.php:87
 #: modules/woocommerce/widgets/products.php:209
-msgid "Mas Templates"
+msgid "MAS Templates"
 msgstr ""
 
 #: modules/forms/module.php:121
@@ -2842,15 +2842,15 @@ msgid "Enter Delimiter"
 msgstr ""
 
 #: modules/mas-library/documents/mas-post.php:52
-msgid "Mas Post"
+msgid "MAS Post"
 msgstr ""
 
 #: modules/mas-library/documents/mas-post.php:58
-msgid "Mas Posts"
+msgid "MAS Posts"
 msgstr ""
 
 #: modules/mas-library/documents/mas-template.php:57
-msgid "Mas Template"
+msgid "MAS Template"
 msgstr ""
 
 #: modules/mas-library/documents/mas-template.php:95
@@ -2878,7 +2878,7 @@ msgid "This template includes the header, full-width content and footer"
 msgstr ""
 
 #: modules/mas-nav-menu/widgets/mas-nav-menu.php:63
-msgid "Mas Nav Menu"
+msgid "MAS Nav Menu"
 msgstr ""
 
 #: modules/mas-nav-menu/widgets/mas-nav-menu.php:182
@@ -3036,7 +3036,7 @@ msgid "Enable Overflow Scroll"
 msgstr ""
 
 #: modules/mas-related-project/widgets/mas-related-project.php:43
-msgid "Mas Related Project"
+msgid "MAS Related Project"
 msgstr ""
 
 #: modules/mas-related-project/widgets/mas-related-project.php:81
@@ -3520,7 +3520,7 @@ msgid "Select Loop"
 msgstr ""
 
 #: modules/posts/widgets/posts-base.php:2324
-msgid "Mas Select Templates"
+msgid "MAS Select Templates"
 msgstr ""
 
 #: modules/posts/widgets/posts-base.php:2327
@@ -4484,7 +4484,7 @@ msgstr ""
 
 #: templates/classes/config.php:52
 #: templates/scripts/template-modal-header-logo.php:12
-msgid "Mas Elementor Templates"
+msgid "MAS Elementor Templates"
 msgstr ""
 
 #: templates/classes/config.php:128

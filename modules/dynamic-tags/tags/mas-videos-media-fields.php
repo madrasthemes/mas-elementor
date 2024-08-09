@@ -40,7 +40,7 @@ class Mas_Videos_Media_Fields extends \Elementor\Core\DynamicTags\Data_Tag {
 	 * Get post-title tag name.
 	 */
 	public function get_title() {
-		return esc_html__( 'Mas Videos Featured Image', 'mas-elementor' );
+		return esc_html__( 'MAS Videos Featured Image', 'mas-elementor' );
 	}
 	/**
 	 * Get value.

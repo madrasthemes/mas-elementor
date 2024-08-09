@@ -45,7 +45,7 @@ class Mas_Videos_Tv_Shows_Episode_Url_Fields extends Data_Tag {
 	 * Get tag title.
 	 */
 	public function get_title() {
-		return esc_html__( 'Mas Tv-Shows Episode URL', 'mas-elementor' );
+		return esc_html__( 'MAS Tv-Shows Episode URL', 'mas-elementor' );
 	}
 
 	/**

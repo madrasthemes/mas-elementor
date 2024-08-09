@@ -2367,7 +2367,7 @@ abstract class Posts_Base extends Base_Widget {
 
 		if ( ! empty( $post_formats ) && ! empty( $post_formats[0] ) ) {
 			foreach ( $post_formats[0] as $post_format ) {
-				$label = ucfirst( $post_format ) . ' Mas Templates';
+				$label = ucfirst( $post_format ) . ' MAS Post Item';
 				$this->add_control(
 					$post_format . '_select_template',
 					array(
@@ -2399,7 +2399,7 @@ abstract class Posts_Base extends Base_Widget {
 		$this->add_control(
 			'select_template',
 			array(
-				'label'   => esc_html__( 'Mas Templates', 'mas-elementor' ),
+				'label'   => esc_html__( 'MAS Post Item', 'mas-elementor' ),
 				'type'    => Controls_Manager::SELECT,
 				'options' => $templates,
 			)
@@ -2506,7 +2506,7 @@ abstract class Posts_Base extends Base_Widget {
 		$this->add_control(
 			'select_loop_template',
 			array(
-				'label'       => esc_html__( 'Mas Select Templates', 'mas-elementor' ),
+				'label'       => esc_html__( 'MAS Select Templates', 'mas-elementor' ),
 				'type'        => Controls_Manager::SELECT,
 				'options'     => $templates,
 				'description' => esc_html__( 'Select Templates for the above selected posts series', 'mas-elementor' ),
@@ -2571,7 +2571,7 @@ abstract class Posts_Base extends Base_Widget {
 		$this->add_control(
 			'thumb_template',
 			array(
-				'label'     => esc_html__( 'Mas Templates', 'mas-elementor' ),
+				'label'     => esc_html__( 'MAS Post Item', 'mas-elementor' ),
 				'type'      => Controls_Manager::SELECT,
 				'options'   => $templates,
 				'condition' => array(

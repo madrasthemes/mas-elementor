@@ -473,7 +473,7 @@ if ( ! function_exists( 'mas_template_override_options' ) ) {
 
 if ( ! function_exists( 'mas_render_template' ) ) {
 	/**
-	 * Mas Template Render.
+	 * MAS Template Render.
 	 *
 	 * @param array $post_id  post ID.
 	 * @param bool  $echo  echo.
@@ -560,7 +560,7 @@ if ( ! function_exists( 'mas_option_enabled_post_types' ) ) {
 if ( ! function_exists( 'mas_elementor_breadcrumb' ) ) {
 
 	/**
-	 * Output the Mas Breadcrumb.
+	 * Output the MAS Breadcrumb.
 	 *
 	 * @param array $args Arguments.
 	 */

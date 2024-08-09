@@ -60,7 +60,7 @@ class Mas_Nav_Menu extends Base_Widget {
 	 * @return string Widget title.
 	 */
 	public function get_title() {
-		return __( 'Mas Nav Menu', 'mas-elementor' );
+		return __( 'MAS Nav Menu', 'mas-elementor' );
 	}
 
 	/**

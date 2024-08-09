@@ -1,6 +1,6 @@
 <?php
 /**
- * Mas Overflow Controls.
+ * MAS Overflow Controls.
  *
  * @package MASElementor\Modules\MasOverflow
  */

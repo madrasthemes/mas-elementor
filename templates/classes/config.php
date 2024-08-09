@@ -49,7 +49,7 @@ if ( ! class_exists( 'Premium_Templates_Core_Config' ) ) {
 			$base_path = apply_filters('mas_elementor_premium_templates_path', '' );
 			if ( ! empty( $base_path ) ) {
 				$this->config = array(
-					'premium_temps' => esc_html__( 'Mas Elementor Templates', 'mas-elementor' ),
+					'premium_temps' => esc_html__( 'MAS Elementor Templates', 'mas-elementor' ),
 					'key'           => $this->get_license_key(),
 					'status'        => $this->get_license_status(),
 					'license_page'  => $this->get_license_page(),

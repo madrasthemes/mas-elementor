@@ -1,6 +1,6 @@
 <?php
 /**
- * Mas Library.
+ * MAS Library.
  *
  * @package MASElementor\Modules\MasLibrary
  */
@@ -16,7 +16,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Elementor Mas Library module.
+ * Elementor MAS Library module.
  *
  * Elementor MasLibrary module handler class is responsible for registering and
  * managing Elementor MasLibrary modules.

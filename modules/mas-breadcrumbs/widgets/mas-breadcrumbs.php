@@ -1,6 +1,6 @@
 <?php
 /**
- * The Mas Breadcrumb Widget.
+ * The MAS Breadcrumb Widget.
  *
  * @package MASElementor/Modules/MasBreadcrumb/Widgets
  */

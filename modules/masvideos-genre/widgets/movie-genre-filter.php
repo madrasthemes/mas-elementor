@@ -1,6 +1,6 @@
 <?php
 /**
- * The Mas Genre filter.
+ * The MAS Genre filter.
  *
  * @package MASElementor/Modules/MasvideosGenre/Widgets
  */

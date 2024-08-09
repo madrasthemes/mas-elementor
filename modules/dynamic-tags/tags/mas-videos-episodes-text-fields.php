@@ -28,7 +28,7 @@ class Mas_Videos_Episodes_Text_Fields extends \Elementor\Core\DynamicTags\Tag {
 	 * Get the title.
 	 */
 	public function get_title() {
-		return esc_html__( 'Mas Episodes', 'mas-elementor' );
+		return esc_html__( 'MAS Episodes', 'mas-elementor' );
 	}
 	/**
 	 * Get the group.
