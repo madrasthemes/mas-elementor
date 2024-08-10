@@ -465,15 +465,20 @@ class Posts extends Posts_Base {
 		$post_wrapper = 'mas-posts-container mas-posts mas-grid';
 		$this->carousel_loop_header( $settings );
 
-		$default_template     = 'id' === $settings['template_options'] ? 'select_template' : 'slug_select_template';
-		$post_format_template = 'id' === $settings['template_options'] ? '_select_template' : '_slug_select_template';
-		$loop_template        = 'id' === $settings['template_options'] ? 'select_loop_template' : 'select_slug_loop_template';
-
 		// It's the global `wp_query` it self. and the loop was started from the theme.
 		if ( $query->in_the_loop ) {
-
 			// $this->current_permalink = get_permalink();
-			print( mas_render_template( $settings[ $default_template ], false ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+
+			if ( 'slug' === $settings['template_options'] ) {
+				if ( ! empty( $settings['slug_select_template'] ) ) {
+					$default_template = get_page_by_path( $settings['slug_select_template'], OBJECT, 'elementor_library' );
+					if ( ! empty( $default_template->ID ) ) {
+						print( mas_render_template( $default_template->ID, false ) ); //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+					}
+				}
+			} else {
+				print( mas_render_template( $settings['select_template'], false ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			}
 			wp_reset_postdata();
 
 		} else {
@@ -488,21 +493,52 @@ class Posts extends Posts_Base {
 
 				$query->the_post();
 				$this->carousel_slide_loop_start( $settings );
-				$template    = $settings[ $default_template ];
-				$post_format = get_post_format();
-				if ( ! empty( $post_format ) ) {
-					$post_format_setting = $post_format . $post_format_template;
-					if ( ! empty( $settings[ $post_format_setting ] ) ) {
-						$template = $settings[ $post_format_setting ];
+				if ( 'slug' === $settings['template_options'] ) {
+					$template    = get_page_by_path( $settings['slug_select_template'], OBJECT, 'elementor_library' );
+					$template    = $template->ID;
+					$post_format = get_post_format();
+					if ( ! empty( $post_format ) ) {
+						$post_format_setting = $post_format . '_slug_select_template';
+						if ( ! empty( $settings[ $post_format_setting ] ) ) {
+							$template = get_page_by_path( $settings[ $post_format_setting ], OBJECT, 'elementor_library' );
+							$template = $template->ID;
+						}
+					}
+				} else {
+					$template    = $settings['select_template'];
+					$post_format = get_post_format();
+					if ( ! empty( $post_format ) ) {
+						$post_format_setting = $post_format . '_select_template';
+						if ( ! empty( $settings[ $post_format_setting ] ) ) {
+							$template = $settings[ $post_format_setting ];
+						}
 					}
 				}
 
 				// $this->current_permalink = get_permalink();
 				if ( ! empty( $template ) ) {
 					if ( ! empty( $settings['select_loop'] ) && in_array( (string) $count, $settings['select_loop'], true ) ) {
-						print( mas_render_template( $settings[ $loop_template ], false ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+						if ( 'slug' === $settings['template_options'] ) {
+							if ( ! empty( $settings['select_slug_loop_template'] ) ) {
+								$default_template = get_page_by_path( $settings['select_slug_loop_template'], OBJECT, 'elementor_library' );
+								if ( ! empty( $default_template->ID ) ) {
+									print( mas_render_template( $default_template->ID, false ) ); //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+								}
+							}
+						} else {
+							print( mas_render_template( $settings['select_loop_template'], false ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+						}
 					} elseif ( 'yes' === $settings['enable_sticky_loop'] && is_sticky() ) {
-						print( mas_render_template( $settings[ $loop_template ], false ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+						if ( 'slug' === $settings['template_options'] ) {
+							if ( ! empty( $settings['select_slug_loop_template'] ) ) {
+								$default_template = get_page_by_path( $settings['select_slug_loop_template'], OBJECT, 'elementor_library' );
+								if ( ! empty( $default_template->ID ) ) {
+									print( mas_render_template( $default_template->ID, false ) ); //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+								}
+							}
+						} else {
+							print( mas_render_template( $settings['select_loop_template'], false ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+						}
 					} else {
 						print( mas_render_template( $template, false ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 					}
