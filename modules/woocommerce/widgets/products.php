@@ -242,6 +242,19 @@ class Products extends Products_Base {
 			)
 		);
 
+		$this->add_control(
+			'template_options',
+			array(
+				'label'       => __( 'Select Template By', 'mas-elementor' ),
+				'type'        => Controls_Manager::SELECT,
+				'default'     => 'id',
+				'options'     => array(
+					'id' => esc_html__( 'ID', 'mas-elementor' ),
+					'slug'  => esc_html__( 'Slug', 'mas-elementor' ),
+				),
+			)
+		);
+
 		$templates = function_exists( 'mas_template_options' ) ? mas_template_options() : array();
 		$this->add_control(
 			'select_template',
@@ -251,6 +264,21 @@ class Products extends Products_Base {
 				'options'   => $templates,
 				'condition' => array(
 					'_skin' => 'mas-products-skin',
+					'template_options' => 'id',
+				),
+			)
+		);
+
+		$slug_options = function_exists( 'mas_template_slug_options' ) ? mas_template_slug_options() : array();
+		$this->add_control(
+			'slug_select_template',
+			array(
+				'label'     => esc_html__( 'MAS Post Item', 'mas-elementor' ),
+				'type'      => Controls_Manager::SELECT,
+				'options'   => $slug_options,
+				'condition' => array(
+					'_skin' => 'mas-products-skin',
+					'template_options' => 'slug',
 				),
 			)
 		);

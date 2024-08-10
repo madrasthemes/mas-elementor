@@ -201,7 +201,15 @@ abstract class Base_Products_Renderer extends \WC_Shortcode_Products {
 		?>
 		<div class="<?php echo esc_attr( $count_class ); ?>">
 		<?php
-		print( mas_render_template( $settings['select_template'], false ) ); //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		if ( 'id' === $settings['template_options'] ) {
+			print( mas_render_template( $settings['select_template'], false ) ); //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		} else {
+			$template                 = get_page_by_path( $settings['slug_select_template'], OBJECT, 'elementor_library' );
+			if ( ! empty( $template->ID ) ) {
+				print( mas_render_template( $template->ID, false ) ); //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			}
+		}
+
 		?>
 		</div>
 		<?php
