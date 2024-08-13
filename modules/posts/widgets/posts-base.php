@@ -668,10 +668,10 @@ abstract class Posts_Base extends Base_Widget {
 		$this->add_control(
 			'pagination_position_in_out',
 			array(
-				'label'     => esc_html__( 'Pagination Position', 'mas-elementor' ),
-				'type'      => Controls_Manager::SELECT,
-				'default'   => 'out',
-				'options'   => array(
+				'label'   => esc_html__( 'Pagination Position', 'mas-elementor' ),
+				'type'    => Controls_Manager::SELECT,
+				'default' => 'out',
+				'options' => array(
 					'in'  => esc_html__( 'In', 'mas-elementor' ),
 					'out' => esc_html__( 'Out', 'mas-elementor' ),
 				),
@@ -2367,7 +2367,7 @@ abstract class Posts_Base extends Base_Widget {
 
 		if ( ! empty( $post_formats ) && ! empty( $post_formats[0] ) ) {
 			foreach ( $post_formats[0] as $post_format ) {
-				$label = ucfirst( $post_format ) . ' Mas Templates';
+				$label = ucfirst( $post_format ) . ' MAS Post Item';
 				$this->add_control(
 					$post_format . '_select_template',
 					array(
@@ -2376,6 +2376,35 @@ abstract class Posts_Base extends Base_Widget {
 						'options'   => $templates,
 						'condition' => array(
 							'enable_post_format_selection' => 'yes',
+							'template_options'             => 'id',
+						),
+					)
+				);
+			}
+		}
+	}
+
+	/**
+	 * Register Post Format Controls Section.
+	 *
+	 * @param array $templates template in mas post for this widget.
+	 */
+	protected function register_post_format_slug_template_controls( $templates ) {
+
+		$post_formats = get_theme_support( 'post-formats' );
+
+		if ( ! empty( $post_formats ) && ! empty( $post_formats[0] ) ) {
+			foreach ( $post_formats[0] as $post_format ) {
+				$label = ucfirst( $post_format ) . ' MAS Post Item';
+				$this->add_control(
+					$post_format . '_slug_select_template',
+					array(
+						'label'     => $label,
+						'type'      => Controls_Manager::SELECT,
+						'options'   => $templates,
+						'condition' => array(
+							'enable_post_format_selection' => 'yes',
+							'template_options'             => 'slug',
 						),
 					)
 				);
@@ -2395,13 +2424,42 @@ abstract class Posts_Base extends Base_Widget {
 			)
 		);
 
+		$this->add_control(
+			'template_options',
+			array(
+				'label'   => __( 'Select Template By', 'mas-elementor' ),
+				'type'    => Controls_Manager::SELECT,
+				'default' => 'id',
+				'options' => array(
+					'id'   => esc_html__( 'ID', 'mas-elementor' ),
+					'slug' => esc_html__( 'Slug', 'mas-elementor' ),
+				),
+			)
+		);
+
 		$templates = function_exists( 'mas_template_options' ) ? mas_template_options() : array();
 		$this->add_control(
 			'select_template',
 			array(
-				'label'   => esc_html__( 'Mas Templates', 'mas-elementor' ),
-				'type'    => Controls_Manager::SELECT,
-				'options' => $templates,
+				'label'     => esc_html__( 'MAS Post Item', 'mas-elementor' ),
+				'type'      => Controls_Manager::SELECT,
+				'options'   => $templates,
+				'condition' => array(
+					'template_options' => 'id',
+				),
+			)
+		);
+
+		$slug_options = function_exists( 'mas_template_slug_options' ) ? mas_template_slug_options() : array();
+		$this->add_control(
+			'slug_select_template',
+			array(
+				'label'     => esc_html__( 'MAS Post Item', 'mas-elementor' ),
+				'type'      => Controls_Manager::SELECT,
+				'options'   => $slug_options,
+				'condition' => array(
+					'template_options' => 'slug',
+				),
 			)
 		);
 
@@ -2415,6 +2473,8 @@ abstract class Posts_Base extends Base_Widget {
 		);
 
 		$this->register_post_format_template_controls( $templates );
+
+		$this->register_post_format_slug_template_controls( $slug_options );
 
 		$this->add_control(
 			'mas_posts_class',
@@ -2480,7 +2540,25 @@ abstract class Posts_Base extends Base_Widget {
 				'default'   => 'no',
 				'separator' => 'before',
 				'condition' => array(
+					'template_options'              => 'id',
 					'select_template!'              => '',
+					'enable_sticky_loop!'           => 'yes',
+					'enable_post_format_selection!' => 'yes',
+				),
+			)
+		);
+
+		$this->add_control(
+			'enable_slug_loop_selection',
+			array(
+				'type'        => Controls_Manager::SWITCHER,
+				'label'       => esc_html__( 'Enable Loop Selection', 'mas-elementor' ),
+				'description' => esc_html__( 'Enable for Slug', 'mas-elementor' ),
+				'default'     => 'no',
+				'separator'   => 'before',
+				'condition'   => array(
+					'template_options'              => 'slug',
+					'slug_select_template!'         => '',
 					'enable_sticky_loop!'           => 'yes',
 					'enable_post_format_selection!' => 'yes',
 				),
@@ -2493,12 +2571,42 @@ abstract class Posts_Base extends Base_Widget {
 		$this->add_control(
 			'select_loop',
 			array(
-				'label'     => esc_html__( 'Select Loop', 'mas-elementor' ),
-				'type'      => \Elementor\Controls_Manager::SELECT2,
-				'multiple'  => true,
-				'options'   => array() + $loop,
-				'condition' => array(
-					'enable_loop_selection' => 'yes',
+				'label'      => esc_html__( 'Select Loop', 'mas-elementor' ),
+				'type'       => \Elementor\Controls_Manager::SELECT2,
+				'multiple'   => true,
+				'options'    => array() + $loop,
+				'conditions' => array(
+					'relation' => 'or',
+					'terms'    => array(
+						array(
+							'terms' => array(
+								array(
+									'name'     => 'enable_loop_selection',
+									'operator' => '==',
+									'value'    => 'yes',
+								),
+								array(
+									'name'     => 'template_options',
+									'operator' => '==',
+									'value'    => 'id',
+								),
+							),
+						),
+						array(
+							'terms' => array(
+								array(
+									'name'     => 'enable_slug_loop_selection',
+									'operator' => '==',
+									'value'    => 'yes',
+								),
+								array(
+									'name'     => 'template_options',
+									'operator' => '==',
+									'value'    => 'slug',
+								),
+							),
+						),
+					),
 				),
 			)
 		);
@@ -2506,12 +2614,42 @@ abstract class Posts_Base extends Base_Widget {
 		$this->add_control(
 			'select_loop_template',
 			array(
-				'label'       => esc_html__( 'Mas Select Templates', 'mas-elementor' ),
+				'label'       => esc_html__( 'MAS Select Templates', 'mas-elementor' ),
 				'type'        => Controls_Manager::SELECT,
 				'options'     => $templates,
 				'description' => esc_html__( 'Select Templates for the above selected posts series', 'mas-elementor' ),
 				'condition'   => array(
 					'enable_loop_selection' => 'yes',
+					'template_options'      => 'id',
+				),
+				// 'conditions'  => array(
+				// 'relation' => 'or',
+				// 'terms'    => array(
+				// array(
+				// 'name'     => 'enable_loop_selection',
+				// 'operator' => '==',
+				// 'value'    => 'yes',
+				// ),
+				// array(
+				// 'name'     => 'enable_sticky_loop',
+				// 'operator' => '==',
+				// 'value'    => 'yes',
+				// ),
+				// ),
+				// ),
+			)
+		);
+
+		$this->add_control(
+			'select_slug_loop_template',
+			array(
+				'label'       => esc_html__( 'MAS Select Templates', 'mas-elementor' ),
+				'type'        => Controls_Manager::SELECT,
+				'options'     => $slug_options,
+				'description' => esc_html__( 'Select Templates for the slug selected posts series', 'mas-elementor' ),
+				'condition'   => array(
+					'enable_slug_loop_selection' => 'yes',
+					'template_options'           => 'slug',
 				),
 				// 'conditions'  => array(
 				// 'relation' => 'or',
@@ -2571,7 +2709,7 @@ abstract class Posts_Base extends Base_Widget {
 		$this->add_control(
 			'thumb_template',
 			array(
-				'label'     => esc_html__( 'Mas Templates', 'mas-elementor' ),
+				'label'     => esc_html__( 'MAS Post Item', 'mas-elementor' ),
 				'type'      => Controls_Manager::SELECT,
 				'options'   => $templates,
 				'condition' => array(

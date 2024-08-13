@@ -128,6 +128,205 @@ class Product_Rating extends Base_Widget {
 		);
 
 		$this->add_control(
+			'star_position',
+			array(
+				'label'     => esc_html__( 'Star Position', 'mas-elementor' ),
+				'type'      => Controls_Manager::SELECT,
+				'default'   => '',
+				'options'   => array(
+					''         => 'Relative',
+					'absolute' => 'Absolute',
+				),
+				'selectors' => array(
+					'{{WRAPPER}} .star-rating > span' => 'position:{{VALUE}}',
+				),
+			)
+		);
+
+		$left  = esc_html__( 'Left', 'mas-elementor' );
+		$right = esc_html__( 'Right', 'mas-elementor' );
+
+		$start = is_rtl() ? $right : $left;
+		$end   = ! is_rtl() ? $right : $left;
+
+		$wrapper = '{{WRAPPER}} .star-rating:before';
+
+		$this->add_control(
+			'icon_offset_orientation_h',
+			array(
+				'label'       => esc_html__( 'Horizontal Orientation', 'mas-elementor' ),
+				'type'        => Controls_Manager::CHOOSE,
+				'toggle'      => false,
+				'default'     => 'start',
+				'options'     => array(
+					'start' => array(
+						'title' => $start,
+						'icon'  => 'eicon-h-align-left',
+					),
+					'end'   => array(
+						'title' => $end,
+						'icon'  => 'eicon-h-align-right',
+					),
+				),
+				'classes'     => 'elementor-control-start-end',
+				'render_type' => 'ui',
+				'condition'   => array(
+					'star_position' => 'absolute',
+				),
+			)
+		);
+
+		$this->add_responsive_control(
+			'icon_offset_x',
+			array(
+				'label'      => esc_html__( 'Offset', 'mas-elementor' ),
+				'type'       => Controls_Manager::SLIDER,
+				'range'      => array(
+					'px' => array(
+						'min'  => -1000,
+						'max'  => 1000,
+						'step' => 1,
+					),
+					'%'  => array(
+						'min' => -200,
+						'max' => 200,
+					),
+					'vw' => array(
+						'min' => -200,
+						'max' => 200,
+					),
+					'vh' => array(
+						'min' => -200,
+						'max' => 200,
+					),
+				),
+				'default'    => array(
+					'size' => '0',
+				),
+				'size_units' => array( 'px', '%', 'vw', 'vh', 'custom' ),
+				'selectors'  => array(
+					'body:not(.rtl) ' . $wrapper => 'left: {{SIZE}}{{UNIT}} !important',
+					'body.rtl ' . $wrapper       => 'right: {{SIZE}}{{UNIT}} !important',
+				),
+				'condition'  => array(
+					'icon_offset_orientation_h!' => 'end',
+					'star_position' => 'absolute',
+				),
+			)
+		);
+
+		$this->add_responsive_control(
+			'icon_offset_x_end',
+			array(
+				'label'      => esc_html__( 'Offset', 'mas-elementor' ),
+				'type'       => Controls_Manager::SLIDER,
+				'range'      => array(
+					'px' => array(
+						'min'  => -1000,
+						'max'  => 1000,
+						'step' => 0.1,
+					),
+					'%'  => array(
+						'min' => -200,
+						'max' => 200,
+					),
+					'vw' => array(
+						'min' => -200,
+						'max' => 200,
+					),
+					'vh' => array(
+						'min' => -200,
+						'max' => 200,
+					),
+				),
+				'default'    => array(
+					'size' => '0',
+				),
+				'size_units' => array( 'px', '%', 'vw', 'vh', 'custom' ),
+				'selectors'  => array(
+					'body:not(.rtl) ' . $wrapper => 'right: {{SIZE}}{{UNIT}} !important',
+					'body.rtl ' . $wrapper       => 'left: {{SIZE}}{{UNIT}} !important',
+				),
+				'condition'  => array(
+					'icon_offset_orientation_h' => 'end',
+					'star_position' => 'absolute',
+				),
+			)
+		);
+
+		$this->add_responsive_control(
+			'icon_offset_y',
+			array(
+				'label'      => esc_html__( 'Top', 'mas-elementor' ),
+				'type'       => Controls_Manager::SLIDER,
+				'range'      => array(
+					'px' => array(
+						'min' => -1000,
+						'max' => 1000,
+					),
+					'%'  => array(
+						'min' => -200,
+						'max' => 200,
+					),
+					'vh' => array(
+						'min' => -200,
+						'max' => 200,
+					),
+					'vw' => array(
+						'min' => -200,
+						'max' => 200,
+					),
+				),
+				'size_units' => array( 'px', '%', 'em', 'rem', 'vh', 'vw', 'custom' ),
+				'default'    => array(
+					'size' => 0,
+				),
+				'selectors'  => array(
+					$wrapper => 'top: {{SIZE}}{{UNIT}}',
+				),
+				'condition'  => array(
+					'star_position' => 'absolute',
+				),
+			)
+		);
+
+		$this->add_responsive_control(
+			'icon_offset_y_end',
+			array(
+				'label'      => esc_html__( 'Bottom', 'mas-elementor' ),
+				'type'       => Controls_Manager::SLIDER,
+				'range'      => array(
+					'px' => array(
+						'min' => -1000,
+						'max' => 1000,
+					),
+					'%'  => array(
+						'min' => -200,
+						'max' => 200,
+					),
+					'vh' => array(
+						'min' => -200,
+						'max' => 200,
+					),
+					'vw' => array(
+						'min' => -200,
+						'max' => 200,
+					),
+				),
+				'size_units' => array( 'px', '%', 'em', 'rem', 'vh', 'vw', 'custom' ),
+				'default'    => array(
+					'size' => 0,
+				),
+				'selectors'  => array(
+					$wrapper => 'bottom: {{SIZE}}{{UNIT}}',
+				),
+				'condition'  => array(
+					'star_position' => 'absolute',
+				),
+			)
+		);
+
+		$this->add_responsive_control(
 			'star_size',
 			array(
 				'label'      => esc_html__( 'Star Size', 'mas-elementor' ),
@@ -201,6 +400,261 @@ class Product_Rating extends Base_Widget {
 					),
 				),
 				'prefix_class' => 'mas-elementor-product-rating--align-',
+			)
+		);
+
+		$this->add_responsive_control(
+			'icons_margin',
+			array(
+				'label'      => esc_html__( 'Icons Margin', 'mas-elementor' ),
+				'type'       => Controls_Manager::DIMENSIONS,
+				'size_units' => array( 'px', 'em', '%', 'rem' ),
+				'selectors'  => array(
+					'{{WRAPPER}} .star-rating' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				),
+				'separator'  => 'before',
+			)
+		);
+
+		$this->add_control(
+			'hide_review',
+			array(
+				'type'         => Controls_Manager::SWITCHER,
+				'label'        => esc_html__( 'Hide Review', 'mas-elementor' ),
+				'default'      => 'yes',
+				'label_on'     => esc_html__( 'Show', 'mas-elementor' ),
+				'label_off'    => esc_html__( 'Hide', 'mas-elementor' ),
+				'return_value' => 'hide',
+				'prefix_class' => 'mas-product-review-',
+				'description'  => esc_html__( 'Hides the review link', 'mas-elementor' ),
+			)
+		);
+
+		$this->end_controls_section();
+
+		$start = is_rtl() ? 'right' : 'left';
+		$end   = is_rtl() ? 'left' : 'right';
+
+		$this->start_controls_section(
+			'product_rating_flex_options',
+			array(
+				'label' => esc_html__( 'Flex Options', 'mas-elementor' ),
+				'tab'   => Controls_Manager::TAB_STYLE,
+			)
+		);
+
+			$this->add_control(
+				'enable_flex_options',
+				array(
+					'label'       => esc_html__( 'Enable Flex Options', 'mas-elementor' ),
+					'type'        => Controls_Manager::SWITCHER,
+					'default'     => 'no',
+					'description' => esc_html__( 'Rating flex options', 'mas-elementor' ),
+				)
+			);
+
+			$this->add_responsive_control(
+				'rating_enable_flex',
+				array(
+					'label'     => esc_html__( 'Enable Flex', 'mas-elementor' ),
+					'type'      => Controls_Manager::CHOOSE,
+					'options'   => array(
+						'block' => array(
+							'title' => esc_html__( 'Block', 'mas-elementor' ),
+							'icon'  => 'eicon-ban',
+						),
+						'flex'  => array(
+							'title' => esc_html__( 'Flex', 'mas-elementor' ),
+							'icon'  => 'eicon-flex eicon-wrap',
+						),
+					),
+					'default'   => 'flex',
+					'selectors' => array(
+						'{{WRAPPER}} .star-rating > span' => 'display: {{VALUE}};',
+					),
+					'condition' => array(
+						'enable_flex_options' => 'yes',
+					),
+
+				)
+			);
+
+			$this->add_responsive_control(
+				'rating_flex_wrap',
+				array(
+					'label'       => esc_html__( 'Wrap', 'mas-elementor' ),
+					'type'        => Controls_Manager::CHOOSE,
+					'options'     => array(
+						'nowrap' => array(
+							'title' => esc_html__( 'No Wrap', 'mas-elementor' ),
+							'icon'  => 'eicon-flex eicon-nowrap',
+						),
+						'wrap'   => array(
+							'title' => esc_html__( 'Wrap', 'mas-elementor' ),
+							'icon'  => 'eicon-flex eicon-wrap',
+						),
+					),
+					'description' => esc_html_x(
+						'Items within the container can stay in a single line (No wrap), or break into multiple lines (Wrap).',
+						'Flex Container Control',
+						'mas-elementor'
+					),
+					'default'     => 'wrap',
+					'selectors'   => array(
+						'{{WRAPPER}} .star-rating > span' => 'flex-wrap: {{VALUE}};',
+					),
+					'condition'   => array(
+						'enable_flex_options' => 'yes',
+					),
+				)
+			);
+
+		$this->add_responsive_control(
+			'rating_flex_direction',
+			array(
+				'label'     => esc_html__( 'Direction', 'mas-elementor' ),
+				'type'      => Controls_Manager::CHOOSE,
+				'options'   => array(
+					'row'            => array(
+						'title' => esc_html__( 'Row - horizontal', 'mas-elementor' ),
+						'icon'  => 'eicon-arrow-' . $end,
+					),
+					'column'         => array(
+						'title' => esc_html__( 'Column - vertical', 'mas-elementor' ),
+						'icon'  => 'eicon-arrow-down',
+					),
+					'row-reverse'    => array(
+						'title' => esc_html__( 'Row - reversed', 'mas-elementor' ),
+						'icon'  => 'eicon-arrow-' . $start,
+					),
+					'column-reverse' => array(
+						'title' => esc_html__( 'Column - reversed', 'mas-elementor' ),
+						'icon'  => 'eicon-arrow-up',
+					),
+				),
+				'default'   => '',
+				'selectors' => array(
+					'{{WRAPPER}} .star-rating > span' => 'flex-direction:{{VALUE}};',
+				),
+				'condition' => array_merge(
+					array(
+						'enable_flex' => 'flex',
+					),
+					array(
+						'enable_flex_options' => 'yes',
+					),
+				),
+				'default'   => 'column',
+			)
+		);
+
+		$this->add_responsive_control(
+			'rating_justify_content',
+			array(
+				'label'       => esc_html__( 'Justify Content', 'mas-elementor' ),
+				'type'        => Controls_Manager::CHOOSE,
+				'label_block' => true,
+				'default'     => '',
+				'options'     => array(
+					'flex-start'    => array(
+						'title' => esc_html__( 'Start', 'mas-elementor' ),
+						'icon'  => 'eicon-flex eicon-justify-start-h',
+					),
+					'center'        => array(
+						'title' => esc_html__( 'Center', 'mas-elementor' ),
+						'icon'  => 'eicon-flex eicon-justify-center-h',
+					),
+					'flex-end'      => array(
+						'title' => esc_html__( 'End', 'mas-elementor' ),
+						'icon'  => 'eicon-flex eicon-justify-end-h',
+					),
+					'space-between' => array(
+						'title' => esc_html__( 'Space Between', 'mas-elementor' ),
+						'icon'  => 'eicon-flex eicon-justify-space-between-h',
+					),
+					'space-around'  => array(
+						'title' => esc_html__( 'Space Around', 'mas-elementor' ),
+						'icon'  => 'eicon-flex eicon-justify-space-around-h',
+					),
+					'space-evenly'  => array(
+						'title' => esc_html__( 'Space Evenly', 'mas-elementor' ),
+						'icon'  => 'eicon-flex eicon-justify-space-evenly-h',
+					),
+				),
+				'selectors'   => array(
+					'{{WRAPPER}} .star-rating > span' => 'justify-content: {{VALUE}};',
+				),
+				'default'     => 'center',
+				'condition'   => array(
+					'enable_flex_options' => 'yes',
+				),
+			)
+		);
+
+		$this->add_responsive_control(
+			'rating_align_items',
+			array(
+				'label'     => esc_html__( 'Align Items', 'mas-elementor' ),
+				'type'      => Controls_Manager::CHOOSE,
+				'default'   => '',
+				'options'   => array(
+					'flex-start' => array(
+						'title' => esc_html__( 'Start', 'mas-elementor' ),
+						'icon'  => 'eicon-flex eicon-align-start-v',
+					),
+					'center'     => array(
+						'title' => esc_html__( 'Center', 'mas-elementor' ),
+						'icon'  => 'eicon-flex eicon-align-center-v',
+					),
+					'flex-end'   => array(
+						'title' => esc_html__( 'End', 'mas-elementor' ),
+						'icon'  => 'eicon-flex eicon-align-end-v',
+					),
+					'stretch'    => array(
+						'title' => esc_html__( 'Stretch', 'mas-elementor' ),
+						'icon'  => 'eicon-flex eicon-align-stretch-v',
+					),
+				),
+				'selectors' => array(
+					'{{WRAPPER}} .star-rating > span' => 'align-items: {{VALUE}};',
+				),
+				'default'   => 'stretch',
+				'condition' => array(
+					'enable_flex_options' => 'yes',
+				),
+			)
+		);
+
+		$this->add_responsive_control(
+			'rating_gap',
+			array(
+				'label'      => esc_html__( 'Gap', 'mas-elementor' ),
+				'type'       => Controls_Manager::SLIDER,
+				'range'      => array(
+					'px' => array(
+						'min' => 0,
+						'max' => 500,
+					),
+					'%'  => array(
+						'min' => 0,
+						'max' => 100,
+					),
+					'vw' => array(
+						'min' => 0,
+						'max' => 100,
+					),
+					'em' => array(
+						'min' => 0,
+						'max' => 50,
+					),
+				),
+				'size_units' => array( 'px', '%', 'em', 'rem', 'vw', 'custom' ),
+				'selectors'  => array(
+					'{{WRAPPER}} .star-rating > span' => 'gap: {{SIZE}}{{UNIT}};',
+				),
+				'condition'  => array(
+					'enable_flex_options' => 'yes',
+				),
 			)
 		);
 

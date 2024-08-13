@@ -1,6 +1,6 @@
 <?php
 /**
- * The Mas Nav Tab Widget.
+ * The MAS Nav Tab Widget.
  *
  * @package MASElementor/Modules/MasEpisodes/Widgets
  */

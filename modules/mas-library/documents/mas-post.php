@@ -1,6 +1,6 @@
 <?php
 /**
- * Mas library type documents.
+ * MAS library type documents.
  *
  * @package MASElementor\Modules\MasLibrary\documents\mas-post.php
  */
@@ -49,12 +49,12 @@ class Mas_Post extends Library_Document {
 	 * @return string Document title.
 	 */
 	public static function get_title() {
-		return esc_html__( 'Mas Post', 'mas-elementor' );
+		return esc_html__( 'MAS Post Item', 'mas-elementor' );
 	}
 	/**
 	 * Get plural titles.
 	 */
 	public static function get_plural_title() {
-		return __( 'Mas Posts', 'mas-elementor' );
+		return __( 'MAS Post Items', 'mas-elementor' );
 	}
 }

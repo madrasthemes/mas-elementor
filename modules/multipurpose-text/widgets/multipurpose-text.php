@@ -381,6 +381,17 @@ class Multipurpose_Text extends Base_Widget {
 			);
 
 			$this->add_control(
+				'card_hover',
+				array(
+					'label'        => esc_html__( 'Card Hover', 'mas-elementor' ),
+					'type'         => Controls_Manager::SWITCHER,
+					'return_value' => 'enable',
+					'description'  => esc_html__( 'Below title color and typography will work on hovering card on mas-post for products', 'mas-elementor' ),
+					'prefix_class' => 'mas-product-card-hover-',
+				)
+			);
+
+			$this->add_control(
 				'hover_title_color',
 				array(
 					'label'     => esc_html__( 'Title Color', 'mas-elementor' ),
@@ -391,6 +402,8 @@ class Multipurpose_Text extends Base_Widget {
 					'selectors' => array(
 						'{{WRAPPER}}:hover .mas-elementor-multipurpose-text__title' => 'color: {{VALUE}} !important;',
 						'{{WRAPPER}}:hover .mas-elementor-multipurpose-text__title a' => 'color: {{VALUE}} !important;',
+						'.mas-product:hover {{WRAPPER}}.mas-product-card-hover-enable .mas-elementor-multipurpose-text__title' => 'color: {{VALUE}} !important;',
+						'.mas-product:hover {{WRAPPER}}.mas-product-card-hover-enable .mas-elementor-multipurpose-text__title a' => 'color: {{VALUE}} !important;',
 					),
 				)
 			);
@@ -399,9 +412,24 @@ class Multipurpose_Text extends Base_Widget {
 				Group_Control_Typography::get_type(),
 				array(
 					'name'     => 'hover_title_typography',
-					'selector' => '{{WRAPPER}}:hover .mas-elementor-multipurpose-text__title',
+					'selector' => '{{WRAPPER}}:hover .mas-elementor-multipurpose-text__title, .mas-product:hover {{WRAPPER}}.mas-product-card-hover-enable .mas-elementor-multipurpose-text__title',
 					'global'   => array(
 						'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
+					),
+				)
+			);
+
+			$this->add_control(
+				'underline_offset',
+				array(
+					'label'     => esc_html__( 'Underline Offset', 'mas-elementor' ),
+					'type'      => Controls_Manager::SLIDER,
+					'default'   => array(
+						'size' => 1,
+						'unit' => 'px',
+					),
+					'selectors' => array(
+						'{{WRAPPER}} .mas-elementor-multipurpose-text__title' => 'text-underline-offset: {{SIZE}}{{UNIT}};',
 					),
 				)
 			);
@@ -419,6 +447,8 @@ class Multipurpose_Text extends Base_Widget {
 				'separator'   => 'before',
 			)
 		);
+
+		$this->register_webkit_style_controls( 'title', '{{WRAPPER}} .mas-elementor-multipurpose-text__title' );
 
 		$this->end_controls_section();
 
@@ -828,6 +858,71 @@ class Multipurpose_Text extends Base_Widget {
 			)
 		);
 
+	}
+
+	/**
+	 * Register controls for this widget.
+	 *
+	 * @param string $name Control name.
+	 * @param string $wrapper Selectors.
+	 *
+	 * @return void
+	 */
+	protected function register_webkit_style_controls( $name, $wrapper ) {
+		$this->add_responsive_control(
+			$name . '_enable_webkit',
+			array(
+				'label'     => esc_html__( 'Webkit', 'mas-elementor' ),
+				'type'      => Controls_Manager::CHOOSE,
+				'options'   => array(
+					'flex'        => array(
+						'title' => esc_html__( 'Flex', 'mas-elementor' ),
+						'icon'  => 'eicon-flex eicon-wrap',
+					),
+					'-webkit-box' => array(
+						'title' => esc_html__( 'Webkit Box', 'mas-elementor' ),
+						'icon'  => 'eicon-ban',
+					),
+				),
+				'default'   => 'flex',
+				'selectors' => array(
+					$wrapper => 'display: {{VALUE}};',
+				),
+			)
+		);
+
+		$this->add_responsive_control(
+			$name . '_webkit_orient',
+			array(
+				'label'     => esc_html__( 'Webkit Orient', 'mas-elementor' ),
+				'type'      => Controls_Manager::SELECT,
+				'options'   => array(
+					'vertical' => 'Vertical',
+				),
+				'selectors' => array(
+					$wrapper => '-webkit-box-orient: {{VALUE}}; overflow:hidden;',
+				),
+				'condition' => array(
+					$name . '_enable_webkit' => '-webkit-box',
+				),
+			)
+		);
+
+		$this->add_responsive_control(
+			$name . '_webkit_line_clamp',
+			array(
+				'label'       => esc_html__( 'Webkit Line Clamp', 'mas-elementor' ),
+				'type'        => Controls_Manager::NUMBER,
+				'selectors'   => array(
+					$wrapper => '-webkit-line-clamp: {{VALUE}};',
+				),
+				'min'         => 1,
+				'placeholder' => 1,
+				'condition'   => array(
+					$name . '_enable_webkit' => '-webkit-box',
+				),
+			)
+		);
 	}
 
 	/**

@@ -1,6 +1,6 @@
 <?php
 /**
- * The Mas Nav Tab Widget.
+ * The MAS Nav Tab Widget.
  *
  * @package MASElementor/Modules/MasNavTab/Widgets
  */
@@ -84,6 +84,20 @@ class Mas_Nav_Tabs extends Base_Widget {
 			'section_list',
 			array(
 				'label' => esc_html__( 'Nav Tabs List', 'mas-elementor' ),
+			)
+		);
+
+		$this->add_control(
+			'tab_hover',
+			array(
+				'label'        => esc_html__( 'Tab Options', 'mas-elementor' ),
+				'type'         => Controls_Manager::SELECT,
+				'default'      => 'click',
+				'options'      => array(
+					'click' => esc_html__( 'Click', 'mas-elementor' ),
+					'hover' => esc_html__( 'Hover', 'mas-elementor' ),
+				),
+				'prefix_class' => 'mas-tab-',
 			)
 		);
 

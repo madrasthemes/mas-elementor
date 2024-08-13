@@ -242,15 +242,43 @@ class Products extends Products_Base {
 			)
 		);
 
+		$this->add_control(
+			'template_options',
+			array(
+				'label'       => __( 'Select Template By', 'mas-elementor' ),
+				'type'        => Controls_Manager::SELECT,
+				'default'     => 'id',
+				'options'     => array(
+					'id' => esc_html__( 'ID', 'mas-elementor' ),
+					'slug'  => esc_html__( 'Slug', 'mas-elementor' ),
+				),
+			)
+		);
+
 		$templates = function_exists( 'mas_template_options' ) ? mas_template_options() : array();
 		$this->add_control(
 			'select_template',
 			array(
-				'label'     => esc_html__( 'Mas Templates', 'mas-elementor' ),
+				'label'     => esc_html__( 'MAS Post Item', 'mas-elementor' ),
 				'type'      => Controls_Manager::SELECT,
 				'options'   => $templates,
 				'condition' => array(
 					'_skin' => 'mas-products-skin',
+					'template_options' => 'id',
+				),
+			)
+		);
+
+		$slug_options = function_exists( 'mas_template_slug_options' ) ? mas_template_slug_options() : array();
+		$this->add_control(
+			'slug_select_template',
+			array(
+				'label'     => esc_html__( 'MAS Post Item', 'mas-elementor' ),
+				'type'      => Controls_Manager::SELECT,
+				'options'   => $slug_options,
+				'condition' => array(
+					'_skin' => 'mas-products-skin',
+					'template_options' => 'slug',
 				),
 			)
 		);
@@ -261,6 +289,45 @@ class Products extends Products_Base {
 				'type'         => Controls_Manager::HIDDEN,
 				'default'      => 'wc-products',
 				'prefix_class' => 'mas-products-grid mas-elementor-',
+			)
+		);
+
+		$this->add_control(
+			'enable_responsive_column',
+			array(
+				'label'     => __( 'Repeat style column', 'mas-elementor' ),
+				'type'      => Controls_Manager::SWITCHER,
+				'default'   => 'no',
+				'condition' => array(
+					'enable_carousel!' => 'yes',
+				),
+			)
+		);
+
+		$this->add_responsive_control(
+			'responsive_columns',
+			array(
+				'label'                => esc_html__( 'Columns', 'mas-elementor' ),
+				'type'                 => Controls_Manager::SELECT,
+				'options'              => array(
+					'1' => '1',
+					'2' => '2',
+					'3' => '3',
+					'4' => '4',
+					'5' => '5',
+					'6' => '6',
+					'7' => '7',
+					'8' => '8',
+					'9' => '9',
+					'10' => '10',
+				),
+				'selectors'            => array(
+					'{{WRAPPER}} .mas-grid' => 'grid-template-columns: repeat({{VALUE}}, minmax(0, 1fr))',
+				),
+				'condition'            => array(
+					'enable_carousel!' => 'yes',
+					'enable_responsive_column' => 'yes',
+				),
 			)
 		);
 
@@ -289,6 +356,7 @@ class Products extends Products_Base {
 				),
 				'condition'           => array(
 					'enable_carousel!' => 'yes',
+					'enable_responsive_column!' => 'yes',
 				),
 			)
 		);

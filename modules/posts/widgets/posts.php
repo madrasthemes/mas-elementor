@@ -97,18 +97,108 @@ class Posts extends Posts_Base {
 			'select_loop_template',
 			array(
 				'condition'  => array(),
+				// 'conditions' => array(
+				// 'relation' => 'or',
+				// 'terms'    => array(
+				// array(
+				// 'name'     => 'enable_loop_selection',
+				// 'operator' => '==',
+				// 'value'    => 'yes',
+				// ),
+				// array(
+				// 'name'     => 'enable_sticky_loop',
+				// 'operator' => '==',
+				// 'value'    => 'yes',
+				// ),
+				// ),
+				// ),
+
 				'conditions' => array(
 					'relation' => 'or',
 					'terms'    => array(
 						array(
-							'name'     => 'enable_loop_selection',
-							'operator' => '==',
-							'value'    => 'yes',
+							'terms' => array(
+								array(
+									'name'     => 'enable_loop_selection',
+									'operator' => '==',
+									'value'    => 'yes',
+								),
+								array(
+									'name'     => 'template_options',
+									'operator' => '==',
+									'value'    => 'id',
+								),
+							),
 						),
 						array(
-							'name'     => 'enable_sticky_loop',
-							'operator' => '==',
-							'value'    => 'yes',
+							'terms' => array(
+								array(
+									'name'     => 'enable_sticky_loop',
+									'operator' => '==',
+									'value'    => 'yes',
+								),
+								array(
+									'name'     => 'template_options',
+									'operator' => '==',
+									'value'    => 'id',
+								),
+							),
+						),
+					),
+				),
+			)
+		);
+
+		$this->update_control(
+			'select_slug_loop_template',
+			array(
+				'condition'  => array(),
+				// 'conditions' => array(
+				// 'relation' => 'or',
+				// 'terms'    => array(
+				// array(
+				// 'name'     => 'enable_loop_selection',
+				// 'operator' => '==',
+				// 'value'    => 'yes',
+				// ),
+				// array(
+				// 'name'     => 'enable_sticky_loop',
+				// 'operator' => '==',
+				// 'value'    => 'yes',
+				// ),
+				// ),
+				// ),
+
+				'conditions' => array(
+					'relation' => 'or',
+					'terms'    => array(
+						array(
+							'terms' => array(
+								array(
+									'name'     => 'enable_slug_loop_selection',
+									'operator' => '==',
+									'value'    => 'yes',
+								),
+								array(
+									'name'     => 'template_options',
+									'operator' => '==',
+									'value'    => 'slug',
+								),
+							),
+						),
+						array(
+							'terms' => array(
+								array(
+									'name'     => 'enable_sticky_loop',
+									'operator' => '==',
+									'value'    => 'yes',
+								),
+								array(
+									'name'     => 'template_options',
+									'operator' => '==',
+									'value'    => 'slug',
+								),
+							),
 						),
 					),
 				),
@@ -118,20 +208,64 @@ class Posts extends Posts_Base {
 		$this->start_injection(
 			array(
 				'at' => 'after',
-				'of' => 'select_template',
+				'of' => 'slug_select_template',
 			)
 		);
 
 			$this->add_control(
 				'enable_sticky_loop',
 				array(
-					'type'      => Controls_Manager::SWITCHER,
-					'label'     => esc_html__( 'Enable Sticky Template', 'mas-elementor' ),
-					'default'   => 'no',
-					'separator' => 'none',
-					'condition' => array(
-						'select_template!'       => '',
-						'enable_loop_selection!' => 'yes',
+					'type'       => Controls_Manager::SWITCHER,
+					'label'      => esc_html__( 'Enable Sticky Template', 'mas-elementor' ),
+					'default'    => 'no',
+					'separator'  => 'none',
+					// 'condition' => array(
+					// 'select_template!'       => '',
+					// 'enable_loop_selection!' => 'yes',
+					// ),
+
+					'conditions' => array(
+						'relation' => 'or',
+						'terms'    => array(
+							array(
+								'terms' => array(
+									array(
+										'name'     => 'select_template',
+										'operator' => '!=',
+										'value'    => '',
+									),
+									array(
+										'name'     => 'enable_loop_selection',
+										'operator' => '!=',
+										'value'    => 'yes',
+									),
+									array(
+										'name'     => 'template_options',
+										'operator' => '==',
+										'value'    => 'id',
+									),
+								),
+							),
+							array(
+								'terms' => array(
+									array(
+										'name'     => 'slug_select_template',
+										'operator' => '!=',
+										'value'    => '',
+									),
+									array(
+										'name'     => 'enable_slug_loop_selection',
+										'operator' => '!=',
+										'value'    => 'yes',
+									),
+									array(
+										'name'     => 'template_options',
+										'operator' => '==',
+										'value'    => 'slug',
+									),
+								),
+							),
+						),
 					),
 				)
 			);
@@ -333,9 +467,18 @@ class Posts extends Posts_Base {
 
 		// It's the global `wp_query` it self. and the loop was started from the theme.
 		if ( $query->in_the_loop ) {
-
 			// $this->current_permalink = get_permalink();
-			print( mas_render_template( $settings['select_template'], false ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+
+			if ( 'slug' === $settings['template_options'] ) {
+				if ( ! empty( $settings['slug_select_template'] ) ) {
+					$default_template = get_page_by_path( $settings['slug_select_template'], OBJECT, 'elementor_library' );
+					if ( ! empty( $default_template->ID ) ) {
+						print( mas_render_template( $default_template->ID, false ) ); //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+					}
+				}
+			} else {
+				print( mas_render_template( $settings['select_template'], false ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			}
 			wp_reset_postdata();
 
 		} else {
@@ -350,21 +493,52 @@ class Posts extends Posts_Base {
 
 				$query->the_post();
 				$this->carousel_slide_loop_start( $settings );
-				$template    = $settings['select_template'];
-				$post_format = get_post_format();
-				if ( ! empty( $post_format ) ) {
-					$post_format_setting = $post_format . '_select_template';
-					if ( ! empty( $settings[ $post_format_setting ] ) ) {
-						$template = $settings[ $post_format_setting ];
+				if ( 'slug' === $settings['template_options'] ) {
+					$template    = get_page_by_path( $settings['slug_select_template'], OBJECT, 'elementor_library' );
+					$template    = $template->ID;
+					$post_format = get_post_format();
+					if ( ! empty( $post_format ) ) {
+						$post_format_setting = $post_format . '_slug_select_template';
+						if ( ! empty( $settings[ $post_format_setting ] ) ) {
+							$template = get_page_by_path( $settings[ $post_format_setting ], OBJECT, 'elementor_library' );
+							$template = $template->ID;
+						}
+					}
+				} else {
+					$template    = $settings['select_template'];
+					$post_format = get_post_format();
+					if ( ! empty( $post_format ) ) {
+						$post_format_setting = $post_format . '_select_template';
+						if ( ! empty( $settings[ $post_format_setting ] ) ) {
+							$template = $settings[ $post_format_setting ];
+						}
 					}
 				}
 
 				// $this->current_permalink = get_permalink();
 				if ( ! empty( $template ) ) {
 					if ( ! empty( $settings['select_loop'] ) && in_array( (string) $count, $settings['select_loop'], true ) ) {
-						print( mas_render_template( $settings['select_loop_template'], false ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+						if ( 'slug' === $settings['template_options'] ) {
+							if ( ! empty( $settings['select_slug_loop_template'] ) ) {
+								$default_template = get_page_by_path( $settings['select_slug_loop_template'], OBJECT, 'elementor_library' );
+								if ( ! empty( $default_template->ID ) ) {
+									print( mas_render_template( $default_template->ID, false ) ); //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+								}
+							}
+						} else {
+							print( mas_render_template( $settings['select_loop_template'], false ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+						}
 					} elseif ( 'yes' === $settings['enable_sticky_loop'] && is_sticky() ) {
-						print( mas_render_template( $settings['select_loop_template'], false ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+						if ( 'slug' === $settings['template_options'] ) {
+							if ( ! empty( $settings['select_slug_loop_template'] ) ) {
+								$default_template = get_page_by_path( $settings['select_slug_loop_template'], OBJECT, 'elementor_library' );
+								if ( ! empty( $default_template->ID ) ) {
+									print( mas_render_template( $default_template->ID, false ) ); //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+								}
+							}
+						} else {
+							print( mas_render_template( $settings['select_loop_template'], false ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+						}
 					} else {
 						print( mas_render_template( $template, false ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 					}

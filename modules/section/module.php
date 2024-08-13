@@ -50,6 +50,53 @@ class Module extends Module_Base {
 		add_action( 'elementor/element/section/section_advanced/before_section_end', array( $this, 'add_section_controls' ), 10, 2 );
 		add_filter( 'elementor/section/print_template', array( $this, 'print_template' ), 10, 2 );
 
+		add_action( 'elementor/element/container/section_layout/before_section_end', array( $this, 'add_container_controls' ), 10, 2 );
+		add_action( 'elementor/frontend/container/before_render', array( $this, 'container_before_render' ), 5 );
+
+	}
+
+	/**
+	 * Add Section Controls.
+	 *
+	 * @param array $element The widget.
+	 * @param array $args The widget.
+	 * @return void
+	 */
+	public function add_container_controls( $element, $args ) {
+
+		$element->add_control(
+			'mas_nav_tab_id',
+			array(
+				'label'       => esc_html__( 'Nav Tab Id', 'mas-elementor' ),
+				'type'        => Controls_Manager::TEXT,
+				'description' => esc_html__( 'Use for nav tab id', 'mas-elementor' ),
+				'condition' => array(
+					'_element_id' => '',
+				),
+			),
+			array(
+				'position' => array(
+					'at' => 'before',
+					'of' => '_element_id',
+				),
+			)
+		);
+	}
+
+	/**
+	 * Before Render.
+	 *
+	 * @param array $element The widget.
+	 *
+	 * @return void
+	 */
+	public function container_before_render( $element ) {
+
+		$settings        = $element->get_settings();
+		if ( ! empty( $settings['mas_nav_tab_id'] ) && empty( $settings['_element_id'] ) ) {
+			$element->add_render_attribute( '_wrapper', array( 'id' => $settings['mas_nav_tab_id'] ) );
+		}
+
 	}
 
 	/**

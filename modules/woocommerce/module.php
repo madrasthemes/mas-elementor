@@ -93,6 +93,8 @@ class Module extends Module_Base {
 			'Product_Categories',
 			'Product_Categories_Dropdown',
 			'Product_Attributes',
+			'Mini_Cart',
+			'Customer_Account',
 		);
 
 		if ( function_exists( 'electro_header_mini_cart_icon' ) ) {
@@ -102,6 +104,7 @@ class Module extends Module_Base {
 		if ( function_exists( 'is_yith_woocompare_activated' ) && is_yith_woocompare_activated() ) {
 			$widgets[] = 'Add_To_Compare';
 		}
+
 		return $widgets;
 	}
 
@@ -487,6 +490,14 @@ class Module extends Module_Base {
 		wp_register_script(
 			'mas-add-to-compare',
 			MAS_ELEMENTOR_ASSETS_URL . 'js/add-to-compare/add-to-compare.js',
+			array(),
+			MAS_ELEMENTOR_VERSION,
+			true
+		);
+
+		wp_register_script(
+			'mas-add-to-cart',
+			MAS_ELEMENTOR_ASSETS_URL . 'js/add-to-cart/add-to-cart.js',
 			array(),
 			MAS_ELEMENTOR_VERSION,
 			true

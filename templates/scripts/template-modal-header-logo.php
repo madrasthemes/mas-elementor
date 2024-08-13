@@ -6,8 +6,8 @@
 // phpcs:ignoreFile
 ?>
 <span class="mas-premium-template-modal-header-logo-icon">
-	<?php require MAS_ELEMENTOR_ASSETS_PATH . 'templates/images/logo.svg'; ?>
+	<img src="<?php echo esc_url( MAS_ELEMENTOR_ASSETS_URL . 'templates/images/gradient.png' ); ?>" >
 </span>
 <span class="mas-premium-template-modal-header-logo-label">
-	<?php echo esc_html__( 'Mas Elementor Templates', 'mas-elementor' ); ?>
+	<?php echo esc_html__( 'MAS Elementor Templates', 'mas-elementor' ); ?>
 </span>

@@ -84,7 +84,7 @@ class Product_Related extends Products_Base {
 		$this->add_control(
 			'select_template',
 			array(
-				'label'   => esc_html__( 'Mas Templates', 'mas-elementor' ),
+				'label'   => esc_html__( 'MAS Post Item', 'mas-elementor' ),
 				'type'    => Controls_Manager::SELECT,
 				'options' => $templates,
 			)

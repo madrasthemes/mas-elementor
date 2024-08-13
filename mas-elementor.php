@@ -436,6 +436,42 @@ if ( ! function_exists( 'mas_template_options' ) ) {
 	}
 }
 
+if ( ! function_exists( 'mas_template_slug_options' ) ) {
+	/**
+	 * Get local templates.
+	 *
+	 * Retrieve local templates saved by the user on his site.
+	 *
+	 * @param string $template_format  template format.
+	 * @return array Local templates.
+	 */
+	function mas_template_slug_options( $template_format = 'mas-post' ) {
+
+		$mas_template = array();
+		$args         = array(
+			'post_type'              => 'elementor_library',
+			'post_status'            => 'publish',
+			'limit'                  => '-1',
+			'posts_per_page'         => '-1',
+			'elementor_library_type' => $template_format,
+		);
+
+		$mas_templates = get_posts( $args );
+
+		if ( ! empty( $mas_templates ) ) {
+			$options = array( '' => esc_html__( '— None —', 'mas-elementor' ) );
+			foreach ( $mas_templates as $mas_template ) {
+				$template                 = get_page_by_path( $mas_template->post_name, OBJECT, $args['post_type'] );
+				$options[ $template->post_name ] = $mas_template->post_title;
+			}
+		} else {
+			$options = array( '' => esc_html__( 'No Templates Found', 'mas-elementor' ) );
+		}
+
+		return $options;
+	}
+}
+
 if ( ! function_exists( 'mas_template_override_options' ) ) {
 	/**
 	 * Get local templates.
@@ -473,7 +509,7 @@ if ( ! function_exists( 'mas_template_override_options' ) ) {
 
 if ( ! function_exists( 'mas_render_template' ) ) {
 	/**
-	 * Mas Template Render.
+	 * MAS Template Render.
 	 *
 	 * @param array $post_id  post ID.
 	 * @param bool  $echo  echo.
@@ -560,7 +596,7 @@ if ( ! function_exists( 'mas_option_enabled_post_types' ) ) {
 if ( ! function_exists( 'mas_elementor_breadcrumb' ) ) {
 
 	/**
-	 * Output the Mas Breadcrumb.
+	 * Output the MAS Breadcrumb.
 	 *
 	 * @param array $args Arguments.
 	 */

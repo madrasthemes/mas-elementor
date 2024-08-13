@@ -61,7 +61,7 @@
         });
     }
 
-    // Show password visiblity hover icon on Mas forms
+    // Show password visiblity hover icon on MAS forms
     $( '.mas-form-fields-wrapper .password_input[type="password"]' ).wrap( '<span class="password-input"></span>' );
     // Add 'password-input' class to the password wrapper in Login.
     $( '.mas-form-fields-wrapper' ).filter(':password').parent('span').addClass('password-input');

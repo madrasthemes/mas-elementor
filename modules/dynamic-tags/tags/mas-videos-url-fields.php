@@ -45,7 +45,7 @@ class Mas_Videos_Url_Fields extends Data_Tag {
 	 * Get tag title.
 	 */
 	public function get_title() {
-		return esc_html__( 'Mas Videos URL', 'mas-elementor' );
+		return esc_html__( 'MAS Videos URL', 'mas-elementor' );
 	}
 
 	/**

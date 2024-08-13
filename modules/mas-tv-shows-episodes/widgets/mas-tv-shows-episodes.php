@@ -1,6 +1,6 @@
 <?php
 /**
- * The Mas Nav Tab Widget.
+ * The MAS Nav Tab Widget.
  *
  * @package MASElementor/Modules/MasTvShowsEpisodes/Widgets
  */
@@ -105,7 +105,7 @@ class Mas_Tv_Shows_Episodes extends Base_Widget {
 		$this->add_control(
 			'select_template',
 			array(
-				'label'   => esc_html__( 'Mas Templates', 'mas-elementor' ),
+				'label'   => esc_html__( 'MAS Templates', 'mas-elementor' ),
 				'type'    => Controls_Manager::SELECT,
 				'options' => $templates,
 			)

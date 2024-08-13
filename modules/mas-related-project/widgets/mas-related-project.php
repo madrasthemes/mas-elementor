@@ -40,7 +40,7 @@ class Mas_Related_Project extends Base_Widget {
 	 * @return string
 	 */
 	public function get_title() {
-		return esc_html__( 'Mas Related Project', 'mas-elementor' );
+		return esc_html__( 'MAS Related Project', 'mas-elementor' );
 	}
 
 	/**
@@ -86,7 +86,7 @@ class Mas_Related_Project extends Base_Widget {
 		$this->add_control(
 			'select_template',
 			array(
-				'label'   => esc_html__( 'Mas Templates', 'mas-elementor' ),
+				'label'   => esc_html__( 'MAS Post Item', 'mas-elementor' ),
 				'type'    => Controls_Manager::SELECT,
 				'options' => $templates,
 			)

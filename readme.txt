@@ -61,7 +61,7 @@ All of our online documentation can be found on [our documentation site](https:/
 4. Build content using dynamic tags here we add title for template.
 5. Build content using dynamic tags here we add date for template.
 6. Use Posts widgets to display posts, it is displayed in this style by default.
-7. Select the dropdown control Mas Template to display different styles you built in mas-posts
+7. Select the dropdown control MAS Template to display different styles you built in mas-posts
 8. This is the output of the posts widget from the selected template.
 
 
@@ -116,7 +116,7 @@ All of our online documentation can be found on [our documentation site](https:/
 * Feature : Added Cart and Checkout templates override.
 
 = 1.0.8 - 2023-06-19 =
-* Feature : Added Mas Templates.
+* Feature : Added MAS Templates.
 * Feature : Added post content widget.
 
 = 1.0.7 - 2023-02-23 =

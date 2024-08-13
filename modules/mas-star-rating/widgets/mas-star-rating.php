@@ -1,6 +1,6 @@
 <?php
 /**
- * Mas Star Widget.
+ * MAS Star Widget.
  *
  * @package mas-elementor
  */
@@ -25,7 +25,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Mas Star Widget.
+ * MAS Star Widget.
  */
 class MAS_Star_Rating extends Widget_Star_Rating {
 	/**

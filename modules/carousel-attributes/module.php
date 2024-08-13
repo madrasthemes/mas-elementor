@@ -110,6 +110,55 @@ class Module extends Module_Base {
 					),
 				)
 			);
+
+			$element->add_control(
+				'enable_hover',
+				array(
+					'type'        => Controls_Manager::SWITCHER,
+					'label'       => esc_html__( 'Enable Hover', 'mas-elementor' ),
+					'default'     => 'enable',
+					'label_off'   => esc_html__( 'Enable', 'mas-elementor' ),
+					'label_on'    => esc_html__( 'Disable', 'mas-elementor' ),
+					'description' => esc_html__( 'Should have child element inside this container', 'mas-elementor' ),
+				)
+			);
+
+			$element->add_control(
+				'data_hover',
+				array(
+					'label'     => esc_html__( 'Data Hover Id', 'mas-elementor' ),
+					'type'      => Controls_Manager::TEXT,
+					'default'   => 'content-hover',
+					'condition' => array(
+						'enable_hover' => 'yes',
+					),
+				)
+			);
+
+			$element->add_control(
+				'enable_thumbs',
+				array(
+					'type'      => Controls_Manager::SWITCHER,
+					'label'     => esc_html__( 'Enable Thumbs', 'mas-elementor' ),
+					'default'   => 'no',
+					'condition' => array(
+						'enable_carousel'        => 'yes',
+						'enable_swiper_slide!'   => 'yes',
+						'enable_swiper_wrapper!' => 'yes',
+					),
+				)
+			);
+
+			$element->add_control(
+				'thumb_swiper_widget',
+				array(
+					'label'     => esc_html__( 'Thumbs ID', 'mas-elementor' ),
+					'type'      => Controls_Manager::TEXT,
+					'condition' => array(
+						'enable_carousel' => 'yes',
+					),
+				)
+			);
 		}
 
 		$element->add_control(
@@ -138,7 +187,7 @@ class Module extends Module_Base {
 			'type'      => Controls_Manager::NUMBER,
 			'label'     => esc_html__( 'Slides Per View', 'mas-elementor' ),
 			'min'       => 1,
-			'max'       => 10,
+			'max'       => 15,
 			'default'   => 1,
 			'condition' => array(
 				'carousel_effect' => 'slide',
@@ -149,7 +198,7 @@ class Module extends Module_Base {
 			'type'      => Controls_Manager::NUMBER,
 			'label'     => esc_html__( 'Slides To Scroll', 'mas-elementor' ),
 			'min'       => 1,
-			'max'       => 10,
+			'max'       => 15,
 			'default'   => 1,
 			'condition' => array(
 				'carousel_effect' => 'slide',
@@ -440,7 +489,102 @@ class Module extends Module_Base {
 		$element->end_controls_section();
 		$element->end_injection();
 		$this->register_pagination_style_controls( $element );
+		$this->register_mas_swiper_wrapper_style_controls( $element );
+		$this->register_mas_swiper_thumbs_style_controls( $element );
 
+	}
+
+	/**
+	 * Register button content controls.
+	 *
+	 * @param array $element Elements.
+	 */
+	public function register_mas_swiper_wrapper_style_controls( $element ) {
+
+		$element->start_controls_section(
+			'section_mas_swiper_wrapper',
+			array(
+				'label'     => esc_html__( 'MAS Swiper Wrapper', 'mas-elementor' ),
+				'tab'       => Controls_Manager::TAB_STYLE,
+				'condition' => array(
+					'enable_carousel' => 'yes',
+				),
+			)
+		);
+
+		$element->add_control(
+			'mas_swiper_wrapper_attributes',
+			array(
+				'label'       => esc_html__( 'MAS Swiper wrapper', 'mas-elementor' ),
+				'type'        => Controls_Manager::TEXT,
+				'description' => esc_html__( 'Add the styles to be added to mas-swiper-wrapper', 'mas-elementor' ),
+			)
+		);
+
+		$element->end_controls_section();
+	}
+
+	/**
+	 * Register button content controls.
+	 *
+	 * @param array $element Elements.
+	 */
+	public function register_mas_swiper_thumbs_style_controls( $element ) {
+
+		$element->start_controls_section(
+			'section_mas_swiper_thumbs',
+			array(
+				'label'     => esc_html__( 'Thumbs Style', 'mas-elementor' ),
+				'tab'       => Controls_Manager::TAB_STYLE,
+				'condition' => array(
+					'enable_carousel' => 'yes',
+					'enable_thumbs'   => 'yes',
+				),
+			)
+		);
+
+		$element->add_control(
+			'thumbs_opacity',
+			array(
+				'label'     => esc_html__( 'Thumbs Inactive Opacity', 'mas-elementor' ),
+				'type'      => Controls_Manager::SLIDER,
+				'range'     => array(
+					'px' => array(
+						'max'  => 1,
+						'min'  => 0.10,
+						'step' => 0.01,
+					),
+				),
+				'default'   => array(
+					'size' => 0.4,
+				),
+				'selectors' => array(
+					'{{WRAPPER}}.swiper-thumbs .swiper-slide' => 'opacity: {{SIZE}};',
+				),
+			)
+		);
+		$element->add_control(
+			'thumbs_active_opacity',
+			array(
+				'label'     => esc_html__( 'Thumbs active Opacity', 'mas-elementor' ),
+				'type'      => Controls_Manager::SLIDER,
+				'range'     => array(
+					'px' => array(
+						'max'  => 1,
+						'min'  => 0.10,
+						'step' => 0.01,
+					),
+				),
+				'default'   => array(
+					'size' => 1,
+				),
+				'selectors' => array(
+					'{{WRAPPER}}.swiper-thumbs .swiper-slide-thumb-active' => 'opacity: {{SIZE}};',
+				),
+			)
+		);
+
+		$element->end_controls_section();
 	}
 
 	/**
@@ -473,10 +617,21 @@ class Module extends Module_Base {
 		$json     = wp_json_encode( $this->get_swiper_carousel_options( $settings, $element ) );
 		$id       = $element->get_id();
 		if ( 'yes' === $settings['enable_carousel'] ) {
+			if ( ! empty( $settings['thumb_swiper_widget'] ) && 'yes' !== $settings['enable_thumbs'] ) {
+				$element->add_render_attribute( '_wrapper', 'data-swiper-widget', 'thumb-' . $settings['thumb_swiper_widget'] );
+			}
 			$element->add_render_attribute( '_wrapper', 'class', 'swiper' );
 			$element->add_render_attribute( '_wrapper', 'data-swiper-options', $json );
 			$element->add_render_attribute( 'section_carousel', 'class', 'mas-swiper-wrapper elementor-element' );
 			$element->add_render_attribute( 'section_carousel', 'style', 'position: relative;' );
+			if ( ! empty( $settings['mas_swiper_wrapper_attributes'] ) ) {
+				$element->add_render_attribute( 'section_carousel', 'style', $settings['mas_swiper_wrapper_attributes'] );
+			}
+			if ( 'yes' === $settings['enable_thumbs'] && ! empty( $settings['thumb_swiper_widget'] ) ) {
+				$thumbs_json = wp_json_encode( array( 'thumbs_selector' => 'thumb-' . $settings['thumb_swiper_widget'] ) );
+				$element->add_render_attribute( '_wrapper', 'data-thumbs-options', $thumbs_json );
+				$element->add_render_attribute( '_wrapper', 'class', 'mas-js-swiper-thumbs' );
+			}
 			?>
 			<div <?php $element->print_render_attribute_string( 'section_carousel' ); ?>>
 			<?php
@@ -486,6 +641,11 @@ class Module extends Module_Base {
 		}
 		if ( isset( $settings['enable_swiper_slide'] ) && 'yes' === $settings['enable_swiper_slide'] ) {
 			$element->add_render_attribute( '_wrapper', 'class', 'swiper-slide' );
+		}
+
+		if ( isset( $settings['enable_hover'] ) && 'yes' === $settings['enable_hover'] ) {
+			$element->add_render_attribute( '_wrapper', 'class', 'mas-hover-button' );
+			$element->add_render_attribute( '_wrapper', 'data-hover', $settings['data_hover'] );
 		}
 
 		if ( isset( $settings['gap'] ) ) {
@@ -691,7 +851,7 @@ class Module extends Module_Base {
 		}
 
 		if ( 'yes' === $settings['center_slides'] ) {
-			$swiper_settings['centeredSlides'] = true;
+			$swiper_settings['centeredSlides']       = true;
 			$swiper_settings['centeredSlidesBounds'] = true;
 		}
 

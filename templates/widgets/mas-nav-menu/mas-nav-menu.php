@@ -1,6 +1,6 @@
 <?php
 /**
- * Template for displaying Mas Nav Menu widget.
+ * Template for displaying MAS Nav Menu widget.
  *
  * @package MASElementor/Templates
  */

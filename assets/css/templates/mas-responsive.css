@@ -211,3 +211,42 @@
     display: none !important;
 }
 }
+
+
+/* Hide Responsive cart icon in add to cart widget woocommerce */
+
+@media (max-width: ELEMENTOR_SCREEN_MOBILE_MAX) {
+  .mas-cart--icon-mobile-hide .elementor-button-icon {
+      display: none !important;
+}
+}
+@media (min-width: ELEMENTOR_SCREEN_MOBILE_EXTRA_MIN) and (max-width: ELEMENTOR_SCREEN_MOBILE_EXTRA_MAX) {
+.mas-cart--icon-mobile_extra-hide .elementor-button-icon {
+  display: none !important;
+}
+}
+@media (min-width: ELEMENTOR_SCREEN_TABLET_MIN) and (max-width: ELEMENTOR_SCREEN_TABLET_MAX) {
+.mas-cart--icon-tablet-hide .elementor-button-icon {
+    display: none !important;
+}
+}
+@media (min-width: ELEMENTOR_SCREEN_TABLET_EXTRA_MIN) and (max-width: ELEMENTOR_SCREEN_TABLET_EXTRA_MAX) {
+.mas-cart--icon-tablet_extra-hide .elementor-button-icon {
+    display: none !important;
+}
+}
+@media (min-width: ELEMENTOR_SCREEN_LAPTOP_MIN) and (max-width: ELEMENTOR_SCREEN_LAPTOP_MAX) {
+.mas-cart--icon-laptop-hide .elementor-button-icon {
+    display: none !important;
+}
+}
+@media (min-width: ELEMENTOR_SCREEN_DESKTOP_MIN) and (max-width: ELEMENTOR_SCREEN_DESKTOP_MAX) {
+.mas-cart--icon-hide .elementor-button-icon { 
+    display: none !important;
+}
+}
+@media (min-width: ELEMENTOR_SCREEN_WIDESCREEN_MIN) {
+.mas-cart--icon-widescreen-hide .elementor-button-icon {
+    display: none !important;
+}
+}
