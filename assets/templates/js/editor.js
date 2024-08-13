@@ -860,9 +860,9 @@
 		},
 
 		initPremTempsButton: function () {
-
+			console.log(MasPremiumTempsData.imageUrl);
 			var $addNewSection = window.elementor.$previewContents.find('.elementor-add-new-section'),
-				addPremiumTemplate = "<div class='elementor-add-section-area-button bg-gradient-primary mas-premium-template-add-section-btn' title='Add Premium Template'>Mas.</div>",
+				addPremiumTemplate = "<div style='padding:0px;' class='elementor-add-section-area-button  mas-premium-template-add-section-btn' title='Add Premium Template'><img src=" + MasPremiumTempsData.imageUrl +"></div>",
 				$addPremiumTemplate;
 
 			if ($addNewSection.length && MasPremiumTempsData.PremiumTemplatesBtn) {

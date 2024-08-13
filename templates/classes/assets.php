@@ -112,6 +112,7 @@ if ( ! class_exists( 'Premium_Templates_Assets' ) ) {
 							'activateLink' => Templates\premium_templates()->config->get( 'license_page' ),
 							'proMessage'   => Templates\premium_templates()->config->get( 'pro_message' ),
 						),
+						'imageUrl'		   => MAS_ELEMENTOR_ASSETS_URL . 'templates/images/gradient.png',
 					)
 				)
 			);
