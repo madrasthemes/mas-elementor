@@ -143,6 +143,189 @@ class Product_Rating extends Base_Widget {
 			)
 		);
 
+		$left  = esc_html__( 'Left', 'mas-elementor' );
+		$right = esc_html__( 'Right', 'mas-elementor' );
+
+		$start = is_rtl() ? $right : $left;
+		$end   = ! is_rtl() ? $right : $left;
+
+		$wrapper = '{{WRAPPER}} .star-rating:before';
+
+		$this->add_control(
+			'icon_offset_orientation_h',
+			array(
+				'label'       => esc_html__( 'Horizontal Orientation', 'mas-elementor' ),
+				'type'        => Controls_Manager::CHOOSE,
+				'toggle'      => false,
+				'default'     => 'start',
+				'options'     => array(
+					'start' => array(
+						'title' => $start,
+						'icon'  => 'eicon-h-align-left',
+					),
+					'end'   => array(
+						'title' => $end,
+						'icon'  => 'eicon-h-align-right',
+					),
+				),
+				'classes'     => 'elementor-control-start-end',
+				'render_type' => 'ui',
+				'condition'   => array(
+					'star_position' => 'absolute',
+				),
+			)
+		);
+
+		$this->add_responsive_control(
+			'icon_offset_x',
+			array(
+				'label'      => esc_html__( 'Offset', 'mas-elementor' ),
+				'type'       => Controls_Manager::SLIDER,
+				'range'      => array(
+					'px' => array(
+						'min'  => -1000,
+						'max'  => 1000,
+						'step' => 1,
+					),
+					'%'  => array(
+						'min' => -200,
+						'max' => 200,
+					),
+					'vw' => array(
+						'min' => -200,
+						'max' => 200,
+					),
+					'vh' => array(
+						'min' => -200,
+						'max' => 200,
+					),
+				),
+				'default'    => array(
+					'size' => '0',
+				),
+				'size_units' => array( 'px', '%', 'vw', 'vh', 'custom' ),
+				'selectors'  => array(
+					'body:not(.rtl) ' . $wrapper => 'left: {{SIZE}}{{UNIT}} !important',
+					'body.rtl ' . $wrapper       => 'right: {{SIZE}}{{UNIT}} !important',
+				),
+				'condition'  => array(
+					'icon_offset_orientation_h!' => 'end',
+					'star_position' => 'absolute',
+				),
+			)
+		);
+
+		$this->add_responsive_control(
+			'icon_offset_x_end',
+			array(
+				'label'      => esc_html__( 'Offset', 'mas-elementor' ),
+				'type'       => Controls_Manager::SLIDER,
+				'range'      => array(
+					'px' => array(
+						'min'  => -1000,
+						'max'  => 1000,
+						'step' => 0.1,
+					),
+					'%'  => array(
+						'min' => -200,
+						'max' => 200,
+					),
+					'vw' => array(
+						'min' => -200,
+						'max' => 200,
+					),
+					'vh' => array(
+						'min' => -200,
+						'max' => 200,
+					),
+				),
+				'default'    => array(
+					'size' => '0',
+				),
+				'size_units' => array( 'px', '%', 'vw', 'vh', 'custom' ),
+				'selectors'  => array(
+					'body:not(.rtl) ' . $wrapper => 'right: {{SIZE}}{{UNIT}} !important',
+					'body.rtl ' . $wrapper       => 'left: {{SIZE}}{{UNIT}} !important',
+				),
+				'condition'  => array(
+					'icon_offset_orientation_h' => 'end',
+					'star_position' => 'absolute',
+				),
+			)
+		);
+
+		$this->add_responsive_control(
+			'icon_offset_y',
+			array(
+				'label'      => esc_html__( 'Top', 'mas-elementor' ),
+				'type'       => Controls_Manager::SLIDER,
+				'range'      => array(
+					'px' => array(
+						'min' => -1000,
+						'max' => 1000,
+					),
+					'%'  => array(
+						'min' => -200,
+						'max' => 200,
+					),
+					'vh' => array(
+						'min' => -200,
+						'max' => 200,
+					),
+					'vw' => array(
+						'min' => -200,
+						'max' => 200,
+					),
+				),
+				'size_units' => array( 'px', '%', 'em', 'rem', 'vh', 'vw', 'custom' ),
+				'default'    => array(
+					'size' => 0,
+				),
+				'selectors'  => array(
+					$wrapper => 'top: {{SIZE}}{{UNIT}}',
+				),
+				'condition'  => array(
+					'star_position' => 'absolute',
+				),
+			)
+		);
+
+		$this->add_responsive_control(
+			'icon_offset_y_end',
+			array(
+				'label'      => esc_html__( 'Bottom', 'mas-elementor' ),
+				'type'       => Controls_Manager::SLIDER,
+				'range'      => array(
+					'px' => array(
+						'min' => -1000,
+						'max' => 1000,
+					),
+					'%'  => array(
+						'min' => -200,
+						'max' => 200,
+					),
+					'vh' => array(
+						'min' => -200,
+						'max' => 200,
+					),
+					'vw' => array(
+						'min' => -200,
+						'max' => 200,
+					),
+				),
+				'size_units' => array( 'px', '%', 'em', 'rem', 'vh', 'vw', 'custom' ),
+				'default'    => array(
+					'size' => 0,
+				),
+				'selectors'  => array(
+					$wrapper => 'bottom: {{SIZE}}{{UNIT}}',
+				),
+				'condition'  => array(
+					'star_position' => 'absolute',
+				),
+			)
+		);
+
 		$this->add_responsive_control(
 			'star_size',
 			array(
