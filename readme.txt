@@ -68,6 +68,14 @@ All of our online documentation can be found on [our documentation site](https:/
 
 == Changelog ==
 
+= 1.1.4 - 2024-08-19 =
+* Feature : Added icon size control and flex options in product rating widget
+* Feature : Added style option for wishlist button widget
+* Feature : Added line-clamp options in multipurpose text widget
+* Feature : Added mini-cart widget
+* Feature : Added Customer Account widget
+* Tweak   : Updated MAS Import Icon
+
 = 1.1.3 - 2024-07-29 =
 * Feature : Added audio widget
 * Feature : Added post gallery dynamic tag
