@@ -4,7 +4,7 @@ Tags: posts, products, nav-menu, carousel, tabs, multipurpose text
 Requires at least: 5.0
 Tested up to: 6.4
 Requires PHP: 7.4
-Stable tag: 1.1.3
+Stable tag: 1.1.4
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
