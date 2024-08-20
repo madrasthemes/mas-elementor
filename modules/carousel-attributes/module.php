@@ -584,6 +584,14 @@ class Module extends Module_Base {
 			)
 		);
 
+		$element->add_group_control(
+			\Elementor\Group_Control_Background::get_type(),
+			array(
+				'name'     => 'thumbs_active_background',
+				'selector' => '{{WRAPPER}}.swiper-thumbs .swiper-slide-thumb-active > div',
+			)
+		);
+
 		$element->end_controls_section();
 	}
 
