@@ -572,3 +572,13 @@
     opacity: 1;
     transition: opacity .1s linear;
 }
+
+.no-margin-children * {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+  
+.my-0 {
+    margin-top: 0;
+margin-bottom: 0;
+}
