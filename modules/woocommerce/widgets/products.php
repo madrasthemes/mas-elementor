@@ -642,6 +642,24 @@ class Products extends Products_Base {
 			)
 		);
 
+		$this->add_responsive_control(
+			'mas_product_carousel_swiper_width',
+			array(
+				'label'      => esc_html__( 'Swiper Width', 'mas-elementor' ),
+				'type'       => Controls_Manager::SLIDER,
+				'size_units' => array( 'px', '%', 'em', 'rem', 'custom' ),
+				'range'      => array(
+					'%' => array(
+						'min' => 0,
+						'max' => 100,
+					),
+				),
+				'selectors'  => array(
+					'{{WRAPPER}} .swiper' => 'width: {{SIZE}}{{UNIT}} !important;',
+				),
+			)
+		);
+
 		$this->end_controls_section();
 
 		$this->start_controls_section(
