@@ -37,8 +37,11 @@ function clearHideTimeout() {
 }
 
 // Apply the hide and clear functions on mouseleave and mouseenter respectively
-tabHoverContainer.addEventListener('mouseleave', hideTabsContent);
-tabContentContainer.addEventListener('mouseleave', hideTabsContent);
-
-tabHoverContainer.addEventListener('mouseenter', clearHideTimeout);
-tabContentContainer.addEventListener('mouseenter', clearHideTimeout);
+if ( tabHoverContainer ) {
+  tabHoverContainer.addEventListener('mouseleave', hideTabsContent);
+  tabHoverContainer.addEventListener('mouseenter', clearHideTimeout);
+}
+if ( tabContentContainer ) { 
+  tabContentContainer.addEventListener('mouseleave', hideTabsContent);
+  tabContentContainer.addEventListener('mouseenter', clearHideTimeout);
+}
