@@ -1671,7 +1671,7 @@ class Add_To_Cart extends Widget_Button {
 				),
 				'selectors' => array(
 					'{{WRAPPER}} .elementor-button:hover, {{WRAPPER}} .added_to_cart:hover, {{WRAPPER}} .elementor-button:focus, {{WRAPPER}} .added_to_cart:focus, .mas-card-hover .mas-product:hover {{WRAPPER}} .elementor-button, .mas-card-hover .mas-product:hover {{WRAPPER}} .added_to_cart, .mas-card-hover .mas-product:focus {{WRAPPER}} .elementor-button, .mas-card-hover .mas-product:focus {{WRAPPER}} .added_to_cart' => 'border-color: {{VALUE}};',
-					'{{WRAPPER}} .cart button:hover, {{WRAPPER}} .cart button:focus, .mas-card-hover .mas-product:hover {{WRAPPER}} .cart button, .mas-card-hover .mas-product:focus {{WRAPPER}} .cart button:' => 'border-color: {{VALUE}};',
+					'{{WRAPPER}} .cart button:hover, {{WRAPPER}} .cart button:focus, .mas-card-hover .mas-product:hover {{WRAPPER}} .cart button, .mas-card-hover .mas-product:focus {{WRAPPER}} .cart button' => 'border-color: {{VALUE}};',
 				),
 				'condition' => $args['section_condition'],
 			)
@@ -1685,6 +1685,7 @@ class Add_To_Cart extends Widget_Button {
 				'selectors' => array(
 					'{{WRAPPER}} .elementor-button:hover svg, {{WRAPPER}} .cart button:hover svg, .mas-card-hover .mas-product:hover {{WRAPPER}} .elementor-button svg, .mas-card-hover .mas-product:hover {{WRAPPER}} .cart button svg' => 'filter: brightness({{SIZE}});',
 				),
+				'condition' => $args['section_condition'],
 			)
 		);
 
@@ -1700,6 +1701,7 @@ class Add_To_Cart extends Widget_Button {
 				'selectors'  => array(
 					'{{WRAPPER}} .elementor-button:hover, .mas-card-hover .mas-product:hover {{WRAPPER}} .elementor-button' => 'transition-duration: {{SIZE}}{{UNIT}};',
 				),
+				'condition'  => $args['section_condition'],
 			)
 		);
 
@@ -1708,6 +1710,74 @@ class Add_To_Cart extends Widget_Button {
 			array(
 				'label'     => esc_html__( 'Hover Animation', 'mas-elementor' ),
 				'type'      => Controls_Manager::HOVER_ANIMATION,
+				'condition' => $args['section_condition'],
+			)
+		);
+
+		$this->end_controls_tab();
+
+		$this->start_controls_tab(
+			'cart_tab_button_active',
+			array(
+				'label'     => esc_html__( 'Active', 'mas-elementor' ),
+				'condition' => $args['section_condition'],
+			)
+		);
+
+		$this->add_control(
+			'cart_active_color',
+			array(
+				'label'     => esc_html__( 'Text Color', 'mas-elementor' ),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => array(
+					'{{WRAPPER}} .mas-add-to-cart .added_to_cart' => 'color: {{VALUE}};',
+
+					'{{WRAPPER}} .mas-add-to-cart .added_to_cart svg' => 'fill: {{VALUE}};',
+				),
+				'condition' => $args['section_condition'],
+			)
+		);
+
+		$this->add_group_control(
+			Group_Control_Background::get_type(),
+			array(
+				'name'           => 'cart_button_background_active',
+				'label'          => esc_html__( 'Background', 'mas-elementor' ),
+				'types'          => array( 'classic', 'gradient' ),
+				'exclude'        => array( 'image' ),
+				'selector'       => '{{WRAPPER}} .mas-add-to-cart .added_to_cart',
+				'fields_options' => array(
+					'background' => array(
+						'default' => 'classic',
+					),
+				),
+				'condition'      => $args['section_condition'],
+			)
+		);
+
+		$this->add_control(
+			'cart_button_active_border_color',
+			array(
+				'label'     => esc_html__( 'Border Color', 'mas-elementor' ),
+				'type'      => Controls_Manager::COLOR,
+				'condition' => array(
+					'border_border!' => '',
+				),
+				'selectors' => array(
+					'{{WRAPPER}} .mas-add-to-cart .added_to_cart' => 'border-color: {{VALUE}};',
+				),
+				'condition' => $args['section_condition'],
+			)
+		);
+
+		$this->add_control(
+			'active_icon_brightness',
+			array(
+				'label'     => esc_html__( 'Icon Brightness', 'mas-elementor' ),
+				'type'      => Controls_Manager::SLIDER,
+				'selectors' => array(
+					'{{WRAPPER}} .mas-add-to-cart .added_to_cart svg' => 'filter: brightness({{SIZE}}) !important;',
+				),
 				'condition' => $args['section_condition'],
 			)
 		);
