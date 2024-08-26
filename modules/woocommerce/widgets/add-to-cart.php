@@ -1534,12 +1534,17 @@ class Add_To_Cart extends Widget_Button {
 				'label'     => esc_html__( 'Text Color', 'mas-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
-					'{{WRAPPER}} .elementor-button:hover, {{WRAPPER}} .elementor-button:focus' => 'color: {{VALUE}};',
-					'{{WRAPPER}} .elementor-button:hover svg, {{WRAPPER}} .elementor-button:focus svg' => 'fill: {{VALUE}};',
-					'{{WRAPPER}} .cart button:hover, {{WRAPPER}} .cart button:focus' => 'color: {{VALUE}};',
-					'{{WRAPPER}} .cart button:hover svg, {{WRAPPER}} .cart button:focus svg' => 'fill: {{VALUE}};',
-					'{{WRAPPER}} .added_to_cart:hover, {{WRAPPER}} .added_to_cart:focus' => 'color: {{VALUE}};',
-					'{{WRAPPER}} .added_to_cart:hover svg, {{WRAPPER}} .added_to_cart:focus svg' => 'fill: {{VALUE}};',
+					'{{WRAPPER}} .elementor-button:hover, .mas-card-hover .mas-product:hover {{WRAPPER}} .elementor-button, {{WRAPPER}} .elementor-button:focus, .mas-card-hover .mas-product:focus {{WRAPPER}} .elementor-button' => 'color: {{VALUE}};',
+
+					'{{WRAPPER}} .elementor-button:hover svg,  .mas-card-hover .mas-product:hover {{WRAPPER}} .elementor-button svg, {{WRAPPER}} .elementor-button:focus svg, .mas-card-hover .mas-product:focus {{WRAPPER}} .elementor-button svg' => 'fill: {{VALUE}};',
+
+					'{{WRAPPER}} .cart button:hover, .mas-card-hover .mas-product:hover {{WRAPPER}} .cart button , {{WRAPPER}} .cart button:focus, .mas-card-hover .mas-product:focus {{WRAPPER}} .cart button' => 'color: {{VALUE}};',
+
+					'{{WRAPPER}} .cart button:hover svg, .mas-card-hover .mas-product:hover {{WRAPPER}} .cart button svg , {{WRAPPER}} .cart button:focus svg, .mas-card-hover .mas-product:focus {{WRAPPER}} .cart button svg' => 'fill: {{VALUE}};',
+
+					'{{WRAPPER}} .added_to_cart:hover, .mas-card-hover .mas-product:hover {{WRAPPER}} .added_to_cart ,  {{WRAPPER}} .added_to_cart:focus, .mas-card-hover .mas-product:focus {{WRAPPER}} .added_to_cart' => 'color: {{VALUE}};',
+
+					'{{WRAPPER}} .added_to_cart:hover svg, .mas-card-hover .mas-product:hover {{WRAPPER}} .added_to_cart svg, {{WRAPPER}} .added_to_cart:focus svg, .mas-card-hover .mas-product:focus {{WRAPPER}} .added_to_cart: svg' => 'fill: {{VALUE}};',
 				),
 				'condition' => $args['section_condition'],
 			)
@@ -1552,7 +1557,7 @@ class Add_To_Cart extends Widget_Button {
 				'label'          => esc_html__( 'Background', 'mas-elementor' ),
 				'types'          => array( 'classic', 'gradient' ),
 				'exclude'        => array( 'image' ),
-				'selector'       => '{{WRAPPER}} .elementor-button:hover,{{WRAPPER}} .added_to_cart:hover, {{WRAPPER}} .elementor-button:focus,{{WRAPPER}} .added_to_cart:focus, {{WRAPPER}} .cart button:hover, {{WRAPPER}} .cart button:focus',
+				'selector'       => '{{WRAPPER}} .elementor-button:hover,{{WRAPPER}} .added_to_cart:hover, {{WRAPPER}} .elementor-button:focus,{{WRAPPER}} .added_to_cart:focus, {{WRAPPER}} .cart button:hover, {{WRAPPER}} .cart button:focus, .mas-card-hover .mas-product:hover {{WRAPPER}} .elementor-button, .mas-card-hover .mas-product:hover {{WRAPPER}} .added_to_cart, .mas-card-hover .mas-product:focus {{WRAPPER}} .elementor-button,.mas-card-hover .mas-product:focus {{WRAPPER}} .added_to_cart, .mas-card-hover .mas-product:hover {{WRAPPER}} .cart button, .mas-card-hover .mas-product:focus {{WRAPPER}} .cart button',
 				'fields_options' => array(
 					'background' => array(
 						'default' => 'classic',
@@ -1571,8 +1576,8 @@ class Add_To_Cart extends Widget_Button {
 					'border_border!' => '',
 				),
 				'selectors' => array(
-					'{{WRAPPER}} .elementor-button:hover, {{WRAPPER}} .added_to_cart:hover, {{WRAPPER}} .elementor-button:focus, {{WRAPPER}} .added_to_cart:focus' => 'border-color: {{VALUE}};',
-					'{{WRAPPER}} .cart button:hover, {{WRAPPER}} .cart button:focus' => 'border-color: {{VALUE}};',
+					'{{WRAPPER}} .elementor-button:hover, {{WRAPPER}} .added_to_cart:hover, {{WRAPPER}} .elementor-button:focus, {{WRAPPER}} .added_to_cart:focus, .mas-card-hover .mas-product:hover {{WRAPPER}} .elementor-button, .mas-card-hover .mas-product:hover {{WRAPPER}} .added_to_cart, .mas-card-hover .mas-product:focus {{WRAPPER}} .elementor-button, .mas-card-hover .mas-product:focus {{WRAPPER}} .added_to_cart' => 'border-color: {{VALUE}};',
+					'{{WRAPPER}} .cart button:hover, {{WRAPPER}} .cart button:focus, .mas-card-hover .mas-product:hover {{WRAPPER}} .cart button, .mas-card-hover .mas-product:focus {{WRAPPER}} .cart button:' => 'border-color: {{VALUE}};',
 				),
 				'condition' => $args['section_condition'],
 			)

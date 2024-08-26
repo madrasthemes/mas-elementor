@@ -643,6 +643,18 @@ class Products extends Products_Base {
 		);
 
 		$this->add_responsive_control(
+			'mas_product_slide_padding_option',
+			array(
+				'label'      => esc_html__( 'Swiper Slide Padding', 'mas-elementor' ),
+				'type'       => Controls_Manager::DIMENSIONS,
+				'size_units' => array( 'px', 'em', '%', 'rem' ),
+				'selectors'  => array(
+					'{{WRAPPER}} .swiper-slide' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				),
+			)
+		);
+
+		$this->add_responsive_control(
 			'mas_product_carousel_swiper_width',
 			array(
 				'label'      => esc_html__( 'Swiper Width', 'mas-elementor' ),
