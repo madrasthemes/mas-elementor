@@ -27,6 +27,12 @@
 
                 // Add the elementor-button class to the .added_to_cart link
                 addedToCartLink.addClass('elementor-button');
+
+                if (button.hasClass('stretched-link')) {
+                    addedToCartLink.addClass('stretched-link');
+                 }
+
+                $('.added_to_cart ~ .cart-count').text(addedToCartText);
             }
         });
     });

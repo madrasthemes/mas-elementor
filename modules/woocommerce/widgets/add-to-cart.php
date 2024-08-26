@@ -349,6 +349,47 @@ class Add_To_Cart extends Widget_Button {
 				),
 			)
 		);
+
+		$this->start_controls_section(
+			'section_style_cart_count',
+			array(
+				'label'     => esc_html__( 'Cart Count Text', 'mas-elementor' ),
+				'tab'       => Controls_Manager::TAB_STYLE,
+				'condition' => array(
+					'enable_hover_transition' => 'yes',
+				),
+			)
+		);
+
+		$this->add_group_control(
+			Group_Control_Typography::get_type(),
+			array(
+				'name'     => 'cart_count_typography',
+				'selector' => '{{WRAPPER}} .cart-count',
+			)
+		);
+
+		$this->add_control(
+			'cart_count_color',
+			array(
+				'label'     => __( 'Color', 'mas-elementor' ),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => array(
+					'{{WRAPPER}} .cart-count' => 'color: {{VALUE}}',
+				),
+			)
+		);
+
+		$this->add_control(
+			'enable_stretched_link',
+			array(
+				'type'    => Controls_Manager::SWITCHER,
+				'label'   => esc_html__( 'Stretched Link', 'mas-elementor' ),
+				'default' => 'no',
+			)
+		);
+
+		$this->end_controls_section();
 	}
 
 	/**
@@ -636,6 +677,18 @@ class Add_To_Cart extends Widget_Button {
 				'return_value' => 'show',
 				'prefix_class' => 'mas-view-cart--icon-',
 				'description'  => esc_html__( 'Displays cart icon after clicking near view cart text', 'mas-elementor' ),
+			)
+		);
+
+		$this->add_control(
+			'hide_view_cart_text',
+			array(
+				'type'         => Controls_Manager::SWITCHER,
+				'label'        => esc_html__( 'Hide View Cart Text', 'mas-elementor' ),
+				'default'      => 'no',
+				'return_value' => 'hide',
+				'prefix_class' => 'mas-view-cart--text-',
+				'description'  => esc_html__( 'Hide view cart Text', 'mas-elementor' ),
 			)
 		);
 
@@ -1366,6 +1419,47 @@ class Add_To_Cart extends Widget_Button {
 			)
 		);
 
+		$this->add_control(
+			'enable_hover_transition',
+			array(
+				'label'       => esc_html__( 'Enable Transition Text', 'mas-elementor' ),
+				'type'        => Controls_Manager::SWITCHER,
+				'description' => esc_html__( 'Show Cart Count Transition Text', 'mas-elementor' ),
+				'default'     => 'no',
+			)
+		);
+
+		$this->add_control(
+			'cart_count_prefix',
+			array(
+				'label'       => esc_html__( 'Prefix', 'mas-elementor' ),
+				'type'        => Controls_Manager::TEXT,
+				'description' => esc_html__( 'Show Cart Count Prefix', 'mas-elementor' ),
+				'dynamic'     => array(
+					'active' => true,
+				),
+				'condition'   => array(
+					'enable_hover_transition' => 'yes',
+				),
+			)
+		);
+
+		$this->add_control(
+			'cart_count_suffix',
+			array(
+				'label'       => esc_html__( 'Suffix', 'mas-elementor' ),
+				'type'        => Controls_Manager::TEXT,
+				'default'     => ' in cart',
+				'description' => esc_html__( 'Show Cart Count Suffix', 'mas-elementor' ),
+				'dynamic'     => array(
+					'active' => true,
+				),
+				'condition'   => array(
+					'enable_hover_transition' => 'yes',
+				),
+			)
+		);
+
 		$this->add_responsive_control(
 			'hide_button_text',
 			array(
@@ -1734,6 +1828,21 @@ class Add_To_Cart extends Widget_Button {
 	}
 
 	/**
+	 * Get the number of items in the cart for a given product id.
+	 *
+	 * @param number $product_id The product id.
+	 * @return number The number of items in the cart.
+	 */
+	private function get_cart_item_quantities_by_product_id( $product_id ) {
+		if ( ! isset( WC()->cart ) ) {
+			return 0;
+		}
+
+		$cart = WC()->cart->get_cart_item_quantities();
+		return isset( $cart[ $product_id ] ) ? $cart[ $product_id ] : 0;
+	}
+
+	/**
 	 * Render Ajax Button.
 	 *
 	 * @param \WC_Product $product product.
@@ -1741,6 +1850,8 @@ class Add_To_Cart extends Widget_Button {
 	private function render_ajax_button( $product ) {
 		$settings       = $this->get_settings_for_display();
 		$product_values = array();
+
+		$cart_count = '';
 
 		if ( $product ) {
 			if ( version_compare( WC()->version, '3.0.0', '>=' ) ) {
@@ -1775,12 +1886,19 @@ class Add_To_Cart extends Widget_Button {
 				)
 			);
 
+			$cart_count = $this->get_cart_item_quantities_by_product_id( $product->get_id() );
+
+			if ( empty( $cart_count ) ) {
+				$cart_count = $product->add_to_cart_text();
+			} else {
+				$cart_count = $settings['cart_count_prefix'] . $cart_count . $settings['cart_count_suffix'];
+			}
 		} elseif ( current_user_can( 'manage_options' ) ) {
 			$settings['text'] = esc_html__( 'Please set a valid product', 'mas-elementor' );
 			$this->set_settings( $settings );
 		}
 
-		$this->render_button( $product_values );
+		$this->render_button( $product_values, $this, $cart_count );
 	}
 
 		/**
@@ -1790,8 +1908,9 @@ class Add_To_Cart extends Widget_Button {
 		 *
 		 * @param array                       $product_values product values.
 		 * @param \Elementor\Widget_Base|null $instance instance.
+		 * @param string                      $cart_count cart count.
 		 */
-	protected function render_button( $product_values = array(), Widget_Base $instance = null ) {
+	protected function render_button( $product_values = array(), Widget_Base $instance = null, $cart_count = '' ) {
 		if ( empty( $instance ) ) {
 			$instance = $this;
 		}
@@ -1801,6 +1920,10 @@ class Add_To_Cart extends Widget_Button {
 		$instance->add_render_attribute( 'wrapper', 'class', 'elementor-button-wrapper' );
 
 		$instance->add_render_attribute( 'button', 'class', 'elementor-button' );
+
+		if ( 'yes' === $settings['enable_stretched_link'] ) {
+			$instance->add_render_attribute( 'button', 'class', 'stretched-link' );
+		}
 
 		if ( ! empty( $settings['link']['url'] ) ) {
 			$instance->add_link_attributes( 'button', $settings['link'] );
@@ -1820,11 +1943,19 @@ class Add_To_Cart extends Widget_Button {
 		if ( ! empty( $settings['hover_animation'] ) ) {
 			$instance->add_render_attribute( 'button', 'class', 'elementor-animation-' . $settings['hover_animation'] );
 		}
+
+		$instance->add_render_attribute( 'cart_count', 'class', 'cart-count' );
+		if ( 'yes' === $settings['enable_stretched_link'] ) {
+			$instance->add_render_attribute( 'cart_count', 'class', 'mas-position-static' );
+		}
 		?>
 		<div <?php $instance->print_render_attribute_string( 'wrapper' ); ?>>
 			<a <?php $instance->print_render_attribute_string( 'button' ); ?>>
 				<?php $this->render_text( $instance, $product_values ); ?>
 			</a>
+			<?php if ( 'yes' === $settings['enable_hover_transition'] ) : ?>
+			<span <?php $instance->print_render_attribute_string( 'cart_count' ); ?>><?php echo esc_html( $cart_count ); ?></span>
+			<?php endif; ?>
 		</div>
 		<?php
 	}
