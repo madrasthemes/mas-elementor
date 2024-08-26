@@ -1584,6 +1584,32 @@ class Add_To_Cart extends Widget_Button {
 		);
 
 		$this->add_control(
+			'icon_brightness',
+			array(
+				'label'     => esc_html__( 'Icon Brightness', 'mas-elementor' ),
+				'type'      => Controls_Manager::SLIDER,
+				'selectors' => array(
+					'{{WRAPPER}} .elementor-button:hover svg, {{WRAPPER}} .cart button:hover svg, .mas-card-hover .mas-product:hover {{WRAPPER}} .elementor-button svg, .mas-card-hover .mas-product:hover {{WRAPPER}} .cart button svg' => 'filter: brightness({{SIZE}});',
+				),
+			)
+		);
+
+		$this->add_control(
+			'icon_transition_duration',
+			array(
+				'label'      => esc_html__( 'Transition Duration', 'mas-elementor' ),
+				'type'       => Controls_Manager::SLIDER,
+				'size_units' => array( 's', 'ms', 'custom' ),
+				'default'    => array(
+					'unit' => 's',
+				),
+				'selectors'  => array(
+					'{{WRAPPER}} .elementor-button:hover, .mas-card-hover .mas-product:hover {{WRAPPER}} .elementor-button' => 'transition-duration: {{SIZE}}{{UNIT}};',
+				),
+			)
+		);
+
+		$this->add_control(
 			'cart_hover_animation',
 			array(
 				'label'     => esc_html__( 'Hover Animation', 'mas-elementor' ),
