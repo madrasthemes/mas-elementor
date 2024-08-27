@@ -1254,6 +1254,8 @@ class Products extends Products_Base {
 
 		$this->register_button_style_controls( $this, $args );
 
+		$this->register_swiper_arrow_spacing_controls( $this, $args );
+
 		$this->start_controls_section(
 			'section_shop_control_bar__style',
 			array(
