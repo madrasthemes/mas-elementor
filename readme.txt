@@ -68,7 +68,7 @@ All of our online documentation can be found on [our documentation site](https:/
 
 == Changelog ==
 
-= 1.1.4 - 2024-08-19 =
+= 1.1.4 - 2024-08-20 =
 * Feature : Added icon size control and flex options in product rating widget
 * Feature : Added style option for wishlist button widget
 * Feature : Added line-clamp options in multipurpose text widget

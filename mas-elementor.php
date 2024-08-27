@@ -12,7 +12,7 @@ use Elementor\plugin;
  * Description: More power to your Elementor powered website with beautifully designed sections, templates, widgets, skins and extensions.
  * Plugin URI: https://github.com/madrasthemes/mas-elementor
  * Author: MadrasThemes
- * Version: 1.1.3
+ * Version: 1.1.4
  * Elementor tested up to: 3.19.0
  * Author URI: https://madrasthemes.com/
  *
