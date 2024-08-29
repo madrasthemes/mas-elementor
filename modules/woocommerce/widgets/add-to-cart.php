@@ -1612,6 +1612,18 @@ class Add_To_Cart extends Widget_Button {
 			)
 		);
 
+		$this->add_control(
+			'icon_normal_brightness',
+			array(
+				'label'     => esc_html__( 'Icon Brightness', 'mas-elementor' ),
+				'type'      => Controls_Manager::SLIDER,
+				'selectors' => array(
+					'{{WRAPPER}} .elementor-button svg, {{WRAPPER}} .cart button svg, .mas-card-hover .mas-product {{WRAPPER}} .elementor-button svg, .mas-card-hover .mas-product {{WRAPPER}} .cart button svg' => 'filter: brightness({{SIZE}});',
+				),
+				'condition' => $args['section_condition'],
+			)
+		);
+
 		$this->end_controls_tab();
 
 		$this->start_controls_tab(
