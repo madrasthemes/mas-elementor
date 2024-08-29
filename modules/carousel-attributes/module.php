@@ -521,6 +521,15 @@ class Module extends Module_Base {
 			)
 		);
 
+		$element->add_control(
+			'mas_swiper_css_classes',
+			array(
+				'label'       => esc_html__( 'MAS Swiper CSS Class', 'mas-elementor' ),
+				'type'        => Controls_Manager::TEXT,
+				'description' => esc_html__( 'Add the class to be added to mas-swiper-wrapper', 'mas-elementor' ),
+			)
+		);
+
 		$element->end_controls_section();
 	}
 
@@ -631,6 +640,9 @@ class Module extends Module_Base {
 			$element->add_render_attribute( '_wrapper', 'class', 'swiper' );
 			$element->add_render_attribute( '_wrapper', 'data-swiper-options', $json );
 			$element->add_render_attribute( 'section_carousel', 'class', 'mas-swiper-wrapper elementor-element' );
+			if ( ! empty( $settings['mas_swiper_css_classes'] ) ) {
+				$element->add_render_attribute( 'section_carousel', 'class', $settings['mas_swiper_css_classes'] );
+			}
 			$element->add_render_attribute( 'section_carousel', 'style', 'position: relative;' );
 			if ( ! empty( $settings['mas_swiper_wrapper_attributes'] ) ) {
 				$element->add_render_attribute( 'section_carousel', 'style', $settings['mas_swiper_wrapper_attributes'] );
@@ -897,6 +909,7 @@ class Module extends Module_Base {
 		add_action( 'elementor/frontend/container/after_render', array( $this, 'after_render_section' ), 15 );
 		add_action( 'elementor/element/container/section_layout_container/after_section_end', array( $this, 'register_button_layout_controls' ) );
 		add_action( 'elementor/element/container/swiper_section_navigation/after_section_end', array( $this, 'register_button_style_controls' ) );
+		add_action( 'elementor/element/container/swiper_section_navigation/after_section_end', array( $this, 'register_swiper_arrow_spacing_controls' ) );
 	}
 
 	/**
