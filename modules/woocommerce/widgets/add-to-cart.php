@@ -703,6 +703,21 @@ class Add_To_Cart extends Widget_Button {
 		);
 
 		$this->add_responsive_control(
+			'cart_icon_svg_padding',
+			array(
+				'label'      => esc_html__( 'Padding', 'mas-elementor' ),
+				'type'       => Controls_Manager::DIMENSIONS,
+				'size_units' => array( 'px', '%', 'em', 'rem', 'custom' ),
+				'selectors'  => array(
+					'{{WRAPPER}} .mas-add-to-cart .elementor-button-icon svg' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				),
+				'condition'    => array(
+					'enable_size_color_options' => 'yes',
+				),
+			)
+		);
+
+		$this->add_responsive_control(
 			'hide_cart_icon',
 			array(
 				'type'         => Controls_Manager::SWITCHER,
