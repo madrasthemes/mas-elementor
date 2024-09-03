@@ -812,44 +812,90 @@ class Add_To_Cart extends Widget_Button {
 			)
 		);
 
-		$this->add_control(
-			'icon_background_color',
+		$this->start_controls_tabs(
+			'cart_tabs_icon_style',
 			array(
-				'label'     => esc_html__( 'Background Color', 'mas-elementor' ),
-				'type'      => Controls_Manager::COLOR,
-				'selectors' => array(
-					$wrapper => 'background-color: {{VALUE}};',
-				),
 				'condition' => array(
 					'enable_size_color_options' => 'yes',
 				),
 			)
 		);
 
-		$this->add_control(
-			'icon_hover_background_color',
-			array(
-				'label'     => esc_html__( 'Hover Background Color', 'mas-elementor' ),
-				'type'      => Controls_Manager::COLOR,
-				'selectors' => array(
-					$hover_wrapper => 'background-color: {{VALUE}};',
-				),
-				'condition' => array(
-					'enable_size_color_options' => 'yes',
-				),
-			)
-		);
+			$this->start_controls_tab(
+				'cart_tab_icon_normal',
+				array(
+					'label'     => esc_html__( 'Normal', 'mas-elementor' ),
+					'condition' => array(
+						'enable_size_color_options' => 'yes',
+					),
+				)
+			);
 
-		$this->add_group_control(
-			\Elementor\Group_Control_Border::get_type(),
-			array(
-				'name'      => 'cart_icon_border',
-				'selector'  => $wrapper,
-				'condition' => array(
-					'enable_size_color_options' => 'yes',
-				),
-			)
-		);
+				$this->add_control(
+					'icon_background_color',
+					array(
+						'label'     => esc_html__( 'Background Color', 'mas-elementor' ),
+						'type'      => Controls_Manager::COLOR,
+						'selectors' => array(
+							$wrapper => 'background-color: {{VALUE}};',
+						),
+						'condition' => array(
+							'enable_size_color_options' => 'yes',
+						),
+					)
+				);
+
+				$this->add_group_control(
+					\Elementor\Group_Control_Border::get_type(),
+					array(
+						'name'      => 'cart_icon_border',
+						'selector'  => $wrapper,
+						'condition' => array(
+							'enable_size_color_options' => 'yes',
+						),
+					)
+				);
+
+			$this->end_controls_tab();
+
+			$this->start_controls_tab(
+				'cart_tab_icon_hover',
+				array(
+					'label'     => esc_html__( 'Hover', 'mas-elementor' ),
+					'condition' => array(
+						'enable_size_color_options' => 'yes',
+					),
+				)
+			);
+
+			$this->add_control(
+				'icon_hover_background_color',
+				array(
+					'label'     => esc_html__( 'Hover Background Color', 'mas-elementor' ),
+					'type'      => Controls_Manager::COLOR,
+					'selectors' => array(
+						$hover_wrapper => 'background-color: {{VALUE}};',
+					),
+					'condition' => array(
+						'enable_size_color_options' => 'yes',
+					),
+				)
+			);
+
+			$this->add_group_control(
+				\Elementor\Group_Control_Border::get_type(),
+				array(
+					'name'      => 'cart_icon_border_hover',
+					'selector'  => $hover_wrapper,
+					'condition' => array(
+						'enable_size_color_options' => 'yes',
+					),
+				)
+			);
+
+			$this->end_controls_tab();
+
+		$this->end_controls_tabs();
 
 		$this->add_control(
 			'cart_icon_border_radius',
