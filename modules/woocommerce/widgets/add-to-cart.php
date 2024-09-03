@@ -751,6 +751,35 @@ class Add_To_Cart extends Widget_Button {
 		);
 
 		$this->add_control(
+			'icon_height',
+			array(
+				'label'      => esc_html__( 'Icon Height', 'mas-elementor' ),
+				'type'       => Controls_Manager::SLIDER,
+				'size_units' => array( '%', 'px', 'vw' ),
+				'range'      => array(
+					'%'  => array(
+						'min' => 1,
+						'max' => 100,
+					),
+					'px' => array(
+						'min' => 1,
+						'max' => 1000,
+					),
+					'vw' => array(
+						'min' => 1,
+						'max' => 100,
+					),
+				),
+				'selectors'  => array(
+					$wrapper => 'height: {{SIZE}}{{UNIT}}',
+				),
+				'condition'  => array(
+					'enable_size_color_options' => 'yes',
+				),
+			)
+		);
+
+		$this->add_control(
 			'icon_font_size',
 			array(
 				'label'      => esc_html__( 'Font Size', 'mas-elementor' ),
