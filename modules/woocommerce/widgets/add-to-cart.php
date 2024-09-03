@@ -666,7 +666,7 @@ class Add_To_Cart extends Widget_Button {
 	 */
 	protected function register_button_icon_style_controls() {
 		$wrapper       = '{{WRAPPER}} .mas-add-to-cart .elementor-button-icon';
-		$hover_wrapper = '{{WRAPPER}} .mas-add-to-cart a:hover .elementor-button-icon';
+		$hover_wrapper = '{{WRAPPER}} .mas-add-to-cart a:hover .elementor-button-icon, .mas-card-hover .mas-product:hover {{WRAPPER}} .mas-add-to-cart a .elementor-button-icon';
 		$active_wrapper = '{{WRAPPER}} .mas-add-to-cart .added_to_cart .elementor-button-icon';
 
 		$this->add_control(
