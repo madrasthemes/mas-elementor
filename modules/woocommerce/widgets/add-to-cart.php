@@ -667,6 +667,7 @@ class Add_To_Cart extends Widget_Button {
 	protected function register_button_icon_style_controls() {
 		$wrapper       = '{{WRAPPER}} .mas-add-to-cart .elementor-button-icon';
 		$hover_wrapper = '{{WRAPPER}} .mas-add-to-cart a:hover .elementor-button-icon';
+		$active_wrapper = '{{WRAPPER}} .mas-add-to-cart .added_to_cart .elementor-button-icon';
 
 		$this->add_control(
 			'show_view_cart_icon',
@@ -892,6 +893,43 @@ class Add_To_Cart extends Widget_Button {
 					),
 				)
 			);
+
+			$this->end_controls_tab();
+
+			$this->start_controls_tab(
+				'cart_tab_icon_active',
+				array(
+					'label'     => esc_html__( 'Active', 'mas-elementor' ),
+					'condition' => array(
+						'enable_size_color_options' => 'yes',
+					),
+				)
+			);
+
+				$this->add_control(
+					'icon_background_color_active',
+					array(
+						'label'     => esc_html__( 'Background Color', 'mas-elementor' ),
+						'type'      => Controls_Manager::COLOR,
+						'selectors' => array(
+							$active_wrapper => 'background-color: {{VALUE}};',
+						),
+						'condition' => array(
+							'enable_size_color_options' => 'yes',
+						),
+					)
+				);
+
+				$this->add_group_control(
+					\Elementor\Group_Control_Border::get_type(),
+					array(
+						'name'      => 'cart_icon_border_active',
+						'selector'  => $active_wrapper,
+						'condition' => array(
+							'enable_size_color_options' => 'yes',
+						),
+					)
+				);
 
 			$this->end_controls_tab();
 
