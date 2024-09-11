@@ -291,7 +291,7 @@ class Mas_Nav_Menu extends Base_Widget {
 			array(
 				'label'          => esc_html__( 'Space Between', 'mas-elementor' ),
 				'type'           => Controls_Manager::SLIDER,
-				'size_units'     => array( 'px' ),
+				'size_units' => array( 'px', '%', 'em', 'rem', 'custom' ),
 				'range'          => array(
 					'px' => array(
 						'max' => 150,
@@ -310,7 +310,7 @@ class Mas_Nav_Menu extends Base_Widget {
 					'unit' => 'px',
 				),
 				'selectors'      => array(
-					'{{WRAPPER}} .mas-elementor-nav-menu>li' => 'padding-right: {{SIZE}}px;',
+					'{{WRAPPER}} .mas-elementor-nav-menu>li' => 'padding-right: {{SIZE}}{{UNIT}};',
 					'{{WRAPPER}} .mas-elementor-nav-menu>li:last-child' => 'padding-right: 0px;',
 				),
 				'condition'      => array(
@@ -450,7 +450,7 @@ class Mas_Nav_Menu extends Base_Widget {
 				'global'         => array(
 					'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
 				),
-				'selector'       => '{{WRAPPER}} .sub-menu .menu-item a, {{WRAPPER}} .dropdown-menu .menu-item a',
+				'selector'       => '{{WRAPPER}} .sub-menu .menu-item a, {{WRAPPER}} .dropdown-menu .menu-item a, {{WRAPPER}} .mas-elementor-nav-menu .dropdown-menu .menu-item .nav-link',
 				'fields_options' => array(
 					'typography'  => array( 'default' => 'yes' ),
 					// Inner control name.

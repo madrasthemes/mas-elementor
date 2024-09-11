@@ -255,7 +255,18 @@ trait Button_Widget_Trait {
 					'{{WRAPPER}} ' . $args['button_concat'] . ' .mas-swiper-arrows .swiper-button-prev' => 'left:{{SIZE}}{{UNIT}} !important;',
 					'{{WRAPPER}} ' . $args['button_concat'] . ' .mas-swiper-arrows .swiper-button-next' => 'right:{{SIZE}}{{UNIT}} !important;',
 				),
-				'condition'       => $args['section_condition'],
+				'condition'       => array_merge( $args['section_condition'], array( 'enable_individual_arrow_spacing!' => 'yes' ) ),
+			)
+		);
+
+		$element->add_control(
+			'enable_individual_arrow_spacing',
+			array(
+				'type'      => Controls_Manager::SWITCHER,
+				'label'     => esc_html__( 'Individual Arrow Spacing', 'mas-elementor' ),
+				'label_off' => esc_html__( 'Enable', 'mas-elementor' ),
+				'label_on'  => esc_html__( 'Disable', 'mas-elementor' ),
+				'condition' => $args['section_condition'],
 			)
 		);
 
@@ -280,6 +291,142 @@ trait Button_Widget_Trait {
 				'condition'   => $args['section_condition'],
 			)
 		);
+	}
+
+	/**
+	 * Register Swiper Arrow Spacing controls.
+	 *
+	 * @param array $element Elementor.
+	 * @param array $args arguments for controls.
+	 */
+	public function register_swiper_arrow_spacing_controls( $element, $args = array( 'button_concat' => '~' ) ) {
+
+		$default_args = array(
+			'section_condition' => array(),
+			'button_concat'     => '~',
+		);
+
+		$args = array_merge( $default_args, $args );
+
+		$element->start_controls_section(
+			'mas__swiper_arrow_spacing',
+			array(
+				'label'     => esc_html__( 'Swiper Arrows Spacing', 'mas-elementor' ),
+				'tab'       => Controls_Manager::TAB_STYLE,
+				'condition' => array(
+					'enable_carousel'                 => 'yes',
+					'show_arrows'                     => 'yes',
+					'enable_individual_arrow_spacing' => 'yes',
+				),
+			)
+		);
+
+		$element->add_responsive_control(
+			'swiper_prev_arrows_start_spacing',
+			array(
+				'type'       => Controls_Manager::SLIDER,
+				'label'      => esc_html__( 'Previous Arrow Start Spacing', 'mas-elementor' ),
+				'size_units' => array( 'px', 'em', '%', 'rem' ),
+				'selectors'  => array(
+					'{{WRAPPER}} ' . $args['button_concat'] . ' .mas-swiper-arrows .swiper-button-prev' => 'left:{{SIZE}}{{UNIT}} !important;',
+				),
+				'condition'  => $args['section_condition'],
+			)
+		);
+
+		$element->add_responsive_control(
+			'swiper_prev_arrows_end_spacing',
+			array(
+				'type'       => Controls_Manager::SLIDER,
+				'label'      => esc_html__( 'Previous Arrow End Spacing', 'mas-elementor' ),
+				'size_units' => array( 'px', 'em', '%', 'rem' ),
+				'selectors'  => array(
+					'{{WRAPPER}} ' . $args['button_concat'] . ' .mas-swiper-arrows .swiper-button-prev' => 'right:{{SIZE}}{{UNIT}} !important;',
+				),
+				'condition'  => $args['section_condition'],
+			)
+		);
+
+		$element->add_responsive_control(
+			'swiper_prev_arrows_top_spacing',
+			array(
+				'type'       => Controls_Manager::SLIDER,
+				'label'      => esc_html__( 'Previous Arrow Top Spacing', 'mas-elementor' ),
+				'size_units' => array( 'px', 'em', '%', 'rem' ),
+				'selectors'  => array(
+					'{{WRAPPER}} ' . $args['button_concat'] . ' .mas-swiper-arrows .swiper-button-prev' => 'top:{{SIZE}}{{UNIT}} !important;',
+				),
+				'condition'  => $args['section_condition'],
+			)
+		);
+
+		$element->add_responsive_control(
+			'swiper_prev_arrows_bottom_spacing',
+			array(
+				'type'       => Controls_Manager::SLIDER,
+				'label'      => esc_html__( 'Previous Arrow Bottom Spacing', 'mas-elementor' ),
+				'size_units' => array( 'px', 'em', '%', 'rem' ),
+				'selectors'  => array(
+					'{{WRAPPER}} ' . $args['button_concat'] . ' .mas-swiper-arrows .swiper-button-prev' => 'bottom:{{SIZE}}{{UNIT}} !important;',
+				),
+				'condition'  => $args['section_condition'],
+			)
+		);
+
+		$element->add_responsive_control(
+			'swiper_next_arrows_start_spacing',
+			array(
+				'type'       => Controls_Manager::SLIDER,
+				'label'      => esc_html__( 'Next Arrow Start Spacing', 'mas-elementor' ),
+				'size_units' => array( 'px', 'em', '%', 'rem' ),
+				'selectors'  => array(
+					'{{WRAPPER}} ' . $args['button_concat'] . ' .mas-swiper-arrows .swiper-button-next' => 'left:{{SIZE}}{{UNIT}} !important;',
+				),
+				'condition'  => $args['section_condition'],
+				'separator'  => 'before',
+			)
+		);
+
+		$element->add_responsive_control(
+			'swiper_next_arrows_end_spacing',
+			array(
+				'type'       => Controls_Manager::SLIDER,
+				'label'      => esc_html__( 'Next Arrow End Spacing', 'mas-elementor' ),
+				'size_units' => array( 'px', 'em', '%', 'rem' ),
+				'selectors'  => array(
+					'{{WRAPPER}} ' . $args['button_concat'] . ' .mas-swiper-arrows .swiper-button-next' => 'right:{{SIZE}}{{UNIT}} !important;',
+				),
+				'condition'  => $args['section_condition'],
+			)
+		);
+
+		$element->add_responsive_control(
+			'swiper_next_arrows_top_spacing',
+			array(
+				'type'       => Controls_Manager::SLIDER,
+				'label'      => esc_html__( 'Next Arrow Top Spacing', 'mas-elementor' ),
+				'size_units' => array( 'px', 'em', '%', 'rem' ),
+				'selectors'  => array(
+					'{{WRAPPER}} ' . $args['button_concat'] . ' .mas-swiper-arrows .swiper-button-next' => 'top:{{SIZE}}{{UNIT}} !important;',
+				),
+				'condition'  => $args['section_condition'],
+			)
+		);
+
+		$element->add_responsive_control(
+			'swiper_next_arrows_bottom_spacing',
+			array(
+				'type'       => Controls_Manager::SLIDER,
+				'label'      => esc_html__( 'Next Arrow Bottom Spacing', 'mas-elementor' ),
+				'size_units' => array( 'px', 'em', '%', 'rem' ),
+				'selectors'  => array(
+					'{{WRAPPER}} ' . $args['button_concat'] . ' .mas-swiper-arrows .swiper-button-next' => 'bottom:{{SIZE}}{{UNIT}} !important;',
+				),
+				'condition'  => $args['section_condition'],
+			)
+		);
+
+		$element->end_controls_section();
 	}
 
 	/**
@@ -530,7 +677,7 @@ trait Button_Widget_Trait {
 					'{{WRAPPER}} ' . $args['button_concat'] . ' .mas-swiper-arrows .elementor-button-link' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				),
 				'separator'  => 'before',
-				'condition'  => $args['section_condition'],
+				'condition'  => array_merge( $args['section_condition'], array( 'enable_individual_arrow_padding!' => 'yes' ) ),
 				'default'    => array(
 					'top'      => '10',
 					'right'    => '20',
@@ -539,6 +686,44 @@ trait Button_Widget_Trait {
 					'unit'     => 'px',
 					'isLinked' => false,
 				),
+			)
+		);
+
+		$element->add_control(
+			'enable_individual_arrow_padding',
+			array(
+				'type'      => Controls_Manager::SWITCHER,
+				'label'     => esc_html__( 'Individual Arrow Spacing', 'mas-elementor' ),
+				'label_off' => esc_html__( 'Enable', 'mas-elementor' ),
+				'label_on'  => esc_html__( 'Disable', 'mas-elementor' ),
+				'condition' => $args['section_condition'],
+			)
+		);
+
+		$element->add_responsive_control(
+			'swiper_prev_arrow_text_padding',
+			array(
+				'label'      => esc_html__( 'Prev Button Padding', 'mas-elementor' ),
+				'type'       => Controls_Manager::DIMENSIONS,
+				'size_units' => array( 'px', 'em', '%' ),
+				'separator'  => 'before',
+				'selectors'  => array(
+					'{{WRAPPER}} ' . $args['button_concat'] . ' .mas-swiper-arrows .swiper-button-prev .elementor-button-link' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				),
+				'condition'  => array_merge( $args['section_condition'], array( 'enable_individual_arrow_padding' => 'yes' ) ),
+			)
+		);
+
+		$element->add_responsive_control(
+			'swiper_next_arrow_text_padding',
+			array(
+				'label'      => esc_html__( 'Next Button Padding', 'mas-elementor' ),
+				'type'       => Controls_Manager::DIMENSIONS,
+				'size_units' => array( 'px', 'em', '%' ),
+				'selectors'  => array(
+					'{{WRAPPER}} ' . $args['button_concat'] . ' .mas-swiper-arrows .swiper-button-next .elementor-button-link' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				),
+				'condition'  => array_merge( $args['section_condition'], array( 'enable_individual_arrow_padding' => 'yes' ) ),
 			)
 		);
 

@@ -58,7 +58,7 @@ abstract class Products_Base extends Base_Widget {
 			array(
 				'label'      => __( 'Gap', 'mas-elementor' ),
 				'type'       => Controls_Manager::SLIDER,
-				'size_units' => array( 'px', '%', 'em' ),
+				'size_units' => array( 'px', '%', 'em', 'rem', 'custom' ),
 				'default'    => array(
 					'size' => 13,
 				),
@@ -70,6 +70,24 @@ abstract class Products_Base extends Base_Widget {
 				),
 				'selectors'  => array(
 					'{{WRAPPER}} .mas-products.mas-grid' => 'gap: {{SIZE}}{{UNIT}}',
+				),
+			)
+		);
+
+		$this->add_responsive_control(
+			'products_row_gap',
+			array(
+				'label'      => __( 'Row Gap', 'mas-elementor' ),
+				'type'       => Controls_Manager::SLIDER,
+				'size_units' => array( 'px', '%', 'em', 'rem', 'custom' ),
+				'range'      => array(
+					'px' => array(
+						'min' => 0,
+						'max' => 200,
+					),
+				),
+				'selectors'  => array(
+					'{{WRAPPER}} .mas-products.mas-grid' => 'row-gap: {{SIZE}}{{UNIT}}',
 				),
 			)
 		);

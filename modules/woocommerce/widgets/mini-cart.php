@@ -134,6 +134,14 @@ class Mini_Cart extends Base_Widget {
 			)
 		);
 
+		$this->add_control(
+			'icon_heading',
+			array(
+				'label'     => esc_html__( 'Icon', 'mas-elementor' ),
+				'type'      => Controls_Manager::HEADING,
+			)
+		);
+
 		$this->add_group_control(
 			Group_Control_Typography::get_type(),
 			array(
@@ -154,11 +162,39 @@ class Mini_Cart extends Base_Widget {
 			)
 		);
 
+		$this->add_control(
+			'count_heading',
+			array(
+				'label'     => esc_html__( 'Count', 'mas-elementor' ),
+				'type'      => Controls_Manager::HEADING,
+			)
+		);
+
 		$this->add_group_control(
 			Group_Control_Typography::get_type(),
 			array(
 				'name'     => 'count_color_typography',
 				'selector' => '{{WRAPPER}} .wc-block-mini-cart__badge',
+			)
+		);
+
+		$this->add_group_control(
+			\Elementor\Group_Control_Border::get_type(),
+			array(
+				'name'     => 'count_color_border',
+				'selector' => '{{WRAPPER}} .wc-block-mini-cart__badge',
+			)
+		);
+
+		$this->add_control(
+			'count_color_border_radius',
+			array(
+				'type'       => Controls_Manager::DIMENSIONS,
+				'label'      => esc_html__( 'Border Radius', 'mas-elementor' ),
+				'size_units' => array( 'px', '%' ),
+				'selectors'  => array(
+					'{{WRAPPER}} .wc-block-mini-cart__badge' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				),
 			)
 		);
 
@@ -187,18 +223,26 @@ class Mini_Cart extends Base_Widget {
 			)
 		);
 
+		$this->add_control(
+			'price_heading',
+			array(
+				'label'     => esc_html__( 'Price', 'mas-elementor' ),
+				'type'      => Controls_Manager::HEADING,
+			)
+		);
+
 		$this->add_group_control(
 			Group_Control_Typography::get_type(),
 			array(
 				'name'     => 'product_count_typography',
-				'selector' => '{{WRAPPER}} .wc-block-mini-cart__badge',
+				'selector' => '{{WRAPPER}} .wc-block-mini-cart__amount',
 			)
 		);
 
 		$this->add_control(
 			'price_color',
 			array(
-				'label'     => __( 'Product Count BGColor', 'mas-elementor' ),
+				'label'     => __( 'Price Color', 'mas-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'default'   => '#000',
 				'selectors' => array(

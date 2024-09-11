@@ -642,6 +642,36 @@ class Products extends Products_Base {
 			)
 		);
 
+		$this->add_responsive_control(
+			'mas_product_slide_padding_option',
+			array(
+				'label'      => esc_html__( 'Swiper Slide Padding', 'mas-elementor' ),
+				'type'       => Controls_Manager::DIMENSIONS,
+				'size_units' => array( 'px', 'em', '%', 'rem' ),
+				'selectors'  => array(
+					'{{WRAPPER}} .swiper-slide' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				),
+			)
+		);
+
+		$this->add_responsive_control(
+			'mas_product_carousel_swiper_width',
+			array(
+				'label'      => esc_html__( 'Swiper Width', 'mas-elementor' ),
+				'type'       => Controls_Manager::SLIDER,
+				'size_units' => array( 'px', '%', 'em', 'rem', 'custom' ),
+				'range'      => array(
+					'%' => array(
+						'min' => 0,
+						'max' => 100,
+					),
+				),
+				'selectors'  => array(
+					'{{WRAPPER}} .swiper' => 'width: {{SIZE}}{{UNIT}} !important;',
+				),
+			)
+		);
+
 		$this->end_controls_section();
 
 		$this->start_controls_section(
@@ -1223,6 +1253,8 @@ class Products extends Products_Base {
 		$this->end_controls_section();
 
 		$this->register_button_style_controls( $this, $args );
+
+		$this->register_swiper_arrow_spacing_controls( $this, $args );
 
 		$this->start_controls_section(
 			'section_shop_control_bar__style',
