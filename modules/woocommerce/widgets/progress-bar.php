@@ -89,8 +89,8 @@ class Progress_Bar extends Widget_Progress {
 	 *
 	 * @return array
 	 */
-	public function get_style_depends() {
-		return array( 'frontend-legacy' );
+	public function get_style_depends(): array {
+		return array( 'widget-progress' );
 	}
 
 	/**
@@ -109,12 +109,12 @@ class Progress_Bar extends Widget_Progress {
 		$this->add_control(
 			'hide_when_stocks_not_available',
 			array(
-				'label'        => esc_html__( 'Hide Progress', 'mas-elementor' ),
-				'type'         => Controls_Manager::SWITCHER,
-				'label_on'     => esc_html__( 'Yes', 'mas-elementor' ),
-				'label_off'    => esc_html__( 'No', 'mas-elementor' ),
-				'description'  => 'Hide when the product do not have available stock',
-				'default'      => 'yes',
+				'label'       => esc_html__( 'Hide Progress', 'mas-elementor' ),
+				'type'        => Controls_Manager::SWITCHER,
+				'label_on'    => esc_html__( 'Yes', 'mas-elementor' ),
+				'label_off'   => esc_html__( 'No', 'mas-elementor' ),
+				'description' => 'Hide when the product do not have available stock',
+				'default'     => 'yes',
 			)
 		);
 
@@ -275,7 +275,6 @@ class Progress_Bar extends Widget_Progress {
 				'selectors' => array(
 					$wrapper => 'display: {{VALUE}};',
 				),
-				// 'responsive' => true,
 
 			)
 		);
@@ -422,7 +421,7 @@ class Progress_Bar extends Widget_Progress {
 	 * Render.
 	 */
 	protected function render() {
-		$settings = $this->get_settings_for_display();
+		$settings             = $this->get_settings_for_display();
 		$allow                = 'yes' === $settings['hide_when_stocks_not_available'] ? true : false;
 		$total_stock_quantity = get_post_meta( get_the_ID(), '_total_stock_quantity', true );
 		$stock                = get_post_meta( get_the_ID(), '_stock', true );

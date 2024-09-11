@@ -101,7 +101,7 @@ class Product_Categories_Dropdown extends Widget_Accordion {
 	 * @return array
 	 */
 	public function get_keywords() {
-		return array( 'woocommerce-elements', 'shop', 'store', 'categories', 'product' );
+		return array( 'woocommerce-elements', 'shop', 'store', 'categories', 'product', 'dropdown' );
 	}
 
 	/**
@@ -119,8 +119,17 @@ class Product_Categories_Dropdown extends Widget_Accordion {
 	 *
 	 * @return array
 	 */
-	public function get_style_depends() {
-		return array( 'frontend-legacy' );
+	public function get_style_depends(): array {
+		return array( 'widget-accordion' );
+	}
+
+	/**
+	 * Display widgets.
+	 *
+	 * @return boolean
+	 */
+	public function show_in_panel(): bool {
+		return true;
 	}
 
 	/**
@@ -669,13 +678,6 @@ class Product_Categories_Dropdown extends Widget_Accordion {
 					'display' => 'detailed',
 				),
 				'group_prefix' => 'select_terms',
-				// 'condition'    => array(
-				// 'include'    => 'terms',
-				// 'post_type!' => array(
-				// 'by_id',
-				// 'current_query',
-				// ),
-				// ),
 				'tabs_wrapper' => $tabs_wrapper,
 				'inner_tab'    => $include_wrapper,
 			)
