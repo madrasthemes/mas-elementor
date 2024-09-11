@@ -884,7 +884,6 @@ class Multipurpose_Text extends Base_Widget {
 						'icon'  => 'eicon-ban',
 					),
 				),
-				'default'   => 'flex',
 				'selectors' => array(
 					$wrapper => 'display: {{VALUE}};',
 				),
