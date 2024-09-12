@@ -13,7 +13,7 @@ use Elementor\plugin;
  * Plugin URI: https://github.com/madrasthemes/mas-elementor
  * Author: MadrasThemes
  * Version: 1.1.4
- * Elementor tested up to: 3.19.0
+ * Elementor tested up to: 3.24.0
  * Author URI: https://madrasthemes.com/
  *
  * Text Domain: mas-elementor
@@ -23,7 +23,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
-define( 'MAS_ELEMENTOR_VERSION', '1.1' );
+define( 'MAS_ELEMENTOR_VERSION', '1.1.4' );
 
 define( 'MAS_ELEMENTOR__FILE__', __FILE__ );
 define( 'MAS_ELEMENTOR_BASE', plugin_basename( MAS_ELEMENTOR__FILE__ ) );
