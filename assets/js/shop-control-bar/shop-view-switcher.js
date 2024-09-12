@@ -13,7 +13,6 @@
       }
 
       if ( wrapper.attr('class') ) {
-        console.log(wrapper.attr('class').split(' '));
         var currentClass = wrapper.attr('class').split(' ').find(function (className) {
           return className.startsWith('mas-grid-');
           });
