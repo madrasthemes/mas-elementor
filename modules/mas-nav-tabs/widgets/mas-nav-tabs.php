@@ -921,6 +921,35 @@ class Mas_Nav_Tabs extends Base_Widget {
 			)
 		);
 
+		$start = is_rtl() ? 'right' : 'left';
+		$end   = is_rtl() ? 'left' : 'right';
+
+		$this->add_control(
+			'tab_icon_align',
+			array(
+				'label'                => esc_html__( 'Icon Position', 'mas-elementor' ),
+				'type'                 => Controls_Manager::CHOOSE,
+				'default'              => is_rtl() ? 'row-reverse' : 'row',
+				'options'              => array(
+					'row'         => array(
+						'title' => esc_html__( 'Start', 'mas-elementor' ),
+						'icon'  => "eicon-h-align-{$start}",
+					),
+					'row-reverse' => array(
+						'title' => esc_html__( 'End', 'mas-elementor' ),
+						'icon'  => "eicon-h-align-{$end}",
+					),
+				),
+				'selectors_dictionary' => array(
+					'left'  => is_rtl() ? 'row-reverse' : 'row',
+					'right' => is_rtl() ? 'row' : 'row-reverse',
+				),
+				'selectors'            => array(
+					'{{WRAPPER}} .mas-tab-flex' => 'flex-direction: {{VALUE}};',
+				),
+			)
+		);
+
 		$this->add_control(
 			'icon_color',
 			array(
