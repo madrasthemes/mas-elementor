@@ -713,7 +713,7 @@ class Mas_Nav_Tabs extends Base_Widget {
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', 'em', '%', 'rem' ),
 				'selectors'  => array(
-					'{{WRAPPER}} .mas-nav-link:hover' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .mas-elementor-nav-tab .mas-nav-link:hover' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				),
 			)
 		);
@@ -726,7 +726,7 @@ class Mas_Nav_Tabs extends Base_Widget {
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', 'em', '%', 'rem' ),
 				'selectors'  => array(
-					'{{WRAPPER}} .mas-nav-link:hover' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .mas-elementor-nav-tab .mas-nav-link:hover' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				),
 			)
 		);
@@ -736,7 +736,7 @@ class Mas_Nav_Tabs extends Base_Widget {
 			Group_Control_Border::get_type(),
 			array(
 				'name'     => 'mas_nav_link_border_hover',
-				'selector' => '{{WRAPPER}} .mas-nav-link:hover',
+				'selector' => '{{WRAPPER}} .mas-elementor-nav-tab .mas-nav-link:hover',
 			)
 		);
 
@@ -748,7 +748,7 @@ class Mas_Nav_Tabs extends Base_Widget {
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', '%', 'em' ),
 				'selectors'  => array(
-					'{{WRAPPER}} .mas-nav-link:hover' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+					'{{WRAPPER}} .mas-elementor-nav-tab .mas-nav-link:hover' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				),
 			)
 		);
@@ -758,7 +758,7 @@ class Mas_Nav_Tabs extends Base_Widget {
 			Group_Control_Box_Shadow::get_type(),
 			array(
 				'name'     => 'mas_nav_link_box_shadow_hover',
-				'selector' => '{{WRAPPER}} .mas-nav-link:hover',
+				'selector' => '{{WRAPPER}} .mas-elementor-nav-tab .mas-nav-link:hover',
 			)
 		);
 
@@ -769,7 +769,7 @@ class Mas_Nav_Tabs extends Base_Widget {
 				'label'     => esc_html__( 'Background Color', 'mas-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
-					'{{WRAPPER}} .mas-nav-link:hover' => 'background-color: {{VALUE}};',
+					'{{WRAPPER}} .mas-elementor-nav-tab .mas-nav-link:hover' => 'background-color: {{VALUE}};',
 				),
 			)
 		);
@@ -780,7 +780,7 @@ class Mas_Nav_Tabs extends Base_Widget {
 				'label'     => esc_html__( 'Title Color', 'mas-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
-					'{{WRAPPER}} .mas-nav-link:hover' => 'color: {{VALUE}};',
+					'{{WRAPPER}} .mas-elementor-nav-tab .mas-nav-link:hover' => 'color: {{VALUE}};',
 				),
 			)
 		);
@@ -789,7 +789,7 @@ class Mas_Nav_Tabs extends Base_Widget {
 			Group_Control_Typography::get_type(),
 			array(
 				'name'     => 'anchor_typography_hover',
-				'selector' => '{{WRAPPER}} .mas-nav-link:hover',
+				'selector' => '{{WRAPPER}} .mas-elementor-nav-tab .mas-nav-link:hover',
 
 			)
 		);
