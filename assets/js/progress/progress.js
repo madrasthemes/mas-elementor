@@ -18,14 +18,25 @@
 
             onInit() {
                 super.onInit();
-
-                elementorFrontend.waypoint( this.elements.$progressNumber, () => {
-                    const $progressbar = this.elements.$progressNumber;
-
-                    $progressbar.css( 'width', $progressbar.data( 'max' ) + '%' );
-                } );
+                const observer = this.createObserver();
+                observer.observe(this.elements.$progressNumber[0]);
+              }
+              createObserver() {
+                const options = {
+                  root: null,
+                  threshold: 0,
+                  rootMargin: '0px'
+                };
+                return new IntersectionObserver(entries => {
+                  entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                      const $progressbar = this.elements.$progressNumber;
+                      $progressbar.css('width', $progressbar.data('max') + '%');
+                    }
+                  });
+                }, options);
+              }
             }
-        }
     jQuery( window ).on( 'elementor/frontend/init', () => {
         const addHandler = ( $element ) => {
             elementorFrontend.elementsHandler.addHandler( Progress, {
