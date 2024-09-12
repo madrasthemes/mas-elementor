@@ -697,6 +697,105 @@ class Mas_Nav_Tabs extends Base_Widget {
 
 		$this->end_controls_tab();
 
+		// Anchor Spacing Tab.
+		$this->start_controls_tab(
+			'tab_anchor_hover',
+			array(
+				'label' => esc_html__( 'Hover', 'mas-elementor' ),
+			)
+		);
+
+		// Anchor Padding Controls.
+		$this->add_responsive_control(
+			'mas_nav_link_padding_hover',
+			array(
+				'label'      => esc_html__( 'Padding', 'mas-elementor' ),
+				'type'       => Controls_Manager::DIMENSIONS,
+				'size_units' => array( 'px', 'em', '%', 'rem' ),
+				'selectors'  => array(
+					'{{WRAPPER}} .mas-nav-link:hover' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				),
+			)
+		);
+
+		// Anchor Margin Controls.
+		$this->add_responsive_control(
+			'mas_nav_link_margin_hover',
+			array(
+				'label'      => esc_html__( 'Margin', 'mas-elementor' ),
+				'type'       => Controls_Manager::DIMENSIONS,
+				'size_units' => array( 'px', 'em', '%', 'rem' ),
+				'selectors'  => array(
+					'{{WRAPPER}} .mas-nav-link:hover' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				),
+			)
+		);
+
+		// Border Controls.
+		$this->add_group_control(
+			Group_Control_Border::get_type(),
+			array(
+				'name'     => 'mas_nav_link_border_hover',
+				'selector' => '{{WRAPPER}} .mas-nav-link:hover',
+			)
+		);
+
+		// Border Radius Controls.
+		$this->add_responsive_control(
+			'mas_nav_link_border_radius_hover',
+			array(
+				'label'      => esc_html__( 'Border Radius', 'mas-elementor' ),
+				'type'       => Controls_Manager::DIMENSIONS,
+				'size_units' => array( 'px', '%', 'em' ),
+				'selectors'  => array(
+					'{{WRAPPER}} .mas-nav-link:hover' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				),
+			)
+		);
+
+		// Box Shadow Controls.
+		$this->add_group_control(
+			Group_Control_Box_Shadow::get_type(),
+			array(
+				'name'     => 'mas_nav_link_box_shadow_hover',
+				'selector' => '{{WRAPPER}} .mas-nav-link:hover',
+			)
+		);
+
+		// Background Controls.
+		$this->add_control(
+			'mas_nav_link_background_hover',
+			array(
+				'label'     => esc_html__( 'Background Color', 'mas-elementor' ),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => array(
+					'{{WRAPPER}} .mas-nav-link:hover' => 'background-color: {{VALUE}};',
+				),
+			)
+		);
+
+		$this->add_control(
+			'normal_anchor_title_color_hover',
+			array(
+				'label'     => esc_html__( 'Title Color', 'mas-elementor' ),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => array(
+					'{{WRAPPER}} .mas-nav-link:hover' => 'color: {{VALUE}};',
+				),
+			)
+		);
+
+		$this->add_group_control(
+			Group_Control_Typography::get_type(),
+			array(
+				'name'     => 'anchor_typography_hover',
+				'selector' => '{{WRAPPER}} .mas-nav-link:hover',
+
+			)
+		);
+
+		$this->end_controls_tab();
+
 		// Active Anchor Spacing Tab.
 		$this->start_controls_tab(
 			'tab_anchor_active',

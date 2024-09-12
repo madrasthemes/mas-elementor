@@ -12,9 +12,12 @@
         return;
       }
 
-      var currentClass = wrapper.attr('class').split(' ').find(function (className) {
-        return className.startsWith('mas-grid-');
-        });
+      if ( wrapper.attr('class') ) {
+        var currentClass = wrapper.attr('class').split(' ').find(function (className) {
+          return className.startsWith('mas-grid-');
+          });
+      }
+      
 
       $('.shop-view-switcher').on('click', '.nav-link', function () {
         $('[data-bs-toggle="mas-shop-products"]').attr('data-view', $(this).data('archiveClass'));
