@@ -4,7 +4,7 @@ Tags: posts, products, nav-menu, carousel, tabs, multipurpose text
 Requires at least: 5.0
 Tested up to: 6.4
 Requires PHP: 7.4
-Stable tag: 1.1.4
+Stable tag: 1.1.5
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -67,6 +67,16 @@ All of our online documentation can be found on [our documentation site](https:/
 
 
 == Changelog ==
+
+= 1.1.5 - 2024-09-12 =
+* Feature : Added cart button active style controls in add to cart widget
+* Feature : Added style option for product widget
+* Feature : Added hover style controls for link element and icon position control in mas nav tabs widget
+* Feature : Elementor 3.24.0 Compatibility
+* Fix     : Fixed typography control issue of sub menu in mas nav menu widget
+* Fix     : Fixed selector issue of price in mini cart widget
+* Fix     : Fixed flex issue by removing default value in webkit control in multipurpose text widget
+* Fix     : Fixed progress js for progress bar widget
 
 = 1.1.4 - 2024-08-20 =
 * Feature : Added icon size control and flex options in product rating widget
