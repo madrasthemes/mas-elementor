@@ -209,7 +209,9 @@ trait Button_Widget_Trait {
 				'type'        => Controls_Manager::SLIDER,
 				'range'       => array(
 					'px' => array(
-						'max' => 50,
+						'max'  => 300,
+						'min'  => -300,
+						'step' => 0.1,
 					),
 				),
 				'default'     => array(
@@ -237,19 +239,15 @@ trait Button_Widget_Trait {
 				'label'           => esc_html__( 'Arrows Spacing', 'mas-elementor' ),
 				'size_units'      => array( '%', 'px' ),
 				'range'           => array(
-					'px' => array(
-						'min' => 0,
-						'max' => 100,
-					),
-				),
-				'range'           => array(
 					'%'  => array(
-						'min' => -50,
-						'max' => 50,
+						'min' => -100,
+						'max' => 100,
+						'step' => 0.1,
 					),
 					'px' => array(
-						'min' => 0,
+						'min' => -1000,
 						'max' => 1000,
+						'step' => 0.1,
 					),
 				),
 				'desktop_default' => array(
