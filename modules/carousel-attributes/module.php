@@ -999,27 +999,6 @@ class Module extends Module_Base {
 	}
 
 	/**
-	 * Add wrap controls to the column element.
-	 *
-	 * @param string $content content.
-	 * @param array  $instance object.
-	 */
-	public function testing( $content, $instance ) {
-
-		if ( $instance->get_name() !== 'section' ) {
-			return $content;
-		}
-
-		// Doing a simple find and replace on the template.
-		// I know it's not ideal but I didn't want to duplicate the whole template .
-		// and this seems like it shouldn't change often...
-		// Note: in $tpl, I don't have access to the very top level section tag :(.
-		$content = str_replace( 'class="elementor-container', 'class="elementor-container swiper-wrapper', $content );
-		return $content;
-
-	}
-
-	/**
 	 * Register frontend script.
 	 */
 	public function register_frontend_scripts() {
@@ -1050,67 +1029,5 @@ class Module extends Module_Base {
 			array(),
 			MAS_ELEMENTOR_VERSION
 		);
-	}
-
-	/**
-	 * Render script in the editor.
-	 */
-	public function render_script() {
-		if ( Plugin::$instance->editor->is_edit_mode() ) :
-			?>
-			<script type="text/javascript">
-			var carousel = (() => {
-				// forEach function
-				let forEach = (array, callback, scope) => {
-				for (let i = 0; i < array.length; i++) {
-					callback.call(scope, i, array[i]); // passes back stuff we need
-				}
-				};
-
-				// Carousel initialisation
-				let carousels = document.querySelectorAll('.swiper');
-				forEach(carousels, (index, value) => {
-					let userOptions,
-					pagerOptions;
-				if(value.dataset.swiperOptions != undefined) userOptions = JSON.parse(value.dataset.swiperOptions);
-
-
-				// Pager
-				if(userOptions.pager) {
-					pagerOptions = {
-					pagination: {
-						el: userOptions.pager,
-						clickable: true,
-						bulletActiveClass: 'active',
-						bulletClass: 'page-item',
-						renderBullet: function (index, className) {
-						return '<li class="' + className + '"><a href="#" class="page-link btn-icon btn-sm">' + (index + 1) + '</a></li>';
-						}
-					}
-					}
-				}
-
-				// Slider init
-				let options = {...userOptions, ...pagerOptions};
-				let swiper = new Swiper(value, options);
-
-				// Tabs (linked content)
-				if(userOptions.tabs) {
-
-					swiper.on('activeIndexChange', (e) => {
-					let targetTab = document.querySelector(e.slides[e.activeIndex].dataset.swiperTab),
-						previousTab = document.querySelector(e.slides[e.previousIndex].dataset.swiperTab);
-
-					previousTab.classList.remove('active');
-					targetTab.classList.add('active');
-					});
-				}
-
-				});
-
-				})();
-			</script>
-			<?php
-		endif;
 	}
 }
