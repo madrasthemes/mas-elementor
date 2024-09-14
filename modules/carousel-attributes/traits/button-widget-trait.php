@@ -333,9 +333,9 @@ trait Button_Widget_Trait {
 		$element->start_controls_section(
 			'mas__swiper_arrow_spacing',
 			array(
-				'label'       => esc_html__( 'Swiper Arrows Spacing', 'mas-elementor' ),
-				'tab'         => Controls_Manager::TAB_STYLE,
-				'condition'   => array(
+				'label'     => esc_html__( 'Swiper Arrows Spacing', 'mas-elementor' ),
+				'tab'       => Controls_Manager::TAB_STYLE,
+				'condition' => array(
 					'enable_carousel'                 => 'yes',
 					'show_arrows'                     => 'yes',
 					'enable_individual_arrow_spacing' => 'yes',
@@ -354,12 +354,15 @@ trait Button_Widget_Trait {
 				),
 				'condition'   => $args['section_condition'],
 				'render_type' => $args['render_type'],
-				'range'     => array(
+				'range'       => array(
 					'px' => array(
 						'step' => 0.1,
+						'min'  => -500,
+						'max'  => 500,
 					),
-					'%' => array(
+					'%'  => array(
 						'step' => 0.1,
+						'min'  => -100,
 					),
 				),
 			)
@@ -376,12 +379,15 @@ trait Button_Widget_Trait {
 				),
 				'condition'   => $args['section_condition'],
 				'render_type' => $args['render_type'],
-				'range'     => array(
+				'range'       => array(
 					'px' => array(
 						'step' => 0.1,
+						'min'  => -500,
+						'max'  => 500,
 					),
-					'%' => array(
+					'%'  => array(
 						'step' => 0.1,
+						'min'  => -100,
 					),
 				),
 			)
@@ -398,12 +404,15 @@ trait Button_Widget_Trait {
 				),
 				'condition'   => $args['section_condition'],
 				'render_type' => $args['render_type'],
-				'range'     => array(
+				'range'       => array(
 					'px' => array(
 						'step' => 0.1,
+						'min'  => -500,
+						'max'  => 500,
 					),
-					'%' => array(
+					'%'  => array(
 						'step' => 0.1,
+						'min'  => -100,
 					),
 				),
 			)
@@ -420,12 +429,15 @@ trait Button_Widget_Trait {
 				),
 				'condition'   => $args['section_condition'],
 				'render_type' => $args['render_type'],
-				'range'     => array(
+				'range'       => array(
 					'px' => array(
 						'step' => 0.1,
+						'min'  => -500,
+						'max'  => 500,
 					),
-					'%' => array(
+					'%'  => array(
 						'step' => 0.1,
+						'min'  => -100,
 					),
 				),
 			)
@@ -443,12 +455,15 @@ trait Button_Widget_Trait {
 				'condition'   => $args['section_condition'],
 				'separator'   => 'before',
 				'render_type' => $args['render_type'],
-				'range'     => array(
+				'range'       => array(
 					'px' => array(
 						'step' => 0.1,
+						'min'  => -500,
+						'max'  => 500,
 					),
-					'%' => array(
+					'%'  => array(
 						'step' => 0.1,
+						'min'  => -100,
 					),
 				),
 			)
@@ -465,12 +480,15 @@ trait Button_Widget_Trait {
 				),
 				'condition'   => $args['section_condition'],
 				'render_type' => $args['render_type'],
-				'range'     => array(
+				'range'       => array(
 					'px' => array(
 						'step' => 0.1,
+						'min'  => -500,
+						'max'  => 500,
 					),
-					'%' => array(
+					'%'  => array(
 						'step' => 0.1,
+						'min'  => -100,
 					),
 				),
 			)
@@ -487,12 +505,15 @@ trait Button_Widget_Trait {
 				),
 				'condition'   => $args['section_condition'],
 				'render_type' => $args['render_type'],
-				'range'     => array(
+				'range'       => array(
 					'px' => array(
 						'step' => 0.1,
+						'min'  => -500,
+						'max'  => 500,
 					),
-					'%' => array(
+					'%'  => array(
 						'step' => 0.1,
+						'min'  => -100,
 					),
 				),
 			)
@@ -509,12 +530,15 @@ trait Button_Widget_Trait {
 				),
 				'condition'   => $args['section_condition'],
 				'render_type' => $args['render_type'],
-				'range'     => array(
+				'range'       => array(
 					'px' => array(
 						'step' => 0.1,
+						'min'  => -500,
+						'max'  => 500,
 					),
-					'%' => array(
+					'%'  => array(
 						'step' => 0.1,
+						'min'  => -100,
 					),
 				),
 			)
