@@ -340,7 +340,6 @@ trait Button_Widget_Trait {
 					'show_arrows'                     => 'yes',
 					'enable_individual_arrow_spacing' => 'yes',
 				),
-				'render_type' => $args['render_type'],
 			)
 		);
 
@@ -355,6 +354,14 @@ trait Button_Widget_Trait {
 				),
 				'condition'   => $args['section_condition'],
 				'render_type' => $args['render_type'],
+				'range'     => array(
+					'px' => array(
+						'step' => 0.1,
+					),
+					'%' => array(
+						'step' => 0.1,
+					),
+				),
 			)
 		);
 
@@ -369,6 +376,14 @@ trait Button_Widget_Trait {
 				),
 				'condition'   => $args['section_condition'],
 				'render_type' => $args['render_type'],
+				'range'     => array(
+					'px' => array(
+						'step' => 0.1,
+					),
+					'%' => array(
+						'step' => 0.1,
+					),
+				),
 			)
 		);
 
@@ -383,6 +398,14 @@ trait Button_Widget_Trait {
 				),
 				'condition'   => $args['section_condition'],
 				'render_type' => $args['render_type'],
+				'range'     => array(
+					'px' => array(
+						'step' => 0.1,
+					),
+					'%' => array(
+						'step' => 0.1,
+					),
+				),
 			)
 		);
 
@@ -397,6 +420,14 @@ trait Button_Widget_Trait {
 				),
 				'condition'   => $args['section_condition'],
 				'render_type' => $args['render_type'],
+				'range'     => array(
+					'px' => array(
+						'step' => 0.1,
+					),
+					'%' => array(
+						'step' => 0.1,
+					),
+				),
 			)
 		);
 
@@ -412,6 +443,14 @@ trait Button_Widget_Trait {
 				'condition'   => $args['section_condition'],
 				'separator'   => 'before',
 				'render_type' => $args['render_type'],
+				'range'     => array(
+					'px' => array(
+						'step' => 0.1,
+					),
+					'%' => array(
+						'step' => 0.1,
+					),
+				),
 			)
 		);
 
@@ -426,6 +465,14 @@ trait Button_Widget_Trait {
 				),
 				'condition'   => $args['section_condition'],
 				'render_type' => $args['render_type'],
+				'range'     => array(
+					'px' => array(
+						'step' => 0.1,
+					),
+					'%' => array(
+						'step' => 0.1,
+					),
+				),
 			)
 		);
 
@@ -440,6 +487,14 @@ trait Button_Widget_Trait {
 				),
 				'condition'   => $args['section_condition'],
 				'render_type' => $args['render_type'],
+				'range'     => array(
+					'px' => array(
+						'step' => 0.1,
+					),
+					'%' => array(
+						'step' => 0.1,
+					),
+				),
 			)
 		);
 
@@ -454,6 +509,14 @@ trait Button_Widget_Trait {
 				),
 				'condition'   => $args['section_condition'],
 				'render_type' => $args['render_type'],
+				'range'     => array(
+					'px' => array(
+						'step' => 0.1,
+					),
+					'%' => array(
+						'step' => 0.1,
+					),
+				),
 			)
 		);
 
