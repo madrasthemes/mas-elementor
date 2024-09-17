@@ -113,7 +113,7 @@ trait Swiper_Options_Trait {
 
 		if ( 'yes' === $settings['enable_space_between'] ) {
 			$breakpoint = '1441';
-			$swiper_settings['breakpoints'][ $breakpoint ]['spaceBetween'] = isset( $settings['space_between'] ) ? $settings['space_between'] : 8;
+			$swiper_settings['breakpoints'][ $breakpoint ]['spaceBetween'] = isset( $settings['space_between'] ) ? (int) $settings['space_between'] : 8;
 			foreach ( $active_breakpoint_instances as $active_breakpoint_instance ) {
 				$array_key = 'space_between_' . $active_breakpoint_instance->get_name();
 				if ( 'mobile' === $active_breakpoint_instance->get_name() ) {
@@ -124,10 +124,10 @@ trait Swiper_Options_Trait {
 					if ( property_exists( $active_breakpoint_instance, 'value' ) ) {
 						$breakpoint = (string) ( $active_breakpoint_instance->get_value() );
 					}
-					$swiper_settings['breakpoints'][ $breakpoint ]['spaceBetween'] = isset( $settings[ $array_key ] ) ? $settings[ $array_key ] : 8;
+					$swiper_settings['breakpoints'][ $breakpoint ]['spaceBetween'] = isset( $settings[ $array_key ] ) ? (int) $settings[ $array_key ] : 8;
 					continue;
 				}
-				$swiper_settings['breakpoints'][ $breakpoint ]['spaceBetween'] = isset( $settings[ $array_key ] ) ? $settings[ $array_key ] : 8;
+				$swiper_settings['breakpoints'][ $breakpoint ]['spaceBetween'] = isset( $settings[ $array_key ] ) ? (int) $settings[ $array_key ] : 8;
 				$breakpoint = (string) $active_breakpoint_instance->get_default_value() + 1;
 				if ( property_exists( $active_breakpoint_instance, 'value' ) ) {
 					$breakpoint = (string) ( $active_breakpoint_instance->get_value() + 1 );

@@ -44,6 +44,8 @@ class Module extends Module_Base {
 	public function register_carousel_attributes_controls( Element_Base $element ) {
 		$element_name = $element->get_name();
 
+		$render_type = 'container' === $element_name ? 'none' : 'template';
+
 		$element->start_injection(
 			array(
 				'at' => 'before',
@@ -82,6 +84,7 @@ class Module extends Module_Base {
 						'enable_swiper_wrapper!' => 'yes',
 						'enable_swiper_slide!'   => 'yes',
 					),
+					'render_type' => $render_type,
 				)
 			);
 
@@ -95,6 +98,7 @@ class Module extends Module_Base {
 						'enable_carousel!'     => 'yes',
 						'enable_swiper_slide!' => 'yes',
 					),
+					'render_type' => $render_type,
 				)
 			);
 
@@ -108,6 +112,7 @@ class Module extends Module_Base {
 						'enable_carousel!'       => 'yes',
 						'enable_swiper_wrapper!' => 'yes',
 					),
+					'render_type' => $render_type,
 				)
 			);
 
@@ -120,6 +125,7 @@ class Module extends Module_Base {
 					'label_off'   => esc_html__( 'Enable', 'mas-elementor' ),
 					'label_on'    => esc_html__( 'Disable', 'mas-elementor' ),
 					'description' => esc_html__( 'Should have child element inside this container', 'mas-elementor' ),
+					'render_type' => $render_type,
 				)
 			);
 
@@ -132,6 +138,7 @@ class Module extends Module_Base {
 					'condition' => array(
 						'enable_hover' => 'yes',
 					),
+					'render_type' => $render_type,
 				)
 			);
 
@@ -146,6 +153,7 @@ class Module extends Module_Base {
 						'enable_swiper_slide!'   => 'yes',
 						'enable_swiper_wrapper!' => 'yes',
 					),
+					'render_type' => $render_type,
 				)
 			);
 
@@ -157,6 +165,7 @@ class Module extends Module_Base {
 					'condition' => array(
 						'enable_carousel' => 'yes',
 					),
+					'render_type' => $render_type,
 				)
 			);
 		}
@@ -175,6 +184,7 @@ class Module extends Module_Base {
 				'condition' => array(
 					'enable_carousel' => 'yes',
 				),
+				'render_type' => $render_type,
 			)
 		);
 
@@ -193,6 +203,7 @@ class Module extends Module_Base {
 				'carousel_effect' => 'slide',
 				'enable_carousel' => 'yes',
 			),
+			'render_type' => $render_type,
 		);
 		$slides_to_scroll = array(
 			'type'      => Controls_Manager::NUMBER,
@@ -205,6 +216,7 @@ class Module extends Module_Base {
 				'enable_carousel' => 'yes',
 			),
 			'default'   => 1,
+			'render_type' => $render_type,
 		);
 		$space_between    = array(
 			'type'        => Controls_Manager::NUMBER,
@@ -218,6 +230,7 @@ class Module extends Module_Base {
 				'enable_carousel'      => 'yes',
 				'enable_space_between' => 'yes',
 			),
+			'render_type' => $render_type,
 		);
 		foreach ( $active_devices as $active_device ) {
 			$space_between[ $active_device . '_default' ]    = 8;
@@ -247,6 +260,7 @@ class Module extends Module_Base {
 					'carousel_effect' => 'slide',
 					'enable_carousel' => 'yes',
 				),
+				'render_type' => $render_type,
 			)
 		);
 
@@ -275,6 +289,7 @@ class Module extends Module_Base {
 				'condition'            => array(
 					'enable_carousel' => 'yes',
 				),
+				'render_type' => $render_type,
 			)
 		);
 
@@ -290,6 +305,7 @@ class Module extends Module_Base {
 					'carousel_effect' => 'slide',
 					'enable_carousel' => 'yes',
 				),
+				'render_type' => $render_type,
 			)
 		);
 
@@ -305,6 +321,7 @@ class Module extends Module_Base {
 					'enable_carousel'     => 'yes',
 					'show_custom_arrows!' => 'yes',
 				),
+				'render_type' => $render_type,
 			)
 		);
 
@@ -323,6 +340,7 @@ class Module extends Module_Base {
 				),
 				'return_value' => 'hide',
 				'prefix_class' => 'mas-swiper-carousel--arrows%s-',
+				'render_type' => $render_type,
 			)
 		);
 
@@ -338,6 +356,7 @@ class Module extends Module_Base {
 					'enable_carousel' => 'yes',
 					'show_arrows!'    => 'yes',
 				),
+				'render_type' => $render_type,
 
 			)
 		);
@@ -352,6 +371,7 @@ class Module extends Module_Base {
 					'show_arrows!'       => 'yes',
 					'show_custom_arrows' => 'yes',
 				),
+				'render_type' => $render_type,
 			)
 		);
 
@@ -365,6 +385,7 @@ class Module extends Module_Base {
 					'show_arrows!'       => 'yes',
 					'show_custom_arrows' => 'yes',
 				),
+				'render_type' => $render_type,
 			)
 		);
 
@@ -419,6 +440,7 @@ class Module extends Module_Base {
 				'condition' => array(
 					'enable_carousel' => 'yes',
 				),
+				'render_type' => $render_type,
 			)
 		);
 
@@ -447,6 +469,7 @@ class Module extends Module_Base {
 				'condition' => array(
 					'enable_carousel' => 'yes',
 				),
+				'render_type' => $render_type,
 			)
 		);
 
@@ -465,6 +488,7 @@ class Module extends Module_Base {
 					'enable_carousel' => 'yes',
 					'show_pagination' => 'yes',
 				),
+				'render_type' => $render_type,
 			)
 		);
 
@@ -483,6 +507,7 @@ class Module extends Module_Base {
 					'show_pagination' => 'yes',
 
 				),
+				'render_type' => $render_type,
 			)
 		);
 
@@ -501,6 +526,8 @@ class Module extends Module_Base {
 	 */
 	public function register_mas_swiper_wrapper_style_controls( $element ) {
 
+		$render_type = 'container' === $element->get_name() ? 'none' : 'template';
+
 		$element->start_controls_section(
 			'section_mas_swiper_wrapper',
 			array(
@@ -518,6 +545,7 @@ class Module extends Module_Base {
 				'label'       => esc_html__( 'MAS Swiper wrapper', 'mas-elementor' ),
 				'type'        => Controls_Manager::TEXT,
 				'description' => esc_html__( 'Add the styles to be added to mas-swiper-wrapper', 'mas-elementor' ),
+				'render_type' => $render_type,
 			)
 		);
 
@@ -527,6 +555,7 @@ class Module extends Module_Base {
 				'label'       => esc_html__( 'MAS Swiper CSS Class', 'mas-elementor' ),
 				'type'        => Controls_Manager::TEXT,
 				'description' => esc_html__( 'Add the class to be added to mas-swiper-wrapper', 'mas-elementor' ),
+				'render_type' => $render_type,
 			)
 		);
 
@@ -539,6 +568,8 @@ class Module extends Module_Base {
 	 * @param array $element Elements.
 	 */
 	public function register_mas_swiper_thumbs_style_controls( $element ) {
+
+		$render_type = 'container' === $element->get_name() ? 'none' : 'template';
 
 		$element->start_controls_section(
 			'section_mas_swiper_thumbs',
@@ -570,6 +601,7 @@ class Module extends Module_Base {
 				'selectors' => array(
 					'{{WRAPPER}}.swiper-thumbs .swiper-slide' => 'opacity: {{SIZE}};',
 				),
+				'render_type' => $render_type,
 			)
 		);
 		$element->add_control(
@@ -590,6 +622,7 @@ class Module extends Module_Base {
 				'selectors' => array(
 					'{{WRAPPER}}.swiper-thumbs .swiper-slide-thumb-active' => 'opacity: {{SIZE}};',
 				),
+				'render_type' => $render_type,
 			)
 		);
 
@@ -598,6 +631,7 @@ class Module extends Module_Base {
 			array(
 				'name'     => 'thumbs_active_background',
 				'selector' => '{{WRAPPER}}.swiper-thumbs .swiper-slide-thumb-active > div',
+				'render_type' => $render_type,
 			)
 		);
 
@@ -831,7 +865,7 @@ class Module extends Module_Base {
 
 		if ( 'yes' === $settings['enable_space_between'] ) {
 			$breakpoint = '1441';
-			$swiper_settings['breakpoints'][ $breakpoint ]['spaceBetween'] = isset( $settings['space_between'] ) ? $settings['space_between'] : 8;
+			$swiper_settings['breakpoints'][ $breakpoint ]['spaceBetween'] = isset( $settings['space_between'] ) ? (int) $settings['space_between'] : 8;
 			foreach ( $active_breakpoint_instances as $active_breakpoint_instance ) {
 				$array_key = 'space_between_' . $active_breakpoint_instance->get_name();
 				if ( 'mobile' === $active_breakpoint_instance->get_name() ) {
@@ -842,10 +876,10 @@ class Module extends Module_Base {
 					if ( property_exists( $active_breakpoint_instance, 'value' ) ) {
 						$breakpoint = (string) ( $active_breakpoint_instance->get_value() );
 					}
-					$swiper_settings['breakpoints'][ $breakpoint ]['spaceBetween'] = isset( $settings[ $array_key ] ) ? $settings[ $array_key ] : 8;
+					$swiper_settings['breakpoints'][ $breakpoint ]['spaceBetween'] = isset( $settings[ $array_key ] ) ? (int) $settings[ $array_key ] : 8;
 					continue;
 				}
-				$swiper_settings['breakpoints'][ $breakpoint ]['spaceBetween'] = isset( $settings[ $array_key ] ) ? $settings[ $array_key ] : 8;
+				$swiper_settings['breakpoints'][ $breakpoint ]['spaceBetween'] = isset( $settings[ $array_key ] ) ? (int) $settings[ $array_key ] : 8;
 				$breakpoint = (string) $active_breakpoint_instance->get_default_value() + 1;
 				if ( property_exists( $active_breakpoint_instance, 'value' ) ) {
 					$breakpoint = (string) ( $active_breakpoint_instance->get_value() + 1 );
@@ -965,27 +999,6 @@ class Module extends Module_Base {
 	}
 
 	/**
-	 * Add wrap controls to the column element.
-	 *
-	 * @param string $content content.
-	 * @param array  $instance object.
-	 */
-	public function testing( $content, $instance ) {
-
-		if ( $instance->get_name() !== 'section' ) {
-			return $content;
-		}
-
-		// Doing a simple find and replace on the template.
-		// I know it's not ideal but I didn't want to duplicate the whole template .
-		// and this seems like it shouldn't change often...
-		// Note: in $tpl, I don't have access to the very top level section tag :(.
-		$content = str_replace( 'class="elementor-container', 'class="elementor-container swiper-wrapper', $content );
-		return $content;
-
-	}
-
-	/**
 	 * Register frontend script.
 	 */
 	public function register_frontend_scripts() {
@@ -1016,67 +1029,5 @@ class Module extends Module_Base {
 			array(),
 			MAS_ELEMENTOR_VERSION
 		);
-	}
-
-	/**
-	 * Render script in the editor.
-	 */
-	public function render_script() {
-		if ( Plugin::$instance->editor->is_edit_mode() ) :
-			?>
-			<script type="text/javascript">
-			var carousel = (() => {
-				// forEach function
-				let forEach = (array, callback, scope) => {
-				for (let i = 0; i < array.length; i++) {
-					callback.call(scope, i, array[i]); // passes back stuff we need
-				}
-				};
-
-				// Carousel initialisation
-				let carousels = document.querySelectorAll('.swiper');
-				forEach(carousels, (index, value) => {
-					let userOptions,
-					pagerOptions;
-				if(value.dataset.swiperOptions != undefined) userOptions = JSON.parse(value.dataset.swiperOptions);
-
-
-				// Pager
-				if(userOptions.pager) {
-					pagerOptions = {
-					pagination: {
-						el: userOptions.pager,
-						clickable: true,
-						bulletActiveClass: 'active',
-						bulletClass: 'page-item',
-						renderBullet: function (index, className) {
-						return '<li class="' + className + '"><a href="#" class="page-link btn-icon btn-sm">' + (index + 1) + '</a></li>';
-						}
-					}
-					}
-				}
-
-				// Slider init
-				let options = {...userOptions, ...pagerOptions};
-				let swiper = new Swiper(value, options);
-
-				// Tabs (linked content)
-				if(userOptions.tabs) {
-
-					swiper.on('activeIndexChange', (e) => {
-					let targetTab = document.querySelector(e.slides[e.activeIndex].dataset.swiperTab),
-						previousTab = document.querySelector(e.slides[e.previousIndex].dataset.swiperTab);
-
-					previousTab.classList.remove('active');
-					targetTab.classList.add('active');
-					});
-				}
-
-				});
-
-				})();
-			</script>
-			<?php
-		endif;
 	}
 }

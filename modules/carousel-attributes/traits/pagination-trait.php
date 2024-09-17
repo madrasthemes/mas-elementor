@@ -31,6 +31,9 @@ trait Pagination_Trait {
 	 * @param array $args arguments for controls.
 	 */
 	public function register_pagination_style_controls( $element, $args = array( 'concat' => '+' ) ) {
+
+		$render_type = 'container' === $element->get_name() ? 'none' : 'template';
+
 		$element->start_controls_section(
 			'swiper_section_navigation',
 			array(
@@ -745,6 +748,7 @@ trait Pagination_Trait {
 							'enable_carousel' => 'yes',
 							'show_pagination' => 'yes',
 						),
+						'render_type' => $render_type,
 					)
 				);
 
