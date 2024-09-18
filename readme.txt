@@ -4,7 +4,7 @@ Tags: posts, products, nav-menu, carousel, tabs, multipurpose text
 Requires at least: 5.0
 Tested up to: 6.4
 Requires PHP: 7.4
-Stable tag: 1.1.5
+Stable tag: 1.1.6
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -67,6 +67,10 @@ All of our online documentation can be found on [our documentation site](https:/
 
 
 == Changelog ==
+
+= 1.1.6 - 2024-09-18 =
+* Fix : Fixed carousel space between slides option.
+* Fix : Modified carousel render type for controls.
 
 = 1.1.5 - 2024-09-12 =
 * Feature : Added cart button active style controls in add to cart widget
