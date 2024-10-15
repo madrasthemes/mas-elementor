@@ -394,7 +394,10 @@ class Movie_Genre_Filter extends Base_Widget {
 			$posttype = 'tv_show';
 		}
 
-		$get_terms_args = array( 'hide_empty' => false );
+		$get_terms_args = array(
+			'taxonomy'   => $taxonomy,
+			'hide_empty' => false,
+		);
 
 		$orderby = masvideos_attribute_orderby( $posttype, $taxonomy );
 
@@ -413,7 +416,8 @@ class Movie_Genre_Filter extends Base_Widget {
 				break;
 		}
 
-		$terms = get_terms( $taxonomy, $get_terms_args );
+		$terms = get_terms( $get_terms_args );
+
 		if ( 0 === count( $terms ) ) {
 			return;
 		}
