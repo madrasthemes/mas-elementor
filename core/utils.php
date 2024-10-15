@@ -381,6 +381,15 @@ class Utils {
 	 * @return array
 	 */
 	public static function unstable_get_super_global_value( $super_global, $key ) {
+		// Unslaсh the nonce value from the GET request.
+		$nonce = isset( $_GET['preview_nonce'] ) ? sanitize_text_field( wp_unslash( $_GET['preview_nonce'] ) ) : '';
+
+		// Check if nonce is verified before processing the superglobal data.
+		if ( wp_verify_nonce( $nonce, 'elementor_preview_action' ) ) { // Use your specific nonce action.
+			return null; // Invalid nonce, reject the request.
+		}
+
+		// Proceed with the rest of the logic.
 		if ( ! isset( $super_global[ $key ] ) ) {
 			return null;
 		}
