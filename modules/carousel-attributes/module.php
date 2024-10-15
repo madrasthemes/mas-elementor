@@ -994,8 +994,8 @@ class Module extends Module_Base {
 		parent::__construct();
 		$this->add_actions();
 
-		add_action( 'elementor/frontend/before_register_scripts', array( $this, 'register_frontend_scripts' ) );
-		add_action( 'elementor/frontend/before_register_styles', array( $this, 'register_frontend_styles' ) );
+		add_action( 'elementor/frontend/before_enqueue_scripts', array( $this, 'register_frontend_scripts' ) );
+		add_action( 'elementor/frontend/before_enqueue_styles', array( $this, 'register_frontend_styles' ) );
 	}
 
 	/**
