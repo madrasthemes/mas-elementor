@@ -13,7 +13,7 @@ use Elementor\plugin;
  * Plugin URI: https://github.com/madrasthemes/mas-elementor
  * Author: MadrasThemes
  * Version: 1.1.6
- * Elementor tested up to: 3.24.0
+ * Elementor tested up to: 3.24.6
  * Author URI: https://madrasthemes.com/
  * License: GPLv3
  * License URI: https://www.gnu.org/licenses/gpl-3.0.html
