@@ -19,6 +19,7 @@ use Elementor\Icons_Manager;
 use Elementor\Group_Control_Border;
 use Elementor\Group_Control_Box_Shadow;
 use Elementor\Group_Control_Background;
+use Elementor\Utils;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
@@ -1559,9 +1560,9 @@ class Mas_Nav_Tabs extends Base_Widget {
 								endif;
 								?>
 								<div class="mas-tab-flex-grow">
-									<<?php echo esc_html( $heading_tag ); ?> <?php $this->print_render_attribute_string( 'heading_class' ); ?>>
+									<<?php Utils::print_validated_html_tag( $heading_tag ); ?> <?php $this->print_render_attribute_string( 'heading_class' ); ?>>
 										<?php echo esc_html( $item['list'] ); ?>
-									</<?php echo esc_html( $heading_tag ); ?>>
+									</<?php Utils::print_validated_html_tag( $heading_tag ); ?>>
 									<?php if ( ! empty( $item['description_text'] ) ) : ?>
 										<p <?php $this->print_render_attribute_string( 'description_text' ); ?>><?php echo esc_html( $item['description_text'] ); ?></p>
 									<?php endif; ?>

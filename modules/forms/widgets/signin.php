@@ -19,6 +19,7 @@ use Elementor\Group_Control_Box_Shadow;
 use Elementor\Plugin;
 use WP_Error;
 use Elementor\Group_Control_Border;
+use Elementor\Utils;
 
 /**
  * MAS Elementor login widget.
@@ -1868,7 +1869,7 @@ class Signin extends Base_Widget {
 
 		?>
 		<?php if ( $show_title && ! empty( $title ) ) : ?>
-			<<?php echo esc_html( $title_tag ); ?> <?php $this->print_render_attribute_string( 'form_title' ); ?>><?php echo esc_html( $title ); ?></<?php echo esc_html( $title_tag ); ?>>
+			<<?php Utils::print_validated_html_tag( $title_tag ); ?> <?php $this->print_render_attribute_string( 'form_title' ); ?>><?php echo esc_html( $title ); ?></<?php Utils::print_validated_html_tag( $title_tag ); ?>>
 		<?php endif; ?>
 
 		<?php if ( $show_desc && ! empty( $desc ) ) : ?>

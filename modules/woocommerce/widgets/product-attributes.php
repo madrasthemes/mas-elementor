@@ -20,6 +20,7 @@ use MASElementor\Modules\CarouselAttributes\Traits\Pagination_Trait;
 use MASElementor\Modules\CarouselAttributes\Traits\Swiper_Options_Trait;
 use ELementor\Plugin;
 use MASElementor\Modules\QueryControl\Module as Query_Module;
+use Elementor\Utils;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
@@ -1593,7 +1594,7 @@ class Product_Attributes extends Base_Widget {
 	public function render_attributes( $settings ) {
 		?>
 		<?php if ( ! empty( $settings['attributes_title'] ) ) : ?>
-			<<?php echo esc_html( $settings['attributes_title_tag'] ); ?> class="attributes-title"><?php echo esc_html( $settings['attributes_title'] ); ?></<?php echo esc_html( $settings['attributes_title_tag'] ); ?>>
+			<<?php Utils::print_validated_html_tag( $settings['attributes_title_tag'] ); ?> class="attributes-title"><?php echo esc_html( $settings['attributes_title'] ); ?></<?php Utils::print_validated_html_tag( $settings['attributes_title_tag'] ); ?>>
 			<?php
 		endif;
 
