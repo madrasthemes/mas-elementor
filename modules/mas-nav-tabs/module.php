@@ -69,7 +69,7 @@ class Module extends Module_Base {
 	 * Register frontend styles.
 	 */
 	public function register_frontend_styles() {
-		wp_enqueue_style(
+		wp_register_style(
 			'nav-tab-stylesheet',
 			MAS_ELEMENTOR_MODULES_URL . 'mas-nav-tabs/assets/css/mas-nav-tab.css',
 			array(),
@@ -81,7 +81,7 @@ class Module extends Module_Base {
 	 * Register frontend script.
 	 */
 	public function register_frontend_scripts() {
-		wp_enqueue_script(
+		wp_register_script(
 			'mas-nav-tab-script',
 			MAS_ELEMENTOR_MODULES_URL . 'mas-nav-tabs/assets/js/mas-nav-tab.js',
 			array(),

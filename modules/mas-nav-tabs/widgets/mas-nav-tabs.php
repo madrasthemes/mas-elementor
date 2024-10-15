@@ -76,6 +76,24 @@ class Mas_Nav_Tabs extends Base_Widget {
 	}
 
 	/**
+	 * Get the script dependencies for this widget.
+	 *
+	 * @return array
+	 */
+	public function get_script_depends() {
+		return array( 'mas-nav-tab-script' );
+	}
+
+	/**
+	 * Get style dependencies.
+	 *
+	 * @return array Element styles dependencies.
+	 */
+	public function get_style_depends() {
+		return array( 'nav-tab-stylesheet' );
+	}
+
+	/**
 	 * Register controls for this widget.
 	 */
 	protected function register_controls() {
