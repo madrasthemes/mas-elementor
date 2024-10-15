@@ -583,11 +583,11 @@ class Skin_Counter_V1 extends Skin_Base {
 			'data-circles-duration'             => (string) ( $skin_settings['mas_counter_duration'] * 1000 ),
 			'data-circles-scroll-animate'       => 'true',
 			'data-circles-color'                => (string) $skin_settings['counter_title_color'],
-			'data-circles-font-size'            => (string) $skin_settings['typography_counter_title_font_size']['size'],
+			'data-circles-font-size'            => ! empty( $skin_settings['typography_counter_title_font_size']['size'] ) ? (string) $skin_settings['typography_counter_title_font_size']['size'] : '24',
 			'data-circles-secondary-text'       => $skin_settings['description'],
 			'data-circles-secondary-color'      => (string) $skin_settings['desc_color'],
-			'data-circles-secondary-font-size'  => (string) $skin_settings['typography_desc_font_size']['size'],
-			'data-circles-divider-space'        => (string) $skin_settings['mas_counter_space_divider']['size'],
+			'data-circles-secondary-font-size'  => ! empty( $skin_settings['typography_desc_font_size']['size'] ) ? (string) $skin_settings['typography_desc_font_size']['size'] : '13',
+			'data-circles-divider-space'        => ! empty( $skin_settings['mas_counter_space_divider']['size'] ) ? (string) $skin_settings['mas_counter_space_divider']['size'] : '5',
 		);
 
 		$parent->add_render_attribute( 'mas-counter-js-attributes', $counter_attributes );
