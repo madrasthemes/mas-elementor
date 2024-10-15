@@ -75,6 +75,15 @@ class Mas_Breadcrumbs extends Base_Widget {
 	}
 
 	/**
+	 * Get style dependencies.
+	 *
+	 * @return array Element styles dependencies.
+	 */
+	public function get_style_depends() {
+		return array( 'mas-breadcrumb-stylesheet' );
+	}
+
+	/**
 	 * Register Controls.
 	 *
 	 * @return void
