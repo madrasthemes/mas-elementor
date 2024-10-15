@@ -29,7 +29,7 @@ class Product_Terms extends Base_Tag {
 	 * Get Title.
 	 */
 	public function get_title() {
-		return esc_html__( 'Product Terms', 'mas-elementor' );
+		return esc_html__( 'Product Terms', 'mas-addons-for-elementor' );
 	}
 
 	/**
@@ -41,7 +41,7 @@ class Product_Terms extends Base_Tag {
 		$this->update_control(
 			'before',
 			array(
-				'default' => esc_html__( 'Categories', 'mas-elementor' ) . ': ',
+				'default' => esc_html__( 'Categories', 'mas-addons-for-elementor' ) . ': ',
 			)
 		);
 	}
@@ -66,7 +66,7 @@ class Product_Terms extends Base_Tag {
 		$this->add_control(
 			'taxonomy',
 			array(
-				'label'   => esc_html__( 'Taxonomy', 'mas-elementor' ),
+				'label'   => esc_html__( 'Taxonomy', 'mas-addons-for-elementor' ),
 				'type'    => Controls_Manager::SELECT,
 				'options' => $options,
 				'default' => 'product_cat',
@@ -76,7 +76,7 @@ class Product_Terms extends Base_Tag {
 		$this->add_control(
 			'separator',
 			array(
-				'label'   => esc_html__( 'Separator', 'mas-elementor' ),
+				'label'   => esc_html__( 'Separator', 'mas-addons-for-elementor' ),
 				'type'    => Controls_Manager::TEXT,
 				'default' => ', ',
 			)

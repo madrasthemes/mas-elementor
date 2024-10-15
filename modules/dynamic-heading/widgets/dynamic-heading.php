@@ -44,7 +44,7 @@ class Dynamic_Heading extends Widget_Heading {
 	 * @return string
 	 */
 	public function get_title() {
-		return esc_html__( 'MAS Dynamic Heading', 'mas-elementor' );
+		return esc_html__( 'MAS Dynamic Heading', 'mas-addons-for-elementor' );
 	}
 
 	/**
@@ -104,7 +104,7 @@ class Dynamic_Heading extends Widget_Heading {
 		$this->start_controls_section(
 			'section_wrapper',
 			array(
-				'label' => esc_html__( 'Wrapper', 'mas-elementor' ),
+				'label' => esc_html__( 'Wrapper', 'mas-addons-for-elementor' ),
 			)
 		);
 
@@ -112,10 +112,10 @@ class Dynamic_Heading extends Widget_Heading {
 			'enable_flex_wrap',
 			array(
 				'type'         => Controls_Manager::SWITCHER,
-				'label'        => esc_html__( 'Flex Wrap', 'mas-elementor' ),
+				'label'        => esc_html__( 'Flex Wrap', 'mas-addons-for-elementor' ),
 				'default'      => 'no',
-				'label_off'    => esc_html__( 'No', 'mas-elementor' ),
-				'label_on'     => esc_html__( 'Wrap', 'mas-elementor' ),
+				'label_off'    => esc_html__( 'No', 'mas-addons-for-elementor' ),
+				'label_on'     => esc_html__( 'Wrap', 'mas-addons-for-elementor' ),
 				'return_value' => 'wrap',
 				'prefix_class' => 'mas-dynamic-heading-wrapper%s-',
 			)
@@ -124,19 +124,19 @@ class Dynamic_Heading extends Widget_Heading {
 		$this->add_responsive_control(
 			'wrap_align',
 			array(
-				'label'     => esc_html__( 'Wrap Alignment', 'mas-elementor' ),
+				'label'     => esc_html__( 'Wrap Alignment', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::CHOOSE,
 				'options'   => array(
 					'left'   => array(
-						'title' => esc_html__( 'Left', 'mas-elementor' ),
+						'title' => esc_html__( 'Left', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-text-align-left',
 					),
 					'center' => array(
-						'title' => esc_html__( 'Center', 'mas-elementor' ),
+						'title' => esc_html__( 'Center', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-text-align-center',
 					),
 					'right'  => array(
-						'title' => esc_html__( 'Right', 'mas-elementor' ),
+						'title' => esc_html__( 'Right', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-text-align-right',
 					),
 				),
@@ -160,14 +160,14 @@ class Dynamic_Heading extends Widget_Heading {
 		$this->start_controls_section(
 			'section_icon',
 			array(
-				'label' => esc_html__( 'Icon', 'mas-elementor' ),
+				'label' => esc_html__( 'Icon', 'mas-addons-for-elementor' ),
 			)
 		);
 
 		$this->add_control(
 			'selected_icon',
 			array(
-				'label'            => esc_html__( 'Icon', 'mas-elementor' ),
+				'label'            => esc_html__( 'Icon', 'mas-addons-for-elementor' ),
 				'type'             => Controls_Manager::ICONS,
 				'fa4compatibility' => 'icon',
 				'default'          => array(
@@ -180,12 +180,12 @@ class Dynamic_Heading extends Widget_Heading {
 		$this->add_control(
 			'icon_view',
 			array(
-				'label'        => esc_html__( 'View', 'mas-elementor' ),
+				'label'        => esc_html__( 'View', 'mas-addons-for-elementor' ),
 				'type'         => Controls_Manager::SELECT,
 				'options'      => array(
-					'default' => esc_html__( 'Default', 'mas-elementor' ),
-					'stacked' => esc_html__( 'Stacked', 'mas-elementor' ),
-					'framed'  => esc_html__( 'Framed', 'mas-elementor' ),
+					'default' => esc_html__( 'Default', 'mas-addons-for-elementor' ),
+					'stacked' => esc_html__( 'Stacked', 'mas-addons-for-elementor' ),
+					'framed'  => esc_html__( 'Framed', 'mas-addons-for-elementor' ),
 				),
 				'default'      => 'default',
 				'prefix_class' => 'elementor-view-',
@@ -195,11 +195,11 @@ class Dynamic_Heading extends Widget_Heading {
 		$this->add_control(
 			'shape',
 			array(
-				'label'        => esc_html__( 'Shape', 'mas-elementor' ),
+				'label'        => esc_html__( 'Shape', 'mas-addons-for-elementor' ),
 				'type'         => Controls_Manager::SELECT,
 				'options'      => array(
-					'circle' => esc_html__( 'Circle', 'mas-elementor' ),
-					'square' => esc_html__( 'Square', 'mas-elementor' ),
+					'circle' => esc_html__( 'Circle', 'mas-addons-for-elementor' ),
+					'square' => esc_html__( 'Square', 'mas-addons-for-elementor' ),
 				),
 				'default'      => 'circle',
 				'condition'    => array(
@@ -212,31 +212,31 @@ class Dynamic_Heading extends Widget_Heading {
 		$this->add_control(
 			'icon_link',
 			array(
-				'label'       => esc_html__( 'Link', 'mas-elementor' ),
+				'label'       => esc_html__( 'Link', 'mas-addons-for-elementor' ),
 				'type'        => Controls_Manager::URL,
 				'dynamic'     => array(
 					'active' => true,
 				),
-				'placeholder' => esc_html__( 'https://your-link.com', 'mas-elementor' ),
+				'placeholder' => esc_html__( 'https://your-link.com', 'mas-addons-for-elementor' ),
 			)
 		);
 
 		$this->add_responsive_control(
 			'icon_align',
 			array(
-				'label'     => esc_html__( 'Alignment', 'mas-elementor' ),
+				'label'     => esc_html__( 'Alignment', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::CHOOSE,
 				'options'   => array(
 					'left'   => array(
-						'title' => esc_html__( 'Left', 'mas-elementor' ),
+						'title' => esc_html__( 'Left', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-text-align-left',
 					),
 					'center' => array(
-						'title' => esc_html__( 'Center', 'mas-elementor' ),
+						'title' => esc_html__( 'Center', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-text-align-center',
 					),
 					'right'  => array(
-						'title' => esc_html__( 'Right', 'mas-elementor' ),
+						'title' => esc_html__( 'Right', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-text-align-right',
 					),
 				),
@@ -252,7 +252,7 @@ class Dynamic_Heading extends Widget_Heading {
 		$this->start_controls_section(
 			'section_style_icon',
 			array(
-				'label' => esc_html__( 'Icon', 'mas-elementor' ),
+				'label' => esc_html__( 'Icon', 'mas-addons-for-elementor' ),
 				'tab'   => Controls_Manager::TAB_STYLE,
 			)
 		);
@@ -262,14 +262,14 @@ class Dynamic_Heading extends Widget_Heading {
 		$this->start_controls_tab(
 			'icon_colors_normal',
 			array(
-				'label' => esc_html__( 'Normal', 'mas-elementor' ),
+				'label' => esc_html__( 'Normal', 'mas-addons-for-elementor' ),
 			)
 		);
 
 		$this->add_control(
 			'primary_color',
 			array(
-				'label'     => esc_html__( 'Primary Color', 'mas-elementor' ),
+				'label'     => esc_html__( 'Primary Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'default'   => '',
 				'selectors' => array(
@@ -286,7 +286,7 @@ class Dynamic_Heading extends Widget_Heading {
 		$this->add_control(
 			'secondary_color',
 			array(
-				'label'     => esc_html__( 'Secondary Color', 'mas-elementor' ),
+				'label'     => esc_html__( 'Secondary Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'default'   => '',
 				'condition' => array(
@@ -305,14 +305,14 @@ class Dynamic_Heading extends Widget_Heading {
 		$this->start_controls_tab(
 			'icon_colors_hover',
 			array(
-				'label' => esc_html__( 'Hover', 'mas-elementor' ),
+				'label' => esc_html__( 'Hover', 'mas-addons-for-elementor' ),
 			)
 		);
 
 		$this->add_control(
 			'hover_primary_color',
 			array(
-				'label'     => esc_html__( 'Primary Color', 'mas-elementor' ),
+				'label'     => esc_html__( 'Primary Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'default'   => '',
 				'selectors' => array(
@@ -326,7 +326,7 @@ class Dynamic_Heading extends Widget_Heading {
 		$this->add_control(
 			'hover_secondary_color',
 			array(
-				'label'     => esc_html__( 'Secondary Color', 'mas-elementor' ),
+				'label'     => esc_html__( 'Secondary Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'default'   => '',
 				'condition' => array(
@@ -343,7 +343,7 @@ class Dynamic_Heading extends Widget_Heading {
 		$this->add_control(
 			'hover_animation',
 			array(
-				'label' => esc_html__( 'Hover Animation', 'mas-elementor' ),
+				'label' => esc_html__( 'Hover Animation', 'mas-addons-for-elementor' ),
 				'type'  => Controls_Manager::HOVER_ANIMATION,
 			)
 		);
@@ -355,7 +355,7 @@ class Dynamic_Heading extends Widget_Heading {
 		$this->add_responsive_control(
 			'icon_size',
 			array(
-				'label'      => esc_html__( 'Size', 'mas-elementor' ),
+				'label'      => esc_html__( 'Size', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::SLIDER,
 				'size_units' => array( 'px', '%', 'em', 'rem', 'vw', 'custom' ),
 				'range'      => array(
@@ -375,11 +375,11 @@ class Dynamic_Heading extends Widget_Heading {
 		$this->add_control(
 			'fit_to_size',
 			array(
-				'label'       => esc_html__( 'Fit to Size', 'mas-elementor' ),
+				'label'       => esc_html__( 'Fit to Size', 'mas-addons-for-elementor' ),
 				'type'        => Controls_Manager::SWITCHER,
 				'description' => 'Avoid gaps around icons when width and height aren\'t equal',
-				'label_off'   => esc_html__( 'Off', 'mas-elementor' ),
-				'label_on'    => esc_html__( 'On', 'mas-elementor' ),
+				'label_off'   => esc_html__( 'Off', 'mas-addons-for-elementor' ),
+				'label_on'    => esc_html__( 'On', 'mas-addons-for-elementor' ),
 				'condition'   => array(
 					'selected_icon[library]' => 'svg',
 				),
@@ -392,7 +392,7 @@ class Dynamic_Heading extends Widget_Heading {
 		$this->add_control(
 			'icon_padding',
 			array(
-				'label'     => esc_html__( 'Padding', 'mas-elementor' ),
+				'label'     => esc_html__( 'Padding', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::SLIDER,
 				'selectors' => array(
 					'{{WRAPPER}} .elementor-icon' => 'padding: {{SIZE}}{{UNIT}};',
@@ -412,7 +412,7 @@ class Dynamic_Heading extends Widget_Heading {
 		$this->add_responsive_control(
 			'rotate',
 			array(
-				'label'          => esc_html__( 'Rotate', 'mas-elementor' ),
+				'label'          => esc_html__( 'Rotate', 'mas-addons-for-elementor' ),
 				'type'           => Controls_Manager::SLIDER,
 				'size_units'     => array( 'deg', 'grad', 'rad', 'turn', 'custom' ),
 				'default'        => array(
@@ -433,7 +433,7 @@ class Dynamic_Heading extends Widget_Heading {
 		$this->add_control(
 			'border_width',
 			array(
-				'label'      => esc_html__( 'Border Width', 'mas-elementor' ),
+				'label'      => esc_html__( 'Border Width', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', '%', 'em', 'rem', 'vw', 'custom' ),
 				'selectors'  => array(
@@ -448,7 +448,7 @@ class Dynamic_Heading extends Widget_Heading {
 		$this->add_responsive_control(
 			'border_radius',
 			array(
-				'label'      => esc_html__( 'Border Radius', 'mas-elementor' ),
+				'label'      => esc_html__( 'Border Radius', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', '%', 'em', 'rem', 'custom' ),
 				'selectors'  => array(

@@ -27,7 +27,7 @@ class Job_Company extends \Elementor\Core\DynamicTags\Tag {
 	 * Get the title.
 	 */
 	public function get_title() {
-		return esc_html__( 'Job Company', 'mas-elementor' );
+		return esc_html__( 'Job Company', 'mas-addons-for-elementor' );
 	}
 	/**
 	 * Get the group.

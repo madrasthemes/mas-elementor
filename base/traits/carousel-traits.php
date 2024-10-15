@@ -36,7 +36,7 @@ trait Carousel_Traits {
 		$element->start_controls_section(
 			'section_carousel_attributes',
 			array(
-				'label' => __( 'Carousel', 'mas-elementor' ),
+				'label' => __( 'Carousel', 'mas-addons-for-elementor' ),
 				'tab'   => Controls_Manager::TAB_CONTENT,
 			),
 			array(
@@ -51,7 +51,7 @@ trait Carousel_Traits {
 			'enable_carousel',
 			array(
 				'type'    => Controls_Manager::SWITCHER,
-				'label'   => esc_html__( 'Enable Carousel', 'mas-elementor' ),
+				'label'   => esc_html__( 'Enable Carousel', 'mas-addons-for-elementor' ),
 				'default' => 'no',
 			)
 		);
@@ -60,12 +60,12 @@ trait Carousel_Traits {
 			'carousel_effect',
 			array(
 				'type'               => Controls_Manager::SELECT,
-				'label'              => esc_html__( 'Effect', 'mas-elementor' ),
+				'label'              => esc_html__( 'Effect', 'mas-addons-for-elementor' ),
 				'default'            => 'slide',
 				'options'            => array(
-					''      => esc_html__( 'None', 'mas-elementor' ),
-					'slide' => esc_html__( 'Slide', 'mas-elementor' ),
-					'fade'  => esc_html__( 'Fade', 'mas-elementor' ),
+					''      => esc_html__( 'None', 'mas-addons-for-elementor' ),
+					'slide' => esc_html__( 'Slide', 'mas-addons-for-elementor' ),
+					'fade'  => esc_html__( 'Fade', 'mas-addons-for-elementor' ),
 				),
 				'condition'          => array(
 					'enable_carousel' => 'yes',
@@ -81,7 +81,7 @@ trait Carousel_Traits {
 
 		$slides_per_view  = array(
 			'type'               => Controls_Manager::NUMBER,
-			'label'              => esc_html__( 'Slides Per View', 'mas-elementor' ),
+			'label'              => esc_html__( 'Slides Per View', 'mas-addons-for-elementor' ),
 			'min'                => 1,
 			'max'                => 10,
 			'default'            => 1,
@@ -93,7 +93,7 @@ trait Carousel_Traits {
 		);
 		$slides_to_scroll = array(
 			'type'               => Controls_Manager::NUMBER,
-			'label'              => esc_html__( 'Slides To Scroll', 'mas-elementor' ),
+			'label'              => esc_html__( 'Slides To Scroll', 'mas-addons-for-elementor' ),
 			'min'                => 1,
 			'max'                => 10,
 			'default'            => 1,
@@ -106,8 +106,8 @@ trait Carousel_Traits {
 		);
 		$space_between    = array(
 			'type'        => Controls_Manager::NUMBER,
-			'label'       => esc_html__( 'Space Between', 'mas-elementor' ),
-			'description' => esc_html__( 'Set Space between each Slides', 'mas-elementor' ),
+			'label'       => esc_html__( 'Space Between', 'mas-addons-for-elementor' ),
+			'description' => esc_html__( 'Set Space between each Slides', 'mas-addons-for-elementor' ),
 			'min'         => 0,
 			'max'         => 100,
 			'default'     => 8,
@@ -137,10 +137,10 @@ trait Carousel_Traits {
 			'enable_space_between',
 			array(
 				'type'      => Controls_Manager::SWITCHER,
-				'label'     => esc_html__( 'Enable Space Between', 'mas-elementor' ),
+				'label'     => esc_html__( 'Enable Space Between', 'mas-addons-for-elementor' ),
 				'default'   => 'yes',
-				'label_off' => esc_html__( 'Hide', 'mas-elementor' ),
-				'label_on'  => esc_html__( 'Show', 'mas-elementor' ),
+				'label_off' => esc_html__( 'Hide', 'mas-addons-for-elementor' ),
+				'label_on'  => esc_html__( 'Show', 'mas-addons-for-elementor' ),
 				'condition' => array(
 					'carousel_effect' => 'slide',
 					'enable_carousel' => 'yes',
@@ -157,10 +157,10 @@ trait Carousel_Traits {
 			'center_slides',
 			array(
 				'type'               => Controls_Manager::SWITCHER,
-				'label'              => esc_html__( 'Center Slides', 'mas-elementor' ),
+				'label'              => esc_html__( 'Center Slides', 'mas-addons-for-elementor' ),
 				'default'            => 'no',
-				'label_off'          => esc_html__( 'Hide', 'mas-elementor' ),
-				'label_on'           => esc_html__( 'Show', 'mas-elementor' ),
+				'label_off'          => esc_html__( 'Hide', 'mas-addons-for-elementor' ),
+				'label_on'           => esc_html__( 'Show', 'mas-addons-for-elementor' ),
 				'condition'          => array(
 					'carousel_effect' => 'slide',
 					'enable_carousel' => 'yes',
@@ -173,10 +173,10 @@ trait Carousel_Traits {
 			'show_arrows',
 			array(
 				'type'      => Controls_Manager::SWITCHER,
-				'label'     => esc_html__( 'Arrows', 'mas-elementor' ),
+				'label'     => esc_html__( 'Arrows', 'mas-addons-for-elementor' ),
 				'default'   => 'no',
-				'label_off' => esc_html__( 'Hide', 'mas-elementor' ),
-				'label_on'  => esc_html__( 'Show', 'mas-elementor' ),
+				'label_off' => esc_html__( 'Hide', 'mas-addons-for-elementor' ),
+				'label_on'  => esc_html__( 'Show', 'mas-addons-for-elementor' ),
 				'condition' => array(
 					'enable_carousel'     => 'yes',
 					'show_custom_arrows!' => 'yes',
@@ -188,10 +188,10 @@ trait Carousel_Traits {
 			'show_custom_arrows',
 			array(
 				'type'      => Controls_Manager::SWITCHER,
-				'label'     => esc_html__( 'Custom Arrows', 'mas-elementor' ),
+				'label'     => esc_html__( 'Custom Arrows', 'mas-addons-for-elementor' ),
 				'default'   => 'no',
-				'label_off' => esc_html__( 'Hide', 'mas-elementor' ),
-				'label_on'  => esc_html__( 'Show', 'mas-elementor' ),
+				'label_off' => esc_html__( 'Hide', 'mas-addons-for-elementor' ),
+				'label_on'  => esc_html__( 'Show', 'mas-addons-for-elementor' ),
 				'condition' => array(
 					'enable_carousel' => 'yes',
 					'show_arrows!'    => 'yes',
@@ -202,7 +202,7 @@ trait Carousel_Traits {
 		$element->add_control(
 			'custom_prev_id',
 			array(
-				'label'     => esc_html__( 'Previous Arrow ID', 'mas-elementor' ),
+				'label'     => esc_html__( 'Previous Arrow ID', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::TEXT,
 				'condition' => array(
 					'enable_carousel'    => 'yes',
@@ -215,7 +215,7 @@ trait Carousel_Traits {
 		$element->add_control(
 			'custom_next_id',
 			array(
-				'label'     => __( 'Next Arrow ID', 'mas-elementor' ),
+				'label'     => __( 'Next Arrow ID', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::TEXT,
 				'condition' => array(
 					'enable_carousel'    => 'yes',
@@ -228,7 +228,7 @@ trait Carousel_Traits {
 		$element->add_control(
 			'speed',
 			array(
-				'label'              => esc_html__( 'Transition Duration', 'mas-elementor' ),
+				'label'              => esc_html__( 'Transition Duration', 'mas-addons-for-elementor' ),
 				'type'               => Controls_Manager::NUMBER,
 				'default'            => 500,
 				'step'               => 100,
@@ -243,7 +243,7 @@ trait Carousel_Traits {
 		$element->add_control(
 			'autoplay',
 			array(
-				'label'              => esc_html__( 'Autoplay', 'mas-elementor' ),
+				'label'              => esc_html__( 'Autoplay', 'mas-addons-for-elementor' ),
 				'type'               => Controls_Manager::SWITCHER,
 				'default'            => 'yes',
 				'separator'          => 'before',
@@ -258,7 +258,7 @@ trait Carousel_Traits {
 		$element->add_control(
 			'autoplay_speed',
 			array(
-				'label'              => esc_html__( 'Autoplay Speed', 'mas-elementor' ),
+				'label'              => esc_html__( 'Autoplay Speed', 'mas-addons-for-elementor' ),
 				'type'               => Controls_Manager::NUMBER,
 				'default'            => 5000,
 				'condition'          => array(
@@ -273,7 +273,7 @@ trait Carousel_Traits {
 		$element->add_control(
 			'loop',
 			array(
-				'label'              => esc_html__( 'Infinite Loop', 'mas-elementor' ),
+				'label'              => esc_html__( 'Infinite Loop', 'mas-addons-for-elementor' ),
 				'type'               => Controls_Manager::SWITCHER,
 				'default'            => 'yes',
 				'condition'          => array(
@@ -286,7 +286,7 @@ trait Carousel_Traits {
 		$element->add_control(
 			'pause_on_hover',
 			array(
-				'label'              => esc_html__( 'Pause on Hover', 'mas-elementor' ),
+				'label'              => esc_html__( 'Pause on Hover', 'mas-addons-for-elementor' ),
 				'type'               => Controls_Manager::SWITCHER,
 				'default'            => 'yes',
 				'condition'          => array(
@@ -302,10 +302,10 @@ trait Carousel_Traits {
 			'show_pagination',
 			array(
 				'type'               => Controls_Manager::SWITCHER,
-				'label'              => esc_html__( 'Enable Pagination', 'mas-elementor' ),
+				'label'              => esc_html__( 'Enable Pagination', 'mas-addons-for-elementor' ),
 				'default'            => 'no',
-				'label_off'          => esc_html__( 'Hide', 'mas-elementor' ),
-				'label_on'           => esc_html__( 'Show', 'mas-elementor' ),
+				'label_off'          => esc_html__( 'Hide', 'mas-addons-for-elementor' ),
+				'label_on'           => esc_html__( 'Show', 'mas-addons-for-elementor' ),
 				'condition'          => array(
 					'enable_carousel' => 'yes',
 				),
@@ -316,13 +316,13 @@ trait Carousel_Traits {
 		$element->add_control(
 			'pagination',
 			array(
-				'label'     => esc_html__( 'Pagination', 'mas-elementor' ),
+				'label'     => esc_html__( 'Pagination', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::SELECT,
 				'default'   => 'bullets',
 				'options'   => array(
-					'bullets'     => esc_html__( 'Dots', 'mas-elementor' ),
-					'fraction'    => esc_html__( 'Fraction', 'mas-elementor' ),
-					'progressbar' => esc_html__( 'Progress', 'mas-elementor' ),
+					'bullets'     => esc_html__( 'Dots', 'mas-addons-for-elementor' ),
+					'fraction'    => esc_html__( 'Fraction', 'mas-addons-for-elementor' ),
+					'progressbar' => esc_html__( 'Progress', 'mas-addons-for-elementor' ),
 				),
 				'condition' => array(
 					'enable_carousel' => 'yes',

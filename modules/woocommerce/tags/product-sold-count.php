@@ -29,7 +29,7 @@ class Product_Sold_Count extends Base_Tag {
 	 * Get Title.
 	 */
 	public function get_title() {
-		return esc_html__( 'Product Sold Meta', 'mas-elementor' );
+		return esc_html__( 'Product Sold Meta', 'mas-addons-for-elementor' );
 	}
 
 	/**
@@ -51,12 +51,12 @@ class Product_Sold_Count extends Base_Tag {
 		$this->add_control(
 			'mas_product_meta',
 			array(
-				'label'   => esc_html__( 'Layout', 'mas-elementor' ),
+				'label'   => esc_html__( 'Layout', 'mas-addons-for-elementor' ),
 				'type'    => Controls_Manager::SELECT,
 				'options' => array(
-					'sold'       => esc_html__( 'Products Sold', 'mas-elementor' ),
-					'available'  => esc_html__( 'Products Available', 'mas-elementor' ),
-					'percentage' => esc_html__( 'Sold Percentage', 'mas-elementor' ),
+					'sold'       => esc_html__( 'Products Sold', 'mas-addons-for-elementor' ),
+					'available'  => esc_html__( 'Products Available', 'mas-addons-for-elementor' ),
+					'percentage' => esc_html__( 'Sold Percentage', 'mas-addons-for-elementor' ),
 				),
 				'default' => 'sold',
 			)

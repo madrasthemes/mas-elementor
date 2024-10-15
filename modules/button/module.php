@@ -62,17 +62,17 @@ class Module extends Module_Base {
 			'enable_collapse',
 			array(
 				'type'         => Controls_Manager::SWITCHER,
-				'label'        => esc_html__( 'Enable Collapse', 'mas-elementor' ),
+				'label'        => esc_html__( 'Enable Collapse', 'mas-addons-for-elementor' ),
 				'default'      => 'enable',
-				'label_off'    => esc_html__( 'Enable', 'mas-elementor' ),
-				'label_on'     => esc_html__( 'Disable', 'mas-elementor' ),
+				'label_off'    => esc_html__( 'Enable', 'mas-addons-for-elementor' ),
+				'label_on'     => esc_html__( 'Disable', 'mas-addons-for-elementor' ),
 			)
 		);
 
 		$element->add_control(
 			'data_target',
 			array(
-				'label'       => esc_html__( 'Data Content Id', 'mas-elementor' ),
+				'label'       => esc_html__( 'Data Content Id', 'mas-addons-for-elementor' ),
 				'type'        => Controls_Manager::TEXT,
 				'default'     => 'content-1',
 				'condition' => array(
@@ -108,7 +108,7 @@ class Module extends Module_Base {
 		$element->add_control(
 			'mas_button_opacity',
 			array(
-				'label'     => esc_html__( 'Opacity', 'mas-elementor' ),
+				'label'     => esc_html__( 'Opacity', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::SLIDER,
 				'range'     => array(
 					'px' => array(
@@ -127,7 +127,7 @@ class Module extends Module_Base {
 		$element->add_control(
 			'mas_button_icon_size',
 			array(
-				'label'     => esc_html__( 'Icon Size', 'mas-elementor' ),
+				'label'     => esc_html__( 'Icon Size', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::SLIDER,
 				'range'     => array(
 					'px' => array(
@@ -144,7 +144,7 @@ class Module extends Module_Base {
 		$element->add_control(
 			'mas_button_icon_color',
 			array(
-				'label'     => esc_html__( 'Icon Color', 'mas-elementor' ),
+				'label'     => esc_html__( 'Icon Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
 					'{{WRAPPER}} .elementor-button-icon i'   => 'color: {{VALUE}};',
@@ -156,24 +156,24 @@ class Module extends Module_Base {
 		$element->add_responsive_control(
 			'mas_button_wrapper_align_items',
 			array(
-				'label'     => esc_html__( 'Vertical Align Items', 'mas-elementor' ),
+				'label'     => esc_html__( 'Vertical Align Items', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::CHOOSE,
 				'default'   => '',
 				'options'   => array(
 					'flex-start' => array(
-						'title' => esc_html__( 'Start', 'mas-elementor' ),
+						'title' => esc_html__( 'Start', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-flex eicon-align-start-v',
 					),
 					'center'     => array(
-						'title' => esc_html__( 'Center', 'mas-elementor' ),
+						'title' => esc_html__( 'Center', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-flex eicon-align-center-v',
 					),
 					'flex-end'   => array(
-						'title' => esc_html__( 'End', 'mas-elementor' ),
+						'title' => esc_html__( 'End', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-flex eicon-align-end-v',
 					),
 					'stretch'    => array(
-						'title' => esc_html__( 'Stretch', 'mas-elementor' ),
+						'title' => esc_html__( 'Stretch', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-flex eicon-align-stretch-v',
 					),
 				),
@@ -187,24 +187,24 @@ class Module extends Module_Base {
 		$element->add_responsive_control(
 			'mas_button_wrapper_align_icon',
 			array(
-				'label'     => esc_html__( 'Vertical Align Icon', 'mas-elementor' ),
+				'label'     => esc_html__( 'Vertical Align Icon', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::CHOOSE,
 				'default'   => '',
 				'options'   => array(
 					'flex-start' => array(
-						'title' => esc_html__( 'Start', 'mas-elementor' ),
+						'title' => esc_html__( 'Start', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-flex eicon-align-start-v',
 					),
 					'center'     => array(
-						'title' => esc_html__( 'Center', 'mas-elementor' ),
+						'title' => esc_html__( 'Center', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-flex eicon-align-center-v',
 					),
 					'flex-end'   => array(
-						'title' => esc_html__( 'End', 'mas-elementor' ),
+						'title' => esc_html__( 'End', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-flex eicon-align-end-v',
 					),
 					'stretch'    => array(
-						'title' => esc_html__( 'Stretch', 'mas-elementor' ),
+						'title' => esc_html__( 'Stretch', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-flex eicon-align-stretch-v',
 					),
 				),

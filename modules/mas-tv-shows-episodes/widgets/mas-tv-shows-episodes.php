@@ -46,7 +46,7 @@ class Mas_Tv_Shows_Episodes extends Base_Widget {
 	 * @return string
 	 */
 	public function get_title() {
-		return esc_html__( 'MAS Tv-Shows Episodes', 'mas-elementor' );
+		return esc_html__( 'MAS Tv-Shows Episodes', 'mas-addons-for-elementor' );
 	}
 
 	/**
@@ -96,7 +96,7 @@ class Mas_Tv_Shows_Episodes extends Base_Widget {
 		$this->start_controls_section(
 			'section_layout',
 			array(
-				'label' => __( 'Layout', 'mas-elementor' ),
+				'label' => __( 'Layout', 'mas-addons-for-elementor' ),
 				'tab'   => Controls_Manager::TAB_CONTENT,
 			)
 		);
@@ -105,7 +105,7 @@ class Mas_Tv_Shows_Episodes extends Base_Widget {
 		$this->add_control(
 			'select_template',
 			array(
-				'label'   => esc_html__( 'MAS Templates', 'mas-elementor' ),
+				'label'   => esc_html__( 'MAS Templates', 'mas-addons-for-elementor' ),
 				'type'    => Controls_Manager::SELECT,
 				'options' => $templates,
 			)
@@ -116,7 +116,7 @@ class Mas_Tv_Shows_Episodes extends Base_Widget {
 		$this->start_controls_section(
 			'section_style_tab',
 			array(
-				'label' => __( 'Layout', 'mas-elementor' ),
+				'label' => __( 'Layout', 'mas-addons-for-elementor' ),
 				'tab'   => Controls_Manager::TAB_STYLE,
 			)
 		);
@@ -126,14 +126,14 @@ class Mas_Tv_Shows_Episodes extends Base_Widget {
 		$this->start_controls_tab(
 			'me_tab_normal',
 			array(
-				'label' => esc_html__( 'Normal', 'mas-elementor' ),
+				'label' => esc_html__( 'Normal', 'mas-addons-for-elementor' ),
 			)
 		);
 
 		$this->add_control(
 			'me_tab_text_color',
 			array(
-				'label'     => esc_html__( 'Text Color', 'mas-elementor' ),
+				'label'     => esc_html__( 'Text Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'default'   => '',
 				'selectors' => array(
@@ -154,7 +154,7 @@ class Mas_Tv_Shows_Episodes extends Base_Widget {
 		$this->add_control(
 			'tab_background_color',
 			array(
-				'label'     => esc_html__( 'Background Color', 'mas-elementor' ),
+				'label'     => esc_html__( 'Background Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
 					'{{WRAPPER}} .me-tabs .mas-tab-flex' => 'background-color: {{VALUE}};',
@@ -167,14 +167,14 @@ class Mas_Tv_Shows_Episodes extends Base_Widget {
 		$this->start_controls_tab(
 			'me_tab_hover',
 			array(
-				'label' => esc_html__( 'Hover', 'mas-elementor' ),
+				'label' => esc_html__( 'Hover', 'mas-addons-for-elementor' ),
 			)
 		);
 
 		$this->add_control(
 			'me_hover_tab_text_color',
 			array(
-				'label'     => esc_html__( 'Text Color', 'mas-elementor' ),
+				'label'     => esc_html__( 'Text Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'default'   => '',
 				'selectors' => array(
@@ -186,7 +186,7 @@ class Mas_Tv_Shows_Episodes extends Base_Widget {
 		$this->add_control(
 			'tab_hover_background_color',
 			array(
-				'label'     => esc_html__( 'Background Color', 'mas-elementor' ),
+				'label'     => esc_html__( 'Background Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
 					'{{WRAPPER}} .me-tabs .mas-tab-flex:hover' => 'background-color: {{VALUE}};',
@@ -199,13 +199,13 @@ class Mas_Tv_Shows_Episodes extends Base_Widget {
 		$this->start_controls_tab(
 			'me_tab_active',
 			array(
-				'label' => esc_html__( 'Active', 'mas-elementor' ),
+				'label' => esc_html__( 'Active', 'mas-addons-for-elementor' ),
 			)
 		);
 		$this->add_control(
 			'me_tab_active_text_color',
 			array(
-				'label'     => esc_html__( 'Text Color', 'mas-elementor' ),
+				'label'     => esc_html__( 'Text Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'default'   => '',
 				'selectors' => array(
@@ -217,7 +217,7 @@ class Mas_Tv_Shows_Episodes extends Base_Widget {
 		$this->add_control(
 			'tab_active_background_color',
 			array(
-				'label'     => esc_html__( 'Background Color', 'mas-elementor' ),
+				'label'     => esc_html__( 'Background Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
 					'{{WRAPPER}} .mas-tab-flex:has( .active )' => 'background-color: {{VALUE}};',
@@ -233,7 +233,7 @@ class Mas_Tv_Shows_Episodes extends Base_Widget {
 		$this->add_responsive_control(
 			'me_nav_tab_li_padding',
 			array(
-				'label'      => esc_html__( 'Padding', 'mas-elementor' ),
+				'label'      => esc_html__( 'Padding', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', 'em', '%', 'rem' ),
 				'selectors'  => array(
@@ -246,7 +246,7 @@ class Mas_Tv_Shows_Episodes extends Base_Widget {
 		$this->add_responsive_control(
 			'me_nav_tab_li_margin',
 			array(
-				'label'      => esc_html__( 'Margin', 'mas-elementor' ),
+				'label'      => esc_html__( 'Margin', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', 'em', '%', 'rem' ),
 				'selectors'  => array(
@@ -258,7 +258,7 @@ class Mas_Tv_Shows_Episodes extends Base_Widget {
 		$this->add_responsive_control(
 			'me_nav_tab_li_border_radius',
 			array(
-				'label'      => esc_html__( 'Border Radius', 'mas-elementor' ),
+				'label'      => esc_html__( 'Border Radius', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', 'em', '%', 'rem' ),
 				'selectors'  => array(
@@ -270,19 +270,19 @@ class Mas_Tv_Shows_Episodes extends Base_Widget {
 		$this->add_responsive_control(
 			'me_nav_tab_li_align',
 			array(
-				'label'     => esc_html__( 'Title Alignment', 'mas-elementor' ),
+				'label'     => esc_html__( 'Title Alignment', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::CHOOSE,
 				'options'   => array(
 					'start'  => array(
-						'title' => esc_html__( 'Left', 'mas-elementor' ),
+						'title' => esc_html__( 'Left', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-text-align-left',
 					),
 					'center' => array(
-						'title' => esc_html__( 'Center', 'mas-elementor' ),
+						'title' => esc_html__( 'Center', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-text-align-center',
 					),
 					'end'    => array(
-						'title' => esc_html__( 'Right', 'mas-elementor' ),
+						'title' => esc_html__( 'Right', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-text-align-right',
 					),
 				),

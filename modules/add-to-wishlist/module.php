@@ -59,7 +59,7 @@ class Module extends Module_Base {
 		$element->start_controls_section(
 			'wishlist_style',
 			array(
-				'label' => esc_html__( 'Style', 'mas-elementor' ),
+				'label' => esc_html__( 'Style', 'mas-addons-for-elementor' ),
 				'tab'   => Controls_Manager::TAB_STYLE,
 			)
 		);
@@ -67,7 +67,7 @@ class Module extends Module_Base {
 		$element->add_responsive_control(
 			'wishlist_icon_size',
 			array(
-				'label'     => esc_html__( 'Icon Size', 'mas-elementor' ),
+				'label'     => esc_html__( 'Icon Size', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::SLIDER,
 				'default'   => array(
 					'size' => 14,
@@ -82,7 +82,7 @@ class Module extends Module_Base {
 		$element->add_control(
 			'wishlist_icon_color',
 			array(
-				'label'     => esc_html__( 'Icon Color', 'mas-elementor' ),
+				'label'     => esc_html__( 'Icon Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
 					'{{WRAPPER}} .yith-wcwl-icon' => 'color: {{VALUE}};',
@@ -94,7 +94,7 @@ class Module extends Module_Base {
 		$element->add_responsive_control(
 			'opacity_cart',
 			array(
-				'label'     => esc_html__( 'Icon Opacity', 'mas-elementor' ),
+				'label'     => esc_html__( 'Icon Opacity', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::SLIDER,
 				'range'     => array(
 					'px' => array(
@@ -112,7 +112,7 @@ class Module extends Module_Base {
 		$element->add_responsive_control(
 			'opacity_cart_hover',
 			array(
-				'label'     => esc_html__( 'Card Hover Opacity', 'mas-elementor' ),
+				'label'     => esc_html__( 'Card Hover Opacity', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::SLIDER,
 				'range'     => array(
 					'px' => array(
@@ -131,7 +131,7 @@ class Module extends Module_Base {
 		$element->add_control(
 			'wishlist_icon_wishlisted_color',
 			array(
-				'label'     => esc_html__( 'Icon Wishlisted Color', 'mas-elementor' ),
+				'label'     => esc_html__( 'Icon Wishlisted Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
 					'{{WRAPPER}} .feedback .yith-wcwl-icon' => 'color: {{VALUE}};',
@@ -142,7 +142,7 @@ class Module extends Module_Base {
 		$element->add_responsive_control(
 			'wishlist_icon_icon_margin',
 			array(
-				'label'      => esc_html__( 'Icon Margin', 'mas-elementor' ),
+				'label'      => esc_html__( 'Icon Margin', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', 'em', '%', 'rem' ),
 				'selectors'  => array(
@@ -155,7 +155,7 @@ class Module extends Module_Base {
 		$element->add_responsive_control(
 			'wishlist_icon_wishlisted_icon_margin',
 			array(
-				'label'      => esc_html__( 'Wishlisted Icon Margin', 'mas-elementor' ),
+				'label'      => esc_html__( 'Wishlisted Icon Margin', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', 'em', '%', 'rem' ),
 				'selectors'  => array(

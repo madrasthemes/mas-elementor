@@ -54,7 +54,7 @@ class Progress_Bar extends Widget_Progress {
 	 * @return string
 	 */
 	public function get_title() {
-		return esc_html__( 'Progress Bar', 'mas-elementor' );
+		return esc_html__( 'Progress Bar', 'mas-addons-for-elementor' );
 	}
 
 	/**
@@ -109,10 +109,10 @@ class Progress_Bar extends Widget_Progress {
 		$this->add_control(
 			'hide_when_stocks_not_available',
 			array(
-				'label'       => esc_html__( 'Hide Progress', 'mas-elementor' ),
+				'label'       => esc_html__( 'Hide Progress', 'mas-addons-for-elementor' ),
 				'type'        => Controls_Manager::SWITCHER,
-				'label_on'    => esc_html__( 'Yes', 'mas-elementor' ),
-				'label_off'   => esc_html__( 'No', 'mas-elementor' ),
+				'label_on'    => esc_html__( 'Yes', 'mas-addons-for-elementor' ),
+				'label_off'   => esc_html__( 'No', 'mas-addons-for-elementor' ),
 				'description' => 'Hide when the product do not have available stock',
 				'default'     => 'yes',
 			)
@@ -130,13 +130,13 @@ class Progress_Bar extends Widget_Progress {
 		$this->add_control(
 			'second_title',
 			array(
-				'label'       => esc_html__( 'Second Title', 'mas-elementor' ),
+				'label'       => esc_html__( 'Second Title', 'mas-addons-for-elementor' ),
 				'type'        => Controls_Manager::TEXT,
 				'dynamic'     => array(
 					'active' => true,
 				),
-				'placeholder' => esc_html__( 'Enter your title', 'mas-elementor' ),
-				'default'     => esc_html__( 'My Skill', 'mas-elementor' ),
+				'placeholder' => esc_html__( 'Enter your title', 'mas-addons-for-elementor' ),
+				'default'     => esc_html__( 'My Skill', 'mas-addons-for-elementor' ),
 				'label_block' => true,
 			)
 		);
@@ -151,7 +151,7 @@ class Progress_Bar extends Widget_Progress {
 		$this->add_responsive_control(
 			'progress_bar_spacing',
 			array(
-				'label'      => esc_html__( 'Spacing', 'mas-elementor' ),
+				'label'      => esc_html__( 'Spacing', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', '%', 'em', 'rem', 'custom' ),
 				'selectors'  => array(
@@ -171,7 +171,7 @@ class Progress_Bar extends Widget_Progress {
 		$this->add_responsive_control(
 			'titles_spacing',
 			array(
-				'label'      => esc_html__( 'Spacing', 'mas-elementor' ),
+				'label'      => esc_html__( 'Spacing', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', '%', 'em', 'rem', 'custom' ),
 				'selectors'  => array(
@@ -183,7 +183,7 @@ class Progress_Bar extends Widget_Progress {
 		$this->add_control(
 			'second_label',
 			array(
-				'label'     => __( 'Second Title', 'mas-elementor' ),
+				'label'     => __( 'Second Title', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::HEADING,
 				'separator' => 'before',
 			)
@@ -192,7 +192,7 @@ class Progress_Bar extends Widget_Progress {
 		$this->add_control(
 			'second_title_color',
 			array(
-				'label'     => esc_html__( 'Second Text Color', 'mas-elementor' ),
+				'label'     => esc_html__( 'Second Text Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
 					'{{WRAPPER}} .elementor-second-title' => 'color: {{VALUE}};',
@@ -225,7 +225,7 @@ class Progress_Bar extends Widget_Progress {
 		$this->add_control(
 			'title_label',
 			array(
-				'label'     => __( 'Title', 'mas-elementor' ),
+				'label'     => __( 'Title', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::HEADING,
 				'separator' => 'before',
 			)
@@ -236,7 +236,7 @@ class Progress_Bar extends Widget_Progress {
 		$this->start_controls_section(
 			'section_titles_flex',
 			array(
-				'label' => esc_html__( 'Titles Flex Style', 'mas-elementor' ),
+				'label' => esc_html__( 'Titles Flex Style', 'mas-addons-for-elementor' ),
 				'tab'   => Controls_Manager::TAB_STYLE,
 			)
 		);
@@ -259,15 +259,15 @@ class Progress_Bar extends Widget_Progress {
 		$this->add_responsive_control(
 			'enable_flex',
 			array(
-				'label'     => esc_html__( 'Enable Flex', 'mas-elementor' ),
+				'label'     => esc_html__( 'Enable Flex', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::CHOOSE,
 				'options'   => array(
 					'block' => array(
-						'title' => esc_html__( 'Block', 'mas-elementor' ),
+						'title' => esc_html__( 'Block', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-ban',
 					),
 					'flex'  => array(
-						'title' => esc_html__( 'Flex', 'mas-elementor' ),
+						'title' => esc_html__( 'Flex', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-flex eicon-wrap',
 					),
 				),
@@ -282,23 +282,23 @@ class Progress_Bar extends Widget_Progress {
 		$this->add_responsive_control(
 			'flex_direction',
 			array(
-				'label'     => esc_html__( 'Direction', 'mas-elementor' ),
+				'label'     => esc_html__( 'Direction', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::CHOOSE,
 				'options'   => array(
 					'row'            => array(
-						'title' => esc_html__( 'Row - horizontal', 'mas-elementor' ),
+						'title' => esc_html__( 'Row - horizontal', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-arrow-' . $end,
 					),
 					'column'         => array(
-						'title' => esc_html__( 'Column - vertical', 'mas-elementor' ),
+						'title' => esc_html__( 'Column - vertical', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-arrow-down',
 					),
 					'row-reverse'    => array(
-						'title' => esc_html__( 'Row - reversed', 'mas-elementor' ),
+						'title' => esc_html__( 'Row - reversed', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-arrow-' . $start,
 					),
 					'column-reverse' => array(
-						'title' => esc_html__( 'Column - reversed', 'mas-elementor' ),
+						'title' => esc_html__( 'Column - reversed', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-arrow-up',
 					),
 				),
@@ -315,34 +315,34 @@ class Progress_Bar extends Widget_Progress {
 		$this->add_responsive_control(
 			'justify_content',
 			array(
-				'label'       => esc_html__( 'Justify Content', 'mas-elementor' ),
+				'label'       => esc_html__( 'Justify Content', 'mas-addons-for-elementor' ),
 				'type'        => Controls_Manager::CHOOSE,
 				'label_block' => true,
-				'description' => esc_html__( 'Used for alignment in Flex Direction row and row-reversed', 'mas-elementor' ),
+				'description' => esc_html__( 'Used for alignment in Flex Direction row and row-reversed', 'mas-addons-for-elementor' ),
 				'default'     => '',
 				'options'     => array(
 					'flex-start'    => array(
-						'title' => esc_html__( 'Start', 'mas-elementor' ),
+						'title' => esc_html__( 'Start', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-flex eicon-justify-start-h',
 					),
 					'center'        => array(
-						'title' => esc_html__( 'Center', 'mas-elementor' ),
+						'title' => esc_html__( 'Center', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-flex eicon-justify-center-h',
 					),
 					'flex-end'      => array(
-						'title' => esc_html__( 'End', 'mas-elementor' ),
+						'title' => esc_html__( 'End', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-flex eicon-justify-end-h',
 					),
 					'space-between' => array(
-						'title' => esc_html__( 'Space Between', 'mas-elementor' ),
+						'title' => esc_html__( 'Space Between', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-flex eicon-justify-space-between-h',
 					),
 					'space-around'  => array(
-						'title' => esc_html__( 'Space Around', 'mas-elementor' ),
+						'title' => esc_html__( 'Space Around', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-flex eicon-justify-space-around-h',
 					),
 					'space-evenly'  => array(
-						'title' => esc_html__( 'Space Evenly', 'mas-elementor' ),
+						'title' => esc_html__( 'Space Evenly', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-flex eicon-justify-space-evenly-h',
 					),
 				),
@@ -356,25 +356,25 @@ class Progress_Bar extends Widget_Progress {
 		$this->add_responsive_control(
 			'align_items',
 			array(
-				'label'       => esc_html__( 'Align Items', 'mas-elementor' ),
+				'label'       => esc_html__( 'Align Items', 'mas-addons-for-elementor' ),
 				'type'        => Controls_Manager::CHOOSE,
 				'default'     => '',
-				'description' => esc_html__( 'Used for alignment in Flex Direction column and column-reversed', 'mas-elementor' ),
+				'description' => esc_html__( 'Used for alignment in Flex Direction column and column-reversed', 'mas-addons-for-elementor' ),
 				'options'     => array(
 					'flex-start' => array(
-						'title' => esc_html__( 'Start', 'mas-elementor' ),
+						'title' => esc_html__( 'Start', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-flex eicon-align-start-v',
 					),
 					'center'     => array(
-						'title' => esc_html__( 'Center', 'mas-elementor' ),
+						'title' => esc_html__( 'Center', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-flex eicon-align-center-v',
 					),
 					'flex-end'   => array(
-						'title' => esc_html__( 'End', 'mas-elementor' ),
+						'title' => esc_html__( 'End', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-flex eicon-align-end-v',
 					),
 					'stretch'    => array(
-						'title' => esc_html__( 'Stretch', 'mas-elementor' ),
+						'title' => esc_html__( 'Stretch', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-flex eicon-align-stretch-v',
 					),
 				),
@@ -388,7 +388,7 @@ class Progress_Bar extends Widget_Progress {
 		$this->add_responsive_control(
 			'gap',
 			array(
-				'label'      => esc_html__( 'Gap', 'mas-elementor' ),
+				'label'      => esc_html__( 'Gap', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::SLIDER,
 				'range'      => array(
 					'px' => array(

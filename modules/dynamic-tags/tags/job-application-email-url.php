@@ -27,7 +27,7 @@ class Job_Application_Email_Url extends \Elementor\Core\DynamicTags\Data_Tag {
 	 * Get the title.
 	 */
 	public function get_title() {
-		return esc_html__( 'Job Application Email', 'mas-elementor' );
+		return esc_html__( 'Job Application Email', 'mas-addons-for-elementor' );
 	}
 	/**
 	 * Get the group.

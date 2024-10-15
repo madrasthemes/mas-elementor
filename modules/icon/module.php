@@ -63,7 +63,7 @@ class Module extends Module_Base {
 		$element->start_controls_tab(
 			'mas_icon_colors_normal',
 			array(
-				'label'     => esc_html__( 'Normal', 'mas-elementor' ),
+				'label'     => esc_html__( 'Normal', 'mas-addons-for-elementor' ),
 				'condition' => array(
 					'view' => 'framed',
 				),
@@ -73,7 +73,7 @@ class Module extends Module_Base {
 			'mas_accordion_icon_border_color',
 			array(
 				'type'      => Controls_Manager::COLOR,
-				'label'     => esc_html__( 'Border Color', 'mas-elementor' ),
+				'label'     => esc_html__( 'Border Color', 'mas-addons-for-elementor' ),
 				'selectors' => array(
 					'{{WRAPPER}} .elementor-icon' => 'border-color: {{VALUE}};',
 				),
@@ -95,7 +95,7 @@ class Module extends Module_Base {
 		$element->start_controls_tab(
 			'mas_icon_colors_hover',
 			array(
-				'label'     => esc_html__( 'Hover', 'mas-elementor' ),
+				'label'     => esc_html__( 'Hover', 'mas-addons-for-elementor' ),
 				'condition' => array(
 					'view' => 'framed',
 				),
@@ -105,7 +105,7 @@ class Module extends Module_Base {
 			'mas_accordion_icon_border_hover_color',
 			array(
 				'type'      => Controls_Manager::COLOR,
-				'label'     => esc_html__( 'Border Color', 'mas-elementor' ),
+				'label'     => esc_html__( 'Border Color', 'mas-addons-for-elementor' ),
 				'selectors' => array(
 					'{{WRAPPER}} .elementor-icon:hover' => 'border-color: {{VALUE}};',
 				),

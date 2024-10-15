@@ -39,7 +39,7 @@ class Login extends Base_Widget {
 	 * @return string
 	 */
 	public function get_title() {
-		return esc_html__( 'Login', 'mas-elementor' );
+		return esc_html__( 'Login', 'mas-addons-for-elementor' );
 	}
 
 	/**
@@ -67,32 +67,32 @@ class Login extends Base_Widget {
 		$this->start_controls_section(
 			'section_fields_content',
 			array(
-				'label' => esc_html__( 'Form Fields', 'mas-elementor' ),
+				'label' => esc_html__( 'Form Fields', 'mas-addons-for-elementor' ),
 			)
 		);
 
 		$this->add_control(
 			'show_labels',
 			array(
-				'label'     => esc_html__( 'Label', 'mas-elementor' ),
+				'label'     => esc_html__( 'Label', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::SWITCHER,
 				'default'   => 'yes',
-				'label_off' => esc_html__( 'Hide', 'mas-elementor' ),
-				'label_on'  => esc_html__( 'Show', 'mas-elementor' ),
+				'label_off' => esc_html__( 'Hide', 'mas-addons-for-elementor' ),
+				'label_on'  => esc_html__( 'Show', 'mas-addons-for-elementor' ),
 			)
 		);
 
 		$this->add_control(
 			'input_size',
 			array(
-				'label'   => esc_html__( 'Input Size', 'mas-elementor' ),
+				'label'   => esc_html__( 'Input Size', 'mas-addons-for-elementor' ),
 				'type'    => Controls_Manager::SELECT,
 				'options' => array(
-					'xs' => esc_html__( 'Extra Small', 'mas-elementor' ),
-					'sm' => esc_html__( 'Small', 'mas-elementor' ),
-					'md' => esc_html__( 'Medium', 'mas-elementor' ),
-					'lg' => esc_html__( 'Large', 'mas-elementor' ),
-					'xl' => esc_html__( 'Extra Large', 'mas-elementor' ),
+					'xs' => esc_html__( 'Extra Small', 'mas-addons-for-elementor' ),
+					'sm' => esc_html__( 'Small', 'mas-addons-for-elementor' ),
+					'md' => esc_html__( 'Medium', 'mas-addons-for-elementor' ),
+					'lg' => esc_html__( 'Large', 'mas-addons-for-elementor' ),
+					'xl' => esc_html__( 'Extra Large', 'mas-addons-for-elementor' ),
 				),
 				'default' => 'sm',
 			)
@@ -103,33 +103,33 @@ class Login extends Base_Widget {
 		$this->start_controls_section(
 			'section_button_content',
 			array(
-				'label' => esc_html__( 'Button', 'mas-elementor' ),
+				'label' => esc_html__( 'Button', 'mas-addons-for-elementor' ),
 			)
 		);
 
 		$this->add_control(
 			'button_text',
 			array(
-				'label'   => esc_html__( 'Text', 'mas-elementor' ),
+				'label'   => esc_html__( 'Text', 'mas-addons-for-elementor' ),
 				'type'    => Controls_Manager::TEXT,
 				'dynamic' => array(
 					'active' => true,
 				),
-				'default' => esc_html__( 'Log In', 'mas-elementor' ),
+				'default' => esc_html__( 'Log In', 'mas-addons-for-elementor' ),
 			)
 		);
 
 		$this->add_control(
 			'button_size',
 			array(
-				'label'   => esc_html__( 'Size', 'mas-elementor' ),
+				'label'   => esc_html__( 'Size', 'mas-addons-for-elementor' ),
 				'type'    => Controls_Manager::SELECT,
 				'options' => array(
-					'xs' => esc_html__( 'Extra Small', 'mas-elementor' ),
-					'sm' => esc_html__( 'Small', 'mas-elementor' ),
-					'md' => esc_html__( 'Medium', 'mas-elementor' ),
-					'lg' => esc_html__( 'Large', 'mas-elementor' ),
-					'xl' => esc_html__( 'Extra Large', 'mas-elementor' ),
+					'xs' => esc_html__( 'Extra Small', 'mas-addons-for-elementor' ),
+					'sm' => esc_html__( 'Small', 'mas-addons-for-elementor' ),
+					'md' => esc_html__( 'Medium', 'mas-addons-for-elementor' ),
+					'lg' => esc_html__( 'Large', 'mas-addons-for-elementor' ),
+					'xl' => esc_html__( 'Extra Large', 'mas-addons-for-elementor' ),
 				),
 				'default' => 'sm',
 			)
@@ -138,23 +138,23 @@ class Login extends Base_Widget {
 		$this->add_responsive_control(
 			'align',
 			array(
-				'label'        => esc_html__( 'Alignment', 'mas-elementor' ),
+				'label'        => esc_html__( 'Alignment', 'mas-addons-for-elementor' ),
 				'type'         => Controls_Manager::CHOOSE,
 				'options'      => array(
 					'start'   => array(
-						'title' => esc_html__( 'Left', 'mas-elementor' ),
+						'title' => esc_html__( 'Left', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-text-align-left',
 					),
 					'center'  => array(
-						'title' => esc_html__( 'Center', 'mas-elementor' ),
+						'title' => esc_html__( 'Center', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-text-align-center',
 					),
 					'end'     => array(
-						'title' => esc_html__( 'Right', 'mas-elementor' ),
+						'title' => esc_html__( 'Right', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-text-align-right',
 					),
 					'stretch' => array(
-						'title' => esc_html__( 'Justified', 'mas-elementor' ),
+						'title' => esc_html__( 'Justified', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-text-align-justify',
 					),
 				),
@@ -168,18 +168,18 @@ class Login extends Base_Widget {
 		$this->start_controls_section(
 			'section_login_content',
 			array(
-				'label' => esc_html__( 'Additional Options', 'mas-elementor' ),
+				'label' => esc_html__( 'Additional Options', 'mas-addons-for-elementor' ),
 			)
 		);
 
 		$this->add_control(
 			'redirect_after_login',
 			array(
-				'label'     => esc_html__( 'Redirect After Login', 'mas-elementor' ),
+				'label'     => esc_html__( 'Redirect After Login', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::SWITCHER,
 				'default'   => '',
-				'label_off' => esc_html__( 'Off', 'mas-elementor' ),
-				'label_on'  => esc_html__( 'On', 'mas-elementor' ),
+				'label_off' => esc_html__( 'Off', 'mas-addons-for-elementor' ),
+				'label_on'  => esc_html__( 'On', 'mas-addons-for-elementor' ),
 			)
 		);
 
@@ -190,8 +190,8 @@ class Login extends Base_Widget {
 				'show_label'  => false,
 				'options'     => false,
 				'separator'   => false,
-				'placeholder' => esc_html__( 'https://your-link.com', 'mas-elementor' ),
-				'description' => esc_html__( 'Note: Because of security reasons, you can ONLY use your current domain here.', 'mas-elementor' ),
+				'placeholder' => esc_html__( 'https://your-link.com', 'mas-addons-for-elementor' ),
+				'description' => esc_html__( 'Note: Because of security reasons, you can ONLY use your current domain here.', 'mas-addons-for-elementor' ),
 				'dynamic'     => array(
 					'active' => true,
 				),
@@ -204,11 +204,11 @@ class Login extends Base_Widget {
 		$this->add_control(
 			'redirect_after_logout',
 			array(
-				'label'     => esc_html__( 'Redirect After Logout', 'mas-elementor' ),
+				'label'     => esc_html__( 'Redirect After Logout', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::SWITCHER,
 				'default'   => '',
-				'label_off' => esc_html__( 'Off', 'mas-elementor' ),
-				'label_on'  => esc_html__( 'On', 'mas-elementor' ),
+				'label_off' => esc_html__( 'Off', 'mas-addons-for-elementor' ),
+				'label_on'  => esc_html__( 'On', 'mas-addons-for-elementor' ),
 			)
 		);
 
@@ -219,8 +219,8 @@ class Login extends Base_Widget {
 				'show_label'  => false,
 				'options'     => false,
 				'separator'   => false,
-				'placeholder' => esc_html__( 'https://your-link.com', 'mas-elementor' ),
-				'description' => esc_html__( 'Note: Because of security reasons, you can ONLY use your current domain here.', 'mas-elementor' ),
+				'placeholder' => esc_html__( 'https://your-link.com', 'mas-addons-for-elementor' ),
+				'description' => esc_html__( 'Note: Because of security reasons, you can ONLY use your current domain here.', 'mas-addons-for-elementor' ),
 				'dynamic'     => array(
 					'active' => true,
 				),
@@ -233,11 +233,11 @@ class Login extends Base_Widget {
 		$this->add_control(
 			'show_lost_password',
 			array(
-				'label'     => esc_html__( 'Lost your password?', 'mas-elementor' ),
+				'label'     => esc_html__( 'Lost your password?', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::SWITCHER,
 				'default'   => 'yes',
-				'label_off' => esc_html__( 'Hide', 'mas-elementor' ),
-				'label_on'  => esc_html__( 'Show', 'mas-elementor' ),
+				'label_off' => esc_html__( 'Hide', 'mas-addons-for-elementor' ),
+				'label_on'  => esc_html__( 'Show', 'mas-addons-for-elementor' ),
 			)
 		);
 
@@ -245,11 +245,11 @@ class Login extends Base_Widget {
 			$this->add_control(
 				'show_register',
 				array(
-					'label'     => esc_html__( 'Register', 'mas-elementor' ),
+					'label'     => esc_html__( 'Register', 'mas-addons-for-elementor' ),
 					'type'      => Controls_Manager::SWITCHER,
 					'default'   => 'yes',
-					'label_off' => esc_html__( 'Hide', 'mas-elementor' ),
-					'label_on'  => esc_html__( 'Show', 'mas-elementor' ),
+					'label_off' => esc_html__( 'Hide', 'mas-addons-for-elementor' ),
+					'label_on'  => esc_html__( 'Show', 'mas-addons-for-elementor' ),
 				)
 			);
 		}
@@ -257,29 +257,29 @@ class Login extends Base_Widget {
 		$this->add_control(
 			'show_remember_me',
 			array(
-				'label'     => esc_html__( 'Remember Me', 'mas-elementor' ),
+				'label'     => esc_html__( 'Remember Me', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::SWITCHER,
 				'default'   => 'yes',
-				'label_off' => esc_html__( 'Hide', 'mas-elementor' ),
-				'label_on'  => esc_html__( 'Show', 'mas-elementor' ),
+				'label_off' => esc_html__( 'Hide', 'mas-addons-for-elementor' ),
+				'label_on'  => esc_html__( 'Show', 'mas-addons-for-elementor' ),
 			)
 		);
 
 		$this->add_control(
 			'show_logged_in_message',
 			array(
-				'label'     => esc_html__( 'Logged in Message', 'mas-elementor' ),
+				'label'     => esc_html__( 'Logged in Message', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::SWITCHER,
 				'default'   => 'yes',
-				'label_off' => esc_html__( 'Hide', 'mas-elementor' ),
-				'label_on'  => esc_html__( 'Show', 'mas-elementor' ),
+				'label_off' => esc_html__( 'Hide', 'mas-addons-for-elementor' ),
+				'label_on'  => esc_html__( 'Show', 'mas-addons-for-elementor' ),
 			)
 		);
 
 		$this->add_control(
 			'custom_labels',
 			array(
-				'label' => esc_html__( 'Custom Label', 'mas-elementor' ),
+				'label' => esc_html__( 'Custom Label', 'mas-addons-for-elementor' ),
 				'type'  => Controls_Manager::SWITCHER,
 			)
 		);
@@ -287,12 +287,12 @@ class Login extends Base_Widget {
 		$this->add_control(
 			'user_label',
 			array(
-				'label'      => esc_html__( 'Username Label', 'mas-elementor' ),
+				'label'      => esc_html__( 'Username Label', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::TEXT,
 				'dynamic'    => array(
 					'active' => true,
 				),
-				'default'    => esc_html__( 'Username or Email Address', 'mas-elementor' ),
+				'default'    => esc_html__( 'Username or Email Address', 'mas-addons-for-elementor' ),
 				'conditions' => array(
 					'relation' => 'or',
 					'terms'    => array(
@@ -314,9 +314,9 @@ class Login extends Base_Widget {
 		$this->add_control(
 			'user_placeholder',
 			array(
-				'label'     => esc_html__( 'Username Placeholder', 'mas-elementor' ),
+				'label'     => esc_html__( 'Username Placeholder', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::TEXT,
-				'default'   => esc_html__( 'Username or Email Address', 'mas-elementor' ),
+				'default'   => esc_html__( 'Username or Email Address', 'mas-addons-for-elementor' ),
 				'condition' => array(
 					'custom_labels' => 'yes',
 				),
@@ -329,12 +329,12 @@ class Login extends Base_Widget {
 		$this->add_control(
 			'password_label',
 			array(
-				'label'      => esc_html__( 'Password Label', 'mas-elementor' ),
+				'label'      => esc_html__( 'Password Label', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::TEXT,
 				'dynamic'    => array(
 					'active' => true,
 				),
-				'default'    => esc_html__( 'Password', 'mas-elementor' ),
+				'default'    => esc_html__( 'Password', 'mas-addons-for-elementor' ),
 				'conditions' => array(
 					'relation' => 'or',
 					'terms'    => array(
@@ -356,9 +356,9 @@ class Login extends Base_Widget {
 		$this->add_control(
 			'password_placeholder',
 			array(
-				'label'     => esc_html__( 'Password Placeholder', 'mas-elementor' ),
+				'label'     => esc_html__( 'Password Placeholder', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::TEXT,
-				'default'   => esc_html__( 'Password', 'mas-elementor' ),
+				'default'   => esc_html__( 'Password', 'mas-addons-for-elementor' ),
 				'condition' => array(
 					'custom_labels' => 'yes',
 				),
@@ -373,7 +373,7 @@ class Login extends Base_Widget {
 		$this->start_controls_section(
 			'section_style',
 			array(
-				'label' => esc_html__( 'Form', 'mas-elementor' ),
+				'label' => esc_html__( 'Form', 'mas-addons-for-elementor' ),
 				'tab'   => Controls_Manager::TAB_STYLE,
 			)
 		);
@@ -381,7 +381,7 @@ class Login extends Base_Widget {
 		$this->add_control(
 			'row_gap',
 			array(
-				'label'     => esc_html__( 'Rows Gap', 'mas-elementor' ),
+				'label'     => esc_html__( 'Rows Gap', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::SLIDER,
 				'default'   => array(
 					'size' => '10',
@@ -402,7 +402,7 @@ class Login extends Base_Widget {
 		$this->add_control(
 			'links_color',
 			array(
-				'label'     => esc_html__( 'Links Color', 'mas-elementor' ),
+				'label'     => esc_html__( 'Links Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
 					'{{WRAPPER}} .elementor-field-group > a' => 'color: {{VALUE}};',
@@ -416,7 +416,7 @@ class Login extends Base_Widget {
 		$this->add_control(
 			'links_hover_color',
 			array(
-				'label'     => esc_html__( 'Links Hover Color', 'mas-elementor' ),
+				'label'     => esc_html__( 'Links Hover Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
 					'{{WRAPPER}} .elementor-field-group > a:hover' => 'color: {{VALUE}};',
@@ -432,7 +432,7 @@ class Login extends Base_Widget {
 		$this->start_controls_section(
 			'section_style_labels',
 			array(
-				'label'     => esc_html__( 'Label', 'mas-elementor' ),
+				'label'     => esc_html__( 'Label', 'mas-addons-for-elementor' ),
 				'tab'       => Controls_Manager::TAB_STYLE,
 				'condition' => array(
 					'show_labels!' => '',
@@ -443,7 +443,7 @@ class Login extends Base_Widget {
 		$this->add_control(
 			'label_spacing',
 			array(
-				'label'     => esc_html__( 'Spacing', 'mas-elementor' ),
+				'label'     => esc_html__( 'Spacing', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::SLIDER,
 				'default'   => array(
 					'size' => '0',
@@ -463,7 +463,7 @@ class Login extends Base_Widget {
 		$this->add_control(
 			'label_color',
 			array(
-				'label'     => esc_html__( 'Text Color', 'mas-elementor' ),
+				'label'     => esc_html__( 'Text Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
 					'{{WRAPPER}} .elementor-form-fields-wrapper label' => 'color: {{VALUE}};',
@@ -490,7 +490,7 @@ class Login extends Base_Widget {
 		$this->start_controls_section(
 			'section_field_style',
 			array(
-				'label' => esc_html__( 'Fields', 'mas-elementor' ),
+				'label' => esc_html__( 'Fields', 'mas-addons-for-elementor' ),
 				'tab'   => Controls_Manager::TAB_STYLE,
 			)
 		);
@@ -498,7 +498,7 @@ class Login extends Base_Widget {
 		$this->add_control(
 			'field_text_color',
 			array(
-				'label'     => esc_html__( 'Text Color', 'mas-elementor' ),
+				'label'     => esc_html__( 'Text Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
 					'{{WRAPPER}} .elementor-field-group .elementor-field' => 'color: {{VALUE}};',
@@ -523,7 +523,7 @@ class Login extends Base_Widget {
 		$this->add_control(
 			'field_background_color',
 			array(
-				'label'     => esc_html__( 'Background Color', 'mas-elementor' ),
+				'label'     => esc_html__( 'Background Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'default'   => '#ffffff',
 				'selectors' => array(
@@ -537,7 +537,7 @@ class Login extends Base_Widget {
 		$this->add_control(
 			'field_border_color',
 			array(
-				'label'     => esc_html__( 'Border Color', 'mas-elementor' ),
+				'label'     => esc_html__( 'Border Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
 					'{{WRAPPER}} .elementor-field-group .elementor-field:not(.elementor-select-wrapper)' => 'border-color: {{VALUE}};',
@@ -551,7 +551,7 @@ class Login extends Base_Widget {
 		$this->add_control(
 			'field_border_width',
 			array(
-				'label'       => esc_html__( 'Border Width', 'mas-elementor' ),
+				'label'       => esc_html__( 'Border Width', 'mas-addons-for-elementor' ),
 				'type'        => Controls_Manager::DIMENSIONS,
 				'placeholder' => '1',
 				'size_units'  => array( 'px' ),
@@ -565,7 +565,7 @@ class Login extends Base_Widget {
 		$this->add_control(
 			'field_border_radius',
 			array(
-				'label'      => esc_html__( 'Border Radius', 'mas-elementor' ),
+				'label'      => esc_html__( 'Border Radius', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', '%' ),
 				'selectors'  => array(
@@ -580,7 +580,7 @@ class Login extends Base_Widget {
 		$this->start_controls_section(
 			'section_button_style',
 			array(
-				'label' => esc_html__( 'Button', 'mas-elementor' ),
+				'label' => esc_html__( 'Button', 'mas-addons-for-elementor' ),
 				'tab'   => Controls_Manager::TAB_STYLE,
 			)
 		);
@@ -590,14 +590,14 @@ class Login extends Base_Widget {
 		$this->start_controls_tab(
 			'tab_button_normal',
 			array(
-				'label' => esc_html__( 'Normal', 'mas-elementor' ),
+				'label' => esc_html__( 'Normal', 'mas-addons-for-elementor' ),
 			)
 		);
 
 		$this->add_control(
 			'button_text_color',
 			array(
-				'label'     => esc_html__( 'Text Color', 'mas-elementor' ),
+				'label'     => esc_html__( 'Text Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'default'   => '',
 				'selectors' => array(
@@ -649,7 +649,7 @@ class Login extends Base_Widget {
 		$this->add_control(
 			'button_border_radius',
 			array(
-				'label'      => esc_html__( 'Border Radius', 'mas-elementor' ),
+				'label'      => esc_html__( 'Border Radius', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', '%' ),
 				'selectors'  => array(
@@ -661,7 +661,7 @@ class Login extends Base_Widget {
 		$this->add_control(
 			'button_text_padding',
 			array(
-				'label'      => esc_html__( 'Text Padding', 'mas-elementor' ),
+				'label'      => esc_html__( 'Text Padding', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', 'em', '%' ),
 				'selectors'  => array(
@@ -675,14 +675,14 @@ class Login extends Base_Widget {
 		$this->start_controls_tab(
 			'tab_button_hover',
 			array(
-				'label' => esc_html__( 'Hover', 'mas-elementor' ),
+				'label' => esc_html__( 'Hover', 'mas-addons-for-elementor' ),
 			)
 		);
 
 		$this->add_control(
 			'button_hover_color',
 			array(
-				'label'     => esc_html__( 'Text Color', 'mas-elementor' ),
+				'label'     => esc_html__( 'Text Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
 					'{{WRAPPER}} .elementor-button:hover' => 'color: {{VALUE}};',
@@ -708,7 +708,7 @@ class Login extends Base_Widget {
 		$this->add_control(
 			'button_hover_border_color',
 			array(
-				'label'     => esc_html__( 'Border Color', 'mas-elementor' ),
+				'label'     => esc_html__( 'Border Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
 					'{{WRAPPER}} .elementor-button:hover' => 'border-color: {{VALUE}};',
@@ -722,7 +722,7 @@ class Login extends Base_Widget {
 		$this->add_control(
 			'button_hover_animation',
 			array(
-				'label' => esc_html__( 'Animation', 'mas-elementor' ),
+				'label' => esc_html__( 'Animation', 'mas-addons-for-elementor' ),
 				'type'  => Controls_Manager::HOVER_ANIMATION,
 			)
 		);
@@ -736,7 +736,7 @@ class Login extends Base_Widget {
 		$this->start_controls_section(
 			'section_style_message',
 			array(
-				'label' => esc_html__( 'Logged in Message', 'mas-elementor' ),
+				'label' => esc_html__( 'Logged in Message', 'mas-addons-for-elementor' ),
 				'tab'   => Controls_Manager::TAB_STYLE,
 			)
 		);
@@ -744,7 +744,7 @@ class Login extends Base_Widget {
 		$this->add_control(
 			'message_color',
 			array(
-				'label'     => esc_html__( 'Text Color', 'mas-elementor' ),
+				'label'     => esc_html__( 'Text Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
 					'{{WRAPPER}} .elementor-widget-container .elementor-login__logged-in-message' => 'color: {{VALUE}};',
@@ -891,7 +891,7 @@ class Login extends Base_Widget {
 				echo '<div class="elementor-login elementor-login__logged-in-message">' .
 					sprintf(
 						/* translators: 1: User display name, 2: Link opening tag, 3: Link closing tag. */
-						esc_html__( 'You are Logged in as %1$s (%2$sLogout%3$s)', 'mas-elementor' ),
+						esc_html__( 'You are Logged in as %1$s (%2$sLogout%3$s)', 'mas-addons-for-elementor' ),
 						wp_kses_post( $current_user->display_name ),
 						sprintf( '<a href="%s" target="_blank">', esc_url( wp_logout_url( $logout_redirect ) ) ),
 						'</a>'
@@ -939,7 +939,7 @@ class Login extends Base_Widget {
 					<div class="elementor-field-type-checkbox elementor-field-group elementor-column elementor-col-100 elementor-remember-me">
 						<label for="elementor-login-remember-me">
 							<input type="checkbox" id="elementor-login-remember-me" name="rememberme" value="forever">
-							<?php echo esc_html__( 'Remember Me', 'mas-elementor' ); ?>
+							<?php echo esc_html__( 'Remember Me', 'mas-addons-for-elementor' ); ?>
 						</label>
 					</div>
 				<?php endif; ?>
@@ -962,7 +962,7 @@ class Login extends Base_Widget {
 						<?php if ( $show_lost_password ) : ?>
 							<?php // PHPCS - `wp_lostpassword_url` is safe. ?>
 							<a class="elementor-lost-password" href="<?php echo wp_lostpassword_url( $redirect_url ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>">
-								<?php echo esc_html__( 'Lost your password?', 'mas-elementor' ); ?>
+								<?php echo esc_html__( 'Lost your password?', 'mas-addons-for-elementor' ); ?>
 							</a>
 						<?php endif; ?>
 
@@ -972,7 +972,7 @@ class Login extends Base_Widget {
 							<?php endif; ?>
 							<?php // PHPCS - `wp_registration_url` is safe. ?>
 							<a class="elementor-register" href="<?php echo wp_registration_url(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>">
-								<?php echo esc_html__( 'Register', 'mas-elementor' ); ?>
+								<?php echo esc_html__( 'Register', 'mas-addons-for-elementor' ); ?>
 							</a>
 						<?php endif; ?>
 					</div>
@@ -1050,7 +1050,7 @@ class Login extends Base_Widget {
 						</div>
 
 					<?php else : ?>
-						<p><?php echo esc_html__( 'A password will be sent to your email address.', 'mas-elementor' ); ?></p>
+						<p><?php echo esc_html__( 'A password will be sent to your email address.', 'mas-addons-for-elementor' ); ?></p>
 					<?php endif; ?>
 				</div>
 
@@ -1101,7 +1101,7 @@ class Login extends Base_Widget {
 						<label for="elementor-login-remember-me">
 							<input type="checkbox" id="elementor-login-remember-me" name="rememberme" value="forever">
 							<?php // PHPCS - `esc_html__` is safe. ?>
-							<?php echo esc_html__( 'Remember Me', 'mas-elementor' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+							<?php echo esc_html__( 'Remember Me', 'mas-addons-for-elementor' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 						</label>
 					</div>
 				<# } #>
@@ -1119,7 +1119,7 @@ class Login extends Base_Widget {
 						<# if ( settings.show_lost_password ) { #>
 						<?php // PHPCS - `wp_lostpassword_url` is safe. ?>
 						<a class="elementor-lost-password" href="<?php echo wp_lostpassword_url(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>">
-								<?php echo esc_html__( 'Lost your password?', 'mas-elementor' ); ?>
+								<?php echo esc_html__( 'Lost your password?', 'mas-addons-for-elementor' ); ?>
 							</a>
 						<# } #>
 
@@ -1130,7 +1130,7 @@ class Login extends Base_Widget {
 								<# } #>
 							<?php // PHPCS - `wp_registration_url` is safe. ?>
 							<a class="elementor-register" href="<?php echo wp_registration_url(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>">
-									<?php echo esc_html__( 'Register', 'mas-elementor' ); ?>
+									<?php echo esc_html__( 'Register', 'mas-addons-for-elementor' ); ?>
 								</a>
 							<# } #>
 						<?php } ?>

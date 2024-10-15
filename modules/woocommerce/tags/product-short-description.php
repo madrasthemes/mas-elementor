@@ -28,7 +28,7 @@ class Product_Short_Description extends Base_Tag {
 	 * Get Title.
 	 */
 	public function get_title() {
-		return esc_html__( 'Product Short Description', 'mas-elementor' );
+		return esc_html__( 'Product Short Description', 'mas-addons-for-elementor' );
 	}
 
 	/**

@@ -37,7 +37,7 @@ trait Pagination_Trait {
 		$element->start_controls_section(
 			'swiper_section_navigation',
 			array(
-				'label'     => esc_html__( 'Swiper Pagination', 'mas-elementor' ),
+				'label'     => esc_html__( 'Swiper Pagination', 'mas-addons-for-elementor' ),
 				'tab'       => Controls_Manager::TAB_STYLE,
 				'condition' => array(
 					'enable_carousel' => 'yes',
@@ -49,7 +49,7 @@ trait Pagination_Trait {
 				$element->add_control(
 					'swiper_heading_pagination',
 					array(
-						'label'     => esc_html__( 'Pagination', 'mas-elementor' ),
+						'label'     => esc_html__( 'Pagination', 'mas-addons-for-elementor' ),
 						'type'      => Controls_Manager::HEADING,
 						'condition' => array(
 							'enable_carousel' => 'yes',
@@ -63,7 +63,7 @@ trait Pagination_Trait {
 					\Elementor\Group_Control_Box_Shadow::get_type(),
 					array(
 						'name'           => 'mas_swiper_box_shadow',
-						'label'          => esc_html__( 'Box Shadow', 'mas-elementor' ),
+						'label'          => esc_html__( 'Box Shadow', 'mas-addons-for-elementor' ),
 						'selector'       => '{{WRAPPER}} ' . $args['concat'] . ' .swiper-pagination .swiper-pagination-bullet',
 						'fields_options' => array(
 							'box_shadow_type'     => array( 'default' => 'yes' ),
@@ -102,7 +102,7 @@ trait Pagination_Trait {
 				$element->start_controls_tab(
 					'mas_swiper_pagination_dots_normal',
 					array(
-						'label'     => esc_html__( 'Normal', 'mas-elementor' ),
+						'label'     => esc_html__( 'Normal', 'mas-addons-for-elementor' ),
 						'condition' => array(
 							'enable_carousel' => 'yes',
 							'show_pagination' => 'yes',
@@ -114,7 +114,7 @@ trait Pagination_Trait {
 				$element->add_control(
 					'swiper_dots_width',
 					array(
-						'label'      => esc_html__( 'Width', 'mas-elementor' ),
+						'label'      => esc_html__( 'Width', 'mas-addons-for-elementor' ),
 						'type'       => Controls_Manager::SLIDER,
 						'size_units' => array( 'px', '%' ),
 						'range'      => array(
@@ -141,7 +141,7 @@ trait Pagination_Trait {
 				$element->add_control(
 					'swiper_dots_height',
 					array(
-						'label'      => esc_html__( 'Dots Height', 'mas-elementor' ),
+						'label'      => esc_html__( 'Dots Height', 'mas-addons-for-elementor' ),
 						'type'       => Controls_Manager::SLIDER,
 						'size_units' => array( 'px', '%' ),
 						'range'      => array(
@@ -197,7 +197,7 @@ trait Pagination_Trait {
 				$element->add_control(
 					'mas_swiper_border_radius',
 					array(
-						'label'      => __( 'Border Radius', 'mas-elementor' ),
+						'label'      => __( 'Border Radius', 'mas-addons-for-elementor' ),
 						'type'       => Controls_Manager::DIMENSIONS,
 						'size_units' => array( 'px', '%' ),
 						'default'    => array(
@@ -222,7 +222,7 @@ trait Pagination_Trait {
 				$element->add_control(
 					'mas_swiper_dots_background_color',
 					array(
-						'label'     => esc_html__( 'Background Color', 'mas-elementor' ),
+						'label'     => esc_html__( 'Background Color', 'mas-addons-for-elementor' ),
 						'type'      => Controls_Manager::COLOR,
 						'default'   => '#FFFFFF',
 						'selectors' => array(
@@ -240,7 +240,7 @@ trait Pagination_Trait {
 				$element->add_control(
 					'mas_swiper_dots_opacity',
 					array(
-						'label'     => esc_html__( 'Opacity', 'mas-elementor' ),
+						'label'     => esc_html__( 'Opacity', 'mas-addons-for-elementor' ),
 						'type'      => Controls_Manager::SLIDER,
 						'default'   => array(
 							'size' => 1,
@@ -268,7 +268,7 @@ trait Pagination_Trait {
 				$element->start_controls_tab(
 					'mas_swiper_pagination_dots_active',
 					array(
-						'label'     => esc_html__( 'Active', 'mas-elementor' ),
+						'label'     => esc_html__( 'Active', 'mas-addons-for-elementor' ),
 						'condition' => array(
 							'enable_carousel' => 'yes',
 							'show_pagination' => 'yes',
@@ -280,7 +280,7 @@ trait Pagination_Trait {
 				$element->add_control(
 					'swiper_dots_width_active',
 					array(
-						'label'      => esc_html__( 'Width', 'mas-elementor' ),
+						'label'      => esc_html__( 'Width', 'mas-addons-for-elementor' ),
 						'type'       => Controls_Manager::SLIDER,
 						'size_units' => array( 'px', '%' ),
 						'range'      => array(
@@ -307,7 +307,7 @@ trait Pagination_Trait {
 				$element->add_control(
 					'swiper_dots_height_active',
 					array(
-						'label'      => esc_html__( 'Dots Height', 'mas-elementor' ),
+						'label'      => esc_html__( 'Dots Height', 'mas-addons-for-elementor' ),
 						'type'       => Controls_Manager::SLIDER,
 						'size_units' => array( 'px', '%' ),
 						'range'      => array(
@@ -363,7 +363,7 @@ trait Pagination_Trait {
 				$element->add_control(
 					'mas_swiper_border_radius_active',
 					array(
-						'label'      => __( 'Border Radius', 'mas-elementor' ),
+						'label'      => __( 'Border Radius', 'mas-addons-for-elementor' ),
 						'type'       => Controls_Manager::DIMENSIONS,
 						'size_units' => array( 'px', '%' ),
 						'default'    => array(
@@ -388,7 +388,7 @@ trait Pagination_Trait {
 				$element->add_control(
 					'mas_swiper_dots_active_background_color',
 					array(
-						'label'     => esc_html__( 'Active Background Color', 'mas-elementor' ),
+						'label'     => esc_html__( 'Active Background Color', 'mas-addons-for-elementor' ),
 						'type'      => Controls_Manager::COLOR,
 						'default'   => '#B7BAC6',
 						'selectors' => array(
@@ -406,7 +406,7 @@ trait Pagination_Trait {
 				$element->add_control(
 					'mas_swiper_dots_opacity_active',
 					array(
-						'label'     => esc_html__( 'Active Opacity', 'mas-elementor' ),
+						'label'     => esc_html__( 'Active Opacity', 'mas-addons-for-elementor' ),
 						'type'      => Controls_Manager::SLIDER,
 						'default'   => array(
 							'size' => 1,
@@ -436,7 +436,7 @@ trait Pagination_Trait {
 				$element->add_control(
 					'dots_pagination_spacing',
 					array(
-						'label'     => esc_html__( 'Dots Spacing', 'mas-elementor' ),
+						'label'     => esc_html__( 'Dots Spacing', 'mas-addons-for-elementor' ),
 						'type'      => Controls_Manager::SLIDER,
 						'default'   => array(
 							'size' => 4,
@@ -467,14 +467,14 @@ trait Pagination_Trait {
 				$element->start_controls_tab(
 					'fraction_pagination_tab',
 					array(
-						'label' => esc_html__( 'Normal', 'mas-elementor' ),
+						'label' => esc_html__( 'Normal', 'mas-addons-for-elementor' ),
 					)
 				);
 
 				$element->add_control(
 					'mas_swiper_fraction_color',
 					array(
-						'label'     => esc_html__( 'Fraction Color', 'mas-elementor' ),
+						'label'     => esc_html__( 'Fraction Color', 'mas-addons-for-elementor' ),
 						'type'      => Controls_Manager::COLOR,
 						'default'   => '#000000',
 						'selectors' => array(
@@ -491,7 +491,7 @@ trait Pagination_Trait {
 				$element->add_control(
 					'fraction_pagination_font_size',
 					array(
-						'label'      => esc_html__( 'Font Size', 'mas-elementor' ),
+						'label'      => esc_html__( 'Font Size', 'mas-addons-for-elementor' ),
 						'type'       => Controls_Manager::SLIDER,
 						'size_units' => array( 'px', '%' ),
 						'range'      => array(
@@ -520,14 +520,14 @@ trait Pagination_Trait {
 				$element->start_controls_tab(
 					'fraction_pagination_active_tab',
 					array(
-						'label' => esc_html__( 'Active', 'mas-elementor' ),
+						'label' => esc_html__( 'Active', 'mas-addons-for-elementor' ),
 					)
 				);
 
 				$element->add_control(
 					'mas_swiper_fraction_active_color',
 					array(
-						'label'     => esc_html__( 'Fraction Color', 'mas-elementor' ),
+						'label'     => esc_html__( 'Fraction Color', 'mas-addons-for-elementor' ),
 						'type'      => Controls_Manager::COLOR,
 						'default'   => '#B7BAC6',
 						'selectors' => array(
@@ -544,7 +544,7 @@ trait Pagination_Trait {
 				$element->add_control(
 					'fraction_pagination_active_font_size',
 					array(
-						'label'      => esc_html__( 'Font Size', 'mas-elementor' ),
+						'label'      => esc_html__( 'Font Size', 'mas-addons-for-elementor' ),
 						'type'       => Controls_Manager::SLIDER,
 						'size_units' => array( 'px', '%' ),
 						'range'      => array(
@@ -575,7 +575,7 @@ trait Pagination_Trait {
 				$element->add_control(
 					'mas_swiper_progress_background_color',
 					array(
-						'label'     => esc_html__( 'Progress Background Color', 'mas-elementor' ),
+						'label'     => esc_html__( 'Progress Background Color', 'mas-addons-for-elementor' ),
 						'type'      => Controls_Manager::COLOR,
 						'default'   => '#B7BAC6',
 						'selectors' => array(
@@ -592,7 +592,7 @@ trait Pagination_Trait {
 				$element->add_control(
 					'mas_swiper_progress_fill_color',
 					array(
-						'label'     => esc_html__( 'Filled Color', 'mas-elementor' ),
+						'label'     => esc_html__( 'Filled Color', 'mas-addons-for-elementor' ),
 						'type'      => Controls_Manager::COLOR,
 						'default'   => '#000000',
 						'selectors' => array(
@@ -609,7 +609,7 @@ trait Pagination_Trait {
 				$element->add_control(
 					'progress_pagination_height',
 					array(
-						'label'      => esc_html__( 'Progress Bar Height', 'mas-elementor' ),
+						'label'      => esc_html__( 'Progress Bar Height', 'mas-addons-for-elementor' ),
 						'type'       => Controls_Manager::SLIDER,
 						'size_units' => array( 'px', '%' ),
 						'range'      => array(
@@ -637,7 +637,7 @@ trait Pagination_Trait {
 				$element->add_control(
 					'progress_pagination_width',
 					array(
-						'label'      => esc_html__( 'Progress Bar Width', 'mas-elementor' ),
+						'label'      => esc_html__( 'Progress Bar Width', 'mas-addons-for-elementor' ),
 						'type'       => Controls_Manager::SLIDER,
 						'size_units' => array( 'px', '%' ),
 						'default'    => array(
@@ -668,7 +668,7 @@ trait Pagination_Trait {
 				$element->add_responsive_control(
 					'swiper_pagination_z_index',
 					array(
-						'label'     => esc_html__( 'Z-Index', 'mas-elementor' ),
+						'label'     => esc_html__( 'Z-Index', 'mas-addons-for-elementor' ),
 						'type'      => Controls_Manager::NUMBER,
 						'selectors'  => array(
 							'{{WRAPPER}} ' . $args['concat'] . ' .swiper-pagination' => 'z-index: {{VALUE}};',
@@ -679,7 +679,7 @@ trait Pagination_Trait {
 				$element->add_responsive_control(
 					'swiper_pagination_spacing_top',
 					array(
-						'label'      => esc_html__( 'Top Spacing', 'mas-elementor' ),
+						'label'      => esc_html__( 'Top Spacing', 'mas-addons-for-elementor' ),
 						'type'       => Controls_Manager::SLIDER,
 						'default'    => array(
 							'size' => 0,
@@ -708,7 +708,7 @@ trait Pagination_Trait {
 				$element->add_responsive_control(
 					'pagination_spacing_bottom',
 					array(
-						'label'      => esc_html__( 'Bottom Spacing', 'mas-elementor' ),
+						'label'      => esc_html__( 'Bottom Spacing', 'mas-addons-for-elementor' ),
 						'type'       => Controls_Manager::SLIDER,
 						'default'    => array(
 							'size' => 0,
@@ -737,12 +737,12 @@ trait Pagination_Trait {
 				$element->add_control(
 					'mas_swiper_pagination_position',
 					array(
-						'label'     => esc_html__( 'Position', 'mas-elementor' ),
+						'label'     => esc_html__( 'Position', 'mas-addons-for-elementor' ),
 						'type'      => Controls_Manager::SELECT,
 						'default'   => 'absolute',
 						'options'   => array(
-							'relative' => esc_html__( 'Relative', 'mas-elementor' ),
-							'absolute' => esc_html__( 'Absolute', 'mas-elementor' ),
+							'relative' => esc_html__( 'Relative', 'mas-addons-for-elementor' ),
+							'absolute' => esc_html__( 'Absolute', 'mas-addons-for-elementor' ),
 						),
 						'condition' => array(
 							'enable_carousel' => 'yes',
@@ -755,7 +755,7 @@ trait Pagination_Trait {
 				$element->add_responsive_control(
 					'vertical_pagination_position',
 					array(
-						'label'     => esc_html__( 'Vertical Position', 'mas-elementor' ),
+						'label'     => esc_html__( 'Vertical Position', 'mas-addons-for-elementor' ),
 						'type'      => Controls_Manager::SLIDER,
 						'default'   => array(
 							'size' => 90,
@@ -779,8 +779,8 @@ trait Pagination_Trait {
 					)
 				);
 
-				$left  = esc_html__( 'Left', 'mas-elementor' );
-				$right = esc_html__( 'Right', 'mas-elementor' );
+				$left  = esc_html__( 'Left', 'mas-addons-for-elementor' );
+				$right = esc_html__( 'Right', 'mas-addons-for-elementor' );
 
 				$start = is_rtl() ? $right : $left;
 				$end   = ! is_rtl() ? $right : $left;
@@ -788,7 +788,7 @@ trait Pagination_Trait {
 				$element->add_control(
 					'pag_offset_orientation_h',
 					array(
-						'label'       => esc_html__( 'Horizontal Orientation', 'mas-elementor' ),
+						'label'       => esc_html__( 'Horizontal Orientation', 'mas-addons-for-elementor' ),
 						'type'        => Controls_Manager::CHOOSE,
 						'toggle'      => false,
 						'default'     => 'start',
@@ -815,7 +815,7 @@ trait Pagination_Trait {
 				$element->add_responsive_control(
 					'pag_offset_x',
 					array(
-						'label'      => esc_html__( 'Offset', 'mas-elementor' ),
+						'label'      => esc_html__( 'Offset', 'mas-addons-for-elementor' ),
 						'type'       => Controls_Manager::SLIDER,
 						'range'      => array(
 							'px' => array(
@@ -856,7 +856,7 @@ trait Pagination_Trait {
 				$element->add_responsive_control(
 					'pag_offset_x_end',
 					array(
-						'label'      => esc_html__( 'Offset', 'mas-elementor' ),
+						'label'      => esc_html__( 'Offset', 'mas-addons-for-elementor' ),
 						'type'       => Controls_Manager::SLIDER,
 						'range'      => array(
 							'px' => array(

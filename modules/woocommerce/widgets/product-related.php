@@ -37,7 +37,7 @@ class Product_Related extends Products_Base {
 	 * @return string
 	 */
 	public function get_title() {
-		return esc_html__( 'Product Related', 'mas-elementor' );
+		return esc_html__( 'Product Related', 'mas-addons-for-elementor' );
 	}
 
 	/**
@@ -76,7 +76,7 @@ class Product_Related extends Products_Base {
 		$this->start_controls_section(
 			'section_related_products_content',
 			array(
-				'label' => esc_html__( 'Related Products', 'mas-elementor' ),
+				'label' => esc_html__( 'Related Products', 'mas-addons-for-elementor' ),
 			)
 		);
 
@@ -84,7 +84,7 @@ class Product_Related extends Products_Base {
 		$this->add_control(
 			'select_template',
 			array(
-				'label'   => esc_html__( 'MAS Post Item', 'mas-elementor' ),
+				'label'   => esc_html__( 'MAS Post Item', 'mas-addons-for-elementor' ),
 				'type'    => Controls_Manager::SELECT,
 				'options' => $templates,
 			)
@@ -93,7 +93,7 @@ class Product_Related extends Products_Base {
 		$this->add_control(
 			'posts_per_page',
 			array(
-				'label'   => esc_html__( 'Products Per Page', 'mas-elementor' ),
+				'label'   => esc_html__( 'Products Per Page', 'mas-addons-for-elementor' ),
 				'type'    => Controls_Manager::NUMBER,
 				'default' => 4,
 				'range'   => array(
@@ -109,17 +109,17 @@ class Product_Related extends Products_Base {
 		$this->add_control(
 			'orderby',
 			array(
-				'label'   => esc_html__( 'Order By', 'mas-elementor' ),
+				'label'   => esc_html__( 'Order By', 'mas-addons-for-elementor' ),
 				'type'    => Controls_Manager::SELECT,
 				'default' => 'date',
 				'options' => array(
-					'date'       => esc_html__( 'Date', 'mas-elementor' ),
-					'title'      => esc_html__( 'Title', 'mas-elementor' ),
-					'price'      => esc_html__( 'Price', 'mas-elementor' ),
-					'popularity' => esc_html__( 'Popularity', 'mas-elementor' ),
-					'rating'     => esc_html__( 'Rating', 'mas-elementor' ),
-					'rand'       => esc_html__( 'Random', 'mas-elementor' ),
-					'menu_order' => esc_html__( 'Menu Order', 'mas-elementor' ),
+					'date'       => esc_html__( 'Date', 'mas-addons-for-elementor' ),
+					'title'      => esc_html__( 'Title', 'mas-addons-for-elementor' ),
+					'price'      => esc_html__( 'Price', 'mas-addons-for-elementor' ),
+					'popularity' => esc_html__( 'Popularity', 'mas-addons-for-elementor' ),
+					'rating'     => esc_html__( 'Rating', 'mas-addons-for-elementor' ),
+					'rand'       => esc_html__( 'Random', 'mas-addons-for-elementor' ),
+					'menu_order' => esc_html__( 'Menu Order', 'mas-addons-for-elementor' ),
 				),
 			)
 		);
@@ -127,12 +127,12 @@ class Product_Related extends Products_Base {
 		$this->add_control(
 			'order',
 			array(
-				'label'   => esc_html__( 'Order', 'mas-elementor' ),
+				'label'   => esc_html__( 'Order', 'mas-addons-for-elementor' ),
 				'type'    => Controls_Manager::SELECT,
 				'default' => 'desc',
 				'options' => array(
-					'asc'  => esc_html__( 'ASC', 'mas-elementor' ),
-					'desc' => esc_html__( 'DESC', 'mas-elementor' ),
+					'asc'  => esc_html__( 'ASC', 'mas-addons-for-elementor' ),
+					'desc' => esc_html__( 'DESC', 'mas-addons-for-elementor' ),
 				),
 			)
 		);

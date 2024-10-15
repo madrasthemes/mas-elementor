@@ -67,7 +67,7 @@ abstract class Base_Widget extends \MASElementor\Base\Base_Widget {
 		$this->add_responsive_control(
 			'columns',
 			array(
-				'label'               => esc_html__( 'Columns', 'mas-elementor' ),
+				'label'               => esc_html__( 'Columns', 'mas-addons-for-elementor' ),
 				'type'                => Controls_Manager::NUMBER,
 				'prefix_class'        => 'mas-grid%s-',
 				'min'                 => 1,
@@ -132,12 +132,12 @@ abstract class Base_Widget extends \MASElementor\Base\Base_Widget {
 	 */
 	public static function get_custom_border_type_options() {
 		return array(
-			'none'   => esc_html__( 'None', 'mas-elementor' ),
-			'solid'  => esc_html__( 'Solid', 'mas-elementor' ),
-			'double' => esc_html__( 'Double', 'mas-elementor' ),
-			'dotted' => esc_html__( 'Dotted', 'mas-elementor' ),
-			'dashed' => esc_html__( 'Dashed', 'mas-elementor' ),
-			'groove' => esc_html__( 'Groove', 'mas-elementor' ),
+			'none'   => esc_html__( 'None', 'mas-addons-for-elementor' ),
+			'solid'  => esc_html__( 'Solid', 'mas-addons-for-elementor' ),
+			'double' => esc_html__( 'Double', 'mas-addons-for-elementor' ),
+			'dotted' => esc_html__( 'Dotted', 'mas-addons-for-elementor' ),
+			'dashed' => esc_html__( 'Dashed', 'mas-addons-for-elementor' ),
+			'groove' => esc_html__( 'Groove', 'mas-addons-for-elementor' ),
 		);
 	}
 

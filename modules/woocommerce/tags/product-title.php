@@ -28,7 +28,7 @@ class Product_Title extends Base_Tag {
 	 * Get Title.
 	 */
 	public function get_title() {
-		return esc_html__( 'Product Title', 'mas-elementor' );
+		return esc_html__( 'Product Title', 'mas-addons-for-elementor' );
 	}
 
 	/**

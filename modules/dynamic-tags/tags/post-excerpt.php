@@ -29,7 +29,7 @@ class Post_Excerpt extends \Elementor\Core\DynamicTags\Tag {
 	 * Get post excerpt title.
 	 */
 	public function get_title() {
-		return esc_html__( 'Post Excerpt', 'mas-elementor' );
+		return esc_html__( 'Post Excerpt', 'mas-addons-for-elementor' );
 	}
 	/**
 	 * Get group for excerpt.
@@ -45,7 +45,7 @@ class Post_Excerpt extends \Elementor\Core\DynamicTags\Tag {
 		$this->add_control(
 			'max_length',
 			array(
-				'label' => esc_html__( 'Excerpt Length', 'mas-elementor' ),
+				'label' => esc_html__( 'Excerpt Length', 'mas-addons-for-elementor' ),
 				'type'  => Controls_Manager::NUMBER,
 			)
 		);

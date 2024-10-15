@@ -31,7 +31,7 @@ class Job_Expiration extends Tag {
 	 * Get tag title.
 	 */
 	public function get_title() {
-		return esc_html__( 'Job Expire', 'mas-elementor' );
+		return esc_html__( 'Job Expire', 'mas-addons-for-elementor' );
 	}
 
 	/**
@@ -56,15 +56,15 @@ class Job_Expiration extends Tag {
 		$this->add_control(
 			'format',
 			array(
-				'label'   => esc_html__( 'Format', 'mas-elementor' ),
+				'label'   => esc_html__( 'Format', 'mas-addons-for-elementor' ),
 				'type'    => Controls_Manager::SELECT,
 				'options' => array(
 					'F j, Y'  => gmdate( 'F j, Y' ),
 					'Y-m-d'   => gmdate( 'Y-m-d' ),
 					'm/d/Y'   => gmdate( 'm/d/Y' ),
 					'd/m/Y'   => gmdate( 'd/m/Y' ),
-					'human'   => esc_html__( 'Human Readable', 'mas-elementor' ),
-					'custom'  => esc_html__( 'Custom', 'mas-elementor' ),
+					'human'   => esc_html__( 'Human Readable', 'mas-addons-for-elementor' ),
+					'custom'  => esc_html__( 'Custom', 'mas-addons-for-elementor' ),
 				),
 				'default' => 'F j, Y',
 			)
@@ -73,9 +73,9 @@ class Job_Expiration extends Tag {
 		$this->add_control(
 			'custom_format',
 			array(
-				'label'       => esc_html__( 'Custom Format', 'mas-elementor' ),
+				'label'       => esc_html__( 'Custom Format', 'mas-addons-for-elementor' ),
 				'default'     => '',
-				'description' => sprintf( '<a href="https://go.elementor.com/wordpress-date-time/" target="_blank">%s</a>', esc_html__( 'Documentation on date and time formatting', 'mas-elementor' ) ),
+				'description' => sprintf( '<a href="https://go.elementor.com/wordpress-date-time/" target="_blank">%s</a>', esc_html__( 'Documentation on date and time formatting', 'mas-addons-for-elementor' ) ),
 				'condition'   => array(
 					'format' => 'custom',
 				),
@@ -97,7 +97,7 @@ class Job_Expiration extends Tag {
 
 		if ( 'human' === $format ) {
 			/* translators: %s: Human readable date/time. */
-			$value = sprintf( esc_html__( '%s ago', 'mas-elementor' ), human_time_diff( strtotime( $job_expires ) ) );
+			$value = sprintf( esc_html__( '%s ago', 'mas-addons-for-elementor' ), human_time_diff( strtotime( $job_expires ) ) );
 		} else {
 			switch ( $format ) {
 				case 'default':

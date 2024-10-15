@@ -34,7 +34,7 @@ class Product_Stock extends Base_Widget {
 	 * @return string
 	 */
 	public function get_title() {
-		return esc_html__( 'MAS Product Stock', 'mas-elementor' );
+		return esc_html__( 'MAS Product Stock', 'mas-addons-for-elementor' );
 	}
 
 	/**
@@ -63,7 +63,7 @@ class Product_Stock extends Base_Widget {
 		$this->start_controls_section(
 			'section_product_stock_style',
 			array(
-				'label' => esc_html__( 'Style', 'mas-elementor' ),
+				'label' => esc_html__( 'Style', 'mas-addons-for-elementor' ),
 				'tab'   => Controls_Manager::TAB_STYLE,
 			)
 		);
@@ -72,7 +72,7 @@ class Product_Stock extends Base_Widget {
 			'wc_style_warning',
 			array(
 				'type'            => Controls_Manager::RAW_HTML,
-				'raw'             => esc_html__( 'The style of this widget is often affected by your theme and plugins. If you experience any such issue, try to switch to a basic theme and deactivate related plugins.', 'mas-elementor' ),
+				'raw'             => esc_html__( 'The style of this widget is often affected by your theme and plugins. If you experience any such issue, try to switch to a basic theme and deactivate related plugins.', 'mas-addons-for-elementor' ),
 				'content_classes' => 'elementor-panel-alert elementor-panel-alert-info',
 			)
 		);
@@ -80,7 +80,7 @@ class Product_Stock extends Base_Widget {
 		$this->add_control(
 			'text_color',
 			array(
-				'label'     => esc_html__( 'Text Color', 'mas-elementor' ),
+				'label'     => esc_html__( 'Text Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
 					'.woocommerce {{WRAPPER}} .stock' => 'color: {{VALUE}}',

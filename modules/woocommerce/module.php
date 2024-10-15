@@ -170,7 +170,7 @@ class Module extends Module_Base {
 		$module->register_group(
 			self::WOOCOMMERCE_GROUP,
 			array(
-				'title' => __( 'WooCommerce', 'mas-elementor' ),
+				'title' => __( 'WooCommerce', 'mas-addons-for-elementor' ),
 			)
 		);
 
@@ -212,20 +212,20 @@ class Module extends Module_Base {
 			'woocommerce',
 			array(
 				'callback' => function() {
-					echo '<hr><h2>' . esc_html__( 'WooCommerce', 'mas-elementor' ) . '</h2>';
+					echo '<hr><h2>' . esc_html__( 'WooCommerce', 'mas-addons-for-elementor' ) . '</h2>';
 				},
 				'fields'   => array(
 					self::OPTION_NAME_USE_MINI_CART => array(
-						'label'      => esc_html__( 'Mini Cart Template', 'mas-elementor' ),
+						'label'      => esc_html__( 'Mini Cart Template', 'mas-addons-for-elementor' ),
 						'field_args' => array(
 							'type'    => 'select',
 							'std'     => 'initial',
 							'options' => array(
 								'initial' => '', // Relevant until either menu-cart widget is used or option is explicitly set to 'no'.
-								'no'      => esc_html__( 'Disable', 'mas-elementor' ),
-								'yes'     => esc_html__( 'Enable', 'mas-elementor' ),
+								'no'      => esc_html__( 'Disable', 'mas-addons-for-elementor' ),
+								'yes'     => esc_html__( 'Enable', 'mas-addons-for-elementor' ),
 							),
-							'desc'    => esc_html__( 'Set to `Disable` in order to use your Theme\'s or WooCommerce\'s mini-cart template instead of Elementor\'s.', 'mas-elementor' ),
+							'desc'    => esc_html__( 'Set to `Disable` in order to use your Theme\'s or WooCommerce\'s mini-cart template instead of Elementor\'s.', 'mas-addons-for-elementor' ),
 						),
 					),
 				),
@@ -252,7 +252,7 @@ class Module extends Module_Base {
 				<span class="elementor-button-text"><?php echo wp_kses_post( $sub_total ); ?></span>
 				<span class="elementor-button-icon" <?php echo wp_kses_post( $counter_attr ); ?>>
 					<i class="eicon" aria-hidden="true"></i>
-					<span class="elementor-screen-only"><?php esc_html_e( 'Cart', 'mas-elementor' ); ?></span>
+					<span class="elementor-screen-only"><?php esc_html_e( 'Cart', 'mas-addons-for-elementor' ); ?></span>
 				</span>
 			</a>
 		</div>
@@ -595,9 +595,9 @@ class Module extends Module_Base {
 				woocommerce_wp_text_input(
 					array(
 						'id'          => '_total_stock_quantity',
-						'label'       => esc_html__( 'Total Stock Quantity', 'mas-elementor' ),
+						'label'       => esc_html__( 'Total Stock Quantity', 'mas-addons-for-elementor' ),
 						'desc_tip'    => 'true',
-						'description' => esc_html__( 'Total Stock Quantity Available. This will be used to calculate prograss bar in onsale element.', 'mas-elementor' ),
+						'description' => esc_html__( 'Total Stock Quantity Available. This will be used to calculate prograss bar in onsale element.', 'mas-addons-for-elementor' ),
 						'type'        => 'text',
 					)
 				);

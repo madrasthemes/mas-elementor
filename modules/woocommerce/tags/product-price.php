@@ -29,7 +29,7 @@ class Product_Price extends Base_Tag {
 	 * Get Title.
 	 */
 	public function get_title() {
-		return esc_html__( 'Product Price', 'mas-elementor' );
+		return esc_html__( 'Product Price', 'mas-addons-for-elementor' );
 	}
 
 	/**
@@ -39,12 +39,12 @@ class Product_Price extends Base_Tag {
 		$this->add_control(
 			'format',
 			array(
-				'label'   => esc_html__( 'Format', 'mas-elementor' ),
+				'label'   => esc_html__( 'Format', 'mas-addons-for-elementor' ),
 				'type'    => Controls_Manager::SELECT,
 				'options' => array(
-					'both'     => esc_html__( 'Both', 'mas-elementor' ),
-					'original' => esc_html__( 'Original', 'mas-elementor' ),
-					'sale'     => esc_html__( 'Sale', 'mas-elementor' ),
+					'both'     => esc_html__( 'Both', 'mas-addons-for-elementor' ),
+					'original' => esc_html__( 'Original', 'mas-addons-for-elementor' ),
+					'sale'     => esc_html__( 'Sale', 'mas-addons-for-elementor' ),
 				),
 				'default' => 'both',
 			)

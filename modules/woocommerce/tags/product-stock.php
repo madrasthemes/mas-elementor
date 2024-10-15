@@ -29,7 +29,7 @@ class Product_Stock extends Base_Tag {
 	 * Get Title.
 	 */
 	public function get_title() {
-		return esc_html__( 'Product Stock', 'mas-elementor' );
+		return esc_html__( 'Product Stock', 'mas-addons-for-elementor' );
 	}
 
 	/**
@@ -57,11 +57,11 @@ class Product_Stock extends Base_Tag {
 		$this->add_control(
 			'show_text',
 			array(
-				'label'     => esc_html__( 'Show Text', 'mas-elementor' ),
+				'label'     => esc_html__( 'Show Text', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::SWITCHER,
 				'default'   => 'yes',
-				'label_on'  => esc_html__( 'Show', 'mas-elementor' ),
-				'label_off' => esc_html__( 'Hide', 'mas-elementor' ),
+				'label_on'  => esc_html__( 'Show', 'mas-addons-for-elementor' ),
+				'label_off' => esc_html__( 'Hide', 'mas-addons-for-elementor' ),
 			)
 		);
 

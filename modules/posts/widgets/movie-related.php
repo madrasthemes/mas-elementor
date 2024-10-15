@@ -31,7 +31,7 @@ class Movie_Related extends Posts_Base {
 	 * @return string
 	 */
 	public function get_title() {
-		return __( 'Related movie', 'mas-elementor' );
+		return __( 'Related movie', 'mas-addons-for-elementor' );
 	}
 
 	/**

@@ -28,7 +28,7 @@ class Mas_Videos_Episodes_Text_Fields extends \Elementor\Core\DynamicTags\Tag {
 	 * Get the title.
 	 */
 	public function get_title() {
-		return esc_html__( 'MAS Episodes', 'mas-elementor' );
+		return esc_html__( 'MAS Episodes', 'mas-addons-for-elementor' );
 	}
 	/**
 	 * Get the group.
@@ -50,15 +50,15 @@ class Mas_Videos_Episodes_Text_Fields extends \Elementor\Core\DynamicTags\Tag {
 		$this->add_control(
 			'mas_episodes_text_options',
 			array(
-				'label'   => esc_html__( 'Type', 'mas-elementor' ),
+				'label'   => esc_html__( 'Type', 'mas-addons-for-elementor' ),
 				'type'    => Controls_Manager::SELECT,
 				'default' => 'time_duration',
 				'options' => array(
-					'episode_number' => esc_html__( 'Episode Number', 'mas-elementor' ),
-					'release_date'   => esc_html__( 'Release Date', 'mas-elementor' ),
-					'time_duration'  => esc_html__( 'Time Duration', 'mas-elementor' ),
-					'imdb_id'        => esc_html__( 'IMDB ID', 'mas-elementor' ),
-					'tmdb_id'        => esc_html__( 'TMDB ID', 'mas-elementor' ),
+					'episode_number' => esc_html__( 'Episode Number', 'mas-addons-for-elementor' ),
+					'release_date'   => esc_html__( 'Release Date', 'mas-addons-for-elementor' ),
+					'time_duration'  => esc_html__( 'Time Duration', 'mas-addons-for-elementor' ),
+					'imdb_id'        => esc_html__( 'IMDB ID', 'mas-addons-for-elementor' ),
+					'tmdb_id'        => esc_html__( 'TMDB ID', 'mas-addons-for-elementor' ),
 				),
 			)
 		);
@@ -66,14 +66,14 @@ class Mas_Videos_Episodes_Text_Fields extends \Elementor\Core\DynamicTags\Tag {
 		$this->add_control(
 			'date_format',
 			array(
-				'label'     => esc_html__( 'Date Format', 'mas-elementor' ),
+				'label'     => esc_html__( 'Date Format', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::SELECT,
 				'options'   => array(
 					'F j, Y' => gmdate( 'F j, Y' ),
 					'Y-m-d'  => gmdate( 'Y-m-d' ),
 					'm/d/Y'  => gmdate( 'm/d/Y' ),
 					'd/m/Y'  => gmdate( 'd/m/Y' ),
-					'custom' => esc_html__( 'Custom', 'mas-elementor' ),
+					'custom' => esc_html__( 'Custom', 'mas-addons-for-elementor' ),
 				),
 				'default'   => 'Y-m-d',
 				'condition' => array(
@@ -85,7 +85,7 @@ class Mas_Videos_Episodes_Text_Fields extends \Elementor\Core\DynamicTags\Tag {
 		$this->add_control(
 			'custom_format',
 			array(
-				'label'     => esc_html__( 'Custom Format', 'mas-elementor' ),
+				'label'     => esc_html__( 'Custom Format', 'mas-addons-for-elementor' ),
 				'default'   => gmdate( 'Y-m-d' ),
 				'condition' => array(
 					'date_format'               => 'custom',

@@ -55,7 +55,7 @@ class Module extends Module_Base {
 		$element->start_controls_section(
 			'section_carousel_attributes',
 			array(
-				'label' => __( 'Carousel', 'mas-elementor' ),
+				'label' => __( 'Carousel', 'mas-addons-for-elementor' ),
 				'tab'   => Controls_Manager::TAB_ADVANCED,
 			),
 			array(
@@ -70,7 +70,7 @@ class Module extends Module_Base {
 			'enable_carousel',
 			array(
 				'type'    => Controls_Manager::SWITCHER,
-				'label'   => esc_html__( 'Enable Carousel', 'mas-elementor' ),
+				'label'   => esc_html__( 'Enable Carousel', 'mas-addons-for-elementor' ),
 				'default' => 'no',
 			)
 		);
@@ -92,7 +92,7 @@ class Module extends Module_Base {
 				'enable_swiper_wrapper',
 				array(
 					'type'      => Controls_Manager::SWITCHER,
-					'label'     => esc_html__( 'Enable Swiper wrapper', 'mas-elementor' ),
+					'label'     => esc_html__( 'Enable Swiper wrapper', 'mas-addons-for-elementor' ),
 					'default'   => 'no',
 					'condition' => array(
 						'enable_carousel!'     => 'yes',
@@ -106,7 +106,7 @@ class Module extends Module_Base {
 				'enable_swiper_slide',
 				array(
 					'type'      => Controls_Manager::SWITCHER,
-					'label'     => esc_html__( 'Enable Swiper Slide', 'mas-elementor' ),
+					'label'     => esc_html__( 'Enable Swiper Slide', 'mas-addons-for-elementor' ),
 					'default'   => 'no',
 					'condition' => array(
 						'enable_carousel!'       => 'yes',
@@ -120,11 +120,11 @@ class Module extends Module_Base {
 				'enable_hover',
 				array(
 					'type'        => Controls_Manager::SWITCHER,
-					'label'       => esc_html__( 'Enable Hover', 'mas-elementor' ),
+					'label'       => esc_html__( 'Enable Hover', 'mas-addons-for-elementor' ),
 					'default'     => 'enable',
-					'label_off'   => esc_html__( 'Enable', 'mas-elementor' ),
-					'label_on'    => esc_html__( 'Disable', 'mas-elementor' ),
-					'description' => esc_html__( 'Should have child element inside this container', 'mas-elementor' ),
+					'label_off'   => esc_html__( 'Enable', 'mas-addons-for-elementor' ),
+					'label_on'    => esc_html__( 'Disable', 'mas-addons-for-elementor' ),
+					'description' => esc_html__( 'Should have child element inside this container', 'mas-addons-for-elementor' ),
 					'render_type' => $render_type,
 				)
 			);
@@ -132,7 +132,7 @@ class Module extends Module_Base {
 			$element->add_control(
 				'data_hover',
 				array(
-					'label'     => esc_html__( 'Data Hover Id', 'mas-elementor' ),
+					'label'     => esc_html__( 'Data Hover Id', 'mas-addons-for-elementor' ),
 					'type'      => Controls_Manager::TEXT,
 					'default'   => 'content-hover',
 					'condition' => array(
@@ -146,7 +146,7 @@ class Module extends Module_Base {
 				'enable_thumbs',
 				array(
 					'type'      => Controls_Manager::SWITCHER,
-					'label'     => esc_html__( 'Enable Thumbs', 'mas-elementor' ),
+					'label'     => esc_html__( 'Enable Thumbs', 'mas-addons-for-elementor' ),
 					'default'   => 'no',
 					'condition' => array(
 						'enable_carousel'        => 'yes',
@@ -160,7 +160,7 @@ class Module extends Module_Base {
 			$element->add_control(
 				'thumb_swiper_widget',
 				array(
-					'label'     => esc_html__( 'Thumbs ID', 'mas-elementor' ),
+					'label'     => esc_html__( 'Thumbs ID', 'mas-addons-for-elementor' ),
 					'type'      => Controls_Manager::TEXT,
 					'condition' => array(
 						'enable_carousel' => 'yes',
@@ -174,12 +174,12 @@ class Module extends Module_Base {
 			'carousel_effect',
 			array(
 				'type'      => Controls_Manager::SELECT,
-				'label'     => esc_html__( 'Effect', 'mas-elementor' ),
+				'label'     => esc_html__( 'Effect', 'mas-addons-for-elementor' ),
 				'default'   => 'slide',
 				'options'   => array(
-					''      => esc_html__( 'None', 'mas-elementor' ),
-					'slide' => esc_html__( 'Slide', 'mas-elementor' ),
-					'fade'  => esc_html__( 'Fade', 'mas-elementor' ),
+					''      => esc_html__( 'None', 'mas-addons-for-elementor' ),
+					'slide' => esc_html__( 'Slide', 'mas-addons-for-elementor' ),
+					'fade'  => esc_html__( 'Fade', 'mas-addons-for-elementor' ),
 				),
 				'condition' => array(
 					'enable_carousel' => 'yes',
@@ -195,7 +195,7 @@ class Module extends Module_Base {
 
 		$slides_per_view  = array(
 			'type'      => Controls_Manager::NUMBER,
-			'label'     => esc_html__( 'Slides Per View', 'mas-elementor' ),
+			'label'     => esc_html__( 'Slides Per View', 'mas-addons-for-elementor' ),
 			'min'       => 1,
 			'max'       => 15,
 			'default'   => 1,
@@ -207,7 +207,7 @@ class Module extends Module_Base {
 		);
 		$slides_to_scroll = array(
 			'type'      => Controls_Manager::NUMBER,
-			'label'     => esc_html__( 'Slides To Scroll', 'mas-elementor' ),
+			'label'     => esc_html__( 'Slides To Scroll', 'mas-addons-for-elementor' ),
 			'min'       => 1,
 			'max'       => 15,
 			'default'   => 1,
@@ -220,8 +220,8 @@ class Module extends Module_Base {
 		);
 		$space_between    = array(
 			'type'        => Controls_Manager::NUMBER,
-			'label'       => esc_html__( 'Space Between', 'mas-elementor' ),
-			'description' => esc_html__( 'Set Space between each Slides', 'mas-elementor' ),
+			'label'       => esc_html__( 'Space Between', 'mas-addons-for-elementor' ),
+			'description' => esc_html__( 'Set Space between each Slides', 'mas-addons-for-elementor' ),
 			'min'         => 0,
 			'max'         => 100,
 			'default'     => 8,
@@ -252,10 +252,10 @@ class Module extends Module_Base {
 			'enable_space_between',
 			array(
 				'type'      => Controls_Manager::SWITCHER,
-				'label'     => esc_html__( 'Enable Space Between', 'mas-elementor' ),
+				'label'     => esc_html__( 'Enable Space Between', 'mas-addons-for-elementor' ),
 				'default'   => 'yes',
-				'label_off' => esc_html__( 'Hide', 'mas-elementor' ),
-				'label_on'  => esc_html__( 'Show', 'mas-elementor' ),
+				'label_off' => esc_html__( 'Hide', 'mas-addons-for-elementor' ),
+				'label_on'  => esc_html__( 'Show', 'mas-addons-for-elementor' ),
 				'condition' => array(
 					'carousel_effect' => 'slide',
 					'enable_carousel' => 'yes',
@@ -272,7 +272,7 @@ class Module extends Module_Base {
 		$element->add_control(
 			'swiper_height_auto',
 			array(
-				'label'                => esc_html__( 'Height', 'mas-elementor' ),
+				'label'                => esc_html__( 'Height', 'mas-addons-for-elementor' ),
 				'type'                 => Controls_Manager::SELECT,
 				'default'              => 'default',
 				'options'              => array(
@@ -297,10 +297,10 @@ class Module extends Module_Base {
 			'center_slides',
 			array(
 				'type'      => Controls_Manager::SWITCHER,
-				'label'     => esc_html__( 'Center Slides', 'mas-elementor' ),
+				'label'     => esc_html__( 'Center Slides', 'mas-addons-for-elementor' ),
 				'default'   => 'no',
-				'label_off' => esc_html__( 'Hide', 'mas-elementor' ),
-				'label_on'  => esc_html__( 'Show', 'mas-elementor' ),
+				'label_off' => esc_html__( 'Hide', 'mas-addons-for-elementor' ),
+				'label_on'  => esc_html__( 'Show', 'mas-addons-for-elementor' ),
 				'condition' => array(
 					'carousel_effect' => 'slide',
 					'enable_carousel' => 'yes',
@@ -313,10 +313,10 @@ class Module extends Module_Base {
 			'show_arrows',
 			array(
 				'type'      => Controls_Manager::SWITCHER,
-				'label'     => esc_html__( 'Arrows', 'mas-elementor' ),
+				'label'     => esc_html__( 'Arrows', 'mas-addons-for-elementor' ),
 				'default'   => 'no',
-				'label_off' => esc_html__( 'Hide', 'mas-elementor' ),
-				'label_on'  => esc_html__( 'Show', 'mas-elementor' ),
+				'label_off' => esc_html__( 'Hide', 'mas-addons-for-elementor' ),
+				'label_on'  => esc_html__( 'Show', 'mas-addons-for-elementor' ),
 				'condition' => array(
 					'enable_carousel'     => 'yes',
 					'show_custom_arrows!' => 'yes',
@@ -329,10 +329,10 @@ class Module extends Module_Base {
 			'hide_responsive_arrows',
 			array(
 				'type'         => Controls_Manager::SWITCHER,
-				'label'        => esc_html__( 'Hide Arrow Responsive', 'mas-elementor' ),
+				'label'        => esc_html__( 'Hide Arrow Responsive', 'mas-addons-for-elementor' ),
 				'default'      => 'no',
-				'label_off'    => esc_html__( 'Hide', 'mas-elementor' ),
-				'label_on'     => esc_html__( 'Show', 'mas-elementor' ),
+				'label_off'    => esc_html__( 'Hide', 'mas-addons-for-elementor' ),
+				'label_on'     => esc_html__( 'Show', 'mas-addons-for-elementor' ),
 				'condition'    => array(
 					'enable_carousel'     => 'yes',
 					'show_arrows'         => 'yes',
@@ -348,10 +348,10 @@ class Module extends Module_Base {
 			'show_custom_arrows',
 			array(
 				'type'      => Controls_Manager::SWITCHER,
-				'label'     => esc_html__( 'Custom Arrows', 'mas-elementor' ),
+				'label'     => esc_html__( 'Custom Arrows', 'mas-addons-for-elementor' ),
 				'default'   => 'no',
-				'label_off' => esc_html__( 'Hide', 'mas-elementor' ),
-				'label_on'  => esc_html__( 'Show', 'mas-elementor' ),
+				'label_off' => esc_html__( 'Hide', 'mas-addons-for-elementor' ),
+				'label_on'  => esc_html__( 'Show', 'mas-addons-for-elementor' ),
 				'condition' => array(
 					'enable_carousel' => 'yes',
 					'show_arrows!'    => 'yes',
@@ -364,7 +364,7 @@ class Module extends Module_Base {
 		$element->add_control(
 			'custom_prev_id',
 			array(
-				'label'     => esc_html__( 'Previous Arrow ID', 'mas-elementor' ),
+				'label'     => esc_html__( 'Previous Arrow ID', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::TEXT,
 				'condition' => array(
 					'enable_carousel'    => 'yes',
@@ -378,7 +378,7 @@ class Module extends Module_Base {
 		$element->add_control(
 			'custom_next_id',
 			array(
-				'label'     => __( 'Next Arrow ID', 'mas-elementor' ),
+				'label'     => __( 'Next Arrow ID', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::TEXT,
 				'condition' => array(
 					'enable_carousel'    => 'yes',
@@ -392,7 +392,7 @@ class Module extends Module_Base {
 		$element->add_control(
 			'speed',
 			array(
-				'label'       => esc_html__( 'Transition Duration', 'mas-elementor' ),
+				'label'       => esc_html__( 'Transition Duration', 'mas-addons-for-elementor' ),
 				'type'        => Controls_Manager::NUMBER,
 				'default'     => 500,
 				'step'        => 100,
@@ -406,7 +406,7 @@ class Module extends Module_Base {
 		$element->add_control(
 			'autoplay',
 			array(
-				'label'       => esc_html__( 'Autoplay', 'mas-elementor' ),
+				'label'       => esc_html__( 'Autoplay', 'mas-addons-for-elementor' ),
 				'type'        => Controls_Manager::SWITCHER,
 				'default'     => 'yes',
 				'separator'   => 'before',
@@ -420,7 +420,7 @@ class Module extends Module_Base {
 		$element->add_control(
 			'autoplay_speed',
 			array(
-				'label'       => esc_html__( 'Autoplay Speed', 'mas-elementor' ),
+				'label'       => esc_html__( 'Autoplay Speed', 'mas-addons-for-elementor' ),
 				'type'        => Controls_Manager::NUMBER,
 				'default'     => 5000,
 				'condition'   => array(
@@ -434,7 +434,7 @@ class Module extends Module_Base {
 		$element->add_control(
 			'loop',
 			array(
-				'label'     => esc_html__( 'Infinite Loop', 'mas-elementor' ),
+				'label'     => esc_html__( 'Infinite Loop', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::SWITCHER,
 				'default'   => 'yes',
 				'condition' => array(
@@ -447,7 +447,7 @@ class Module extends Module_Base {
 		$element->add_control(
 			'pause_on_hover',
 			array(
-				'label'       => esc_html__( 'Pause on Hover', 'mas-elementor' ),
+				'label'       => esc_html__( 'Pause on Hover', 'mas-addons-for-elementor' ),
 				'type'        => Controls_Manager::SWITCHER,
 				'default'     => 'yes',
 				'condition'   => array(
@@ -462,10 +462,10 @@ class Module extends Module_Base {
 			'show_pagination',
 			array(
 				'type'      => Controls_Manager::SWITCHER,
-				'label'     => esc_html__( 'Enable Pagination', 'mas-elementor' ),
+				'label'     => esc_html__( 'Enable Pagination', 'mas-addons-for-elementor' ),
 				'default'   => 'yes',
-				'label_off' => esc_html__( 'Hide', 'mas-elementor' ),
-				'label_on'  => esc_html__( 'Show', 'mas-elementor' ),
+				'label_off' => esc_html__( 'Hide', 'mas-addons-for-elementor' ),
+				'label_on'  => esc_html__( 'Show', 'mas-addons-for-elementor' ),
 				'condition' => array(
 					'enable_carousel' => 'yes',
 				),
@@ -476,13 +476,13 @@ class Module extends Module_Base {
 		$element->add_control(
 			'pagination',
 			array(
-				'label'     => esc_html__( 'Pagination', 'mas-elementor' ),
+				'label'     => esc_html__( 'Pagination', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::SELECT,
 				'default'   => 'bullets',
 				'options'   => array(
-					'bullets'     => esc_html__( 'Dots', 'mas-elementor' ),
-					'fraction'    => esc_html__( 'Fraction', 'mas-elementor' ),
-					'progressbar' => esc_html__( 'Progress', 'mas-elementor' ),
+					'bullets'     => esc_html__( 'Dots', 'mas-addons-for-elementor' ),
+					'fraction'    => esc_html__( 'Fraction', 'mas-addons-for-elementor' ),
+					'progressbar' => esc_html__( 'Progress', 'mas-addons-for-elementor' ),
 				),
 				'condition' => array(
 					'enable_carousel' => 'yes',
@@ -495,12 +495,12 @@ class Module extends Module_Base {
 		$element->add_control(
 			'pagination_style',
 			array(
-				'label'     => esc_html__( 'Pagination Style', 'mas-elementor' ),
+				'label'     => esc_html__( 'Pagination Style', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::SELECT,
 				'default'   => 'horizontal',
 				'options'   => array(
-					'horizontal' => esc_html__( 'Horizontal', 'mas-elementor' ),
-					'vertical'   => esc_html__( 'Vertical', 'mas-elementor' ),
+					'horizontal' => esc_html__( 'Horizontal', 'mas-addons-for-elementor' ),
+					'vertical'   => esc_html__( 'Vertical', 'mas-addons-for-elementor' ),
 				),
 				'condition' => array(
 					'enable_carousel' => 'yes',
@@ -531,7 +531,7 @@ class Module extends Module_Base {
 		$element->start_controls_section(
 			'section_mas_swiper_wrapper',
 			array(
-				'label'     => esc_html__( 'MAS Swiper Wrapper', 'mas-elementor' ),
+				'label'     => esc_html__( 'MAS Swiper Wrapper', 'mas-addons-for-elementor' ),
 				'tab'       => Controls_Manager::TAB_STYLE,
 				'condition' => array(
 					'enable_carousel' => 'yes',
@@ -542,9 +542,9 @@ class Module extends Module_Base {
 		$element->add_control(
 			'mas_swiper_wrapper_attributes',
 			array(
-				'label'       => esc_html__( 'MAS Swiper wrapper', 'mas-elementor' ),
+				'label'       => esc_html__( 'MAS Swiper wrapper', 'mas-addons-for-elementor' ),
 				'type'        => Controls_Manager::TEXT,
-				'description' => esc_html__( 'Add the styles to be added to mas-swiper-wrapper', 'mas-elementor' ),
+				'description' => esc_html__( 'Add the styles to be added to mas-swiper-wrapper', 'mas-addons-for-elementor' ),
 				'render_type' => $render_type,
 			)
 		);
@@ -552,9 +552,9 @@ class Module extends Module_Base {
 		$element->add_control(
 			'mas_swiper_css_classes',
 			array(
-				'label'       => esc_html__( 'MAS Swiper CSS Class', 'mas-elementor' ),
+				'label'       => esc_html__( 'MAS Swiper CSS Class', 'mas-addons-for-elementor' ),
 				'type'        => Controls_Manager::TEXT,
-				'description' => esc_html__( 'Add the class to be added to mas-swiper-wrapper', 'mas-elementor' ),
+				'description' => esc_html__( 'Add the class to be added to mas-swiper-wrapper', 'mas-addons-for-elementor' ),
 				'render_type' => $render_type,
 			)
 		);
@@ -574,7 +574,7 @@ class Module extends Module_Base {
 		$element->start_controls_section(
 			'section_mas_swiper_thumbs',
 			array(
-				'label'     => esc_html__( 'Thumbs Style', 'mas-elementor' ),
+				'label'     => esc_html__( 'Thumbs Style', 'mas-addons-for-elementor' ),
 				'tab'       => Controls_Manager::TAB_STYLE,
 				'condition' => array(
 					'enable_carousel' => 'yes',
@@ -586,7 +586,7 @@ class Module extends Module_Base {
 		$element->add_control(
 			'thumbs_opacity',
 			array(
-				'label'     => esc_html__( 'Thumbs Inactive Opacity', 'mas-elementor' ),
+				'label'     => esc_html__( 'Thumbs Inactive Opacity', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::SLIDER,
 				'range'     => array(
 					'px' => array(
@@ -607,7 +607,7 @@ class Module extends Module_Base {
 		$element->add_control(
 			'thumbs_active_opacity',
 			array(
-				'label'     => esc_html__( 'Thumbs active Opacity', 'mas-elementor' ),
+				'label'     => esc_html__( 'Thumbs active Opacity', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::SLIDER,
 				'range'     => array(
 					'px' => array(
@@ -957,7 +957,7 @@ class Module extends Module_Base {
 			'enable_slide',
 			array(
 				'type'    => Controls_Manager::SWITCHER,
-				'label'   => esc_html__( 'Enable Slide', 'mas-elementor' ),
+				'label'   => esc_html__( 'Enable Slide', 'mas-addons-for-elementor' ),
 				'default' => 'no',
 			)
 		);
@@ -973,7 +973,7 @@ class Module extends Module_Base {
 		$element->start_controls_section(
 			'section_swiper_button',
 			array(
-				'label'     => esc_html__( 'Button', 'mas-elementor' ),
+				'label'     => esc_html__( 'Button', 'mas-addons-for-elementor' ),
 				'tab'       => Controls_Manager::TAB_LAYOUT,
 				'condition' => array(
 					'enable_carousel' => 'yes',
@@ -994,8 +994,8 @@ class Module extends Module_Base {
 		parent::__construct();
 		$this->add_actions();
 
-		add_action( 'elementor/frontend/before_register_scripts', array( $this, 'register_frontend_scripts' ) );
-		add_action( 'elementor/frontend/before_register_styles', array( $this, 'register_frontend_styles' ) );
+		add_action( 'elementor/frontend/before_enqueue_scripts', array( $this, 'register_frontend_scripts' ) );
+		add_action( 'elementor/frontend/before_enqueue_styles', array( $this, 'register_frontend_styles' ) );
 	}
 
 	/**

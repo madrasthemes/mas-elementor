@@ -28,7 +28,7 @@ class Mas_Videos_Text_Fields extends \Elementor\Core\DynamicTags\Tag {
 	 * Get the title.
 	 */
 	public function get_title() {
-		return esc_html__( 'MAS Videos', 'mas-elementor' );
+		return esc_html__( 'MAS Videos', 'mas-addons-for-elementor' );
 	}
 	/**
 	 * Get the group.
@@ -49,28 +49,28 @@ class Mas_Videos_Text_Fields extends \Elementor\Core\DynamicTags\Tag {
 		$this->add_control(
 			'mas_videos_post_types',
 			array(
-				'label'   => esc_html__( 'MAS Videos Post Types', 'mas-elementor' ),
+				'label'   => esc_html__( 'MAS Videos Post Types', 'mas-addons-for-elementor' ),
 				'type'    => Controls_Manager::SELECT,
 				'default' => 'movie',
 				'options' => array(
-					'tv_show' => esc_html__( 'TV Shows', 'mas-elementor' ),
-					'movie'   => esc_html__( 'Movies', 'mas-elementor' ),
+					'tv_show' => esc_html__( 'TV Shows', 'mas-addons-for-elementor' ),
+					'movie'   => esc_html__( 'Movies', 'mas-addons-for-elementor' ),
 				),
 			)
 		);
 		$this->add_control(
 			'mas_movie_text_options',
 			array(
-				'label'     => esc_html__( 'Type', 'mas-elementor' ),
+				'label'     => esc_html__( 'Type', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::SELECT,
 				'default'   => 'time_duration',
 				'options'   => array(
-					'release_date'  => esc_html__( 'Release Date', 'mas-elementor' ),
-					'time_duration' => esc_html__( 'Time Duration', 'mas-elementor' ),
-					'censor_rating' => esc_html__( 'Censor Rating', 'mas-elementor' ),
-					'imdb_id'       => esc_html__( 'IMDB ID', 'mas-elementor' ),
-					'tmdb_id'       => esc_html__( 'TMDB ID', 'mas-elementor' ),
-					'casts_crew'    => esc_html__( 'Casts and Crew', 'mas-elementor' ),
+					'release_date'  => esc_html__( 'Release Date', 'mas-addons-for-elementor' ),
+					'time_duration' => esc_html__( 'Time Duration', 'mas-addons-for-elementor' ),
+					'censor_rating' => esc_html__( 'Censor Rating', 'mas-addons-for-elementor' ),
+					'imdb_id'       => esc_html__( 'IMDB ID', 'mas-addons-for-elementor' ),
+					'tmdb_id'       => esc_html__( 'TMDB ID', 'mas-addons-for-elementor' ),
+					'casts_crew'    => esc_html__( 'Casts and Crew', 'mas-addons-for-elementor' ),
 				),
 				'condition' => array(
 					'mas_videos_post_types' => 'movie',
@@ -81,17 +81,17 @@ class Mas_Videos_Text_Fields extends \Elementor\Core\DynamicTags\Tag {
 		$this->add_control(
 			'mas_tv_show_text_options',
 			array(
-				'label'     => esc_html__( 'Type', 'mas-elementor' ),
+				'label'     => esc_html__( 'Type', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::SELECT,
 				'default'   => 'imdb_id',
 				'options'   => array(
-					'imdb_id'           => esc_html__( 'IMDB ID', 'mas-elementor' ),
-					'tmdb_id'           => esc_html__( 'TMDB ID', 'mas-elementor' ),
-					'season_names'      => esc_html__( 'Season Names', 'mas-elementor' ),
-					'season_count'      => esc_html__( 'Season Count', 'mas-elementor' ),
-					'season_start_year' => esc_html__( 'Seasons Start Year', 'mas-elementor' ),
-					'season_end_year'   => esc_html__( 'Seasons End Year', 'mas-elementor' ),
-					'casts_crew'        => esc_html__( 'Casts and Crew', 'mas-elementor' ),
+					'imdb_id'           => esc_html__( 'IMDB ID', 'mas-addons-for-elementor' ),
+					'tmdb_id'           => esc_html__( 'TMDB ID', 'mas-addons-for-elementor' ),
+					'season_names'      => esc_html__( 'Season Names', 'mas-addons-for-elementor' ),
+					'season_count'      => esc_html__( 'Season Count', 'mas-addons-for-elementor' ),
+					'season_start_year' => esc_html__( 'Seasons Start Year', 'mas-addons-for-elementor' ),
+					'season_end_year'   => esc_html__( 'Seasons End Year', 'mas-addons-for-elementor' ),
+					'casts_crew'        => esc_html__( 'Casts and Crew', 'mas-addons-for-elementor' ),
 				),
 				'condition' => array(
 					'mas_videos_post_types' => 'tv_show',
@@ -102,7 +102,7 @@ class Mas_Videos_Text_Fields extends \Elementor\Core\DynamicTags\Tag {
 		$this->add_control(
 			'season_names_separator',
 			array(
-				'label'     => esc_html__( 'Separator', 'mas-elementor' ),
+				'label'     => esc_html__( 'Separator', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::TEXT,
 				'default'   => ', ',
 				'condition' => array(
@@ -116,12 +116,12 @@ class Mas_Videos_Text_Fields extends \Elementor\Core\DynamicTags\Tag {
 		$this->add_control(
 			'mas_videos_person_options',
 			array(
-				'label'      => esc_html__( 'Persons', 'mas-elementor' ),
+				'label'      => esc_html__( 'Persons', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::SELECT,
 				'default'    => 'crew',
 				'options'    => array(
-					'casts' => esc_html__( 'Casts', 'mas-elementor' ),
-					'crew'  => esc_html__( 'Crew', 'mas-elementor' ),
+					'casts' => esc_html__( 'Casts', 'mas-addons-for-elementor' ),
+					'crew'  => esc_html__( 'Crew', 'mas-addons-for-elementor' ),
 				),
 				'conditions' => array(
 					'relation' => 'or',
@@ -168,9 +168,9 @@ class Mas_Videos_Text_Fields extends \Elementor\Core\DynamicTags\Tag {
 		$this->add_control(
 			'mas_movie_person_ids',
 			array(
-				'label'       => esc_html__( 'Select Person', 'mas-elementor' ),
+				'label'       => esc_html__( 'Select Person', 'mas-addons-for-elementor' ),
 				'type'        => Controls_Manager::SELECT,
-				'description' => esc_html__( 'Person here shown are in movie crew options and in ordered', 'mas-elementor' ),
+				'description' => esc_html__( 'Person here shown are in movie crew options and in ordered', 'mas-addons-for-elementor' ),
 				'default'     => '0',
 				'options'     => $crew_options,
 				'conditions'  => array(
@@ -213,12 +213,12 @@ class Mas_Videos_Text_Fields extends \Elementor\Core\DynamicTags\Tag {
 		$this->add_control(
 			'mas_movie_person_crew_options',
 			array(
-				'label'      => esc_html__( 'Person options', 'mas-elementor' ),
+				'label'      => esc_html__( 'Person options', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::SELECT,
 				'default'    => 'name',
 				'options'    => array(
-					'name' => esc_html__( 'Name', 'mas-elementor' ),
-					'job'  => esc_html__( 'Job', 'mas-elementor' ),
+					'name' => esc_html__( 'Name', 'mas-addons-for-elementor' ),
+					'job'  => esc_html__( 'Job', 'mas-addons-for-elementor' ),
 				),
 				'conditions' => array(
 					'relation' => 'or',
@@ -269,12 +269,12 @@ class Mas_Videos_Text_Fields extends \Elementor\Core\DynamicTags\Tag {
 		$this->add_control(
 			'mas_movie_person_cast_options',
 			array(
-				'label'      => esc_html__( 'Person options', 'mas-elementor' ),
+				'label'      => esc_html__( 'Person options', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::SELECT,
 				'default'    => 'name',
 				'options'    => array(
-					'name'      => esc_html__( 'Name', 'mas-elementor' ),
-					'character' => esc_html__( 'Character', 'mas-elementor' ),
+					'name'      => esc_html__( 'Name', 'mas-addons-for-elementor' ),
+					'character' => esc_html__( 'Character', 'mas-addons-for-elementor' ),
 				),
 				'conditions' => array(
 					'relation' => 'or',
@@ -325,14 +325,14 @@ class Mas_Videos_Text_Fields extends \Elementor\Core\DynamicTags\Tag {
 		$this->add_control(
 			'date_format',
 			array(
-				'label'     => esc_html__( 'Date Format', 'mas-elementor' ),
+				'label'     => esc_html__( 'Date Format', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::SELECT,
 				'options'   => array(
 					'F j, Y' => gmdate( 'F j, Y' ),
 					'Y-m-d'  => gmdate( 'Y-m-d' ),
 					'm/d/Y'  => gmdate( 'm/d/Y' ),
 					'd/m/Y'  => gmdate( 'd/m/Y' ),
-					'custom' => esc_html__( 'Custom', 'mas-elementor' ),
+					'custom' => esc_html__( 'Custom', 'mas-addons-for-elementor' ),
 				),
 				'default'   => 'Y-m-d',
 				'condition' => array(
@@ -345,7 +345,7 @@ class Mas_Videos_Text_Fields extends \Elementor\Core\DynamicTags\Tag {
 		$this->add_control(
 			'custom_format',
 			array(
-				'label'     => esc_html__( 'Custom Format', 'mas-elementor' ),
+				'label'     => esc_html__( 'Custom Format', 'mas-addons-for-elementor' ),
 				'default'   => gmdate( 'Y-m-d' ),
 				'condition' => array(
 					'date_format'            => 'custom',

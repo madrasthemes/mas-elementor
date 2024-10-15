@@ -43,7 +43,7 @@ class Scrollspy extends Widget_Icon_List {
 	 * @return string
 	 */
 	public function get_title() {
-		return __( 'Scroll Spy', 'mas-elementor' );
+		return __( 'Scroll Spy', 'mas-addons-for-elementor' );
 	}
 
 	/**
@@ -93,14 +93,14 @@ class Scrollspy extends Widget_Icon_List {
 		$this->start_controls_section(
 			'section_scrollspy',
 			array(
-				'label' => __( 'ScrollSpy', 'mas-elementor' ),
+				'label' => __( 'ScrollSpy', 'mas-addons-for-elementor' ),
 			)
 		);
 
 		$this->add_control(
 			'scrollspy_id',
 			array(
-				'label' => esc_html__( 'Scrollspy ID', 'mas-elementor' ),
+				'label' => esc_html__( 'Scrollspy ID', 'mas-addons-for-elementor' ),
 				'type'  => Controls_Manager::TEXT,
 
 			)
@@ -109,7 +109,7 @@ class Scrollspy extends Widget_Icon_List {
 		$this->add_control(
 			'parent_id',
 			array(
-				'label' => esc_html__( 'Parent ID', 'mas-elementor' ),
+				'label' => esc_html__( 'Parent ID', 'mas-addons-for-elementor' ),
 				'type'  => Controls_Manager::TEXT,
 
 			)
@@ -118,7 +118,7 @@ class Scrollspy extends Widget_Icon_List {
 		$this->add_control(
 			'target_id',
 			array(
-				'label' => esc_html__( 'Data Target ID', 'mas-elementor' ),
+				'label' => esc_html__( 'Data Target ID', 'mas-addons-for-elementor' ),
 				'type'  => Controls_Manager::TEXT,
 
 			)
@@ -127,7 +127,7 @@ class Scrollspy extends Widget_Icon_List {
 		$this->add_control(
 			'breakpoint',
 			array(
-				'label'   => esc_html__( 'Breakpoint', 'mas-elementor' ),
+				'label'   => esc_html__( 'Breakpoint', 'mas-addons-for-elementor' ),
 				'type'    => Controls_Manager::SELECT,
 				'options' => array(
 					'xs' => 'XS',
@@ -143,7 +143,7 @@ class Scrollspy extends Widget_Icon_List {
 		$this->add_control(
 			'start_point_id',
 			array(
-				'label' => esc_html__( 'Startpoint ID', 'mas-elementor' ),
+				'label' => esc_html__( 'Startpoint ID', 'mas-addons-for-elementor' ),
 				'type'  => Controls_Manager::TEXT,
 
 			)
@@ -152,7 +152,7 @@ class Scrollspy extends Widget_Icon_List {
 		$this->add_control(
 			'end_point_id',
 			array(
-				'label' => esc_html__( 'Endpoint ID', 'mas-elementor' ),
+				'label' => esc_html__( 'Endpoint ID', 'mas-addons-for-elementor' ),
 				'type'  => Controls_Manager::TEXT,
 
 			)
@@ -161,7 +161,7 @@ class Scrollspy extends Widget_Icon_List {
 		$this->add_control(
 			'offset',
 			array(
-				'label' => esc_html__( 'Offset', 'mas-elementor' ),
+				'label' => esc_html__( 'Offset', 'mas-addons-for-elementor' ),
 				'type'  => Controls_Manager::SLIDER,
 				'range' => array(
 					'px' => array(
@@ -179,7 +179,7 @@ class Scrollspy extends Widget_Icon_List {
 		$this->start_controls_section(
 			'scroll_section_text_style',
 			array(
-				'label' => esc_html__( 'Text', 'mas-elementor' ),
+				'label' => esc_html__( 'Text', 'mas-addons-for-elementor' ),
 				'tab'   => Controls_Manager::TAB_STYLE,
 			)
 		);
@@ -191,14 +191,14 @@ class Scrollspy extends Widget_Icon_List {
 		$this->start_controls_tab(
 			'scrollspy_tab_normal',
 			array(
-				'label' => esc_html__( 'Normal', 'mas-elementor' ),
+				'label' => esc_html__( 'Normal', 'mas-addons-for-elementor' ),
 			)
 		);
 
 		$this->add_control(
 			'scroll_text_color',
 			array(
-				'label'     => esc_html__( 'Text Color', 'mas-elementor' ),
+				'label'     => esc_html__( 'Text Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'default'   => '',
 				'selectors' => array(
@@ -213,7 +213,7 @@ class Scrollspy extends Widget_Icon_List {
 		$this->add_control(
 			'scroll_border_color',
 			array(
-				'label'     => esc_html__( 'Border Color', 'mas-elementor' ),
+				'label'     => esc_html__( 'Border Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'default'   => '',
 				'selectors' => array(
@@ -230,14 +230,14 @@ class Scrollspy extends Widget_Icon_List {
 		$this->start_controls_tab(
 			'scrollspy_tab_active',
 			array(
-				'label' => esc_html__( 'Active', 'mas-elementor' ),
+				'label' => esc_html__( 'Active', 'mas-addons-for-elementor' ),
 			)
 		);
 
 		$this->add_control(
 			'scroll_text_color_active',
 			array(
-				'label'     => esc_html__( 'Text Color', 'mas-elementor' ),
+				'label'     => esc_html__( 'Text Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'default'   => '',
 				'selectors' => array(
@@ -249,7 +249,7 @@ class Scrollspy extends Widget_Icon_List {
 		$this->add_control(
 			'scroll_border_color_active',
 			array(
-				'label'     => esc_html__( 'Border Color', 'mas-elementor' ),
+				'label'     => esc_html__( 'Border Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'default'   => '',
 				'selectors' => array(
@@ -265,7 +265,7 @@ class Scrollspy extends Widget_Icon_List {
 		$this->add_control(
 			'scroll_text_color_hover',
 			array(
-				'label'     => esc_html__( 'Text Hover Color', 'mas-elementor' ),
+				'label'     => esc_html__( 'Text Hover Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'default'   => '',
 				'selectors' => array(
@@ -278,7 +278,7 @@ class Scrollspy extends Widget_Icon_List {
 		$this->add_control(
 			'scroll_text_indent',
 			array(
-				'label'     => esc_html__( 'Text Indent', 'mas-elementor' ),
+				'label'     => esc_html__( 'Text Indent', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::SLIDER,
 				'range'     => array(
 					'px' => array(

@@ -33,7 +33,7 @@ class Movie_Recommended extends Posts_Base {
 	 * @return string
 	 */
 	public function get_title() {
-		return __( 'Recommended Movies', 'mas-elementor' );
+		return __( 'Recommended Movies', 'mas-addons-for-elementor' );
 	}
 
 	/**

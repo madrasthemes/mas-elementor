@@ -29,7 +29,7 @@ class Product_Onsale_Percentage extends Base_Tag {
 	 * Get Title.
 	 */
 	public function get_title() {
-		return esc_html__( 'OnSale Percentage', 'mas-elementor' );
+		return esc_html__( 'OnSale Percentage', 'mas-addons-for-elementor' );
 	}
 
 	/**
@@ -39,11 +39,11 @@ class Product_Onsale_Percentage extends Base_Tag {
 		$this->add_control(
 			'output',
 			array(
-				'label'   => esc_html__( 'Output Format', 'mas-elementor' ),
+				'label'   => esc_html__( 'Output Format', 'mas-addons-for-elementor' ),
 				'type'    => Controls_Manager::SELECT,
 				'options' => array(
-					'amount'     => esc_html__( 'Amount', 'mas-elementor' ),
-					'percentage' => esc_html__( 'Percentage', 'mas-elementor' ),
+					'amount'     => esc_html__( 'Amount', 'mas-addons-for-elementor' ),
+					'percentage' => esc_html__( 'Percentage', 'mas-addons-for-elementor' ),
 				),
 				'default' => 'percentage',
 			)
@@ -52,18 +52,18 @@ class Product_Onsale_Percentage extends Base_Tag {
 		$this->add_control(
 			'text_prefix',
 			array(
-				'label'   => esc_html__( 'Prefix', 'mas-elementor' ),
+				'label'   => esc_html__( 'Prefix', 'mas-addons-for-elementor' ),
 				'type'    => Controls_Manager::TEXT,
-				'default' => esc_html__( '-', 'mas-elementor' ),
+				'default' => esc_html__( '-', 'mas-addons-for-elementor' ),
 			)
 		);
 
 		$this->add_control(
 			'text_suffix',
 			array(
-				'label'   => esc_html__( 'Suffix', 'mas-elementor' ),
+				'label'   => esc_html__( 'Suffix', 'mas-addons-for-elementor' ),
 				'type'    => Controls_Manager::TEXT,
-				'default' => esc_html__( '%', 'mas-elementor' ),
+				'default' => esc_html__( '%', 'mas-addons-for-elementor' ),
 			)
 		);
 

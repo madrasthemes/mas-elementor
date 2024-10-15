@@ -43,7 +43,7 @@ class Customer_Account extends Base_Widget {
 	 * @return string
 	 */
 	public function get_title() {
-		return esc_html__( 'Customer Account', 'mas-elementor' );
+		return esc_html__( 'Customer Account', 'mas-addons-for-elementor' );
 	}
 
 	/**
@@ -80,20 +80,20 @@ class Customer_Account extends Base_Widget {
 		$this->start_controls_section(
 			'section_account',
 			array(
-				'label' => esc_html__( 'Account', 'mas-elementor' ),
+				'label' => esc_html__( 'Account', 'mas-addons-for-elementor' ),
 			)
 		);
 
 		$this->add_control(
 			'icon_options',
 			array(
-				'label'   => esc_html__( 'Icon Options', 'mas-elementor' ),
+				'label'   => esc_html__( 'Icon Options', 'mas-addons-for-elementor' ),
 				'type'    => Controls_Manager::SELECT,
 				'default' => '',
 				'options' => array(
-					''          => esc_html__( 'Text and Icon', 'mas-elementor' ),
-					'text_only' => esc_html__( 'Text Only', 'mas-elementor' ),
-					'icon_only' => esc_html__( 'Icon Only', 'mas-elementor' ),
+					''          => esc_html__( 'Text and Icon', 'mas-addons-for-elementor' ),
+					'text_only' => esc_html__( 'Text Only', 'mas-addons-for-elementor' ),
+					'icon_only' => esc_html__( 'Icon Only', 'mas-addons-for-elementor' ),
 				),
 			)
 		);
@@ -101,12 +101,12 @@ class Customer_Account extends Base_Widget {
 		$this->add_control(
 			'display_style',
 			array(
-				'label'     => esc_html__( 'Display Style', 'mas-elementor' ),
+				'label'     => esc_html__( 'Display Style', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::SELECT,
 				'default'   => '',
 				'options'   => array(
-					''    => esc_html__( 'Default', 'mas-elementor' ),
-					'alt' => esc_html__( 'Alt', 'mas-elementor' ),
+					''    => esc_html__( 'Default', 'mas-addons-for-elementor' ),
+					'alt' => esc_html__( 'Alt', 'mas-addons-for-elementor' ),
 				),
 				'condition' => array(
 					'icon_options!' => 'text_only',
@@ -117,7 +117,7 @@ class Customer_Account extends Base_Widget {
 		$this->add_control(
 			'block_css',
 			array(
-				'label'   => esc_html__( 'Block CSS', 'mas-elementor' ),
+				'label'   => esc_html__( 'Block CSS', 'mas-addons-for-elementor' ),
 				'type'    => Controls_Manager::TEXT,
 				'default' => 'wc-block-customer-account__account-icon',
 			)
@@ -128,7 +128,7 @@ class Customer_Account extends Base_Widget {
 		$this->start_controls_section(
 			'section_style_account',
 			array(
-				'label' => esc_html__( 'Account', 'mas-elementor' ),
+				'label' => esc_html__( 'Account', 'mas-addons-for-elementor' ),
 				'tab'   => Controls_Manager::TAB_STYLE,
 			)
 		);
@@ -144,7 +144,7 @@ class Customer_Account extends Base_Widget {
 		$this->add_control(
 			'account_color',
 			array(
-				'label'     => __( 'Account Color', 'mas-elementor' ),
+				'label'     => __( 'Account Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
 					'{{WRAPPER}} .wp-block-woocommerce-customer-account' => 'color: {{VALUE}} !important',
@@ -155,7 +155,7 @@ class Customer_Account extends Base_Widget {
 		$this->add_control(
 			'account_bg_color',
 			array(
-				'label'     => __( 'Account BGColor', 'mas-elementor' ),
+				'label'     => __( 'Account BGColor', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
 					'{{WRAPPER}} .wp-block-woocommerce-customer-account' => 'background-color: {{VALUE}} !important',

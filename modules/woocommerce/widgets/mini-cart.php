@@ -43,7 +43,7 @@ class Mini_Cart extends Base_Widget {
 	 * @return string
 	 */
 	public function get_title() {
-		return esc_html__( 'Mini Cart', 'mas-elementor' );
+		return esc_html__( 'Mini Cart', 'mas-addons-for-elementor' );
 	}
 
 	/**
@@ -80,14 +80,14 @@ class Mini_Cart extends Base_Widget {
 		$this->start_controls_section(
 			'section_minicart',
 			array(
-				'label' => esc_html__( 'Mini Cart', 'mas-elementor' ),
+				'label' => esc_html__( 'Mini Cart', 'mas-addons-for-elementor' ),
 			)
 		);
 
 		$this->add_control(
 			'open_drawer',
 			array(
-				'label'   => esc_html__( 'Open drawer when adding products', 'mas-elementor' ),
+				'label'   => esc_html__( 'Open drawer when adding products', 'mas-addons-for-elementor' ),
 				'type'    => Controls_Manager::SWITCHER,
 				'default' => 'no',
 			)
@@ -96,7 +96,7 @@ class Mini_Cart extends Base_Widget {
 		$this->add_control(
 			'show_price',
 			array(
-				'label'   => esc_html__( 'Show Price', 'mas-elementor' ),
+				'label'   => esc_html__( 'Show Price', 'mas-addons-for-elementor' ),
 				'type'    => Controls_Manager::SWITCHER,
 				'default' => 'no',
 			)
@@ -105,13 +105,13 @@ class Mini_Cart extends Base_Widget {
 		$this->add_control(
 			'icon',
 			array(
-				'label'   => esc_html__( 'Icon', 'mas-elementor' ),
+				'label'   => esc_html__( 'Icon', 'mas-addons-for-elementor' ),
 				'type'    => Controls_Manager::SELECT,
 				'default' => '',
 				'options' => array(
-					''        => esc_html__( 'Default', 'mas-elementor' ),
-					'bag'     => esc_html__( 'Bag', 'mas-elementor' ),
-					'bag-alt' => esc_html__( 'Bag Alt', 'mas-elementor' ),
+					''        => esc_html__( 'Default', 'mas-addons-for-elementor' ),
+					'bag'     => esc_html__( 'Bag', 'mas-addons-for-elementor' ),
+					'bag-alt' => esc_html__( 'Bag Alt', 'mas-addons-for-elementor' ),
 				),
 			)
 		);
@@ -119,7 +119,7 @@ class Mini_Cart extends Base_Widget {
 		$this->add_control(
 			'block_css',
 			array(
-				'label' => esc_html__( 'Block CSS', 'mas-elementor' ),
+				'label' => esc_html__( 'Block CSS', 'mas-addons-for-elementor' ),
 				'type'  => Controls_Manager::TEXT,
 			)
 		);
@@ -129,7 +129,7 @@ class Mini_Cart extends Base_Widget {
 		$this->start_controls_section(
 			'section_style_minicart',
 			array(
-				'label' => esc_html__( 'Mini Cart', 'mas-elementor' ),
+				'label' => esc_html__( 'Mini Cart', 'mas-addons-for-elementor' ),
 				'tab'   => Controls_Manager::TAB_STYLE,
 			)
 		);
@@ -137,7 +137,7 @@ class Mini_Cart extends Base_Widget {
 		$this->add_control(
 			'icon_heading',
 			array(
-				'label'     => esc_html__( 'Icon', 'mas-elementor' ),
+				'label'     => esc_html__( 'Icon', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::HEADING,
 			)
 		);
@@ -153,7 +153,7 @@ class Mini_Cart extends Base_Widget {
 		$this->add_control(
 			'icon_color',
 			array(
-				'label'     => __( 'Icon Color', 'mas-elementor' ),
+				'label'     => __( 'Icon Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
 					'{{WRAPPER}} svg' => 'color: {{VALUE}} !important',
@@ -165,7 +165,7 @@ class Mini_Cart extends Base_Widget {
 		$this->add_control(
 			'count_heading',
 			array(
-				'label'     => esc_html__( 'Count', 'mas-elementor' ),
+				'label'     => esc_html__( 'Count', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::HEADING,
 			)
 		);
@@ -190,7 +190,7 @@ class Mini_Cart extends Base_Widget {
 			'count_color_border_radius',
 			array(
 				'type'       => Controls_Manager::DIMENSIONS,
-				'label'      => esc_html__( 'Border Radius', 'mas-elementor' ),
+				'label'      => esc_html__( 'Border Radius', 'mas-addons-for-elementor' ),
 				'size_units' => array( 'px', '%' ),
 				'selectors'  => array(
 					'{{WRAPPER}} .wc-block-mini-cart__badge' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
@@ -201,7 +201,7 @@ class Mini_Cart extends Base_Widget {
 		$this->add_control(
 			'count_color',
 			array(
-				'label'     => __( 'Product Count Color', 'mas-elementor' ),
+				'label'     => __( 'Product Count Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'default'   => '#fff',
 				'selectors' => array(
@@ -213,7 +213,7 @@ class Mini_Cart extends Base_Widget {
 		$this->add_control(
 			'count_bg_color',
 			array(
-				'label'     => __( 'Product Count BGColor', 'mas-elementor' ),
+				'label'     => __( 'Product Count BGColor', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'default'   => '#000',
 				'selectors' => array(
@@ -226,7 +226,7 @@ class Mini_Cart extends Base_Widget {
 		$this->add_control(
 			'price_heading',
 			array(
-				'label'     => esc_html__( 'Price', 'mas-elementor' ),
+				'label'     => esc_html__( 'Price', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::HEADING,
 			)
 		);
@@ -242,7 +242,7 @@ class Mini_Cart extends Base_Widget {
 		$this->add_control(
 			'price_color',
 			array(
-				'label'     => __( 'Price Color', 'mas-elementor' ),
+				'label'     => __( 'Price Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'default'   => '#000',
 				'selectors' => array(

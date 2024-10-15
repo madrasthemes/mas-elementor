@@ -47,7 +47,7 @@ class Module extends Module_Base {
 		parent::__construct();
 		$this->add_actions();
 
-		add_action( 'elementor/frontend/before_register_styles', array( $this, 'register_frontend_styles' ) );
+		add_action( 'elementor/frontend/before_enqueue_styles', array( $this, 'register_frontend_styles' ) );
 
 	}
 
@@ -76,7 +76,7 @@ class Module extends Module_Base {
 			'enable_overflow',
 			array(
 				'type'    => Controls_Manager::SWITCHER,
-				'label'   => esc_html__( 'Enable Overflow Scroll', 'mas-elementor' ),
+				'label'   => esc_html__( 'Enable Overflow Scroll', 'mas-addons-for-elementor' ),
 				'default' => 'no',
 			)
 		);

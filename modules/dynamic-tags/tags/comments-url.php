@@ -27,7 +27,7 @@ class Comments_URL extends \Elementor\Core\DynamicTags\Data_Tag {
 	 * Get the title.
 	 */
 	public function get_title() {
-		return esc_html__( 'Comments URL', 'mas-elementor' );
+		return esc_html__( 'Comments URL', 'mas-addons-for-elementor' );
 	}
 	/**
 	 * Get the group.

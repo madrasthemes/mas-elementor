@@ -28,7 +28,7 @@ class Cart_Button_Text extends Base_Tag {
 	 * Get Title.
 	 */
 	public function get_title() {
-		return esc_html__( 'Cart Button Text', 'mas-elementor' );
+		return esc_html__( 'Cart Button Text', 'mas-addons-for-elementor' );
 	}
 
 	/**

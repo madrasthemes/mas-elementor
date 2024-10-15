@@ -13,7 +13,7 @@ class Premium_Page_Document extends Premium_Document_Base {
 	}
 
 	public static function get_title() {
-		return __( 'Page', 'mas-elementor' );
+		return __( 'Page', 'mas-addons-for-elementor' );
 	}
 
 	public function has_conditions() {

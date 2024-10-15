@@ -1,8 +1,8 @@
-=== MAS Elementor ===
+=== MAS Addons for Elementor ===
 Contributors: madrasthemes
-Tags: posts, products, nav-menu, carousel, tabs, multipurpose text
+Tags: posts, products, nav-menu, carousel, tabs
 Requires at least: 5.0
-Tested up to: 6.4
+Tested up to: 6.6
 Requires PHP: 7.4
 Stable tag: 1.1.6
 License: GPLv3

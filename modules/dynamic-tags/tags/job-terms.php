@@ -29,7 +29,7 @@ class Job_Terms extends \Elementor\Core\DynamicTags\Tag {
 	 * Get the job-term title name.
 	 */
 	public function get_title() {
-		return esc_html__( 'Job Terms', 'mas-elementor' );
+		return esc_html__( 'Job Terms', 'mas-addons-for-elementor' );
 	}
 	/**
 	 * Get the job-term group name.
@@ -75,7 +75,7 @@ class Job_Terms extends \Elementor\Core\DynamicTags\Tag {
 		$this->add_control(
 			'taxonomy',
 			array(
-				'label'   => esc_html__( 'Taxonomy', 'mas-elementor' ),
+				'label'   => esc_html__( 'Taxonomy', 'mas-addons-for-elementor' ),
 				'type'    => Controls_Manager::SELECT,
 				'options' => $options,
 				'default' => 'post_tag',
@@ -85,7 +85,7 @@ class Job_Terms extends \Elementor\Core\DynamicTags\Tag {
 		$this->add_control(
 			'separator',
 			array(
-				'label'   => esc_html__( 'Separator', 'mas-elementor' ),
+				'label'   => esc_html__( 'Separator', 'mas-addons-for-elementor' ),
 				'type'    => Controls_Manager::TEXT,
 				'default' => ', ',
 			)

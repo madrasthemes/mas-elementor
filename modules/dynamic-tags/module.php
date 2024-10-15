@@ -43,7 +43,7 @@ class Module extends TagsModule {
 		parent::__construct();
 		$this->add_actions();
 
-		add_action( 'elementor/frontend/before_register_styles', array( $this, 'register_frontend_styles' ) );
+		add_action( 'elementor/frontend/before_enqueue_styles', array( $this, 'register_frontend_styles' ) );
 		// ACF 5 and up.
 		if ( class_exists( '\acf' ) && function_exists( 'acf_get_field_groups' ) ) {
 			$this->add_component( 'acf', new ACF\Module() );
@@ -121,28 +121,28 @@ class Module extends TagsModule {
 	public function get_groups() {
 		return array(
 			self::POST_GROUP     => array(
-				'title' => esc_html__( 'Post', 'mas-elementor' ),
+				'title' => esc_html__( 'Post', 'mas-addons-for-elementor' ),
 			),
 			self::JOB_GROUP     => array(
-				'title' => esc_html__( 'Job', 'mas-elementor' ),
+				'title' => esc_html__( 'Job', 'mas-addons-for-elementor' ),
 			),
 			self::ARCHIVE_GROUP  => array(
-				'title' => esc_html__( 'Archive', 'mas-elementor' ),
+				'title' => esc_html__( 'Archive', 'mas-addons-for-elementor' ),
 			),
 			self::SITE_GROUP     => array(
-				'title' => esc_html__( 'Site', 'mas-elementor' ),
+				'title' => esc_html__( 'Site', 'mas-addons-for-elementor' ),
 			),
 			self::MEDIA_GROUP    => array(
-				'title' => esc_html__( 'Media', 'mas-elementor' ),
+				'title' => esc_html__( 'Media', 'mas-addons-for-elementor' ),
 			),
 			self::ACTION_GROUP   => array(
-				'title' => esc_html__( 'Actions', 'mas-elementor' ),
+				'title' => esc_html__( 'Actions', 'mas-addons-for-elementor' ),
 			),
 			self::AUTHOR_GROUP   => array(
-				'title' => esc_html__( 'Author', 'mas-elementor' ),
+				'title' => esc_html__( 'Author', 'mas-addons-for-elementor' ),
 			),
 			self::COMMENTS_GROUP => array(
-				'title' => esc_html__( 'Comments', 'mas-elementor' ),
+				'title' => esc_html__( 'Comments', 'mas-addons-for-elementor' ),
 			),
 		);
 	}
@@ -151,15 +151,6 @@ class Module extends TagsModule {
 	 * Add Actions.
 	 */
 	protected function add_actions() {
-	}
-
-	/**
-	 * Return the style dependencies of the module.
-	 *
-	 * @return array
-	 */
-	public function get_style_depends() {
-		return array( 'mas-dynamic-tag-stylesheet' );
 	}
 
 	/**

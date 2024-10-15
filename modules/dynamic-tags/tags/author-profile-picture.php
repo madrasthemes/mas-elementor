@@ -31,7 +31,7 @@ class Author_Profile_Picture extends Data_Tag {
 	 * Get tag title.
 	 */
 	public function get_title() {
-		return esc_html__( 'Author Profile Picture', 'mas-elementor' );
+		return esc_html__( 'Author Profile Picture', 'mas-addons-for-elementor' );
 	}
 
 	/**

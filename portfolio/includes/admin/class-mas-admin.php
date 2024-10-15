@@ -67,7 +67,7 @@ class MAS_Admin {
 
 		$screen          = get_current_screen();
 		$screen_id       = $screen ? $screen->id : '';
-		$front_screen_id = sanitize_title( __( 'MAS', 'mas-elementor' ) );
+		$front_screen_id = sanitize_title( __( 'MAS', 'mas-addons-for-elementor' ) );
 		$suffix          = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
 
 		if ( in_array( $screen_id, array( 'jetpack-portfolio' ), true ) ) {

@@ -42,7 +42,7 @@ class Module extends Module_Base {
 	 */
 	public function add_actions() {
 		add_action( 'elementor/widget/counter/skins_init', array( $this, 'init_skins' ), 10 );
-		add_action( 'elementor/frontend/before_register_scripts', array( $this, 'register_frontend_scripts' ) );
+		add_action( 'elementor/frontend/before_enqueue_scripts', array( $this, 'register_frontend_scripts' ) );
 	}
 
 	/**
@@ -64,7 +64,7 @@ class Module extends Module_Base {
 		$widget->add_control(
 			'title_css',
 			array(
-				'label'   => esc_html__( 'Title CSS', 'mas-elementor' ),
+				'label'   => esc_html__( 'Title CSS', 'mas-addons-for-elementor' ),
 				'type'    => Controls_Manager::TEXT,
 				'default' => '',
 			)

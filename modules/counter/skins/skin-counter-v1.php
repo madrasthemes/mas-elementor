@@ -48,7 +48,7 @@ class Skin_Counter_V1 extends Skin_Base {
 	 * @return string
 	 */
 	public function get_title() {
-		return esc_html__( 'Pie Chart - MAS', 'mas-elementor' );
+		return esc_html__( 'Pie Chart - MAS', 'mas-addons-for-elementor' );
 	}
 
 	/**
@@ -120,10 +120,10 @@ class Skin_Counter_V1 extends Skin_Base {
 		$this->add_control(
 			'mas_counter_max_value',
 			array(
-				'label'       => esc_html__( 'Enter Maximum Number', 'mas-elementor' ),
+				'label'       => esc_html__( 'Enter Maximum Number', 'mas-addons-for-elementor' ),
 				'type'        => Controls_Manager::NUMBER,
 				'default'     => 100,
-				'description' => esc_html__( 'Maximum number must be higher than the counter number', 'mas-elementor' ),
+				'description' => esc_html__( 'Maximum number must be higher than the counter number', 'mas-addons-for-elementor' ),
 			),
 			array(
 				'position' => array(
@@ -136,9 +136,9 @@ class Skin_Counter_V1 extends Skin_Base {
 		$this->add_control(
 			'mas_counter_value',
 			array(
-				'label'       => esc_html__( 'Enter Counter Number', 'mas-elementor' ),
+				'label'       => esc_html__( 'Enter Counter Number', 'mas-addons-for-elementor' ),
 				'type'        => Controls_Manager::NUMBER,
-				'description' => esc_html__( 'Counter number must be lower than the Maximum number', 'mas-elementor' ),
+				'description' => esc_html__( 'Counter number must be lower than the Maximum number', 'mas-addons-for-elementor' ),
 				'default'     => 75,
 			),
 			array(
@@ -153,10 +153,10 @@ class Skin_Counter_V1 extends Skin_Base {
 			'hide_value',
 			array(
 				'type'         => Controls_Manager::SWITCHER,
-				'label'        => esc_html__( 'Hide Values', 'mas-elementor' ),
+				'label'        => esc_html__( 'Hide Values', 'mas-addons-for-elementor' ),
 				'default'      => 'false',
-				'label_off'    => esc_html__( 'Enable', 'mas-elementor' ),
-				'label_on'     => esc_html__( 'Disable', 'mas-elementor' ),
+				'label_off'    => esc_html__( 'Enable', 'mas-addons-for-elementor' ),
+				'label_on'     => esc_html__( 'Disable', 'mas-addons-for-elementor' ),
 				'return_value' => 'true',
 
 			)
@@ -165,9 +165,9 @@ class Skin_Counter_V1 extends Skin_Base {
 		$this->add_control(
 			'mas_counter_duration',
 			array(
-				'label'       => esc_html__( 'Duration', 'mas-elementor' ),
+				'label'       => esc_html__( 'Duration', 'mas-addons-for-elementor' ),
 				'type'        => Controls_Manager::NUMBER,
-				'description' => esc_html__( 'Duration in seconds to complete', 'mas-elementor' ),
+				'description' => esc_html__( 'Duration in seconds to complete', 'mas-addons-for-elementor' ),
 				'default'     => 2,
 				'min'         => 1,
 				'max'         => 20,
@@ -178,7 +178,7 @@ class Skin_Counter_V1 extends Skin_Base {
 		$this->add_control(
 			'mas_counter_stroke_width',
 			array(
-				'label'   => esc_html__( 'Stroke Width', 'mas-elementor' ),
+				'label'   => esc_html__( 'Stroke Width', 'mas-addons-for-elementor' ),
 				'type'    => Controls_Manager::NUMBER,
 				'default' => '8',
 				'min'     => '1',
@@ -189,12 +189,12 @@ class Skin_Counter_V1 extends Skin_Base {
 		$this->add_control(
 			'prefix_suffix',
 			array(
-				'label'   => esc_html__( 'Text Position', 'mas-elementor' ),
+				'label'   => esc_html__( 'Text Position', 'mas-addons-for-elementor' ),
 				'type'    => Controls_Manager::SELECT,
 				'default' => 'prefix',
 				'options' => array(
-					'prefix' => esc_html__( 'Prefix', 'mas-elementor' ),
-					'suffix' => esc_html__( 'Suffix', 'mas-elementor' ),
+					'prefix' => esc_html__( 'Prefix', 'mas-addons-for-elementor' ),
+					'suffix' => esc_html__( 'Suffix', 'mas-addons-for-elementor' ),
 				),
 			)
 		);
@@ -202,10 +202,10 @@ class Skin_Counter_V1 extends Skin_Base {
 		$this->add_control(
 			'description',
 			array(
-				'label'       => esc_html__( 'Description', 'mas-elementor' ),
+				'label'       => esc_html__( 'Description', 'mas-addons-for-elementor' ),
 				'type'        => Controls_Manager::TEXTAREA,
-				'default'     => esc_html__( "One of the world's top research companies", 'mas-elementor' ),
-				'placeholder' => esc_html__( 'Enter description', 'mas-elementor' ),
+				'default'     => esc_html__( "One of the world's top research companies", 'mas-addons-for-elementor' ),
+				'placeholder' => esc_html__( 'Enter description', 'mas-addons-for-elementor' ),
 			),
 			array(
 				'position' => array(
@@ -228,7 +228,7 @@ class Skin_Counter_V1 extends Skin_Base {
 		$this->start_controls_section(
 			'section_counter_title',
 			array(
-				'label' => esc_html__( 'Text', 'mas-elementor' ),
+				'label' => esc_html__( 'Text', 'mas-addons-for-elementor' ),
 				'tab'   => Controls_Manager::TAB_STYLE,
 			)
 		);
@@ -236,7 +236,7 @@ class Skin_Counter_V1 extends Skin_Base {
 		$this->add_control(
 			'counter_title_color',
 			array(
-				'label'     => esc_html__( 'Title Color', 'mas-elementor' ),
+				'label'     => esc_html__( 'Title Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'global'    => array(
 					'default' => Global_Colors::COLOR_SECONDARY,
@@ -277,7 +277,7 @@ class Skin_Counter_V1 extends Skin_Base {
 		$this->add_control(
 			'desc_color',
 			array(
-				'label'     => esc_html__( 'Description Color', 'mas-elementor' ),
+				'label'     => esc_html__( 'Description Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'global'    => array(
 					'default' => Global_Colors::COLOR_SECONDARY,
@@ -318,7 +318,7 @@ class Skin_Counter_V1 extends Skin_Base {
 		$this->add_control(
 			'mas_counter_top_position',
 			array(
-				'label'     => esc_html__( 'Position', 'mas-elementor' ),
+				'label'     => esc_html__( 'Position', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::SLIDER,
 				'range'     => array(
 					'%' => array(
@@ -339,7 +339,7 @@ class Skin_Counter_V1 extends Skin_Base {
 		$this->add_control(
 			'mas_counter_padding',
 			array(
-				'label'      => esc_html__( 'Padding', 'mas-elementor' ),
+				'label'      => esc_html__( 'Padding', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', 'em', '%', 'rem' ),
 				'selectors'  => array(
@@ -359,7 +359,7 @@ class Skin_Counter_V1 extends Skin_Base {
 		$this->add_control(
 			'mas_counter_space_divider',
 			array(
-				'label'   => esc_html__( 'Text Spacing', 'mas-elementor' ),
+				'label'   => esc_html__( 'Text Spacing', 'mas-addons-for-elementor' ),
 				'type'    => Controls_Manager::SLIDER,
 				'range'   => array(
 					'%' => array(
@@ -378,19 +378,19 @@ class Skin_Counter_V1 extends Skin_Base {
 		$this->add_responsive_control(
 			'mas_counter_text_align',
 			array(
-				'label'     => esc_html__( 'Text Alignment', 'mas-elementor' ),
+				'label'     => esc_html__( 'Text Alignment', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::CHOOSE,
 				'options'   => array(
 					'left'   => array(
-						'title' => esc_html__( 'Left', 'mas-elementor' ),
+						'title' => esc_html__( 'Left', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-text-align-left',
 					),
 					'center' => array(
-						'title' => esc_html__( 'Center', 'mas-elementor' ),
+						'title' => esc_html__( 'Center', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-text-align-center',
 					),
 					'right'  => array(
-						'title' => esc_html__( 'Right', 'mas-elementor' ),
+						'title' => esc_html__( 'Right', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-text-align-right',
 					),
 				),
@@ -406,7 +406,7 @@ class Skin_Counter_V1 extends Skin_Base {
 		$this->start_controls_section(
 			'section_circle',
 			array(
-				'label' => esc_html__( 'Circle Bar', 'mas-elementor' ),
+				'label' => esc_html__( 'Circle Bar', 'mas-addons-for-elementor' ),
 				'tab'   => Controls_Manager::TAB_STYLE,
 			)
 		);
@@ -414,7 +414,7 @@ class Skin_Counter_V1 extends Skin_Base {
 		$this->add_control(
 			'mas_circle_size',
 			array(
-				'label'   => esc_html__( 'Circle Size', 'mas-elementor' ),
+				'label'   => esc_html__( 'Circle Size', 'mas-addons-for-elementor' ),
 				'type'    => Controls_Manager::SLIDER,
 				'range'   => array(
 					'px' => array(
@@ -432,7 +432,7 @@ class Skin_Counter_V1 extends Skin_Base {
 		$this->add_control(
 			'circle_bar_color',
 			array(
-				'label'     => esc_html__( 'Circle Bar Color', 'mas-elementor' ),
+				'label'     => esc_html__( 'Circle Bar Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'global'    => array(
 					'default' => Global_Colors::COLOR_SECONDARY,
@@ -447,7 +447,7 @@ class Skin_Counter_V1 extends Skin_Base {
 		$this->add_control(
 			'circle_back_color',
 			array(
-				'label'     => esc_html__( 'Circle Transparent Color', 'mas-elementor' ),
+				'label'     => esc_html__( 'Circle Transparent Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'global'    => array(
 					'default' => Global_Colors::COLOR_SECONDARY,
@@ -462,7 +462,7 @@ class Skin_Counter_V1 extends Skin_Base {
 		$this->add_control(
 			'mas_counter_border_radius',
 			array(
-				'label'      => esc_html__( 'Border Radius', 'mas-elementor' ),
+				'label'      => esc_html__( 'Border Radius', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', 'em', '%', 'rem' ),
 				'selectors'  => array(
@@ -482,7 +482,7 @@ class Skin_Counter_V1 extends Skin_Base {
 		$this->add_control(
 			'mas_circle_outer_size',
 			array(
-				'label'     => esc_html__( 'Outer Circle Size', 'mas-elementor' ),
+				'label'     => esc_html__( 'Outer Circle Size', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::SLIDER,
 				'range'     => array(
 					'rem' => array(
@@ -506,7 +506,7 @@ class Skin_Counter_V1 extends Skin_Base {
 			Group_Control_Box_Shadow::get_type(),
 			array(
 				'name'           => 'mas_counter_box_shadow',
-				'label'          => esc_html__( 'Box Shadow', 'mas-elementor' ),
+				'label'          => esc_html__( 'Box Shadow', 'mas-addons-for-elementor' ),
 				'selector'       => '{{WRAPPER}} .mas-stats-progress',
 				'fields_options' => array(
 					'box_shadow_type'     => array( 'default' => 'yes' ),
@@ -583,11 +583,11 @@ class Skin_Counter_V1 extends Skin_Base {
 			'data-circles-duration'             => (string) ( $skin_settings['mas_counter_duration'] * 1000 ),
 			'data-circles-scroll-animate'       => 'true',
 			'data-circles-color'                => (string) $skin_settings['counter_title_color'],
-			'data-circles-font-size'            => (string) $skin_settings['typography_counter_title_font_size']['size'],
+			'data-circles-font-size'            => ! empty( $skin_settings['typography_counter_title_font_size']['size'] ) ? (string) $skin_settings['typography_counter_title_font_size']['size'] : '24',
 			'data-circles-secondary-text'       => $skin_settings['description'],
 			'data-circles-secondary-color'      => (string) $skin_settings['desc_color'],
-			'data-circles-secondary-font-size'  => (string) $skin_settings['typography_desc_font_size']['size'],
-			'data-circles-divider-space'        => (string) $skin_settings['mas_counter_space_divider']['size'],
+			'data-circles-secondary-font-size'  => ! empty( $skin_settings['typography_desc_font_size']['size'] ) ? (string) $skin_settings['typography_desc_font_size']['size'] : '13',
+			'data-circles-divider-space'        => ! empty( $skin_settings['mas_counter_space_divider']['size'] ) ? (string) $skin_settings['mas_counter_space_divider']['size'] : '5',
 		);
 
 		$parent->add_render_attribute( 'mas-counter-js-attributes', $counter_attributes );

@@ -15,8 +15,9 @@ use Elementor\plugin;
  * Version: 1.1.6
  * Elementor tested up to: 3.24.0
  * Author URI: https://madrasthemes.com/
- *
- * Text Domain: mas-elementor
+ * License: GPLv3
+ * License URI: https://www.gnu.org/licenses/gpl-3.0.html
+ * Text Domain: mas-addons-for-elementor
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -43,7 +44,7 @@ define( 'MAS_ELEMENTOR_TEMPLATES_PATH', MAS_ELEMENTOR_PATH . 'templates/' );
  * @return void
  */
 function mas_elementor_load_plugin() {
-	load_plugin_textdomain( 'mas-elementor' );
+	load_plugin_textdomain( 'mas-addons-for-elementor' );
 
 	if ( ! did_action( 'elementor/loaded' ) ) {
 		add_action( 'admin_notices', 'mas_elementor_fail_load' );
@@ -107,9 +108,9 @@ function mas_elementor_fail_load() {
 
 		$activation_url = wp_nonce_url( 'plugins.php?action=activate&amp;plugin=' . $plugin . '&amp;plugin_status=all&amp;paged=1&amp;s', 'activate-plugin_' . $plugin );
 
-		$message  = '<h3>' . esc_html__( 'Activate the Elementor Plugin', 'mas-elementor' ) . '</h3>';
-		$message .= '<p>' . esc_html__( 'Before you can use all the features of MAS Addons for Elementor, you need to activate the Elementor plugin first.', 'mas-elementor' ) . '</p>';
-		$message .= '<p>' . sprintf( '<a href="%s" class="button-primary">%s</a>', $activation_url, esc_html__( 'Activate Now', 'mas-elementor' ) ) . '</p>';
+		$message  = '<h3>' . esc_html__( 'Activate the Elementor Plugin', 'mas-addons-for-elementor' ) . '</h3>';
+		$message .= '<p>' . esc_html__( 'Before you can use all the features of MAS Addons for Elementor, you need to activate the Elementor plugin first.', 'mas-addons-for-elementor' ) . '</p>';
+		$message .= '<p>' . sprintf( '<a href="%s" class="button-primary">%s</a>', $activation_url, esc_html__( 'Activate Now', 'mas-addons-for-elementor' ) ) . '</p>';
 	} else {
 		if ( ! current_user_can( 'install_plugins' ) ) {
 			return;
@@ -117,9 +118,9 @@ function mas_elementor_fail_load() {
 
 		$install_url = wp_nonce_url( self_admin_url( 'update.php?action=install-plugin&plugin=elementor' ), 'install-plugin_elementor' );
 
-		$message  = '<h3>' . esc_html__( 'Install and Activate the Elementor Plugin', 'mas-elementor' ) . '</h3>';
-		$message .= '<p>' . esc_html__( 'Before you can use all the features of MAS Addons for Elementor, you need to install and activate the Elementor plugin first.', 'mas-elementor' ) . '</p>';
-		$message .= '<p>' . sprintf( '<a href="%s" class="button-primary">%s</a>', $install_url, esc_html__( 'Install Elementor', 'mas-elementor' ) ) . '</p>';
+		$message  = '<h3>' . esc_html__( 'Install and Activate the Elementor Plugin', 'mas-addons-for-elementor' ) . '</h3>';
+		$message .= '<p>' . esc_html__( 'Before you can use all the features of MAS Addons for Elementor, you need to install and activate the Elementor plugin first.', 'mas-addons-for-elementor' ) . '</p>';
+		$message .= '<p>' . sprintf( '<a href="%s" class="button-primary">%s</a>', $install_url, esc_html__( 'Install Elementor', 'mas-addons-for-elementor' ) ) . '</p>';
 	}
 
 	mas_elementor_print_error( $message );
@@ -140,8 +141,8 @@ function mas_elementor_fail_load_out_of_date() {
 	$file_path = 'elementor/elementor.php';
 
 	$upgrade_link = wp_nonce_url( self_admin_url( 'update.php?action=upgrade-plugin&plugin=' ) . $file_path, 'upgrade-plugin_' . $file_path );
-	$message      = '<p>' . esc_html__( 'MAS Addons for Elementor is not working because you are using an old version of Elementor.', 'mas-elementor' ) . '</p>';
-	$message     .= '<p>' . sprintf( '<a href="%s" class="button-primary">%s</a>', $upgrade_link, esc_html__( 'Update Elementor Now', 'mas-elementor' ) ) . '</p>';
+	$message      = '<p>' . esc_html__( 'MAS Addons for Elementor is not working because you are using an old version of Elementor.', 'mas-addons-for-elementor' ) . '</p>';
+	$message     .= '<p>' . sprintf( '<a href="%s" class="button-primary">%s</a>', $upgrade_link, esc_html__( 'Update Elementor Now', 'mas-addons-for-elementor' ) ) . '</p>';
 
 	mas_elementor_print_error( $message );
 }
@@ -161,8 +162,8 @@ function mas_elementor_admin_notice_upgrade_recommendation() {
 	$file_path = 'elementor/elementor.php';
 
 	$upgrade_link = wp_nonce_url( self_admin_url( 'update.php?action=upgrade-plugin&plugin=' ) . $file_path, 'upgrade-plugin_' . $file_path );
-	$message      = '<p>' . esc_html__( 'A new version of Elementor is available. For better performance and compatibility of MAS Addons for Elementor, we recommend updating to the latest version.', 'mas-elementor' ) . '</p>';
-	$message     .= '<p>' . sprintf( '<a href="%s" class="button-primary">%s</a>', $upgrade_link, esc_html__( 'Update Elementor Now', 'mas-elementor' ) ) . '</p>';
+	$message      = '<p>' . esc_html__( 'A new version of Elementor is available. For better performance and compatibility of MAS Addons for Elementor, we recommend updating to the latest version.', 'mas-addons-for-elementor' ) . '</p>';
+	$message     .= '<p>' . sprintf( '<a href="%s" class="button-primary">%s</a>', $upgrade_link, esc_html__( 'Update Elementor Now', 'mas-addons-for-elementor' ) ) . '</p>';
 
 	mas_elementor_print_error( $message );
 }
@@ -195,7 +196,7 @@ if ( ! function_exists( 'mas_elementor_is_elementor_installed' ) ) {
 function mas_elementor_get_template( $template_name, $args = array(), $template_path = '', $default_path = '' ) {
 	global $mas_elementor_version;
 	$cache_key = sanitize_key( implode( '-', array( 'template', $template_name, $template_path, $default_path, $mas_elementor_version ) ) );
-	$template  = (string) wp_cache_get( $cache_key, 'mas-elementor' );
+	$template  = (string) wp_cache_get( $cache_key, 'mas-addons-for-elementor' );
 
 	if ( ! $template ) {
 		$template = mas_elementor_locate_template( $template_name, $template_path, $default_path );
@@ -215,7 +216,7 @@ function mas_elementor_get_template( $template_name, $args = array(), $template_
 	if ( $filter_template !== $template ) {
 		if ( ! file_exists( $filter_template ) ) {
 			/* translators: %s template */
-			_doing_it_wrong( __FUNCTION__, sprintf( esc_html__( '%s does not exist.', 'mas-elementor' ), '<code>' . esc_html( $filter_template ) . '</code>' ), '2.1' );
+			_doing_it_wrong( __FUNCTION__, sprintf( esc_html__( '%s does not exist.', 'mas-addons-for-elementor' ), '<code>' . esc_html( $filter_template ) . '</code>' ), '2.1' );
 			return;
 		}
 		$template = $filter_template;
@@ -232,7 +233,7 @@ function mas_elementor_get_template( $template_name, $args = array(), $template_
 		if ( isset( $args['action_args'] ) ) {
 			_doing_it_wrong(
 				__FUNCTION__,
-				esc_html__( 'action_args should not be overwritten when calling mas_elementor_get_template.', 'mas-elementor' ),
+				esc_html__( 'action_args should not be overwritten when calling mas_elementor_get_template.', 'mas-addons-for-elementor' ),
 				'3.6.0'
 			);
 			unset( $args['action_args'] );
@@ -423,13 +424,13 @@ if ( ! function_exists( 'mas_template_options' ) ) {
 		$mas_templates = get_posts( $args );
 
 		if ( ! empty( $mas_templates ) ) {
-			$options = array( '' => esc_html__( '— None —', 'mas-elementor' ) );
+			$options = array( '' => esc_html__( '— None —', 'mas-addons-for-elementor' ) );
 			foreach ( $mas_templates as $mas_template ) {
 				$template                 = get_page_by_path( $mas_template->post_name, OBJECT, $args['post_type'] );
 				$options[ $template->ID ] = $mas_template->post_title;
 			}
 		} else {
-			$options = array( '' => esc_html__( 'No Templates Found', 'mas-elementor' ) );
+			$options = array( '' => esc_html__( 'No Templates Found', 'mas-addons-for-elementor' ) );
 		}
 
 		return $options;
@@ -459,13 +460,13 @@ if ( ! function_exists( 'mas_template_slug_options' ) ) {
 		$mas_templates = get_posts( $args );
 
 		if ( ! empty( $mas_templates ) ) {
-			$options = array( '' => esc_html__( '— None —', 'mas-elementor' ) );
+			$options = array( '' => esc_html__( '— None —', 'mas-addons-for-elementor' ) );
 			foreach ( $mas_templates as $mas_template ) {
 				$template                 = get_page_by_path( $mas_template->post_name, OBJECT, $args['post_type'] );
 				$options[ $template->post_name ] = $mas_template->post_title;
 			}
 		} else {
-			$options = array( '' => esc_html__( 'No Templates Found', 'mas-elementor' ) );
+			$options = array( '' => esc_html__( 'No Templates Found', 'mas-addons-for-elementor' ) );
 		}
 
 		return $options;
@@ -495,7 +496,7 @@ if ( ! function_exists( 'mas_template_override_options' ) ) {
 		$mas_templates = get_posts( $args );
 
 		if ( ! empty( $mas_templates ) ) {
-			$options = array( '' => esc_html__( '— None —', 'mas-elementor' ) );
+			$options = array( '' => esc_html__( '— None —', 'mas-addons-for-elementor' ) );
 			foreach ( $mas_templates as $mas_template ) {
 				$options[ $mas_template->ID ] = $mas_template->post_name;
 			}
@@ -611,7 +612,7 @@ if ( ! function_exists( 'mas_elementor_breadcrumb' ) ) {
 					'wrap_after'  => '</ol></nav>',
 					'before'      => '<li class="mas_breadcrumb_li">',
 					'after'       => '</li>',
-					'home'        => _x( 'Home', 'breadcrumb', 'mas-elementor' ),
+					'home'        => _x( 'Home', 'breadcrumb', 'mas-addons-for-elementor' ),
 				)
 			)
 		);

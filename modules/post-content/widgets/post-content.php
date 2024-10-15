@@ -39,7 +39,7 @@ class Post_Content extends Base_Widget {
 	 * @return string
 	 */
 	public function get_title() {
-		return esc_html__( 'Post Content', 'mas-elementor' );
+		return esc_html__( 'Post Content', 'mas-addons-for-elementor' );
 	}
 
 	/**
@@ -57,7 +57,7 @@ class Post_Content extends Base_Widget {
 	 * @return array
 	 */
 	public function get_categories() {
-		return array( 'mas-elementor' );
+		return array( 'mas-addons-for-elementor' );
 	}
 
 	/**
@@ -78,7 +78,7 @@ class Post_Content extends Base_Widget {
 		$this->start_controls_section(
 			'section_style',
 			array(
-				'label' => esc_html__( 'Style', 'mas-elementor' ),
+				'label' => esc_html__( 'Style', 'mas-addons-for-elementor' ),
 				'tab'   => Controls_Manager::TAB_STYLE,
 			)
 		);
@@ -86,23 +86,23 @@ class Post_Content extends Base_Widget {
 		$this->add_responsive_control(
 			'align',
 			array(
-				'label'     => esc_html__( 'Alignment', 'mas-elementor' ),
+				'label'     => esc_html__( 'Alignment', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::CHOOSE,
 				'options'   => array(
 					'left'    => array(
-						'title' => esc_html__( 'Left', 'mas-elementor' ),
+						'title' => esc_html__( 'Left', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-text-align-left',
 					),
 					'center'  => array(
-						'title' => esc_html__( 'Center', 'mas-elementor' ),
+						'title' => esc_html__( 'Center', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-text-align-center',
 					),
 					'right'   => array(
-						'title' => esc_html__( 'Right', 'mas-elementor' ),
+						'title' => esc_html__( 'Right', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-text-align-right',
 					),
 					'justify' => array(
-						'title' => esc_html__( 'Justified', 'mas-elementor' ),
+						'title' => esc_html__( 'Justified', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-text-align-justify',
 					),
 				),
@@ -116,16 +116,16 @@ class Post_Content extends Base_Widget {
 			'enable_trim_content',
 			array(
 				'type'        => Controls_Manager::SWITCHER,
-				'label'       => esc_html__( 'Enable Trim content', 'mas-elementor' ),
+				'label'       => esc_html__( 'Enable Trim content', 'mas-addons-for-elementor' ),
 				'default'     => 'yes',
-				'description' => esc_html__( 'Only for mas-post looping', 'mas-elementor' ),
+				'description' => esc_html__( 'Only for mas-post looping', 'mas-addons-for-elementor' ),
 			)
 		);
 
 		$this->add_control(
 			'trim_words',
 			array(
-				'label'     => esc_html__( 'Content Length', 'mas-elementor' ),
+				'label'     => esc_html__( 'Content Length', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::TEXT,
 				'default'   => '10',
 				'condition' => array(
@@ -137,9 +137,9 @@ class Post_Content extends Base_Widget {
 		$this->add_control(
 			'words_continuation',
 			array(
-				'label'     => esc_html__( 'Trimmed words', 'mas-elementor' ),
+				'label'     => esc_html__( 'Trimmed words', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::TEXT,
-				'description' => esc_html__( 'Text to display in trimmed words', 'mas-elementor' ),
+				'description' => esc_html__( 'Text to display in trimmed words', 'mas-addons-for-elementor' ),
 				'default'   => '...',
 				'condition' => array(
 					'enable_trim_content' => 'yes',
@@ -259,11 +259,11 @@ class Post_Content extends Base_Widget {
 
 				wp_link_pages(
 					array(
-						'before'      => '<div class="page-links elementor-page-links"><span class="page-links-title elementor-page-links-title">' . esc_html__( 'Pages:', 'mas-elementor' ) . '</span>',
+						'before'      => '<div class="page-links elementor-page-links"><span class="page-links-title elementor-page-links-title">' . esc_html__( 'Pages:', 'mas-addons-for-elementor' ) . '</span>',
 						'after'       => '</div>',
 						'link_before' => '<span>',
 						'link_after'  => '</span>',
-						'pagelink'    => '<span class="screen-reader-text">' . esc_html__( 'Page', 'mas-elementor' ) . ' </span>%',
+						'pagelink'    => '<span class="screen-reader-text">' . esc_html__( 'Page', 'mas-addons-for-elementor' ) . ' </span>%',
 						'separator'   => '<span class="screen-reader-text">, </span>',
 					)
 				);

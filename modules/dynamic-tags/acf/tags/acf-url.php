@@ -29,7 +29,7 @@ class ACF_URL extends \Elementor\Core\DynamicTags\Data_Tag {
 	 * Get the title of dynamic acf-url.
 	 */
 	public function get_title() {
-		return esc_html__( 'ACF', 'mas-elementor' ) . ' ' . esc_html__( 'URL Field', 'mas-elementor' );
+		return esc_html__( 'ACF', 'mas-addons-for-elementor' ) . ' ' . esc_html__( 'URL Field', 'mas-addons-for-elementor' );
 	}
 
 	/**
@@ -126,7 +126,7 @@ class ACF_URL extends \Elementor\Core\DynamicTags\Data_Tag {
 		$this->add_control(
 			'fallback',
 			array(
-				'label' => esc_html__( 'Fallback', 'mas-elementor' ),
+				'label' => esc_html__( 'Fallback', 'mas-addons-for-elementor' ),
 			)
 		);
 	}

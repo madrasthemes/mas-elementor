@@ -29,7 +29,7 @@ class Post_Gallery extends \Elementor\Core\DynamicTags\Data_Tag {
 	 * Get post-gallery tag name.
 	 */
 	public function get_title() {
-		return esc_html__( 'Post Image Attachments', 'mas-elementor' );
+		return esc_html__( 'Post Image Attachments', 'mas-addons-for-elementor' );
 	}
 
 	/**

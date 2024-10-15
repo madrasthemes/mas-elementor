@@ -34,7 +34,7 @@ class Product_Short_Description extends Base_Widget {
 	 * @return string
 	 */
 	public function get_title() {
-		return esc_html__( 'Short Description', 'mas-elementor' );
+		return esc_html__( 'Short Description', 'mas-addons-for-elementor' );
 	}
 
 	/**
@@ -63,7 +63,7 @@ class Product_Short_Description extends Base_Widget {
 		$this->start_controls_section(
 			'section_product_description_style',
 			array(
-				'label' => esc_html__( 'Style', 'mas-elementor' ),
+				'label' => esc_html__( 'Style', 'mas-addons-for-elementor' ),
 				'tab'   => Controls_Manager::TAB_STYLE,
 			)
 		);
@@ -72,7 +72,7 @@ class Product_Short_Description extends Base_Widget {
 			'wc_style_warning',
 			array(
 				'type'            => Controls_Manager::RAW_HTML,
-				'raw'             => esc_html__( 'The style of this widget is often affected by your theme and plugins. If you experience any such issue, try to switch to a basic theme and deactivate related plugins.', 'mas-elementor' ),
+				'raw'             => esc_html__( 'The style of this widget is often affected by your theme and plugins. If you experience any such issue, try to switch to a basic theme and deactivate related plugins.', 'mas-addons-for-elementor' ),
 				'content_classes' => 'elementor-panel-alert elementor-panel-alert-info',
 			)
 		);
@@ -80,23 +80,23 @@ class Product_Short_Description extends Base_Widget {
 		$this->add_responsive_control(
 			'text_align',
 			array(
-				'label'     => esc_html__( 'Alignment', 'mas-elementor' ),
+				'label'     => esc_html__( 'Alignment', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::CHOOSE,
 				'options'   => array(
 					'left'    => array(
-						'title' => esc_html__( 'Left', 'mas-elementor' ),
+						'title' => esc_html__( 'Left', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-text-align-left',
 					),
 					'center'  => array(
-						'title' => esc_html__( 'Center', 'mas-elementor' ),
+						'title' => esc_html__( 'Center', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-text-align-center',
 					),
 					'right'   => array(
-						'title' => esc_html__( 'Right', 'mas-elementor' ),
+						'title' => esc_html__( 'Right', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-text-align-right',
 					),
 					'justify' => array(
-						'title' => esc_html__( 'Justified', 'mas-elementor' ),
+						'title' => esc_html__( 'Justified', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-text-align-justify',
 					),
 				),
@@ -109,7 +109,7 @@ class Product_Short_Description extends Base_Widget {
 		$this->add_control(
 			'text_color',
 			array(
-				'label'     => esc_html__( 'Text Color', 'mas-elementor' ),
+				'label'     => esc_html__( 'Text Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
 					'.woocommerce {{WRAPPER}} .woocommerce-product-details__short-description' => 'color: {{VALUE}}',

@@ -29,7 +29,7 @@ class Product_Gallery extends Base_Data_Tag {
 	 * Get Title.
 	 */
 	public function get_title() {
-		return esc_html__( 'Product Gallery', 'mas-elementor' );
+		return esc_html__( 'Product Gallery', 'mas-addons-for-elementor' );
 	}
 
 	/**
@@ -85,7 +85,7 @@ class Product_Gallery extends Base_Data_Tag {
 		$this->add_control(
 			'mas-fallback',
 			array(
-				'label' => esc_html__( 'Fallback', 'mas-elementor' ),
+				'label' => esc_html__( 'Fallback', 'mas-addons-for-elementor' ),
 				'type'  => Controls_Manager::MEDIA,
 			)
 		);

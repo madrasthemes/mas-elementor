@@ -46,7 +46,7 @@ class Controller extends Controller_Base {
 		if ( ! $document ) {
 			return new \WP_Error(
 				'document_not_exist',
-				esc_html__( 'Document doesn\'t exist', 'mas-elementor' ),
+				esc_html__( 'Document doesn\'t exist', 'mas-addons-for-elementor' ),
 				array( 'status' => 404 )
 			);
 		}
@@ -57,7 +57,7 @@ class Controller extends Controller_Base {
 		if ( empty( $posts_widget ) ) {
 			return new \WP_Error(
 				'Element_not_exist',
-				esc_html__( 'Posts widget doesn\'t exist', 'mas-elementor' ),
+				esc_html__( 'Posts widget doesn\'t exist', 'mas-addons-for-elementor' ),
 				array( 'status' => 404 )
 			);
 		}

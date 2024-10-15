@@ -85,7 +85,7 @@ class Module extends DynamicTags\Module {
 				// Use group ID for unique keys.
 				if ( $has_option_page_location ) {
 					$key             = 'options:' . $field['name'];
-					$options[ $key ] = esc_html__( 'Options', 'mas-elementor' ) . ':' . $field['label'];
+					$options[ $key ] = esc_html__( 'Options', 'mas-addons-for-elementor' ) . ':' . $field['label'];
 					if ( $is_only_options_page ) {
 						continue;
 					}
@@ -120,7 +120,7 @@ class Module extends DynamicTags\Module {
 		$tag->add_control(
 			'key',
 			array(
-				'label'  => esc_html__( 'Key', 'mas-elementor' ),
+				'label'  => esc_html__( 'Key', 'mas-addons-for-elementor' ),
 				'type'   => Controls_Manager::SELECT,
 				'groups' => self::get_control_options( $tag->get_supported_fields() ),
 			)
@@ -233,7 +233,7 @@ class Module extends DynamicTags\Module {
 	public function get_groups() {
 		return array(
 			self::ACF_GROUP => array(
-				'title' => esc_html__( 'ACF', 'mas-elementor' ),
+				'title' => esc_html__( 'ACF', 'mas-addons-for-elementor' ),
 			),
 		);
 	}

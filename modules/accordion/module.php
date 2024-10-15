@@ -65,7 +65,7 @@ class Module extends Module_Base {
 		$element->add_responsive_control(
 			'mas_accordion_icon_size',
 			array(
-				'label'     => esc_html__( 'Icon Size', 'mas-elementor' ),
+				'label'     => esc_html__( 'Icon Size', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::SLIDER,
 				'range'     => array(
 					'px' => array(
@@ -82,7 +82,7 @@ class Module extends Module_Base {
 		$element->add_control(
 			'mas_accordion_icon_background_color',
 			array(
-				'label'     => esc_html__( 'Background Color', 'mas-elementor' ),
+				'label'     => esc_html__( 'Background Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
 					'{{WRAPPER}} .elementor-accordion .elementor-accordion-icon' => 'background-color: {{VALUE}};',
@@ -102,7 +102,7 @@ class Module extends Module_Base {
 			'mas_accordion_icon_border_radius',
 			array(
 				'type'       => Controls_Manager::DIMENSIONS,
-				'label'      => esc_html__( 'Border Radius', 'mas-elementor' ),
+				'label'      => esc_html__( 'Border Radius', 'mas-addons-for-elementor' ),
 				'size_units' => array( 'px', '%' ),
 				'selectors'  => array(
 					'{{WRAPPER}} .elementor-accordion .elementor-accordion-icon' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
@@ -113,7 +113,7 @@ class Module extends Module_Base {
 		$element->add_responsive_control(
 			'mas_accordion_icon_padding',
 			array(
-				'label'      => esc_html__( 'Padding', 'mas-elementor' ),
+				'label'      => esc_html__( 'Padding', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', 'em', '%', 'rem' ),
 				'selectors'  => array(
@@ -125,7 +125,7 @@ class Module extends Module_Base {
 		$element->add_responsive_control(
 			'mas_accordion_icon_margin',
 			array(
-				'label'      => esc_html__( 'Margin', 'mas-elementor' ),
+				'label'      => esc_html__( 'Margin', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', 'em', '%', 'rem' ),
 				'selectors'  => array(
@@ -137,7 +137,7 @@ class Module extends Module_Base {
 		$element->add_control(
 			'mas_accordion_icon_active_heading',
 			array(
-				'label'     => esc_html__( 'Tab Active', 'mas-elementor' ),
+				'label'     => esc_html__( 'Tab Active', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::HEADING,
 				'separator' => 'before',
 			)
@@ -146,7 +146,7 @@ class Module extends Module_Base {
 		$element->add_control(
 			'mas_accordion_icon_active_background_color',
 			array(
-				'label'     => esc_html__( 'Background Active Color', 'mas-elementor' ),
+				'label'     => esc_html__( 'Background Active Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
 					'{{WRAPPER}} .elementor-accordion .elementor-tab-title.elementor-active .elementor-accordion-icon' => 'background-color: {{VALUE}};',
@@ -173,7 +173,7 @@ class Module extends Module_Base {
 		$element->add_responsive_control(
 			'mas_accordion_space_between',
 			array(
-				'label'     => esc_html__( 'Space Between', 'mas-elementor' ),
+				'label'     => esc_html__( 'Space Between', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::SLIDER,
 				'range'     => array(
 					'px' => array(
@@ -191,7 +191,7 @@ class Module extends Module_Base {
 			'mas_accordion_border_bottom',
 			array(
 				'type'      => Controls_Manager::SLIDER,
-				'label'     => esc_html__( 'Border Bottom', 'mas-elementor' ),
+				'label'     => esc_html__( 'Border Bottom', 'mas-addons-for-elementor' ),
 				'range'     => array(
 					'px' => array(
 						'min' => 0,
@@ -217,7 +217,7 @@ class Module extends Module_Base {
 		$element->add_control(
 			'content_background',
 			array(
-				'label'     => esc_html__( 'Background Active Color', 'mas-elementor' ),
+				'label'     => esc_html__( 'Background Active Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
 					'{{WRAPPER}} .elementor-accordion .elementor-tab-title.elementor-active' => 'background-color: {{VALUE}};',
@@ -228,7 +228,7 @@ class Module extends Module_Base {
 		$element->add_control(
 			'tab_hover_title_color',
 			array(
-				'label'     => esc_html__( 'Title Hover Color', 'mas-elementor' ),
+				'label'     => esc_html__( 'Title Hover Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
 					'{{WRAPPER}} .elementor-tab-title:hover .elementor-accordion-title' => 'color: {{VALUE}};',
@@ -240,7 +240,7 @@ class Module extends Module_Base {
 			'mas_accordion_title_border_radius',
 			array(
 				'type'       => Controls_Manager::DIMENSIONS,
-				'label'      => esc_html__( 'Border Radius', 'mas-elementor' ),
+				'label'      => esc_html__( 'Border Radius', 'mas-addons-for-elementor' ),
 				'size_units' => array( 'px', '%' ),
 				'selectors'  => array(
 					'{{WRAPPER}} .elementor-accordion .elementor-accordion-item .elementor-tab-title' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
@@ -251,7 +251,7 @@ class Module extends Module_Base {
 		$element->add_control(
 			'tab_title_active',
 			array(
-				'label'     => esc_html__( 'Tab Active', 'mas-elementor' ),
+				'label'     => esc_html__( 'Tab Active', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::HEADING,
 				'separator' => 'before',
 			)
@@ -276,7 +276,7 @@ class Module extends Module_Base {
 			'mas_accordion_content_border_radius',
 			array(
 				'type'       => Controls_Manager::DIMENSIONS,
-				'label'      => esc_html__( 'Border Radius', 'mas-elementor' ),
+				'label'      => esc_html__( 'Border Radius', 'mas-addons-for-elementor' ),
 				'size_units' => array( 'px', '%' ),
 				'selectors'  => array(
 					'{{WRAPPER}} .elementor-accordion .elementor-tab-content' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
@@ -287,7 +287,7 @@ class Module extends Module_Base {
 		$element->add_responsive_control(
 			'mas_accordion_content_margin',
 			array(
-				'label'      => esc_html__( 'Margin', 'mas-elementor' ),
+				'label'      => esc_html__( 'Margin', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', 'em', '%', 'rem' ),
 				'selectors'  => array(

@@ -36,7 +36,7 @@ class MAS_Static_Shortcode extends Skin_Base {
 	 * @return string
 	 */
 	public function get_title() {
-		return esc_html__( 'Static', 'mas-elementor' );
+		return esc_html__( 'Static', 'mas-addons-for-elementor' );
 	}
 
 	/**

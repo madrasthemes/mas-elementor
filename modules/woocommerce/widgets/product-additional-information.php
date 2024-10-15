@@ -34,7 +34,7 @@ class Product_Additional_Information extends Base_Widget {
 	 * @return string
 	 */
 	public function get_title() {
-		return esc_html__( 'Additional Information', 'mas-elementor' );
+		return esc_html__( 'Additional Information', 'mas-addons-for-elementor' );
 	}
 
 	/**
@@ -63,7 +63,7 @@ class Product_Additional_Information extends Base_Widget {
 		$this->start_controls_section(
 			'section_additional_info_style',
 			array(
-				'label' => esc_html__( 'General', 'mas-elementor' ),
+				'label' => esc_html__( 'General', 'mas-addons-for-elementor' ),
 				'tab'   => Controls_Manager::TAB_STYLE,
 			)
 		);
@@ -71,10 +71,10 @@ class Product_Additional_Information extends Base_Widget {
 		$this->add_control(
 			'show_heading',
 			array(
-				'label'        => esc_html__( 'Heading', 'mas-elementor' ),
+				'label'        => esc_html__( 'Heading', 'mas-addons-for-elementor' ),
 				'type'         => Controls_Manager::SWITCHER,
-				'label_on'     => esc_html__( 'Show', 'mas-elementor' ),
-				'label_off'    => esc_html__( 'Hide', 'mas-elementor' ),
+				'label_on'     => esc_html__( 'Show', 'mas-addons-for-elementor' ),
+				'label_off'    => esc_html__( 'Hide', 'mas-addons-for-elementor' ),
 				'render_type'  => 'ui',
 				'return_value' => 'yes',
 				'default'      => 'yes',
@@ -85,7 +85,7 @@ class Product_Additional_Information extends Base_Widget {
 		$this->add_control(
 			'heading_color',
 			array(
-				'label'     => esc_html__( 'Color', 'mas-elementor' ),
+				'label'     => esc_html__( 'Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
 					'.woocommerce {{WRAPPER}} h2' => 'color: {{VALUE}}',
@@ -110,7 +110,7 @@ class Product_Additional_Information extends Base_Widget {
 		$this->add_control(
 			'content_color',
 			array(
-				'label'     => esc_html__( 'Color', 'mas-elementor' ),
+				'label'     => esc_html__( 'Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
 					'.woocommerce {{WRAPPER}} .shop_attributes' => 'color: {{VALUE}}',

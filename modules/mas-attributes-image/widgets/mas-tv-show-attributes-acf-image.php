@@ -31,7 +31,7 @@ class Mas_TV_Show_Attributes_ACF_Image extends Mas_Attributes_ACF_Image_Base {
 	 * @return string
 	 */
 	public function get_title() {
-		return esc_html__( 'MAS TV Show Attributes Image', 'mas-elementor' );
+		return esc_html__( 'MAS TV Show Attributes Image', 'mas-addons-for-elementor' );
 	}
 
 	/**

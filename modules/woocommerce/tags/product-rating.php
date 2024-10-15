@@ -29,7 +29,7 @@ class Product_Rating extends Base_Tag {
 	 * Get Title.
 	 */
 	public function get_title() {
-		return esc_html__( 'Product Rating', 'mas-elementor' );
+		return esc_html__( 'Product Rating', 'mas-addons-for-elementor' );
 	}
 
 	/**
@@ -49,12 +49,12 @@ class Product_Rating extends Base_Tag {
 		$this->add_control(
 			'field',
 			array(
-				'label'   => esc_html__( 'Format', 'mas-elementor' ),
+				'label'   => esc_html__( 'Format', 'mas-addons-for-elementor' ),
 				'type'    => Controls_Manager::SELECT,
 				'options' => array(
-					'average_rating' => esc_html__( 'Average Rating', 'mas-elementor' ),
-					'rating_count'   => esc_html__( 'Rating Count', 'mas-elementor' ),
-					'review_count'   => esc_html__( 'Review Count', 'mas-elementor' ),
+					'average_rating' => esc_html__( 'Average Rating', 'mas-addons-for-elementor' ),
+					'rating_count'   => esc_html__( 'Rating Count', 'mas-addons-for-elementor' ),
+					'review_count'   => esc_html__( 'Review Count', 'mas-addons-for-elementor' ),
 				),
 				'default' => 'average_rating',
 			)

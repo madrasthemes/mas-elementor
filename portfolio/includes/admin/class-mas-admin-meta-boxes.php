@@ -89,7 +89,7 @@ class MAS_Admin_Meta_Boxes {
 		$screen_id = $screen ? $screen->id : '';
 
 		// Products.
-		add_meta_box( 'mas-portfolio-images', esc_html__( 'Portfolio gallery', 'mas-elementor' ), 'MAS_Meta_Box_Portfolio_Images::output', 'jetpack-portfolio', 'side', 'low' );
+		add_meta_box( 'mas-portfolio-images', esc_html__( 'Portfolio gallery', 'mas-addons-for-elementor' ), 'MAS_Meta_Box_Portfolio_Images::output', 'jetpack-portfolio', 'side', 'low' );
 	}
 
 	/**

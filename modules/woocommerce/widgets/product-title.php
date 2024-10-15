@@ -37,7 +37,7 @@ class Product_Title extends Widget_Heading {
 	 * @return string
 	 */
 	public function get_title() {
-		return esc_html__( 'MAS Product Title', 'mas-elementor' );
+		return esc_html__( 'MAS Product Title', 'mas-addons-for-elementor' );
 	}
 
 	/**

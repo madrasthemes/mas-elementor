@@ -33,7 +33,7 @@ class Product_Data_Tabs extends Base_Widget {
 	 * @return string
 	 */
 	public function get_title() {
-		return esc_html__( 'MAS Product Data Tabs', 'mas-elementor' );
+		return esc_html__( 'MAS Product Data Tabs', 'mas-addons-for-elementor' );
 	}
 	/**
 	 * Get the icon of the widget.
@@ -68,7 +68,7 @@ class Product_Data_Tabs extends Base_Widget {
 		$this->start_controls_section(
 			'tabs_wrapper_section',
 			array(
-				'label' => esc_html__( 'Tabs Wrapper', 'mas-elementor' ),
+				'label' => esc_html__( 'Tabs Wrapper', 'mas-addons-for-elementor' ),
 				'tab'   => Controls_Manager::TAB_STYLE,
 			)
 		);
@@ -77,7 +77,7 @@ class Product_Data_Tabs extends Base_Widget {
 			'wc_style_warning',
 			array(
 				'type'            => Controls_Manager::RAW_HTML,
-				'raw'             => esc_html__( 'The style of this widget is often affected by your theme and plugins. If you experience any such issue, try to switch to a basic theme and deactivate related plugins.', 'mas-elementor' ),
+				'raw'             => esc_html__( 'The style of this widget is often affected by your theme and plugins. If you experience any such issue, try to switch to a basic theme and deactivate related plugins.', 'mas-addons-for-elementor' ),
 				'content_classes' => 'elementor-panel-alert elementor-panel-alert-info',
 			)
 		);
@@ -88,7 +88,7 @@ class Product_Data_Tabs extends Base_Widget {
 		$this->start_controls_tab(
 			'mas_product_data_tab_spacing',
 			array(
-				'label' => esc_html__( 'Spacing', 'mas-elementor' ),
+				'label' => esc_html__( 'Spacing', 'mas-addons-for-elementor' ),
 			)
 		);
 
@@ -96,7 +96,7 @@ class Product_Data_Tabs extends Base_Widget {
 		$this->add_responsive_control(
 			'mas_product_data_tab_padding',
 			array(
-				'label'      => esc_html__( 'Padding', 'mas-elementor' ),
+				'label'      => esc_html__( 'Padding', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', 'em', '%', 'rem' ),
 				'selectors'  => array(
@@ -109,7 +109,7 @@ class Product_Data_Tabs extends Base_Widget {
 		$this->add_responsive_control(
 			'mas_product_data_tab_margin',
 			array(
-				'label'      => esc_html__( 'Margin', 'mas-elementor' ),
+				'label'      => esc_html__( 'Margin', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', 'em', '%', 'rem' ),
 				'selectors'  => array(
@@ -124,7 +124,7 @@ class Product_Data_Tabs extends Base_Widget {
 		$this->start_controls_tab(
 			'mas_product_data_tab_border',
 			array(
-				'label' => esc_html__( 'Border', 'mas-elementor' ),
+				'label' => esc_html__( 'Border', 'mas-addons-for-elementor' ),
 			)
 		);
 
@@ -141,7 +141,7 @@ class Product_Data_Tabs extends Base_Widget {
 		$this->add_responsive_control(
 			'mas_product_data_tab_border_radius',
 			array(
-				'label'      => esc_html__( 'Border Radius', 'mas-elementor' ),
+				'label'      => esc_html__( 'Border Radius', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', '%', 'em' ),
 				'selectors'  => array(
@@ -169,7 +169,7 @@ class Product_Data_Tabs extends Base_Widget {
 		$this->start_controls_section(
 			'UL_wrapper_section',
 			array(
-				'label' => esc_html__( 'UL Wrapper', 'mas-elementor' ),
+				'label' => esc_html__( 'UL Wrapper', 'mas-addons-for-elementor' ),
 				'tab'   => Controls_Manager::TAB_STYLE,
 			)
 		);
@@ -180,7 +180,7 @@ class Product_Data_Tabs extends Base_Widget {
 		$this->start_controls_tab(
 			'mas_product_data_tab_ul_spacing',
 			array(
-				'label' => esc_html__( 'Spacing', 'mas-elementor' ),
+				'label' => esc_html__( 'Spacing', 'mas-addons-for-elementor' ),
 			)
 		);
 
@@ -188,7 +188,7 @@ class Product_Data_Tabs extends Base_Widget {
 		$this->add_responsive_control(
 			'mas_product_data_tab_ul_padding',
 			array(
-				'label'      => esc_html__( 'Padding', 'mas-elementor' ),
+				'label'      => esc_html__( 'Padding', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', 'em', '%', 'rem' ),
 				'selectors'  => array(
@@ -201,7 +201,7 @@ class Product_Data_Tabs extends Base_Widget {
 		$this->add_responsive_control(
 			'mas_product_data_tab_ul_margin',
 			array(
-				'label'      => esc_html__( 'Margin', 'mas-elementor' ),
+				'label'      => esc_html__( 'Margin', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', 'em', '%', 'rem' ),
 				'selectors'  => array(
@@ -216,7 +216,7 @@ class Product_Data_Tabs extends Base_Widget {
 		$this->start_controls_tab(
 			'mas_product_data_tab_ul_border',
 			array(
-				'label' => esc_html__( 'Border', 'mas-elementor' ),
+				'label' => esc_html__( 'Border', 'mas-addons-for-elementor' ),
 			)
 		);
 
@@ -233,7 +233,7 @@ class Product_Data_Tabs extends Base_Widget {
 		$this->add_responsive_control(
 			'mas_product_data_tab_ul_border_radius',
 			array(
-				'label'      => esc_html__( 'Border Radius', 'mas-elementor' ),
+				'label'      => esc_html__( 'Border Radius', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', '%', 'em' ),
 				'selectors'  => array(
@@ -261,7 +261,7 @@ class Product_Data_Tabs extends Base_Widget {
 		$this->start_controls_section(
 			'li_wrapper_section',
 			array(
-				'label' => esc_html__( 'LI Wrapper', 'mas-elementor' ),
+				'label' => esc_html__( 'LI Wrapper', 'mas-addons-for-elementor' ),
 				'tab'   => Controls_Manager::TAB_STYLE,
 			)
 		);
@@ -272,7 +272,7 @@ class Product_Data_Tabs extends Base_Widget {
 		$this->start_controls_tab(
 			'mas_product_data_tab_li_normal',
 			array(
-				'label' => esc_html__( 'Normal', 'mas-elementor' ),
+				'label' => esc_html__( 'Normal', 'mas-addons-for-elementor' ),
 			)
 		);
 
@@ -280,7 +280,7 @@ class Product_Data_Tabs extends Base_Widget {
 		$this->add_responsive_control(
 			'mas_product_data_tab_li_padding',
 			array(
-				'label'      => esc_html__( 'Padding', 'mas-elementor' ),
+				'label'      => esc_html__( 'Padding', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', 'em', '%', 'rem' ),
 				'selectors'  => array(
@@ -293,7 +293,7 @@ class Product_Data_Tabs extends Base_Widget {
 		$this->add_responsive_control(
 			'mas_product_data_tab_li_margin',
 			array(
-				'label'      => esc_html__( 'Margin', 'mas-elementor' ),
+				'label'      => esc_html__( 'Margin', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', 'em', '%', 'rem' ),
 				'selectors'  => array(
@@ -315,7 +315,7 @@ class Product_Data_Tabs extends Base_Widget {
 		$this->add_responsive_control(
 			'mas_product_data_tab_li_border_radius',
 			array(
-				'label'      => esc_html__( 'Border Radius', 'mas-elementor' ),
+				'label'      => esc_html__( 'Border Radius', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', '%', 'em' ),
 				'selectors'  => array(
@@ -337,7 +337,7 @@ class Product_Data_Tabs extends Base_Widget {
 		$this->add_control(
 			'mas_product_data_tab_li_bg_color',
 			array(
-				'label'     => esc_html__( 'Background Color', 'mas-elementor' ),
+				'label'     => esc_html__( 'Background Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'alpha'     => false,
 				'selectors' => array(
@@ -352,7 +352,7 @@ class Product_Data_Tabs extends Base_Widget {
 		$this->start_controls_tab(
 			'mas_product_data_tab_li_active',
 			array(
-				'label' => esc_html__( 'Active', 'mas-elementor' ),
+				'label' => esc_html__( 'Active', 'mas-addons-for-elementor' ),
 			)
 		);
 
@@ -360,7 +360,7 @@ class Product_Data_Tabs extends Base_Widget {
 		$this->add_responsive_control(
 			'mas_product_data_tab_li_active_padding',
 			array(
-				'label'      => esc_html__( 'Padding', 'mas-elementor' ),
+				'label'      => esc_html__( 'Padding', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', 'em', '%', 'rem' ),
 				'selectors'  => array(
@@ -373,7 +373,7 @@ class Product_Data_Tabs extends Base_Widget {
 		$this->add_responsive_control(
 			'mas_product_data_tab_li_active_margin',
 			array(
-				'label'      => esc_html__( 'Margin', 'mas-elementor' ),
+				'label'      => esc_html__( 'Margin', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', 'em', '%', 'rem' ),
 				'selectors'  => array(
@@ -395,7 +395,7 @@ class Product_Data_Tabs extends Base_Widget {
 		$this->add_responsive_control(
 			'mas_product_data_tab_li_active_border_radius',
 			array(
-				'label'      => esc_html__( 'Border Radius', 'mas-elementor' ),
+				'label'      => esc_html__( 'Border Radius', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', '%', 'em' ),
 				'selectors'  => array(
@@ -417,7 +417,7 @@ class Product_Data_Tabs extends Base_Widget {
 		$this->add_control(
 			'mas_product_data_tab_li_active_bg_color',
 			array(
-				'label'     => esc_html__( 'Background Color', 'mas-elementor' ),
+				'label'     => esc_html__( 'Background Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'alpha'     => false,
 				'selectors' => array(
@@ -436,7 +436,7 @@ class Product_Data_Tabs extends Base_Widget {
 		$this->start_controls_section(
 			'mas_product_data_tab_anchor',
 			array(
-				'label' => esc_html__( 'Anchor Element', 'mas-elementor' ),
+				'label' => esc_html__( 'Anchor Element', 'mas-addons-for-elementor' ),
 				'tab'   => Controls_Manager::TAB_STYLE,
 			)
 		);
@@ -445,7 +445,7 @@ class Product_Data_Tabs extends Base_Widget {
 		$this->add_control(
 			'anchor_text_color',
 			array(
-				'label'     => esc_html__( 'Text Color', 'mas-elementor' ),
+				'label'     => esc_html__( 'Text Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
 					'{{WRAPPER}} .woocommerce-tabs ul.wc-tabs li a' => 'color: {{VALUE}}',
@@ -458,7 +458,7 @@ class Product_Data_Tabs extends Base_Widget {
 			Group_Control_Typography::get_type(),
 			array(
 				'name'     => 'anchor_typography',
-				'label'    => esc_html__( 'Typography', 'mas-elementor' ),
+				'label'    => esc_html__( 'Typography', 'mas-addons-for-elementor' ),
 				'selector' => '{{WRAPPER}} .woocommerce-tabs ul.wc-tabs li a',
 			)
 		);
@@ -467,7 +467,7 @@ class Product_Data_Tabs extends Base_Widget {
 		$this->add_responsive_control(
 			'mas_product_data_tab_anchor_padding',
 			array(
-				'label'      => esc_html__( 'Padding', 'mas-elementor' ),
+				'label'      => esc_html__( 'Padding', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', 'em', '%', 'rem' ),
 				'selectors'  => array(
@@ -480,7 +480,7 @@ class Product_Data_Tabs extends Base_Widget {
 		$this->add_responsive_control(
 			'mas_product_data_tab_anchor_margin',
 			array(
-				'label'      => esc_html__( 'Margin', 'mas-elementor' ),
+				'label'      => esc_html__( 'Margin', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', 'em', '%', 'rem' ),
 				'selectors'  => array(
@@ -504,7 +504,7 @@ class Product_Data_Tabs extends Base_Widget {
 		$this->add_responsive_control(
 			'mas_product_data_tab_anchor_border_radius',
 			array(
-				'label'      => esc_html__( 'Border Radius', 'mas-elementor' ),
+				'label'      => esc_html__( 'Border Radius', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', '%', 'em' ),
 				'selectors'  => array(
@@ -528,7 +528,7 @@ class Product_Data_Tabs extends Base_Widget {
 		$this->start_controls_section(
 			'mas_product_data_tab_content_wrapper',
 			array(
-				'label' => esc_html__( 'Content Wrapper', 'mas-elementor' ),
+				'label' => esc_html__( 'Content Wrapper', 'mas-addons-for-elementor' ),
 				'tab'   => Controls_Manager::TAB_STYLE,
 			)
 		);
@@ -537,7 +537,7 @@ class Product_Data_Tabs extends Base_Widget {
 		$this->add_responsive_control(
 			'mas_product_data_tab_content_wrapper_padding',
 			array(
-				'label'      => esc_html__( 'Padding', 'mas-elementor' ),
+				'label'      => esc_html__( 'Padding', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', 'em', '%', 'rem' ),
 				'selectors'  => array(
@@ -550,7 +550,7 @@ class Product_Data_Tabs extends Base_Widget {
 		$this->add_responsive_control(
 			'mas_product_data_tab_content_wrapper_margin',
 			array(
-				'label'      => esc_html__( 'Margin', 'mas-elementor' ),
+				'label'      => esc_html__( 'Margin', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', 'em', '%', 'rem' ),
 				'selectors'  => array(
@@ -565,7 +565,7 @@ class Product_Data_Tabs extends Base_Widget {
 		$this->start_controls_section(
 			'mas_product_data_tab_title',
 			array(
-				'label' => esc_html__( 'Content Title', 'mas-elementor' ),
+				'label' => esc_html__( 'Content Title', 'mas-addons-for-elementor' ),
 				'tab'   => Controls_Manager::TAB_STYLE,
 			)
 		);
@@ -574,7 +574,7 @@ class Product_Data_Tabs extends Base_Widget {
 		$this->add_control(
 			'mas_product_data_tab_heading_color',
 			array(
-				'label'     => esc_html__( 'Title Color', 'mas-elementor' ),
+				'label'     => esc_html__( 'Title Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
 					'{{WRAPPER}} .woocommerce-Tabs-panel h2' => 'color: {{VALUE}};display: block;',
@@ -587,7 +587,7 @@ class Product_Data_Tabs extends Base_Widget {
 			Group_Control_Typography::get_type(),
 			array(
 				'name'     => 'mas_product_data_tab_heading_typography',
-				'label'    => esc_html__( 'Title Typography', 'mas-elementor' ),
+				'label'    => esc_html__( 'Title Typography', 'mas-addons-for-elementor' ),
 				'selector' => ' {{WRAPPER}} .woocommerce-tabs .woocommerce-Tabs-panel h2',
 			)
 		);
@@ -596,7 +596,7 @@ class Product_Data_Tabs extends Base_Widget {
 		$this->add_responsive_control(
 			'mas_product_data_tab_title_padding',
 			array(
-				'label'      => esc_html__( 'Padding', 'mas-elementor' ),
+				'label'      => esc_html__( 'Padding', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', 'em', '%', 'rem' ),
 				'selectors'  => array(
@@ -609,7 +609,7 @@ class Product_Data_Tabs extends Base_Widget {
 		$this->add_responsive_control(
 			'mas_product_data_tab_title_margin',
 			array(
-				'label'      => esc_html__( 'Margin', 'mas-elementor' ),
+				'label'      => esc_html__( 'Margin', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', 'em', '%', 'rem' ),
 				'selectors'  => array(
@@ -624,7 +624,7 @@ class Product_Data_Tabs extends Base_Widget {
 		$this->start_controls_section(
 			'mas_product_data_tab_description',
 			array(
-				'label' => esc_html__( 'Content Description', 'mas-elementor' ),
+				'label' => esc_html__( 'Content Description', 'mas-addons-for-elementor' ),
 				'tab'   => Controls_Manager::TAB_STYLE,
 			)
 		);
@@ -632,7 +632,7 @@ class Product_Data_Tabs extends Base_Widget {
 		$this->add_control(
 			'mas_product_data_tab_description_color',
 			array(
-				'label'     => esc_html__( 'Description Color', 'mas-elementor' ),
+				'label'     => esc_html__( 'Description Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
 					'{{WRAPPER}} .woocommerce-Tabs-panel' => 'color: {{VALUE}}',
@@ -645,7 +645,7 @@ class Product_Data_Tabs extends Base_Widget {
 			Group_Control_Typography::get_type(),
 			array(
 				'name'     => 'mas_product_data_tab_description_typography',
-				'label'    => esc_html__( 'Description Typography', 'mas-elementor' ),
+				'label'    => esc_html__( 'Description Typography', 'mas-addons-for-elementor' ),
 				'selector' => ' {{WRAPPER}} .woocommerce-tabs .woocommerce-Tabs-panel',
 			)
 		);
@@ -654,7 +654,7 @@ class Product_Data_Tabs extends Base_Widget {
 		$this->add_responsive_control(
 			'mas_product_data_tab_content_padding',
 			array(
-				'label'      => esc_html__( 'Padding', 'mas-elementor' ),
+				'label'      => esc_html__( 'Padding', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', 'em', '%', 'rem' ),
 				'selectors'  => array(
@@ -667,7 +667,7 @@ class Product_Data_Tabs extends Base_Widget {
 		$this->add_responsive_control(
 			'mas_product_data_tab_content_margin',
 			array(
-				'label'      => esc_html__( 'Margin', 'mas-elementor' ),
+				'label'      => esc_html__( 'Margin', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', 'em', '%', 'rem' ),
 				'selectors'  => array(

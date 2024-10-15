@@ -31,7 +31,7 @@ class Product_Image extends Base_Data_Tag {
 	 * Get Title.
 	 */
 	public function get_title() {
-		return esc_html__( 'Product Image', 'mas-elementor' );
+		return esc_html__( 'Product Image', 'mas-addons-for-elementor' );
 	}
 
 	/**

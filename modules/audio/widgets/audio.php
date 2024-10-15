@@ -40,7 +40,7 @@ class Audio extends Base_Widget {
 	 * @return string
 	 */
 	public function get_title() {
-		return __( 'Audio', 'mas-elementor' );
+		return __( 'Audio', 'mas-addons-for-elementor' );
 	}
 
 	/**
@@ -96,14 +96,14 @@ class Audio extends Base_Widget {
 		$this->start_controls_section(
 			'section_audio_acf',
 			array(
-				'label' => __( 'ACF Keys', 'mas-elementor' ),
+				'label' => __( 'ACF Keys', 'mas-addons-for-elementor' ),
 			)
 		);
 
 		$this->add_control(
 			'mp3_acf_key',
 			array(
-				'label' => __( 'MP3 Acf Key', 'mas-elementor' ),
+				'label' => __( 'MP3 Acf Key', 'mas-addons-for-elementor' ),
 				'type'  => Controls_Manager::TEXT,
 			)
 		);
@@ -111,7 +111,7 @@ class Audio extends Base_Widget {
 		$this->add_control(
 			'ogg_acf_key',
 			array(
-				'label' => __( 'OGG Acf Key', 'mas-elementor' ),
+				'label' => __( 'OGG Acf Key', 'mas-addons-for-elementor' ),
 				'type'  => Controls_Manager::TEXT,
 			)
 		);
@@ -119,7 +119,7 @@ class Audio extends Base_Widget {
 		$this->add_control(
 			'embed_acf_key',
 			array(
-				'label' => __( 'Embedded Acf Key', 'mas-elementor' ),
+				'label' => __( 'Embedded Acf Key', 'mas-addons-for-elementor' ),
 				'type'  => Controls_Manager::TEXT,
 			)
 		);
@@ -127,7 +127,7 @@ class Audio extends Base_Widget {
 		$this->add_control(
 			'display_width',
 			array(
-				'label'      => esc_html__( 'Width', 'mas-elementor' ),
+				'label'      => esc_html__( 'Width', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::SLIDER,
 				'size_units' => array( 'px' ),
 				'separator'  => 'before',
@@ -137,7 +137,7 @@ class Audio extends Base_Widget {
 		$this->add_control(
 			'display_height',
 			array(
-				'label'      => esc_html__( 'Height', 'mas-elementor' ),
+				'label'      => esc_html__( 'Height', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::SLIDER,
 				'size_units' => array( 'px' ),
 			)

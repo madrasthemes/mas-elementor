@@ -45,7 +45,7 @@ class Mas_Videos_Url_Fields extends Data_Tag {
 	 * Get tag title.
 	 */
 	public function get_title() {
-		return esc_html__( 'MAS Videos URL', 'mas-elementor' );
+		return esc_html__( 'MAS Videos URL', 'mas-addons-for-elementor' );
 	}
 
 	/**
@@ -93,12 +93,12 @@ class Mas_Videos_Url_Fields extends Data_Tag {
 		$this->add_control(
 			'url',
 			array(
-				'label'   => esc_html__( 'URL', 'mas-elementor' ),
+				'label'   => esc_html__( 'URL', 'mas-addons-for-elementor' ),
 				'type'    => Controls_Manager::SELECT,
 				'default' => 'movie',
 				'options' => array(
-					'movie' => esc_html__( 'Movies', 'mas-elementor' ),
-					'video' => esc_html__( 'Videos', 'mas-elementor' ),
+					'movie' => esc_html__( 'Movies', 'mas-addons-for-elementor' ),
+					'video' => esc_html__( 'Videos', 'mas-addons-for-elementor' ),
 				),
 			)
 		);

@@ -52,7 +52,7 @@ class Jobs_Filter extends Base_Widget {
 	 * @return string
 	 */
 	public function get_title() {
-		return esc_html__( 'Jobs Filter', 'mas-elementor' );
+		return esc_html__( 'Jobs Filter', 'mas-addons-for-elementor' );
 	}
 
 	/**
@@ -92,19 +92,19 @@ class Jobs_Filter extends Base_Widget {
 		$this->start_controls_section(
 			'section_keyword',
 			array(
-				'label' => esc_html__( 'Keyword', 'mas-elementor' ),
+				'label' => esc_html__( 'Keyword', 'mas-addons-for-elementor' ),
 			)
 		);
 
 		$this->add_control(
 			'keyword_placeholder',
 			array(
-				'label'       => esc_html__( 'Keyword Placeholder', 'mas-elementor' ),
+				'label'       => esc_html__( 'Keyword Placeholder', 'mas-addons-for-elementor' ),
 				'type'        => Controls_Manager::TEXT,
 				'dynamic'     => array(
 					'active' => true,
 				),
-				'default'     => esc_html__( 'Job title, keywords or company name', 'mas-elementor' ),
+				'default'     => esc_html__( 'Job title, keywords or company name', 'mas-addons-for-elementor' ),
 				'label_block' => true,
 			)
 		);
@@ -112,7 +112,7 @@ class Jobs_Filter extends Base_Widget {
 		$this->add_control(
 			'job_title_icon',
 			array(
-				'label'            => esc_html__( 'Keyword Icon', 'mas-elementor' ),
+				'label'            => esc_html__( 'Keyword Icon', 'mas-addons-for-elementor' ),
 				'type'             => Controls_Manager::ICONS,
 				'fa4compatibility' => 'icon',
 				'default'          => array(
@@ -127,19 +127,19 @@ class Jobs_Filter extends Base_Widget {
 		$this->start_controls_section(
 			'section_location',
 			array(
-				'label' => esc_html__( 'Location', 'mas-elementor' ),
+				'label' => esc_html__( 'Location', 'mas-addons-for-elementor' ),
 			)
 		);
 
 		$this->add_control(
 			'location_placeholder',
 			array(
-				'label'       => esc_html__( 'Location Placeholder', 'mas-elementor' ),
+				'label'       => esc_html__( 'Location Placeholder', 'mas-addons-for-elementor' ),
 				'type'        => Controls_Manager::TEXT,
 				'dynamic'     => array(
 					'active' => true,
 				),
-				'default'     => esc_html__( 'City, province or region', 'mas-elementor' ),
+				'default'     => esc_html__( 'City, province or region', 'mas-addons-for-elementor' ),
 				'label_block' => true,
 			)
 		);
@@ -147,7 +147,7 @@ class Jobs_Filter extends Base_Widget {
 		$this->add_control(
 			'location_icon',
 			array(
-				'label'            => esc_html__( 'Location Icon', 'mas-elementor' ),
+				'label'            => esc_html__( 'Location Icon', 'mas-addons-for-elementor' ),
 				'type'             => Controls_Manager::ICONS,
 				'fa4compatibility' => 'icon',
 				'default'          => array(
@@ -160,17 +160,17 @@ class Jobs_Filter extends Base_Widget {
 		$this->start_controls_section(
 			'section_category',
 			array(
-				'label' => esc_html__( 'Category', 'mas-elementor' ),
+				'label' => esc_html__( 'Category', 'mas-addons-for-elementor' ),
 			)
 		);
 
 		$this->add_control(
 			'show_category',
 			array(
-				'label'     => esc_html__( 'Show Category', 'mas-elementor' ),
+				'label'     => esc_html__( 'Show Category', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::SWITCHER,
-				'label_on'  => esc_html__( 'Show', 'mas-elementor' ),
-				'label_off' => esc_html__( 'Hide', 'mas-elementor' ),
+				'label_on'  => esc_html__( 'Show', 'mas-addons-for-elementor' ),
+				'label_off' => esc_html__( 'Hide', 'mas-addons-for-elementor' ),
 				'default'   => 'no',
 			)
 		);
@@ -178,12 +178,12 @@ class Jobs_Filter extends Base_Widget {
 		$this->add_control(
 			'category_position',
 			array(
-				'label'     => esc_html__( 'Position', 'mas-elementor' ),
+				'label'     => esc_html__( 'Position', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::SELECT,
 				'default'   => '3',
 				'options'   => array(
-					'2' => esc_html__( '2', 'mas-elementor' ),
-					'3' => esc_html__( '3', 'mas-elementor' ),
+					'2' => esc_html__( '2', 'mas-addons-for-elementor' ),
+					'3' => esc_html__( '3', 'mas-addons-for-elementor' ),
 				),
 				'condition' => array(
 					'show_category' => 'yes',
@@ -194,12 +194,12 @@ class Jobs_Filter extends Base_Widget {
 		$this->add_control(
 			'category_placeholder',
 			array(
-				'label'       => esc_html__( 'Category Placeholder', 'mas-elementor' ),
+				'label'       => esc_html__( 'Category Placeholder', 'mas-addons-for-elementor' ),
 				'type'        => Controls_Manager::TEXT,
 				'dynamic'     => array(
 					'active' => true,
 				),
-				'default'     => esc_html__( 'Any Category', 'mas-elementor' ),
+				'default'     => esc_html__( 'Any Category', 'mas-addons-for-elementor' ),
 				'label_block' => true,
 				'condition'   => array(
 					'show_category' => 'yes',
@@ -211,19 +211,19 @@ class Jobs_Filter extends Base_Widget {
 		$this->start_controls_section(
 			'section_search',
 			array(
-				'label' => esc_html__( 'Search', 'mas-elementor' ),
+				'label' => esc_html__( 'Search', 'mas-addons-for-elementor' ),
 			)
 		);
 
 		$this->add_control(
 			'search_text',
 			array(
-				'label'       => esc_html__( 'Search Text', 'mas-elementor' ),
+				'label'       => esc_html__( 'Search Text', 'mas-addons-for-elementor' ),
 				'type'        => Controls_Manager::TEXT,
 				'dynamic'     => array(
 					'active' => true,
 				),
-				'default'     => esc_html__( 'Search', 'mas-elementor' ),
+				'default'     => esc_html__( 'Search', 'mas-addons-for-elementor' ),
 				'label_block' => true,
 			)
 		);
@@ -232,10 +232,10 @@ class Jobs_Filter extends Base_Widget {
 			'hide_search_text_responsive',
 			array(
 				'type'         => Controls_Manager::SWITCHER,
-				'label'        => esc_html__( 'Hide Text Responsive', 'mas-elementor' ),
+				'label'        => esc_html__( 'Hide Text Responsive', 'mas-addons-for-elementor' ),
 				'default'      => 'no',
-				'label_off'    => esc_html__( 'Hide', 'mas-elementor' ),
-				'label_on'     => esc_html__( 'Hidden', 'mas-elementor' ),
+				'label_off'    => esc_html__( 'Hide', 'mas-addons-for-elementor' ),
+				'label_on'     => esc_html__( 'Hidden', 'mas-addons-for-elementor' ),
 				'return_value' => 'hide',
 				'prefix_class' => 'mas-job-filter-search-text%s-',
 				'condition'    => array(
@@ -247,7 +247,7 @@ class Jobs_Filter extends Base_Widget {
 		$this->add_control(
 			'search_icon',
 			array(
-				'label'            => esc_html__( 'Search Icon', 'mas-elementor' ),
+				'label'            => esc_html__( 'Search Icon', 'mas-addons-for-elementor' ),
 				'type'             => Controls_Manager::ICONS,
 				'fa4compatibility' => 'icon',
 				'default'          => array(
@@ -260,7 +260,7 @@ class Jobs_Filter extends Base_Widget {
 		$this->start_controls_section(
 			'section_form_style',
 			array(
-				'label' => esc_html__( 'Form', 'mas-elementor' ),
+				'label' => esc_html__( 'Form', 'mas-addons-for-elementor' ),
 				'tab'   => Controls_Manager::TAB_STYLE,
 			)
 		);
@@ -269,10 +269,10 @@ class Jobs_Filter extends Base_Widget {
 			'enable_flex_wrap_responsive',
 			array(
 				'type'         => Controls_Manager::SWITCHER,
-				'label'        => esc_html__( 'Flex Wrap', 'mas-elementor' ),
+				'label'        => esc_html__( 'Flex Wrap', 'mas-addons-for-elementor' ),
 				'default'      => 'no',
-				'label_off'    => esc_html__( 'No', 'mas-elementor' ),
-				'label_on'     => esc_html__( 'Wrap', 'mas-elementor' ),
+				'label_off'    => esc_html__( 'No', 'mas-addons-for-elementor' ),
+				'label_on'     => esc_html__( 'Wrap', 'mas-addons-for-elementor' ),
 				'return_value' => 'wrap',
 				'prefix_class' => 'mas-job-filter-flex%s-',
 			)
@@ -281,19 +281,19 @@ class Jobs_Filter extends Base_Widget {
 		$this->add_responsive_control(
 			'form_wrap_align',
 			array(
-				'label'     => esc_html__( 'Form Wrap Alignment', 'mas-elementor' ),
+				'label'     => esc_html__( 'Form Wrap Alignment', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::CHOOSE,
 				'options'   => array(
 					'left'   => array(
-						'title' => esc_html__( 'Left', 'mas-elementor' ),
+						'title' => esc_html__( 'Left', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-text-align-left',
 					),
 					'center' => array(
-						'title' => esc_html__( 'Center', 'mas-elementor' ),
+						'title' => esc_html__( 'Center', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-text-align-center',
 					),
 					'right'  => array(
-						'title' => esc_html__( 'Right', 'mas-elementor' ),
+						'title' => esc_html__( 'Right', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-text-align-right',
 					),
 				),
@@ -307,7 +307,7 @@ class Jobs_Filter extends Base_Widget {
 		$this->add_responsive_control(
 			'form_border_radius',
 			array(
-				'label'      => esc_html__( 'Border Radius', 'mas-elementor' ),
+				'label'      => esc_html__( 'Border Radius', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', '%', 'em' ),
 				'selectors'  => array(
@@ -319,15 +319,15 @@ class Jobs_Filter extends Base_Widget {
 		$this->add_control(
 			'form_border',
 			array(
-				'label'     => esc_html__( 'Border Type', 'mas-elementor' ),
+				'label'     => esc_html__( 'Border Type', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::SELECT,
 				'options'   => array(
-					''       => esc_html__( 'None', 'mas-elementor' ),
-					'solid'  => esc_html__( 'Solid', 'mas-elementor' ),
-					'double' => esc_html__( 'Double', 'mas-elementor' ),
-					'dotted' => esc_html__( 'Dotted', 'mas-elementor' ),
-					'dashed' => esc_html__( 'Dashed', 'mas-elementor' ),
-					'groove' => esc_html__( 'Groove', 'mas-elementor' ),
+					''       => esc_html__( 'None', 'mas-addons-for-elementor' ),
+					'solid'  => esc_html__( 'Solid', 'mas-addons-for-elementor' ),
+					'double' => esc_html__( 'Double', 'mas-addons-for-elementor' ),
+					'dotted' => esc_html__( 'Dotted', 'mas-addons-for-elementor' ),
+					'dashed' => esc_html__( 'Dashed', 'mas-addons-for-elementor' ),
+					'groove' => esc_html__( 'Groove', 'mas-addons-for-elementor' ),
 				),
 				'selectors' => array(
 					'{{WRAPPER}} .mas-search-form' => 'border-style: {{VALUE}} !important;',
@@ -338,7 +338,7 @@ class Jobs_Filter extends Base_Widget {
 		$this->add_control(
 			'form_border_width',
 			array(
-				'label'     => esc_html__( 'Width', 'mas-elementor' ),
+				'label'     => esc_html__( 'Width', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::DIMENSIONS,
 				'selectors' => array(
 					'{{WRAPPER}} .mas-search-form' => 'border-width: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}} !important;',
@@ -352,7 +352,7 @@ class Jobs_Filter extends Base_Widget {
 		$this->add_control(
 			'form_border_color',
 			array(
-				'label'     => esc_html__( 'Color', 'mas-elementor' ),
+				'label'     => esc_html__( 'Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'default'   => '',
 				'selectors' => array(
@@ -367,19 +367,19 @@ class Jobs_Filter extends Base_Widget {
 		$this->add_responsive_control(
 			'form_align',
 			array(
-				'label'     => esc_html__( 'Alignment', 'mas-elementor' ),
+				'label'     => esc_html__( 'Alignment', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::CHOOSE,
 				'options'   => array(
 					'left'   => array(
-						'title' => esc_html__( 'Left', 'mas-elementor' ),
+						'title' => esc_html__( 'Left', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-text-align-left',
 					),
 					'center' => array(
-						'title' => esc_html__( 'Center', 'mas-elementor' ),
+						'title' => esc_html__( 'Center', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-text-align-center',
 					),
 					'right'  => array(
-						'title' => esc_html__( 'Right', 'mas-elementor' ),
+						'title' => esc_html__( 'Right', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-text-align-right',
 					),
 				),
@@ -394,7 +394,7 @@ class Jobs_Filter extends Base_Widget {
 		$this->start_controls_section(
 			'section_keyword_style',
 			array(
-				'label' => esc_html__( 'Keyword', 'mas-elementor' ),
+				'label' => esc_html__( 'Keyword', 'mas-addons-for-elementor' ),
 				'tab'   => Controls_Manager::TAB_STYLE,
 			)
 		);
@@ -402,7 +402,7 @@ class Jobs_Filter extends Base_Widget {
 		$this->add_responsive_control(
 			'keyword_size',
 			array(
-				'label'          => esc_html__( 'Width', 'mas-elementor' ),
+				'label'          => esc_html__( 'Width', 'mas-addons-for-elementor' ),
 				'type'           => Controls_Manager::SLIDER,
 				'size_units'     => array( '%', 'px' ),
 				'range'          => array(
@@ -438,7 +438,7 @@ class Jobs_Filter extends Base_Widget {
 		$this->add_responsive_control(
 			'keyword_wrap_height',
 			array(
-				'label'      => esc_html__( 'Keyword Wrapper Height', 'mas-elementor' ),
+				'label'      => esc_html__( 'Keyword Wrapper Height', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::SLIDER,
 				'size_units' => array( 'px', '%', 'custom' ),
 				'range'      => array(
@@ -460,7 +460,7 @@ class Jobs_Filter extends Base_Widget {
 		$this->add_responsive_control(
 			'keyword_height',
 			array(
-				'label'      => esc_html__( 'Keyword Height', 'mas-elementor' ),
+				'label'      => esc_html__( 'Keyword Height', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::SLIDER,
 				'size_units' => array( 'px', '%', 'custom' ),
 				'range'      => array(
@@ -482,7 +482,7 @@ class Jobs_Filter extends Base_Widget {
 		$this->add_control(
 			'keyword_background',
 			array(
-				'label'     => esc_html__( 'Background Color', 'mas-elementor' ),
+				'label'     => esc_html__( 'Background Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
 					'{{WRAPPER}} .mas-elementor-search-keywords' => 'background-color: {{VALUE}};',
@@ -504,7 +504,7 @@ class Jobs_Filter extends Base_Widget {
 		$this->add_control(
 			'keyword_placeholder_color',
 			array(
-				'label'     => esc_html__( 'Placeholder Color', 'mas-elementor' ),
+				'label'     => esc_html__( 'Placeholder Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
 					'{{WRAPPER}} .mas-job-search-keywords input::placeholder' => 'color: {{VALUE}};',
@@ -515,7 +515,7 @@ class Jobs_Filter extends Base_Widget {
 		$this->add_control(
 			'keyword_icon_color',
 			array(
-				'label'     => esc_html__( 'Icon Color', 'mas-elementor' ),
+				'label'     => esc_html__( 'Icon Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'global'    => array(
 					'default' => Global_Colors::COLOR_PRIMARY,
@@ -529,7 +529,7 @@ class Jobs_Filter extends Base_Widget {
 		$this->add_responsive_control(
 			'keyword_icon_size',
 			array(
-				'label'     => esc_html__( 'Icon Size', 'mas-elementor' ),
+				'label'     => esc_html__( 'Icon Size', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::SLIDER,
 				'range'     => array(
 					'px' => array(
@@ -546,7 +546,7 @@ class Jobs_Filter extends Base_Widget {
 		$this->add_responsive_control(
 			'keyword_padding',
 			array(
-				'label'      => esc_html__( 'Padding', 'mas-elementor' ),
+				'label'      => esc_html__( 'Padding', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', '%', 'em' ),
 				'selectors'  => array(
@@ -558,7 +558,7 @@ class Jobs_Filter extends Base_Widget {
 		$this->add_responsive_control(
 			'keyword_margin',
 			array(
-				'label'      => esc_html__( 'Margin', 'mas-elementor' ),
+				'label'      => esc_html__( 'Margin', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', '%', 'em' ),
 				'selectors'  => array(
@@ -571,22 +571,22 @@ class Jobs_Filter extends Base_Widget {
 		$this->start_controls_tab(
 			'keyword_border_normal',
 			array(
-				'label' => esc_html__( 'Normal', 'mas-elementor' ),
+				'label' => esc_html__( 'Normal', 'mas-addons-for-elementor' ),
 			)
 		);
 
 		$this->add_control(
 			'keyword_border',
 			array(
-				'label'     => esc_html__( 'Border Type', 'mas-elementor' ),
+				'label'     => esc_html__( 'Border Type', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::SELECT,
 				'options'   => array(
-					''       => esc_html__( 'None', 'mas-elementor' ),
-					'solid'  => esc_html__( 'Solid', 'mas-elementor' ),
-					'double' => esc_html__( 'Double', 'mas-elementor' ),
-					'dotted' => esc_html__( 'Dotted', 'mas-elementor' ),
-					'dashed' => esc_html__( 'Dashed', 'mas-elementor' ),
-					'groove' => esc_html__( 'Groove', 'mas-elementor' ),
+					''       => esc_html__( 'None', 'mas-addons-for-elementor' ),
+					'solid'  => esc_html__( 'Solid', 'mas-addons-for-elementor' ),
+					'double' => esc_html__( 'Double', 'mas-addons-for-elementor' ),
+					'dotted' => esc_html__( 'Dotted', 'mas-addons-for-elementor' ),
+					'dashed' => esc_html__( 'Dashed', 'mas-addons-for-elementor' ),
+					'groove' => esc_html__( 'Groove', 'mas-addons-for-elementor' ),
 				),
 				'selectors' => array(
 					'{{WRAPPER}} .mas-elementor-search-keywords' => 'border-style: {{VALUE}} !important;',
@@ -597,7 +597,7 @@ class Jobs_Filter extends Base_Widget {
 		$this->add_control(
 			'keyword_border_width',
 			array(
-				'label'     => esc_html__( 'Width', 'mas-elementor' ),
+				'label'     => esc_html__( 'Width', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::DIMENSIONS,
 				'selectors' => array(
 					'{{WRAPPER}} .mas-elementor-search-keywords' => 'border-width: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}} !important;',
@@ -611,7 +611,7 @@ class Jobs_Filter extends Base_Widget {
 		$this->add_control(
 			'keyword_border_color',
 			array(
-				'label'     => esc_html__( 'Color', 'mas-elementor' ),
+				'label'     => esc_html__( 'Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'default'   => '',
 				'selectors' => array(
@@ -626,22 +626,22 @@ class Jobs_Filter extends Base_Widget {
 		$this->start_controls_tab(
 			'keyword_border_hover',
 			array(
-				'label' => esc_html__( 'Hover', 'mas-elementor' ),
+				'label' => esc_html__( 'Hover', 'mas-addons-for-elementor' ),
 			)
 		);
 
 		$this->add_control(
 			'keyword_hover_border',
 			array(
-				'label'     => esc_html__( 'Border Type', 'mas-elementor' ),
+				'label'     => esc_html__( 'Border Type', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::SELECT,
 				'options'   => array(
-					''       => esc_html__( 'None', 'mas-elementor' ),
-					'solid'  => esc_html__( 'Solid', 'mas-elementor' ),
-					'double' => esc_html__( 'Double', 'mas-elementor' ),
-					'dotted' => esc_html__( 'Dotted', 'mas-elementor' ),
-					'dashed' => esc_html__( 'Dashed', 'mas-elementor' ),
-					'groove' => esc_html__( 'Groove', 'mas-elementor' ),
+					''       => esc_html__( 'None', 'mas-addons-for-elementor' ),
+					'solid'  => esc_html__( 'Solid', 'mas-addons-for-elementor' ),
+					'double' => esc_html__( 'Double', 'mas-addons-for-elementor' ),
+					'dotted' => esc_html__( 'Dotted', 'mas-addons-for-elementor' ),
+					'dashed' => esc_html__( 'Dashed', 'mas-addons-for-elementor' ),
+					'groove' => esc_html__( 'Groove', 'mas-addons-for-elementor' ),
 				),
 				'selectors' => array(
 					'{{WRAPPER}} .mas-elementor-search-keywords:hover' => 'border-style: {{VALUE}};',
@@ -652,7 +652,7 @@ class Jobs_Filter extends Base_Widget {
 		$this->add_control(
 			'keyword_hover_border_width',
 			array(
-				'label'     => esc_html__( 'Width', 'mas-elementor' ),
+				'label'     => esc_html__( 'Width', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::DIMENSIONS,
 				'selectors' => array(
 					'{{WRAPPER}} .mas-elementor-search-keywords:hover' => 'border-width: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
@@ -666,7 +666,7 @@ class Jobs_Filter extends Base_Widget {
 		$this->add_control(
 			'keyword_hover_border_color',
 			array(
-				'label'     => esc_html__( 'Color', 'mas-elementor' ),
+				'label'     => esc_html__( 'Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'default'   => '',
 				'selectors' => array(
@@ -683,7 +683,7 @@ class Jobs_Filter extends Base_Widget {
 		$this->add_responsive_control(
 			'keyword_border_radius',
 			array(
-				'label'      => esc_html__( 'Border Radius', 'mas-elementor' ),
+				'label'      => esc_html__( 'Border Radius', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', '%', 'em' ),
 				'selectors'  => array(
@@ -703,7 +703,7 @@ class Jobs_Filter extends Base_Widget {
 		$this->start_controls_section(
 			'section_location_style',
 			array(
-				'label' => esc_html__( 'Location', 'mas-elementor' ),
+				'label' => esc_html__( 'Location', 'mas-addons-for-elementor' ),
 				'tab'   => Controls_Manager::TAB_STYLE,
 			)
 		);
@@ -711,7 +711,7 @@ class Jobs_Filter extends Base_Widget {
 		$this->add_responsive_control(
 			'location_size',
 			array(
-				'label'          => esc_html__( 'Width', 'mas-elementor' ),
+				'label'          => esc_html__( 'Width', 'mas-addons-for-elementor' ),
 				'type'           => Controls_Manager::SLIDER,
 				'size_units'     => array( '%', 'px' ),
 				'range'          => array(
@@ -747,7 +747,7 @@ class Jobs_Filter extends Base_Widget {
 		$this->add_responsive_control(
 			'location_wrap_height',
 			array(
-				'label'      => esc_html__( 'Location Wrapper Height', 'mas-elementor' ),
+				'label'      => esc_html__( 'Location Wrapper Height', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::SLIDER,
 				'size_units' => array( 'px', '%', 'custom' ),
 				'range'      => array(
@@ -769,7 +769,7 @@ class Jobs_Filter extends Base_Widget {
 		$this->add_responsive_control(
 			'location_height',
 			array(
-				'label'      => esc_html__( 'Location Height', 'mas-elementor' ),
+				'label'      => esc_html__( 'Location Height', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::SLIDER,
 				'size_units' => array( 'px', '%', 'custom' ),
 				'range'      => array(
@@ -791,7 +791,7 @@ class Jobs_Filter extends Base_Widget {
 		$this->add_control(
 			'location_background',
 			array(
-				'label'     => esc_html__( 'Background Color', 'mas-elementor' ),
+				'label'     => esc_html__( 'Background Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
 					'{{WRAPPER}} .mas-elementor-search-location' => 'background-color: {{VALUE}};',
@@ -813,7 +813,7 @@ class Jobs_Filter extends Base_Widget {
 		$this->add_control(
 			'location_placeholder_color',
 			array(
-				'label'     => esc_html__( 'Placeholder Color', 'mas-elementor' ),
+				'label'     => esc_html__( 'Placeholder Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
 					'{{WRAPPER}} .mas-job-search-location input::placeholder' => 'color: {{VALUE}};',
@@ -824,7 +824,7 @@ class Jobs_Filter extends Base_Widget {
 		$this->add_control(
 			'location_icon_color',
 			array(
-				'label'     => esc_html__( 'Icon Color', 'mas-elementor' ),
+				'label'     => esc_html__( 'Icon Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'global'    => array(
 					'default' => Global_Colors::COLOR_PRIMARY,
@@ -838,7 +838,7 @@ class Jobs_Filter extends Base_Widget {
 		$this->add_responsive_control(
 			'location_icon_size',
 			array(
-				'label'     => esc_html__( 'Icon Size', 'mas-elementor' ),
+				'label'     => esc_html__( 'Icon Size', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::SLIDER,
 				'range'     => array(
 					'px' => array(
@@ -855,7 +855,7 @@ class Jobs_Filter extends Base_Widget {
 		$this->add_responsive_control(
 			'location_padding',
 			array(
-				'label'      => esc_html__( 'Padding', 'mas-elementor' ),
+				'label'      => esc_html__( 'Padding', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', '%', 'em' ),
 				'selectors'  => array(
@@ -867,7 +867,7 @@ class Jobs_Filter extends Base_Widget {
 		$this->add_responsive_control(
 			'location_margin',
 			array(
-				'label'      => esc_html__( 'Margin', 'mas-elementor' ),
+				'label'      => esc_html__( 'Margin', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', '%', 'em' ),
 				'selectors'  => array(
@@ -880,22 +880,22 @@ class Jobs_Filter extends Base_Widget {
 		$this->start_controls_tab(
 			'location_border_normal',
 			array(
-				'label' => esc_html__( 'Normal', 'mas-elementor' ),
+				'label' => esc_html__( 'Normal', 'mas-addons-for-elementor' ),
 			)
 		);
 
 		$this->add_control(
 			'location_border',
 			array(
-				'label'     => esc_html__( 'Border Type', 'mas-elementor' ),
+				'label'     => esc_html__( 'Border Type', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::SELECT,
 				'options'   => array(
-					''       => esc_html__( 'None', 'mas-elementor' ),
-					'solid'  => esc_html__( 'Solid', 'mas-elementor' ),
-					'double' => esc_html__( 'Double', 'mas-elementor' ),
-					'dotted' => esc_html__( 'Dotted', 'mas-elementor' ),
-					'dashed' => esc_html__( 'Dashed', 'mas-elementor' ),
-					'groove' => esc_html__( 'Groove', 'mas-elementor' ),
+					''       => esc_html__( 'None', 'mas-addons-for-elementor' ),
+					'solid'  => esc_html__( 'Solid', 'mas-addons-for-elementor' ),
+					'double' => esc_html__( 'Double', 'mas-addons-for-elementor' ),
+					'dotted' => esc_html__( 'Dotted', 'mas-addons-for-elementor' ),
+					'dashed' => esc_html__( 'Dashed', 'mas-addons-for-elementor' ),
+					'groove' => esc_html__( 'Groove', 'mas-addons-for-elementor' ),
 				),
 				'selectors' => array(
 					'{{WRAPPER}} .mas-elementor-search-location' => 'border-style: {{VALUE}} !important;;',
@@ -906,7 +906,7 @@ class Jobs_Filter extends Base_Widget {
 		$this->add_control(
 			'location_border_width',
 			array(
-				'label'     => esc_html__( 'Width', 'mas-elementor' ),
+				'label'     => esc_html__( 'Width', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::DIMENSIONS,
 				'selectors' => array(
 					'{{WRAPPER}} .mas-elementor-search-location' => 'border-width: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}} !important;;',
@@ -920,7 +920,7 @@ class Jobs_Filter extends Base_Widget {
 		$this->add_control(
 			'location_border_color',
 			array(
-				'label'     => esc_html__( 'Color', 'mas-elementor' ),
+				'label'     => esc_html__( 'Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'default'   => '',
 				'selectors' => array(
@@ -936,22 +936,22 @@ class Jobs_Filter extends Base_Widget {
 		$this->start_controls_tab(
 			'location_border_hover',
 			array(
-				'label' => esc_html__( 'Hover', 'mas-elementor' ),
+				'label' => esc_html__( 'Hover', 'mas-addons-for-elementor' ),
 			)
 		);
 
 		$this->add_control(
 			'location_hover_border',
 			array(
-				'label'     => esc_html__( 'Border Type', 'mas-elementor' ),
+				'label'     => esc_html__( 'Border Type', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::SELECT,
 				'options'   => array(
-					''       => esc_html__( 'None', 'mas-elementor' ),
-					'solid'  => esc_html__( 'Solid', 'mas-elementor' ),
-					'double' => esc_html__( 'Double', 'mas-elementor' ),
-					'dotted' => esc_html__( 'Dotted', 'mas-elementor' ),
-					'dashed' => esc_html__( 'Dashed', 'mas-elementor' ),
-					'groove' => esc_html__( 'Groove', 'mas-elementor' ),
+					''       => esc_html__( 'None', 'mas-addons-for-elementor' ),
+					'solid'  => esc_html__( 'Solid', 'mas-addons-for-elementor' ),
+					'double' => esc_html__( 'Double', 'mas-addons-for-elementor' ),
+					'dotted' => esc_html__( 'Dotted', 'mas-addons-for-elementor' ),
+					'dashed' => esc_html__( 'Dashed', 'mas-addons-for-elementor' ),
+					'groove' => esc_html__( 'Groove', 'mas-addons-for-elementor' ),
 				),
 				'selectors' => array(
 					'{{WRAPPER}} .mas-elementor-search-location:hover' => 'border-style: {{VALUE}} !important;',
@@ -962,7 +962,7 @@ class Jobs_Filter extends Base_Widget {
 		$this->add_control(
 			'location_hover_border_width',
 			array(
-				'label'     => esc_html__( 'Width', 'mas-elementor' ),
+				'label'     => esc_html__( 'Width', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::DIMENSIONS,
 				'selectors' => array(
 					'{{WRAPPER}} .mas-elementor-search-location:hover' => 'border-width: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}} !important;',
@@ -976,7 +976,7 @@ class Jobs_Filter extends Base_Widget {
 		$this->add_control(
 			'location_hover_border_color',
 			array(
-				'label'     => esc_html__( 'Color', 'mas-elementor' ),
+				'label'     => esc_html__( 'Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'default'   => '',
 				'selectors' => array(
@@ -994,7 +994,7 @@ class Jobs_Filter extends Base_Widget {
 		$this->add_responsive_control(
 			'location_border_radius',
 			array(
-				'label'      => esc_html__( 'Border Radius', 'mas-elementor' ),
+				'label'      => esc_html__( 'Border Radius', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', '%', 'em' ),
 				'selectors'  => array(
@@ -1016,7 +1016,7 @@ class Jobs_Filter extends Base_Widget {
 		$this->start_controls_section(
 			'section_category_style',
 			array(
-				'label'     => esc_html__( 'Category', 'mas-elementor' ),
+				'label'     => esc_html__( 'Category', 'mas-addons-for-elementor' ),
 				'tab'       => Controls_Manager::TAB_STYLE,
 				'condition' => array(
 					'show_category' => 'yes',
@@ -1027,7 +1027,7 @@ class Jobs_Filter extends Base_Widget {
 		$this->add_responsive_control(
 			'category_size',
 			array(
-				'label'          => esc_html__( 'Width', 'mas-elementor' ),
+				'label'          => esc_html__( 'Width', 'mas-addons-for-elementor' ),
 				'type'           => Controls_Manager::SLIDER,
 				'size_units'     => array( '%', 'px' ),
 				'range'          => array(
@@ -1066,7 +1066,7 @@ class Jobs_Filter extends Base_Widget {
 		$this->add_responsive_control(
 			'category_wrap_height',
 			array(
-				'label'      => esc_html__( 'Category Wrapper Height', 'mas-elementor' ),
+				'label'      => esc_html__( 'Category Wrapper Height', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::SLIDER,
 				'size_units' => array( 'px', '%', 'custom' ),
 				'range'      => array(
@@ -1088,7 +1088,7 @@ class Jobs_Filter extends Base_Widget {
 		$this->add_responsive_control(
 			'category_height',
 			array(
-				'label'      => esc_html__( 'Category Height', 'mas-elementor' ),
+				'label'      => esc_html__( 'Category Height', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::SLIDER,
 				'size_units' => array( 'px', '%', 'custom' ),
 				'range'      => array(
@@ -1110,7 +1110,7 @@ class Jobs_Filter extends Base_Widget {
 		$this->add_control(
 			'category_background',
 			array(
-				'label'     => esc_html__( 'Background Color', 'mas-elementor' ),
+				'label'     => esc_html__( 'Background Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
 					'{{WRAPPER}} .mas-job-search-category select' => 'background-color: {{VALUE}};',
@@ -1138,7 +1138,7 @@ class Jobs_Filter extends Base_Widget {
 		$this->add_control(
 			'category_placeholder_color',
 			array(
-				'label'     => esc_html__( 'Placeholder Color', 'mas-elementor' ),
+				'label'     => esc_html__( 'Placeholder Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
 					'{{WRAPPER}} .mas-job-search-category #search_category' => 'color: {{VALUE}} !important;',
@@ -1152,7 +1152,7 @@ class Jobs_Filter extends Base_Widget {
 		$this->add_responsive_control(
 			'category_padding',
 			array(
-				'label'      => esc_html__( 'Padding', 'mas-elementor' ),
+				'label'      => esc_html__( 'Padding', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', '%', 'em' ),
 				'selectors'  => array(
@@ -1167,7 +1167,7 @@ class Jobs_Filter extends Base_Widget {
 		$this->add_responsive_control(
 			'category_margin',
 			array(
-				'label'      => esc_html__( 'Margin', 'mas-elementor' ),
+				'label'      => esc_html__( 'Margin', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', '%', 'em' ),
 				'selectors'  => array(
@@ -1183,7 +1183,7 @@ class Jobs_Filter extends Base_Widget {
 		$this->start_controls_tab(
 			'category_border_normal',
 			array(
-				'label'     => esc_html__( 'Normal', 'mas-elementor' ),
+				'label'     => esc_html__( 'Normal', 'mas-addons-for-elementor' ),
 				'condition' => array(
 					'show_category' => 'yes',
 				),
@@ -1193,15 +1193,15 @@ class Jobs_Filter extends Base_Widget {
 		$this->add_control(
 			'category_border',
 			array(
-				'label'     => esc_html__( 'Border Type', 'mas-elementor' ),
+				'label'     => esc_html__( 'Border Type', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::SELECT,
 				'options'   => array(
-					''       => esc_html__( 'None', 'mas-elementor' ),
-					'solid'  => esc_html__( 'Solid', 'mas-elementor' ),
-					'double' => esc_html__( 'Double', 'mas-elementor' ),
-					'dotted' => esc_html__( 'Dotted', 'mas-elementor' ),
-					'dashed' => esc_html__( 'Dashed', 'mas-elementor' ),
-					'groove' => esc_html__( 'Groove', 'mas-elementor' ),
+					''       => esc_html__( 'None', 'mas-addons-for-elementor' ),
+					'solid'  => esc_html__( 'Solid', 'mas-addons-for-elementor' ),
+					'double' => esc_html__( 'Double', 'mas-addons-for-elementor' ),
+					'dotted' => esc_html__( 'Dotted', 'mas-addons-for-elementor' ),
+					'dashed' => esc_html__( 'Dashed', 'mas-addons-for-elementor' ),
+					'groove' => esc_html__( 'Groove', 'mas-addons-for-elementor' ),
 				),
 				'selectors' => array(
 					'{{WRAPPER}} .mas-job-search-category select' => 'border-style: {{VALUE}} !important;',
@@ -1215,7 +1215,7 @@ class Jobs_Filter extends Base_Widget {
 		$this->add_control(
 			'category_border_width',
 			array(
-				'label'     => esc_html__( 'Width', 'mas-elementor' ),
+				'label'     => esc_html__( 'Width', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::DIMENSIONS,
 				'selectors' => array(
 					'{{WRAPPER}} .mas-job-search-category select' => 'border-width: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}} !important;',
@@ -1230,7 +1230,7 @@ class Jobs_Filter extends Base_Widget {
 		$this->add_control(
 			'category_border_color',
 			array(
-				'label'     => esc_html__( 'Color', 'mas-elementor' ),
+				'label'     => esc_html__( 'Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'default'   => '',
 				'selectors' => array(
@@ -1246,7 +1246,7 @@ class Jobs_Filter extends Base_Widget {
 		$this->start_controls_tab(
 			'category_border_hover',
 			array(
-				'label'     => esc_html__( 'Hover', 'mas-elementor' ),
+				'label'     => esc_html__( 'Hover', 'mas-addons-for-elementor' ),
 				'condition' => array(
 					'show_category' => 'yes',
 				),
@@ -1256,15 +1256,15 @@ class Jobs_Filter extends Base_Widget {
 		$this->add_control(
 			'category_hover_border',
 			array(
-				'label'     => esc_html__( 'Border Type', 'mas-elementor' ),
+				'label'     => esc_html__( 'Border Type', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::SELECT,
 				'options'   => array(
-					''       => esc_html__( 'None', 'mas-elementor' ),
-					'solid'  => esc_html__( 'Solid', 'mas-elementor' ),
-					'double' => esc_html__( 'Double', 'mas-elementor' ),
-					'dotted' => esc_html__( 'Dotted', 'mas-elementor' ),
-					'dashed' => esc_html__( 'Dashed', 'mas-elementor' ),
-					'groove' => esc_html__( 'Groove', 'mas-elementor' ),
+					''       => esc_html__( 'None', 'mas-addons-for-elementor' ),
+					'solid'  => esc_html__( 'Solid', 'mas-addons-for-elementor' ),
+					'double' => esc_html__( 'Double', 'mas-addons-for-elementor' ),
+					'dotted' => esc_html__( 'Dotted', 'mas-addons-for-elementor' ),
+					'dashed' => esc_html__( 'Dashed', 'mas-addons-for-elementor' ),
+					'groove' => esc_html__( 'Groove', 'mas-addons-for-elementor' ),
 				),
 				'selectors' => array(
 					'{{WRAPPER}} .mas-job-search-category select:hover' => 'border-style: {{VALUE}};',
@@ -1278,7 +1278,7 @@ class Jobs_Filter extends Base_Widget {
 		$this->add_control(
 			'category_hover_border_width',
 			array(
-				'label'     => esc_html__( 'Width', 'mas-elementor' ),
+				'label'     => esc_html__( 'Width', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::DIMENSIONS,
 				'selectors' => array(
 					'{{WRAPPER}} .mas-job-search-category select:hover' => 'border-width: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
@@ -1293,7 +1293,7 @@ class Jobs_Filter extends Base_Widget {
 		$this->add_control(
 			'category_hover_border_color',
 			array(
-				'label'     => esc_html__( 'Color', 'mas-elementor' ),
+				'label'     => esc_html__( 'Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'default'   => '',
 				'selectors' => array(
@@ -1311,7 +1311,7 @@ class Jobs_Filter extends Base_Widget {
 		$this->add_responsive_control(
 			'category_border_radius',
 			array(
-				'label'      => esc_html__( 'Border Radius', 'mas-elementor' ),
+				'label'      => esc_html__( 'Border Radius', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', '%', 'em' ),
 				'selectors'  => array(
@@ -1336,7 +1336,7 @@ class Jobs_Filter extends Base_Widget {
 		$this->start_controls_section(
 			'section_search_button_style',
 			array(
-				'label' => esc_html__( 'Search', 'mas-elementor' ),
+				'label' => esc_html__( 'Search', 'mas-addons-for-elementor' ),
 				'tab'   => Controls_Manager::TAB_STYLE,
 			)
 		);
@@ -1344,7 +1344,7 @@ class Jobs_Filter extends Base_Widget {
 		$this->add_responsive_control(
 			'search_size',
 			array(
-				'label'          => esc_html__( 'Width', 'mas-elementor' ),
+				'label'          => esc_html__( 'Width', 'mas-addons-for-elementor' ),
 				'type'           => Controls_Manager::SLIDER,
 				'size_units'     => array( '%', 'px' ),
 				'range'          => array(
@@ -1381,18 +1381,18 @@ class Jobs_Filter extends Base_Widget {
 			'search_button_content_align',
 			array(
 				'type'      => Controls_Manager::CHOOSE,
-				'label'     => esc_html__( 'Alignment', 'mas-elementor' ),
+				'label'     => esc_html__( 'Alignment', 'mas-addons-for-elementor' ),
 				'options'   => array(
 					'left'   => array(
-						'title' => esc_html__( 'Left', 'mas-elementor' ),
+						'title' => esc_html__( 'Left', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-text-align-left',
 					),
 					'center' => array(
-						'title' => esc_html__( 'Center', 'mas-elementor' ),
+						'title' => esc_html__( 'Center', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-text-align-center',
 					),
 					'right'  => array(
-						'title' => esc_html__( 'Right', 'mas-elementor' ),
+						'title' => esc_html__( 'Right', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-text-align-right',
 					),
 				),
@@ -1406,14 +1406,14 @@ class Jobs_Filter extends Base_Widget {
 		$this->start_controls_tab(
 			'search_button_normal',
 			array(
-				'label' => esc_html__( 'Normal', 'mas-elementor' ),
+				'label' => esc_html__( 'Normal', 'mas-addons-for-elementor' ),
 			)
 		);
 
 		$this->add_control(
 			'search_button_background',
 			array(
-				'label'     => esc_html__( 'Background Color', 'mas-elementor' ),
+				'label'     => esc_html__( 'Background Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
 					'{{WRAPPER}} .mas-job-search-submit button' => 'background-color: {{VALUE}} !important;',
@@ -1424,7 +1424,7 @@ class Jobs_Filter extends Base_Widget {
 		$this->add_control(
 			'search_button_text_color',
 			array(
-				'label'     => esc_html__( 'Color', 'mas-elementor' ),
+				'label'     => esc_html__( 'Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
 					'{{WRAPPER}} .mas-job-search-submit i' => 'color: {{VALUE}} !important;',
@@ -1437,14 +1437,14 @@ class Jobs_Filter extends Base_Widget {
 		$this->start_controls_tab(
 			'search_button_hover',
 			array(
-				'label' => esc_html__( 'Hover', 'mas-elementor' ),
+				'label' => esc_html__( 'Hover', 'mas-addons-for-elementor' ),
 			)
 		);
 
 		$this->add_control(
 			'search_button_background_hover',
 			array(
-				'label'     => esc_html__( 'Background Color', 'mas-elementor' ),
+				'label'     => esc_html__( 'Background Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
 					'{{WRAPPER}} .mas-job-search-submit button:hover' => 'background-color: {{VALUE}} !important;',
@@ -1455,7 +1455,7 @@ class Jobs_Filter extends Base_Widget {
 		$this->add_control(
 			'search_button_text_color_hover',
 			array(
-				'label'     => esc_html__( 'Color', 'mas-elementor' ),
+				'label'     => esc_html__( 'Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
 					'{{WRAPPER}} .mas-job-search-submit button:hover .mas-job-search-icon' => 'color: {{VALUE}} !important;',
@@ -1470,7 +1470,7 @@ class Jobs_Filter extends Base_Widget {
 		$this->add_responsive_control(
 			'search_icon_size',
 			array(
-				'label'     => esc_html__( 'Icon Size', 'mas-elementor' ),
+				'label'     => esc_html__( 'Icon Size', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::SLIDER,
 				'range'     => array(
 					'px' => array(
@@ -1490,12 +1490,12 @@ class Jobs_Filter extends Base_Widget {
 		$this->add_control(
 			'search_icon_align',
 			array(
-				'label'     => esc_html__( 'Icon Position', 'mas-elementor' ),
+				'label'     => esc_html__( 'Icon Position', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::SELECT,
 				'default'   => 'left',
 				'options'   => array(
-					'left'  => esc_html__( 'Before', 'mas-elementor' ),
-					'right' => esc_html__( 'After', 'mas-elementor' ),
+					'left'  => esc_html__( 'Before', 'mas-addons-for-elementor' ),
+					'right' => esc_html__( 'After', 'mas-addons-for-elementor' ),
 				),
 				'condition' => array(
 					'search_icon[value]!' => '',
@@ -1507,7 +1507,7 @@ class Jobs_Filter extends Base_Widget {
 		$this->add_control(
 			'icon_indent',
 			array(
-				'label'     => esc_html__( 'Icon Spacing', 'mas-elementor' ),
+				'label'     => esc_html__( 'Icon Spacing', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::SLIDER,
 				'range'     => array(
 					'px' => array(
@@ -1542,7 +1542,7 @@ class Jobs_Filter extends Base_Widget {
 		$this->add_responsive_control(
 			'search_button_padding',
 			array(
-				'label'      => esc_html__( 'Padding', 'mas-elementor' ),
+				'label'      => esc_html__( 'Padding', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', '%', 'em' ),
 				'selectors'  => array(
@@ -1554,7 +1554,7 @@ class Jobs_Filter extends Base_Widget {
 		$this->add_responsive_control(
 			'search_button_margin',
 			array(
-				'label'      => esc_html__( 'Margin', 'mas-elementor' ),
+				'label'      => esc_html__( 'Margin', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', '%', 'em' ),
 				'selectors'  => array(
@@ -1567,22 +1567,22 @@ class Jobs_Filter extends Base_Widget {
 		$this->start_controls_tab(
 			'search_border_normal',
 			array(
-				'label' => esc_html__( 'Normal', 'mas-elementor' ),
+				'label' => esc_html__( 'Normal', 'mas-addons-for-elementor' ),
 			)
 		);
 
 		$this->add_control(
 			'search_border',
 			array(
-				'label'     => esc_html__( 'Border Type', 'mas-elementor' ),
+				'label'     => esc_html__( 'Border Type', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::SELECT,
 				'options'   => array(
-					''       => esc_html__( 'None', 'mas-elementor' ),
-					'solid'  => esc_html__( 'Solid', 'mas-elementor' ),
-					'double' => esc_html__( 'Double', 'mas-elementor' ),
-					'dotted' => esc_html__( 'Dotted', 'mas-elementor' ),
-					'dashed' => esc_html__( 'Dashed', 'mas-elementor' ),
-					'groove' => esc_html__( 'Groove', 'mas-elementor' ),
+					''       => esc_html__( 'None', 'mas-addons-for-elementor' ),
+					'solid'  => esc_html__( 'Solid', 'mas-addons-for-elementor' ),
+					'double' => esc_html__( 'Double', 'mas-addons-for-elementor' ),
+					'dotted' => esc_html__( 'Dotted', 'mas-addons-for-elementor' ),
+					'dashed' => esc_html__( 'Dashed', 'mas-addons-for-elementor' ),
+					'groove' => esc_html__( 'Groove', 'mas-addons-for-elementor' ),
 				),
 				'selectors' => array(
 					'{{WRAPPER}} .mas-job-search-submit button' => 'border-style: {{VALUE}};',
@@ -1593,7 +1593,7 @@ class Jobs_Filter extends Base_Widget {
 		$this->add_control(
 			'search_border_width',
 			array(
-				'label'     => esc_html__( 'Width', 'mas-elementor' ),
+				'label'     => esc_html__( 'Width', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::DIMENSIONS,
 				'selectors' => array(
 					'{{WRAPPER}} .mas-job-search-submit button' => 'border-width: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
@@ -1607,7 +1607,7 @@ class Jobs_Filter extends Base_Widget {
 		$this->add_control(
 			'search_border_color',
 			array(
-				'label'     => esc_html__( 'Color', 'mas-elementor' ),
+				'label'     => esc_html__( 'Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'default'   => '',
 				'selectors' => array(
@@ -1622,22 +1622,22 @@ class Jobs_Filter extends Base_Widget {
 		$this->start_controls_tab(
 			'search_border_hover',
 			array(
-				'label' => esc_html__( 'Hover', 'mas-elementor' ),
+				'label' => esc_html__( 'Hover', 'mas-addons-for-elementor' ),
 			)
 		);
 
 		$this->add_control(
 			'search_hover_border',
 			array(
-				'label'     => esc_html__( 'Border Type', 'mas-elementor' ),
+				'label'     => esc_html__( 'Border Type', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::SELECT,
 				'options'   => array(
-					''       => esc_html__( 'None', 'mas-elementor' ),
-					'solid'  => esc_html__( 'Solid', 'mas-elementor' ),
-					'double' => esc_html__( 'Double', 'mas-elementor' ),
-					'dotted' => esc_html__( 'Dotted', 'mas-elementor' ),
-					'dashed' => esc_html__( 'Dashed', 'mas-elementor' ),
-					'groove' => esc_html__( 'Groove', 'mas-elementor' ),
+					''       => esc_html__( 'None', 'mas-addons-for-elementor' ),
+					'solid'  => esc_html__( 'Solid', 'mas-addons-for-elementor' ),
+					'double' => esc_html__( 'Double', 'mas-addons-for-elementor' ),
+					'dotted' => esc_html__( 'Dotted', 'mas-addons-for-elementor' ),
+					'dashed' => esc_html__( 'Dashed', 'mas-addons-for-elementor' ),
+					'groove' => esc_html__( 'Groove', 'mas-addons-for-elementor' ),
 				),
 				'selectors' => array(
 					'{{WRAPPER}} .mas-job-search-submit button:hover' => 'border-style: {{VALUE}};',
@@ -1648,7 +1648,7 @@ class Jobs_Filter extends Base_Widget {
 		$this->add_control(
 			'search_hover_border_width',
 			array(
-				'label'     => esc_html__( 'Width', 'mas-elementor' ),
+				'label'     => esc_html__( 'Width', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::DIMENSIONS,
 				'selectors' => array(
 					'{{WRAPPER}} .mas-job-search-submit button:hover' => 'border-width: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
@@ -1662,7 +1662,7 @@ class Jobs_Filter extends Base_Widget {
 		$this->add_control(
 			'search_hover_border_color',
 			array(
-				'label'     => esc_html__( 'Color', 'mas-elementor' ),
+				'label'     => esc_html__( 'Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'default'   => '',
 				'selectors' => array(
@@ -1680,7 +1680,7 @@ class Jobs_Filter extends Base_Widget {
 		$this->add_responsive_control(
 			'search_border_radius',
 			array(
-				'label'      => esc_html__( 'Border Radius', 'mas-elementor' ),
+				'label'      => esc_html__( 'Border Radius', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', '%', 'em' ),
 				'selectors'  => array(
@@ -1731,7 +1731,7 @@ class Jobs_Filter extends Base_Widget {
 				if ( 'yes' === $settings['show_category'] && '2' === $settings['category_position'] ) :
 					?>
 					<div class="mas-job-search-category">
-						<label class="sr-only" for="search_category"><?php echo esc_html__( 'Category', 'mas-elementor' ); ?></label>
+						<label class="sr-only" for="search_category"><?php echo esc_html__( 'Category', 'mas-addons-for-elementor' ); ?></label>
 						<select id="search_category" name="search_category">
 							<option value=""><?php echo esc_html( $settings['category_placeholder'] ); ?></option>
 							<?php foreach ( get_job_listing_categories() as $cat ) : ?>
@@ -1753,7 +1753,7 @@ class Jobs_Filter extends Base_Widget {
 				if ( 'yes' === $settings['show_category'] && '3' === $settings['category_position'] ) :
 					?>
 					<div class="mas-job-search-category">
-						<label class="sr-only" for="search_category"><?php echo esc_html__( 'Category', 'mas-elementor' ); ?></label>
+						<label class="sr-only" for="search_category"><?php echo esc_html__( 'Category', 'mas-addons-for-elementor' ); ?></label>
 						<select id="search_category" name="search_category">
 							<option value=""><?php echo esc_html( $settings['category_placeholder'] ); ?></option>
 							<?php foreach ( get_job_listing_categories() as $cat ) : ?>
