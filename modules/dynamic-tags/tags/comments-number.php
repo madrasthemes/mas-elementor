@@ -29,7 +29,7 @@ class Comments_Number extends \Elementor\Core\DynamicTags\Tag {
 	 * Get the title.
 	 */
 	public function get_title() {
-		return esc_html__( 'Comments Number', 'mas-elementor' );
+		return esc_html__( 'Comments Number', 'mas-addons-for-elementor' );
 	}
 	/**
 	 * Get the group.
@@ -53,36 +53,36 @@ class Comments_Number extends \Elementor\Core\DynamicTags\Tag {
 		$this->add_control(
 			'format_no_comments',
 			array(
-				'label'   => esc_html__( 'No Comments Format', 'mas-elementor' ),
-				'default' => esc_html__( 'No Responses', 'mas-elementor' ),
+				'label'   => esc_html__( 'No Comments Format', 'mas-addons-for-elementor' ),
+				'default' => esc_html__( 'No Responses', 'mas-addons-for-elementor' ),
 			)
 		);
 
 		$this->add_control(
 			'format_one_comments',
 			array(
-				'label'   => esc_html__( 'One Comment Format', 'mas-elementor' ),
-				'default' => esc_html__( 'One Response', 'mas-elementor' ),
+				'label'   => esc_html__( 'One Comment Format', 'mas-addons-for-elementor' ),
+				'default' => esc_html__( 'One Response', 'mas-addons-for-elementor' ),
 			)
 		);
 
 		$this->add_control(
 			'format_many_comments',
 			array(
-				'label'   => esc_html__( 'Many Comment Format', 'mas-elementor' ),
-				'default' => esc_html__( '{number} Responses', 'mas-elementor' ),
+				'label'   => esc_html__( 'Many Comment Format', 'mas-addons-for-elementor' ),
+				'default' => esc_html__( '{number} Responses', 'mas-addons-for-elementor' ),
 			)
 		);
 
 		$this->add_control(
 			'link_to',
 			array(
-				'label'   => esc_html__( 'Link', 'mas-elementor' ),
+				'label'   => esc_html__( 'Link', 'mas-addons-for-elementor' ),
 				'type'    => Controls_Manager::SELECT,
 				'default' => '',
 				'options' => array(
-					''              => esc_html__( 'None', 'mas-elementor' ),
-					'comments_link' => esc_html__( 'Comments Link', 'mas-elementor' ),
+					''              => esc_html__( 'None', 'mas-addons-for-elementor' ),
+					'comments_link' => esc_html__( 'Comments Link', 'mas-addons-for-elementor' ),
 				),
 			)
 		);

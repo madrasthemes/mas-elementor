@@ -27,7 +27,7 @@ class Job_Company_Twitter extends \Elementor\Core\DynamicTags\Tag {
 	 * Get the title.
 	 */
 	public function get_title() {
-		return esc_html__( 'Job Company Twitter', 'mas-elementor' );
+		return esc_html__( 'Job Company Twitter', 'mas-addons-for-elementor' );
 	}
 	/**
 	 * Get the group.

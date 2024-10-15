@@ -28,7 +28,7 @@ class ACF_Text extends \Elementor\Core\DynamicTags\Tag {
 	 * Get the title of dynamic acf-image.
 	 */
 	public function get_title() {
-		return esc_html__( 'ACF', 'mas-elementor' ) . ' ' . esc_html__( 'Field', 'mas-elementor' );
+		return esc_html__( 'ACF', 'mas-addons-for-elementor' ) . ' ' . esc_html__( 'Field', 'mas-addons-for-elementor' );
 	}
 	/**
 	 * Get the group of dynamic acf-image.
@@ -128,12 +128,12 @@ class ACF_Text extends \Elementor\Core\DynamicTags\Tag {
 		$this->add_control(
 			'post_type_switch',
 			array(
-				'label'   => esc_html__( 'Options', 'mas-elementor' ),
+				'label'   => esc_html__( 'Options', 'mas-addons-for-elementor' ),
 				'type'    => Controls_Manager::SELECT,
 				'default' => 'default',
 				'options' => array(
-					'default' => esc_html__( 'Default', 'mas-elementor' ),
-					'user'    => esc_html__( 'User', 'mas-elementor' ),
+					'default' => esc_html__( 'Default', 'mas-addons-for-elementor' ),
+					'user'    => esc_html__( 'User', 'mas-addons-for-elementor' ),
 				),
 			)
 		);

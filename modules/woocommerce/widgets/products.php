@@ -51,7 +51,7 @@ class Products extends Products_Base {
 	 * @return string
 	 */
 	public function get_title() {
-		return __( 'Products', 'mas-elementor' );
+		return __( 'Products', 'mas-addons-for-elementor' );
 	}
 
 	/**
@@ -150,7 +150,7 @@ class Products extends Products_Base {
 		$this->start_controls_section(
 			'section_query',
 			array(
-				'label' => __( 'Query', 'mas-elementor' ),
+				'label' => __( 'Query', 'mas-addons-for-elementor' ),
 				'tab'   => Controls_Manager::TAB_CONTENT,
 			)
 		);
@@ -165,39 +165,39 @@ class Products extends Products_Base {
 					'post_type' => array(
 						'default' => 'product',
 						'options' => array(
-							'current_query'    => __( 'Current Query', 'mas-elementor' ),
-							'product'          => __( 'Latest Products', 'mas-elementor' ),
-							'sale'             => __( 'Sale', 'mas-elementor' ),
-							'featured'         => __( 'Featured', 'mas-elementor' ),
-							'by_id'            => _x( 'Manual Selection', 'Posts Query Control', 'mas-elementor' ),
-							'related_products' => esc_html__( 'Related Products', 'mas-elementor' ),
-							'upsells'          => esc_html__( 'Upsells', 'mas-elementor' ),
-							'cross_sells'      => esc_html__( 'Cross-Sells', 'mas-elementor' ),
-							'recently_viewed'  => esc_html__( 'Recently Viewed', 'mas-elementor' ),
+							'current_query'    => __( 'Current Query', 'mas-addons-for-elementor' ),
+							'product'          => __( 'Latest Products', 'mas-addons-for-elementor' ),
+							'sale'             => __( 'Sale', 'mas-addons-for-elementor' ),
+							'featured'         => __( 'Featured', 'mas-addons-for-elementor' ),
+							'by_id'            => _x( 'Manual Selection', 'Posts Query Control', 'mas-addons-for-elementor' ),
+							'related_products' => esc_html__( 'Related Products', 'mas-addons-for-elementor' ),
+							'upsells'          => esc_html__( 'Upsells', 'mas-addons-for-elementor' ),
+							'cross_sells'      => esc_html__( 'Cross-Sells', 'mas-addons-for-elementor' ),
+							'recently_viewed'  => esc_html__( 'Recently Viewed', 'mas-addons-for-elementor' ),
 						),
 					),
 					'orderby'   => array(
 						'default' => 'date',
 						'options' => array(
-							'date'       => __( 'Date', 'mas-elementor' ),
-							'title'      => __( 'Title', 'mas-elementor' ),
-							'price'      => __( 'Price', 'mas-elementor' ),
-							'popularity' => __( 'Popularity', 'mas-elementor' ),
-							'rating'     => __( 'Rating', 'mas-elementor' ),
-							'rand'       => __( 'Random', 'mas-elementor' ),
-							'menu_order' => __( 'Menu Order', 'mas-elementor' ),
+							'date'       => __( 'Date', 'mas-addons-for-elementor' ),
+							'title'      => __( 'Title', 'mas-addons-for-elementor' ),
+							'price'      => __( 'Price', 'mas-addons-for-elementor' ),
+							'popularity' => __( 'Popularity', 'mas-addons-for-elementor' ),
+							'rating'     => __( 'Rating', 'mas-addons-for-elementor' ),
+							'rand'       => __( 'Random', 'mas-addons-for-elementor' ),
+							'menu_order' => __( 'Menu Order', 'mas-addons-for-elementor' ),
 						),
 					),
 					'exclude'   => array(
 						'options' => array(
-							'current_post'     => __( 'Current Post', 'mas-elementor' ),
-							'manual_selection' => __( 'Manual Selection', 'mas-elementor' ),
-							'terms'            => __( 'Term', 'mas-elementor' ),
+							'current_post'     => __( 'Current Post', 'mas-addons-for-elementor' ),
+							'manual_selection' => __( 'Manual Selection', 'mas-addons-for-elementor' ),
+							'terms'            => __( 'Term', 'mas-addons-for-elementor' ),
 						),
 					),
 					'include'   => array(
 						'options' => array(
-							'terms' => __( 'Term', 'mas-elementor' ),
+							'terms' => __( 'Term', 'mas-addons-for-elementor' ),
 						),
 					),
 				),
@@ -238,19 +238,19 @@ class Products extends Products_Base {
 		$this->start_controls_section(
 			'section_content',
 			array(
-				'label' => __( 'Content', 'mas-elementor' ),
+				'label' => __( 'Content', 'mas-addons-for-elementor' ),
 			)
 		);
 
 		$this->add_control(
 			'template_options',
 			array(
-				'label'       => __( 'Select Template By', 'mas-elementor' ),
+				'label'       => __( 'Select Template By', 'mas-addons-for-elementor' ),
 				'type'        => Controls_Manager::SELECT,
 				'default'     => 'id',
 				'options'     => array(
-					'id' => esc_html__( 'ID', 'mas-elementor' ),
-					'slug'  => esc_html__( 'Slug', 'mas-elementor' ),
+					'id' => esc_html__( 'ID', 'mas-addons-for-elementor' ),
+					'slug'  => esc_html__( 'Slug', 'mas-addons-for-elementor' ),
 				),
 			)
 		);
@@ -259,7 +259,7 @@ class Products extends Products_Base {
 		$this->add_control(
 			'select_template',
 			array(
-				'label'     => esc_html__( 'MAS Post Item', 'mas-elementor' ),
+				'label'     => esc_html__( 'MAS Post Item', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::SELECT,
 				'options'   => $templates,
 				'condition' => array(
@@ -273,7 +273,7 @@ class Products extends Products_Base {
 		$this->add_control(
 			'slug_select_template',
 			array(
-				'label'     => esc_html__( 'MAS Post Item', 'mas-elementor' ),
+				'label'     => esc_html__( 'MAS Post Item', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::SELECT,
 				'options'   => $slug_options,
 				'condition' => array(
@@ -295,7 +295,7 @@ class Products extends Products_Base {
 		$this->add_control(
 			'enable_responsive_column',
 			array(
-				'label'     => __( 'Repeat style column', 'mas-elementor' ),
+				'label'     => __( 'Repeat style column', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::SWITCHER,
 				'default'   => 'no',
 				'condition' => array(
@@ -307,7 +307,7 @@ class Products extends Products_Base {
 		$this->add_responsive_control(
 			'responsive_columns',
 			array(
-				'label'                => esc_html__( 'Columns', 'mas-elementor' ),
+				'label'                => esc_html__( 'Columns', 'mas-addons-for-elementor' ),
 				'type'                 => Controls_Manager::SELECT,
 				'options'              => array(
 					'1' => '1',
@@ -334,7 +334,7 @@ class Products extends Products_Base {
 		$this->add_responsive_control(
 			'columns',
 			array(
-				'label'               => __( 'Columns', 'mas-elementor' ),
+				'label'               => __( 'Columns', 'mas-addons-for-elementor' ),
 				'type'                => Controls_Manager::NUMBER,
 				'prefix_class'        => 'mas-grid%s-',
 				'min'                 => 1,
@@ -364,7 +364,7 @@ class Products extends Products_Base {
 		$this->add_control(
 			'rows',
 			array(
-				'label'       => __( 'Rows', 'mas-elementor' ),
+				'label'       => __( 'Rows', 'mas-addons-for-elementor' ),
 				'type'        => Controls_Manager::NUMBER,
 				'default'     => Products_Renderer::DEFAULT_COLUMNS_AND_ROWS,
 				'render_type' => 'template',
@@ -382,7 +382,7 @@ class Products extends Products_Base {
 		$this->add_control(
 			'swiper_posts_per_page',
 			array(
-				'label'       => __( 'Posts Per Page', 'mas-elementor' ),
+				'label'       => __( 'Posts Per Page', 'mas-addons-for-elementor' ),
 				'type'        => Controls_Manager::NUMBER,
 				'default'     => 6,
 				'render_type' => 'template',
@@ -395,7 +395,7 @@ class Products extends Products_Base {
 		$this->add_control(
 			'paginate',
 			array(
-				'label'     => __( 'Pagination', 'mas-elementor' ),
+				'label'     => __( 'Pagination', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::SWITCHER,
 				'default'   => '',
 				'condition' => array(
@@ -407,7 +407,7 @@ class Products extends Products_Base {
 		$this->add_control(
 			'enable_shop_control_bar',
 			array(
-				'label'     => __( 'Enable shop control bar', 'mas-elementor' ),
+				'label'     => __( 'Enable shop control bar', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::SWITCHER,
 				'default'   => '',
 				'condition' => array(
@@ -421,7 +421,7 @@ class Products extends Products_Base {
 		$this->add_control(
 			'pag_mid_size',
 			array(
-				'label'     => __( 'Pagination Mid Size', 'mas-elementor' ),
+				'label'     => __( 'Pagination Mid Size', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::NUMBER,
 				'default'   => 1,
 				'condition' => array(
@@ -434,7 +434,7 @@ class Products extends Products_Base {
 		$this->add_control(
 			'pag_end_size',
 			array(
-				'label'     => __( 'Pagination End Size', 'mas-elementor' ),
+				'label'     => __( 'Pagination End Size', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::NUMBER,
 				'default'   => 1,
 				'condition' => array(
@@ -447,7 +447,7 @@ class Products extends Products_Base {
 		$this->add_control(
 			'enable_prev_next',
 			array(
-				'label'     => __( 'Enable Previous Next', 'mas-elementor' ),
+				'label'     => __( 'Enable Previous Next', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::SWITCHER,
 				'default'   => 'yes',
 				'condition' => array(
@@ -460,7 +460,7 @@ class Products extends Products_Base {
 		$this->add_control(
 			'allow_order',
 			array(
-				'label'     => __( 'Allow Order', 'mas-elementor' ),
+				'label'     => __( 'Allow Order', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::SWITCHER,
 				'default'   => '',
 				'condition' => array(
@@ -475,7 +475,7 @@ class Products extends Products_Base {
 			'wc_notice_frontpage',
 			array(
 				'type'            => Controls_Manager::RAW_HTML,
-				'raw'             => __( 'Ordering is not available if this widget is placed in your front page. Visible on frontend only.', 'mas-elementor' ),
+				'raw'             => __( 'Ordering is not available if this widget is placed in your front page. Visible on frontend only.', 'mas-addons-for-elementor' ),
 				'content_classes' => 'elementor-panel-alert elementor-panel-alert-info',
 				'condition'       => array(
 					'paginate'         => 'yes',
@@ -488,7 +488,7 @@ class Products extends Products_Base {
 		$this->add_control(
 			'show_result_count',
 			array(
-				'label'     => __( 'Show Result Count', 'mas-elementor' ),
+				'label'     => __( 'Show Result Count', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::SWITCHER,
 				'default'   => '',
 				'condition' => array(
@@ -501,13 +501,13 @@ class Products extends Products_Base {
 		$this->add_control(
 			'result_count_position',
 			array(
-				'label'       => __( 'Result Count Position', 'mas-elementor' ),
+				'label'       => __( 'Result Count Position', 'mas-addons-for-elementor' ),
 				'type'        => Controls_Manager::SELECT,
-				'description' => esc_html__( 'Display result count before or after product', 'mas-elementor' ),
+				'description' => esc_html__( 'Display result count before or after product', 'mas-addons-for-elementor' ),
 				'default'     => 'before',
 				'options'     => array(
-					'before' => esc_html__( 'Before', 'mas-elementor' ),
-					'after'  => esc_html__( 'After', 'mas-elementor' ),
+					'before' => esc_html__( 'Before', 'mas-addons-for-elementor' ),
+					'after'  => esc_html__( 'After', 'mas-addons-for-elementor' ),
 				),
 				'condition'   => array(
 					'paginate'          => 'yes',
@@ -521,7 +521,7 @@ class Products extends Products_Base {
 			'enable_carousel',
 			array(
 				'type'      => Controls_Manager::SWITCHER,
-				'label'     => esc_html__( 'Enable Carousel', 'mas-elementor' ),
+				'label'     => esc_html__( 'Enable Carousel', 'mas-addons-for-elementor' ),
 				'default'   => 'no',
 				'condition' => array(
 					'_skin' => 'mas-products-skin',
@@ -538,7 +538,7 @@ class Products extends Products_Base {
 		$this->start_controls_section(
 			'result_count_style_section',
 			array(
-				'label'     => esc_html__( 'Result Count', 'mas-elementor' ),
+				'label'     => esc_html__( 'Result Count', 'mas-addons-for-elementor' ),
 				'tab'       => Controls_Manager::TAB_STYLE,
 				'condition' => array(
 					'paginate'          => 'yes',
@@ -551,7 +551,7 @@ class Products extends Products_Base {
 		$this->add_control(
 			'result_count_color',
 			array(
-				'label'     => esc_html__( 'Color', 'mas-elementor' ),
+				'label'     => esc_html__( 'Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
 					'{{WRAPPER}} .woocommerce-result-count' => 'color: {{VALUE}} !important;',
@@ -573,7 +573,7 @@ class Products extends Products_Base {
 		$this->add_responsive_control(
 			'result_count_style_margin_option',
 			array(
-				'label'      => esc_html__( 'Margin', 'mas-elementor' ),
+				'label'      => esc_html__( 'Margin', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', 'em', '%', 'rem' ),
 				'selectors'  => array(
@@ -585,7 +585,7 @@ class Products extends Products_Base {
 		$this->add_responsive_control(
 			'result_count_style_padding_option',
 			array(
-				'label'      => esc_html__( 'Padding', 'mas-elementor' ),
+				'label'      => esc_html__( 'Padding', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', 'em', '%', 'rem' ),
 				'selectors'  => array(
@@ -599,7 +599,7 @@ class Products extends Products_Base {
 		$this->start_controls_section(
 			'shop_control_bar_bottom_flex_controls',
 			array(
-				'label'     => esc_html__( 'Pagination and Result Count', 'mas-elementor' ),
+				'label'     => esc_html__( 'Pagination and Result Count', 'mas-addons-for-elementor' ),
 				'tab'       => Controls_Manager::TAB_CONTENT,
 				'condition' => array(
 					'paginate'              => 'yes',
@@ -625,7 +625,7 @@ class Products extends Products_Base {
 		$this->start_controls_section(
 			'section_mas_product_style_controls',
 			array(
-				'label' => __( 'Swiper Style', 'mas-elementor' ),
+				'label' => __( 'Swiper Style', 'mas-addons-for-elementor' ),
 				'tab'   => Controls_Manager::TAB_STYLE,
 			)
 		);
@@ -633,7 +633,7 @@ class Products extends Products_Base {
 		$this->add_responsive_control(
 			'mas_product_carousel_padding_option',
 			array(
-				'label'      => esc_html__( 'Swiper Padding', 'mas-elementor' ),
+				'label'      => esc_html__( 'Swiper Padding', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', 'em', '%', 'rem' ),
 				'selectors'  => array(
@@ -645,7 +645,7 @@ class Products extends Products_Base {
 		$this->add_responsive_control(
 			'mas_product_slide_padding_option',
 			array(
-				'label'      => esc_html__( 'Swiper Slide Padding', 'mas-elementor' ),
+				'label'      => esc_html__( 'Swiper Slide Padding', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', 'em', '%', 'rem' ),
 				'selectors'  => array(
@@ -657,7 +657,7 @@ class Products extends Products_Base {
 		$this->add_responsive_control(
 			'mas_product_carousel_swiper_width',
 			array(
-				'label'      => esc_html__( 'Swiper Width', 'mas-elementor' ),
+				'label'      => esc_html__( 'Swiper Width', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::SLIDER,
 				'size_units' => array( 'px', '%', 'em', 'rem', 'custom' ),
 				'range'      => array(
@@ -677,7 +677,7 @@ class Products extends Products_Base {
 		$this->start_controls_section(
 			'mas_section_advanced',
 			array(
-				'label' => esc_html__( 'Advanced', 'mas-elementor' ),
+				'label' => esc_html__( 'Advanced', 'mas-addons-for-elementor' ),
 				'tab'   => Controls_Manager::TAB_CONTENT,
 			)
 		);
@@ -685,9 +685,9 @@ class Products extends Products_Base {
 		$this->add_control(
 			'nothing_found_message',
 			array(
-				'label'   => esc_html__( 'Nothing Found Message', 'mas-elementor' ),
+				'label'   => esc_html__( 'Nothing Found Message', 'mas-addons-for-elementor' ),
 				'type'    => Controls_Manager::TEXTAREA,
-				'default' => esc_html__( 'No Products Found', 'mas-elementor' ),
+				'default' => esc_html__( 'No Products Found', 'mas-addons-for-elementor' ),
 			)
 		);
 
@@ -697,7 +697,7 @@ class Products extends Products_Base {
 			'section_nothing_found_style',
 			array(
 				'tab'       => Controls_Manager::TAB_STYLE,
-				'label'     => esc_html__( 'Nothing Found Message', 'mas-elementor' ),
+				'label'     => esc_html__( 'Nothing Found Message', 'mas-addons-for-elementor' ),
 				'condition' => array(
 					'nothing_found_message!' => '',
 				),
@@ -707,7 +707,7 @@ class Products extends Products_Base {
 		$this->add_control(
 			'nothing_found_color',
 			array(
-				'label'     => esc_html__( 'Color', 'mas-elementor' ),
+				'label'     => esc_html__( 'Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'global'    => array(
 					'default' => Global_Colors::COLOR_TEXT,
@@ -757,7 +757,7 @@ class Products extends Products_Base {
 		$this->add_control(
 			'nothing_found_border_radius',
 			array(
-				'label'      => esc_html__( 'Border Radius', 'mas-elementor' ),
+				'label'      => esc_html__( 'Border Radius', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::SLIDER,
 				'size_units' => array( '%', 'px', 'em', 'rem', 'custom' ),
 				'range'      => array(
@@ -780,7 +780,7 @@ class Products extends Products_Base {
 		$this->add_control(
 			'nothing_found_bg_color',
 			array(
-				'label'     => __( 'Background Color', 'mas-elementor' ),
+				'label'     => __( 'Background Color', 'mas-addons-for-elementor' ),
 				'separator' => 'before',
 				'type'      => Controls_Manager::COLOR,
 				'default'   => '##f9fafa',
@@ -793,7 +793,7 @@ class Products extends Products_Base {
 		$this->add_responsive_control(
 			'mas_product_nothing_found_margin_option',
 			array(
-				'label'      => esc_html__( 'Margin', 'mas-elementor' ),
+				'label'      => esc_html__( 'Margin', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', 'em', '%', 'rem' ),
 				'selectors'  => array(
@@ -805,7 +805,7 @@ class Products extends Products_Base {
 		$this->add_responsive_control(
 			'mas_product_nothing_found_padding_option',
 			array(
-				'label'      => esc_html__( 'Padding', 'mas-elementor' ),
+				'label'      => esc_html__( 'Padding', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', 'em', '%', 'rem' ),
 				'selectors'  => array(
@@ -832,7 +832,7 @@ class Products extends Products_Base {
 		$this->start_controls_section(
 			'section_carousel_attributes',
 			array(
-				'label'     => __( 'Carousel', 'mas-elementor' ),
+				'label'     => __( 'Carousel', 'mas-addons-for-elementor' ),
 				'tab'       => Controls_Manager::TAB_CONTENT,
 				'condition' => array( 'enable_carousel' => 'yes' ),
 			)
@@ -842,12 +842,12 @@ class Products extends Products_Base {
 			'carousel_effect',
 			array(
 				'type'               => Controls_Manager::SELECT,
-				'label'              => esc_html__( 'Effect', 'mas-elementor' ),
+				'label'              => esc_html__( 'Effect', 'mas-addons-for-elementor' ),
 				'default'            => 'slide',
 				'options'            => array(
-					''      => esc_html__( 'None', 'mas-elementor' ),
-					'slide' => esc_html__( 'Slide', 'mas-elementor' ),
-					'fade'  => esc_html__( 'Fade', 'mas-elementor' ),
+					''      => esc_html__( 'None', 'mas-addons-for-elementor' ),
+					'slide' => esc_html__( 'Slide', 'mas-addons-for-elementor' ),
+					'fade'  => esc_html__( 'Fade', 'mas-addons-for-elementor' ),
 				),
 				'condition'          => array(
 					'enable_carousel' => 'yes',
@@ -860,7 +860,7 @@ class Products extends Products_Base {
 			'enable_grid',
 			array(
 				'type'      => Controls_Manager::SWITCHER,
-				'label'     => esc_html__( 'Enable Grid', 'mas-elementor' ),
+				'label'     => esc_html__( 'Enable Grid', 'mas-addons-for-elementor' ),
 				'default'   => 'no',
 				'condition' => array(
 					'enable_carousel' => 'yes',
@@ -871,7 +871,7 @@ class Products extends Products_Base {
 
 		$carousel_rows = array(
 			'type'               => Controls_Manager::NUMBER,
-			'label'              => esc_html__( 'Rows', 'mas-elementor' ),
+			'label'              => esc_html__( 'Rows', 'mas-addons-for-elementor' ),
 			'min'                => 1,
 			'max'                => 10,
 			'default'            => 1,
@@ -890,7 +890,7 @@ class Products extends Products_Base {
 
 		$slides_per_view = array(
 			'type'               => Controls_Manager::NUMBER,
-			'label'              => esc_html__( 'Slides Per View', 'mas-elementor' ),
+			'label'              => esc_html__( 'Slides Per View', 'mas-addons-for-elementor' ),
 			'min'                => 1,
 			'max'                => 10,
 			'default'            => 1,
@@ -903,7 +903,7 @@ class Products extends Products_Base {
 
 		$slides_to_scroll = array(
 			'type'               => Controls_Manager::NUMBER,
-			'label'              => esc_html__( 'Slides To Scroll', 'mas-elementor' ),
+			'label'              => esc_html__( 'Slides To Scroll', 'mas-addons-for-elementor' ),
 			'min'                => 1,
 			'max'                => 10,
 			'default'            => 1,
@@ -917,8 +917,8 @@ class Products extends Products_Base {
 
 		$space_between = array(
 			'type'        => Controls_Manager::NUMBER,
-			'label'       => esc_html__( 'Space Between', 'mas-elementor' ),
-			'description' => esc_html__( 'Set Space between each Slides', 'mas-elementor' ),
+			'label'       => esc_html__( 'Space Between', 'mas-addons-for-elementor' ),
+			'description' => esc_html__( 'Set Space between each Slides', 'mas-addons-for-elementor' ),
 			'min'         => 0,
 			'max'         => 100,
 			'default'     => 8,
@@ -955,10 +955,10 @@ class Products extends Products_Base {
 			'enable_space_between',
 			array(
 				'type'      => Controls_Manager::SWITCHER,
-				'label'     => esc_html__( 'Enable Space Between', 'mas-elementor' ),
+				'label'     => esc_html__( 'Enable Space Between', 'mas-addons-for-elementor' ),
 				'default'   => 'yes',
-				'label_off' => esc_html__( 'Hide', 'mas-elementor' ),
-				'label_on'  => esc_html__( 'Show', 'mas-elementor' ),
+				'label_off' => esc_html__( 'Hide', 'mas-addons-for-elementor' ),
+				'label_on'  => esc_html__( 'Show', 'mas-addons-for-elementor' ),
 				'condition' => array(
 					'carousel_effect' => 'slide',
 					'enable_carousel' => 'yes',
@@ -975,10 +975,10 @@ class Products extends Products_Base {
 			'center_slides',
 			array(
 				'type'               => Controls_Manager::SWITCHER,
-				'label'              => esc_html__( 'Center Slides', 'mas-elementor' ),
+				'label'              => esc_html__( 'Center Slides', 'mas-addons-for-elementor' ),
 				'default'            => 'no',
-				'label_off'          => esc_html__( 'Hide', 'mas-elementor' ),
-				'label_on'           => esc_html__( 'Show', 'mas-elementor' ),
+				'label_off'          => esc_html__( 'Hide', 'mas-addons-for-elementor' ),
+				'label_on'           => esc_html__( 'Show', 'mas-addons-for-elementor' ),
 				'condition'          => array(
 					'carousel_effect' => 'slide',
 					'enable_carousel' => 'yes',
@@ -991,7 +991,7 @@ class Products extends Products_Base {
 		$this->add_control(
 			'mas_products_swiper_height',
 			array(
-				'label'                => esc_html__( 'Height', 'mas-elementor' ),
+				'label'                => esc_html__( 'Height', 'mas-addons-for-elementor' ),
 				'type'                 => Controls_Manager::SELECT,
 				'default'              => 'auto',
 				'options'              => array(
@@ -1015,10 +1015,10 @@ class Products extends Products_Base {
 			'show_arrows',
 			array(
 				'type'      => Controls_Manager::SWITCHER,
-				'label'     => esc_html__( 'Arrows', 'mas-elementor' ),
+				'label'     => esc_html__( 'Arrows', 'mas-addons-for-elementor' ),
 				'default'   => 'no',
-				'label_off' => esc_html__( 'Hide', 'mas-elementor' ),
-				'label_on'  => esc_html__( 'Show', 'mas-elementor' ),
+				'label_off' => esc_html__( 'Hide', 'mas-addons-for-elementor' ),
+				'label_on'  => esc_html__( 'Show', 'mas-addons-for-elementor' ),
 				'condition' => array(
 					'enable_carousel'     => 'yes',
 					'show_custom_arrows!' => 'yes',
@@ -1030,10 +1030,10 @@ class Products extends Products_Base {
 			'hide_inactive_arrows',
 			array(
 				'type'      => Controls_Manager::SWITCHER,
-				'label'     => esc_html__( 'Hide Inactive Arrow', 'mas-elementor' ),
+				'label'     => esc_html__( 'Hide Inactive Arrow', 'mas-addons-for-elementor' ),
 				'default'   => 'no',
-				'label_off' => esc_html__( 'Hide', 'mas-elementor' ),
-				'label_on'  => esc_html__( 'Show', 'mas-elementor' ),
+				'label_off' => esc_html__( 'Hide', 'mas-addons-for-elementor' ),
+				'label_on'  => esc_html__( 'Show', 'mas-addons-for-elementor' ),
 				'condition'    => array(
 					'enable_carousel'     => 'yes',
 					'show_arrows'         => 'yes',
@@ -1048,10 +1048,10 @@ class Products extends Products_Base {
 			'hide_responsive_arrows',
 			array(
 				'type'         => Controls_Manager::SWITCHER,
-				'label'        => esc_html__( 'Hide Arrow Responsive', 'mas-elementor' ),
+				'label'        => esc_html__( 'Hide Arrow Responsive', 'mas-addons-for-elementor' ),
 				'default'      => 'no',
-				'label_off'    => esc_html__( 'Hide', 'mas-elementor' ),
-				'label_on'     => esc_html__( 'Show', 'mas-elementor' ),
+				'label_off'    => esc_html__( 'Hide', 'mas-addons-for-elementor' ),
+				'label_on'     => esc_html__( 'Show', 'mas-addons-for-elementor' ),
 				'condition'    => array(
 					'enable_carousel'     => 'yes',
 					'show_arrows'         => 'yes',
@@ -1066,10 +1066,10 @@ class Products extends Products_Base {
 			'show_custom_arrows',
 			array(
 				'type'      => Controls_Manager::SWITCHER,
-				'label'     => esc_html__( 'Custom Arrows', 'mas-elementor' ),
+				'label'     => esc_html__( 'Custom Arrows', 'mas-addons-for-elementor' ),
 				'default'   => 'no',
-				'label_off' => esc_html__( 'Hide', 'mas-elementor' ),
-				'label_on'  => esc_html__( 'Show', 'mas-elementor' ),
+				'label_off' => esc_html__( 'Hide', 'mas-addons-for-elementor' ),
+				'label_on'  => esc_html__( 'Show', 'mas-addons-for-elementor' ),
 				'condition' => array(
 					'enable_carousel' => 'yes',
 					'show_arrows!'    => 'yes',
@@ -1080,7 +1080,7 @@ class Products extends Products_Base {
 		$this->add_control(
 			'custom_prev_id',
 			array(
-				'label'     => esc_html__( 'Previous Arrow ID', 'mas-elementor' ),
+				'label'     => esc_html__( 'Previous Arrow ID', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::TEXT,
 				'condition' => array(
 					'enable_carousel'    => 'yes',
@@ -1093,7 +1093,7 @@ class Products extends Products_Base {
 		$this->add_control(
 			'custom_next_id',
 			array(
-				'label'     => __( 'Next Arrow ID', 'mas-elementor' ),
+				'label'     => __( 'Next Arrow ID', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::TEXT,
 				'condition' => array(
 					'enable_carousel'    => 'yes',
@@ -1106,7 +1106,7 @@ class Products extends Products_Base {
 		$this->add_control(
 			'speed',
 			array(
-				'label'              => esc_html__( 'Transition Duration', 'mas-elementor' ),
+				'label'              => esc_html__( 'Transition Duration', 'mas-addons-for-elementor' ),
 				'type'               => Controls_Manager::NUMBER,
 				'default'            => 500,
 				'step'               => 100,
@@ -1121,7 +1121,7 @@ class Products extends Products_Base {
 		$this->add_control(
 			'autoplay',
 			array(
-				'label'              => esc_html__( 'Autoplay', 'mas-elementor' ),
+				'label'              => esc_html__( 'Autoplay', 'mas-addons-for-elementor' ),
 				'type'               => Controls_Manager::SWITCHER,
 				'default'            => 'yes',
 				'separator'          => 'before',
@@ -1136,7 +1136,7 @@ class Products extends Products_Base {
 		$this->add_control(
 			'autoplay_speed',
 			array(
-				'label'              => esc_html__( 'Autoplay Speed', 'mas-elementor' ),
+				'label'              => esc_html__( 'Autoplay Speed', 'mas-addons-for-elementor' ),
 				'type'               => Controls_Manager::NUMBER,
 				'default'            => 5000,
 				'condition'          => array(
@@ -1151,7 +1151,7 @@ class Products extends Products_Base {
 		$this->add_control(
 			'loop',
 			array(
-				'label'              => esc_html__( 'Infinite Loop', 'mas-elementor' ),
+				'label'              => esc_html__( 'Infinite Loop', 'mas-addons-for-elementor' ),
 				'type'               => Controls_Manager::SWITCHER,
 				'default'            => 'yes',
 				'condition'          => array(
@@ -1164,7 +1164,7 @@ class Products extends Products_Base {
 		$this->add_control(
 			'pause_on_hover',
 			array(
-				'label'              => esc_html__( 'Pause on Hover', 'mas-elementor' ),
+				'label'              => esc_html__( 'Pause on Hover', 'mas-addons-for-elementor' ),
 				'type'               => Controls_Manager::SWITCHER,
 				'default'            => 'yes',
 				'condition'          => array(
@@ -1180,10 +1180,10 @@ class Products extends Products_Base {
 			'show_pagination',
 			array(
 				'type'               => Controls_Manager::SWITCHER,
-				'label'              => esc_html__( 'Enable Pagination', 'mas-elementor' ),
+				'label'              => esc_html__( 'Enable Pagination', 'mas-addons-for-elementor' ),
 				'default'            => 'yes',
-				'label_off'          => esc_html__( 'Hide', 'mas-elementor' ),
-				'label_on'           => esc_html__( 'Show', 'mas-elementor' ),
+				'label_off'          => esc_html__( 'Hide', 'mas-addons-for-elementor' ),
+				'label_on'           => esc_html__( 'Show', 'mas-addons-for-elementor' ),
 				'condition'          => array(
 					'enable_carousel' => 'yes',
 				),
@@ -1195,10 +1195,10 @@ class Products extends Products_Base {
 			'hide_responsive_pagination',
 			array(
 				'type'         => Controls_Manager::SWITCHER,
-				'label'        => esc_html__( 'Hide Pagination Responsive', 'mas-elementor' ),
+				'label'        => esc_html__( 'Hide Pagination Responsive', 'mas-addons-for-elementor' ),
 				'default'      => 'no',
-				'label_off'    => esc_html__( 'Hide', 'mas-elementor' ),
-				'label_on'     => esc_html__( 'Show', 'mas-elementor' ),
+				'label_off'    => esc_html__( 'Hide', 'mas-addons-for-elementor' ),
+				'label_on'     => esc_html__( 'Show', 'mas-addons-for-elementor' ),
 				'condition'    => array(
 					'enable_carousel' => 'yes',
 					'show_pagination' => 'yes',
@@ -1211,13 +1211,13 @@ class Products extends Products_Base {
 		$this->add_control(
 			'pagination',
 			array(
-				'label'     => esc_html__( 'Pagination', 'mas-elementor' ),
+				'label'     => esc_html__( 'Pagination', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::SELECT,
 				'default'   => 'bullets',
 				'options'   => array(
-					'bullets'     => esc_html__( 'Dots', 'mas-elementor' ),
-					'fraction'    => esc_html__( 'Fraction', 'mas-elementor' ),
-					'progressbar' => esc_html__( 'Progress', 'mas-elementor' ),
+					'bullets'     => esc_html__( 'Dots', 'mas-addons-for-elementor' ),
+					'fraction'    => esc_html__( 'Fraction', 'mas-addons-for-elementor' ),
+					'progressbar' => esc_html__( 'Progress', 'mas-addons-for-elementor' ),
 				),
 				'condition' => array(
 					'enable_carousel' => 'yes',
@@ -1239,7 +1239,7 @@ class Products extends Products_Base {
 		$this->start_controls_section(
 			'masposts_swiper_button',
 			array(
-				'label'     => esc_html__( 'Button', 'mas-elementor' ),
+				'label'     => esc_html__( 'Button', 'mas-addons-for-elementor' ),
 				'tab'       => Controls_Manager::TAB_CONTENT,
 				'condition' => array(
 					'enable_carousel' => 'yes',
@@ -1259,7 +1259,7 @@ class Products extends Products_Base {
 		$this->start_controls_section(
 			'section_shop_control_bar__style',
 			array(
-				'label'     => __( 'Shop Control Bar', 'mas-elementor' ),
+				'label'     => __( 'Shop Control Bar', 'mas-addons-for-elementor' ),
 				'tab'       => Controls_Manager::TAB_STYLE,
 				'condition' => array(
 					'paginate'                => 'yes',
@@ -1276,7 +1276,7 @@ class Products extends Products_Base {
 		$this->start_controls_section(
 			'section_shop_view_switcher_style',
 			array(
-				'label'     => __( 'Shop view switcher', 'mas-elementor' ),
+				'label'     => __( 'Shop view switcher', 'mas-addons-for-elementor' ),
 				'tab'       => Controls_Manager::TAB_STYLE,
 				'condition' => array(
 					'paginate'                => 'yes',
@@ -1293,7 +1293,7 @@ class Products extends Products_Base {
 		$this->start_controls_section(
 			'section_shop_control_bar_advanced_pagination_style',
 			array(
-				'label'     => __( 'Shop Control Advanced Pagination', 'mas-elementor' ),
+				'label'     => __( 'Shop Control Advanced Pagination', 'mas-addons-for-elementor' ),
 				'tab'       => Controls_Manager::TAB_STYLE,
 				'condition' => array(
 					'paginate'                => 'yes',
@@ -1310,7 +1310,7 @@ class Products extends Products_Base {
 		$this->start_controls_section(
 			'section_shop_control_bar_ordering_style',
 			array(
-				'label'     => __( 'Shop Control Ordering', 'mas-elementor' ),
+				'label'     => __( 'Shop Control Ordering', 'mas-addons-for-elementor' ),
 				'tab'       => Controls_Manager::TAB_STYLE,
 				'condition' => array(
 					'paginate'                => 'yes',
@@ -1336,7 +1336,7 @@ class Products extends Products_Base {
 		$this->add_control(
 			'shop_control_bar_bg_color',
 			array(
-				'label'     => __( 'Background Color', 'mas-elementor' ),
+				'label'     => __( 'Background Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
 					$wrapper => 'background-color: {{VALUE}}',
@@ -1356,7 +1356,7 @@ class Products extends Products_Base {
 			'shop_control_bar_border_radius',
 			array(
 				'type'       => Controls_Manager::DIMENSIONS,
-				'label'      => esc_html__( 'Border Radius', 'mas-elementor' ),
+				'label'      => esc_html__( 'Border Radius', 'mas-addons-for-elementor' ),
 				'size_units' => array( 'px', '%', 'em', 'custom' ),
 				'selectors'  => array(
 					$wrapper => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
@@ -1368,7 +1368,7 @@ class Products extends Products_Base {
 			'shop_control_bar__padding',
 			array(
 				'type'       => Controls_Manager::DIMENSIONS,
-				'label'      => esc_html__( 'Padding', 'mas-elementor' ),
+				'label'      => esc_html__( 'Padding', 'mas-addons-for-elementor' ),
 				'size_units' => array( 'px', '%', 'em', 'custom' ),
 				'default'    => array(
 					'top'      => 2.800,
@@ -1388,7 +1388,7 @@ class Products extends Products_Base {
 			'shop_control_bar__margin',
 			array(
 				'type'       => Controls_Manager::DIMENSIONS,
-				'label'      => esc_html__( 'Margin', 'mas-elementor' ),
+				'label'      => esc_html__( 'Margin', 'mas-addons-for-elementor' ),
 				'size_units' => array( 'px', '%', 'em', 'custom' ),
 				'selectors'  => array(
 					$wrapper => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
@@ -1408,7 +1408,7 @@ class Products extends Products_Base {
 		$this->add_control(
 			'shop_view_switcher_icons_color',
 			array(
-				'label'     => __( 'Icon Color', 'mas-elementor' ),
+				'label'     => __( 'Icon Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
 					$wrapper . ' a i' => 'color: {{VALUE}}',
@@ -1419,7 +1419,7 @@ class Products extends Products_Base {
 		$this->add_control(
 			'shop_view_switcher_icons_active_color',
 			array(
-				'label'     => __( 'Icon Active Color', 'mas-elementor' ),
+				'label'     => __( 'Icon Active Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
 					$wrapper . ' a.active i' => 'color: {{VALUE}}',
@@ -1430,7 +1430,7 @@ class Products extends Products_Base {
 		$this->add_control(
 			'shop_view_switcher_icons_hover_color',
 			array(
-				'label'     => __( 'Icon Hover Color', 'mas-elementor' ),
+				'label'     => __( 'Icon Hover Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
 					$wrapper . ' a:hover i' => 'color: {{VALUE}}',
@@ -1441,7 +1441,7 @@ class Products extends Products_Base {
 		$this->add_responsive_control(
 			'shop_view_switcher_icons_size',
 			array(
-				'label'      => __( 'Icons Size', 'mas-elementor' ),
+				'label'      => __( 'Icons Size', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::SLIDER,
 				'size_units' => array( 'px', '%', 'em' ),
 				'default'    => array(
@@ -1456,7 +1456,7 @@ class Products extends Products_Base {
 		$this->add_responsive_control(
 			'shop_view_switcher_icons_line_height',
 			array(
-				'label'      => __( 'Icons Line Height', 'mas-elementor' ),
+				'label'      => __( 'Icons Line Height', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::SLIDER,
 				'size_units' => array( 'px', '%', 'em' ),
 				'default'    => array(
@@ -1472,7 +1472,7 @@ class Products extends Products_Base {
 			'shop_view_switcher__padding',
 			array(
 				'type'       => Controls_Manager::DIMENSIONS,
-				'label'      => esc_html__( 'Padding', 'mas-elementor' ),
+				'label'      => esc_html__( 'Padding', 'mas-addons-for-elementor' ),
 				'size_units' => array( 'px', '%', 'em', 'custom' ),
 				'selectors'  => array(
 					$wrapper => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
@@ -1484,7 +1484,7 @@ class Products extends Products_Base {
 			'shop_view_switcher__margin',
 			array(
 				'type'       => Controls_Manager::DIMENSIONS,
-				'label'      => esc_html__( 'Margin', 'mas-elementor' ),
+				'label'      => esc_html__( 'Margin', 'mas-addons-for-elementor' ),
 				'size_units' => array( 'px', '%', 'em', 'custom' ),
 				'selectors'  => array(
 					$wrapper => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
@@ -1504,7 +1504,7 @@ class Products extends Products_Base {
 			'shop_control_bar_advanced_pagination__padding',
 			array(
 				'type'       => Controls_Manager::DIMENSIONS,
-				'label'      => esc_html__( 'Padding', 'mas-elementor' ),
+				'label'      => esc_html__( 'Padding', 'mas-addons-for-elementor' ),
 				'size_units' => array( 'px', '%', 'em', 'custom' ),
 				'selectors'  => array(
 					$wrapper => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
@@ -1516,7 +1516,7 @@ class Products extends Products_Base {
 			'shop_control_bar_advanced_pagination__margin',
 			array(
 				'type'       => Controls_Manager::DIMENSIONS,
-				'label'      => esc_html__( 'Margin', 'mas-elementor' ),
+				'label'      => esc_html__( 'Margin', 'mas-addons-for-elementor' ),
 				'size_units' => array( 'px', '%', 'em', 'custom' ),
 				'selectors'  => array(
 					$wrapper => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
@@ -1527,7 +1527,7 @@ class Products extends Products_Base {
 		$this->add_control(
 			'shop_control_bar_advanced_pagination_icons_heading',
 			array(
-				'label'     => __( 'Page Icons', 'mas-elementor' ),
+				'label'     => __( 'Page Icons', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::HEADING,
 				'separator' => 'before',
 			)
@@ -1544,7 +1544,7 @@ class Products extends Products_Base {
 		$this->add_control(
 			'shop_control_bar_advanced_pagination_icons_color',
 			array(
-				'label'     => __( 'Icon Color', 'mas-elementor' ),
+				'label'     => __( 'Icon Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
 					$wrapper . ' .prev.page-numbers' => 'color: {{VALUE}}',
@@ -1556,7 +1556,7 @@ class Products extends Products_Base {
 		$this->add_control(
 			'shop_control_bar_advanced_pagination_icons_hover_color',
 			array(
-				'label'     => __( 'Icon Hover Color', 'mas-elementor' ),
+				'label'     => __( 'Icon Hover Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
 					$wrapper . ' .prev.page-numbers:hover' => 'color: {{VALUE}}',
@@ -1568,7 +1568,7 @@ class Products extends Products_Base {
 		$this->add_control(
 			'shop_control_bar_advanced_pagination_input_heading',
 			array(
-				'label'     => __( 'Input', 'mas-elementor' ),
+				'label'     => __( 'Input', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::HEADING,
 				'separator' => 'before',
 			)
@@ -1585,7 +1585,7 @@ class Products extends Products_Base {
 		$this->add_responsive_control(
 			'shop_control_bar_advanced_pagination_input_width',
 			array(
-				'label'      => __( 'Width', 'mas-elementor' ),
+				'label'      => __( 'Width', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::SLIDER,
 				'size_units' => array( 'px', '%', 'em' ),
 				'default'    => array(
@@ -1600,7 +1600,7 @@ class Products extends Products_Base {
 		$this->add_control(
 			'shop_control_bar_advanced_pagination_input_color',
 			array(
-				'label'     => __( 'Input Text Color', 'mas-elementor' ),
+				'label'     => __( 'Input Text Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
 					$wrapper . ' .form-adv-pagination input' => 'color: {{VALUE}}',
@@ -1612,7 +1612,7 @@ class Products extends Products_Base {
 			Group_Control_Background::get_type(),
 			array(
 				'name'     => 'shop_control_bar_advanced_pagination_input_background',
-				'label'    => esc_html__( 'Background', 'mas-elementor' ),
+				'label'    => esc_html__( 'Background', 'mas-addons-for-elementor' ),
 				'selector' => $wrapper . ' .form-adv-pagination input',
 			)
 		);
@@ -1628,19 +1628,19 @@ class Products extends Products_Base {
 		$this->add_responsive_control(
 			'shop_control_bar_advanced_pagination_input_text_align',
 			array(
-				'label'     => esc_html__( 'Text Alignment', 'mas-elementor' ),
+				'label'     => esc_html__( 'Text Alignment', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::CHOOSE,
 				'options'   => array(
 					'left'   => array(
-						'title' => esc_html__( 'Left', 'mas-elementor' ),
+						'title' => esc_html__( 'Left', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-text-align-left',
 					),
 					'center' => array(
-						'title' => esc_html__( 'Center', 'mas-elementor' ),
+						'title' => esc_html__( 'Center', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-text-align-center',
 					),
 					'right'  => array(
-						'title' => esc_html__( 'Right', 'mas-elementor' ),
+						'title' => esc_html__( 'Right', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-text-align-right',
 					),
 				),
@@ -1654,7 +1654,7 @@ class Products extends Products_Base {
 			'shop_control_bar_advanced_pagination_input_border_radius',
 			array(
 				'type'       => Controls_Manager::DIMENSIONS,
-				'label'      => esc_html__( 'Border Radius', 'mas-elementor' ),
+				'label'      => esc_html__( 'Border Radius', 'mas-addons-for-elementor' ),
 				'size_units' => array( 'px', '%', 'em', 'custom' ),
 				'selectors'  => array(
 					$wrapper . ' .form-adv-pagination input' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
@@ -1666,7 +1666,7 @@ class Products extends Products_Base {
 			'shop_control_bar_advanced_pagination_input_padding',
 			array(
 				'type'       => Controls_Manager::DIMENSIONS,
-				'label'      => esc_html__( 'Padding', 'mas-elementor' ),
+				'label'      => esc_html__( 'Padding', 'mas-addons-for-elementor' ),
 				'size_units' => array( 'px', '%', 'em', 'custom' ),
 				'selectors'  => array(
 					$wrapper . ' .form-adv-pagination input' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
@@ -1677,7 +1677,7 @@ class Products extends Products_Base {
 		$this->add_control(
 			'shop_control_bar_advanced_pagination_input_total_heading',
 			array(
-				'label'     => __( 'Total Text', 'mas-elementor' ),
+				'label'     => __( 'Total Text', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::HEADING,
 				'separator' => 'before',
 			)
@@ -1686,7 +1686,7 @@ class Products extends Products_Base {
 		$this->add_control(
 			'shop_control_bar_advanced_pagination_input_total_color',
 			array(
-				'label'     => __( 'Total Text Color', 'mas-elementor' ),
+				'label'     => __( 'Total Text Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
 					$wrapper => 'color: {{VALUE}}',
@@ -1719,7 +1719,7 @@ class Products extends Products_Base {
 		$this->add_control(
 			'shop_control_bar_ordering_color',
 			array(
-				'label'     => __( 'Text Color', 'mas-elementor' ),
+				'label'     => __( 'Text Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
 					'{{WRAPPER}} .mas-shop-control-bar .woocommerce-ordering select' => 'color: {{VALUE}}',
@@ -1731,7 +1731,7 @@ class Products extends Products_Base {
 			Group_Control_Background::get_type(),
 			array(
 				'name'     => 'shop_control_bar_ordering_background',
-				'label'    => esc_html__( 'Background', 'mas-elementor' ),
+				'label'    => esc_html__( 'Background', 'mas-addons-for-elementor' ),
 				'selector' => '{{WRAPPER}} .mas-shop-control-bar .woocommerce-ordering select',
 			)
 		);
@@ -1748,7 +1748,7 @@ class Products extends Products_Base {
 			'shop_control_bar_ordering_border_radius',
 			array(
 				'type'       => Controls_Manager::DIMENSIONS,
-				'label'      => esc_html__( 'Border Radius', 'mas-elementor' ),
+				'label'      => esc_html__( 'Border Radius', 'mas-addons-for-elementor' ),
 				'size_units' => array( 'px', '%', 'em', 'custom' ),
 				'selectors'  => array(
 					'{{WRAPPER}} .mas-shop-control-bar .woocommerce-ordering select' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
@@ -1760,7 +1760,7 @@ class Products extends Products_Base {
 			'shop_control_bar_ordering_wrapper_padding',
 			array(
 				'type'       => Controls_Manager::DIMENSIONS,
-				'label'      => esc_html__( 'Wrapper Padding', 'mas-elementor' ),
+				'label'      => esc_html__( 'Wrapper Padding', 'mas-addons-for-elementor' ),
 				'size_units' => array( 'px', '%', 'em', 'custom' ),
 				'selectors'  => array(
 					'{{WRAPPER}} .mas-shop-control-bar .woocommerce-ordering' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
@@ -1772,7 +1772,7 @@ class Products extends Products_Base {
 			'shop_control_bar_ordering_wrapper_margin',
 			array(
 				'type'       => Controls_Manager::DIMENSIONS,
-				'label'      => esc_html__( 'Wrapper Margin', 'mas-elementor' ),
+				'label'      => esc_html__( 'Wrapper Margin', 'mas-addons-for-elementor' ),
 				'size_units' => array( 'px', '%', 'em', 'custom' ),
 				'selectors'  => array(
 					'{{WRAPPER}} .mas-shop-control-bar .woocommerce-ordering' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
@@ -1784,7 +1784,7 @@ class Products extends Products_Base {
 			'shop_control_bar_ordering_padding',
 			array(
 				'type'       => Controls_Manager::DIMENSIONS,
-				'label'      => esc_html__( 'Padding', 'mas-elementor' ),
+				'label'      => esc_html__( 'Padding', 'mas-addons-for-elementor' ),
 				'size_units' => array( 'px', '%', 'em', 'custom' ),
 				'selectors'  => array(
 					'{{WRAPPER}} .mas-shop-control-bar .woocommerce-ordering select' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',

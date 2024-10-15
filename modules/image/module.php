@@ -59,9 +59,9 @@ class Module extends Module_Base {
 		$element->add_responsive_control(
 			'a_tag_width',
 			array(
-				'label'          => esc_html__( 'Wrapper Width', 'mas-elementor' ),
+				'label'          => esc_html__( 'Wrapper Width', 'mas-addons-for-elementor' ),
 				'type'           => Controls_Manager::SLIDER,
-				'description'    => esc_html__( 'Width for a tag of image', 'mas-elementor' ),
+				'description'    => esc_html__( 'Width for a tag of image', 'mas-addons-for-elementor' ),
 				'default'        => array(
 					'unit' => '%',
 				),

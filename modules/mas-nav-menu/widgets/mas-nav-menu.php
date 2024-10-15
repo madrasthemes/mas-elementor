@@ -60,7 +60,7 @@ class Mas_Nav_Menu extends Base_Widget {
 	 * @return string Widget title.
 	 */
 	public function get_title() {
-		return __( 'MAS Nav Menu', 'mas-elementor' );
+		return __( 'MAS Nav Menu', 'mas-addons-for-elementor' );
 	}
 
 	/**
@@ -179,7 +179,7 @@ class Mas_Nav_Menu extends Base_Widget {
 		$this->start_controls_section(
 			'section_layout',
 			array(
-				'label' => __( 'Nav Menu', 'mas-elementor' ),
+				'label' => __( 'Nav Menu', 'mas-addons-for-elementor' ),
 			)
 		);
 
@@ -189,13 +189,13 @@ class Mas_Nav_Menu extends Base_Widget {
 			$this->add_control(
 				'menu',
 				array(
-					'label'        => __( 'Menu', 'mas-elementor' ),
+					'label'        => __( 'Menu', 'mas-addons-for-elementor' ),
 					'type'         => Controls_Manager::SELECT,
 					'options'      => $menus,
 					'default'      => array_keys( $menus )[0],
 					'save_default' => true,
 					'separator'    => 'after',
-					'description'  => sprintf( /* translators: %1$s: Link to Menu Link. */ __( 'Go to the <a href="%s" target="_blank">Menus screen</a> to manage your menus.', 'mas-elementor' ), admin_url( 'nav-menus.php' ) ),
+					'description'  => sprintf( /* translators: %1$s: Link to Menu Link. */ __( 'Go to the <a href="%s" target="_blank">Menus screen</a> to manage your menus.', 'mas-addons-for-elementor' ), admin_url( 'nav-menus.php' ) ),
 				)
 			);
 		} else {
@@ -203,7 +203,7 @@ class Mas_Nav_Menu extends Base_Widget {
 				'menu',
 				array(
 					'type'            => Controls_Manager::RAW_HTML,
-					'raw'             => '<strong>' . __( 'There are no menus in your site.', 'mas-elementor' ) . '</strong><br>' . sprintf( /* translators: %1$s: Link to Menu Link. */__( 'Go to the <a href="%s" target="_blank">Menus screen</a> to create one.', 'mas-elementor' ), admin_url( 'nav-menus.php?action=edit&menu=0' ) ),
+					'raw'             => '<strong>' . __( 'There are no menus in your site.', 'mas-addons-for-elementor' ) . '</strong><br>' . sprintf( /* translators: %1$s: Link to Menu Link. */__( 'Go to the <a href="%s" target="_blank">Menus screen</a> to create one.', 'mas-addons-for-elementor' ), admin_url( 'nav-menus.php?action=edit&menu=0' ) ),
 					'separator'       => 'after',
 					'content_classes' => 'elementor-panel-alert elementor-panel-alert-info',
 				)
@@ -213,7 +213,7 @@ class Mas_Nav_Menu extends Base_Widget {
 		$this->add_control(
 			'nav_action',
 			array(
-				'label'   => esc_html__( 'Nav Action', 'mas-elementor' ),
+				'label'   => esc_html__( 'Nav Action', 'mas-addons-for-elementor' ),
 				'type'    => Controls_Manager::SELECT,
 				'options' => array(
 					'hover' => 'Hover',
@@ -226,7 +226,7 @@ class Mas_Nav_Menu extends Base_Widget {
 		$this->add_control(
 			'walker',
 			array(
-				'label'   => esc_html__( 'Walker', 'mas-elementor' ),
+				'label'   => esc_html__( 'Walker', 'mas-addons-for-elementor' ),
 				'type'    => Controls_Manager::SELECT,
 				'options' => array(
 					'default'   => 'Default',
@@ -239,12 +239,12 @@ class Mas_Nav_Menu extends Base_Widget {
 		$this->add_control(
 			'layout',
 			array(
-				'label'              => esc_html__( 'Layout', 'mas-elementor' ),
+				'label'              => esc_html__( 'Layout', 'mas-addons-for-elementor' ),
 				'type'               => Controls_Manager::SELECT,
 				'default'            => 'horizontal',
 				'options'            => array(
-					'horizontal' => esc_html__( 'Horizontal', 'mas-elementor' ),
-					'dropdown'   => esc_html__( 'Dropdown', 'mas-elementor' ),
+					'horizontal' => esc_html__( 'Horizontal', 'mas-addons-for-elementor' ),
+					'dropdown'   => esc_html__( 'Dropdown', 'mas-addons-for-elementor' ),
 				),
 				'frontend_available' => true,
 				'condition'          => array(
@@ -256,23 +256,23 @@ class Mas_Nav_Menu extends Base_Widget {
 		$this->add_responsive_control(
 			'mas_nav_content_align',
 			array(
-				'label'     => esc_html__( 'Menu Alignment', 'mas-elementor' ),
+				'label'     => esc_html__( 'Menu Alignment', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::CHOOSE,
 				'options'   => array(
 					'left'    => array(
-						'title' => esc_html__( 'Left', 'mas-elementor' ),
+						'title' => esc_html__( 'Left', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-text-align-left',
 					),
 					'center'  => array(
-						'title' => esc_html__( 'Center', 'mas-elementor' ),
+						'title' => esc_html__( 'Center', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-text-align-center',
 					),
 					'right'   => array(
-						'title' => esc_html__( 'Right', 'mas-elementor' ),
+						'title' => esc_html__( 'Right', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-text-align-right',
 					),
 					'justify' => array(
-						'title' => esc_html__( 'Justified', 'mas-elementor' ),
+						'title' => esc_html__( 'Justified', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-text-align-justify',
 					),
 				),
@@ -289,7 +289,7 @@ class Mas_Nav_Menu extends Base_Widget {
 		$this->add_responsive_control(
 			'mas_nav_space_between',
 			array(
-				'label'          => esc_html__( 'Space Between', 'mas-elementor' ),
+				'label'          => esc_html__( 'Space Between', 'mas-addons-for-elementor' ),
 				'type'           => Controls_Manager::SLIDER,
 				'size_units' => array( 'px', '%', 'em', 'rem', 'custom' ),
 				'range'          => array(
@@ -323,7 +323,7 @@ class Mas_Nav_Menu extends Base_Widget {
 		$this->start_controls_section(
 			'section_style_main-menu',
 			array(
-				'label' => esc_html__( 'Main Menu', 'mas-elementor' ),
+				'label' => esc_html__( 'Main Menu', 'mas-addons-for-elementor' ),
 				'tab'   => Controls_Manager::TAB_STYLE,
 			)
 		);
@@ -367,14 +367,14 @@ class Mas_Nav_Menu extends Base_Widget {
 		$this->start_controls_tab(
 			'tab_menu_item_normal',
 			array(
-				'label' => esc_html__( 'Normal', 'mas-elementor' ),
+				'label' => esc_html__( 'Normal', 'mas-addons-for-elementor' ),
 			)
 		);
 
 		$this->add_control(
 			'color_menu_item',
 			array(
-				'label'     => esc_html__( 'Text Color', 'mas-elementor' ),
+				'label'     => esc_html__( 'Text Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'global'    => array(
 					'default' => Global_Colors::COLOR_TEXT,
@@ -391,14 +391,14 @@ class Mas_Nav_Menu extends Base_Widget {
 		$this->start_controls_tab(
 			'tab_menu_item_hover',
 			array(
-				'label' => esc_html__( 'Hover', 'mas-elementor' ),
+				'label' => esc_html__( 'Hover', 'mas-addons-for-elementor' ),
 			)
 		);
 
 		$this->add_control(
 			'color_menu_item_hover',
 			array(
-				'label'     => esc_html__( 'Text Color', 'mas-elementor' ),
+				'label'     => esc_html__( 'Text Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'global'    => array(
 					'default' => Global_Colors::COLOR_ACCENT,
@@ -414,14 +414,14 @@ class Mas_Nav_Menu extends Base_Widget {
 		$this->start_controls_tab(
 			'tab_menu_item_active',
 			array(
-				'label' => esc_html__( 'Active', 'mas-elementor' ),
+				'label' => esc_html__( 'Active', 'mas-addons-for-elementor' ),
 			)
 		);
 
 		$this->add_control(
 			'color_menu_item_active',
 			array(
-				'label'     => esc_html__( 'Text Color', 'mas-elementor' ),
+				'label'     => esc_html__( 'Text Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'default'   => '',
 				'selectors' => array(
@@ -437,7 +437,7 @@ class Mas_Nav_Menu extends Base_Widget {
 		$this->add_control(
 			'mas_nav_submenu',
 			array(
-				'label'     => __( 'Submenu', 'mas-elementor' ),
+				'label'     => __( 'Submenu', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::HEADING,
 				'separator' => 'before',
 			)
@@ -481,7 +481,7 @@ class Mas_Nav_Menu extends Base_Widget {
 			Group_Control_Background::get_type(),
 			array(
 				'name'           => 'lm_background',
-				'label'          => esc_html__( 'Background', 'mas-elementor' ),
+				'label'          => esc_html__( 'Background', 'mas-addons-for-elementor' ),
 				'types'          => array( 'classic', 'gradient' ),
 				'exclude'        => array( 'image' ),
 				'selector'       => '{{WRAPPER}} .sub-menu, {{WRAPPER}} .dropdown-menu',
@@ -524,7 +524,7 @@ class Mas_Nav_Menu extends Base_Widget {
 		$this->add_control(
 			'lm_border_radius',
 			array(
-				'label'      => esc_html__( 'Border Radius', 'mas-elementor' ),
+				'label'      => esc_html__( 'Border Radius', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', '%', 'em' ),
 				'selectors'  => array(
@@ -568,7 +568,7 @@ class Mas_Nav_Menu extends Base_Widget {
 		$this->add_control(
 			'mas_nav_submenu_item',
 			array(
-				'label'     => __( 'Submenu Item', 'mas-elementor' ),
+				'label'     => __( 'Submenu Item', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::HEADING,
 				'separator' => 'before',
 			)
@@ -579,14 +579,14 @@ class Mas_Nav_Menu extends Base_Widget {
 		$this->start_controls_tab(
 			'lm_tab_button_normal',
 			array(
-				'label' => esc_html__( 'Normal', 'mas-elementor' ),
+				'label' => esc_html__( 'Normal', 'mas-addons-for-elementor' ),
 			)
 		);
 
 		$this->add_control(
 			'lm_button_text_color',
 			array(
-				'label'     => esc_html__( 'Text Color', 'mas-elementor' ),
+				'label'     => esc_html__( 'Text Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'default'   => '#7b8b8e',
 				'selectors' => array(
@@ -600,7 +600,7 @@ class Mas_Nav_Menu extends Base_Widget {
 			Group_Control_Background::get_type(),
 			array(
 				'name'           => 'li_background',
-				'label'          => esc_html__( 'Background', 'mas-elementor' ),
+				'label'          => esc_html__( 'Background', 'mas-addons-for-elementor' ),
 				'types'          => array( 'classic', 'gradient' ),
 				'exclude'        => array( 'image' ),
 				'selector'       => '{{WRAPPER}} .sub-menu li, {{WRAPPER}} .dropdown-menu li',
@@ -620,14 +620,14 @@ class Mas_Nav_Menu extends Base_Widget {
 		$this->start_controls_tab(
 			'lm_tab_button_hover',
 			array(
-				'label' => esc_html__( 'Hover', 'mas-elementor' ),
+				'label' => esc_html__( 'Hover', 'mas-addons-for-elementor' ),
 			)
 		);
 
 		$this->add_control(
 			'lm_hover_color',
 			array(
-				'label'     => esc_html__( 'Text Color', 'mas-elementor' ),
+				'label'     => esc_html__( 'Text Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
 					'{{WRAPPER}} .sub-menu .menu-item a:hover, {{WRAPPER}} .sub-menu .menu-item a:focus' => 'color: {{VALUE}};',
@@ -643,7 +643,7 @@ class Mas_Nav_Menu extends Base_Widget {
 			Group_Control_Background::get_type(),
 			array(
 				'name'           => 'li_button_background_hover',
-				'label'          => esc_html__( 'Background', 'mas-elementor' ),
+				'label'          => esc_html__( 'Background', 'mas-addons-for-elementor' ),
 				'types'          => array( 'classic', 'gradient' ),
 				'exclude'        => array( 'image' ),
 				'selector'       => '{{WRAPPER}} .sub-menu li a:hover, {{WRAPPER}} .sub-menu li a:focus, {{WRAPPER}} .dropdown-menu li a:hover, {{WRAPPER}} .dropdown-menu li a:focus',
@@ -665,7 +665,7 @@ class Mas_Nav_Menu extends Base_Widget {
 		$this->add_control(
 			'mas_menu_item_padding',
 			array(
-				'label'      => esc_html__( 'Padding', 'mas-elementor' ),
+				'label'      => esc_html__( 'Padding', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', '%', 'em' ),
 				'selectors'  => array(

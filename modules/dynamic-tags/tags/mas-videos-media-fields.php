@@ -40,7 +40,7 @@ class Mas_Videos_Media_Fields extends \Elementor\Core\DynamicTags\Data_Tag {
 	 * Get post-title tag name.
 	 */
 	public function get_title() {
-		return esc_html__( 'MAS Videos Featured Image', 'mas-elementor' );
+		return esc_html__( 'MAS Videos Featured Image', 'mas-addons-for-elementor' );
 	}
 	/**
 	 * Get value.
@@ -148,15 +148,15 @@ class Mas_Videos_Media_Fields extends \Elementor\Core\DynamicTags\Data_Tag {
 		$this->add_control(
 			'mas_videos_media_url',
 			array(
-				'label'   => esc_html__( 'Type', 'mas-elementor' ),
+				'label'   => esc_html__( 'Type', 'mas-addons-for-elementor' ),
 				'type'    => Controls_Manager::SELECT,
 				'default' => 'movie',
 				'options' => array(
-					'movie'     => esc_html__( 'Movies', 'mas-elementor' ),
-					'tv_show'   => esc_html__( 'TV Show', 'mas-elementor' ),
-					'video'     => esc_html__( 'Videos', 'mas-elementor' ),
-					'person'    => esc_html__( 'Movie Casts and Crew', 'mas-elementor' ),
-					'tv_person' => esc_html__( 'TV Show Casts and Crew', 'mas-elementor' ),
+					'movie'     => esc_html__( 'Movies', 'mas-addons-for-elementor' ),
+					'tv_show'   => esc_html__( 'TV Show', 'mas-addons-for-elementor' ),
+					'video'     => esc_html__( 'Videos', 'mas-addons-for-elementor' ),
+					'person'    => esc_html__( 'Movie Casts and Crew', 'mas-addons-for-elementor' ),
+					'tv_person' => esc_html__( 'TV Show Casts and Crew', 'mas-addons-for-elementor' ),
 				),
 			)
 		);
@@ -164,12 +164,12 @@ class Mas_Videos_Media_Fields extends \Elementor\Core\DynamicTags\Data_Tag {
 		$this->add_control(
 			'mas_videos_casts_crew',
 			array(
-				'label'      => esc_html__( 'Casts or Crew', 'mas-elementor' ),
+				'label'      => esc_html__( 'Casts or Crew', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::SELECT,
 				'default'    => 'cast',
 				'options'    => array(
-					'cast' => esc_html__( 'Casts', 'mas-elementor' ),
-					'crew' => esc_html__( 'Crew', 'mas-elementor' ),
+					'cast' => esc_html__( 'Casts', 'mas-addons-for-elementor' ),
+					'crew' => esc_html__( 'Crew', 'mas-addons-for-elementor' ),
 				),
 				'conditions' => array(
 					'relation' => 'or',
@@ -206,10 +206,10 @@ class Mas_Videos_Media_Fields extends \Elementor\Core\DynamicTags\Data_Tag {
 		$this->add_control(
 			'mas_movie_person_ids',
 			array(
-				'label'       => esc_html__( 'Select Person', 'mas-elementor' ),
+				'label'       => esc_html__( 'Select Person', 'mas-addons-for-elementor' ),
 				'type'        => Controls_Manager::SELECT,
 				'default'     => '0',
-				'description' => esc_html__( 'Person here shown are in movie crew options and in ordered', 'mas-elementor' ),
+				'description' => esc_html__( 'Person here shown are in movie crew options and in ordered', 'mas-addons-for-elementor' ),
 				'options'     => $crew_options,
 				'conditions'  => array(
 					'relation' => 'or',
@@ -240,7 +240,7 @@ class Mas_Videos_Media_Fields extends \Elementor\Core\DynamicTags\Data_Tag {
 		$this->add_control(
 			'mas-fallback',
 			array(
-				'label' => esc_html__( 'Fallback', 'mas-elementor' ),
+				'label' => esc_html__( 'Fallback', 'mas-addons-for-elementor' ),
 				'type'  => Controls_Manager::MEDIA,
 			)
 		);

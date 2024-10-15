@@ -45,7 +45,7 @@ class Author_URL extends Data_Tag {
 	 * Get tag title.
 	 */
 	public function get_title() {
-		return esc_html__( 'Author URL', 'mas-elementor' );
+		return esc_html__( 'Author URL', 'mas-addons-for-elementor' );
 	}
 
 	/**
@@ -83,12 +83,12 @@ class Author_URL extends Data_Tag {
 		$this->add_control(
 			'url',
 			array(
-				'label'   => esc_html__( 'URL', 'mas-elementor' ),
+				'label'   => esc_html__( 'URL', 'mas-addons-for-elementor' ),
 				'type'    => Controls_Manager::SELECT,
 				'default' => 'archive',
 				'options' => array(
-					'archive' => esc_html__( 'Author Archive', 'mas-elementor' ),
-					'website' => esc_html__( 'Author Website', 'mas-elementor' ),
+					'archive' => esc_html__( 'Author Archive', 'mas-addons-for-elementor' ),
+					'website' => esc_html__( 'Author Website', 'mas-addons-for-elementor' ),
 				),
 			)
 		);

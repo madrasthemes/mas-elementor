@@ -54,7 +54,7 @@ class Purchase_Summary extends Base_Widget {
 	 * @return string
 	 */
 	public function get_title() {
-		return esc_html__( 'Purchase Summary', 'mas-elementor' );
+		return esc_html__( 'Purchase Summary', 'mas-addons-for-elementor' );
 	}
 
 	/**
@@ -100,17 +100,17 @@ class Purchase_Summary extends Base_Widget {
 		$this->start_controls_section(
 			'confirmation_message',
 			array(
-				'label' => esc_html__( 'Confirmation Message', 'mas-elementor' ),
+				'label' => esc_html__( 'Confirmation Message', 'mas-addons-for-elementor' ),
 			)
 		);
 
 		$this->add_control(
 			'confirmation_message_active',
 			array(
-				'label'     => esc_html__( 'Confirmation Message', 'mas-elementor' ),
+				'label'     => esc_html__( 'Confirmation Message', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::SWITCHER,
-				'label_on'  => esc_html__( 'Show', 'mas-elementor' ),
-				'label_off' => esc_html__( 'Hide', 'mas-elementor' ),
+				'label_on'  => esc_html__( 'Show', 'mas-addons-for-elementor' ),
+				'label_off' => esc_html__( 'Hide', 'mas-addons-for-elementor' ),
 				'default'   => 'yes',
 				'selectors' => array(
 					'{{WRAPPER}}' => '--confirmation-message-display: block;',
@@ -121,12 +121,12 @@ class Purchase_Summary extends Base_Widget {
 		$this->add_control(
 			'confirmation_message_text',
 			array(
-				'label'       => esc_html__( 'Message', 'mas-elementor' ),
+				'label'       => esc_html__( 'Message', 'mas-addons-for-elementor' ),
 				'type'        => Controls_Manager::TEXT,
 				'dynamic'     => array(
 					'active' => true,
 				),
-				'default'     => esc_html__( 'Thank You. Your order has been received.', 'mas-elementor' ),
+				'default'     => esc_html__( 'Thank You. Your order has been received.', 'mas-addons-for-elementor' ),
 				'label_block' => true,
 				'condition'   => array(
 					'confirmation_message_active!' => '',
@@ -137,19 +137,19 @@ class Purchase_Summary extends Base_Widget {
 		$this->add_responsive_control(
 			'confirmation_message_alignment',
 			array(
-				'label'     => esc_html__( 'Alignment', 'mas-elementor' ),
+				'label'     => esc_html__( 'Alignment', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::CHOOSE,
 				'options'   => array(
 					'start'  => array(
-						'title' => esc_html__( 'Start', 'mas-elementor' ),
+						'title' => esc_html__( 'Start', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-text-align-left',
 					),
 					'center' => array(
-						'title' => esc_html__( 'Center', 'mas-elementor' ),
+						'title' => esc_html__( 'Center', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-text-align-center',
 					),
 					'end'    => array(
-						'title' => esc_html__( 'End', 'mas-elementor' ),
+						'title' => esc_html__( 'End', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-text-align-right',
 					),
 				),
@@ -167,67 +167,67 @@ class Purchase_Summary extends Base_Widget {
 		$this->start_controls_section(
 			'payment_details',
 			array(
-				'label' => esc_html__( 'Payment Details', 'mas-elementor' ),
+				'label' => esc_html__( 'Payment Details', 'mas-addons-for-elementor' ),
 			)
 		);
 
 		$this->add_control(
 			'payment_details_number',
 			array(
-				'label'   => esc_html__( 'Number', 'mas-elementor' ),
+				'label'   => esc_html__( 'Number', 'mas-addons-for-elementor' ),
 				'type'    => Controls_Manager::TEXT,
 				'dynamic' => array(
 					'active' => true,
 				),
-				'default' => esc_html__( 'Order Number:', 'mas-elementor' ),
+				'default' => esc_html__( 'Order Number:', 'mas-addons-for-elementor' ),
 			)
 		);
 
 		$this->add_control(
 			'payment_details_date',
 			array(
-				'label'   => esc_html__( 'Date:', 'mas-elementor' ),
+				'label'   => esc_html__( 'Date:', 'mas-addons-for-elementor' ),
 				'type'    => Controls_Manager::TEXT,
 				'dynamic' => array(
 					'active' => true,
 				),
-				'default' => esc_html__( 'Order Date:', 'mas-elementor' ),
+				'default' => esc_html__( 'Order Date:', 'mas-addons-for-elementor' ),
 			)
 		);
 
 		$this->add_control(
 			'payment_details_email',
 			array(
-				'label'   => esc_html__( 'Email', 'mas-elementor' ),
+				'label'   => esc_html__( 'Email', 'mas-addons-for-elementor' ),
 				'type'    => Controls_Manager::TEXT,
 				'dynamic' => array(
 					'active' => true,
 				),
-				'default' => esc_html__( 'Order Email:', 'mas-elementor' ),
+				'default' => esc_html__( 'Order Email:', 'mas-addons-for-elementor' ),
 			)
 		);
 
 		$this->add_control(
 			'payment_details_total',
 			array(
-				'label'   => esc_html__( 'Total', 'mas-elementor' ),
+				'label'   => esc_html__( 'Total', 'mas-addons-for-elementor' ),
 				'type'    => Controls_Manager::TEXT,
 				'dynamic' => array(
 					'active' => true,
 				),
-				'default' => esc_html__( 'Order Total:', 'mas-elementor' ),
+				'default' => esc_html__( 'Order Total:', 'mas-addons-for-elementor' ),
 			)
 		);
 
 		$this->add_control(
 			'payment_details_payment',
 			array(
-				'label'   => esc_html__( 'Payment', 'mas-elementor' ),
+				'label'   => esc_html__( 'Payment', 'mas-addons-for-elementor' ),
 				'type'    => Controls_Manager::TEXT,
 				'dynamic' => array(
 					'active' => true,
 				),
-				'default' => esc_html__( 'Payment Method:', 'mas-elementor' ),
+				'default' => esc_html__( 'Payment Method:', 'mas-addons-for-elementor' ),
 			)
 		);
 
@@ -236,38 +236,38 @@ class Purchase_Summary extends Base_Widget {
 		$this->start_controls_section(
 			'bank_details',
 			array(
-				'label' => esc_html__( 'Bank Details', 'mas-elementor' ),
+				'label' => esc_html__( 'Bank Details', 'mas-addons-for-elementor' ),
 			)
 		);
 
 		$this->add_control(
 			'bank_details_text',
 			array(
-				'label'   => esc_html__( 'Title', 'mas-elementor' ),
+				'label'   => esc_html__( 'Title', 'mas-addons-for-elementor' ),
 				'type'    => Controls_Manager::TEXT,
 				'dynamic' => array(
 					'active' => true,
 				),
-				'default' => esc_html__( 'Our Bank Details', 'mas-elementor' ),
+				'default' => esc_html__( 'Our Bank Details', 'mas-addons-for-elementor' ),
 			)
 		);
 
 		$this->add_responsive_control(
 			'bank_details_alignment',
 			array(
-				'label'     => esc_html__( 'Alignment', 'mas-elementor' ),
+				'label'     => esc_html__( 'Alignment', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::CHOOSE,
 				'options'   => array(
 					'start'  => array(
-						'title' => esc_html__( 'Start', 'mas-elementor' ),
+						'title' => esc_html__( 'Start', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-text-align-left',
 					),
 					'center' => array(
-						'title' => esc_html__( 'Center', 'mas-elementor' ),
+						'title' => esc_html__( 'Center', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-text-align-center',
 					),
 					'end'    => array(
-						'title' => esc_html__( 'End', 'mas-elementor' ),
+						'title' => esc_html__( 'End', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-text-align-right',
 					),
 				),
@@ -282,38 +282,38 @@ class Purchase_Summary extends Base_Widget {
 		$this->start_controls_section(
 			'downloads',
 			array(
-				'label' => esc_html__( 'Downloads', 'mas-elementor' ),
+				'label' => esc_html__( 'Downloads', 'mas-addons-for-elementor' ),
 			)
 		);
 
 		$this->add_control(
 			'downloads_text',
 			array(
-				'label'   => esc_html__( 'Title', 'mas-elementor' ),
+				'label'   => esc_html__( 'Title', 'mas-addons-for-elementor' ),
 				'type'    => Controls_Manager::TEXT,
 				'dynamic' => array(
 					'active' => true,
 				),
-				'default' => esc_html__( 'Downloads', 'mas-elementor' ),
+				'default' => esc_html__( 'Downloads', 'mas-addons-for-elementor' ),
 			)
 		);
 
 		$this->add_responsive_control(
 			'downloads_alignment',
 			array(
-				'label'     => esc_html__( 'Alignment', 'mas-elementor' ),
+				'label'     => esc_html__( 'Alignment', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::CHOOSE,
 				'options'   => array(
 					'start'  => array(
-						'title' => esc_html__( 'Start', 'mas-elementor' ),
+						'title' => esc_html__( 'Start', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-text-align-left',
 					),
 					'center' => array(
-						'title' => esc_html__( 'Center', 'mas-elementor' ),
+						'title' => esc_html__( 'Center', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-text-align-center',
 					),
 					'end'    => array(
-						'title' => esc_html__( 'End', 'mas-elementor' ),
+						'title' => esc_html__( 'End', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-text-align-right',
 					),
 				),
@@ -328,38 +328,38 @@ class Purchase_Summary extends Base_Widget {
 		$this->start_controls_section(
 			'order_summary',
 			array(
-				'label' => esc_html__( 'Purchase Summary', 'mas-elementor' ),
+				'label' => esc_html__( 'Purchase Summary', 'mas-addons-for-elementor' ),
 			)
 		);
 
 		$this->add_control(
 			'order_summary_text',
 			array(
-				'label'   => esc_html__( 'Title', 'mas-elementor' ),
+				'label'   => esc_html__( 'Title', 'mas-addons-for-elementor' ),
 				'type'    => Controls_Manager::TEXT,
 				'dynamic' => array(
 					'active' => true,
 				),
-				'default' => esc_html__( 'Order Details', 'mas-elementor' ),
+				'default' => esc_html__( 'Order Details', 'mas-addons-for-elementor' ),
 			)
 		);
 
 		$this->add_responsive_control(
 			'order_summary_alignment',
 			array(
-				'label'     => esc_html__( 'Alignment', 'mas-elementor' ),
+				'label'     => esc_html__( 'Alignment', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::CHOOSE,
 				'options'   => array(
 					'start'  => array(
-						'title' => esc_html__( 'Start', 'mas-elementor' ),
+						'title' => esc_html__( 'Start', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-text-align-left',
 					),
 					'center' => array(
-						'title' => esc_html__( 'Center', 'mas-elementor' ),
+						'title' => esc_html__( 'Center', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-text-align-center',
 					),
 					'end'    => array(
-						'title' => esc_html__( 'End', 'mas-elementor' ),
+						'title' => esc_html__( 'End', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-text-align-right',
 					),
 				),
@@ -374,38 +374,38 @@ class Purchase_Summary extends Base_Widget {
 		$this->start_controls_section(
 			'billing_details',
 			array(
-				'label' => esc_html__( 'Billing Details', 'mas-elementor' ),
+				'label' => esc_html__( 'Billing Details', 'mas-addons-for-elementor' ),
 			)
 		);
 
 		$this->add_control(
 			'billing_details_text',
 			array(
-				'label'   => esc_html__( 'Title', 'mas-elementor' ),
+				'label'   => esc_html__( 'Title', 'mas-addons-for-elementor' ),
 				'type'    => Controls_Manager::TEXT,
 				'dynamic' => array(
 					'active' => true,
 				),
-				'default' => esc_html__( 'Billing Details', 'mas-elementor' ),
+				'default' => esc_html__( 'Billing Details', 'mas-addons-for-elementor' ),
 			)
 		);
 
 		$this->add_responsive_control(
 			'billing_details_alignment',
 			array(
-				'label'     => esc_html__( 'Alignment', 'mas-elementor' ),
+				'label'     => esc_html__( 'Alignment', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::CHOOSE,
 				'options'   => array(
 					'start'  => array(
-						'title' => esc_html__( 'Start', 'mas-elementor' ),
+						'title' => esc_html__( 'Start', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-text-align-left',
 					),
 					'center' => array(
-						'title' => esc_html__( 'Center', 'mas-elementor' ),
+						'title' => esc_html__( 'Center', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-text-align-center',
 					),
 					'end'    => array(
-						'title' => esc_html__( 'End', 'mas-elementor' ),
+						'title' => esc_html__( 'End', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-text-align-right',
 					),
 				),
@@ -420,38 +420,38 @@ class Purchase_Summary extends Base_Widget {
 		$this->start_controls_section(
 			'shipping_details',
 			array(
-				'label' => esc_html__( 'Shipping Address', 'mas-elementor' ),
+				'label' => esc_html__( 'Shipping Address', 'mas-addons-for-elementor' ),
 			)
 		);
 
 		$this->add_control(
 			'shipping_details_text',
 			array(
-				'label'   => esc_html__( 'Title', 'mas-elementor' ),
+				'label'   => esc_html__( 'Title', 'mas-addons-for-elementor' ),
 				'type'    => Controls_Manager::TEXT,
 				'dynamic' => array(
 					'active' => true,
 				),
-				'default' => esc_html__( 'Shipping Details', 'mas-elementor' ),
+				'default' => esc_html__( 'Shipping Details', 'mas-addons-for-elementor' ),
 			)
 		);
 
 		$this->add_responsive_control(
 			'shipping_details_alignment',
 			array(
-				'label'     => esc_html__( 'Alignment', 'mas-elementor' ),
+				'label'     => esc_html__( 'Alignment', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::CHOOSE,
 				'options'   => array(
 					'start'  => array(
-						'title' => esc_html__( 'Start', 'mas-elementor' ),
+						'title' => esc_html__( 'Start', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-text-align-left',
 					),
 					'center' => array(
-						'title' => esc_html__( 'Center', 'mas-elementor' ),
+						'title' => esc_html__( 'Center', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-text-align-center',
 					),
 					'end'    => array(
-						'title' => esc_html__( 'End', 'mas-elementor' ),
+						'title' => esc_html__( 'End', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-text-align-right',
 					),
 				),
@@ -466,14 +466,14 @@ class Purchase_Summary extends Base_Widget {
 		$this->start_controls_section(
 			'preview_order',
 			array(
-				'label' => esc_html__( 'Preview Settings', 'mas-elementor' ),
+				'label' => esc_html__( 'Preview Settings', 'mas-addons-for-elementor' ),
 			)
 		);
 
 		$this->add_control(
 			'preview_order_type',
 			array(
-				'label'   => esc_html__( 'Preview order with', 'mas-elementor' ),
+				'label'   => esc_html__( 'Preview order with', 'mas-addons-for-elementor' ),
 				'type'    => Controls_Manager::SELECT,
 				'options' => array(
 					''             => 'Latest Order',
@@ -485,13 +485,13 @@ class Purchase_Summary extends Base_Widget {
 		$this->add_control(
 			'preview_order_custom',
 			array(
-				'label'       => esc_html__( 'Order ID', 'mas-elementor' ),
+				'label'       => esc_html__( 'Order ID', 'mas-addons-for-elementor' ),
 				'type'        => Controls_Manager::TEXT,
 				'condition'   => array(
 					'preview_order_type' => 'custom-order',
 				),
 				'render_type' => 'template',
-				'description' => esc_html__( 'Note: To find an order ID, go to the WP dashboard: WooCommerce > Orders', 'mas-elementor' ),
+				'description' => esc_html__( 'Note: To find an order ID, go to the WP dashboard: WooCommerce > Orders', 'mas-addons-for-elementor' ),
 			)
 		);
 
@@ -500,7 +500,7 @@ class Purchase_Summary extends Base_Widget {
 		$this->start_controls_section(
 			'sections_tabs_style',
 			array(
-				'label' => esc_html__( 'Sections', 'mas-elementor' ),
+				'label' => esc_html__( 'Sections', 'mas-addons-for-elementor' ),
 				'tab'   => Controls_Manager::TAB_STYLE,
 			)
 		);
@@ -508,7 +508,7 @@ class Purchase_Summary extends Base_Widget {
 		$this->add_control(
 			'sections_background_color',
 			array(
-				'label'     => esc_html__( 'Background Color', 'mas-elementor' ),
+				'label'     => esc_html__( 'Background Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
 					'{{WRAPPER}}' => '--sections-background-color: {{VALUE}};',
@@ -527,7 +527,7 @@ class Purchase_Summary extends Base_Widget {
 		$this->add_control(
 			'sections_border_type',
 			array(
-				'label'     => esc_html__( 'Border Type', 'mas-elementor' ),
+				'label'     => esc_html__( 'Border Type', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::SELECT,
 				'options'   => $this->get_custom_border_type_options(),
 				'selectors' => array(
@@ -539,7 +539,7 @@ class Purchase_Summary extends Base_Widget {
 		$this->add_responsive_control(
 			'sections_border_width',
 			array(
-				'label'      => esc_html__( 'Width', 'mas-elementor' ),
+				'label'      => esc_html__( 'Width', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', '%', 'em', 'rem', 'vw', 'custom' ),
 				'selectors'  => array(
@@ -554,7 +554,7 @@ class Purchase_Summary extends Base_Widget {
 		$this->add_control(
 			'sections_border_color',
 			array(
-				'label'     => esc_html__( 'Color', 'mas-elementor' ),
+				'label'     => esc_html__( 'Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
 					'{{WRAPPER}}' => '--sections-border-color: {{VALUE}};',
@@ -568,7 +568,7 @@ class Purchase_Summary extends Base_Widget {
 		$this->add_responsive_control(
 			'sections_border_radius',
 			array(
-				'label'      => esc_html__( 'Border Radius', 'mas-elementor' ),
+				'label'      => esc_html__( 'Border Radius', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', '%', 'em', 'rem', 'custom' ),
 				'selectors'  => array(
@@ -580,7 +580,7 @@ class Purchase_Summary extends Base_Widget {
 		$this->add_responsive_control(
 			'sections_padding',
 			array(
-				'label'      => esc_html__( 'Padding', 'mas-elementor' ),
+				'label'      => esc_html__( 'Padding', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', '%', 'em', 'rem', 'vw', 'custom' ),
 				'selectors'  => array(
@@ -592,7 +592,7 @@ class Purchase_Summary extends Base_Widget {
 		$this->add_responsive_control(
 			'sections_spacing',
 			array(
-				'label'      => esc_html__( 'Spacing', 'mas-elementor' ),
+				'label'      => esc_html__( 'Spacing', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::SLIDER,
 				'size_units' => array( 'px', '%', 'em', 'rem', 'vw', 'custom' ),
 				'range'      => array(
@@ -612,7 +612,7 @@ class Purchase_Summary extends Base_Widget {
 		$this->start_controls_section(
 			'typography_title',
 			array(
-				'label' => esc_html__( 'Typography', 'mas-elementor' ),
+				'label' => esc_html__( 'Typography', 'mas-addons-for-elementor' ),
 				'tab'   => Controls_Manager::TAB_STYLE,
 			)
 		);
@@ -621,14 +621,14 @@ class Purchase_Summary extends Base_Widget {
 			'confirmation_message_title',
 			array(
 				'type'  => Controls_Manager::HEADING,
-				'label' => esc_html__( 'Confirmation Message', 'mas-elementor' ),
+				'label' => esc_html__( 'Confirmation Message', 'mas-addons-for-elementor' ),
 			)
 		);
 
 		$this->add_control(
 			'confirmation_message_color',
 			array(
-				'label'     => esc_html__( 'Color', 'mas-elementor' ),
+				'label'     => esc_html__( 'Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
 					'{{WRAPPER}}' => '--confirmation-message-color: {{VALUE}};',
@@ -656,14 +656,14 @@ class Purchase_Summary extends Base_Widget {
 			'titles_title',
 			array(
 				'type'  => Controls_Manager::HEADING,
-				'label' => esc_html__( 'Titles', 'mas-elementor' ),
+				'label' => esc_html__( 'Titles', 'mas-addons-for-elementor' ),
 			)
 		);
 
 		$this->add_control(
 			'titles_color',
 			array(
-				'label'     => esc_html__( 'Color', 'mas-elementor' ),
+				'label'     => esc_html__( 'Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
 					'{{WRAPPER}}' => '--titles-color: {{VALUE}};',
@@ -690,7 +690,7 @@ class Purchase_Summary extends Base_Widget {
 		$this->add_responsive_control(
 			'titles_spacing',
 			array(
-				'label'      => esc_html__( 'Spacing', 'mas-elementor' ),
+				'label'      => esc_html__( 'Spacing', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::SLIDER,
 				'size_units' => array( 'px', '%', 'em', 'rem', 'vw', 'custom' ),
 				'range'      => array(
@@ -709,14 +709,14 @@ class Purchase_Summary extends Base_Widget {
 			'general_text_title',
 			array(
 				'type'  => Controls_Manager::HEADING,
-				'label' => esc_html__( 'General Text', 'mas-elementor' ),
+				'label' => esc_html__( 'General Text', 'mas-addons-for-elementor' ),
 			)
 		);
 
 		$this->add_control(
 			'general_text_color',
 			array(
-				'label'     => esc_html__( 'Color', 'mas-elementor' ),
+				'label'     => esc_html__( 'Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
 					'{{WRAPPER}}' => '--general-text-color: {{VALUE}};',
@@ -737,7 +737,7 @@ class Purchase_Summary extends Base_Widget {
 		$this->start_controls_section(
 			'payment_details_title',
 			array(
-				'label' => esc_html__( 'Payment Details', 'mas-elementor' ),
+				'label' => esc_html__( 'Payment Details', 'mas-addons-for-elementor' ),
 				'tab'   => Controls_Manager::TAB_STYLE,
 			)
 		);
@@ -745,7 +745,7 @@ class Purchase_Summary extends Base_Widget {
 		$this->add_responsive_control(
 			'payment_details_space_between',
 			array(
-				'label'      => esc_html__( 'Space Between', 'mas-elementor' ),
+				'label'      => esc_html__( 'Space Between', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::SLIDER,
 				'size_units' => array( 'px', 'em', 'rem', 'custom' ),
 				'range'      => array(
@@ -766,14 +766,14 @@ class Purchase_Summary extends Base_Widget {
 			'payment_details_titles_title',
 			array(
 				'type'  => Controls_Manager::HEADING,
-				'label' => esc_html__( 'Titles', 'mas-elementor' ),
+				'label' => esc_html__( 'Titles', 'mas-addons-for-elementor' ),
 			)
 		);
 
 		$this->add_control(
 			'payment_details_titles_color',
 			array(
-				'label'     => esc_html__( 'Color', 'mas-elementor' ),
+				'label'     => esc_html__( 'Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
 					'{{WRAPPER}}' => '--payment-details-titles-color: {{VALUE}};',
@@ -803,7 +803,7 @@ class Purchase_Summary extends Base_Widget {
 		$this->add_responsive_control(
 			'payment_details_titles_spacing',
 			array(
-				'label'      => esc_html__( 'Spacing', 'mas-elementor' ),
+				'label'      => esc_html__( 'Spacing', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::SLIDER,
 				'size_units' => array( 'px', '%', 'em', 'rem', 'vw', 'custom' ),
 				'range'      => array(
@@ -822,14 +822,14 @@ class Purchase_Summary extends Base_Widget {
 			'payment_details_items_title',
 			array(
 				'type'  => Controls_Manager::HEADING,
-				'label' => esc_html__( 'Items', 'mas-elementor' ),
+				'label' => esc_html__( 'Items', 'mas-addons-for-elementor' ),
 			)
 		);
 
 		$this->add_control(
 			'payment_details_items_color',
 			array(
-				'label'     => esc_html__( 'Color', 'mas-elementor' ),
+				'label'     => esc_html__( 'Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
 					'{{WRAPPER}}' => '--payment-details-items-color: {{VALUE}};',
@@ -852,7 +852,7 @@ class Purchase_Summary extends Base_Widget {
 			'payment_details_dividers_title',
 			array(
 				'type'      => Controls_Manager::HEADING,
-				'label'     => esc_html__( 'Dividers', 'mas-elementor' ),
+				'label'     => esc_html__( 'Dividers', 'mas-addons-for-elementor' ),
 				'separator' => 'before',
 			)
 		);
@@ -860,7 +860,7 @@ class Purchase_Summary extends Base_Widget {
 		$this->add_control(
 			'payment_details_border_type',
 			array(
-				'label'     => esc_html__( 'Border Type', 'mas-elementor' ),
+				'label'     => esc_html__( 'Border Type', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::SELECT,
 				'options'   => $this->get_custom_border_type_options(),
 				'selectors' => array(
@@ -872,7 +872,7 @@ class Purchase_Summary extends Base_Widget {
 		$this->add_responsive_control(
 			'payment_details_border_width',
 			array(
-				'label'      => esc_html__( 'Width', 'mas-elementor' ),
+				'label'      => esc_html__( 'Width', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::SLIDER,
 				'size_units' => array( 'px', '%', 'em', 'rem', 'vw', 'custom' ),
 				'range'      => array(
@@ -894,7 +894,7 @@ class Purchase_Summary extends Base_Widget {
 		$this->add_control(
 			'payment_details_border_color',
 			array(
-				'label'     => esc_html__( 'Color', 'mas-elementor' ),
+				'label'     => esc_html__( 'Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
 					'{{WRAPPER}}' => '--payment-details-border-color: {{VALUE}};',
@@ -910,7 +910,7 @@ class Purchase_Summary extends Base_Widget {
 		$this->start_controls_section(
 			'bank_details_title',
 			array(
-				'label' => esc_html__( 'Bank Details', 'mas-elementor' ),
+				'label' => esc_html__( 'Bank Details', 'mas-addons-for-elementor' ),
 				'tab'   => Controls_Manager::TAB_STYLE,
 			)
 		);
@@ -918,7 +918,7 @@ class Purchase_Summary extends Base_Widget {
 		$this->add_responsive_control(
 			'bank_details_space_between',
 			array(
-				'label'      => esc_html__( 'Space Between', 'mas-elementor' ),
+				'label'      => esc_html__( 'Space Between', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::SLIDER,
 				'size_units' => array( 'px', 'em', 'rem', 'custom' ),
 				'range'      => array(
@@ -939,14 +939,14 @@ class Purchase_Summary extends Base_Widget {
 			'bank_details_account_title',
 			array(
 				'type'  => Controls_Manager::HEADING,
-				'label' => esc_html__( 'Account Title', 'mas-elementor' ),
+				'label' => esc_html__( 'Account Title', 'mas-addons-for-elementor' ),
 			)
 		);
 
 		$this->add_control(
 			'account_title_color',
 			array(
-				'label'     => esc_html__( 'Color', 'mas-elementor' ),
+				'label'     => esc_html__( 'Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
 					'{{WRAPPER}}' => '--account-title-color: {{VALUE}};',
@@ -973,7 +973,7 @@ class Purchase_Summary extends Base_Widget {
 		$this->add_responsive_control(
 			'account_title_spacing',
 			array(
-				'label'      => esc_html__( 'Spacing', 'mas-elementor' ),
+				'label'      => esc_html__( 'Spacing', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::SLIDER,
 				'size_units' => array( 'px', '%', 'em', 'rem', 'vw', 'custom' ),
 				'range'      => array(
@@ -992,14 +992,14 @@ class Purchase_Summary extends Base_Widget {
 			'bank_details_titles_title',
 			array(
 				'type'  => Controls_Manager::HEADING,
-				'label' => esc_html__( 'Titles', 'mas-elementor' ),
+				'label' => esc_html__( 'Titles', 'mas-addons-for-elementor' ),
 			)
 		);
 
 		$this->add_control(
 			'bank_details_titles_color',
 			array(
-				'label'     => esc_html__( 'Color', 'mas-elementor' ),
+				'label'     => esc_html__( 'Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
 					'{{WRAPPER}}' => '--bank-details-titles-color: {{VALUE}};',
@@ -1029,7 +1029,7 @@ class Purchase_Summary extends Base_Widget {
 		$this->add_responsive_control(
 			'bank_details_titles_spacing',
 			array(
-				'label'      => esc_html__( 'Spacing', 'mas-elementor' ),
+				'label'      => esc_html__( 'Spacing', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::SLIDER,
 				'size_units' => array( 'px', '%', 'em', 'rem', 'vw', 'custom' ),
 				'range'      => array(
@@ -1048,14 +1048,14 @@ class Purchase_Summary extends Base_Widget {
 			'bank_details_items_title',
 			array(
 				'type'  => Controls_Manager::HEADING,
-				'label' => esc_html__( 'Items', 'mas-elementor' ),
+				'label' => esc_html__( 'Items', 'mas-addons-for-elementor' ),
 			)
 		);
 
 		$this->add_control(
 			'bank_details_items_color',
 			array(
-				'label'     => esc_html__( 'Color', 'mas-elementor' ),
+				'label'     => esc_html__( 'Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
 					'{{WRAPPER}}' => '--bank-details-items-color: {{VALUE}};',
@@ -1078,7 +1078,7 @@ class Purchase_Summary extends Base_Widget {
 			'bank_details_dividers_title',
 			array(
 				'type'      => Controls_Manager::HEADING,
-				'label'     => esc_html__( 'Dividers', 'mas-elementor' ),
+				'label'     => esc_html__( 'Dividers', 'mas-addons-for-elementor' ),
 				'separator' => 'before',
 			)
 		);
@@ -1086,7 +1086,7 @@ class Purchase_Summary extends Base_Widget {
 		$this->add_control(
 			'bank_details_border_type',
 			array(
-				'label'     => esc_html__( 'Border Type', 'mas-elementor' ),
+				'label'     => esc_html__( 'Border Type', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::SELECT,
 				'options'   => $this->get_custom_border_type_options(),
 				'selectors' => array(
@@ -1098,7 +1098,7 @@ class Purchase_Summary extends Base_Widget {
 		$this->add_responsive_control(
 			'bank_details_border_width',
 			array(
-				'label'      => esc_html__( 'Width', 'mas-elementor' ),
+				'label'      => esc_html__( 'Width', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::SLIDER,
 				'size_units' => array( 'px', '%', 'em', 'rem', 'vw', 'custom' ),
 				'range'      => array(
@@ -1120,7 +1120,7 @@ class Purchase_Summary extends Base_Widget {
 		$this->add_control(
 			'bank_details_border_color',
 			array(
-				'label'     => esc_html__( 'Color', 'mas-elementor' ),
+				'label'     => esc_html__( 'Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
 					'{{WRAPPER}}' => '--bank-details-border-color: {{VALUE}};',
@@ -1136,7 +1136,7 @@ class Purchase_Summary extends Base_Widget {
 		$this->start_controls_section(
 			'order_details_title',
 			array(
-				'label' => esc_html__( 'Order Details', 'mas-elementor' ),
+				'label' => esc_html__( 'Order Details', 'mas-addons-for-elementor' ),
 				'tab'   => Controls_Manager::TAB_STYLE,
 			)
 		);
@@ -1144,7 +1144,7 @@ class Purchase_Summary extends Base_Widget {
 		$this->add_responsive_control(
 			'order_details_rows_gap',
 			array(
-				'label'      => esc_html__( 'Rows Gap', 'mas-elementor' ),
+				'label'      => esc_html__( 'Rows Gap', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::SLIDER,
 				'size_units' => array( 'px', 'em', 'rem', 'custom' ),
 				'range'      => array(
@@ -1164,14 +1164,14 @@ class Purchase_Summary extends Base_Widget {
 			'order_details_titles_totals',
 			array(
 				'type'  => Controls_Manager::HEADING,
-				'label' => esc_html__( 'Titles &amp; Totals', 'mas-elementor' ),
+				'label' => esc_html__( 'Titles &amp; Totals', 'mas-addons-for-elementor' ),
 			)
 		);
 
 		$this->add_control(
 			'order_details_titles_totals_color',
 			array(
-				'label'     => esc_html__( 'Color', 'mas-elementor' ),
+				'label'     => esc_html__( 'Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
 					'{{WRAPPER}}' => '--order-details-titles-totals-color: {{VALUE}};',
@@ -1199,14 +1199,14 @@ class Purchase_Summary extends Base_Widget {
 			'order_details_items_title',
 			array(
 				'type'  => Controls_Manager::HEADING,
-				'label' => esc_html__( 'Items', 'mas-elementor' ),
+				'label' => esc_html__( 'Items', 'mas-addons-for-elementor' ),
 			)
 		);
 
 		$this->add_control(
 			'order_details_items_color',
 			array(
-				'label'     => esc_html__( 'Color', 'mas-elementor' ),
+				'label'     => esc_html__( 'Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
 					'{{WRAPPER}}' => '--order-details-items-color: {{VALUE}};',
@@ -1226,14 +1226,14 @@ class Purchase_Summary extends Base_Widget {
 			'order_details_variations_title',
 			array(
 				'type'  => Controls_Manager::HEADING,
-				'label' => esc_html__( 'Variations', 'mas-elementor' ),
+				'label' => esc_html__( 'Variations', 'mas-addons-for-elementor' ),
 			)
 		);
 
 		$this->add_control(
 			'order_details_variations_color',
 			array(
-				'label'     => esc_html__( 'Color', 'mas-elementor' ),
+				'label'     => esc_html__( 'Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
 					'{{WRAPPER}}' => '--order-details-variations-color: {{VALUE}};',
@@ -1253,18 +1253,18 @@ class Purchase_Summary extends Base_Widget {
 			'order_details_product_links_title',
 			array(
 				'type'  => Controls_Manager::HEADING,
-				'label' => esc_html__( 'Product Link', 'mas-elementor' ),
+				'label' => esc_html__( 'Product Link', 'mas-addons-for-elementor' ),
 			)
 		);
 
 		$this->start_controls_tabs( 'order_details_product_links_colors' );
 
-		$this->start_controls_tab( 'order_details_product_links_normal_colors', array( 'label' => esc_html__( 'Normal', 'mas-elementor' ) ) );
+		$this->start_controls_tab( 'order_details_product_links_normal_colors', array( 'label' => esc_html__( 'Normal', 'mas-addons-for-elementor' ) ) );
 
 		$this->add_control(
 			'order_details_product_links_normal_color',
 			array(
-				'label'     => esc_html__( 'Color', 'mas-elementor' ),
+				'label'     => esc_html__( 'Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
 					'{{WRAPPER}}' => '--order-details-product-links-normal-color: {{VALUE}};',
@@ -1274,12 +1274,12 @@ class Purchase_Summary extends Base_Widget {
 
 		$this->end_controls_tab();
 
-		$this->start_controls_tab( 'order_details_product_links_hover_colors', array( 'label' => esc_html__( 'Hover', 'mas-elementor' ) ) );
+		$this->start_controls_tab( 'order_details_product_links_hover_colors', array( 'label' => esc_html__( 'Hover', 'mas-addons-for-elementor' ) ) );
 
 		$this->add_control(
 			'order_details_product_links_hover_color',
 			array(
-				'label'     => esc_html__( 'Color', 'mas-elementor' ),
+				'label'     => esc_html__( 'Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
 					'{{WRAPPER}}' => '--order-details-product-links-hover-color: {{VALUE}};',
@@ -1295,7 +1295,7 @@ class Purchase_Summary extends Base_Widget {
 			'order_details_dividers_title',
 			array(
 				'type'      => Controls_Manager::HEADING,
-				'label'     => esc_html__( 'Dividers', 'mas-elementor' ),
+				'label'     => esc_html__( 'Dividers', 'mas-addons-for-elementor' ),
 				'separator' => 'before',
 			)
 		);
@@ -1303,7 +1303,7 @@ class Purchase_Summary extends Base_Widget {
 		$this->add_control(
 			'order_details_border_type',
 			array(
-				'label'     => esc_html__( 'Border Type', 'mas-elementor' ),
+				'label'     => esc_html__( 'Border Type', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::SELECT,
 				'options'   => $this->get_custom_border_type_options(),
 				'selectors' => array(
@@ -1315,7 +1315,7 @@ class Purchase_Summary extends Base_Widget {
 		$this->add_responsive_control(
 			'order_details_border_width',
 			array(
-				'label'      => esc_html__( 'Width', 'mas-elementor' ),
+				'label'      => esc_html__( 'Width', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::SLIDER,
 				'size_units' => array( 'px', '%', 'em', 'rem', 'vw', 'custom' ),
 				'range'      => array(
@@ -1337,7 +1337,7 @@ class Purchase_Summary extends Base_Widget {
 		$this->add_control(
 			'order_details_border_color',
 			array(
-				'label'     => esc_html__( 'Color', 'mas-elementor' ),
+				'label'     => esc_html__( 'Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
 					'{{WRAPPER}}' => '--tables-divider-border-color: {{VALUE}};',
@@ -1352,7 +1352,7 @@ class Purchase_Summary extends Base_Widget {
 			'order_details_button_title',
 			array(
 				'type'      => Controls_Manager::HEADING,
-				'label'     => esc_html__( 'Buttons', 'mas-elementor' ),
+				'label'     => esc_html__( 'Buttons', 'mas-addons-for-elementor' ),
 				'separator' => 'before',
 			)
 		);
@@ -1375,12 +1375,12 @@ class Purchase_Summary extends Base_Widget {
 
 		$this->start_controls_tabs( 'order_details_button_styles' );
 
-		$this->start_controls_tab( 'order_details_button_styles_normal', array( 'label' => esc_html__( 'Normal', 'mas-elementor' ) ) );
+		$this->start_controls_tab( 'order_details_button_styles_normal', array( 'label' => esc_html__( 'Normal', 'mas-addons-for-elementor' ) ) );
 
 		$this->add_control(
 			'order_details_button_normal_text_color',
 			array(
-				'label'     => esc_html__( 'Text Color', 'mas-elementor' ),
+				'label'     => esc_html__( 'Text Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
 					'{{WRAPPER}}' => '--button-normal-text-color: {{VALUE}};',
@@ -1406,12 +1406,12 @@ class Purchase_Summary extends Base_Widget {
 
 		$this->end_controls_tab();
 
-		$this->start_controls_tab( 'order_details_button_styles_hover', array( 'label' => esc_html__( 'Hover', 'mas-elementor' ) ) );
+		$this->start_controls_tab( 'order_details_button_styles_hover', array( 'label' => esc_html__( 'Hover', 'mas-addons-for-elementor' ) ) );
 
 		$this->add_control(
 			'order_details_button_hover_text_color',
 			array(
-				'label'     => esc_html__( 'Text Color', 'mas-elementor' ),
+				'label'     => esc_html__( 'Text Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
 					'{{WRAPPER}}' => '--button-hover-text-color: {{VALUE}};',
@@ -1438,7 +1438,7 @@ class Purchase_Summary extends Base_Widget {
 		$this->add_control(
 			'order_details_button_hover_border_color',
 			array(
-				'label'     => esc_html__( 'Border Color', 'mas-elementor' ),
+				'label'     => esc_html__( 'Border Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
 					'{{WRAPPER}} .shop_table .button:hover, {{WRAPPER}} .order-again .button:hover' => 'border-color: {{VALUE}}',
@@ -1452,7 +1452,7 @@ class Purchase_Summary extends Base_Widget {
 		$this->add_control(
 			'order_details_button_hover_transition_duration',
 			array(
-				'label'     => esc_html__( 'Transition Duration', 'mas-elementor' ) . ' (ms)',
+				'label'     => esc_html__( 'Transition Duration', 'mas-addons-for-elementor' ) . ' (ms)',
 				'type'      => Controls_Manager::SLIDER,
 				'selectors' => array(
 					'{{WRAPPER}}' => '--button-hover-transition-duration: {{SIZE}}ms',
@@ -1469,7 +1469,7 @@ class Purchase_Summary extends Base_Widget {
 		$this->add_control(
 			'order_details_button_hover_animation',
 			array(
-				'label'              => esc_html__( 'Hover Animation', 'mas-elementor' ),
+				'label'              => esc_html__( 'Hover Animation', 'mas-addons-for-elementor' ),
 				'type'               => Controls_Manager::HOVER_ANIMATION,
 				'frontend_available' => true,
 				'render_type'        => 'template',
@@ -1483,7 +1483,7 @@ class Purchase_Summary extends Base_Widget {
 		$this->add_control(
 			'order_details_button_border_type',
 			array(
-				'label'     => esc_html__( 'Border Type', 'mas-elementor' ),
+				'label'     => esc_html__( 'Border Type', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::SELECT,
 				'options'   => $this->get_custom_border_type_options(),
 				'selectors' => array(
@@ -1496,7 +1496,7 @@ class Purchase_Summary extends Base_Widget {
 		$this->add_responsive_control(
 			'order_details_button_border_width',
 			array(
-				'label'      => esc_html__( 'Width', 'mas-elementor' ),
+				'label'      => esc_html__( 'Width', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', '%', 'em', 'rem', 'vw', 'custom' ),
 				'selectors'  => array(
@@ -1511,7 +1511,7 @@ class Purchase_Summary extends Base_Widget {
 		$this->add_control(
 			'order_details_button_border_color',
 			array(
-				'label'     => esc_html__( 'Color', 'mas-elementor' ),
+				'label'     => esc_html__( 'Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
 					'{{WRAPPER}} ' => '--buttons-border-color: {{VALUE}};',
@@ -1525,7 +1525,7 @@ class Purchase_Summary extends Base_Widget {
 		$this->add_responsive_control(
 			'order_details_button_border_radius',
 			array(
-				'label'      => esc_html__( 'Border Radius', 'mas-elementor' ),
+				'label'      => esc_html__( 'Border Radius', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', '%', 'em', 'rem', 'custom' ),
 				'selectors'  => array(
@@ -1537,7 +1537,7 @@ class Purchase_Summary extends Base_Widget {
 		$this->add_responsive_control(
 			'order_details_button_padding',
 			array(
-				'label'      => esc_html__( 'Padding', 'mas-elementor' ),
+				'label'      => esc_html__( 'Padding', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', '%', 'em', 'rem', 'vw', 'custom' ),
 				'selectors'  => array(
@@ -1661,7 +1661,7 @@ class Purchase_Summary extends Base_Widget {
 	public function no_order_notice() {
 		?>
 		<div class="woocommerce-error" role="alert">
-			<?php echo esc_html__( 'You need at least one WooCommerce order to preview the order here.', 'mas-elementor' ); ?>
+			<?php echo esc_html__( 'You need at least one WooCommerce order to preview the order here.', 'mas-addons-for-elementor' ); ?>
 		</div>
 		<?php
 	}

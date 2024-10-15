@@ -18,11 +18,11 @@ if ( ! class_exists( 'Premium_Structure_Container' ) ) {
 		}
 
 		public function get_single_label() {
-			return esc_html__( 'Container', 'mas-elementor' );
+			return esc_html__( 'Container', 'mas-addons-for-elementor' );
 		}
 
 		public function get_plural_label() {
-			return esc_html__( 'Container', 'mas-elementor' );
+			return esc_html__( 'Container', 'mas-addons-for-elementor' );
 		}
 
 		public function get_sources() {

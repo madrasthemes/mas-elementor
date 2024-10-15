@@ -40,7 +40,7 @@ class Multipurpose_Text extends Base_Widget {
 	 * @return string
 	 */
 	public function get_title() {
-		return esc_html__( 'Multipurpose Text', 'mas-elementor' );
+		return esc_html__( 'Multipurpose Text', 'mas-addons-for-elementor' );
 	}
 
 	/**
@@ -79,21 +79,21 @@ class Multipurpose_Text extends Base_Widget {
 		$this->start_controls_section(
 			'section_title',
 			array(
-				'label' => esc_html__( 'Title', 'mas-elementor' ),
+				'label' => esc_html__( 'Title', 'mas-addons-for-elementor' ),
 			)
 		);
 
 		$this->add_control(
 			'before_title',
 			array(
-				'label'       => esc_html__( 'Before Highlighted Text', 'mas-elementor' ),
+				'label'       => esc_html__( 'Before Highlighted Text', 'mas-addons-for-elementor' ),
 				'type'        => Controls_Manager::TEXT,
 				'dynamic'     => array(
 					'active' => true,
 				),
-				'placeholder' => esc_html__( 'Enter your title', 'mas-elementor' ),
+				'placeholder' => esc_html__( 'Enter your title', 'mas-addons-for-elementor' ),
 				'default'     => 'Welcome to ',
-				'description' => esc_html__( 'Use <br> to break into two lines', 'mas-elementor' ),
+				'description' => esc_html__( 'Use <br> to break into two lines', 'mas-addons-for-elementor' ),
 				'label_block' => true,
 			)
 		);
@@ -101,7 +101,7 @@ class Multipurpose_Text extends Base_Widget {
 		$this->add_control(
 			'highlighted_text',
 			array(
-				'label'       => esc_html__( 'Highlighted Text', 'mas-elementor' ),
+				'label'       => esc_html__( 'Highlighted Text', 'mas-addons-for-elementor' ),
 				'type'        => Controls_Manager::TEXT,
 				'dynamic'     => array(
 					'active' => true,
@@ -114,14 +114,14 @@ class Multipurpose_Text extends Base_Widget {
 		$this->add_control(
 			'after_title',
 			array(
-				'label'       => esc_html__( 'After Highlighted Text', 'mas-elementor' ),
+				'label'       => esc_html__( 'After Highlighted Text', 'mas-addons-for-elementor' ),
 				'type'        => Controls_Manager::TEXT,
 				'dynamic'     => array(
 					'active' => true,
 				),
 				'default'     => '',
-				'placeholder' => esc_html__( 'Enter your title', 'mas-elementor' ),
-				'description' => esc_html__( 'Use <br> to break into two lines', 'mas-elementor' ),
+				'placeholder' => esc_html__( 'Enter your title', 'mas-addons-for-elementor' ),
+				'description' => esc_html__( 'Use <br> to break into two lines', 'mas-addons-for-elementor' ),
 				'label_block' => true,
 			)
 		);
@@ -130,20 +130,20 @@ class Multipurpose_Text extends Base_Widget {
 			'enable_typing_text',
 			array(
 				'type'      => Controls_Manager::SWITCHER,
-				'label'     => esc_html__( 'Enable Typing Text', 'mas-elementor' ),
+				'label'     => esc_html__( 'Enable Typing Text', 'mas-addons-for-elementor' ),
 				'default'   => 'no',
-				'label_off' => esc_html__( 'Disable', 'mas-elementor' ),
-				'label_on'  => esc_html__( 'Enable', 'mas-elementor' ),
+				'label_off' => esc_html__( 'Disable', 'mas-addons-for-elementor' ),
+				'label_on'  => esc_html__( 'Enable', 'mas-addons-for-elementor' ),
 			)
 		);
 
 		$this->add_control(
 			'typing_text',
 			array(
-				'label'              => esc_html__( 'Typing Text', 'mas-elementor' ),
-				'description'        => esc_html__( 'Enter each word in a separate line', 'mas-elementor' ),
+				'label'              => esc_html__( 'Typing Text', 'mas-addons-for-elementor' ),
+				'description'        => esc_html__( 'Enter each word in a separate line', 'mas-addons-for-elementor' ),
 				'type'               => Controls_Manager::TEXTAREA,
-				'placeholder'        => esc_html__( 'Enter Typing Text', 'mas-elementor' ),
+				'placeholder'        => esc_html__( 'Enter Typing Text', 'mas-addons-for-elementor' ),
 				'separator'          => 'before',
 				'default'            => "startup.\nfuture.\nsuccess.",
 				'frontend_available' => true,
@@ -156,7 +156,7 @@ class Multipurpose_Text extends Base_Widget {
 		$this->add_control(
 			'type_speed',
 			array(
-				'label'     => esc_html__( 'Typing Speed', 'mas-elementor' ),
+				'label'     => esc_html__( 'Typing Speed', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::SLIDER,
 				'default'   => array(
 					'size' => '40',
@@ -178,7 +178,7 @@ class Multipurpose_Text extends Base_Widget {
 		$this->add_control(
 			'back_speed',
 			array(
-				'label'     => esc_html__( 'Back Speed', 'mas-elementor' ),
+				'label'     => esc_html__( 'Back Speed', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::SLIDER,
 				'default'   => array(
 					'size' => '40',
@@ -200,7 +200,7 @@ class Multipurpose_Text extends Base_Widget {
 		$this->add_control(
 			'back_delay',
 			array(
-				'label'     => esc_html__( 'Back Delay', 'mas-elementor' ),
+				'label'     => esc_html__( 'Back Delay', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::SLIDER,
 				'default'   => array(
 					'size' => '500',
@@ -223,10 +223,10 @@ class Multipurpose_Text extends Base_Widget {
 			'typing_loop',
 			array(
 				'type'      => Controls_Manager::SWITCHER,
-				'label'     => esc_html__( 'Enable Typing Loop', 'mas-elementor' ),
+				'label'     => esc_html__( 'Enable Typing Loop', 'mas-addons-for-elementor' ),
 				'default'   => 'yes',
-				'label_off' => esc_html__( 'Disable', 'mas-elementor' ),
-				'label_on'  => esc_html__( 'Enable', 'mas-elementor' ),
+				'label_off' => esc_html__( 'Disable', 'mas-addons-for-elementor' ),
+				'label_on'  => esc_html__( 'Enable', 'mas-addons-for-elementor' ),
 				'condition' => array(
 					'typing_text!'       => '',
 					'enable_typing_text' => 'yes',
@@ -237,7 +237,7 @@ class Multipurpose_Text extends Base_Widget {
 		$this->add_control(
 			'link',
 			array(
-				'label'     => esc_html__( 'Link', 'mas-elementor' ),
+				'label'     => esc_html__( 'Link', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::URL,
 				'dynamic'   => array(
 					'active' => true,
@@ -252,16 +252,16 @@ class Multipurpose_Text extends Base_Widget {
 		$this->add_control(
 			'link_css',
 			array(
-				'label'       => esc_html__( 'Anchor Tag CSS', 'mas-elementor' ),
+				'label'       => esc_html__( 'Anchor Tag CSS', 'mas-addons-for-elementor' ),
 				'type'        => Controls_Manager::TEXT,
-				'description' => esc_html__( 'Additional CSS classes separated by space that you\'d like to apply to the <a> tag', 'mas-elementor' ),
+				'description' => esc_html__( 'Additional CSS classes separated by space that you\'d like to apply to the <a> tag', 'mas-addons-for-elementor' ),
 			)
 		);
 
 		$this->add_control(
 			'header_size',
 			array(
-				'label'   => esc_html__( 'HTML Tag', 'mas-elementor' ),
+				'label'   => esc_html__( 'HTML Tag', 'mas-addons-for-elementor' ),
 				'type'    => Controls_Manager::SELECT,
 				'options' => array(
 					'h1'    => 'H1',
@@ -282,23 +282,23 @@ class Multipurpose_Text extends Base_Widget {
 		$this->add_responsive_control(
 			'align',
 			array(
-				'label'     => esc_html__( 'Alignment', 'mas-elementor' ),
+				'label'     => esc_html__( 'Alignment', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::CHOOSE,
 				'options'   => array(
 					'left'    => array(
-						'title' => esc_html__( 'Left', 'mas-elementor' ),
+						'title' => esc_html__( 'Left', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-text-align-left',
 					),
 					'center'  => array(
-						'title' => esc_html__( 'Center', 'mas-elementor' ),
+						'title' => esc_html__( 'Center', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-text-align-center',
 					),
 					'right'   => array(
-						'title' => esc_html__( 'Right', 'mas-elementor' ),
+						'title' => esc_html__( 'Right', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-text-align-right',
 					),
 					'justify' => array(
-						'title' => esc_html__( 'Justified', 'mas-elementor' ),
+						'title' => esc_html__( 'Justified', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-text-align-justify',
 					),
 				),
@@ -312,13 +312,13 @@ class Multipurpose_Text extends Base_Widget {
 		$this->add_control(
 			'text_overflow',
 			array(
-				'label'     => esc_html__( 'Text Overflow', 'mas-elementor' ),
+				'label'     => esc_html__( 'Text Overflow', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::SELECT,
 				'default'   => '',
 				'options'   => array(
-					''       => esc_html__( 'Default', 'mas-elementor' ),
-					'hidden' => esc_html__( 'Hidden', 'mas-elementor' ),
-					'auto'   => esc_html__( 'Auto', 'mas-elementor' ),
+					''       => esc_html__( 'Default', 'mas-addons-for-elementor' ),
+					'hidden' => esc_html__( 'Hidden', 'mas-addons-for-elementor' ),
+					'auto'   => esc_html__( 'Auto', 'mas-addons-for-elementor' ),
 				),
 				'selectors' => array(
 					'{{WRAPPER}} .mas-elementor-multipurpose-text__title' => 'overflow: {{VALUE}}',
@@ -331,7 +331,7 @@ class Multipurpose_Text extends Base_Widget {
 		$this->start_controls_section(
 			'section_highlighted_style',
 			array(
-				'label' => esc_html__( 'Title', 'mas-elementor' ),
+				'label' => esc_html__( 'Title', 'mas-addons-for-elementor' ),
 				'tab'   => Controls_Manager::TAB_STYLE,
 			)
 		);
@@ -341,14 +341,14 @@ class Multipurpose_Text extends Base_Widget {
 			$this->start_controls_tab(
 				'normal',
 				array(
-					'label' => esc_html__( 'Normal', 'mas-elementor' ),
+					'label' => esc_html__( 'Normal', 'mas-addons-for-elementor' ),
 				)
 			);
 
 			$this->add_control(
 				'title_color',
 				array(
-					'label'     => esc_html__( 'Title Color', 'mas-elementor' ),
+					'label'     => esc_html__( 'Title Color', 'mas-addons-for-elementor' ),
 					'type'      => Controls_Manager::COLOR,
 					'global'    => array(
 						'default' => Global_Colors::COLOR_PRIMARY,
@@ -376,17 +376,17 @@ class Multipurpose_Text extends Base_Widget {
 			$this->start_controls_tab(
 				'hover',
 				array(
-					'label' => esc_html__( 'Hover', 'mas-elementor' ),
+					'label' => esc_html__( 'Hover', 'mas-addons-for-elementor' ),
 				)
 			);
 
 			$this->add_control(
 				'card_hover',
 				array(
-					'label'        => esc_html__( 'Card Hover', 'mas-elementor' ),
+					'label'        => esc_html__( 'Card Hover', 'mas-addons-for-elementor' ),
 					'type'         => Controls_Manager::SWITCHER,
 					'return_value' => 'enable',
-					'description'  => esc_html__( 'Below title color and typography will work on hovering card on mas-post for products', 'mas-elementor' ),
+					'description'  => esc_html__( 'Below title color and typography will work on hovering card on mas-post for products', 'mas-addons-for-elementor' ),
 					'prefix_class' => 'mas-product-card-hover-',
 				)
 			);
@@ -394,7 +394,7 @@ class Multipurpose_Text extends Base_Widget {
 			$this->add_control(
 				'hover_title_color',
 				array(
-					'label'     => esc_html__( 'Title Color', 'mas-elementor' ),
+					'label'     => esc_html__( 'Title Color', 'mas-addons-for-elementor' ),
 					'type'      => Controls_Manager::COLOR,
 					'global'    => array(
 						'default' => Global_Colors::COLOR_PRIMARY,
@@ -422,7 +422,7 @@ class Multipurpose_Text extends Base_Widget {
 			$this->add_control(
 				'underline_offset',
 				array(
-					'label'     => esc_html__( 'Underline Offset', 'mas-elementor' ),
+					'label'     => esc_html__( 'Underline Offset', 'mas-addons-for-elementor' ),
 					'type'      => Controls_Manager::SLIDER,
 					'default'   => array(
 						'size' => 1,
@@ -441,9 +441,9 @@ class Multipurpose_Text extends Base_Widget {
 		$this->add_control(
 			'title_css',
 			array(
-				'label'       => esc_html__( 'Additional CSS', 'mas-elementor' ),
+				'label'       => esc_html__( 'Additional CSS', 'mas-addons-for-elementor' ),
 				'type'        => Controls_Manager::TEXT,
-				'description' => esc_html__( 'Additional CSS classes separated by space that you\'d like to apply to the title', 'mas-elementor' ),
+				'description' => esc_html__( 'Additional CSS classes separated by space that you\'d like to apply to the title', 'mas-addons-for-elementor' ),
 				'separator'   => 'before',
 			)
 		);
@@ -455,7 +455,7 @@ class Multipurpose_Text extends Base_Widget {
 		$this->start_controls_section(
 			'section_title_style',
 			array(
-				'label' => esc_html__( 'Highlighted Text', 'mas-elementor' ),
+				'label' => esc_html__( 'Highlighted Text', 'mas-addons-for-elementor' ),
 				'tab'   => Controls_Manager::TAB_STYLE,
 			)
 		);
@@ -465,14 +465,14 @@ class Multipurpose_Text extends Base_Widget {
 			$this->start_controls_tab(
 				'highlight_normal',
 				array(
-					'label' => esc_html__( 'Normal', 'mas-elementor' ),
+					'label' => esc_html__( 'Normal', 'mas-addons-for-elementor' ),
 				)
 			);
 
 			$this->add_control(
 				'highlight_color',
 				array(
-					'label'     => esc_html__( 'Highlight Color', 'mas-elementor' ),
+					'label'     => esc_html__( 'Highlight Color', 'mas-addons-for-elementor' ),
 					'type'      => Controls_Manager::COLOR,
 					'global'    => array(
 						'default' => Global_Colors::COLOR_PRIMARY,
@@ -500,14 +500,14 @@ class Multipurpose_Text extends Base_Widget {
 			$this->start_controls_tab(
 				'highlight_hover',
 				array(
-					'label' => esc_html__( 'Hover', 'mas-elementor' ),
+					'label' => esc_html__( 'Hover', 'mas-addons-for-elementor' ),
 				)
 			);
 
 			$this->add_control(
 				'hover_highlight_color',
 				array(
-					'label'     => esc_html__( 'Highlight Color', 'mas-elementor' ),
+					'label'     => esc_html__( 'Highlight Color', 'mas-addons-for-elementor' ),
 					'type'      => Controls_Manager::COLOR,
 					'global'    => array(
 						'default' => Global_Colors::COLOR_PRIMARY,
@@ -537,9 +537,9 @@ class Multipurpose_Text extends Base_Widget {
 		$this->add_control(
 			'before_css',
 			array(
-				'label'       => esc_html__( 'Before Text CSS', 'mas-elementor' ),
+				'label'       => esc_html__( 'Before Text CSS', 'mas-addons-for-elementor' ),
 				'type'        => Controls_Manager::TEXT,
-				'description' => esc_html__( 'Additional CSS classes separated by space that you\'d like to apply to the before highlighted text', 'mas-elementor' ),
+				'description' => esc_html__( 'Additional CSS classes separated by space that you\'d like to apply to the before highlighted text', 'mas-addons-for-elementor' ),
 				'separator'   => 'before',
 			)
 		);
@@ -547,18 +547,18 @@ class Multipurpose_Text extends Base_Widget {
 		$this->add_control(
 			'highlighted_css',
 			array(
-				'label'       => esc_html__( 'Highlighted CSS', 'mas-elementor' ),
+				'label'       => esc_html__( 'Highlighted CSS', 'mas-addons-for-elementor' ),
 				'type'        => Controls_Manager::TEXT,
-				'description' => esc_html__( 'Additional CSS classes separated by space that you\'d like to apply to the highlighted text', 'mas-elementor' ),
+				'description' => esc_html__( 'Additional CSS classes separated by space that you\'d like to apply to the highlighted text', 'mas-addons-for-elementor' ),
 			)
 		);
 
 		$this->add_control(
 			'after_css',
 			array(
-				'label'       => esc_html__( 'After Text CSS', 'mas-elementor' ),
+				'label'       => esc_html__( 'After Text CSS', 'mas-addons-for-elementor' ),
 				'type'        => Controls_Manager::TEXT,
-				'description' => esc_html__( 'Additional CSS classes separated by space that you\'d like to apply to the after highlighted text', 'mas-elementor' ),
+				'description' => esc_html__( 'Additional CSS classes separated by space that you\'d like to apply to the after highlighted text', 'mas-addons-for-elementor' ),
 			)
 		);
 
@@ -567,7 +567,7 @@ class Multipurpose_Text extends Base_Widget {
 		$this->start_controls_section(
 			'heading_words_style',
 			array(
-				'label'     => esc_html__( 'Typed Text', 'mas-elementor' ),
+				'label'     => esc_html__( 'Typed Text', 'mas-addons-for-elementor' ),
 				'tab'       => Controls_Manager::TAB_STYLE,
 				'condition' => array(
 					'typing_text!'       => '',
@@ -582,14 +582,14 @@ class Multipurpose_Text extends Base_Widget {
 			$this->start_controls_tab(
 				'words_normal',
 				array(
-					'label' => esc_html__( 'Normal', 'mas-elementor' ),
+					'label' => esc_html__( 'Normal', 'mas-addons-for-elementor' ),
 				)
 			);
 
 			$this->add_control(
 				'words_color',
 				array(
-					'label'     => esc_html__( 'Text Color', 'mas-elementor' ),
+					'label'     => esc_html__( 'Text Color', 'mas-addons-for-elementor' ),
 					'type'      => Controls_Manager::COLOR,
 					'selectors' => array(
 						'{{WRAPPER}} .mas-elementor-headline-dynamic-text' => 'color: {{VALUE}}',
@@ -609,7 +609,7 @@ class Multipurpose_Text extends Base_Widget {
 			$this->add_control(
 				'words_color_underline',
 				array(
-					'label'     => esc_html__( 'Underline Color', 'mas-elementor' ),
+					'label'     => esc_html__( 'Underline Color', 'mas-addons-for-elementor' ),
 					'type'      => Controls_Manager::COLOR,
 					'selectors' => array(
 						'{{WRAPPER}} .mas-elementor-headline-dynamic-text_underline' => 'border-bottom-color: {{VALUE}}; border-bottom-width: 12px; border-bottom-style: solid;',
@@ -621,7 +621,7 @@ class Multipurpose_Text extends Base_Widget {
 			$this->add_responsive_control(
 				'underline_width',
 				array(
-					'label'          => esc_html__( 'Underline Width', 'mas-elementor' ),
+					'label'          => esc_html__( 'Underline Width', 'mas-addons-for-elementor' ),
 					'type'           => Controls_Manager::SLIDER,
 					'default'        => array(
 						'unit' => '%',
@@ -658,14 +658,14 @@ class Multipurpose_Text extends Base_Widget {
 			$this->start_controls_tab(
 				'words_hover',
 				array(
-					'label' => esc_html__( 'Hover', 'mas-elementor' ),
+					'label' => esc_html__( 'Hover', 'mas-addons-for-elementor' ),
 				)
 			);
 
 			$this->add_control(
 				'hover_words_color',
 				array(
-					'label'     => esc_html__( 'Text Color', 'mas-elementor' ),
+					'label'     => esc_html__( 'Text Color', 'mas-addons-for-elementor' ),
 					'type'      => Controls_Manager::COLOR,
 					'selectors' => array(
 						'{{WRAPPER}}:hover .mas-elementor-headline-dynamic-text' => 'color: {{VALUE}}',
@@ -685,7 +685,7 @@ class Multipurpose_Text extends Base_Widget {
 			$this->add_control(
 				'hover_words_color_underline',
 				array(
-					'label'     => esc_html__( 'Underline Color', 'mas-elementor' ),
+					'label'     => esc_html__( 'Underline Color', 'mas-addons-for-elementor' ),
 					'type'      => Controls_Manager::COLOR,
 					'selectors' => array(
 						'{{WRAPPER}}:hover .mas-elementor-headline-dynamic-text_underline' => 'border-bottom-color: {{VALUE}}; border-bottom-style: solid;',
@@ -697,7 +697,7 @@ class Multipurpose_Text extends Base_Widget {
 			$this->add_responsive_control(
 				'hover_underline_width',
 				array(
-					'label'          => esc_html__( 'Underline Width', 'mas-elementor' ),
+					'label'          => esc_html__( 'Underline Width', 'mas-addons-for-elementor' ),
 					'type'           => Controls_Manager::SLIDER,
 					'default'        => array(
 						'unit' => '%',
@@ -736,14 +736,14 @@ class Multipurpose_Text extends Base_Widget {
 		$this->add_control(
 			'typing_text_classes',
 			array(
-				'label'       => esc_html__( 'Typed Text CSS Classes', 'mas-elementor' ),
+				'label'       => esc_html__( 'Typed Text CSS Classes', 'mas-addons-for-elementor' ),
 				'type'        => Controls_Manager::TEXT,
 				'label_block' => true,
 				'dynamic'     => array(
 					'active' => true,
 				),
 				'separator'   => 'before',
-				'title'       => esc_html__( 'Add your custom class WITHOUT the dot. e.g: my-class', 'mas-elementor' ),
+				'title'       => esc_html__( 'Add your custom class WITHOUT the dot. e.g: my-class', 'mas-addons-for-elementor' ),
 			)
 		);
 
@@ -752,7 +752,7 @@ class Multipurpose_Text extends Base_Widget {
 		$this->start_controls_section(
 			'section_style_heading',
 			array(
-				'label' => esc_html__( 'Content', 'mas-elementor' ),
+				'label' => esc_html__( 'Content', 'mas-addons-for-elementor' ),
 				'tab'   => Controls_Manager::TAB_STYLE,
 			)
 		);
@@ -760,7 +760,7 @@ class Multipurpose_Text extends Base_Widget {
 		$this->add_responsive_control(
 			'width',
 			array(
-				'label'          => esc_html__( 'Width', 'mas-elementor' ),
+				'label'          => esc_html__( 'Width', 'mas-addons-for-elementor' ),
 				'type'           => Controls_Manager::SLIDER,
 				'default'        => array(
 					'unit' => '%',
@@ -795,7 +795,7 @@ class Multipurpose_Text extends Base_Widget {
 		$this->add_responsive_control(
 			'space',
 			array(
-				'label'          => esc_html__( 'Max Width', 'mas-elementor' ),
+				'label'          => esc_html__( 'Max Width', 'mas-addons-for-elementor' ),
 				'type'           => Controls_Manager::SLIDER,
 				'default'        => array(
 					'unit' => '%',
@@ -830,7 +830,7 @@ class Multipurpose_Text extends Base_Widget {
 		$this->add_responsive_control(
 			'height',
 			array(
-				'label'          => esc_html__( 'Height', 'mas-elementor' ),
+				'label'          => esc_html__( 'Height', 'mas-addons-for-elementor' ),
 				'type'           => Controls_Manager::SLIDER,
 				'default'        => array(
 					'unit' => 'px',
@@ -872,15 +872,15 @@ class Multipurpose_Text extends Base_Widget {
 		$this->add_responsive_control(
 			$name . '_enable_webkit',
 			array(
-				'label'     => esc_html__( 'Webkit', 'mas-elementor' ),
+				'label'     => esc_html__( 'Webkit', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::CHOOSE,
 				'options'   => array(
 					'flex'        => array(
-						'title' => esc_html__( 'Flex', 'mas-elementor' ),
+						'title' => esc_html__( 'Flex', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-flex eicon-wrap',
 					),
 					'-webkit-box' => array(
-						'title' => esc_html__( 'Webkit Box', 'mas-elementor' ),
+						'title' => esc_html__( 'Webkit Box', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-ban',
 					),
 				),
@@ -893,7 +893,7 @@ class Multipurpose_Text extends Base_Widget {
 		$this->add_responsive_control(
 			$name . '_webkit_orient',
 			array(
-				'label'     => esc_html__( 'Webkit Orient', 'mas-elementor' ),
+				'label'     => esc_html__( 'Webkit Orient', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::SELECT,
 				'options'   => array(
 					'vertical' => 'Vertical',
@@ -910,7 +910,7 @@ class Multipurpose_Text extends Base_Widget {
 		$this->add_responsive_control(
 			$name . '_webkit_line_clamp',
 			array(
-				'label'       => esc_html__( 'Webkit Line Clamp', 'mas-elementor' ),
+				'label'       => esc_html__( 'Webkit Line Clamp', 'mas-addons-for-elementor' ),
 				'type'        => Controls_Manager::NUMBER,
 				'selectors'   => array(
 					$wrapper => '-webkit-line-clamp: {{VALUE}};',

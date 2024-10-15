@@ -20,7 +20,7 @@ trait Tag_Product_Id {
 		$this->add_control(
 			'product_id',
 			array(
-				'label'        => esc_html__( 'Product', 'mas-elementor' ),
+				'label'        => esc_html__( 'Product', 'mas-addons-for-elementor' ),
 				'type'         => QueryControlModule::QUERY_CONTROL_ID,
 				'options'      => array(),
 				'label_block'  => true,

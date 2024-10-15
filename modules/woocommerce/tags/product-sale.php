@@ -29,7 +29,7 @@ class Product_Sale extends Base_Tag {
 	 * Get Title.
 	 */
 	public function get_title() {
-		return esc_html__( 'Product Sale', 'mas-elementor' );
+		return esc_html__( 'Product Sale', 'mas-addons-for-elementor' );
 	}
 
 	/**
@@ -39,9 +39,9 @@ class Product_Sale extends Base_Tag {
 		$this->add_control(
 			'text',
 			array(
-				'label'   => esc_html__( 'Text', 'mas-elementor' ),
+				'label'   => esc_html__( 'Text', 'mas-addons-for-elementor' ),
 				'type'    => Controls_Manager::TEXT,
-				'default' => esc_html__( 'Sale!', 'mas-elementor' ),
+				'default' => esc_html__( 'Sale!', 'mas-addons-for-elementor' ),
 			)
 		);
 

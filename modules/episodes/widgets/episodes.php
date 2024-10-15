@@ -58,7 +58,7 @@ class Episodes extends Base_Widget {
 	 * @return string
 	 */
 	public function get_title() {
-		return esc_html__( 'Episodes', 'mas-elementor' );
+		return esc_html__( 'Episodes', 'mas-addons-for-elementor' );
 	}
 
 	/**
@@ -108,7 +108,7 @@ class Episodes extends Base_Widget {
 		$this->start_controls_section(
 			'section_layout',
 			array(
-				'label' => __( 'Layout', 'mas-elementor' ),
+				'label' => __( 'Layout', 'mas-addons-for-elementor' ),
 				'tab'   => Controls_Manager::TAB_CONTENT,
 			)
 		);
@@ -117,7 +117,7 @@ class Episodes extends Base_Widget {
 		$this->add_control(
 			'select_template',
 			array(
-				'label'   => esc_html__( 'MAS Templates', 'mas-elementor' ),
+				'label'   => esc_html__( 'MAS Templates', 'mas-addons-for-elementor' ),
 				'type'    => Controls_Manager::SELECT,
 				'options' => $templates,
 			)
@@ -130,7 +130,7 @@ class Episodes extends Base_Widget {
 		$this->start_controls_section(
 			'section_swiper_arrows',
 			array(
-				'label'     => __( 'Arrows', 'mas-elementor' ),
+				'label'     => __( 'Arrows', 'mas-addons-for-elementor' ),
 				'tab'       => Controls_Manager::TAB_CONTENT,
 				'condition' => array(
 					'show_arrows' => 'yes',

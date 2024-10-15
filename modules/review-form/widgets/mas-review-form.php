@@ -39,7 +39,7 @@ class Mas_Review_Form extends Base_Widget {
 	 * @return string
 	 */
 	public function get_title() {
-		return esc_html__( 'Review Form', 'mas-elementor' );
+		return esc_html__( 'Review Form', 'mas-addons-for-elementor' );
 	}
 
 	/**
@@ -67,7 +67,7 @@ class Mas_Review_Form extends Base_Widget {
 		$this->start_controls_section(
 			'section_style',
 			array(
-				'label' => __( 'Style', 'mas-elementor' ),
+				'label' => __( 'Style', 'mas-addons-for-elementor' ),
 				'tab'   => Controls_Manager::TAB_STYLE,
 			)
 		);
@@ -75,7 +75,7 @@ class Mas_Review_Form extends Base_Widget {
 		$this->add_control(
 			'title_color',
 			array(
-				'label'     => esc_html__( 'Title Color', 'mas-elementor' ),
+				'label'     => esc_html__( 'Title Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
 					'{{WRAPPER}} .mas-elementor-review-form .comment-reply-title' => 'color: {{VALUE}};',

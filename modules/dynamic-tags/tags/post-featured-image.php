@@ -40,7 +40,7 @@ class Post_Featured_Image extends \Elementor\Core\DynamicTags\Data_Tag {
 	 * Get post-title tag name.
 	 */
 	public function get_title() {
-		return esc_html__( 'Featured Image', 'mas-elementor' );
+		return esc_html__( 'Featured Image', 'mas-addons-for-elementor' );
 	}
 	/**
 	 * Get value.
@@ -69,7 +69,7 @@ class Post_Featured_Image extends \Elementor\Core\DynamicTags\Data_Tag {
 		$this->add_control(
 			'mas-fallback',
 			array(
-				'label' => esc_html__( 'Fallback', 'mas-elementor' ),
+				'label' => esc_html__( 'Fallback', 'mas-addons-for-elementor' ),
 				'type'  => Controls_Manager::MEDIA,
 			)
 		);

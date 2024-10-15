@@ -31,7 +31,7 @@ class Author_Info extends Tag {
 	 * Get tag title.
 	 */
 	public function get_title() {
-		return esc_html__( 'Author Info', 'mas-elementor' );
+		return esc_html__( 'Author Info', 'mas-addons-for-elementor' );
 	}
 
 	/**
@@ -77,13 +77,13 @@ class Author_Info extends Tag {
 		$this->add_control(
 			'key',
 			array(
-				'label'   => esc_html__( 'Field', 'mas-elementor' ),
+				'label'   => esc_html__( 'Field', 'mas-addons-for-elementor' ),
 				'type'    => Controls_Manager::SELECT,
 				'default' => 'description',
 				'options' => array(
-					'description' => esc_html__( 'Bio', 'mas-elementor' ),
-					'email'       => esc_html__( 'Email', 'mas-elementor' ),
-					'url'         => esc_html__( 'Website', 'mas-elementor' ),
+					'description' => esc_html__( 'Bio', 'mas-addons-for-elementor' ),
+					'email'       => esc_html__( 'Email', 'mas-addons-for-elementor' ),
+					'url'         => esc_html__( 'Website', 'mas-addons-for-elementor' ),
 				),
 			)
 		);

@@ -31,7 +31,7 @@ class Mas_Movie_Attributes_ACF_Image extends Mas_Attributes_ACF_Image_Base {
 	 * @return string
 	 */
 	public function get_title() {
-		return esc_html__( 'MAS Movie Attributes Image', 'mas-elementor' );
+		return esc_html__( 'MAS Movie Attributes Image', 'mas-addons-for-elementor' );
 	}
 
 	/**

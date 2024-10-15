@@ -54,13 +54,13 @@ class Mas_Template extends Page {
 	 * @return string Document title.
 	 */
 	public static function get_title() {
-		return esc_html__( 'MAS Template', 'mas-elementor' );
+		return esc_html__( 'MAS Template', 'mas-addons-for-elementor' );
 	}
 	/**
 	 * Get plural titles.
 	 */
 	public static function get_plural_title() {
-		return __( 'MAS Templates', 'mas-elementor' );
+		return __( 'MAS Templates', 'mas-addons-for-elementor' );
 	}
 
 	/**
@@ -92,12 +92,12 @@ class Mas_Template extends Page {
 		$this->add_control(
 			'mas_page_template',
 			array(
-				'label'   => esc_html__( 'Template Layout', 'mas-elementor' ),
+				'label'   => esc_html__( 'Template Layout', 'mas-addons-for-elementor' ),
 				'type'    => Controls_Manager::SELECT,
 				'default' => PageTemplatesModule::TEMPLATE_HEADER_FOOTER,
 				'options' => array(
-					PageTemplatesModule::TEMPLATE_CANVAS => esc_html__( 'Elementor Canvas', 'mas-elementor' ),
-					PageTemplatesModule::TEMPLATE_HEADER_FOOTER => esc_html__( 'Elementor Full Width', 'mas-elementor' ),
+					PageTemplatesModule::TEMPLATE_CANVAS => esc_html__( 'Elementor Canvas', 'mas-addons-for-elementor' ),
+					PageTemplatesModule::TEMPLATE_HEADER_FOOTER => esc_html__( 'Elementor Full Width', 'mas-addons-for-elementor' ),
 				),
 			)
 		);
@@ -106,7 +106,7 @@ class Mas_Template extends Page {
 			'mas_page_template_default_description',
 			array(
 				'type'            => Controls_Manager::RAW_HTML,
-				'raw'             => esc_html__( 'Default Page Template from your theme', 'mas-elementor' ),
+				'raw'             => esc_html__( 'Default Page Template from your theme', 'mas-addons-for-elementor' ),
 				'separator'       => 'none',
 				'content_classes' => 'elementor-descriptor',
 				'condition'       => array(
@@ -119,7 +119,7 @@ class Mas_Template extends Page {
 			'mas_page_template_canvas_description',
 			array(
 				'type'            => Controls_Manager::RAW_HTML,
-				'raw'             => esc_html__( 'No header, no footer, just Elementor', 'mas-elementor' ),
+				'raw'             => esc_html__( 'No header, no footer, just Elementor', 'mas-addons-for-elementor' ),
 				'separator'       => 'none',
 				'content_classes' => 'elementor-descriptor',
 				'condition'       => array(
@@ -132,7 +132,7 @@ class Mas_Template extends Page {
 			'mas_page_template_header_footer_description',
 			array(
 				'type'            => Controls_Manager::RAW_HTML,
-				'raw'             => esc_html__( 'This template includes the header, full-width content and footer', 'mas-elementor' ),
+				'raw'             => esc_html__( 'This template includes the header, full-width content and footer', 'mas-addons-for-elementor' ),
 				'separator'       => 'none',
 				'content_classes' => 'elementor-descriptor',
 				'condition'       => array(

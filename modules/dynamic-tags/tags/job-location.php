@@ -28,7 +28,7 @@ class Job_Location extends \Elementor\Core\DynamicTags\Tag {
 	 * Get the title.
 	 */
 	public function get_title() {
-		return esc_html__( 'Job Location', 'mas-elementor' );
+		return esc_html__( 'Job Location', 'mas-addons-for-elementor' );
 	}
 	/**
 	 * Get the group.

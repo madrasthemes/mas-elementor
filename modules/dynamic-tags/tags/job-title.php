@@ -33,7 +33,7 @@ class Job_Title extends \Elementor\Core\DynamicTags\Tag {
 	 * Get the title.
 	 */
 	public function get_title() {
-		return esc_html__( 'Job Title', 'mas-elementor' );
+		return esc_html__( 'Job Title', 'mas-addons-for-elementor' );
 	}
 	/**
 	 * Get the group.
@@ -57,7 +57,7 @@ class Job_Title extends \Elementor\Core\DynamicTags\Tag {
 		$this->add_control(
 			'job_title_icon',
 			array(
-				'label'                  => esc_html__( 'Icon', 'mas-elementor' ),
+				'label'                  => esc_html__( 'Icon', 'mas-addons-for-elementor' ),
 				'type'                   => Controls_Manager::ICONS,
 				'fa4compatibility'       => 'icon',
 				'default'                => array(
@@ -71,7 +71,7 @@ class Job_Title extends \Elementor\Core\DynamicTags\Tag {
 		$this->add_control(
 			'job_title_icon_size',
 			array(
-				'label' => esc_html__( 'Icon Size', 'mas-elementor' ),
+				'label' => esc_html__( 'Icon Size', 'mas-addons-for-elementor' ),
 				'type'  => Controls_Manager::SLIDER,
 				'range' => array(
 					'px' => array(
@@ -85,7 +85,7 @@ class Job_Title extends \Elementor\Core\DynamicTags\Tag {
 		$this->add_control(
 			'job_title_icon_color',
 			array(
-				'label' => esc_html__( 'Icon Color', 'mas-elementor' ),
+				'label' => esc_html__( 'Icon Color', 'mas-addons-for-elementor' ),
 				'type'  => Controls_Manager::COLOR,
 			)
 		);
@@ -94,11 +94,11 @@ class Job_Title extends \Elementor\Core\DynamicTags\Tag {
 			'job_title_icon__position',
 			array(
 				'type'               => Controls_Manager::SELECT,
-				'label'              => esc_html__( 'Icon Position', 'mas-elementor' ),
+				'label'              => esc_html__( 'Icon Position', 'mas-addons-for-elementor' ),
 				'default'            => 'after',
 				'options'            => array(
-					'before' => esc_html__( 'Before', 'mas-elementor' ),
-					'after'  => esc_html__( 'After', 'mas-elementor' ),
+					'before' => esc_html__( 'Before', 'mas-addons-for-elementor' ),
+					'after'  => esc_html__( 'After', 'mas-addons-for-elementor' ),
 				),
 				'frontend_available' => true,
 			)
@@ -107,7 +107,7 @@ class Job_Title extends \Elementor\Core\DynamicTags\Tag {
 		$this->add_control(
 			'job_title_icon_spacing',
 			array(
-				'label' => esc_html__( 'Icon Spacing', 'mas-elementor' ),
+				'label' => esc_html__( 'Icon Spacing', 'mas-addons-for-elementor' ),
 				'type'  => Controls_Manager::SLIDER,
 				'range' => array(
 					'px' => array(

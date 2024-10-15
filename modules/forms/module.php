@@ -118,23 +118,23 @@ class Module extends Module_Base {
 
 			if ( username_exists( $user_login ) && $register_user_name_enabled ) {
 				// Username already registered.
-				$this->mas_form_errors()->add( 'username_unavailable', esc_html__( 'Username already taken', 'mas-elementor' ) );
+				$this->mas_form_errors()->add( 'username_unavailable', esc_html__( 'Username already taken', 'mas-addons-for-elementor' ) );
 			}
 			if ( ! validate_username( $user_login ) && $register_user_name_enabled ) {
 				// invalid username.
-				$this->mas_form_errors()->add( 'username_invalid', esc_html__( 'Invalid username', 'mas-elementor' ) );
+				$this->mas_form_errors()->add( 'username_invalid', esc_html__( 'Invalid username', 'mas-addons-for-elementor' ) );
 			}
 			if ( '' === $user_login && $register_user_name_enabled ) {
 				// empty username.
-				$this->mas_form_errors()->add( 'username_empty', esc_html__( 'Please enter a username', 'mas-elementor' ) );
+				$this->mas_form_errors()->add( 'username_empty', esc_html__( 'Please enter a username', 'mas-addons-for-elementor' ) );
 			}
 			if ( ! is_email( $user_email ) ) {
 				// invalid email.
-				$this->mas_form_errors()->add( 'email_invalid', esc_html__( 'Invalid email', 'mas-elementor' ) );
+				$this->mas_form_errors()->add( 'email_invalid', esc_html__( 'Invalid email', 'mas-addons-for-elementor' ) );
 			}
 			if ( email_exists( $user_email ) ) {
 				// Email address already registered.
-				$this->mas_form_errors()->add( 'email_used', esc_html__( 'Email already registered', 'mas-elementor' ) );
+				$this->mas_form_errors()->add( 'email_used', esc_html__( 'Email already registered', 'mas-addons-for-elementor' ) );
 			}
 
 			$password           = wp_generate_password();
@@ -147,7 +147,7 @@ class Module extends Module_Base {
 
 			if ( $_POST['password'] !== $_POST['confirmPassword'] ) {
 				// Mismatched Password.
-				$this->mas_form_errors()->add( 'wrong_password', esc_html__( 'Password you entered is mismatched', 'mas-elementor' ) );
+				$this->mas_form_errors()->add( 'wrong_password', esc_html__( 'Password you entered is mismatched', 'mas-addons-for-elementor' ) );
 			}
 
 			do_action( 'mas_wp_register_form_custom_field_validation' );
@@ -180,7 +180,7 @@ class Module extends Module_Base {
 					$creds['user_password'] = $password;
 					$creds['remember']      = true;
 					if ( $password_generated ) {
-						$this->mas_form_success()->add( 'verify_user', esc_html__( 'Account created successfully. Please check your email to create your account password', 'mas-elementor' ) );
+						$this->mas_form_success()->add( 'verify_user', esc_html__( 'Account created successfully. Please check your email to create your account password', 'mas-addons-for-elementor' ) );
 					} else {
 						$user = wp_signon( $creds, false );
 						// send the newly created user to the home page after logging them in.
@@ -242,7 +242,7 @@ class Module extends Module_Base {
 
 			if ( ! $user ) {
 				// if the user name doesn't exist.
-				$this->mas_form_errors()->add( 'empty_username', esc_html__( 'Invalid username or email address', 'mas-elementor' ) );
+				$this->mas_form_errors()->add( 'empty_username', esc_html__( 'Invalid username or email address', 'mas-addons-for-elementor' ) );
 			}
 
 			do_action( 'mas_wp_login_form_custom_field_validation' );
@@ -252,14 +252,14 @@ class Module extends Module_Base {
 
 				if ( ! isset( $password ) || '' === $password ) {
 					// if no password was entered.
-					$this->mas_form_errors()->add( 'empty_password', esc_html__( 'Please enter a password', 'mas-elementor' ) );
+					$this->mas_form_errors()->add( 'empty_password', esc_html__( 'Please enter a password', 'mas-addons-for-elementor' ) );
 				}
 
 				if ( isset( $password ) && ! empty( $password ) ) {
 					// check the user's login with their password.
 					if ( ! wp_check_password( $password, $user->user_pass, $user->ID ) ) {
 						// if the password is incorrect for the specified user.
-						$this->mas_form_errors()->add( 'empty_password', esc_html__( 'Incorrect password', 'mas-elementor' ) );
+						$this->mas_form_errors()->add( 'empty_password', esc_html__( 'Incorrect password', 'mas-addons-for-elementor' ) );
 					}
 				}
 
@@ -307,7 +307,7 @@ class Module extends Module_Base {
 			$user_data = get_user_by( 'login', $login );
 
 			if ( empty( $login ) ) {
-				$this->mas_form_errors()->add( 'empty_user_login', esc_html__( 'Enter a username or email address', 'mas-elementor' ) );
+				$this->mas_form_errors()->add( 'empty_user_login', esc_html__( 'Enter a username or email address', 'mas-addons-for-elementor' ) );
 
 			} else {
 				// Check on username first, as customers can use emails as usernames.
@@ -322,11 +322,11 @@ class Module extends Module_Base {
 
 			if ( ! $user_data ) {
 				// if the user name doesn't exist.
-				$this->mas_form_errors()->add( 'empty_user_login', esc_html__( 'There is no account with that username or email address.', 'mas-elementor' ) );
+				$this->mas_form_errors()->add( 'empty_user_login', esc_html__( 'There is no account with that username or email address.', 'mas-addons-for-elementor' ) );
 			}
 
 			if ( is_multisite() && ! is_user_member_of_blog( $user_data->ID, get_current_blog_id() ) ) {
-				$this->mas_form_errors()->add( 'empty_user_login', esc_html__( 'Invalid username or email address.', 'mas-elementor' ) );
+				$this->mas_form_errors()->add( 'empty_user_login', esc_html__( 'Invalid username or email address.', 'mas-addons-for-elementor' ) );
 
 				return false;
 			}
@@ -335,7 +335,7 @@ class Module extends Module_Base {
 
 			// only create the user in if there are no errors.
 			if ( empty( $errors ) ) {
-				$this->mas_form_success()->add( 'verify_user', esc_html__( 'Passord has been sent to your email', 'mas-elementor' ) );
+				$this->mas_form_success()->add( 'verify_user', esc_html__( 'Passord has been sent to your email', 'mas-addons-for-elementor' ) );
 
 			}
 		}

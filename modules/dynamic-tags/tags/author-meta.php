@@ -30,7 +30,7 @@ class Author_Meta extends Tag {
 	 * Get tag title.
 	 */
 	public function get_title() {
-		return esc_html__( 'Author Meta', 'mas-elementor' );
+		return esc_html__( 'Author Meta', 'mas-addons-for-elementor' );
 	}
 
 	/**
@@ -75,7 +75,7 @@ class Author_Meta extends Tag {
 		$this->add_control(
 			'key',
 			array(
-				'label' => esc_html__( 'Meta Key', 'mas-elementor' ),
+				'label' => esc_html__( 'Meta Key', 'mas-addons-for-elementor' ),
 			)
 		);
 	}

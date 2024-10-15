@@ -120,7 +120,7 @@ if ( ! class_exists( 'MAS_Jetpack_Portfolio' ) ) :
 		public function settings_api_init() {
 			add_settings_field(
 				self::OPTION_NAME,
-				'<span class="cpt-options">' . __( 'Portfolio Projects', 'mas-elementor' ) . '</span>',
+				'<span class="cpt-options">' . __( 'Portfolio Projects', 'mas-addons-for-elementor' ) . '</span>',
 				array( $this, 'setting_html' ),
 				'writing',
 				'jetpack_cpt_section'
@@ -149,12 +149,12 @@ if ( ! class_exists( 'MAS_Jetpack_Portfolio' ) ) :
 		 */
 		public function setting_html() {
 			if ( current_theme_supports( self::CUSTOM_POST_TYPE ) ) : ?>
-				<p><?php printf( /* translators: %s is the name of a custom post type such as "jetpack-portfolio" */ __( 'Your theme supports <strong>%s</strong>', 'mas-elementor' ), self::CUSTOM_POST_TYPE ); //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></p>
+				<p><?php printf( /* translators: %s is the name of a custom post type such as "jetpack-portfolio" */ __( 'Your theme supports <strong>%s</strong>', 'mas-addons-for-elementor' ), self::CUSTOM_POST_TYPE ); //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></p>
 			<?php else : ?>
 				<label for="<?php echo esc_attr( self::OPTION_NAME ); ?>">
 					<input name="<?php echo esc_attr( self::OPTION_NAME ); ?>" id="<?php echo esc_attr( self::OPTION_NAME ); ?>" <?php echo checked( get_option( self::OPTION_NAME, '0' ), true, false ); ?> type="checkbox" value="1" />
-					<?php esc_html_e( 'Enable Portfolio Projects for this site.', 'mas-elementor' ); ?>
-					<a target="_blank" href="https://en.support.wordpress.com/portfolios/"><?php esc_html_e( 'Learn More', 'mas-elementor' ); ?></a>
+					<?php esc_html_e( 'Enable Portfolio Projects for this site.', 'mas-addons-for-elementor' ); ?>
+					<a target="_blank" href="https://en.support.wordpress.com/portfolios/"><?php esc_html_e( 'Learn More', 'mas-addons-for-elementor' ); ?></a>
 				</label>
 				<?php
 			endif;
@@ -290,21 +290,21 @@ if ( ! class_exists( 'MAS_Jetpack_Portfolio' ) ) :
 				self::CUSTOM_POST_TYPE,
 				array(
 					'labels'          => array(
-						'name'                  => esc_html__( 'Projects', 'mas-elementor' ),
-						'singular_name'         => esc_html__( 'Project', 'mas-elementor' ),
-						'menu_name'             => esc_html__( 'Portfolio', 'mas-elementor' ),
-						'all_items'             => esc_html__( 'All Projects', 'mas-elementor' ),
-						'add_new'               => esc_html__( 'Add New', 'mas-elementor' ),
-						'add_new_item'          => esc_html__( 'Add New Project', 'mas-elementor' ),
-						'edit_item'             => esc_html__( 'Edit Project', 'mas-elementor' ),
-						'new_item'              => esc_html__( 'New Project', 'mas-elementor' ),
-						'view_item'             => esc_html__( 'View Project', 'mas-elementor' ),
-						'search_items'          => esc_html__( 'Search Projects', 'mas-elementor' ),
-						'not_found'             => esc_html__( 'No Projects found', 'mas-elementor' ),
-						'not_found_in_trash'    => esc_html__( 'No Projects found in Trash', 'mas-elementor' ),
-						'filter_items_list'     => esc_html__( 'Filter projects list', 'mas-elementor' ),
-						'items_list_navigation' => esc_html__( 'Project list navigation', 'mas-elementor' ),
-						'items_list'            => esc_html__( 'Projects list', 'mas-elementor' ),
+						'name'                  => esc_html__( 'Projects', 'mas-addons-for-elementor' ),
+						'singular_name'         => esc_html__( 'Project', 'mas-addons-for-elementor' ),
+						'menu_name'             => esc_html__( 'Portfolio', 'mas-addons-for-elementor' ),
+						'all_items'             => esc_html__( 'All Projects', 'mas-addons-for-elementor' ),
+						'add_new'               => esc_html__( 'Add New', 'mas-addons-for-elementor' ),
+						'add_new_item'          => esc_html__( 'Add New Project', 'mas-addons-for-elementor' ),
+						'edit_item'             => esc_html__( 'Edit Project', 'mas-addons-for-elementor' ),
+						'new_item'              => esc_html__( 'New Project', 'mas-addons-for-elementor' ),
+						'view_item'             => esc_html__( 'View Project', 'mas-addons-for-elementor' ),
+						'search_items'          => esc_html__( 'Search Projects', 'mas-addons-for-elementor' ),
+						'not_found'             => esc_html__( 'No Projects found', 'mas-addons-for-elementor' ),
+						'not_found_in_trash'    => esc_html__( 'No Projects found in Trash', 'mas-addons-for-elementor' ),
+						'filter_items_list'     => esc_html__( 'Filter projects list', 'mas-addons-for-elementor' ),
+						'items_list_navigation' => esc_html__( 'Project list navigation', 'mas-addons-for-elementor' ),
+						'items_list'            => esc_html__( 'Projects list', 'mas-addons-for-elementor' ),
 					),
 					'supports'        => array(
 						'title',
@@ -342,20 +342,20 @@ if ( ! class_exists( 'MAS_Jetpack_Portfolio' ) ) :
 				array(
 					'hierarchical'      => true,
 					'labels'            => array(
-						'name'                  => esc_html__( 'Project Types', 'mas-elementor' ),
-						'singular_name'         => esc_html__( 'Project Type', 'mas-elementor' ),
-						'menu_name'             => esc_html__( 'Project Types', 'mas-elementor' ),
-						'all_items'             => esc_html__( 'All Project Types', 'mas-elementor' ),
-						'edit_item'             => esc_html__( 'Edit Project Type', 'mas-elementor' ),
-						'view_item'             => esc_html__( 'View Project Type', 'mas-elementor' ),
-						'update_item'           => esc_html__( 'Update Project Type', 'mas-elementor' ),
-						'add_new_item'          => esc_html__( 'Add New Project Type', 'mas-elementor' ),
-						'new_item_name'         => esc_html__( 'New Project Type Name', 'mas-elementor' ),
-						'parent_item'           => esc_html__( 'Parent Project Type', 'mas-elementor' ),
-						'parent_item_colon'     => esc_html__( 'Parent Project Type:', 'mas-elementor' ),
-						'search_items'          => esc_html__( 'Search Project Types', 'mas-elementor' ),
-						'items_list_navigation' => esc_html__( 'Project type list navigation', 'mas-elementor' ),
-						'items_list'            => esc_html__( 'Project type list', 'mas-elementor' ),
+						'name'                  => esc_html__( 'Project Types', 'mas-addons-for-elementor' ),
+						'singular_name'         => esc_html__( 'Project Type', 'mas-addons-for-elementor' ),
+						'menu_name'             => esc_html__( 'Project Types', 'mas-addons-for-elementor' ),
+						'all_items'             => esc_html__( 'All Project Types', 'mas-addons-for-elementor' ),
+						'edit_item'             => esc_html__( 'Edit Project Type', 'mas-addons-for-elementor' ),
+						'view_item'             => esc_html__( 'View Project Type', 'mas-addons-for-elementor' ),
+						'update_item'           => esc_html__( 'Update Project Type', 'mas-addons-for-elementor' ),
+						'add_new_item'          => esc_html__( 'Add New Project Type', 'mas-addons-for-elementor' ),
+						'new_item_name'         => esc_html__( 'New Project Type Name', 'mas-addons-for-elementor' ),
+						'parent_item'           => esc_html__( 'Parent Project Type', 'mas-addons-for-elementor' ),
+						'parent_item_colon'     => esc_html__( 'Parent Project Type:', 'mas-addons-for-elementor' ),
+						'search_items'          => esc_html__( 'Search Project Types', 'mas-addons-for-elementor' ),
+						'items_list_navigation' => esc_html__( 'Project type list navigation', 'mas-addons-for-elementor' ),
+						'items_list'            => esc_html__( 'Project type list', 'mas-addons-for-elementor' ),
 					),
 					'public'            => true,
 					'show_ui'           => true,
@@ -373,23 +373,23 @@ if ( ! class_exists( 'MAS_Jetpack_Portfolio' ) ) :
 				array(
 					'hierarchical'      => false,
 					'labels'            => array(
-						'name'                       => esc_html__( 'Project Tags', 'mas-elementor' ),
-						'singular_name'              => esc_html__( 'Project Tag', 'mas-elementor' ),
-						'menu_name'                  => esc_html__( 'Project Tags', 'mas-elementor' ),
-						'all_items'                  => esc_html__( 'All Project Tags', 'mas-elementor' ),
-						'edit_item'                  => esc_html__( 'Edit Project Tag', 'mas-elementor' ),
-						'view_item'                  => esc_html__( 'View Project Tag', 'mas-elementor' ),
-						'update_item'                => esc_html__( 'Update Project Tag', 'mas-elementor' ),
-						'add_new_item'               => esc_html__( 'Add New Project Tag', 'mas-elementor' ),
-						'new_item_name'              => esc_html__( 'New Project Tag Name', 'mas-elementor' ),
-						'search_items'               => esc_html__( 'Search Project Tags', 'mas-elementor' ),
-						'popular_items'              => esc_html__( 'Popular Project Tags', 'mas-elementor' ),
-						'separate_items_with_commas' => esc_html__( 'Separate tags with commas', 'mas-elementor' ),
-						'add_or_remove_items'        => esc_html__( 'Add or remove tags', 'mas-elementor' ),
-						'choose_from_most_used'      => esc_html__( 'Choose from the most used tags', 'mas-elementor' ),
-						'not_found'                  => esc_html__( 'No tags found.', 'mas-elementor' ),
-						'items_list_navigation'      => esc_html__( 'Project tag list navigation', 'mas-elementor' ),
-						'items_list'                 => esc_html__( 'Project tag list', 'mas-elementor' ),
+						'name'                       => esc_html__( 'Project Tags', 'mas-addons-for-elementor' ),
+						'singular_name'              => esc_html__( 'Project Tag', 'mas-addons-for-elementor' ),
+						'menu_name'                  => esc_html__( 'Project Tags', 'mas-addons-for-elementor' ),
+						'all_items'                  => esc_html__( 'All Project Tags', 'mas-addons-for-elementor' ),
+						'edit_item'                  => esc_html__( 'Edit Project Tag', 'mas-addons-for-elementor' ),
+						'view_item'                  => esc_html__( 'View Project Tag', 'mas-addons-for-elementor' ),
+						'update_item'                => esc_html__( 'Update Project Tag', 'mas-addons-for-elementor' ),
+						'add_new_item'               => esc_html__( 'Add New Project Tag', 'mas-addons-for-elementor' ),
+						'new_item_name'              => esc_html__( 'New Project Tag Name', 'mas-addons-for-elementor' ),
+						'search_items'               => esc_html__( 'Search Project Tags', 'mas-addons-for-elementor' ),
+						'popular_items'              => esc_html__( 'Popular Project Tags', 'mas-addons-for-elementor' ),
+						'separate_items_with_commas' => esc_html__( 'Separate tags with commas', 'mas-addons-for-elementor' ),
+						'add_or_remove_items'        => esc_html__( 'Add or remove tags', 'mas-addons-for-elementor' ),
+						'choose_from_most_used'      => esc_html__( 'Choose from the most used tags', 'mas-addons-for-elementor' ),
+						'not_found'                  => esc_html__( 'No tags found.', 'mas-addons-for-elementor' ),
+						'items_list_navigation'      => esc_html__( 'Project tag list navigation', 'mas-addons-for-elementor' ),
+						'items_list'                 => esc_html__( 'Project tag list', 'mas-addons-for-elementor' ),
 					),
 					'public'            => true,
 					'show_ui'           => true,
@@ -413,18 +413,18 @@ if ( ! class_exists( 'MAS_Jetpack_Portfolio' ) ) :
 			$messages[ self::CUSTOM_POST_TYPE ] = array(
 				0  => '', // Unused. Messages start at index 1.
 				1  => sprintf( ( 'Project updated. <a href="%s">View item</a>' ), esc_url( get_permalink( $post->ID ) ) ),
-				2  => esc_html__( 'Custom field updated.', 'mas-elementor' ),
-				3  => esc_html__( 'Custom field deleted.', 'mas-elementor' ),
-				4  => esc_html__( 'Project updated.', 'mas-elementor' ),
+				2  => esc_html__( 'Custom field updated.', 'mas-addons-for-elementor' ),
+				3  => esc_html__( 'Custom field deleted.', 'mas-addons-for-elementor' ),
+				4  => esc_html__( 'Project updated.', 'mas-addons-for-elementor' ),
 				/* translators: %s: date and time of the revision */
-				5  => isset( $_GET['revision'] ) && wp_verify_nonce( sanitize_text_field( wp_unslash( $_GET['revision'] ) ) ) ? sprintf( esc_html__( 'Project restored to revision from %s', 'mas-elementor' ), wp_post_revision_title( (int) $_GET['revision'], false ) ) : false,
+				5  => isset( $_GET['revision'] ) && wp_verify_nonce( sanitize_text_field( wp_unslash( $_GET['revision'] ) ) ) ? sprintf( esc_html__( 'Project restored to revision from %s', 'mas-addons-for-elementor' ), wp_post_revision_title( (int) $_GET['revision'], false ) ) : false,
 				6  => sprintf( ( 'Project published. <a href="%s">View project</a>' ), esc_url( get_permalink( $post->ID ) ) ),
-				7  => esc_html__( 'Project saved.', 'mas-elementor' ),
+				7  => esc_html__( 'Project saved.', 'mas-addons-for-elementor' ),
 				8  => sprintf( ( 'Project submitted. <a target="_blank" href="%s">Preview project</a>' ), esc_url( add_query_arg( 'preview', 'true', get_permalink( $post->ID ) ) ) ),
 				9  => sprintf(
 					( 'Project scheduled for: <strong>%1$s</strong>. <a target="_blank" href="%2$s">Preview project</a>' ),
 					// translators: Publish box date format, see https://php.net/date.
-					date_i18n( __( 'M j, Y @ G:i', 'mas-elementor' ), strtotime( $post->post_date ) ),
+					date_i18n( __( 'M j, Y @ G:i', 'mas-addons-for-elementor' ), strtotime( $post->post_date ) ),
 					esc_url( get_permalink( $post->ID ) )
 				),
 				10 => sprintf( ( 'Project item draft updated. <a target="_blank" href="%s">Preview project</a>' ), esc_url( add_query_arg( 'preview', 'true', get_permalink( $post->ID ) ) ) ),
@@ -441,7 +441,7 @@ if ( ! class_exists( 'MAS_Jetpack_Portfolio' ) ) :
 		 */
 		public function edit_admin_columns( $columns ) {
 			// change 'Title' to 'Project'.
-			$columns['title'] = __( 'Project', 'mas-elementor' );
+			$columns['title'] = __( 'Project', 'mas-addons-for-elementor' );
 			if ( current_theme_supports( 'post-thumbnails' ) ) {
 				// add featured image before 'Project'.
 				$columns = array_slice( $columns, 0, 1, true ) + array( 'thumbnail' => '' ) + array_slice( $columns, 1, null, true );
@@ -493,7 +493,7 @@ if ( ! class_exists( 'MAS_Jetpack_Portfolio' ) ) :
 			$wp_customize->add_section(
 				'jetpack_portfolio',
 				array(
-					'title'          => esc_html__( 'Portfolio', 'mas-elementor' ),
+					'title'          => esc_html__( 'Portfolio', 'mas-addons-for-elementor' ),
 					'theme_supports' => self::CUSTOM_POST_TYPE,
 					'priority'       => 130,
 				)
@@ -503,7 +503,7 @@ if ( ! class_exists( 'MAS_Jetpack_Portfolio' ) ) :
 				$wp_customize->add_setting(
 					'jetpack_portfolio_title',
 					array(
-						'default'              => esc_html__( 'Projects', 'mas-elementor' ),
+						'default'              => esc_html__( 'Projects', 'mas-addons-for-elementor' ),
 						'type'                 => 'option',
 						'sanitize_callback'    => 'sanitize_text_field',
 						'sanitize_js_callback' => 'sanitize_text_field',
@@ -514,7 +514,7 @@ if ( ! class_exists( 'MAS_Jetpack_Portfolio' ) ) :
 					'jetpack_portfolio_title',
 					array(
 						'section' => 'jetpack_portfolio',
-						'label'   => esc_html__( 'Portfolio Archive Title', 'mas-elementor' ),
+						'label'   => esc_html__( 'Portfolio Archive Title', 'mas-addons-for-elementor' ),
 						'type'    => 'text',
 					)
 				);
@@ -535,7 +535,7 @@ if ( ! class_exists( 'MAS_Jetpack_Portfolio' ) ) :
 					'jetpack_portfolio_content',
 					array(
 						'section' => 'jetpack_portfolio',
-						'label'   => esc_html__( 'Portfolio Archive Content', 'mas-elementor' ),
+						'label'   => esc_html__( 'Portfolio Archive Content', 'mas-addons-for-elementor' ),
 						'type'    => 'textarea',
 					)
 				);
@@ -559,7 +559,7 @@ if ( ! class_exists( 'MAS_Jetpack_Portfolio' ) ) :
 						'jetpack_portfolio_featured_image',
 						array(
 							'section' => 'jetpack_portfolio',
-							'label'   => esc_html__( 'Portfolio Archive Featured Image', 'mas-elementor' ),
+							'label'   => esc_html__( 'Portfolio Archive Featured Image', 'mas-addons-for-elementor' ),
 						)
 					)
 				);
@@ -865,7 +865,7 @@ if ( ! class_exists( 'MAS_Jetpack_Portfolio' ) ) :
 				<?php
 			} else {
 				?>
-				<p><em><?php esc_html_e( 'Your Portfolio Archive currently has no entries. You can start creating them on your dashboard.', 'mas-elementor' ); ?></p></em>
+				<p><em><?php esc_html_e( 'Your Portfolio Archive currently has no entries. You can start creating them on your dashboard.', 'mas-addons-for-elementor' ); ?></p></em>
 				<?php
 			}
 			$html = ob_get_clean();
@@ -938,7 +938,7 @@ if ( ! class_exists( 'MAS_Jetpack_Portfolio' ) ) :
 				return;
 			}
 
-			$html  = '<div class="project-types"><span>' . __( 'Types', 'mas-elementor' ) . ':</span>';
+			$html  = '<div class="project-types"><span>' . __( 'Types', 'mas-addons-for-elementor' ) . ':</span>';
 			$types = array();
 			// Loop thorugh all the types.
 			foreach ( $project_types as $project_type ) {
@@ -970,7 +970,7 @@ if ( ! class_exists( 'MAS_Jetpack_Portfolio' ) ) :
 				return false;
 			}
 
-			$html = '<div class="project-tags"><span>' . __( 'Tags', 'mas-elementor' ) . ':</span>';
+			$html = '<div class="project-tags"><span>' . __( 'Tags', 'mas-addons-for-elementor' ) . ':</span>';
 			$tags = array();
 			// Loop thorugh all the tags.
 			foreach ( $project_tags as $project_tag ) {

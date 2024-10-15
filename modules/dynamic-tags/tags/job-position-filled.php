@@ -28,7 +28,7 @@ class Job_Position_Filled extends \Elementor\Core\DynamicTags\Tag {
 	 * Get the title.
 	 */
 	public function get_title() {
-		return esc_html__( 'Job Position Filled', 'mas-elementor' );
+		return esc_html__( 'Job Position Filled', 'mas-addons-for-elementor' );
 	}
 	/**
 	 * Get the group.
@@ -65,7 +65,7 @@ class Job_Position_Filled extends \Elementor\Core\DynamicTags\Tag {
 		$this->add_control(
 			'filled',
 			array(
-				'label'   => esc_html__( 'Position Filled Text', 'mas-elementor' ),
+				'label'   => esc_html__( 'Position Filled Text', 'mas-addons-for-elementor' ),
 				'type'    => Controls_Manager::TEXT,
 				'default' => 'This position has been filled',
 			)
@@ -74,7 +74,7 @@ class Job_Position_Filled extends \Elementor\Core\DynamicTags\Tag {
 		$this->add_control(
 			'non_filled',
 			array(
-				'label'   => esc_html__( 'Non Position Filled Text', 'mas-elementor' ),
+				'label'   => esc_html__( 'Non Position Filled Text', 'mas-addons-for-elementor' ),
 				'type'    => Controls_Manager::TEXT,
 				'default' => '',
 			)

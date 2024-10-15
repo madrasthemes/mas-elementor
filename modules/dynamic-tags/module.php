@@ -121,28 +121,28 @@ class Module extends TagsModule {
 	public function get_groups() {
 		return array(
 			self::POST_GROUP     => array(
-				'title' => esc_html__( 'Post', 'mas-elementor' ),
+				'title' => esc_html__( 'Post', 'mas-addons-for-elementor' ),
 			),
 			self::JOB_GROUP     => array(
-				'title' => esc_html__( 'Job', 'mas-elementor' ),
+				'title' => esc_html__( 'Job', 'mas-addons-for-elementor' ),
 			),
 			self::ARCHIVE_GROUP  => array(
-				'title' => esc_html__( 'Archive', 'mas-elementor' ),
+				'title' => esc_html__( 'Archive', 'mas-addons-for-elementor' ),
 			),
 			self::SITE_GROUP     => array(
-				'title' => esc_html__( 'Site', 'mas-elementor' ),
+				'title' => esc_html__( 'Site', 'mas-addons-for-elementor' ),
 			),
 			self::MEDIA_GROUP    => array(
-				'title' => esc_html__( 'Media', 'mas-elementor' ),
+				'title' => esc_html__( 'Media', 'mas-addons-for-elementor' ),
 			),
 			self::ACTION_GROUP   => array(
-				'title' => esc_html__( 'Actions', 'mas-elementor' ),
+				'title' => esc_html__( 'Actions', 'mas-addons-for-elementor' ),
 			),
 			self::AUTHOR_GROUP   => array(
-				'title' => esc_html__( 'Author', 'mas-elementor' ),
+				'title' => esc_html__( 'Author', 'mas-addons-for-elementor' ),
 			),
 			self::COMMENTS_GROUP => array(
-				'title' => esc_html__( 'Comments', 'mas-elementor' ),
+				'title' => esc_html__( 'Comments', 'mas-addons-for-elementor' ),
 			),
 		);
 	}

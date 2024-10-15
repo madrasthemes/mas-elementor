@@ -43,7 +43,7 @@ class Header_Cart extends Base_Widget {
 	 * @return string
 	 */
 	public function get_title() {
-		return esc_html__( 'Header Cart', 'mas-elementor' );
+		return esc_html__( 'Header Cart', 'mas-addons-for-elementor' );
 	}
 
 	/**

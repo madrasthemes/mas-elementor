@@ -28,7 +28,7 @@ class Cart_Button_Url extends Base_Data_Tag {
 	 * Get the title for post url.
 	 */
 	public function get_title() {
-		return esc_html__( 'Cart Button URL', 'mas-elementor' );
+		return esc_html__( 'Cart Button URL', 'mas-addons-for-elementor' );
 	}
 	/**
 	 * Get group.

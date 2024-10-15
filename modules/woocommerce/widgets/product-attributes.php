@@ -57,7 +57,7 @@ class Product_Attributes extends Base_Widget {
 	 * @return string
 	 */
 	public function get_title() {
-		return esc_html__( 'Product Attributes', 'mas-elementor' );
+		return esc_html__( 'Product Attributes', 'mas-addons-for-elementor' );
 	}
 
 	/**
@@ -109,7 +109,7 @@ class Product_Attributes extends Base_Widget {
 		$this->start_controls_section(
 			'section_attributes_title',
 			array(
-				'label'     => esc_html__( 'Attributes Title', 'mas-elementor' ),
+				'label'     => esc_html__( 'Attributes Title', 'mas-addons-for-elementor' ),
 				'tab'       => Controls_Manager::TAB_STYLE,
 				'condition' => array(
 					'attributes_title!' => '',
@@ -120,7 +120,7 @@ class Product_Attributes extends Base_Widget {
 		$this->add_control(
 			'attributes_title_color',
 			array(
-				'label'     => esc_html__( 'Color', 'mas-elementor' ),
+				'label'     => esc_html__( 'Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'global'    => array(
 					'default' => Global_Colors::COLOR_PRIMARY,
@@ -145,7 +145,7 @@ class Product_Attributes extends Base_Widget {
 		$this->add_responsive_control(
 			'attributes_title_margin',
 			array(
-				'label'      => esc_html__( 'Margin', 'mas-elementor' ),
+				'label'      => esc_html__( 'Margin', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', '%', 'em', 'rem', 'custom' ),
 				'selectors'  => array(
@@ -157,7 +157,7 @@ class Product_Attributes extends Base_Widget {
 		$this->add_responsive_control(
 			'attributes_title_padding',
 			array(
-				'label'      => esc_html__( 'Padding', 'mas-elementor' ),
+				'label'      => esc_html__( 'Padding', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', '%', 'em', 'rem', 'custom' ),
 				'selectors'  => array(
@@ -169,7 +169,7 @@ class Product_Attributes extends Base_Widget {
 		$this->add_responsive_control(
 			'attributes_title_width',
 			array(
-				'label'      => esc_html__( 'Width', 'mas-elementor' ),
+				'label'      => esc_html__( 'Width', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::SLIDER,
 				'size_units' => array( 'px', '%', 'em', 'rem', 'vw', 'custom' ),
 				'range'      => array(
@@ -193,7 +193,7 @@ class Product_Attributes extends Base_Widget {
 		$this->add_responsive_control(
 			'attributes_title_height',
 			array(
-				'label'      => esc_html__( 'Height', 'mas-elementor' ),
+				'label'      => esc_html__( 'Height', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::SLIDER,
 				'size_units' => array( 'px', '%', 'em', 'rem', 'vw', 'custom' ),
 				'range'      => array(
@@ -217,7 +217,7 @@ class Product_Attributes extends Base_Widget {
 		$this->add_control(
 			'attributes_title_tag',
 			array(
-				'label'   => esc_html__( 'HTML Tag', 'mas-elementor' ),
+				'label'   => esc_html__( 'HTML Tag', 'mas-addons-for-elementor' ),
 				'type'    => Controls_Manager::SELECT,
 				'options' => array(
 					'h1'    => 'H1',
@@ -245,7 +245,7 @@ class Product_Attributes extends Base_Widget {
 		$this->start_controls_section(
 			'section_more_attributes',
 			array(
-				'label'     => esc_html__( 'More Attributes Text', 'mas-elementor' ),
+				'label'     => esc_html__( 'More Attributes Text', 'mas-addons-for-elementor' ),
 				'tab'       => Controls_Manager::TAB_STYLE,
 				'condition' => array(
 					'more_attributes!' => '',
@@ -264,24 +264,24 @@ class Product_Attributes extends Base_Widget {
 		$this->add_responsive_control(
 			'more_attributes_align_items',
 			array(
-				'label'     => esc_html__( 'Align Items', 'mas-elementor' ),
+				'label'     => esc_html__( 'Align Items', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::CHOOSE,
 				'default'   => '',
 				'options'   => array(
 					'flex-start' => array(
-						'title' => esc_html_x( 'Start', 'Flex Container Control', 'mas-elementor' ),
+						'title' => esc_html_x( 'Start', 'Flex Container Control', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-flex eicon-align-start-v',
 					),
 					'center'     => array(
-						'title' => esc_html_x( 'Center', 'Flex Container Control', 'mas-elementor' ),
+						'title' => esc_html_x( 'Center', 'Flex Container Control', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-flex eicon-align-center-v',
 					),
 					'flex-end'   => array(
-						'title' => esc_html_x( 'End', 'Flex Container Control', 'mas-elementor' ),
+						'title' => esc_html_x( 'End', 'Flex Container Control', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-flex eicon-align-end-v',
 					),
 					'stretch'    => array(
-						'title' => esc_html__( 'Stretch', 'mas-elementor' ),
+						'title' => esc_html__( 'Stretch', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-flex eicon-align-stretch-v',
 					),
 				),
@@ -309,7 +309,7 @@ class Product_Attributes extends Base_Widget {
 		$this->start_controls_section(
 			'masposts_swiper_button',
 			array(
-				'label'     => esc_html__( 'Button', 'mas-elementor' ),
+				'label'     => esc_html__( 'Button', 'mas-addons-for-elementor' ),
 				'tab'       => Controls_Manager::TAB_CONTENT,
 				'condition' => array(
 					'enable_carousel' => 'yes',
@@ -355,7 +355,7 @@ class Product_Attributes extends Base_Widget {
 		$this->start_controls_section(
 			'section_layout',
 			array(
-				'label' => esc_html__( 'Layout', 'mas-elementor' ),
+				'label' => esc_html__( 'Layout', 'mas-addons-for-elementor' ),
 				'tab'   => Controls_Manager::TAB_CONTENT,
 			)
 		);
@@ -371,7 +371,7 @@ class Product_Attributes extends Base_Widget {
 		$this->add_control(
 			'select_product_attribute',
 			array(
-				'label'   => esc_html__( 'Select Product Attribute', 'mas-elementor' ),
+				'label'   => esc_html__( 'Select Product Attribute', 'mas-addons-for-elementor' ),
 				'type'    => Controls_Manager::SELECT,
 				'default' => '',
 				'options' => $taxonomies,
@@ -381,7 +381,7 @@ class Product_Attributes extends Base_Widget {
 		$this->add_control(
 			'enable_term_description',
 			array(
-				'label'     => esc_html__( 'Show Description', 'mas-elementor' ),
+				'label'     => esc_html__( 'Show Description', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::SWITCHER,
 				'default'   => 'yes',
 				'label_on'  => 'Hide',
@@ -393,7 +393,7 @@ class Product_Attributes extends Base_Widget {
 		$this->add_control(
 			'enable_thumbnail_image',
 			array(
-				'label'     => esc_html__( 'Show Thumbnail Image', 'mas-elementor' ),
+				'label'     => esc_html__( 'Show Thumbnail Image', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::SWITCHER,
 				'default'   => 'yes',
 				'label_on'  => 'Hide',
@@ -405,7 +405,7 @@ class Product_Attributes extends Base_Widget {
 		$this->add_control(
 			'thumbnail_name',
 			array(
-				'label'     => esc_html__( 'Term thumbnail name', 'mas-elementor' ),
+				'label'     => esc_html__( 'Term thumbnail name', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::TEXT,
 				'default'   => 'thumbnail_id',
 				'condition' => array(
@@ -417,12 +417,12 @@ class Product_Attributes extends Base_Widget {
 		$this->add_control(
 			'enable_thumbnail_placeholder',
 			array(
-				'label'       => esc_html__( 'Show Thumbnail Placeholder', 'mas-elementor' ),
+				'label'       => esc_html__( 'Show Thumbnail Placeholder', 'mas-addons-for-elementor' ),
 				'type'        => Controls_Manager::SWITCHER,
 				'default'     => 'yes',
 				'label_on'    => 'Hide',
 				'label_off'   => 'Show',
-				'description' => esc_html__( 'Displays Placeholder for terms with no images', 'mas-elementor' ),
+				'description' => esc_html__( 'Displays Placeholder for terms with no images', 'mas-addons-for-elementor' ),
 				'condition'   => array(
 					'enable_thumbnail_image' => 'yes',
 				),
@@ -433,7 +433,7 @@ class Product_Attributes extends Base_Widget {
 		$this->add_control(
 			'enable_cover_image',
 			array(
-				'label'     => esc_html__( 'Show Cover Image', 'mas-elementor' ),
+				'label'     => esc_html__( 'Show Cover Image', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::SWITCHER,
 				'default'   => 'yes',
 				'label_on'  => 'Hide',
@@ -445,10 +445,10 @@ class Product_Attributes extends Base_Widget {
 		$this->add_control(
 			'cover_image_name',
 			array(
-				'label'       => esc_html__( 'Cover image name', 'mas-elementor' ),
+				'label'       => esc_html__( 'Cover image name', 'mas-addons-for-elementor' ),
 				'type'        => Controls_Manager::TEXT,
 				'default'     => 'product_attribute_cover_image',
-				'description' => esc_html__( 'Can add thumbnail by using ACF in product attribute', 'mas-elementor' ),
+				'description' => esc_html__( 'Can add thumbnail by using ACF in product attribute', 'mas-addons-for-elementor' ),
 				'condition'   => array(
 					'enable_cover_image' => 'yes',
 				),
@@ -458,12 +458,12 @@ class Product_Attributes extends Base_Widget {
 		$this->add_control(
 			'enable_cover_placeholder',
 			array(
-				'label'       => esc_html__( 'Show Cover Placeholder', 'mas-elementor' ),
+				'label'       => esc_html__( 'Show Cover Placeholder', 'mas-addons-for-elementor' ),
 				'type'        => Controls_Manager::SWITCHER,
 				'default'     => 'no',
 				'label_on'    => 'Hide',
 				'label_off'   => 'Show',
-				'description' => esc_html__( 'Displays Placeholder for terms with no images', 'mas-elementor' ),
+				'description' => esc_html__( 'Displays Placeholder for terms with no images', 'mas-addons-for-elementor' ),
 				'condition'   => array(
 					'enable_cover_image' => 'yes',
 				),
@@ -476,10 +476,10 @@ class Product_Attributes extends Base_Widget {
 		$this->add_control(
 			'attributes_title',
 			array(
-				'label'       => esc_html__( 'More Attribute Text', 'mas-elementor' ),
+				'label'       => esc_html__( 'More Attribute Text', 'mas-addons-for-elementor' ),
 				'type'        => Controls_Manager::TEXT,
 				'default'     => '',
-				'description' => esc_html__( 'Link for Shop page', 'mas-elementor' ),
+				'description' => esc_html__( 'Link for Shop page', 'mas-addons-for-elementor' ),
 				'condition'   => array(
 					'enable_carousel!' => 'yes',
 				),
@@ -489,10 +489,10 @@ class Product_Attributes extends Base_Widget {
 		$this->add_control(
 			'more_attributes',
 			array(
-				'label'       => esc_html__( 'More Attribute Text', 'mas-elementor' ),
+				'label'       => esc_html__( 'More Attribute Text', 'mas-addons-for-elementor' ),
 				'type'        => Controls_Manager::TEXT,
 				'default'     => '',
-				'description' => esc_html__( 'Link for Shop page', 'mas-elementor' ),
+				'description' => esc_html__( 'Link for Shop page', 'mas-addons-for-elementor' ),
 				'condition'   => array(
 					'enable_carousel!' => 'yes',
 				),
@@ -504,7 +504,7 @@ class Product_Attributes extends Base_Widget {
 		$this->start_controls_section(
 			'section_filter',
 			array(
-				'label' => esc_html__( 'Query', 'mas-elementor' ),
+				'label' => esc_html__( 'Query', 'mas-addons-for-elementor' ),
 				'tab'   => Controls_Manager::TAB_CONTENT,
 			)
 		);
@@ -512,7 +512,7 @@ class Product_Attributes extends Base_Widget {
 		$this->add_control(
 			'number',
 			array(
-				'label'   => esc_html__( 'Attribute Count', 'mas-elementor' ),
+				'label'   => esc_html__( 'Attribute Count', 'mas-addons-for-elementor' ),
 				'type'    => Controls_Manager::NUMBER,
 				'default' => '4',
 			)
@@ -521,7 +521,7 @@ class Product_Attributes extends Base_Widget {
 		$this->add_control(
 			'hide_empty',
 			array(
-				'label'     => esc_html__( 'Hide Empty', 'mas-elementor' ),
+				'label'     => esc_html__( 'Hide Empty', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::SWITCHER,
 				'default'   => '',
 				'label_on'  => 'Hide',
@@ -532,15 +532,15 @@ class Product_Attributes extends Base_Widget {
 		$this->add_control(
 			'orderby',
 			array(
-				'label'   => esc_html__( 'Order By', 'mas-elementor' ),
+				'label'   => esc_html__( 'Order By', 'mas-addons-for-elementor' ),
 				'type'    => Controls_Manager::SELECT,
 				'default' => 'name',
 				'options' => array(
-					'name'        => esc_html__( 'Name', 'mas-elementor' ),
-					'slug'        => esc_html__( 'Slug', 'mas-elementor' ),
-					'description' => esc_html__( 'Description', 'mas-elementor' ),
-					'count'       => esc_html__( 'Count', 'mas-elementor' ),
-					'menu_order'  => esc_html__( 'Menu Order', 'mas-elementor' ),
+					'name'        => esc_html__( 'Name', 'mas-addons-for-elementor' ),
+					'slug'        => esc_html__( 'Slug', 'mas-addons-for-elementor' ),
+					'description' => esc_html__( 'Description', 'mas-addons-for-elementor' ),
+					'count'       => esc_html__( 'Count', 'mas-addons-for-elementor' ),
+					'menu_order'  => esc_html__( 'Menu Order', 'mas-addons-for-elementor' ),
 				),
 			)
 		);
@@ -548,12 +548,12 @@ class Product_Attributes extends Base_Widget {
 		$this->add_control(
 			'order',
 			array(
-				'label'   => esc_html__( 'Order', 'mas-elementor' ),
+				'label'   => esc_html__( 'Order', 'mas-addons-for-elementor' ),
 				'type'    => Controls_Manager::SELECT,
 				'default' => 'desc',
 				'options' => array(
-					'asc'  => esc_html__( 'ASC', 'mas-elementor' ),
-					'desc' => esc_html__( 'DESC', 'mas-elementor' ),
+					'asc'  => esc_html__( 'ASC', 'mas-addons-for-elementor' ),
+					'desc' => esc_html__( 'DESC', 'mas-addons-for-elementor' ),
 				),
 			)
 		);
@@ -564,8 +564,8 @@ class Product_Attributes extends Base_Widget {
 		$this->add_control(
 			'select_terms',
 			array(
-				'label'        => esc_html__( 'Term', 'mas-elementor' ),
-				'description'  => esc_html__( 'Terms are items in a taxonomy. The available taxonomies are: Product Attributes', 'mas-elementor' ),
+				'label'        => esc_html__( 'Term', 'mas-addons-for-elementor' ),
+				'description'  => esc_html__( 'Terms are items in a taxonomy. The available taxonomies are: Product Attributes', 'mas-addons-for-elementor' ),
 				'type'         => Query_Module::QUERY_CONTROL_ID,
 				'options'      => array(),
 				'label_block'  => true,
@@ -585,7 +585,7 @@ class Product_Attributes extends Base_Widget {
 		$this->start_controls_section(
 			'section_wrapper_style',
 			array(
-				'label' => esc_html__( 'Terms Wrapper', 'mas-elementor' ),
+				'label' => esc_html__( 'Terms Wrapper', 'mas-addons-for-elementor' ),
 				'tab'   => Controls_Manager::TAB_CONTENT,
 			)
 		);
@@ -595,7 +595,7 @@ class Product_Attributes extends Base_Widget {
 		$this->add_responsive_control(
 			'atts_wrapper_margin',
 			array(
-				'label'      => esc_html__( 'Margin', 'mas-elementor' ),
+				'label'      => esc_html__( 'Margin', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', '%', 'em', 'rem', 'custom' ),
 				'selectors'  => array(
@@ -607,7 +607,7 @@ class Product_Attributes extends Base_Widget {
 		$this->add_responsive_control(
 			'atts_wrapper_padding',
 			array(
-				'label'      => esc_html__( 'Padding', 'mas-elementor' ),
+				'label'      => esc_html__( 'Padding', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', '%', 'em', 'rem', 'custom' ),
 				'selectors'  => array(
@@ -621,7 +621,7 @@ class Product_Attributes extends Base_Widget {
 		$this->start_controls_section(
 			'section_layout_style',
 			array(
-				'label' => esc_html__( 'All Terms', 'mas-elementor' ),
+				'label' => esc_html__( 'All Terms', 'mas-addons-for-elementor' ),
 				'tab'   => Controls_Manager::TAB_CONTENT,
 			)
 		);
@@ -629,7 +629,7 @@ class Product_Attributes extends Base_Widget {
 		$this->add_responsive_control(
 			'atts_size',
 			array(
-				'label'          => esc_html__( 'Width', 'mas-elementor' ),
+				'label'          => esc_html__( 'Width', 'mas-addons-for-elementor' ),
 				'type'           => Controls_Manager::SLIDER,
 				'size_units'     => array( 'px', '%', 'em', 'rem', 'vw', 'custom' ),
 				'range'          => array(
@@ -665,7 +665,7 @@ class Product_Attributes extends Base_Widget {
 		$this->add_responsive_control(
 			'atts_margin',
 			array(
-				'label'      => esc_html__( 'Margin', 'mas-elementor' ),
+				'label'      => esc_html__( 'Margin', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', '%', 'em', 'rem', 'custom' ),
 				'selectors'  => array(
@@ -677,7 +677,7 @@ class Product_Attributes extends Base_Widget {
 		$this->add_responsive_control(
 			'atts_padding',
 			array(
-				'label'      => esc_html__( 'Padding', 'mas-elementor' ),
+				'label'      => esc_html__( 'Padding', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', '%', 'em', 'rem', 'custom' ),
 				'selectors'  => array(
@@ -691,7 +691,7 @@ class Product_Attributes extends Base_Widget {
 		$this->start_controls_section(
 			'section_cart_item_style',
 			array(
-				'label' => esc_html__( 'Card Items', 'mas-elementor' ),
+				'label' => esc_html__( 'Card Items', 'mas-addons-for-elementor' ),
 				'tab'   => Controls_Manager::TAB_CONTENT,
 			)
 		);
@@ -714,7 +714,7 @@ class Product_Attributes extends Base_Widget {
 		$this->add_control(
 			'card_item_heading',
 			array(
-				'label' => esc_html__( 'Card Item', 'mas-elementor' ),
+				'label' => esc_html__( 'Card Item', 'mas-addons-for-elementor' ),
 				'type'  => Controls_Manager::HEADING,
 			)
 		);
@@ -722,21 +722,21 @@ class Product_Attributes extends Base_Widget {
 		$this->add_responsive_control(
 			'card_item_display',
 			array(
-				'label'       => esc_html__( 'Display', 'mas-elementor' ),
+				'label'       => esc_html__( 'Display', 'mas-addons-for-elementor' ),
 				'type'        => Controls_Manager::CHOOSE,
 				'label_block' => true,
 				'default'     => 'block',
 				'options'     => array(
 					'block'  => array(
-						'title' => esc_html__( 'Block', 'mas-elementor' ),
+						'title' => esc_html__( 'Block', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-ban',
 					),
 					'flex'   => array(
-						'title' => esc_html__( 'Flex', 'mas-elementor' ),
+						'title' => esc_html__( 'Flex', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-exchange',
 					),
 					'inline' => array(
-						'title' => esc_html__( 'Inline', 'mas-elementor' ),
+						'title' => esc_html__( 'Inline', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-nowrap',
 					),
 
@@ -750,7 +750,7 @@ class Product_Attributes extends Base_Widget {
 		$this->add_responsive_control(
 			'card_item_height',
 			array(
-				'label'      => esc_html__( 'Height', 'mas-elementor' ),
+				'label'      => esc_html__( 'Height', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::SLIDER,
 				'size_units' => array( 'px', '%', 'em', 'rem', 'vw', 'custom' ),
 				'range'      => array(
@@ -786,7 +786,7 @@ class Product_Attributes extends Base_Widget {
 		$this->add_responsive_control(
 			'card_item_border_last_child',
 			array(
-				'label'      => esc_html__( 'Last Child Border Width', 'mas-elementor' ),
+				'label'      => esc_html__( 'Last Child Border Width', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', '%', 'em', 'rem', 'custom' ),
 				'selectors'  => array(
@@ -807,7 +807,7 @@ class Product_Attributes extends Base_Widget {
 		$this->add_responsive_control(
 			'card_item_wrap_radius',
 			array(
-				'label'      => esc_html__( 'Border Radius', 'mas-elementor' ),
+				'label'      => esc_html__( 'Border Radius', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', '%', 'em', 'rem', 'custom' ),
 				'selectors'  => array(
@@ -819,7 +819,7 @@ class Product_Attributes extends Base_Widget {
 		$this->add_responsive_control(
 			'card_item_margin',
 			array(
-				'label'      => esc_html__( 'Margin', 'mas-elementor' ),
+				'label'      => esc_html__( 'Margin', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', '%', 'em', 'rem', 'custom' ),
 				'selectors'  => array(
@@ -831,7 +831,7 @@ class Product_Attributes extends Base_Widget {
 		$this->add_responsive_control(
 			'card_item_padding',
 			array(
-				'label'      => esc_html__( 'Padding', 'mas-elementor' ),
+				'label'      => esc_html__( 'Padding', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', '%', 'em', 'rem', 'custom' ),
 				'selectors'  => array(
@@ -856,7 +856,7 @@ class Product_Attributes extends Base_Widget {
 			$name . 'items',
 			array(
 				'type'      => Controls_Manager::HEADING,
-				'label'     => esc_html__( 'Items', 'mas-elementor' ),
+				'label'     => esc_html__( 'Items', 'mas-addons-for-elementor' ),
 				'separator' => 'before',
 			)
 		);
@@ -864,23 +864,23 @@ class Product_Attributes extends Base_Widget {
 		$this->add_responsive_control(
 			$name . 'attributes_wrap_direction',
 			array(
-				'label'     => esc_html__( 'Direction', 'mas-elementor' ),
+				'label'     => esc_html__( 'Direction', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::CHOOSE,
 				'options'   => array(
 					'row'            => array(
-						'title' => esc_html__( 'Row - horizontal', 'mas-elementor' ),
+						'title' => esc_html__( 'Row - horizontal', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-arrow-' . $end,
 					),
 					'column'         => array(
-						'title' => esc_html__( 'Column - vertical', 'mas-elementor' ),
+						'title' => esc_html__( 'Column - vertical', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-arrow-down',
 					),
 					'row-reverse'    => array(
-						'title' => esc_html__( 'Row - reversed', 'mas-elementor' ),
+						'title' => esc_html__( 'Row - reversed', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-arrow-' . $start,
 					),
 					'column-reverse' => array(
-						'title' => esc_html__( 'Column - reversed', 'mas-elementor' ),
+						'title' => esc_html__( 'Column - reversed', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-arrow-up',
 					),
 				),
@@ -894,33 +894,33 @@ class Product_Attributes extends Base_Widget {
 		$this->add_responsive_control(
 			$name . 'attributes_wrap_justify_content',
 			array(
-				'label'       => esc_html__( 'Justify Content', 'mas-elementor' ),
+				'label'       => esc_html__( 'Justify Content', 'mas-addons-for-elementor' ),
 				'type'        => Controls_Manager::CHOOSE,
 				'label_block' => true,
 				'default'     => '',
 				'options'     => array(
 					'flex-start'    => array(
-						'title' => esc_html_x( 'Start', 'Flex Container Control', 'mas-elementor' ),
+						'title' => esc_html_x( 'Start', 'Flex Container Control', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-flex eicon-justify-start-h',
 					),
 					'center'        => array(
-						'title' => esc_html_x( 'Center', 'Flex Container Control', 'mas-elementor' ),
+						'title' => esc_html_x( 'Center', 'Flex Container Control', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-flex eicon-justify-center-h',
 					),
 					'flex-end'      => array(
-						'title' => esc_html_x( 'End', 'Flex Container Control', 'mas-elementor' ),
+						'title' => esc_html_x( 'End', 'Flex Container Control', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-flex eicon-justify-end-h',
 					),
 					'space-between' => array(
-						'title' => esc_html__( 'Space Between', 'mas-elementor' ),
+						'title' => esc_html__( 'Space Between', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-flex eicon-justify-space-between-h',
 					),
 					'space-around'  => array(
-						'title' => esc_html__( 'Space Around', 'mas-elementor' ),
+						'title' => esc_html__( 'Space Around', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-flex eicon-justify-space-around-h',
 					),
 					'space-evenly'  => array(
-						'title' => esc_html__( 'Space Evenly', 'mas-elementor' ),
+						'title' => esc_html__( 'Space Evenly', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-flex eicon-justify-space-evenly-h',
 					),
 				),
@@ -933,24 +933,24 @@ class Product_Attributes extends Base_Widget {
 		$this->add_responsive_control(
 			$name . 'attributes_wrap_align_items',
 			array(
-				'label'     => esc_html__( 'Align Items', 'mas-elementor' ),
+				'label'     => esc_html__( 'Align Items', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::CHOOSE,
 				'default'   => '',
 				'options'   => array(
 					'flex-start' => array(
-						'title' => esc_html_x( 'Start', 'Flex Container Control', 'mas-elementor' ),
+						'title' => esc_html_x( 'Start', 'Flex Container Control', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-flex eicon-align-start-v',
 					),
 					'center'     => array(
-						'title' => esc_html_x( 'Center', 'Flex Container Control', 'mas-elementor' ),
+						'title' => esc_html_x( 'Center', 'Flex Container Control', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-flex eicon-align-center-v',
 					),
 					'flex-end'   => array(
-						'title' => esc_html_x( 'End', 'Flex Container Control', 'mas-elementor' ),
+						'title' => esc_html_x( 'End', 'Flex Container Control', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-flex eicon-align-end-v',
 					),
 					'stretch'    => array(
-						'title' => esc_html__( 'Stretch', 'mas-elementor' ),
+						'title' => esc_html__( 'Stretch', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-flex eicon-align-stretch-v',
 					),
 				),
@@ -963,7 +963,7 @@ class Product_Attributes extends Base_Widget {
 		$this->add_responsive_control(
 			$name . 'attributes_wrap_gap',
 			array(
-				'label'                  => esc_html__( 'Gaps', 'mas-elementor' ),
+				'label'                  => esc_html__( 'Gaps', 'mas-addons-for-elementor' ),
 				'type'                   => Controls_Manager::GAPS,
 				'size_units'             => array( 'px', '%', 'em', 'rem', 'vw', 'custom' ),
 				'default'                => array(
@@ -992,19 +992,19 @@ class Product_Attributes extends Base_Widget {
 		$this->add_responsive_control(
 			$name . 'attributes_wrapper_wrap',
 			array(
-				'label'       => esc_html_x( 'Wrap', 'Flex Container Control', 'mas-elementor' ),
+				'label'       => esc_html_x( 'Wrap', 'Flex Container Control', 'mas-addons-for-elementor' ),
 				'type'        => Controls_Manager::CHOOSE,
 				'options'     => array(
 					'nowrap' => array(
-						'title' => esc_html_x( 'No Wrap', 'Flex Container Control', 'mas-elementor' ),
+						'title' => esc_html_x( 'No Wrap', 'Flex Container Control', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-flex eicon-nowrap',
 					),
 					'wrap'   => array(
-						'title' => esc_html_x( 'Wrap', 'Flex Container Control', 'mas-elementor' ),
+						'title' => esc_html_x( 'Wrap', 'Flex Container Control', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-flex eicon-wrap',
 					),
 				),
-				'description' => esc_html__( 'Items within the container can stay in a single line (No wrap), or break into multiple lines (Wrap).', 'mas-elementor' ),
+				'description' => esc_html__( 'Items within the container can stay in a single line (No wrap), or break into multiple lines (Wrap).', 'mas-addons-for-elementor' ),
 				'default'     => '',
 				'selectors'   => array(
 					$wrapper => 'flex-wrap: {{VALUE}};',
@@ -1015,17 +1015,17 @@ class Product_Attributes extends Base_Widget {
 		$this->add_responsive_control(
 			$name . 'attributes_wrapper_align_content',
 			array(
-				'label'     => esc_html__( 'Align Content', 'mas-elementor' ),
+				'label'     => esc_html__( 'Align Content', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::SELECT,
 				'default'   => '',
 				'options'   => array(
-					''              => esc_html__( 'Default', 'mas-elementor' ),
-					'center'        => esc_html__( 'Center', 'mas-elementor' ),
-					'flex-start'    => esc_html__( 'Start', 'mas-elementor' ),
-					'flex-end'      => esc_html__( 'End', 'mas-elementor' ),
-					'space-between' => esc_html__( 'Space Between', 'mas-elementor' ),
-					'space-around'  => esc_html__( 'Space Around', 'mas-elementor' ),
-					'space-evenly'  => esc_html__( 'Space Evenly', 'mas-elementor' ),
+					''              => esc_html__( 'Default', 'mas-addons-for-elementor' ),
+					'center'        => esc_html__( 'Center', 'mas-addons-for-elementor' ),
+					'flex-start'    => esc_html__( 'Start', 'mas-addons-for-elementor' ),
+					'flex-end'      => esc_html__( 'End', 'mas-addons-for-elementor' ),
+					'space-between' => esc_html__( 'Space Between', 'mas-addons-for-elementor' ),
+					'space-around'  => esc_html__( 'Space Around', 'mas-addons-for-elementor' ),
+					'space-evenly'  => esc_html__( 'Space Evenly', 'mas-addons-for-elementor' ),
 				),
 				'selectors' => array(
 					$wrapper => 'align-content: {{VALUE}};',
@@ -1047,7 +1047,7 @@ class Product_Attributes extends Base_Widget {
 		$this->add_control(
 			$name . '_position_description',
 			array(
-				'raw'             => '<strong>' . esc_html__( 'Please note!', 'mas-elementor' ) . '</strong> ' . esc_html__( 'Custom positioning is not considered best practice for responsive web design and should not be used too frequently.', 'mas-elementor' ),
+				'raw'             => '<strong>' . esc_html__( 'Please note!', 'mas-addons-for-elementor' ) . '</strong> ' . esc_html__( 'Custom positioning is not considered best practice for responsive web design and should not be used too frequently.', 'mas-addons-for-elementor' ),
 				'type'            => Controls_Manager::RAW_HTML,
 				'content_classes' => 'elementor-panel-alert elementor-panel-alert-warning',
 				'render_type'     => 'ui',
@@ -1060,13 +1060,13 @@ class Product_Attributes extends Base_Widget {
 		$this->add_control(
 			$name . '_position',
 			array(
-				'label'              => esc_html__( 'Position', 'mas-elementor' ),
+				'label'              => esc_html__( 'Position', 'mas-addons-for-elementor' ),
 				'type'               => Controls_Manager::SELECT,
 				'default'            => 'relative',
 				'options'            => array(
-					'relative' => esc_html__( 'Default', 'mas-elementor' ),
-					'absolute' => esc_html__( 'Absolute', 'mas-elementor' ),
-					'fixed'    => esc_html__( 'Fixed', 'mas-elementor' ),
+					'relative' => esc_html__( 'Default', 'mas-addons-for-elementor' ),
+					'absolute' => esc_html__( 'Absolute', 'mas-addons-for-elementor' ),
+					'fixed'    => esc_html__( 'Fixed', 'mas-addons-for-elementor' ),
 				),
 				'prefix_class'       => 'mas-elementor-',
 				'frontend_available' => true,
@@ -1077,13 +1077,13 @@ class Product_Attributes extends Base_Widget {
 			)
 		);
 
-		$start = is_rtl() ? esc_html__( 'Right', 'mas-elementor' ) : esc_html__( 'Left', 'mas-elementor' );
-		$end   = ! is_rtl() ? esc_html__( 'Right', 'mas-elementor' ) : esc_html__( 'Left', 'mas-elementor' );
+		$start = is_rtl() ? esc_html__( 'Right', 'mas-addons-for-elementor' ) : esc_html__( 'Left', 'mas-addons-for-elementor' );
+		$end   = ! is_rtl() ? esc_html__( 'Right', 'mas-addons-for-elementor' ) : esc_html__( 'Left', 'mas-addons-for-elementor' );
 
 		$this->add_control(
 			$name . '_offset_orientation_h',
 			array(
-				'label'       => esc_html__( 'Horizontal Orientation', 'mas-elementor' ),
+				'label'       => esc_html__( 'Horizontal Orientation', 'mas-addons-for-elementor' ),
 				'type'        => Controls_Manager::CHOOSE,
 				'toggle'      => false,
 				'default'     => 'start',
@@ -1108,7 +1108,7 @@ class Product_Attributes extends Base_Widget {
 		$this->add_responsive_control(
 			$name . '_offset_x',
 			array(
-				'label'      => esc_html__( 'Offset', 'mas-elementor' ),
+				'label'      => esc_html__( 'Offset', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::SLIDER,
 				'range'      => array(
 					'px' => array(
@@ -1147,7 +1147,7 @@ class Product_Attributes extends Base_Widget {
 		$this->add_responsive_control(
 			$name . '_offset_x_end',
 			array(
-				'label'      => esc_html__( 'Offset', 'mas-elementor' ),
+				'label'      => esc_html__( 'Offset', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::SLIDER,
 				'range'      => array(
 					'px' => array(
@@ -1186,17 +1186,17 @@ class Product_Attributes extends Base_Widget {
 		$this->add_control(
 			$name . '_offset_orientation_v',
 			array(
-				'label'       => esc_html__( 'Vertical Orientation', 'mas-elementor' ),
+				'label'       => esc_html__( 'Vertical Orientation', 'mas-addons-for-elementor' ),
 				'type'        => Controls_Manager::CHOOSE,
 				'toggle'      => false,
 				'default'     => 'start',
 				'options'     => array(
 					'start' => array(
-						'title' => esc_html__( 'Top', 'mas-elementor' ),
+						'title' => esc_html__( 'Top', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-v-align-top',
 					),
 					'end'   => array(
-						'title' => esc_html__( 'Bottom', 'mas-elementor' ),
+						'title' => esc_html__( 'Bottom', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-v-align-bottom',
 					),
 				),
@@ -1210,7 +1210,7 @@ class Product_Attributes extends Base_Widget {
 		$this->add_responsive_control(
 			$name . '_offset_y',
 			array(
-				'label'      => esc_html__( 'Offset', 'mas-elementor' ),
+				'label'      => esc_html__( 'Offset', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::SLIDER,
 				'range'      => array(
 					'px' => array(
@@ -1248,7 +1248,7 @@ class Product_Attributes extends Base_Widget {
 		$this->add_responsive_control(
 			$name . '_offset_y_end',
 			array(
-				'label'      => esc_html__( 'Offset', 'mas-elementor' ),
+				'label'      => esc_html__( 'Offset', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::SLIDER,
 				'range'      => array(
 					'px' => array(
@@ -1291,7 +1291,7 @@ class Product_Attributes extends Base_Widget {
 		$this->start_controls_section(
 			'section_thumbnail_image_style',
 			array(
-				'label' => esc_html__( 'Thumbnail Image', 'mas-elementor' ),
+				'label' => esc_html__( 'Thumbnail Image', 'mas-addons-for-elementor' ),
 				'tab'   => Controls_Manager::TAB_STYLE,
 			)
 		);
@@ -1303,7 +1303,7 @@ class Product_Attributes extends Base_Widget {
 		$this->start_controls_section(
 			'section_cover_image_style',
 			array(
-				'label' => esc_html__( 'Cover Image', 'mas-elementor' ),
+				'label' => esc_html__( 'Cover Image', 'mas-addons-for-elementor' ),
 				'tab'   => Controls_Manager::TAB_STYLE,
 			)
 		);
@@ -1315,8 +1315,8 @@ class Product_Attributes extends Base_Widget {
 		$this->add_responsive_control(
 			'cover_image_translate',
 			array(
-				'label'       => esc_html__( 'Transform', 'mas-elementor' ),
-				'description' => esc_html__( 'Top and Left input only works top represent Y and Left represent X', 'mas-elementor' ),
+				'label'       => esc_html__( 'Transform', 'mas-addons-for-elementor' ),
+				'description' => esc_html__( 'Top and Left input only works top represent Y and Left represent X', 'mas-addons-for-elementor' ),
 				'type'        => Controls_Manager::DIMENSIONS,
 				'size_units'  => array( 'px', '%', 'em', 'rem', 'custom' ),
 				'selectors'   => array(
@@ -1330,7 +1330,7 @@ class Product_Attributes extends Base_Widget {
 		$this->start_controls_section(
 			'term_description_style',
 			array(
-				'label' => esc_html__( 'Description', 'mas-elementor' ),
+				'label' => esc_html__( 'Description', 'mas-addons-for-elementor' ),
 				'tab'   => Controls_Manager::TAB_STYLE,
 			)
 		);
@@ -1361,14 +1361,14 @@ class Product_Attributes extends Base_Widget {
 			$this->start_controls_tab(
 				$name . '_normal',
 				array(
-					'label' => esc_html__( 'Normal', 'mas-elementor' ),
+					'label' => esc_html__( 'Normal', 'mas-addons-for-elementor' ),
 				)
 			);
 
 				$this->add_control(
 					$name . '_color',
 					array(
-						'label'     => esc_html__( 'Color', 'mas-elementor' ),
+						'label'     => esc_html__( 'Color', 'mas-addons-for-elementor' ),
 						'type'      => Controls_Manager::COLOR,
 						'global'    => array(
 							'default' => Global_Colors::COLOR_PRIMARY,
@@ -1395,14 +1395,14 @@ class Product_Attributes extends Base_Widget {
 			$this->start_controls_tab(
 				$name . '_hover',
 				array(
-					'label' => esc_html__( 'Hover', 'mas-elementor' ),
+					'label' => esc_html__( 'Hover', 'mas-addons-for-elementor' ),
 				)
 			);
 
 				$this->add_control(
 					$name . '_hover_color',
 					array(
-						'label'     => esc_html__( 'Hover Color', 'mas-elementor' ),
+						'label'     => esc_html__( 'Hover Color', 'mas-addons-for-elementor' ),
 						'type'      => Controls_Manager::COLOR,
 						'global'    => array(
 							'default' => Global_Colors::COLOR_PRIMARY,
@@ -1430,7 +1430,7 @@ class Product_Attributes extends Base_Widget {
 		$this->add_responsive_control(
 			$name . '_margin',
 			array(
-				'label'      => esc_html__( 'Margin', 'mas-elementor' ),
+				'label'      => esc_html__( 'Margin', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', '%', 'em', 'rem', 'custom' ),
 				'selectors'  => array(
@@ -1442,7 +1442,7 @@ class Product_Attributes extends Base_Widget {
 		$this->add_responsive_control(
 			$name . '_padding',
 			array(
-				'label'      => esc_html__( 'Padding', 'mas-elementor' ),
+				'label'      => esc_html__( 'Padding', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', '%', 'em', 'rem', 'custom' ),
 				'selectors'  => array(
@@ -1462,7 +1462,7 @@ class Product_Attributes extends Base_Widget {
 		$this->add_responsive_control(
 			$name . '_width',
 			array(
-				'label'      => esc_html__( 'Width', 'mas-elementor' ),
+				'label'      => esc_html__( 'Width', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::SLIDER,
 				'size_units' => array( 'px', '%', 'em', 'rem', 'vw', 'custom' ),
 				'range'      => array(
@@ -1490,7 +1490,7 @@ class Product_Attributes extends Base_Widget {
 		$this->add_responsive_control(
 			$name . '_height',
 			array(
-				'label'      => esc_html__( 'Height', 'mas-elementor' ),
+				'label'      => esc_html__( 'Height', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::SLIDER,
 				'size_units' => array( 'px', '%', 'em', 'rem', 'vw', 'custom' ),
 				'range'      => array(
@@ -1518,7 +1518,7 @@ class Product_Attributes extends Base_Widget {
 		$this->add_responsive_control(
 			$name . '_margin',
 			array(
-				'label'      => esc_html__( 'Margin', 'mas-elementor' ),
+				'label'      => esc_html__( 'Margin', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', '%', 'em', 'rem', 'custom' ),
 				'selectors'  => array(
@@ -1530,7 +1530,7 @@ class Product_Attributes extends Base_Widget {
 		$this->add_responsive_control(
 			$name . '_padding',
 			array(
-				'label'      => esc_html__( 'Padding', 'mas-elementor' ),
+				'label'      => esc_html__( 'Padding', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', '%', 'em', 'rem', 'custom' ),
 				'selectors'  => array(
@@ -1542,13 +1542,13 @@ class Product_Attributes extends Base_Widget {
 		$this->add_responsive_control(
 			$name . 'object-fit',
 			array(
-				'label'     => esc_html__( 'Object Fit', 'mas-elementor' ),
+				'label'     => esc_html__( 'Object Fit', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::SELECT,
 				'options'   => array(
-					''        => esc_html__( 'Default', 'mas-elementor' ),
-					'fill'    => esc_html__( 'Fill', 'mas-elementor' ),
-					'cover'   => esc_html__( 'Cover', 'mas-elementor' ),
-					'contain' => esc_html__( 'Contain', 'mas-elementor' ),
+					''        => esc_html__( 'Default', 'mas-addons-for-elementor' ),
+					'fill'    => esc_html__( 'Fill', 'mas-addons-for-elementor' ),
+					'cover'   => esc_html__( 'Cover', 'mas-addons-for-elementor' ),
+					'contain' => esc_html__( 'Contain', 'mas-addons-for-elementor' ),
 				),
 				'default'   => '',
 				'selectors' => array(

@@ -39,7 +39,7 @@ class Movie_Genre_Filter extends Base_Widget {
 	 * @return string
 	 */
 	public function get_title() {
-		return esc_html__( 'Movie Genre Filter', 'mas-elementor' );
+		return esc_html__( 'Movie Genre Filter', 'mas-addons-for-elementor' );
 	}
 
 	/**
@@ -89,7 +89,7 @@ class Movie_Genre_Filter extends Base_Widget {
 		$this->start_controls_section(
 			'section_layout',
 			array(
-				'label' => __( 'Layout', 'mas-elementor' ),
+				'label' => __( 'Layout', 'mas-addons-for-elementor' ),
 				'tab'   => Controls_Manager::TAB_CONTENT,
 			)
 		);
@@ -97,9 +97,9 @@ class Movie_Genre_Filter extends Base_Widget {
 		$this->add_control(
 			'filter_title',
 			array(
-				'label'   => __( 'Filter Title', 'mas-elementor' ),
+				'label'   => __( 'Filter Title', 'mas-addons-for-elementor' ),
 				'type'    => Controls_Manager::TEXT,
-				'default' => __( 'Filter by Genre', 'mas-elementor' ),
+				'default' => __( 'Filter by Genre', 'mas-addons-for-elementor' ),
 			)
 		);
 
@@ -107,11 +107,11 @@ class Movie_Genre_Filter extends Base_Widget {
 			'genre',
 			array(
 				'type'    => Controls_Manager::SELECT,
-				'label'   => esc_html__( 'Columns', 'mas-elementor' ),
+				'label'   => esc_html__( 'Columns', 'mas-addons-for-elementor' ),
 				'default' => 'movie_genre',
 				'options' => array(
-					'movie_genre'   => esc_html__( 'Movie Genre', 'mas-elementor' ),
-					'tv_show_genre' => esc_html__( 'TV Show Genre', 'mas-elementor' ),
+					'movie_genre'   => esc_html__( 'Movie Genre', 'mas-addons-for-elementor' ),
+					'tv_show_genre' => esc_html__( 'TV Show Genre', 'mas-addons-for-elementor' ),
 				),
 			)
 		);
@@ -120,13 +120,13 @@ class Movie_Genre_Filter extends Base_Widget {
 			'columns',
 			array(
 				'type'               => Controls_Manager::SELECT,
-				'label'              => esc_html__( 'Columns', 'mas-elementor' ),
+				'label'              => esc_html__( 'Columns', 'mas-addons-for-elementor' ),
 				'default'            => '2',
 				'prefix_class'       => 'filter-columns-',
 				'options'            => array(
-					'1' => esc_html__( '1', 'mas-elementor' ),
-					'2' => esc_html__( '2', 'mas-elementor' ),
-					'3' => esc_html__( '3', 'mas-elementor' ),
+					'1' => esc_html__( '1', 'mas-addons-for-elementor' ),
+					'2' => esc_html__( '2', 'mas-addons-for-elementor' ),
+					'3' => esc_html__( '3', 'mas-addons-for-elementor' ),
 				),
 				'frontend_available' => true,
 			)
@@ -135,7 +135,7 @@ class Movie_Genre_Filter extends Base_Widget {
 		$this->add_responsive_control(
 			'width',
 			array(
-				'label'     => esc_html__( 'Width', 'mas-elementor' ),
+				'label'     => esc_html__( 'Width', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::SLIDER,
 				'range'     => array(
 					'px' => array(
@@ -152,7 +152,7 @@ class Movie_Genre_Filter extends Base_Widget {
 		$this->add_responsive_control(
 			'padding',
 			array(
-				'label'      => esc_html__( 'Padding', 'mas-elementor' ),
+				'label'      => esc_html__( 'Padding', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', 'em', '%', 'rem' ),
 				'selectors'  => array(
@@ -166,7 +166,7 @@ class Movie_Genre_Filter extends Base_Widget {
 		$this->start_controls_section(
 			'section_style_content',
 			array(
-				'label' => __( 'Content', 'mas-elementor' ),
+				'label' => __( 'Content', 'mas-addons-for-elementor' ),
 				'tab'   => Controls_Manager::TAB_STYLE,
 			)
 		);
@@ -221,7 +221,7 @@ class Movie_Genre_Filter extends Base_Widget {
 		$this->start_controls_section(
 			'section_style',
 			array(
-				'label' => __( 'Title', 'mas-elementor' ),
+				'label' => __( 'Title', 'mas-addons-for-elementor' ),
 				'tab'   => Controls_Manager::TAB_STYLE,
 			)
 		);
@@ -229,7 +229,7 @@ class Movie_Genre_Filter extends Base_Widget {
 		$this->add_control(
 			'filter_text_color',
 			array(
-				'label'     => __( 'Color', 'mas-elementor' ),
+				'label'     => __( 'Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
 					'{{WRAPPER}} .filter-text' => 'color: {{VALUE}};',
@@ -251,7 +251,7 @@ class Movie_Genre_Filter extends Base_Widget {
 		$this->add_responsive_control(
 			'title_width',
 			array(
-				'label'     => esc_html__( 'Width', 'mas-elementor' ),
+				'label'     => esc_html__( 'Width', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::SLIDER,
 				'default'   => array(
 					'size' => 100,
@@ -272,7 +272,7 @@ class Movie_Genre_Filter extends Base_Widget {
 		$this->add_responsive_control(
 			'title_padding',
 			array(
-				'label'     => esc_html__( 'Title Spacing', 'mas-elementor' ),
+				'label'     => esc_html__( 'Title Spacing', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::SLIDER,
 				'range'     => array(
 					'px' => array(
@@ -291,7 +291,7 @@ class Movie_Genre_Filter extends Base_Widget {
 		$this->start_controls_section(
 			'section_list_style',
 			array(
-				'label' => __( 'List', 'mas-elementor' ),
+				'label' => __( 'List', 'mas-addons-for-elementor' ),
 				'tab'   => Controls_Manager::TAB_STYLE,
 			)
 		);
@@ -299,7 +299,7 @@ class Movie_Genre_Filter extends Base_Widget {
 		$this->add_control(
 			'filter_list_color',
 			array(
-				'label'     => __( 'Color', 'mas-elementor' ),
+				'label'     => __( 'Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
 					'{{WRAPPER}} .filter ul li a' => 'color: {{VALUE}};',
@@ -310,7 +310,7 @@ class Movie_Genre_Filter extends Base_Widget {
 		$this->add_control(
 			'filter_list_hover_color',
 			array(
-				'label'     => __( 'Hover Color', 'mas-elementor' ),
+				'label'     => __( 'Hover Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
 					'{{WRAPPER}} .filter ul li a:hover' => 'color: {{VALUE}};',
@@ -321,7 +321,7 @@ class Movie_Genre_Filter extends Base_Widget {
 		$this->add_responsive_control(
 			'list_width',
 			array(
-				'label'     => esc_html__( 'Width', 'mas-elementor' ),
+				'label'     => esc_html__( 'Width', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::SLIDER,
 				'default'   => array(
 					'size' => 100,
@@ -342,7 +342,7 @@ class Movie_Genre_Filter extends Base_Widget {
 		$this->add_responsive_control(
 			'list_space_between',
 			array(
-				'label'     => esc_html__( 'Space Between', 'mas-elementor' ),
+				'label'     => esc_html__( 'Space Between', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::SLIDER,
 				'default'   => array(
 					'size' => 10,
@@ -363,7 +363,7 @@ class Movie_Genre_Filter extends Base_Widget {
 		$this->add_responsive_control(
 			'list_spacing',
 			array(
-				'label'     => esc_html__( 'List Spacing', 'mas-elementor' ),
+				'label'     => esc_html__( 'List Spacing', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::SLIDER,
 				'range'     => array(
 					'px' => array(

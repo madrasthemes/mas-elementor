@@ -32,11 +32,11 @@ trait Button_Widget_Trait {
 	 */
 	public static function get_button_sizes() {
 		return array(
-			'xs' => esc_html__( 'Extra Small', 'mas-elementor' ),
-			'sm' => esc_html__( 'Small', 'mas-elementor' ),
-			'md' => esc_html__( 'Medium', 'mas-elementor' ),
-			'lg' => esc_html__( 'Large', 'mas-elementor' ),
-			'xl' => esc_html__( 'Extra Large', 'mas-elementor' ),
+			'xs' => esc_html__( 'Extra Small', 'mas-addons-for-elementor' ),
+			'sm' => esc_html__( 'Small', 'mas-addons-for-elementor' ),
+			'md' => esc_html__( 'Medium', 'mas-addons-for-elementor' ),
+			'lg' => esc_html__( 'Large', 'mas-addons-for-elementor' ),
+			'xl' => esc_html__( 'Extra Large', 'mas-addons-for-elementor' ),
 		);
 	}
 
@@ -52,8 +52,8 @@ trait Button_Widget_Trait {
 		}
 		$default_args = array(
 			'section_condition'      => array(),
-			'button_text'            => esc_html__( 'Click here', 'mas-elementor' ),
-			'control_label_name'     => esc_html__( 'Text', 'mas-elementor' ),
+			'button_text'            => esc_html__( 'Click here', 'mas-addons-for-elementor' ),
+			'control_label_name'     => esc_html__( 'Text', 'mas-addons-for-elementor' ),
 			'prefix_class'           => 'elementor%s-align-',
 			'alignment_default'      => '',
 			'exclude_inline_options' => array(),
@@ -67,10 +67,10 @@ trait Button_Widget_Trait {
 			'swiper_position_static',
 			array(
 				'type'         => Controls_Manager::SWITCHER,
-				'label'        => esc_html__( 'Enable Position Static', 'mas-elementor' ),
+				'label'        => esc_html__( 'Enable Position Static', 'mas-addons-for-elementor' ),
 				'default'      => 'enable',
-				'label_off'    => esc_html__( 'Enable', 'mas-elementor' ),
-				'label_on'     => esc_html__( 'Disable', 'mas-elementor' ),
+				'label_off'    => esc_html__( 'Enable', 'mas-addons-for-elementor' ),
+				'label_on'     => esc_html__( 'Disable', 'mas-addons-for-elementor' ),
 				'condition'    => $args['section_condition'],
 				'return_value' => 'enable',
 				'prefix_class' => 'swiper-position-static-',
@@ -81,7 +81,7 @@ trait Button_Widget_Trait {
 		$element->add_control(
 			'text',
 			array(
-				'label'       => esc_html__( 'Previous Text', 'mas-elementor' ),
+				'label'       => esc_html__( 'Previous Text', 'mas-addons-for-elementor' ),
 				'type'        => Controls_Manager::TEXT,
 				'dynamic'     => array(
 					'active' => true,
@@ -96,7 +96,7 @@ trait Button_Widget_Trait {
 		$element->add_control(
 			'next_text',
 			array(
-				'label'       => esc_html__( 'Next Text', 'mas-elementor' ),
+				'label'       => esc_html__( 'Next Text', 'mas-addons-for-elementor' ),
 				'type'        => Controls_Manager::TEXT,
 				'dynamic'     => array(
 					'active' => true,
@@ -111,7 +111,7 @@ trait Button_Widget_Trait {
 		$element->add_control(
 			'size',
 			array(
-				'label'       => esc_html__( 'Icon Size', 'mas-elementor' ),
+				'label'       => esc_html__( 'Icon Size', 'mas-addons-for-elementor' ),
 				'type'        => Controls_Manager::SLIDER,
 				'range'       => array(
 					'px' => array(
@@ -139,7 +139,7 @@ trait Button_Widget_Trait {
 		$element->add_control(
 			'selected_icon',
 			array(
-				'label'                  => esc_html__( 'Previous Icon', 'mas-elementor' ),
+				'label'                  => esc_html__( 'Previous Icon', 'mas-addons-for-elementor' ),
 				'type'                   => Controls_Manager::ICONS,
 				'fa4compatibility'       => 'icon',
 				'skin'                   => 'inline',
@@ -157,12 +157,12 @@ trait Button_Widget_Trait {
 		$element->add_control(
 			'icon_align',
 			array(
-				'label'       => esc_html__( 'Previous Icon Position', 'mas-elementor' ),
+				'label'       => esc_html__( 'Previous Icon Position', 'mas-addons-for-elementor' ),
 				'type'        => Controls_Manager::SELECT,
 				'default'     => 'left',
 				'options'     => array(
-					'left'  => esc_html__( 'Before', 'mas-elementor' ),
-					'right' => esc_html__( 'After', 'mas-elementor' ),
+					'left'  => esc_html__( 'Before', 'mas-addons-for-elementor' ),
+					'right' => esc_html__( 'After', 'mas-addons-for-elementor' ),
 				),
 				'condition'   => array_merge( $args['section_condition'], array( 'selected_icon[value]!' => '' ) ),
 				'render_type' => $args['render_type'],
@@ -172,7 +172,7 @@ trait Button_Widget_Trait {
 		$element->add_control(
 			'selected_next_icon',
 			array(
-				'label'                  => esc_html__( 'Next Icon', 'mas-elementor' ),
+				'label'                  => esc_html__( 'Next Icon', 'mas-addons-for-elementor' ),
 				'type'                   => Controls_Manager::ICONS,
 				'fa4compatibility'       => 'icon',
 				'skin'                   => 'inline',
@@ -190,12 +190,12 @@ trait Button_Widget_Trait {
 		$element->add_control(
 			'next_icon_align',
 			array(
-				'label'       => esc_html__( 'Next Icon Position', 'mas-elementor' ),
+				'label'       => esc_html__( 'Next Icon Position', 'mas-addons-for-elementor' ),
 				'type'        => Controls_Manager::SELECT,
 				'default'     => 'right',
 				'options'     => array(
-					'left'  => esc_html__( 'Before', 'mas-elementor' ),
-					'right' => esc_html__( 'After', 'mas-elementor' ),
+					'left'  => esc_html__( 'Before', 'mas-addons-for-elementor' ),
+					'right' => esc_html__( 'After', 'mas-addons-for-elementor' ),
 				),
 				'condition'   => array_merge( $args['section_condition'], array( 'selected_next_icon[value]!' => '' ) ),
 				'render_type' => $args['render_type'],
@@ -205,7 +205,7 @@ trait Button_Widget_Trait {
 		$element->add_control(
 			'icon_indent',
 			array(
-				'label'       => esc_html__( 'Icon Spacing', 'mas-elementor' ),
+				'label'       => esc_html__( 'Icon Spacing', 'mas-addons-for-elementor' ),
 				'type'        => Controls_Manager::SLIDER,
 				'range'       => array(
 					'px' => array(
@@ -236,7 +236,7 @@ trait Button_Widget_Trait {
 			'swiper_arrows_spacing',
 			array(
 				'type'            => Controls_Manager::SLIDER,
-				'label'           => esc_html__( 'Arrows Spacing', 'mas-elementor' ),
+				'label'           => esc_html__( 'Arrows Spacing', 'mas-addons-for-elementor' ),
 				'size_units'      => array( '%', 'px' ),
 				'range'           => array(
 					'%'  => array(
@@ -275,9 +275,9 @@ trait Button_Widget_Trait {
 			'enable_individual_arrow_spacing',
 			array(
 				'type'        => Controls_Manager::SWITCHER,
-				'label'       => esc_html__( 'Individual Arrow Spacing', 'mas-elementor' ),
-				'label_off'   => esc_html__( 'Enable', 'mas-elementor' ),
-				'label_on'    => esc_html__( 'Disable', 'mas-elementor' ),
+				'label'       => esc_html__( 'Individual Arrow Spacing', 'mas-addons-for-elementor' ),
+				'label_off'   => esc_html__( 'Enable', 'mas-addons-for-elementor' ),
+				'label_on'    => esc_html__( 'Disable', 'mas-addons-for-elementor' ),
 				'condition'   => $args['section_condition'],
 				'render_type' => $args['render_type'],
 			)
@@ -286,10 +286,10 @@ trait Button_Widget_Trait {
 		$element->add_control(
 			'button_wrapper_css',
 			array(
-				'label'       => esc_html__( 'Arrow Wrapper CSS', 'mas-elementor' ),
+				'label'       => esc_html__( 'Arrow Wrapper CSS', 'mas-addons-for-elementor' ),
 				'type'        => Controls_Manager::TEXT,
 				'default'     => '',
-				'description' => esc_html__( 'Additional CSS to be applied to .btn-wrapper element.', 'mas-elementor' ),
+				'description' => esc_html__( 'Additional CSS to be applied to .btn-wrapper element.', 'mas-addons-for-elementor' ),
 				'condition'   => $args['section_condition'],
 				'render_type' => $args['render_type'],
 			)
@@ -298,10 +298,10 @@ trait Button_Widget_Trait {
 		$element->add_control(
 			'button_css',
 			array(
-				'label'       => esc_html__( 'Arrow CSS', 'mas-elementor' ),
+				'label'       => esc_html__( 'Arrow CSS', 'mas-addons-for-elementor' ),
 				'type'        => Controls_Manager::TEXT,
 				'default'     => '',
-				'description' => esc_html__( 'Additional CSS to be applied to .btn element.', 'mas-elementor' ),
+				'description' => esc_html__( 'Additional CSS to be applied to .btn element.', 'mas-addons-for-elementor' ),
 				'condition'   => $args['section_condition'],
 				'render_type' => $args['render_type'],
 			)
@@ -331,7 +331,7 @@ trait Button_Widget_Trait {
 		$element->start_controls_section(
 			'mas__swiper_arrow_spacing',
 			array(
-				'label'     => esc_html__( 'Swiper Arrows Spacing', 'mas-elementor' ),
+				'label'     => esc_html__( 'Swiper Arrows Spacing', 'mas-addons-for-elementor' ),
 				'tab'       => Controls_Manager::TAB_STYLE,
 				'condition' => array(
 					'enable_carousel'                 => 'yes',
@@ -345,7 +345,7 @@ trait Button_Widget_Trait {
 			'swiper_prev_arrows_start_spacing',
 			array(
 				'type'        => Controls_Manager::SLIDER,
-				'label'       => esc_html__( 'Previous Arrow Start Spacing', 'mas-elementor' ),
+				'label'       => esc_html__( 'Previous Arrow Start Spacing', 'mas-addons-for-elementor' ),
 				'size_units'  => array( 'px', 'em', '%', 'rem' ),
 				'selectors'   => array(
 					'{{WRAPPER}} ' . $args['button_concat'] . ' .mas-swiper-arrows .swiper-button-prev' => 'left:{{SIZE}}{{UNIT}} !important;',
@@ -370,7 +370,7 @@ trait Button_Widget_Trait {
 			'swiper_prev_arrows_end_spacing',
 			array(
 				'type'        => Controls_Manager::SLIDER,
-				'label'       => esc_html__( 'Previous Arrow End Spacing', 'mas-elementor' ),
+				'label'       => esc_html__( 'Previous Arrow End Spacing', 'mas-addons-for-elementor' ),
 				'size_units'  => array( 'px', 'em', '%', 'rem' ),
 				'selectors'   => array(
 					'{{WRAPPER}} ' . $args['button_concat'] . ' .mas-swiper-arrows .swiper-button-prev' => 'right:{{SIZE}}{{UNIT}} !important;',
@@ -395,7 +395,7 @@ trait Button_Widget_Trait {
 			'swiper_prev_arrows_top_spacing',
 			array(
 				'type'        => Controls_Manager::SLIDER,
-				'label'       => esc_html__( 'Previous Arrow Top Spacing', 'mas-elementor' ),
+				'label'       => esc_html__( 'Previous Arrow Top Spacing', 'mas-addons-for-elementor' ),
 				'size_units'  => array( 'px', 'em', '%', 'rem' ),
 				'selectors'   => array(
 					'{{WRAPPER}} ' . $args['button_concat'] . ' .mas-swiper-arrows .swiper-button-prev' => 'top:{{SIZE}}{{UNIT}} !important;',
@@ -420,7 +420,7 @@ trait Button_Widget_Trait {
 			'swiper_prev_arrows_bottom_spacing',
 			array(
 				'type'        => Controls_Manager::SLIDER,
-				'label'       => esc_html__( 'Previous Arrow Bottom Spacing', 'mas-elementor' ),
+				'label'       => esc_html__( 'Previous Arrow Bottom Spacing', 'mas-addons-for-elementor' ),
 				'size_units'  => array( 'px', 'em', '%', 'rem' ),
 				'selectors'   => array(
 					'{{WRAPPER}} ' . $args['button_concat'] . ' .mas-swiper-arrows .swiper-button-prev' => 'bottom:{{SIZE}}{{UNIT}} !important;',
@@ -445,7 +445,7 @@ trait Button_Widget_Trait {
 			'swiper_next_arrows_start_spacing',
 			array(
 				'type'        => Controls_Manager::SLIDER,
-				'label'       => esc_html__( 'Next Arrow Start Spacing', 'mas-elementor' ),
+				'label'       => esc_html__( 'Next Arrow Start Spacing', 'mas-addons-for-elementor' ),
 				'size_units'  => array( 'px', 'em', '%', 'rem' ),
 				'selectors'   => array(
 					'{{WRAPPER}} ' . $args['button_concat'] . ' .mas-swiper-arrows .swiper-button-next' => 'left:{{SIZE}}{{UNIT}} !important;',
@@ -471,7 +471,7 @@ trait Button_Widget_Trait {
 			'swiper_next_arrows_end_spacing',
 			array(
 				'type'        => Controls_Manager::SLIDER,
-				'label'       => esc_html__( 'Next Arrow End Spacing', 'mas-elementor' ),
+				'label'       => esc_html__( 'Next Arrow End Spacing', 'mas-addons-for-elementor' ),
 				'size_units'  => array( 'px', 'em', '%', 'rem' ),
 				'selectors'   => array(
 					'{{WRAPPER}} ' . $args['button_concat'] . ' .mas-swiper-arrows .swiper-button-next' => 'right:{{SIZE}}{{UNIT}} !important;',
@@ -496,7 +496,7 @@ trait Button_Widget_Trait {
 			'swiper_next_arrows_top_spacing',
 			array(
 				'type'        => Controls_Manager::SLIDER,
-				'label'       => esc_html__( 'Next Arrow Top Spacing', 'mas-elementor' ),
+				'label'       => esc_html__( 'Next Arrow Top Spacing', 'mas-addons-for-elementor' ),
 				'size_units'  => array( 'px', 'em', '%', 'rem' ),
 				'selectors'   => array(
 					'{{WRAPPER}} ' . $args['button_concat'] . ' .mas-swiper-arrows .swiper-button-next' => 'top:{{SIZE}}{{UNIT}} !important;',
@@ -521,7 +521,7 @@ trait Button_Widget_Trait {
 			'swiper_next_arrows_bottom_spacing',
 			array(
 				'type'        => Controls_Manager::SLIDER,
-				'label'       => esc_html__( 'Next Arrow Bottom Spacing', 'mas-elementor' ),
+				'label'       => esc_html__( 'Next Arrow Bottom Spacing', 'mas-addons-for-elementor' ),
 				'size_units'  => array( 'px', 'em', '%', 'rem' ),
 				'selectors'   => array(
 					'{{WRAPPER}} ' . $args['button_concat'] . ' .mas-swiper-arrows .swiper-button-next' => 'bottom:{{SIZE}}{{UNIT}} !important;',
@@ -566,7 +566,7 @@ trait Button_Widget_Trait {
 		$element->start_controls_section(
 			'style_swiper_button',
 			array(
-				'label'       => esc_html__( 'Carousel Arrows', 'mas-elementor' ),
+				'label'       => esc_html__( 'Carousel Arrows', 'mas-addons-for-elementor' ),
 				'tab'         => Controls_Manager::TAB_STYLE,
 				'condition'   => array(
 					'enable_carousel' => 'yes',
@@ -609,7 +609,7 @@ trait Button_Widget_Trait {
 		$element->start_controls_tab(
 			'swiper_arrow_tab_button_normal',
 			array(
-				'label'     => esc_html__( 'Normal', 'mas-elementor' ),
+				'label'     => esc_html__( 'Normal', 'mas-addons-for-elementor' ),
 				'condition' => $args['section_condition'],
 			)
 		);
@@ -617,7 +617,7 @@ trait Button_Widget_Trait {
 		$element->add_control(
 			'swiper_arrow_button_text_color',
 			array(
-				'label'       => esc_html__( 'Text Color', 'mas-elementor' ),
+				'label'       => esc_html__( 'Text Color', 'mas-addons-for-elementor' ),
 				'type'        => Controls_Manager::COLOR,
 				'default'     => '',
 				'selectors'   => array(
@@ -631,7 +631,7 @@ trait Button_Widget_Trait {
 		$element->add_control(
 			'swiper_arrow_button_icon_color',
 			array(
-				'label'       => esc_html__( 'Icon Color', 'mas-elementor' ),
+				'label'       => esc_html__( 'Icon Color', 'mas-addons-for-elementor' ),
 				'type'        => Controls_Manager::COLOR,
 				'default'     => '#BEC2C2',
 				'selectors'   => array(
@@ -646,7 +646,7 @@ trait Button_Widget_Trait {
 			Group_Control_Background::get_type(),
 			array(
 				'name'           => 'swiper_arrow_background',
-				'label'          => esc_html__( 'Background', 'mas-elementor' ),
+				'label'          => esc_html__( 'Background', 'mas-addons-for-elementor' ),
 				'types'          => array( 'classic', 'gradient' ),
 				'exclude'        => array( 'image' ),
 				'selector'       => '{{WRAPPER}} ' . $args['button_concat'] . ' .mas-swiper-arrows .elementor-button-link',
@@ -668,7 +668,7 @@ trait Button_Widget_Trait {
 		$element->start_controls_tab(
 			'swiper_arrow_tab_button_hover',
 			array(
-				'label'     => esc_html__( 'Hover', 'mas-elementor' ),
+				'label'     => esc_html__( 'Hover', 'mas-addons-for-elementor' ),
 				'condition' => $args['section_condition'],
 			)
 		);
@@ -676,7 +676,7 @@ trait Button_Widget_Trait {
 		$element->add_control(
 			'swiper_arrow_hover_color',
 			array(
-				'label'       => esc_html__( 'Text Color', 'mas-elementor' ),
+				'label'       => esc_html__( 'Text Color', 'mas-addons-for-elementor' ),
 				'type'        => Controls_Manager::COLOR,
 				'selectors'   => array(
 					'{{WRAPPER}} .elementor-button-link:hover, {{WRAPPER}} .elementor-button-link:focus' => 'color: {{VALUE}};',
@@ -690,7 +690,7 @@ trait Button_Widget_Trait {
 		$element->add_control(
 			'swiper_arrow_icon_hover_color',
 			array(
-				'label'       => esc_html__( 'Icon Color', 'mas-elementor' ),
+				'label'       => esc_html__( 'Icon Color', 'mas-addons-for-elementor' ),
 				'type'        => Controls_Manager::COLOR,
 				'default'     => '#FFFFFF',
 				'selectors'   => array(
@@ -706,7 +706,7 @@ trait Button_Widget_Trait {
 			Group_Control_Background::get_type(),
 			array(
 				'name'           => 'swiper_arrow_button_background_hover',
-				'label'          => esc_html__( 'Background', 'mas-elementor' ),
+				'label'          => esc_html__( 'Background', 'mas-addons-for-elementor' ),
 				'types'          => array( 'classic', 'gradient' ),
 				'exclude'        => array( 'image' ),
 				'selector'       => '{{WRAPPER}} ' . $args['button_concat'] . ' .mas-swiper-arrows .elementor-button-link:hover, {{WRAPPER}} ' . $args['button_concat'] . ' .mas-swiper-arrows .elementor-button-link:focus',
@@ -726,7 +726,7 @@ trait Button_Widget_Trait {
 		$element->add_control(
 			'swiper_arrow_button_hover_border_color',
 			array(
-				'label'       => esc_html__( 'Border Color', 'mas-elementor' ),
+				'label'       => esc_html__( 'Border Color', 'mas-addons-for-elementor' ),
 				'type'        => Controls_Manager::COLOR,
 				'selectors'   => array(
 					'{{WRAPPER}} ' . $args['button_concat'] . ' .mas-swiper-arrows .elementor-button-link:hover, {{WRAPPER}} ' . $args['button_concat'] . ' .mas-swiper-arrows .elementor-button-link:focus' => 'border-color: {{VALUE}};',
@@ -771,7 +771,7 @@ trait Button_Widget_Trait {
 		$element->add_control(
 			'swiper_arrow_border_radius',
 			array(
-				'label'       => esc_html__( 'Border Radius', 'mas-elementor' ),
+				'label'       => esc_html__( 'Border Radius', 'mas-addons-for-elementor' ),
 				'type'        => Controls_Manager::DIMENSIONS,
 				'size_units'  => array( 'px', '%', 'em' ),
 				'selectors'   => array(
@@ -803,7 +803,7 @@ trait Button_Widget_Trait {
 		$element->add_responsive_control(
 			'swiper_arrow_text_padding',
 			array(
-				'label'       => esc_html__( 'Padding', 'mas-elementor' ),
+				'label'       => esc_html__( 'Padding', 'mas-addons-for-elementor' ),
 				'type'        => Controls_Manager::DIMENSIONS,
 				'size_units'  => array( 'px', 'em', '%' ),
 				'selectors'   => array(
@@ -827,9 +827,9 @@ trait Button_Widget_Trait {
 			'enable_individual_arrow_padding',
 			array(
 				'type'        => Controls_Manager::SWITCHER,
-				'label'       => esc_html__( 'Individual Arrow Spacing', 'mas-elementor' ),
-				'label_off'   => esc_html__( 'Enable', 'mas-elementor' ),
-				'label_on'    => esc_html__( 'Disable', 'mas-elementor' ),
+				'label'       => esc_html__( 'Individual Arrow Spacing', 'mas-addons-for-elementor' ),
+				'label_off'   => esc_html__( 'Enable', 'mas-addons-for-elementor' ),
+				'label_on'    => esc_html__( 'Disable', 'mas-addons-for-elementor' ),
 				'condition'   => $args['section_condition'],
 				'render_type' => $args['render_type'],
 			)
@@ -838,7 +838,7 @@ trait Button_Widget_Trait {
 		$element->add_responsive_control(
 			'swiper_prev_arrow_text_padding',
 			array(
-				'label'       => esc_html__( 'Prev Button Padding', 'mas-elementor' ),
+				'label'       => esc_html__( 'Prev Button Padding', 'mas-addons-for-elementor' ),
 				'type'        => Controls_Manager::DIMENSIONS,
 				'size_units'  => array( 'px', 'em', '%' ),
 				'separator'   => 'before',
@@ -853,7 +853,7 @@ trait Button_Widget_Trait {
 		$element->add_responsive_control(
 			'swiper_next_arrow_text_padding',
 			array(
-				'label'       => esc_html__( 'Next Button Padding', 'mas-elementor' ),
+				'label'       => esc_html__( 'Next Button Padding', 'mas-addons-for-elementor' ),
 				'type'        => Controls_Manager::DIMENSIONS,
 				'size_units'  => array( 'px', 'em', '%' ),
 				'selectors'   => array(

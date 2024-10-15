@@ -44,7 +44,7 @@ class Categories extends Base_Widget {
 	 * @return string
 	 */
 	public function get_title() {
-		return esc_html__( 'Product Categories', 'mas-elementor' );
+		return esc_html__( 'Product Categories', 'mas-addons-for-elementor' );
 	}
 
 	/**
@@ -83,7 +83,7 @@ class Categories extends Base_Widget {
 		$this->start_controls_section(
 			'section_layout',
 			array(
-				'label' => esc_html__( 'Layout', 'mas-elementor' ),
+				'label' => esc_html__( 'Layout', 'mas-addons-for-elementor' ),
 				'tab'   => Controls_Manager::TAB_CONTENT,
 			)
 		);
@@ -93,7 +93,7 @@ class Categories extends Base_Widget {
 		$this->add_control(
 			'number',
 			array(
-				'label'   => esc_html__( 'Categories Count', 'mas-elementor' ),
+				'label'   => esc_html__( 'Categories Count', 'mas-addons-for-elementor' ),
 				'type'    => Controls_Manager::NUMBER,
 				'default' => '4',
 			)
@@ -104,7 +104,7 @@ class Categories extends Base_Widget {
 		$this->start_controls_section(
 			'section_filter',
 			array(
-				'label' => esc_html__( 'Query', 'mas-elementor' ),
+				'label' => esc_html__( 'Query', 'mas-addons-for-elementor' ),
 				'tab'   => Controls_Manager::TAB_CONTENT,
 			)
 		);
@@ -112,13 +112,13 @@ class Categories extends Base_Widget {
 		$this->add_control(
 			'source',
 			array(
-				'label'       => esc_html__( 'Source', 'mas-elementor' ),
+				'label'       => esc_html__( 'Source', 'mas-addons-for-elementor' ),
 				'type'        => Controls_Manager::SELECT,
 				'options'     => array(
-					''                      => esc_html__( 'Show All', 'mas-elementor' ),
-					'by_id'                 => esc_html__( 'Manual Selection', 'mas-elementor' ),
-					'by_parent'             => esc_html__( 'By Parent', 'mas-elementor' ),
-					'current_subcategories' => esc_html__( 'Current Subcategories', 'mas-elementor' ),
+					''                      => esc_html__( 'Show All', 'mas-addons-for-elementor' ),
+					'by_id'                 => esc_html__( 'Manual Selection', 'mas-addons-for-elementor' ),
+					'by_parent'             => esc_html__( 'By Parent', 'mas-addons-for-elementor' ),
+					'current_subcategories' => esc_html__( 'Current Subcategories', 'mas-addons-for-elementor' ),
 				),
 				'label_block' => true,
 			)
@@ -134,7 +134,7 @@ class Categories extends Base_Widget {
 		$this->add_control(
 			'categories',
 			array(
-				'label'       => esc_html__( 'Categories', 'mas-elementor' ),
+				'label'       => esc_html__( 'Categories', 'mas-addons-for-elementor' ),
 				'type'        => Controls_Manager::SELECT2,
 				'options'     => $options,
 				'default'     => array(),
@@ -146,11 +146,11 @@ class Categories extends Base_Widget {
 			)
 		);
 
-		$parent_options = array( '0' => esc_html__( 'Only Top Level', 'mas-elementor' ) ) + $options;
+		$parent_options = array( '0' => esc_html__( 'Only Top Level', 'mas-addons-for-elementor' ) ) + $options;
 		$this->add_control(
 			'parent',
 			array(
-				'label'     => esc_html__( 'Parent', 'mas-elementor' ),
+				'label'     => esc_html__( 'Parent', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::SELECT,
 				'default'   => '0',
 				'options'   => $parent_options,
@@ -163,7 +163,7 @@ class Categories extends Base_Widget {
 		$this->add_control(
 			'hide_empty',
 			array(
-				'label'     => esc_html__( 'Hide Empty', 'mas-elementor' ),
+				'label'     => esc_html__( 'Hide Empty', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::SWITCHER,
 				'default'   => '',
 				'label_on'  => 'Hide',
@@ -174,14 +174,14 @@ class Categories extends Base_Widget {
 		$this->add_control(
 			'orderby',
 			array(
-				'label'   => esc_html__( 'Order By', 'mas-elementor' ),
+				'label'   => esc_html__( 'Order By', 'mas-addons-for-elementor' ),
 				'type'    => Controls_Manager::SELECT,
 				'default' => 'name',
 				'options' => array(
-					'name'        => esc_html__( 'Name', 'mas-elementor' ),
-					'slug'        => esc_html__( 'Slug', 'mas-elementor' ),
-					'description' => esc_html__( 'Description', 'mas-elementor' ),
-					'count'       => esc_html__( 'Count', 'mas-elementor' ),
+					'name'        => esc_html__( 'Name', 'mas-addons-for-elementor' ),
+					'slug'        => esc_html__( 'Slug', 'mas-addons-for-elementor' ),
+					'description' => esc_html__( 'Description', 'mas-addons-for-elementor' ),
+					'count'       => esc_html__( 'Count', 'mas-addons-for-elementor' ),
 				),
 			)
 		);
@@ -189,12 +189,12 @@ class Categories extends Base_Widget {
 		$this->add_control(
 			'order',
 			array(
-				'label'   => esc_html__( 'Order', 'mas-elementor' ),
+				'label'   => esc_html__( 'Order', 'mas-addons-for-elementor' ),
 				'type'    => Controls_Manager::SELECT,
 				'default' => 'desc',
 				'options' => array(
-					'asc'  => esc_html__( 'ASC', 'mas-elementor' ),
-					'desc' => esc_html__( 'DESC', 'mas-elementor' ),
+					'asc'  => esc_html__( 'ASC', 'mas-addons-for-elementor' ),
+					'desc' => esc_html__( 'DESC', 'mas-addons-for-elementor' ),
 				),
 			)
 		);
@@ -204,7 +204,7 @@ class Categories extends Base_Widget {
 		$this->start_controls_section(
 			'section_products_style',
 			array(
-				'label' => esc_html__( 'Products', 'mas-elementor' ),
+				'label' => esc_html__( 'Products', 'mas-addons-for-elementor' ),
 				'tab'   => Controls_Manager::TAB_STYLE,
 			)
 		);
@@ -213,7 +213,7 @@ class Categories extends Base_Widget {
 			'wc_style_warning',
 			array(
 				'type'            => Controls_Manager::RAW_HTML,
-				'raw'             => esc_html__( 'The style of this widget is often affected by your theme and plugins. If you experience any such issue, try to switch to a basic theme and deactivate related plugins.', 'mas-elementor' ),
+				'raw'             => esc_html__( 'The style of this widget is often affected by your theme and plugins. If you experience any such issue, try to switch to a basic theme and deactivate related plugins.', 'mas-addons-for-elementor' ),
 				'content_classes' => 'elementor-panel-alert elementor-panel-alert-info',
 			)
 		);
@@ -230,7 +230,7 @@ class Categories extends Base_Widget {
 		$this->add_control(
 			'column_gap',
 			array(
-				'label'      => esc_html__( 'Columns Gap', 'mas-elementor' ),
+				'label'      => esc_html__( 'Columns Gap', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::SLIDER,
 				'size_units' => array( 'px', 'em', 'rem', 'custom' ),
 				'default'    => array(
@@ -251,7 +251,7 @@ class Categories extends Base_Widget {
 		$this->add_control(
 			'row_gap',
 			array(
-				'label'      => esc_html__( 'Rows Gap', 'mas-elementor' ),
+				'label'      => esc_html__( 'Rows Gap', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::SLIDER,
 				'size_units' => array( 'px', 'em', 'rem', 'custom' ),
 				'default'    => array(
@@ -272,19 +272,19 @@ class Categories extends Base_Widget {
 		$this->add_responsive_control(
 			'align',
 			array(
-				'label'        => esc_html__( 'Alignment', 'mas-elementor' ),
+				'label'        => esc_html__( 'Alignment', 'mas-addons-for-elementor' ),
 				'type'         => Controls_Manager::CHOOSE,
 				'options'      => array(
 					'left'   => array(
-						'title' => esc_html__( 'Left', 'mas-elementor' ),
+						'title' => esc_html__( 'Left', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-text-align-left',
 					),
 					'center' => array(
-						'title' => esc_html__( 'Center', 'mas-elementor' ),
+						'title' => esc_html__( 'Center', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-text-align-center',
 					),
 					'right'  => array(
-						'title' => esc_html__( 'Right', 'mas-elementor' ),
+						'title' => esc_html__( 'Right', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-text-align-right',
 					),
 				),
@@ -298,7 +298,7 @@ class Categories extends Base_Widget {
 		$this->add_control(
 			'heading_image_style',
 			array(
-				'label'     => esc_html__( 'Image', 'mas-elementor' ),
+				'label'     => esc_html__( 'Image', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::HEADING,
 				'separator' => 'before',
 			)
@@ -315,7 +315,7 @@ class Categories extends Base_Widget {
 		$this->add_responsive_control(
 			'image_border_radius',
 			array(
-				'label'      => esc_html__( 'Border Radius', 'mas-elementor' ),
+				'label'      => esc_html__( 'Border Radius', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', '%', 'em', 'rem', 'custom' ),
 				'selectors'  => array(
@@ -327,7 +327,7 @@ class Categories extends Base_Widget {
 		$this->add_responsive_control(
 			'image_spacing',
 			array(
-				'label'      => esc_html__( 'Spacing', 'mas-elementor' ),
+				'label'      => esc_html__( 'Spacing', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::SLIDER,
 				'size_units' => array( 'px', 'em', 'rem', 'custom' ),
 				'selectors'  => array(
@@ -339,7 +339,7 @@ class Categories extends Base_Widget {
 		$this->add_control(
 			'heading_title_style',
 			array(
-				'label'     => esc_html__( 'Title', 'mas-elementor' ),
+				'label'     => esc_html__( 'Title', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::HEADING,
 				'separator' => 'before',
 			)
@@ -348,7 +348,7 @@ class Categories extends Base_Widget {
 		$this->add_control(
 			'title_color',
 			array(
-				'label'     => esc_html__( 'Color', 'mas-elementor' ),
+				'label'     => esc_html__( 'Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'global'    => array(
 					'default' => Global_Colors::COLOR_PRIMARY,
@@ -373,7 +373,7 @@ class Categories extends Base_Widget {
 		$this->add_control(
 			'heading_count_style',
 			array(
-				'label'     => esc_html__( 'Count', 'mas-elementor' ),
+				'label'     => esc_html__( 'Count', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::HEADING,
 				'separator' => 'before',
 			)
@@ -382,7 +382,7 @@ class Categories extends Base_Widget {
 		$this->add_control(
 			'count_color',
 			array(
-				'label'     => esc_html__( 'Color', 'mas-elementor' ),
+				'label'     => esc_html__( 'Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
 					'{{WRAPPER}} .woocommerce-loop-category__title .count' => 'color: {{VALUE}}',

@@ -37,7 +37,7 @@ class Skin_Classic extends Skin_Base {
 	 * @return string
 	 */
 	public function get_title() {
-		return __( 'MAS', 'mas-elementor' );
+		return __( 'MAS', 'mas-addons-for-elementor' );
 	}
 
 	/**

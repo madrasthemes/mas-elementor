@@ -60,17 +60,17 @@ class Module extends Module_Base {
 			'mas_elementor_video_height_enable',
 			array(
 				'type'      => Controls_Manager::SWITCHER,
-				'label'     => esc_html__( 'Enable Height?', 'mas-elementor' ),
+				'label'     => esc_html__( 'Enable Height?', 'mas-addons-for-elementor' ),
 				'default'   => 'no',
-				'label_off' => esc_html__( 'Show', 'mas-elementor' ),
-				'label_on'  => esc_html__( 'Hide', 'mas-elementor' ),
+				'label_off' => esc_html__( 'Show', 'mas-addons-for-elementor' ),
+				'label_on'  => esc_html__( 'Hide', 'mas-addons-for-elementor' ),
 			)
 		);
 
 		$element->add_responsive_control(
 			'mas_elementor_video_height',
 			array(
-				'label'          => esc_html__( 'Height', 'mas-elementor' ),
+				'label'          => esc_html__( 'Height', 'mas-addons-for-elementor' ),
 				'type'           => Controls_Manager::SLIDER,
 				'size_units'     => array( '%', 'px' ),
 				'range'          => array(

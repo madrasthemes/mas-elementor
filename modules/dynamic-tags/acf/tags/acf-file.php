@@ -29,7 +29,7 @@ class ACF_File extends ACF_Image {
 	 * Get the title of dynamic acf-file.
 	 */
 	public function get_title() {
-		return esc_html__( 'ACF', 'mas-elementor' ) . ' ' . esc_html__( 'File Field', 'mas-elementor' );
+		return esc_html__( 'ACF', 'mas-addons-for-elementor' ) . ' ' . esc_html__( 'File Field', 'mas-addons-for-elementor' );
 	}
 
 	/**

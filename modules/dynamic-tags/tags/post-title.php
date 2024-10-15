@@ -27,7 +27,7 @@ class Post_Title extends \Elementor\Core\DynamicTags\Tag {
 	 * Get the title.
 	 */
 	public function get_title() {
-		return esc_html__( 'Post Title', 'mas-elementor' );
+		return esc_html__( 'Post Title', 'mas-addons-for-elementor' );
 	}
 	/**
 	 * Get the group.

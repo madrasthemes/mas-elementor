@@ -28,7 +28,7 @@ class Job_Remote_Position extends \Elementor\Core\DynamicTags\Tag {
 	 * Get the title.
 	 */
 	public function get_title() {
-		return esc_html__( 'Job Remote Position', 'mas-elementor' );
+		return esc_html__( 'Job Remote Position', 'mas-addons-for-elementor' );
 	}
 	/**
 	 * Get the group.
@@ -65,7 +65,7 @@ class Job_Remote_Position extends \Elementor\Core\DynamicTags\Tag {
 		$this->add_control(
 			'remote_position',
 			array(
-				'label'   => esc_html__( 'Remote Position Text', 'mas-elementor' ),
+				'label'   => esc_html__( 'Remote Position Text', 'mas-addons-for-elementor' ),
 				'type'    => Controls_Manager::TEXT,
 				'default' => 'Remote',
 			)
@@ -74,7 +74,7 @@ class Job_Remote_Position extends \Elementor\Core\DynamicTags\Tag {
 		$this->add_control(
 			'non_remote_position',
 			array(
-				'label'   => esc_html__( 'Non Remote Position Text', 'mas-elementor' ),
+				'label'   => esc_html__( 'Non Remote Position Text', 'mas-addons-for-elementor' ),
 				'type'    => Controls_Manager::TEXT,
 				'default' => '',
 			)

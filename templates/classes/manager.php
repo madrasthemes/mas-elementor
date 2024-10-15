@@ -180,7 +180,7 @@ if ( ! class_exists( 'Premium_Templates_Manager' ) ) {
 			$all_cats = array(
 				array(
 					'slug'  => '',
-					'title' => __( 'All', 'mas-elementor' ),
+					'title' => __( 'All', 'mas-addons-for-elementor' ),
 				),
 			);
 

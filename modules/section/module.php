@@ -67,9 +67,9 @@ class Module extends Module_Base {
 		$element->add_control(
 			'mas_nav_tab_id',
 			array(
-				'label'       => esc_html__( 'Nav Tab Id', 'mas-elementor' ),
+				'label'       => esc_html__( 'Nav Tab Id', 'mas-addons-for-elementor' ),
 				'type'        => Controls_Manager::TEXT,
-				'description' => esc_html__( 'Use for nav tab id', 'mas-elementor' ),
+				'description' => esc_html__( 'Use for nav tab id', 'mas-addons-for-elementor' ),
 				'condition' => array(
 					'_element_id' => '',
 				),
@@ -110,16 +110,16 @@ class Module extends Module_Base {
 		$element->add_control(
 			'mas_container_class',
 			array(
-				'label'       => esc_html__( 'Container CSS Classes', 'mas-elementor' ),
+				'label'       => esc_html__( 'Container CSS Classes', 'mas-addons-for-elementor' ),
 				'type'        => Controls_Manager::TEXT,
-				'description' => esc_html__( 'Applied to elementor-container element. You can use additional bootstrap utility classes here.', 'mas-elementor' ),
+				'description' => esc_html__( 'Applied to elementor-container element. You can use additional bootstrap utility classes here.', 'mas-addons-for-elementor' ),
 			)
 		);
 
 		$element->add_responsive_control(
 			'mas_section_height',
 			array(
-				'label'      => esc_html__( 'Height', 'mas-elementor' ),
+				'label'      => esc_html__( 'Height', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::SLIDER,
 				'size_units' => array( 'px', '%', 'custom' ),
 				'range'      => array(

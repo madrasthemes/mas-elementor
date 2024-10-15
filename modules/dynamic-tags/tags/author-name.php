@@ -30,7 +30,7 @@ class Author_Name extends Tag {
 	 * Get tag title.
 	 */
 	public function get_title() {
-		return esc_html__( 'Author Name', 'mas-elementor' );
+		return esc_html__( 'Author Name', 'mas-addons-for-elementor' );
 	}
 
 	/**

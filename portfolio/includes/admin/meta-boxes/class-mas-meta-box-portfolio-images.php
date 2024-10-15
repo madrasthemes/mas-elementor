@@ -48,7 +48,7 @@ class MAS_Meta_Box_Portfolio_Images {
 						echo '<li class="image" data-attachment_id="' . esc_attr( $attachment_id ) . '">
 								' . wp_kses_post( $attachment ) . '
 								<ul class="actions">
-									<li><a href="#" class="delete tips" data-tip="' . esc_attr__( 'Delete image', 'mas-elementor' ) . '">' . esc_html__( 'Delete', 'mas-elementor' ) . '</a></li>
+									<li><a href="#" class="delete tips" data-tip="' . esc_attr__( 'Delete image', 'mas-addons-for-elementor' ) . '">' . esc_html__( 'Delete', 'mas-addons-for-elementor' ) . '</a></li>
 								</ul>
 							</li>';
 
@@ -68,7 +68,7 @@ class MAS_Meta_Box_Portfolio_Images {
 
 		</div>
 		<p class="add_portfolio_images hide-if-no-js">
-			<a href="#" data-choose="<?php esc_attr_e( 'Add images to portfolio gallery', 'mas-elementor' ); ?>" data-update="<?php esc_attr_e( 'Add to gallery', 'mas-elementor' ); ?>" data-delete="<?php esc_attr_e( 'Delete image', 'mas-elementor' ); ?>" data-text="<?php esc_attr_e( 'Delete', 'mas-elementor' ); ?>"><?php echo esc_html__( 'Add portfolio gallery images', 'mas-elementor' ); ?></a>
+			<a href="#" data-choose="<?php esc_attr_e( 'Add images to portfolio gallery', 'mas-addons-for-elementor' ); ?>" data-update="<?php esc_attr_e( 'Add to gallery', 'mas-addons-for-elementor' ); ?>" data-delete="<?php esc_attr_e( 'Delete image', 'mas-addons-for-elementor' ); ?>" data-text="<?php esc_attr_e( 'Delete', 'mas-addons-for-elementor' ); ?>"><?php echo esc_html__( 'Add portfolio gallery images', 'mas-addons-for-elementor' ); ?></a>
 		</p>
 		<?php
 

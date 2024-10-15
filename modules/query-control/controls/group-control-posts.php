@@ -87,12 +87,12 @@ class Group_Control_Posts extends Group_Control_Base {
 		$fields = array();
 
 		$fields['post_type'] = array(
-			'label' => __( 'Source', 'mas-elementor' ),
+			'label' => __( 'Source', 'mas-addons-for-elementor' ),
 			'type'  => Controls_Manager::SELECT,
 		);
 
 		$fields['posts_ids'] = array(
-			'label'       => __( 'Search & Select', 'mas-elementor' ),
+			'label'       => __( 'Search & Select', 'mas-addons-for-elementor' ),
 			'type'        => Module::QUERY_CONTROL_ID,
 			'post_type'   => '',
 			'options'     => array(),
@@ -106,7 +106,7 @@ class Group_Control_Posts extends Group_Control_Base {
 		);
 
 		$fields['authors'] = array(
-			'label'       => __( 'Author', 'mas-elementor' ),
+			'label'       => __( 'Author', 'mas-addons-for-elementor' ),
 			'label_block' => true,
 			'type'        => Module::QUERY_CONTROL_ID,
 			'multiple'    => true,
@@ -144,8 +144,8 @@ class Group_Control_Posts extends Group_Control_Base {
 
 		$post_types_options = $post_types;
 
-		$post_types_options['by_id']         = __( 'Manual Selection', 'mas-elementor' );
-		$post_types_options['current_query'] = __( 'Current Query', 'mas-elementor' );
+		$post_types_options['by_id']         = __( 'Manual Selection', 'mas-addons-for-elementor' );
+		$post_types_options['current_query'] = __( 'Current Query', 'mas-addons-for-elementor' );
 
 		$fields['post_type']['options'] = $post_types_options;
 

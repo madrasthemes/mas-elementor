@@ -29,7 +29,7 @@ class Movie_Rating extends \Elementor\Core\DynamicTags\Tag {
 	 * Get the title.
 	 */
 	public function get_title() {
-		return esc_html__( 'Movies and TV Shows Rating', 'mas-elementor' );
+		return esc_html__( 'Movies and TV Shows Rating', 'mas-addons-for-elementor' );
 	}
 	/**
 	 * Get the group.
@@ -54,12 +54,12 @@ class Movie_Rating extends \Elementor\Core\DynamicTags\Tag {
 		$this->add_control(
 			'mas_movie_tv_ratings',
 			array(
-				'label'   => esc_html__( 'Type', 'mas-elementor' ),
+				'label'   => esc_html__( 'Type', 'mas-addons-for-elementor' ),
 				'type'    => Controls_Manager::SELECT,
 				'default' => 'movies',
 				'options' => array(
-					'movies'   => esc_html__( 'Movies', 'mas-elementor' ),
-					'tv_shows' => esc_html__( 'TV Shows', 'mas-elementor' ),
+					'movies'   => esc_html__( 'Movies', 'mas-addons-for-elementor' ),
+					'tv_shows' => esc_html__( 'TV Shows', 'mas-addons-for-elementor' ),
 				),
 			)
 		);

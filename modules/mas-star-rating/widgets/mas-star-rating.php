@@ -52,7 +52,7 @@ class MAS_Star_Rating extends Widget_Star_Rating {
 	 * @return string
 	 */
 	public function get_title() {
-		return __( 'MAS Star Rating', 'mas-elementor' );
+		return __( 'MAS Star Rating', 'mas-addons-for-elementor' );
 	}
 
 	/**

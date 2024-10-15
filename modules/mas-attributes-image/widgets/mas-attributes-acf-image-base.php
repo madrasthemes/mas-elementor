@@ -51,7 +51,7 @@ abstract class Mas_Attributes_ACF_Image_Base extends Widget_Image {
 		$this->start_controls_section(
 			'section_layout',
 			array(
-				'label' => __( 'Layout', 'mas-elementor' ),
+				'label' => __( 'Layout', 'mas-addons-for-elementor' ),
 				'tab'   => Controls_Manager::TAB_CONTENT,
 			)
 		);
@@ -59,7 +59,7 @@ abstract class Mas_Attributes_ACF_Image_Base extends Widget_Image {
 		$this->add_control(
 			'select_taxonomies',
 			array(
-				'label'   => esc_html__( 'Select Taxonomy', 'mas-elementor' ),
+				'label'   => esc_html__( 'Select Taxonomy', 'mas-addons-for-elementor' ),
 				'type'    => Controls_Manager::SELECT,
 				'options' => $this->get_taxonomy_options(),
 			)
@@ -68,7 +68,7 @@ abstract class Mas_Attributes_ACF_Image_Base extends Widget_Image {
 		$this->add_control(
 			'key',
 			array(
-				'label'  => esc_html__( 'Key', 'mas-elementor' ),
+				'label'  => esc_html__( 'Key', 'mas-addons-for-elementor' ),
 				'type'   => Controls_Manager::SELECT,
 				'groups' => ACFModule::get_control_options( array( 'image' ) ),
 			)
@@ -86,19 +86,19 @@ abstract class Mas_Attributes_ACF_Image_Base extends Widget_Image {
 		$this->add_responsive_control(
 			'attr_align',
 			array(
-				'label'     => esc_html__( 'Alignment', 'mas-elementor' ),
+				'label'     => esc_html__( 'Alignment', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::CHOOSE,
 				'options'   => array(
 					'left'   => array(
-						'title' => esc_html__( 'Left', 'mas-elementor' ),
+						'title' => esc_html__( 'Left', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-text-align-left',
 					),
 					'center' => array(
-						'title' => esc_html__( 'Center', 'mas-elementor' ),
+						'title' => esc_html__( 'Center', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-text-align-center',
 					),
 					'right'  => array(
-						'title' => esc_html__( 'Right', 'mas-elementor' ),
+						'title' => esc_html__( 'Right', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-text-align-right',
 					),
 				),

@@ -284,7 +284,7 @@ class Module extends BaseModule {
 		$page->start_controls_section(
 			'document_settings_header',
 			array(
-				'label' => esc_html__( 'Templates', 'mas-elementor' ),
+				'label' => esc_html__( 'Templates', 'mas-addons-for-elementor' ),
 				'tab'   => Controls_Manager::TAB_SETTINGS,
 			)
 		);
@@ -302,7 +302,7 @@ class Module extends BaseModule {
 		$page->add_control(
 			'mas_select_template_override',
 			array(
-				'label'   => esc_html__( 'Templates Override', 'mas-elementor' ),
+				'label'   => esc_html__( 'Templates Override', 'mas-addons-for-elementor' ),
 				'type'    => Controls_Manager::SELECT,
 				'default' => 'none',
 				'options' => $template_options,
@@ -326,7 +326,7 @@ class Module extends BaseModule {
 		$page->add_control(
 			'mas_select_single_template_override',
 			array(
-				'label'     => esc_html__( 'Select Single Template', 'mas-elementor' ),
+				'label'     => esc_html__( 'Select Single Template', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::SELECT,
 				'default'   => 'single-post',
 				'options'   => $single_options,
@@ -355,7 +355,7 @@ class Module extends BaseModule {
 		$page->add_control(
 			'mas_select_archive_template_override',
 			array(
-				'label'     => esc_html__( 'Select Archive Template', 'mas-elementor' ),
+				'label'     => esc_html__( 'Select Archive Template', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::SELECT,
 				'default'   => 'archive-post',
 				'options'   => $archive_options,
@@ -386,7 +386,7 @@ class Module extends BaseModule {
 		$page->add_control(
 			'mas_select_taxonomy_template_override',
 			array(
-				'label'     => esc_html__( 'Select Archive Template', 'mas-elementor' ),
+				'label'     => esc_html__( 'Select Archive Template', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::SELECT,
 				'default'   => 'taxonomy-category',
 				'options'   => $tax_options,
@@ -399,7 +399,7 @@ class Module extends BaseModule {
 		$page->add_control(
 			'mas_select_woocommerce_template_override',
 			array(
-				'label'     => esc_html__( 'Select Woocommerce Template', 'mas-elementor' ),
+				'label'     => esc_html__( 'Select Woocommerce Template', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::SELECT,
 				'default'   => 'cart',
 				'options'   => array(

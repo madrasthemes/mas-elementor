@@ -108,7 +108,7 @@ class Mas_Breadcrumb_Class {
 	 * 404 trail.
 	 */
 	protected function add_crumbs_404() {
-		$this->add_crumb( esc_html__( 'Error 404', 'mas-elementor' ) );
+		$this->add_crumb( esc_html__( 'Error 404', 'mas-addons-for-elementor' ) );
 	}
 
 	/**
@@ -217,7 +217,7 @@ class Mas_Breadcrumb_Class {
 		$queried_object = $GLOBALS['wp_query']->get_queried_object();
 
 		/* translators: %s: tag name */
-		$this->add_crumb( sprintf( esc_html__( 'Posts tagged &ldquo;%s&rdquo;', 'mas-elementor' ), single_tag_title( '', false ) ), get_tag_link( $queried_object->term_id ) );
+		$this->add_crumb( sprintf( esc_html__( 'Posts tagged &ldquo;%s&rdquo;', 'mas-addons-for-elementor' ), single_tag_title( '', false ) ), get_tag_link( $queried_object->term_id ) );
 	}
 
 	/**
@@ -260,7 +260,7 @@ class Mas_Breadcrumb_Class {
 		$userdata = get_userdata( $author );
 
 		/* translators: %s: author name */
-		$this->add_crumb( sprintf( esc_html__( 'Author: %s', 'mas-elementor' ), $userdata->display_name ) );
+		$this->add_crumb( sprintf( esc_html__( 'Author: %s', 'mas-addons-for-elementor' ), $userdata->display_name ) );
 	}
 
 	/**
@@ -300,7 +300,7 @@ class Mas_Breadcrumb_Class {
 	protected function search_trail() {
 		if ( is_search() ) {
 			/* translators: %s: search term */
-			$this->add_crumb( sprintf( esc_html__( 'Search results for &ldquo;%s&rdquo;', 'mas-elementor' ), get_search_query() ), remove_query_arg( 'paged' ) );
+			$this->add_crumb( sprintf( esc_html__( 'Search results for &ldquo;%s&rdquo;', 'mas-addons-for-elementor' ), get_search_query() ), remove_query_arg( 'paged' ) );
 		}
 	}
 
@@ -310,7 +310,7 @@ class Mas_Breadcrumb_Class {
 	protected function paged_trail() {
 		if ( get_query_var( 'paged' ) ) {
 			/* translators: %d: page number */
-			$this->add_crumb( sprintf( esc_html__( 'Page %d', 'mas-elementor' ), get_query_var( 'paged' ) ) );
+			$this->add_crumb( sprintf( esc_html__( 'Page %d', 'mas-addons-for-elementor' ), get_query_var( 'paged' ) ) );
 		}
 	}
 }

@@ -28,7 +28,7 @@ class Post_URL extends \Elementor\Core\DynamicTags\Data_Tag {
 	 * Get the title for post url.
 	 */
 	public function get_title() {
-		return esc_html__( 'Post URL', 'mas-elementor' );
+		return esc_html__( 'Post URL', 'mas-addons-for-elementor' );
 	}
 	/**
 	 * Get group.

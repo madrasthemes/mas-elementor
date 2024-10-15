@@ -114,14 +114,14 @@ class Module extends BaseModule {
 		$page->start_controls_section(
 			'document_settings_header',
 			array(
-				'label' => esc_html__( 'Templates', 'mas-elementor' ),
+				'label' => esc_html__( 'Templates', 'mas-addons-for-elementor' ),
 				'tab'   => Controls_Manager::TAB_SETTINGS,
 			)
 		);
 		$page->add_control(
 			'mas_select_template_override',
 			array(
-				'label'   => esc_html__( 'Templates Override', 'mas-elementor' ),
+				'label'   => esc_html__( 'Templates Override', 'mas-addons-for-elementor' ),
 				'type'    => Controls_Manager::SELECT,
 				'options' => array(
 					''        => 'None',
@@ -147,7 +147,7 @@ class Module extends BaseModule {
 		$page->add_control(
 			'mas_select_single_template_override',
 			array(
-				'label'      => esc_html__( 'Select Single Template', 'mas-elementor' ),
+				'label'      => esc_html__( 'Select Single Template', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::SELECT,
 				'options'    => $single_options,
 				'conditions' => array(
@@ -173,7 +173,7 @@ class Module extends BaseModule {
 		$page->add_control(
 			'mas_select_archive_template_override',
 			array(
-				'label'      => esc_html__( 'Select Archive Template', 'mas-elementor' ),
+				'label'      => esc_html__( 'Select Archive Template', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::SELECT,
 				'options'    => $archive_options,
 				'conditions' => array(

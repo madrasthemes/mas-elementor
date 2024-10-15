@@ -33,7 +33,7 @@ class Movie_Linked_Videos extends Posts_Base {
 	 * @return string
 	 */
 	public function get_title() {
-		return __( 'Movie Linked Videos', 'mas-elementor' );
+		return __( 'Movie Linked Videos', 'mas-addons-for-elementor' );
 	}
 
 	/**

@@ -74,7 +74,7 @@ class Product_Categories_Dropdown extends Widget_Accordion {
 	 * @return string
 	 */
 	public function get_title() {
-		return esc_html__( 'Product Categories Dropdown', 'mas-elementor' );
+		return esc_html__( 'Product Categories Dropdown', 'mas-addons-for-elementor' );
 	}
 
 	/**
@@ -142,13 +142,13 @@ class Product_Categories_Dropdown extends Widget_Accordion {
 		$this->add_responsive_control(
 			'content_position',
 			array(
-				'label'     => esc_html__( 'Position', 'mas-elementor' ),
+				'label'     => esc_html__( 'Position', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::SELECT,
 				'default'   => 'relative',
 				'options'   => array(
-					'relative' => esc_html__( 'Default', 'mas-elementor' ),
-					'absolute' => esc_html__( 'Absolute', 'mas-elementor' ),
-					'fixed'    => esc_html__( 'Fixed', 'mas-elementor' ),
+					'relative' => esc_html__( 'Default', 'mas-addons-for-elementor' ),
+					'absolute' => esc_html__( 'Absolute', 'mas-addons-for-elementor' ),
+					'fixed'    => esc_html__( 'Fixed', 'mas-addons-for-elementor' ),
 				),
 				'selectors' => array(
 					'{{WRAPPER}} .elementor-tab-content' => 'position: {{VALUE}};',
@@ -160,7 +160,7 @@ class Product_Categories_Dropdown extends Widget_Accordion {
 		$this->add_responsive_control(
 			'content_position_width',
 			array(
-				'label'      => esc_html__( 'Width', 'mas-elementor' ),
+				'label'      => esc_html__( 'Width', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::SLIDER,
 				'size_units' => array( 'px', '%', 'em', 'rem', 'vw', 'custom' ),
 				'range'      => array(
@@ -191,7 +191,7 @@ class Product_Categories_Dropdown extends Widget_Accordion {
 		$this->add_responsive_control(
 			'_z_index',
 			array(
-				'label'     => esc_html__( 'Z-Index', 'mas-elementor' ),
+				'label'     => esc_html__( 'Z-Index', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::NUMBER,
 				'selectors' => array(
 					$wrapper => 'z-index: {{VALUE}};',
@@ -207,14 +207,14 @@ class Product_Categories_Dropdown extends Widget_Accordion {
 		$this->start_controls_section(
 			'section_content_style',
 			array(
-				'label' => esc_html__( 'Content', 'mas-elementor' ),
+				'label' => esc_html__( 'Content', 'mas-addons-for-elementor' ),
 				'tab'   => Controls_Manager::TAB_STYLE,
 			)
 		);
 			$this->add_control(
 				'content_sub_background_color',
 				array(
-					'label'     => esc_html__( 'Background', 'mas-elementor' ),
+					'label'     => esc_html__( 'Background', 'mas-addons-for-elementor' ),
 					'type'      => Controls_Manager::COLOR,
 					'selectors' => array(
 						'{{WRAPPER}} .elementor-tab-content' => 'background-color: {{VALUE}};',
@@ -238,7 +238,7 @@ class Product_Categories_Dropdown extends Widget_Accordion {
 			$this->add_responsive_control(
 				'content_border_radius',
 				array(
-					'label'      => esc_html__( 'Border Radius', 'mas-elementor' ),
+					'label'      => esc_html__( 'Border Radius', 'mas-addons-for-elementor' ),
 					'type'       => Controls_Manager::DIMENSIONS,
 					'size_units' => array( 'px', '%', 'em', 'rem', 'custom' ),
 					'selectors'  => array(
@@ -250,7 +250,7 @@ class Product_Categories_Dropdown extends Widget_Accordion {
 			$this->add_responsive_control(
 				'content_sub_padding',
 				array(
-					'label'      => esc_html__( 'Padding', 'mas-elementor' ),
+					'label'      => esc_html__( 'Padding', 'mas-addons-for-elementor' ),
 					'type'       => Controls_Manager::DIMENSIONS,
 					'size_units' => array( 'px', '%', 'em', 'rem', 'vw', 'custom' ),
 					'selectors'  => array(
@@ -264,7 +264,7 @@ class Product_Categories_Dropdown extends Widget_Accordion {
 			$this->add_responsive_control(
 				'content_sub_z_index',
 				array(
-					'label'     => esc_html__( 'Z-Index', 'mas-elementor' ),
+					'label'     => esc_html__( 'Z-Index', 'mas-addons-for-elementor' ),
 					'type'      => Controls_Manager::NUMBER,
 					'min'       => 0,
 					'default'   => 1,
@@ -279,7 +279,7 @@ class Product_Categories_Dropdown extends Widget_Accordion {
 		$this->start_controls_section(
 			'section_sub_cats_style',
 			array(
-				'label' => esc_html__( 'Sub Categories', 'mas-elementor' ),
+				'label' => esc_html__( 'Sub Categories', 'mas-addons-for-elementor' ),
 				'tab'   => Controls_Manager::TAB_STYLE,
 			)
 		);
@@ -287,7 +287,7 @@ class Product_Categories_Dropdown extends Widget_Accordion {
 		$this->add_control(
 			'sub_cats_color',
 			array(
-				'label'     => esc_html__( 'Color', 'mas-elementor' ),
+				'label'     => esc_html__( 'Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
 					'{{WRAPPER}} .sub-categories a' => 'color: {{VALUE}};',
@@ -301,7 +301,7 @@ class Product_Categories_Dropdown extends Widget_Accordion {
 		$this->add_control(
 			'sub_cat_tab_hover_color',
 			array(
-				'label'     => esc_html__( 'Hover Color', 'mas-elementor' ),
+				'label'     => esc_html__( 'Hover Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
 					'{{WRAPPER}} .sub-categories a:hover' => 'color: {{VALUE}};',
@@ -350,7 +350,7 @@ class Product_Categories_Dropdown extends Widget_Accordion {
 		$this->add_responsive_control(
 			'image_width',
 			array(
-				'label'          => esc_html__( 'Width', 'mas-elementor' ),
+				'label'          => esc_html__( 'Width', 'mas-addons-for-elementor' ),
 				'type'           => Controls_Manager::SLIDER,
 				'size_units'     => array( 'px', '%', 'em', 'rem', 'vw', 'custom' ),
 				'range'          => array(
@@ -383,7 +383,7 @@ class Product_Categories_Dropdown extends Widget_Accordion {
 		$this->add_responsive_control(
 			'image_height',
 			array(
-				'label'          => esc_html__( 'Height', 'mas-elementor' ),
+				'label'          => esc_html__( 'Height', 'mas-addons-for-elementor' ),
 				'type'           => Controls_Manager::SLIDER,
 				'size_units'     => array( 'px', '%', 'em', 'rem', 'vw', 'custom' ),
 				'range'          => array(
@@ -441,7 +441,7 @@ class Product_Categories_Dropdown extends Widget_Accordion {
 		$this->add_control(
 			'tab_hover_color',
 			array(
-				'label'     => esc_html__( 'Hover Color', 'mas-elementor' ),
+				'label'     => esc_html__( 'Hover Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
 					'{{WRAPPER}} .elementor-accordion-title:hover' => 'color: {{VALUE}};',
@@ -503,7 +503,7 @@ class Product_Categories_Dropdown extends Widget_Accordion {
 		$this->add_responsive_control(
 			'title_padding_new',
 			array(
-				'label'      => esc_html__( 'Title Padding', 'mas-elementor' ),
+				'label'      => esc_html__( 'Title Padding', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', '%', 'em', 'rem', 'vw', 'custom' ),
 				'selectors'  => array(
@@ -517,7 +517,7 @@ class Product_Categories_Dropdown extends Widget_Accordion {
 		$this->update_control(
 			'title_padding',
 			array(
-				'label' => esc_html__( 'Icon Padding', 'mas-elementor' ),
+				'label' => esc_html__( 'Icon Padding', 'mas-addons-for-elementor' ),
 			)
 		);
 	}
@@ -532,7 +532,7 @@ class Product_Categories_Dropdown extends Widget_Accordion {
 		$this->start_controls_section(
 			'section_layout',
 			array(
-				'label' => esc_html__( 'Layout', 'mas-elementor' ),
+				'label' => esc_html__( 'Layout', 'mas-addons-for-elementor' ),
 				'tab'   => Controls_Manager::TAB_CONTENT,
 			)
 		);
@@ -540,7 +540,7 @@ class Product_Categories_Dropdown extends Widget_Accordion {
 		$this->add_control(
 			'number',
 			array(
-				'label'   => esc_html__( 'Categories Count', 'mas-elementor' ),
+				'label'   => esc_html__( 'Categories Count', 'mas-addons-for-elementor' ),
 				'type'    => Controls_Manager::NUMBER,
 				'default' => '4',
 			)
@@ -549,12 +549,12 @@ class Product_Categories_Dropdown extends Widget_Accordion {
 		$this->add_control(
 			'select_image_icon',
 			array(
-				'label'   => esc_html__( 'Select Image / Icon', 'mas-elementor' ),
+				'label'   => esc_html__( 'Select Image / Icon', 'mas-addons-for-elementor' ),
 				'type'    => Controls_Manager::SELECT,
 				'default' => 'icon',
 				'options' => array(
-					'icon'  => esc_html__( 'Icon', 'mas-elementor' ),
-					'image' => esc_html__( 'Image', 'mas-elementor' ),
+					'icon'  => esc_html__( 'Icon', 'mas-addons-for-elementor' ),
+					'image' => esc_html__( 'Image', 'mas-addons-for-elementor' ),
 				),
 			)
 		);
@@ -562,8 +562,8 @@ class Product_Categories_Dropdown extends Widget_Accordion {
 		$this->add_control(
 			'icon_term_name',
 			array(
-				'label'       => esc_html__( 'Icon Term Name', 'mas-elementor' ),
-				'description' => esc_html__( 'By default the term meta we have used is "icon", you can create your own term meta for product category', 'mas-elementor' ),
+				'label'       => esc_html__( 'Icon Term Name', 'mas-addons-for-elementor' ),
+				'description' => esc_html__( 'By default the term meta we have used is "icon", you can create your own term meta for product category', 'mas-addons-for-elementor' ),
 				'type'        => Controls_Manager::TEXT,
 				'default'     => 'icon',
 				'condition'   => array(
@@ -575,24 +575,24 @@ class Product_Categories_Dropdown extends Widget_Accordion {
 		$this->add_control(
 			'show_icons_no_subs',
 			array(
-				'label'       => esc_html__( 'Show Icons for No Subs', 'mas-elementor' ),
+				'label'       => esc_html__( 'Show Icons for No Subs', 'mas-addons-for-elementor' ),
 				'type'        => Controls_Manager::SWITCHER,
 				'default'     => 'yes',
 				'label_on'    => 'Hide',
 				'label_off'   => 'Show',
-				'description' => esc_html__( 'Show Dropdown Icons for categories with no sub-categories', 'mas-elementor' ),
+				'description' => esc_html__( 'Show Dropdown Icons for categories with no sub-categories', 'mas-addons-for-elementor' ),
 			)
 		);
 
 		$this->add_control(
 			'show_content_no_subs',
 			array(
-				'label'       => esc_html__( 'No Sub Categories Dropdown', 'mas-elementor' ),
+				'label'       => esc_html__( 'No Sub Categories Dropdown', 'mas-addons-for-elementor' ),
 				'type'        => Controls_Manager::SWITCHER,
 				'default'     => 'no',
 				'label_on'    => 'Hide',
 				'label_off'   => 'Show',
-				'description' => esc_html__( 'Show Dropdown Content for categories with no sub-categories', 'mas-elementor' ),
+				'description' => esc_html__( 'Show Dropdown Content for categories with no sub-categories', 'mas-addons-for-elementor' ),
 				'condition'   => array(
 					'show_icons_no_subs' => 'yes',
 				),
@@ -602,7 +602,7 @@ class Product_Categories_Dropdown extends Widget_Accordion {
 		$this->add_control(
 			'no_sub_categories_text',
 			array(
-				'label'     => esc_html__( 'No Subs Text', 'mas-elementor' ),
+				'label'     => esc_html__( 'No Subs Text', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::TEXT,
 				'default'   => 'No Sub Categories',
 				'condition' => array(
@@ -617,7 +617,7 @@ class Product_Categories_Dropdown extends Widget_Accordion {
 		$this->start_controls_section(
 			'section_filter',
 			array(
-				'label' => esc_html__( 'Query', 'mas-elementor' ),
+				'label' => esc_html__( 'Query', 'mas-addons-for-elementor' ),
 				'tab'   => Controls_Manager::TAB_CONTENT,
 			)
 		);
@@ -625,7 +625,7 @@ class Product_Categories_Dropdown extends Widget_Accordion {
 		$this->add_control(
 			'hide_empty',
 			array(
-				'label'     => esc_html__( 'Hide Empty', 'mas-elementor' ),
+				'label'     => esc_html__( 'Hide Empty', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::SWITCHER,
 				'default'   => '',
 				'label_on'  => 'Hide',
@@ -636,14 +636,14 @@ class Product_Categories_Dropdown extends Widget_Accordion {
 		$this->add_control(
 			'orderby',
 			array(
-				'label'   => esc_html__( 'Order By', 'mas-elementor' ),
+				'label'   => esc_html__( 'Order By', 'mas-addons-for-elementor' ),
 				'type'    => Controls_Manager::SELECT,
 				'default' => 'name',
 				'options' => array(
-					'name'        => esc_html__( 'Name', 'mas-elementor' ),
-					'slug'        => esc_html__( 'Slug', 'mas-elementor' ),
-					'description' => esc_html__( 'Description', 'mas-elementor' ),
-					'count'       => esc_html__( 'Count', 'mas-elementor' ),
+					'name'        => esc_html__( 'Name', 'mas-addons-for-elementor' ),
+					'slug'        => esc_html__( 'Slug', 'mas-addons-for-elementor' ),
+					'description' => esc_html__( 'Description', 'mas-addons-for-elementor' ),
+					'count'       => esc_html__( 'Count', 'mas-addons-for-elementor' ),
 				),
 			)
 		);
@@ -651,12 +651,12 @@ class Product_Categories_Dropdown extends Widget_Accordion {
 		$this->add_control(
 			'order',
 			array(
-				'label'   => esc_html__( 'Order', 'mas-elementor' ),
+				'label'   => esc_html__( 'Order', 'mas-addons-for-elementor' ),
 				'type'    => Controls_Manager::SELECT,
 				'default' => 'desc',
 				'options' => array(
-					'asc'  => esc_html__( 'ASC', 'mas-elementor' ),
-					'desc' => esc_html__( 'DESC', 'mas-elementor' ),
+					'asc'  => esc_html__( 'ASC', 'mas-addons-for-elementor' ),
+					'desc' => esc_html__( 'DESC', 'mas-addons-for-elementor' ),
 				),
 			)
 		);
@@ -667,8 +667,8 @@ class Product_Categories_Dropdown extends Widget_Accordion {
 		$this->add_control(
 			'select_terms',
 			array(
-				'label'        => esc_html__( 'Term', 'mas-elementor' ),
-				'description'  => esc_html__( 'Terms are items in a taxonomy. The available taxonomies are: Categories, Enter parent categories only', 'mas-elementor' ),
+				'label'        => esc_html__( 'Term', 'mas-addons-for-elementor' ),
+				'description'  => esc_html__( 'Terms are items in a taxonomy. The available taxonomies are: Categories, Enter parent categories only', 'mas-addons-for-elementor' ),
 				'type'         => Query_Module::QUERY_CONTROL_ID,
 				'options'      => array(),
 				'label_block'  => true,
@@ -688,7 +688,7 @@ class Product_Categories_Dropdown extends Widget_Accordion {
 		$this->start_controls_section(
 			'section_categories_image_style',
 			array(
-				'label' => esc_html__( 'Categories Image', 'mas-elementor' ),
+				'label' => esc_html__( 'Categories Image', 'mas-addons-for-elementor' ),
 				'tab'   => Controls_Manager::TAB_STYLE,
 			)
 		);
@@ -706,7 +706,7 @@ class Product_Categories_Dropdown extends Widget_Accordion {
 		$this->add_responsive_control(
 			'image_border_radius',
 			array(
-				'label'      => esc_html__( 'Border Radius', 'mas-elementor' ),
+				'label'      => esc_html__( 'Border Radius', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', '%', 'em', 'rem', 'custom' ),
 				'selectors'  => array(
@@ -718,7 +718,7 @@ class Product_Categories_Dropdown extends Widget_Accordion {
 		$this->add_responsive_control(
 			'image_spacing',
 			array(
-				'label'      => esc_html__( 'Spacing', 'mas-elementor' ),
+				'label'      => esc_html__( 'Spacing', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', '%', 'em', 'rem', 'custom' ),
 				'selectors'  => array(
@@ -732,7 +732,7 @@ class Product_Categories_Dropdown extends Widget_Accordion {
 		$this->start_controls_section(
 			'section_layout_style',
 			array(
-				'label' => esc_html__( 'All Categories', 'mas-elementor' ),
+				'label' => esc_html__( 'All Categories', 'mas-addons-for-elementor' ),
 				'tab'   => Controls_Manager::TAB_CONTENT,
 			)
 		);
@@ -740,7 +740,7 @@ class Product_Categories_Dropdown extends Widget_Accordion {
 		$this->add_responsive_control(
 			'size',
 			array(
-				'label'          => esc_html__( 'Width', 'mas-elementor' ),
+				'label'          => esc_html__( 'Width', 'mas-addons-for-elementor' ),
 				'type'           => Controls_Manager::SLIDER,
 				'size_units'     => array( 'px', '%', 'em', 'rem', 'vw', 'custom' ),
 				'range'          => array(
@@ -776,7 +776,7 @@ class Product_Categories_Dropdown extends Widget_Accordion {
 		$this->add_responsive_control(
 			'height',
 			array(
-				'label'          => esc_html__( 'Height', 'mas-elementor' ),
+				'label'          => esc_html__( 'Height', 'mas-addons-for-elementor' ),
 				'type'           => Controls_Manager::SLIDER,
 				'size_units'     => array( '%', 'px', 'em', 'rem', 'vw', 'custom' ),
 				'range'          => array(
@@ -812,7 +812,7 @@ class Product_Categories_Dropdown extends Widget_Accordion {
 		$this->add_responsive_control(
 			'categories_padding',
 			array(
-				'label'      => esc_html__( 'Padding', 'mas-elementor' ),
+				'label'      => esc_html__( 'Padding', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', '%', 'em', 'rem', 'custom' ),
 				'selectors'  => array(
@@ -828,7 +828,7 @@ class Product_Categories_Dropdown extends Widget_Accordion {
 		$this->start_controls_section(
 			'cat_image_wrapper',
 			array(
-				'label' => esc_html__( 'Image & Categories', 'mas-elementor' ),
+				'label' => esc_html__( 'Image & Categories', 'mas-addons-for-elementor' ),
 				'tab'   => Controls_Manager::TAB_CONTENT,
 			)
 		);
@@ -840,7 +840,7 @@ class Product_Categories_Dropdown extends Widget_Accordion {
 		$this->start_controls_section(
 			'cat_icon',
 			array(
-				'label' => esc_html__( 'Category & Icon', 'mas-elementor' ),
+				'label' => esc_html__( 'Category & Icon', 'mas-addons-for-elementor' ),
 				'tab'   => Controls_Manager::TAB_CONTENT,
 			)
 		);
@@ -852,7 +852,7 @@ class Product_Categories_Dropdown extends Widget_Accordion {
 		$this->start_controls_section(
 			'cat_subcat',
 			array(
-				'label' => esc_html__( 'Sub Categories', 'mas-elementor' ),
+				'label' => esc_html__( 'Sub Categories', 'mas-addons-for-elementor' ),
 				'tab'   => Controls_Manager::TAB_CONTENT,
 			)
 		);
@@ -877,7 +877,7 @@ class Product_Categories_Dropdown extends Widget_Accordion {
 			$name . 'items',
 			array(
 				'type'      => Controls_Manager::HEADING,
-				'label'     => esc_html__( 'Items', 'mas-elementor' ),
+				'label'     => esc_html__( 'Items', 'mas-addons-for-elementor' ),
 				'separator' => 'before',
 			)
 		);
@@ -885,23 +885,23 @@ class Product_Categories_Dropdown extends Widget_Accordion {
 		$this->add_responsive_control(
 			$name . 'categories_wrap_direction',
 			array(
-				'label'     => esc_html__( 'Direction', 'mas-elementor' ),
+				'label'     => esc_html__( 'Direction', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::CHOOSE,
 				'options'   => array(
 					'row'            => array(
-						'title' => esc_html__( 'Row - horizontal', 'mas-elementor' ),
+						'title' => esc_html__( 'Row - horizontal', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-arrow-' . $end,
 					),
 					'column'         => array(
-						'title' => esc_html__( 'Column - vertical', 'mas-elementor' ),
+						'title' => esc_html__( 'Column - vertical', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-arrow-down',
 					),
 					'row-reverse'    => array(
-						'title' => esc_html__( 'Row - reversed', 'mas-elementor' ),
+						'title' => esc_html__( 'Row - reversed', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-arrow-' . $start,
 					),
 					'column-reverse' => array(
-						'title' => esc_html__( 'Column - reversed', 'mas-elementor' ),
+						'title' => esc_html__( 'Column - reversed', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-arrow-up',
 					),
 				),
@@ -915,33 +915,33 @@ class Product_Categories_Dropdown extends Widget_Accordion {
 		$this->add_responsive_control(
 			$name . 'categories_wrap_justify_content',
 			array(
-				'label'       => esc_html__( 'Justify Content', 'mas-elementor' ),
+				'label'       => esc_html__( 'Justify Content', 'mas-addons-for-elementor' ),
 				'type'        => Controls_Manager::CHOOSE,
 				'label_block' => true,
 				'default'     => '',
 				'options'     => array(
 					'flex-start'    => array(
-						'title' => esc_html_x( 'Start', 'Flex Container Control', 'mas-elementor' ),
+						'title' => esc_html_x( 'Start', 'Flex Container Control', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-flex eicon-justify-start-h',
 					),
 					'center'        => array(
-						'title' => esc_html_x( 'Center', 'Flex Container Control', 'mas-elementor' ),
+						'title' => esc_html_x( 'Center', 'Flex Container Control', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-flex eicon-justify-center-h',
 					),
 					'flex-end'      => array(
-						'title' => esc_html_x( 'End', 'Flex Container Control', 'mas-elementor' ),
+						'title' => esc_html_x( 'End', 'Flex Container Control', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-flex eicon-justify-end-h',
 					),
 					'space-between' => array(
-						'title' => esc_html__( 'Space Between', 'mas-elementor' ),
+						'title' => esc_html__( 'Space Between', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-flex eicon-justify-space-between-h',
 					),
 					'space-around'  => array(
-						'title' => esc_html__( 'Space Around', 'mas-elementor' ),
+						'title' => esc_html__( 'Space Around', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-flex eicon-justify-space-around-h',
 					),
 					'space-evenly'  => array(
-						'title' => esc_html__( 'Space Evenly', 'mas-elementor' ),
+						'title' => esc_html__( 'Space Evenly', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-flex eicon-justify-space-evenly-h',
 					),
 				),
@@ -954,24 +954,24 @@ class Product_Categories_Dropdown extends Widget_Accordion {
 		$this->add_responsive_control(
 			$name . 'categories_wrap_align_items',
 			array(
-				'label'     => esc_html__( 'Align Items', 'mas-elementor' ),
+				'label'     => esc_html__( 'Align Items', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::CHOOSE,
 				'default'   => '',
 				'options'   => array(
 					'flex-start' => array(
-						'title' => esc_html_x( 'Start', 'Flex Container Control', 'mas-elementor' ),
+						'title' => esc_html_x( 'Start', 'Flex Container Control', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-flex eicon-align-start-v',
 					),
 					'center'     => array(
-						'title' => esc_html_x( 'Center', 'Flex Container Control', 'mas-elementor' ),
+						'title' => esc_html_x( 'Center', 'Flex Container Control', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-flex eicon-align-center-v',
 					),
 					'flex-end'   => array(
-						'title' => esc_html_x( 'End', 'Flex Container Control', 'mas-elementor' ),
+						'title' => esc_html_x( 'End', 'Flex Container Control', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-flex eicon-align-end-v',
 					),
 					'stretch'    => array(
-						'title' => esc_html__( 'Stretch', 'mas-elementor' ),
+						'title' => esc_html__( 'Stretch', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-flex eicon-align-stretch-v',
 					),
 				),
@@ -984,7 +984,7 @@ class Product_Categories_Dropdown extends Widget_Accordion {
 		$this->add_responsive_control(
 			$name . 'categories_wrap_gap',
 			array(
-				'label'                  => esc_html__( 'Gaps', 'mas-elementor' ),
+				'label'                  => esc_html__( 'Gaps', 'mas-addons-for-elementor' ),
 				'type'                   => Controls_Manager::GAPS,
 				'size_units'             => array( 'px', '%', 'em', 'rem', 'vw', 'custom' ),
 				'default'                => array(
@@ -1013,19 +1013,19 @@ class Product_Categories_Dropdown extends Widget_Accordion {
 		$this->add_responsive_control(
 			$name . 'categories_wrapper_wrap',
 			array(
-				'label'       => esc_html_x( 'Wrap', 'Flex Container Control', 'mas-elementor' ),
+				'label'       => esc_html_x( 'Wrap', 'Flex Container Control', 'mas-addons-for-elementor' ),
 				'type'        => Controls_Manager::CHOOSE,
 				'options'     => array(
 					'nowrap' => array(
-						'title' => esc_html_x( 'No Wrap', 'Flex Container Control', 'mas-elementor' ),
+						'title' => esc_html_x( 'No Wrap', 'Flex Container Control', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-flex eicon-nowrap',
 					),
 					'wrap'   => array(
-						'title' => esc_html_x( 'Wrap', 'Flex Container Control', 'mas-elementor' ),
+						'title' => esc_html_x( 'Wrap', 'Flex Container Control', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-flex eicon-wrap',
 					),
 				),
-				'description' => esc_html__( 'Items within the container can stay in a single line (No wrap), or break into multiple lines (Wrap).', 'mas-elementor' ),
+				'description' => esc_html__( 'Items within the container can stay in a single line (No wrap), or break into multiple lines (Wrap).', 'mas-addons-for-elementor' ),
 				'default'     => '',
 				'selectors'   => array(
 					$wrapper => 'flex-wrap: {{VALUE}};',
@@ -1036,17 +1036,17 @@ class Product_Categories_Dropdown extends Widget_Accordion {
 		$this->add_responsive_control(
 			$name . 'categories_wrapper_align_content',
 			array(
-				'label'     => esc_html__( 'Align Content', 'mas-elementor' ),
+				'label'     => esc_html__( 'Align Content', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::SELECT,
 				'default'   => '',
 				'options'   => array(
-					''              => esc_html__( 'Default', 'mas-elementor' ),
-					'center'        => esc_html__( 'Center', 'mas-elementor' ),
-					'flex-start'    => esc_html__( 'Start', 'mas-elementor' ),
-					'flex-end'      => esc_html__( 'End', 'mas-elementor' ),
-					'space-between' => esc_html__( 'Space Between', 'mas-elementor' ),
-					'space-around'  => esc_html__( 'Space Around', 'mas-elementor' ),
-					'space-evenly'  => esc_html__( 'Space Evenly', 'mas-elementor' ),
+					''              => esc_html__( 'Default', 'mas-addons-for-elementor' ),
+					'center'        => esc_html__( 'Center', 'mas-addons-for-elementor' ),
+					'flex-start'    => esc_html__( 'Start', 'mas-addons-for-elementor' ),
+					'flex-end'      => esc_html__( 'End', 'mas-addons-for-elementor' ),
+					'space-between' => esc_html__( 'Space Between', 'mas-addons-for-elementor' ),
+					'space-around'  => esc_html__( 'Space Around', 'mas-addons-for-elementor' ),
+					'space-evenly'  => esc_html__( 'Space Evenly', 'mas-addons-for-elementor' ),
 				),
 				'selectors' => array(
 					$wrapper => 'align-content: {{VALUE}};',
@@ -1067,7 +1067,7 @@ class Product_Categories_Dropdown extends Widget_Accordion {
 		$this->start_controls_section(
 			'section_categories_icon_style',
 			array(
-				'label'     => esc_html__( 'Categories Icon', 'mas-elementor' ),
+				'label'     => esc_html__( 'Categories Icon', 'mas-addons-for-elementor' ),
 				'tab'       => Controls_Manager::TAB_STYLE,
 				'condition' => array(
 					'select_image_icon' => 'icon',
@@ -1078,7 +1078,7 @@ class Product_Categories_Dropdown extends Widget_Accordion {
 			$this->add_control(
 				'heading_field_icon',
 				array(
-					'label' => esc_html__( 'Icon', 'mas-elementor' ),
+					'label' => esc_html__( 'Icon', 'mas-addons-for-elementor' ),
 					'type'  => Controls_Manager::HEADING,
 				)
 			);
@@ -1086,7 +1086,7 @@ class Product_Categories_Dropdown extends Widget_Accordion {
 			$this->add_responsive_control(
 				'field_icon_font_size',
 				array(
-					'label'          => esc_html__( 'Font Size', 'mas-elementor' ),
+					'label'          => esc_html__( 'Font Size', 'mas-addons-for-elementor' ),
 					'type'           => Controls_Manager::SLIDER,
 					'size_units'     => array( 'px', '%', 'em', 'rem', 'vw', 'custom' ),
 					'range'          => array(
@@ -1122,7 +1122,7 @@ class Product_Categories_Dropdown extends Widget_Accordion {
 			$this->add_responsive_control(
 				'field_icon_margin',
 				array(
-					'label'      => esc_html__( 'Margin', 'mas-elementor' ),
+					'label'      => esc_html__( 'Margin', 'mas-addons-for-elementor' ),
 					'type'       => Controls_Manager::DIMENSIONS,
 					'size_units' => array( 'px', '%', 'em', 'rem', 'custom' ),
 					'selectors'  => array(
@@ -1134,7 +1134,7 @@ class Product_Categories_Dropdown extends Widget_Accordion {
 			$this->add_control(
 				'field_icon_color',
 				array(
-					'label'     => esc_html__( 'Icon Color', 'mas-elementor' ),
+					'label'     => esc_html__( 'Icon Color', 'mas-addons-for-elementor' ),
 					'type'      => Controls_Manager::COLOR,
 					'selectors' => array(
 						'{{WRAPPER}} .cat-image i' => 'color: {{VALUE}}',
@@ -1145,7 +1145,7 @@ class Product_Categories_Dropdown extends Widget_Accordion {
 			$this->add_control(
 				'field_icon_hover_color',
 				array(
-					'label'     => esc_html__( 'Icon Hover Color', 'mas-elementor' ),
+					'label'     => esc_html__( 'Icon Hover Color', 'mas-addons-for-elementor' ),
 					'type'      => Controls_Manager::COLOR,
 					'selectors' => array(
 						'{{WRAPPER}} .cat-image i:hover' => 'color: {{VALUE}}',
@@ -1157,7 +1157,7 @@ class Product_Categories_Dropdown extends Widget_Accordion {
 			$this->add_control(
 				'field_icon_active_color',
 				array(
-					'label'     => esc_html__( 'Icon Active Color', 'mas-elementor' ),
+					'label'     => esc_html__( 'Icon Active Color', 'mas-addons-for-elementor' ),
 					'type'      => Controls_Manager::COLOR,
 					'selectors' => array(
 						'{{WRAPPER}} .cat-img-icon:has(.elementor-active) .cat-image i' => 'color: {{VALUE}};',

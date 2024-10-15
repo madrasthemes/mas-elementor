@@ -64,7 +64,7 @@ class Module extends Module_Base {
 		$widget->add_control(
 			'title_css',
 			array(
-				'label'   => esc_html__( 'Title CSS', 'mas-elementor' ),
+				'label'   => esc_html__( 'Title CSS', 'mas-addons-for-elementor' ),
 				'type'    => Controls_Manager::TEXT,
 				'default' => '',
 			)

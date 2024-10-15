@@ -45,7 +45,7 @@ class Group_Control_Related extends Group_Control_Query {
 		$tabs_wrapper    = $name . '_query_args';
 		$include_wrapper = $name . '_query_include';
 
-		$fields['post_type']['options']['related']                = __( 'Related', 'mas-elementor' );
+		$fields['post_type']['options']['related']                = __( 'Related', 'mas-addons-for-elementor' );
 		$fields['include_term_ids']['condition']['post_type!'][]  = 'related';
 		$fields['related_taxonomies']['condition']['post_type'][] = 'related';
 		$fields['include_authors']['condition']['post_type!'][]   = 'related';
@@ -54,7 +54,7 @@ class Group_Control_Related extends Group_Control_Query {
 		$fields['offset']['condition']['post_type!'][]            = 'related';
 
 		$related_taxonomies = array(
-			'label'        => __( 'Term', 'mas-elementor' ),
+			'label'        => __( 'Term', 'mas-addons-for-elementor' ),
 			'type'         => Controls_Manager::SELECT2,
 			'options'      => $this->get_supported_taxonomies(),
 			'label_block'  => true,
@@ -70,15 +70,15 @@ class Group_Control_Related extends Group_Control_Query {
 		);
 
 		$related_fallback = array(
-			'label'       => __( 'Fallback', 'mas-elementor' ),
+			'label'       => __( 'Fallback', 'mas-addons-for-elementor' ),
 			'type'        => Controls_Manager::SELECT,
 			'options'     => array(
-				'fallback_none'   => __( 'None', 'mas-elementor' ),
-				'fallback_by_id'  => __( 'Manual Selection', 'mas-elementor' ),
-				'fallback_recent' => __( 'Recent Posts', 'mas-elementor' ),
+				'fallback_none'   => __( 'None', 'mas-addons-for-elementor' ),
+				'fallback_by_id'  => __( 'Manual Selection', 'mas-addons-for-elementor' ),
+				'fallback_recent' => __( 'Recent Posts', 'mas-addons-for-elementor' ),
 			),
 			'default'     => 'fallback_none',
-			'description' => __( 'Displayed if no relevant results are found. Manual selection display order is random', 'mas-elementor' ),
+			'description' => __( 'Displayed if no relevant results are found. Manual selection display order is random', 'mas-addons-for-elementor' ),
 			'condition'   => array(
 				'post_type' => 'related',
 			),
@@ -86,7 +86,7 @@ class Group_Control_Related extends Group_Control_Query {
 		);
 
 		$fallback_ids = array(
-			'label'        => __( 'Search & Select', 'mas-elementor' ),
+			'label'        => __( 'Search & Select', 'mas-addons-for-elementor' ),
 			'type'         => Query_Module::QUERY_CONTROL_ID,
 			'options'      => array(),
 			'label_block'  => true,

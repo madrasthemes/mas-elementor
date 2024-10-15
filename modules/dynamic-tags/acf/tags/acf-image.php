@@ -28,7 +28,7 @@ class ACF_Image extends \Elementor\Core\DynamicTags\Data_Tag {
 	 * Get the title of dynamic acf-image.
 	 */
 	public function get_title() {
-		return esc_html__( 'ACF', 'mas-elementor' ) . ' ' . esc_html__( 'Image Field', 'mas-elementor' );
+		return esc_html__( 'ACF', 'mas-addons-for-elementor' ) . ' ' . esc_html__( 'Image Field', 'mas-addons-for-elementor' );
 	}
 	/**
 	 * Get the group of dynamic acf-image.
@@ -110,7 +110,7 @@ class ACF_Image extends \Elementor\Core\DynamicTags\Data_Tag {
 		$this->add_control(
 			'fallback',
 			array(
-				'label' => esc_html__( 'Fallback', 'mas-elementor' ),
+				'label' => esc_html__( 'Fallback', 'mas-addons-for-elementor' ),
 				'type'  => Controls_Manager::MEDIA,
 			)
 		);

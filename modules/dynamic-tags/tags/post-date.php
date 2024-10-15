@@ -31,7 +31,7 @@ class Post_Date extends Tag {
 	 * Get tag title.
 	 */
 	public function get_title() {
-		return esc_html__( 'Post Date', 'mas-elementor' );
+		return esc_html__( 'Post Date', 'mas-addons-for-elementor' );
 	}
 
 	/**
@@ -55,11 +55,11 @@ class Post_Date extends Tag {
 		$this->add_control(
 			'type',
 			array(
-				'label'   => esc_html__( 'Type', 'mas-elementor' ),
+				'label'   => esc_html__( 'Type', 'mas-addons-for-elementor' ),
 				'type'    => Controls_Manager::SELECT,
 				'options' => array(
-					'post_date_gmt'     => esc_html__( 'Post Published', 'mas-elementor' ),
-					'post_modified_gmt' => esc_html__( 'Post Modified', 'mas-elementor' ),
+					'post_date_gmt'     => esc_html__( 'Post Published', 'mas-addons-for-elementor' ),
+					'post_modified_gmt' => esc_html__( 'Post Modified', 'mas-addons-for-elementor' ),
 				),
 				'default' => 'post_date_gmt',
 			)
@@ -68,16 +68,16 @@ class Post_Date extends Tag {
 		$this->add_control(
 			'format',
 			array(
-				'label'   => esc_html__( 'Format', 'mas-elementor' ),
+				'label'   => esc_html__( 'Format', 'mas-addons-for-elementor' ),
 				'type'    => Controls_Manager::SELECT,
 				'options' => array(
-					'default' => esc_html__( 'Default', 'mas-elementor' ),
+					'default' => esc_html__( 'Default', 'mas-addons-for-elementor' ),
 					'F j, Y'  => gmdate( 'F j, Y' ),
 					'Y-m-d'   => gmdate( 'Y-m-d' ),
 					'm/d/Y'   => gmdate( 'm/d/Y' ),
 					'd/m/Y'   => gmdate( 'd/m/Y' ),
-					'human'   => esc_html__( 'Human Readable', 'mas-elementor' ),
-					'custom'  => esc_html__( 'Custom', 'mas-elementor' ),
+					'human'   => esc_html__( 'Human Readable', 'mas-addons-for-elementor' ),
+					'custom'  => esc_html__( 'Custom', 'mas-addons-for-elementor' ),
 				),
 				'default' => 'default',
 			)
@@ -86,9 +86,9 @@ class Post_Date extends Tag {
 		$this->add_control(
 			'custom_format',
 			array(
-				'label'       => esc_html__( 'Custom Format', 'mas-elementor' ),
+				'label'       => esc_html__( 'Custom Format', 'mas-addons-for-elementor' ),
 				'default'     => '',
-				'description' => sprintf( '<a href="https://go.elementor.com/wordpress-date-time/" target="_blank">%s</a>', esc_html__( 'Documentation on date and time formatting', 'mas-elementor' ) ),
+				'description' => sprintf( '<a href="https://go.elementor.com/wordpress-date-time/" target="_blank">%s</a>', esc_html__( 'Documentation on date and time formatting', 'mas-addons-for-elementor' ) ),
 				'condition'   => array(
 					'format' => 'custom',
 				),
@@ -105,7 +105,7 @@ class Post_Date extends Tag {
 
 		if ( 'human' === $format ) {
 			/* translators: %s: Human readable date/time. */
-			$value = sprintf( esc_html__( '%s ago', 'mas-elementor' ), human_time_diff( strtotime( get_post()->{$date_type} ) ) );
+			$value = sprintf( esc_html__( '%s ago', 'mas-addons-for-elementor' ), human_time_diff( strtotime( get_post()->{$date_type} ) ) );
 		} else {
 			switch ( $format ) {
 				case 'default':

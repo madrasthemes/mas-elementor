@@ -48,7 +48,7 @@ class Add_To_Compare extends Widget_Button {
 	 * @return string
 	 */
 	public function get_title() {
-		return esc_html__( 'Add To Compare', 'mas-elementor' );
+		return esc_html__( 'Add To Compare', 'mas-addons-for-elementor' );
 	}
 
 	/**

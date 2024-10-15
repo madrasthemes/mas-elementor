@@ -42,7 +42,7 @@ class Posts extends Posts_Base {
 	 * @return string
 	 */
 	public function get_title() {
-		return __( 'Posts', 'mas-elementor' );
+		return __( 'Posts', 'mas-addons-for-elementor' );
 	}
 
 	/**
@@ -216,7 +216,7 @@ class Posts extends Posts_Base {
 				'enable_sticky_loop',
 				array(
 					'type'       => Controls_Manager::SWITCHER,
-					'label'      => esc_html__( 'Enable Sticky Template', 'mas-elementor' ),
+					'label'      => esc_html__( 'Enable Sticky Template', 'mas-addons-for-elementor' ),
 					'default'    => 'no',
 					'separator'  => 'none',
 					// 'condition' => array(

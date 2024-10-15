@@ -55,7 +55,7 @@ class Blockquote extends Base_Widget {
 	 * @return string
 	 */
 	public function get_title() {
-		return esc_html__( 'Blockquote', 'mas-elementor' );
+		return esc_html__( 'Blockquote', 'mas-addons-for-elementor' );
 	}
 
 	/**
@@ -83,20 +83,20 @@ class Blockquote extends Base_Widget {
 		$this->start_controls_section(
 			'section_blockquote_content',
 			array(
-				'label' => esc_html__( 'Blockquote', 'mas-elementor' ),
+				'label' => esc_html__( 'Blockquote', 'mas-addons-for-elementor' ),
 			)
 		);
 
 		$this->add_control(
 			'blockquote_skin',
 			array(
-				'label'        => esc_html__( 'Skin', 'mas-elementor' ),
+				'label'        => esc_html__( 'Skin', 'mas-addons-for-elementor' ),
 				'type'         => Controls_Manager::SELECT,
 				'options'      => array(
-					'border'    => esc_html__( 'Border', 'mas-elementor' ),
-					'quotation' => esc_html__( 'Quotation', 'mas-elementor' ),
-					'boxed'     => esc_html__( 'Boxed', 'mas-elementor' ),
-					'clean'     => esc_html__( 'Clean', 'mas-elementor' ),
+					'border'    => esc_html__( 'Border', 'mas-addons-for-elementor' ),
+					'quotation' => esc_html__( 'Quotation', 'mas-addons-for-elementor' ),
+					'boxed'     => esc_html__( 'Boxed', 'mas-addons-for-elementor' ),
+					'clean'     => esc_html__( 'Clean', 'mas-addons-for-elementor' ),
 				),
 				'default'      => 'border',
 				'prefix_class' => 'mas-elementor-blockquote--skin-',
@@ -106,19 +106,19 @@ class Blockquote extends Base_Widget {
 		$this->add_control(
 			'alignment',
 			array(
-				'label'        => esc_html__( 'Alignment', 'mas-elementor' ),
+				'label'        => esc_html__( 'Alignment', 'mas-addons-for-elementor' ),
 				'type'         => Controls_Manager::CHOOSE,
 				'options'      => array(
 					'left'   => array(
-						'title' => esc_html__( 'Left', 'mas-elementor' ),
+						'title' => esc_html__( 'Left', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-text-align-left',
 					),
 					'center' => array(
-						'title' => esc_html__( 'Center', 'mas-elementor' ),
+						'title' => esc_html__( 'Center', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-text-align-center',
 					),
 					'right'  => array(
-						'title' => esc_html__( 'Right', 'mas-elementor' ),
+						'title' => esc_html__( 'Right', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-text-align-right',
 					),
 				),
@@ -133,13 +133,13 @@ class Blockquote extends Base_Widget {
 		$this->add_control(
 			'blockquote_content',
 			array(
-				'label'       => esc_html__( 'Content', 'mas-elementor' ),
+				'label'       => esc_html__( 'Content', 'mas-addons-for-elementor' ),
 				'type'        => Controls_Manager::TEXTAREA,
 				'dynamic'     => array(
 					'active' => true,
 				),
-				'default'     => esc_html__( 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.', 'mas-elementor' ) . esc_html__( 'Lorem ipsum dolor sit amet consectetur adipiscing elit dolor', 'mas-elementor' ),
-				'placeholder' => esc_html__( 'Enter your quote', 'mas-elementor' ),
+				'default'     => esc_html__( 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.', 'mas-addons-for-elementor' ) . esc_html__( 'Lorem ipsum dolor sit amet consectetur adipiscing elit dolor', 'mas-addons-for-elementor' ),
+				'placeholder' => esc_html__( 'Enter your quote', 'mas-addons-for-elementor' ),
 				'rows'        => 10,
 			)
 		);
@@ -147,12 +147,12 @@ class Blockquote extends Base_Widget {
 		$this->add_control(
 			'author_name',
 			array(
-				'label'     => esc_html__( 'Author', 'mas-elementor' ),
+				'label'     => esc_html__( 'Author', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::TEXT,
 				'dynamic'   => array(
 					'active' => true,
 				),
-				'default'   => esc_html__( 'John Doe', 'mas-elementor' ),
+				'default'   => esc_html__( 'John Doe', 'mas-addons-for-elementor' ),
 				'separator' => 'after',
 			)
 		);
@@ -160,10 +160,10 @@ class Blockquote extends Base_Widget {
 		$this->add_control(
 			'tweet_button',
 			array(
-				'label'     => esc_html__( 'Tweet Button', 'mas-elementor' ),
+				'label'     => esc_html__( 'Tweet Button', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::SWITCHER,
-				'label_on'  => esc_html__( 'On', 'mas-elementor' ),
-				'label_off' => esc_html__( 'Off', 'mas-elementor' ),
+				'label_on'  => esc_html__( 'On', 'mas-addons-for-elementor' ),
+				'label_off' => esc_html__( 'Off', 'mas-addons-for-elementor' ),
 				'default'   => 'yes',
 			)
 		);
@@ -171,7 +171,7 @@ class Blockquote extends Base_Widget {
 		$this->add_control(
 			'tweet_button_view',
 			array(
-				'label'        => esc_html__( 'View', 'mas-elementor' ),
+				'label'        => esc_html__( 'View', 'mas-addons-for-elementor' ),
 				'type'         => Controls_Manager::SELECT,
 				'options'      => array(
 					'icon-text' => 'Icon & Text',
@@ -190,7 +190,7 @@ class Blockquote extends Base_Widget {
 		$this->add_control(
 			'tweet_button_skin',
 			array(
-				'label'        => esc_html__( 'Skin', 'mas-elementor' ),
+				'label'        => esc_html__( 'Skin', 'mas-addons-for-elementor' ),
 				'type'         => Controls_Manager::SELECT,
 				'options'      => array(
 					'classic' => 'Classic',
@@ -208,9 +208,9 @@ class Blockquote extends Base_Widget {
 		$this->add_control(
 			'tweet_button_label',
 			array(
-				'label'     => esc_html__( 'Label', 'mas-elementor' ),
+				'label'     => esc_html__( 'Label', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::TEXT,
-				'default'   => esc_html__( 'Tweet', 'mas-elementor' ),
+				'default'   => esc_html__( 'Tweet', 'mas-addons-for-elementor' ),
 				'condition' => array(
 					'tweet_button'       => 'yes',
 					'tweet_button_view!' => 'icon',
@@ -224,7 +224,7 @@ class Blockquote extends Base_Widget {
 		$this->add_control(
 			'user_name',
 			array(
-				'label'       => esc_html__( 'Username', 'mas-elementor' ),
+				'label'       => esc_html__( 'Username', 'mas-addons-for-elementor' ),
 				'type'        => Controls_Manager::TEXT,
 				'placeholder' => '@username',
 				'condition'   => array(
@@ -239,12 +239,12 @@ class Blockquote extends Base_Widget {
 		$this->add_control(
 			'url_type',
 			array(
-				'label'     => esc_html__( 'Target URL', 'mas-elementor' ),
+				'label'     => esc_html__( 'Target URL', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::SELECT,
 				'options'   => array(
-					'current_page' => esc_html__( 'Current Page', 'mas-elementor' ),
-					'none'         => esc_html__( 'None', 'mas-elementor' ),
-					'custom'       => esc_html__( 'Custom', 'mas-elementor' ),
+					'current_page' => esc_html__( 'Current Page', 'mas-addons-for-elementor' ),
+					'none'         => esc_html__( 'None', 'mas-addons-for-elementor' ),
+					'custom'       => esc_html__( 'Custom', 'mas-addons-for-elementor' ),
 				),
 				'default'   => 'current_page',
 				'condition' => array(
@@ -256,7 +256,7 @@ class Blockquote extends Base_Widget {
 		$this->add_control(
 			'url',
 			array(
-				'label'       => esc_html__( 'Link', 'mas-elementor' ),
+				'label'       => esc_html__( 'Link', 'mas-addons-for-elementor' ),
 				'type'        => Controls_Manager::TEXT,
 				'input_type'  => 'url',
 				'dynamic'     => array(
@@ -266,7 +266,7 @@ class Blockquote extends Base_Widget {
 						TagsModule::URL_CATEGORY,
 					),
 				),
-				'placeholder' => esc_html__( 'https://your-link.com', 'mas-elementor' ),
+				'placeholder' => esc_html__( 'https://your-link.com', 'mas-addons-for-elementor' ),
 				'label_block' => true,
 				'condition'   => array(
 					'url_type' => 'custom',
@@ -279,7 +279,7 @@ class Blockquote extends Base_Widget {
 		$this->start_controls_section(
 			'section_content_style',
 			array(
-				'label' => esc_html__( 'Content', 'mas-elementor' ),
+				'label' => esc_html__( 'Content', 'mas-addons-for-elementor' ),
 				'tab'   => Controls_Manager::TAB_STYLE,
 			)
 		);
@@ -287,7 +287,7 @@ class Blockquote extends Base_Widget {
 		$this->add_control(
 			'content_text_color',
 			array(
-				'label'     => esc_html__( 'Text Color', 'mas-elementor' ),
+				'label'     => esc_html__( 'Text Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'global'    => array(
 					'default' => Global_Colors::COLOR_TEXT,
@@ -309,7 +309,7 @@ class Blockquote extends Base_Widget {
 		$this->add_responsive_control(
 			'content_gap',
 			array(
-				'label'     => esc_html__( 'Gap', 'mas-elementor' ),
+				'label'     => esc_html__( 'Gap', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::SLIDER,
 				'selectors' => array(
 					'{{WRAPPER}} .mas-elementor-blockquote__content +footer' => 'margin-top: {{SIZE}}{{UNIT}}',
@@ -321,7 +321,7 @@ class Blockquote extends Base_Widget {
 			'heading_author_style',
 			array(
 				'type'      => Controls_Manager::HEADING,
-				'label'     => esc_html__( 'Author', 'mas-elementor' ),
+				'label'     => esc_html__( 'Author', 'mas-addons-for-elementor' ),
 				'separator' => 'before',
 			)
 		);
@@ -329,7 +329,7 @@ class Blockquote extends Base_Widget {
 		$this->add_control(
 			'author_text_color',
 			array(
-				'label'     => esc_html__( 'Text Color', 'mas-elementor' ),
+				'label'     => esc_html__( 'Text Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'global'    => array(
 					'default' => Global_Colors::COLOR_SECONDARY,
@@ -351,7 +351,7 @@ class Blockquote extends Base_Widget {
 		$this->add_responsive_control(
 			'author_gap',
 			array(
-				'label'     => esc_html__( 'Gap', 'mas-elementor' ),
+				'label'     => esc_html__( 'Gap', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::SLIDER,
 				'default'   => array(
 					'size' => 20,
@@ -371,7 +371,7 @@ class Blockquote extends Base_Widget {
 		$this->start_controls_section(
 			'section_button_style',
 			array(
-				'label' => esc_html__( 'Button', 'mas-elementor' ),
+				'label' => esc_html__( 'Button', 'mas-addons-for-elementor' ),
 				'tab'   => Controls_Manager::TAB_STYLE,
 			)
 		);
@@ -379,7 +379,7 @@ class Blockquote extends Base_Widget {
 		$this->add_responsive_control(
 			'button_size',
 			array(
-				'label'     => esc_html__( 'Size', 'mas-elementor' ),
+				'label'     => esc_html__( 'Size', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::SLIDER,
 				'range'     => array(
 					'px' => array(
@@ -397,7 +397,7 @@ class Blockquote extends Base_Widget {
 		$this->add_control(
 			'button_border_radius',
 			array(
-				'label'      => esc_html__( 'Border Radius', 'mas-elementor' ),
+				'label'      => esc_html__( 'Border Radius', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::SLIDER,
 				'selectors'  => array(
 					'{{WRAPPER}} .mas-elementor-blockquote__tweet-button' => 'border-radius: {{SIZE}}{{UNIT}}',
@@ -431,11 +431,11 @@ class Blockquote extends Base_Widget {
 		$this->add_control(
 			'button_color_source',
 			array(
-				'label'        => esc_html__( 'Color', 'mas-elementor' ),
+				'label'        => esc_html__( 'Color', 'mas-addons-for-elementor' ),
 				'type'         => Controls_Manager::SELECT,
 				'options'      => array(
-					'official' => esc_html__( 'Official', 'mas-elementor' ),
-					'custom'   => esc_html__( 'Custom', 'mas-elementor' ),
+					'official' => esc_html__( 'Official', 'mas-addons-for-elementor' ),
+					'custom'   => esc_html__( 'Custom', 'mas-addons-for-elementor' ),
 				),
 				'default'      => 'official',
 				'prefix_class' => 'mas-elementor-blockquote--button-color-',
@@ -447,7 +447,7 @@ class Blockquote extends Base_Widget {
 		$this->start_controls_tab(
 			'tab_button_normal',
 			array(
-				'label'     => esc_html__( 'Normal', 'mas-elementor' ),
+				'label'     => esc_html__( 'Normal', 'mas-addons-for-elementor' ),
 				'condition' => array(
 					'button_color_source' => 'custom',
 				),
@@ -457,7 +457,7 @@ class Blockquote extends Base_Widget {
 		$this->add_control(
 			'button_background_color',
 			array(
-				'label'     => esc_html__( 'Background Color', 'mas-elementor' ),
+				'label'     => esc_html__( 'Background Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
 					'{{WRAPPER}} .mas-elementor-blockquote__tweet-button' => 'background-color: {{VALUE}}',
@@ -474,7 +474,7 @@ class Blockquote extends Base_Widget {
 		$this->add_control(
 			'button_text_color',
 			array(
-				'label'     => esc_html__( 'Text Color', 'mas-elementor' ),
+				'label'     => esc_html__( 'Text Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
 					'{{WRAPPER}} .mas-elementor-blockquote__tweet-button' => 'color: {{VALUE}}',
@@ -488,7 +488,7 @@ class Blockquote extends Base_Widget {
 		$this->start_controls_tab(
 			'tab_button_hover',
 			array(
-				'label'     => esc_html__( 'Hover', 'mas-elementor' ),
+				'label'     => esc_html__( 'Hover', 'mas-addons-for-elementor' ),
 				'condition' => array(
 					'button_color_source' => 'custom',
 				),
@@ -498,7 +498,7 @@ class Blockquote extends Base_Widget {
 		$this->add_control(
 			'button_background_color_hover',
 			array(
-				'label'     => esc_html__( 'Background Color', 'mas-elementor' ),
+				'label'     => esc_html__( 'Background Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
 					'{{WRAPPER}} .mas-elementor-blockquote__tweet-button:hover' => 'background-color: {{VALUE}}',
@@ -517,7 +517,7 @@ class Blockquote extends Base_Widget {
 		$this->add_control(
 			'button_text_color_hover',
 			array(
-				'label'     => esc_html__( 'Text Color', 'mas-elementor' ),
+				'label'     => esc_html__( 'Text Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
 					'{{WRAPPER}} .mas-elementor-blockquote__tweet-button:hover' => 'color: {{VALUE}}',
@@ -557,7 +557,7 @@ class Blockquote extends Base_Widget {
 		$this->start_controls_section(
 			'section_border_style',
 			array(
-				'label'     => esc_html__( 'Border', 'mas-elementor' ),
+				'label'     => esc_html__( 'Border', 'mas-addons-for-elementor' ),
 				'tab'       => Controls_Manager::TAB_STYLE,
 				'condition' => array(
 					'blockquote_skin' => 'border',
@@ -570,14 +570,14 @@ class Blockquote extends Base_Widget {
 		$this->start_controls_tab(
 			'tab_border_normal',
 			array(
-				'label' => esc_html__( 'Normal', 'mas-elementor' ),
+				'label' => esc_html__( 'Normal', 'mas-addons-for-elementor' ),
 			)
 		);
 
 		$this->add_control(
 			'border_color',
 			array(
-				'label'     => esc_html__( 'Color', 'mas-elementor' ),
+				'label'     => esc_html__( 'Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
 					'{{WRAPPER}} .mas-elementor-blockquote' => 'border-color: {{VALUE}}',
@@ -588,7 +588,7 @@ class Blockquote extends Base_Widget {
 		$this->add_responsive_control(
 			'border_width',
 			array(
-				'label'     => esc_html__( 'Width', 'mas-elementor' ),
+				'label'     => esc_html__( 'Width', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::SLIDER,
 				'selectors' => array(
 					'body:not(.rtl) {{WRAPPER}} .mas-elementor-blockquote' => 'border-left-width: {{SIZE}}{{UNIT}}',
@@ -600,7 +600,7 @@ class Blockquote extends Base_Widget {
 		$this->add_responsive_control(
 			'border_gap',
 			array(
-				'label'     => esc_html__( 'Gap', 'mas-elementor' ),
+				'label'     => esc_html__( 'Gap', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::SLIDER,
 				'selectors' => array(
 					'body:not(.rtl) {{WRAPPER}} .mas-elementor-blockquote' => 'padding-left: {{SIZE}}{{UNIT}}',
@@ -614,14 +614,14 @@ class Blockquote extends Base_Widget {
 		$this->start_controls_tab(
 			'tab_border_hover',
 			array(
-				'label' => esc_html__( 'Hover', 'mas-elementor' ),
+				'label' => esc_html__( 'Hover', 'mas-addons-for-elementor' ),
 			)
 		);
 
 		$this->add_control(
 			'border_color_hover',
 			array(
-				'label'     => esc_html__( 'Color', 'mas-elementor' ),
+				'label'     => esc_html__( 'Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
 					'{{WRAPPER}} .mas-elementor-blockquote:hover' => 'border-color: {{VALUE}}',
@@ -632,7 +632,7 @@ class Blockquote extends Base_Widget {
 		$this->add_responsive_control(
 			'border_width_hover',
 			array(
-				'label'     => esc_html__( 'Width', 'mas-elementor' ),
+				'label'     => esc_html__( 'Width', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::SLIDER,
 				'selectors' => array(
 					'body:not(.rtl) {{WRAPPER}} .mas-elementor-blockquote:hover' => 'border-left-width: {{SIZE}}{{UNIT}}',
@@ -644,7 +644,7 @@ class Blockquote extends Base_Widget {
 		$this->add_responsive_control(
 			'border_gap_hover',
 			array(
-				'label'     => esc_html__( 'Gap', 'mas-elementor' ),
+				'label'     => esc_html__( 'Gap', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::SLIDER,
 				'selectors' => array(
 					'body:not(.rtl) {{WRAPPER}} .mas-elementor-blockquote:hover' => 'padding-left: {{SIZE}}{{UNIT}}',
@@ -660,7 +660,7 @@ class Blockquote extends Base_Widget {
 		$this->add_responsive_control(
 			'border_vertical_padding',
 			array(
-				'label'     => esc_html__( 'Vertical Padding', 'mas-elementor' ),
+				'label'     => esc_html__( 'Vertical Padding', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::SLIDER,
 				'selectors' => array(
 					'{{WRAPPER}} .mas-elementor-blockquote' => 'padding-top: {{SIZE}}{{UNIT}}; padding-bottom: {{SIZE}}{{UNIT}}',
@@ -677,7 +677,7 @@ class Blockquote extends Base_Widget {
 		$this->start_controls_section(
 			'section_box_style',
 			array(
-				'label'     => esc_html__( 'Box', 'mas-elementor' ),
+				'label'     => esc_html__( 'Box', 'mas-addons-for-elementor' ),
 				'tab'       => Controls_Manager::TAB_STYLE,
 				'condition' => array(
 					'blockquote_skin' => 'boxed',
@@ -688,7 +688,7 @@ class Blockquote extends Base_Widget {
 		$this->add_responsive_control(
 			'box_padding',
 			array(
-				'label'     => esc_html__( 'Padding', 'mas-elementor' ),
+				'label'     => esc_html__( 'Padding', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::SLIDER,
 				'selectors' => array(
 					'{{WRAPPER}} .mas-elementor-blockquote' => 'padding: {{SIZE}}{{UNIT}}',
@@ -701,14 +701,14 @@ class Blockquote extends Base_Widget {
 		$this->start_controls_tab(
 			'tab_box_normal',
 			array(
-				'label' => esc_html__( 'Normal', 'mas-elementor' ),
+				'label' => esc_html__( 'Normal', 'mas-addons-for-elementor' ),
 			)
 		);
 
 		$this->add_control(
 			'box_background_color',
 			array(
-				'label'     => esc_html__( 'Background Color', 'mas-elementor' ),
+				'label'     => esc_html__( 'Background Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
 					'{{WRAPPER}} .mas-elementor-blockquote' => 'background-color: {{VALUE}}',
@@ -727,7 +727,7 @@ class Blockquote extends Base_Widget {
 		$this->add_responsive_control(
 			'box_border_radius',
 			array(
-				'label'     => esc_html__( 'Border Radius', 'mas-elementor' ),
+				'label'     => esc_html__( 'Border Radius', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::SLIDER,
 				'selectors' => array(
 					'{{WRAPPER}} .mas-elementor-blockquote' => 'border-radius: {{SIZE}}{{UNIT}}',
@@ -751,14 +751,14 @@ class Blockquote extends Base_Widget {
 		$this->start_controls_tab(
 			'tab_box_hover',
 			array(
-				'label' => esc_html__( 'Hover', 'mas-elementor' ),
+				'label' => esc_html__( 'Hover', 'mas-addons-for-elementor' ),
 			)
 		);
 
 		$this->add_control(
 			'box_background_color_hover',
 			array(
-				'label'     => esc_html__( 'Background Color', 'mas-elementor' ),
+				'label'     => esc_html__( 'Background Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
 					'{{WRAPPER}} .mas-elementor-blockquote:hover' => 'background-color: {{VALUE}}',
@@ -777,7 +777,7 @@ class Blockquote extends Base_Widget {
 		$this->add_responsive_control(
 			'box_border_radius_hover',
 			array(
-				'label'     => esc_html__( 'Border Radius', 'mas-elementor' ),
+				'label'     => esc_html__( 'Border Radius', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::SLIDER,
 				'selectors' => array(
 					'{{WRAPPER}} .mas-elementor-blockquote:hover' => 'border-radius: {{SIZE}}{{UNIT}}',
@@ -805,7 +805,7 @@ class Blockquote extends Base_Widget {
 		$this->start_controls_section(
 			'section_quote_style',
 			array(
-				'label'     => esc_html__( 'Quote', 'mas-elementor' ),
+				'label'     => esc_html__( 'Quote', 'mas-addons-for-elementor' ),
 				'tab'       => Controls_Manager::TAB_STYLE,
 				'condition' => array(
 					'blockquote_skin' => 'quotation',
@@ -816,7 +816,7 @@ class Blockquote extends Base_Widget {
 		$this->add_control(
 			'quote_text_color',
 			array(
-				'label'     => esc_html__( 'Color', 'mas-elementor' ),
+				'label'     => esc_html__( 'Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
 					'{{WRAPPER}} .mas-elementor-blockquote:before' => 'color: {{VALUE}}',
@@ -827,7 +827,7 @@ class Blockquote extends Base_Widget {
 		$this->add_responsive_control(
 			'quote_size',
 			array(
-				'label'     => esc_html__( 'Size', 'mas-elementor' ),
+				'label'     => esc_html__( 'Size', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::SLIDER,
 				'range'     => array(
 					'px' => array(
@@ -848,7 +848,7 @@ class Blockquote extends Base_Widget {
 		$this->add_responsive_control(
 			'quote_gap',
 			array(
-				'label'     => esc_html__( 'Gap', 'mas-elementor' ),
+				'label'     => esc_html__( 'Gap', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::SLIDER,
 				'selectors' => array(
 					'{{WRAPPER}} .mas-elementor-blockquote__content' => 'margin-top: {{SIZE}}{{UNIT}}',
@@ -930,7 +930,7 @@ class Blockquote extends Base_Widget {
 									<i class="fa fa-twitter" aria-hidden="true"></i>
 								<?php endif; ?>
 								<?php if ( 'icon-text' !== $tweet_button_view ) : ?>
-									<span class="elementor-screen-only"><?php esc_html_e( 'Tweet', 'mas-elementor' ); ?></span>
+									<span class="elementor-screen-only"><?php esc_html_e( 'Tweet', 'mas-addons-for-elementor' ); ?></span>
 								<?php endif; ?>
 							<?php endif; ?>
 							<?php if ( 'icon-text' === $tweet_button_view || 'text' === $tweet_button_view ) : ?>
@@ -977,7 +977,7 @@ class Blockquote extends Base_Widget {
 										<i class="fa fa-twitter" aria-hidden="true"></i>
 									<# } #>
 									<# if ( 'icon-text' !== tweetButtonView ) { #>
-										<span class="elementor-screen-only"><?php esc_html_e( 'Tweet', 'mas-elementor' ); ?></span>
+										<span class="elementor-screen-only"><?php esc_html_e( 'Tweet', 'mas-addons-for-elementor' ); ?></span>
 									<# } #>
 								<# } #>
 								<# if ( 'icon-text' === tweetButtonView || 'text' === tweetButtonView ) { #>

@@ -113,7 +113,7 @@ final class Modules_Manager {
 	public function add_editor_categories( $object ) {
 		if ( $object ) {
 			$category_properties = array(
-				'title'  => esc_html__( 'MAS Elementor', 'mas-elementor' ),
+				'title'  => esc_html__( 'MAS Elementor', 'mas-addons-for-elementor' ),
 				'icon'   => 'eicon-wordpress',
 				'active' => true,
 			);

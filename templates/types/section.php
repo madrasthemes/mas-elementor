@@ -18,11 +18,11 @@ if ( ! class_exists( 'Premium_Structure_Section' ) ) {
 		}
 
 		public function get_single_label() {
-			return esc_html__( 'Section', 'mas-elementor' );
+			return esc_html__( 'Section', 'mas-addons-for-elementor' );
 		}
 
 		public function get_plural_label() {
-			return esc_html__( 'Sections', 'mas-elementor' );
+			return esc_html__( 'Sections', 'mas-addons-for-elementor' );
 		}
 
 		public function get_sources() {

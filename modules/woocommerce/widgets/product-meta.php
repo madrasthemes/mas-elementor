@@ -35,7 +35,7 @@ class Product_Meta extends Base_Widget {
 	 * @return string
 	 */
 	public function get_title() {
-		return esc_html__( 'MAS Product Meta', 'mas-elementor' );
+		return esc_html__( 'MAS Product Meta', 'mas-addons-for-elementor' );
 	}
 
 	/**
@@ -73,7 +73,7 @@ class Product_Meta extends Base_Widget {
 		$this->start_controls_section(
 			'section_product_meta_style',
 			array(
-				'label' => esc_html__( 'Style', 'mas-elementor' ),
+				'label' => esc_html__( 'Style', 'mas-addons-for-elementor' ),
 				'tab'   => Controls_Manager::TAB_STYLE,
 			)
 		);
@@ -82,7 +82,7 @@ class Product_Meta extends Base_Widget {
 			'wc_style_warning',
 			array(
 				'type'            => Controls_Manager::RAW_HTML,
-				'raw'             => esc_html__( 'The style of this widget is often affected by your theme and plugins. If you experience any such issue, try to switch to a basic theme and deactivate related plugins.', 'mas-elementor' ),
+				'raw'             => esc_html__( 'The style of this widget is often affected by your theme and plugins. If you experience any such issue, try to switch to a basic theme and deactivate related plugins.', 'mas-addons-for-elementor' ),
 				'content_classes' => 'elementor-panel-alert elementor-panel-alert-info',
 			)
 		);
@@ -90,13 +90,13 @@ class Product_Meta extends Base_Widget {
 		$this->add_control(
 			'view',
 			array(
-				'label'        => esc_html__( 'View', 'mas-elementor' ),
+				'label'        => esc_html__( 'View', 'mas-addons-for-elementor' ),
 				'type'         => Controls_Manager::SELECT,
 				'default'      => 'inline',
 				'options'      => array(
-					'table'   => esc_html__( 'Table', 'mas-elementor' ),
-					'stacked' => esc_html__( 'Stacked', 'mas-elementor' ),
-					'inline'  => esc_html__( 'Inline', 'mas-elementor' ),
+					'table'   => esc_html__( 'Table', 'mas-addons-for-elementor' ),
+					'stacked' => esc_html__( 'Stacked', 'mas-addons-for-elementor' ),
+					'inline'  => esc_html__( 'Inline', 'mas-addons-for-elementor' ),
 				),
 				'prefix_class' => 'mas-elementor-woo-meta--view-',
 			)
@@ -105,7 +105,7 @@ class Product_Meta extends Base_Widget {
 		$this->add_responsive_control(
 			'space_between',
 			array(
-				'label'      => esc_html__( 'Space Between', 'mas-elementor' ),
+				'label'      => esc_html__( 'Space Between', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::SLIDER,
 				'size_units' => array( 'px', 'em', 'rem', 'custom' ),
 				'range'      => array(
@@ -127,10 +127,10 @@ class Product_Meta extends Base_Widget {
 		$this->add_control(
 			'divider',
 			array(
-				'label'        => esc_html__( 'Divider', 'mas-elementor' ),
+				'label'        => esc_html__( 'Divider', 'mas-addons-for-elementor' ),
 				'type'         => Controls_Manager::SWITCHER,
-				'label_off'    => esc_html__( 'Off', 'mas-elementor' ),
-				'label_on'     => esc_html__( 'On', 'mas-elementor' ),
+				'label_off'    => esc_html__( 'Off', 'mas-addons-for-elementor' ),
+				'label_on'     => esc_html__( 'On', 'mas-addons-for-elementor' ),
 				'selectors'    => array(
 					'{{WRAPPER}} .product_meta .detail-container:not(:last-child):after' => 'content: ""',
 				),
@@ -142,13 +142,13 @@ class Product_Meta extends Base_Widget {
 		$this->add_control(
 			'divider_style',
 			array(
-				'label'     => esc_html__( 'Style', 'mas-elementor' ),
+				'label'     => esc_html__( 'Style', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::SELECT,
 				'options'   => array(
-					'solid'  => esc_html__( 'Solid', 'mas-elementor' ),
-					'double' => esc_html__( 'Double', 'mas-elementor' ),
-					'dotted' => esc_html__( 'Dotted', 'mas-elementor' ),
-					'dashed' => esc_html__( 'Dashed', 'mas-elementor' ),
+					'solid'  => esc_html__( 'Solid', 'mas-addons-for-elementor' ),
+					'double' => esc_html__( 'Double', 'mas-addons-for-elementor' ),
+					'dotted' => esc_html__( 'Dotted', 'mas-addons-for-elementor' ),
+					'dashed' => esc_html__( 'Dashed', 'mas-addons-for-elementor' ),
 				),
 				'default'   => 'solid',
 				'condition' => array(
@@ -164,7 +164,7 @@ class Product_Meta extends Base_Widget {
 		$this->add_control(
 			'divider_weight',
 			array(
-				'label'      => esc_html__( 'Weight', 'mas-elementor' ),
+				'label'      => esc_html__( 'Weight', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::SLIDER,
 				'size_units' => array( 'px', 'em', 'rem', 'custom' ),
 				'default'    => array(
@@ -189,7 +189,7 @@ class Product_Meta extends Base_Widget {
 		$this->add_responsive_control(
 			'divider_width',
 			array(
-				'label'      => esc_html__( 'Width', 'mas-elementor' ),
+				'label'      => esc_html__( 'Width', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::SLIDER,
 				'size_units' => array( 'px', '%', 'em', 'rem', 'vw', 'custom' ),
 				'default'    => array(
@@ -208,7 +208,7 @@ class Product_Meta extends Base_Widget {
 		$this->add_control(
 			'divider_height',
 			array(
-				'label'      => esc_html__( 'Height', 'mas-elementor' ),
+				'label'      => esc_html__( 'Height', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::SLIDER,
 				'size_units' => array( 'px', '%', 'em', 'rem', 'vh', 'custom' ),
 				'default'    => array(
@@ -237,7 +237,7 @@ class Product_Meta extends Base_Widget {
 		$this->add_control(
 			'divider_color',
 			array(
-				'label'     => esc_html__( 'Color', 'mas-elementor' ),
+				'label'     => esc_html__( 'Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'default'   => '#ddd',
 				'global'    => array(
@@ -255,7 +255,7 @@ class Product_Meta extends Base_Widget {
 		$this->add_control(
 			'heading_text_style',
 			array(
-				'label'     => esc_html__( 'Text', 'mas-elementor' ),
+				'label'     => esc_html__( 'Text', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::HEADING,
 				'separator' => 'before',
 			)
@@ -272,7 +272,7 @@ class Product_Meta extends Base_Widget {
 		$this->add_control(
 			'text_color',
 			array(
-				'label'     => esc_html__( 'Color', 'mas-elementor' ),
+				'label'     => esc_html__( 'Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
 					'{{WRAPPER}}' => 'color: {{VALUE}}',
@@ -283,7 +283,7 @@ class Product_Meta extends Base_Widget {
 		$this->add_control(
 			'heading_link_style',
 			array(
-				'label'     => esc_html__( 'Link', 'mas-elementor' ),
+				'label'     => esc_html__( 'Link', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::HEADING,
 				'separator' => 'before',
 			)
@@ -300,7 +300,7 @@ class Product_Meta extends Base_Widget {
 		$this->add_control(
 			'link_color',
 			array(
-				'label'     => esc_html__( 'Color', 'mas-elementor' ),
+				'label'     => esc_html__( 'Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
 					'{{WRAPPER}} a' => 'color: {{VALUE}}',
@@ -313,7 +313,7 @@ class Product_Meta extends Base_Widget {
 		$this->start_controls_section(
 			'section_product_meta_captions',
 			array(
-				'label' => esc_html__( 'Captions', 'mas-elementor' ),
+				'label' => esc_html__( 'Captions', 'mas-addons-for-elementor' ),
 				'tab'   => Controls_Manager::TAB_STYLE,
 			)
 		);
@@ -321,7 +321,7 @@ class Product_Meta extends Base_Widget {
 		$this->add_control(
 			'heading_category_caption',
 			array(
-				'label' => esc_html__( 'Category', 'mas-elementor' ),
+				'label' => esc_html__( 'Category', 'mas-addons-for-elementor' ),
 				'type'  => Controls_Manager::HEADING,
 			)
 		);
@@ -329,9 +329,9 @@ class Product_Meta extends Base_Widget {
 		$this->add_control(
 			'category_caption_single',
 			array(
-				'label'       => esc_html__( 'Singular', 'mas-elementor' ),
+				'label'       => esc_html__( 'Singular', 'mas-addons-for-elementor' ),
 				'type'        => Controls_Manager::TEXT,
-				'placeholder' => esc_html__( 'Category', 'mas-elementor' ),
+				'placeholder' => esc_html__( 'Category', 'mas-addons-for-elementor' ),
 				'dynamic'     => array(
 					'active' => true,
 				),
@@ -341,9 +341,9 @@ class Product_Meta extends Base_Widget {
 		$this->add_control(
 			'category_caption_plural',
 			array(
-				'label'       => esc_html__( 'Plural', 'mas-elementor' ),
+				'label'       => esc_html__( 'Plural', 'mas-addons-for-elementor' ),
 				'type'        => Controls_Manager::TEXT,
-				'placeholder' => esc_html__( 'Categories', 'mas-elementor' ),
+				'placeholder' => esc_html__( 'Categories', 'mas-addons-for-elementor' ),
 				'dynamic'     => array(
 					'active' => true,
 				),
@@ -353,7 +353,7 @@ class Product_Meta extends Base_Widget {
 		$this->add_control(
 			'heading_tag_caption',
 			array(
-				'label'     => esc_html__( 'Tag', 'mas-elementor' ),
+				'label'     => esc_html__( 'Tag', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::HEADING,
 				'separator' => 'before',
 			)
@@ -362,9 +362,9 @@ class Product_Meta extends Base_Widget {
 		$this->add_control(
 			'tag_caption_single',
 			array(
-				'label'       => esc_html__( 'Singular', 'mas-elementor' ),
+				'label'       => esc_html__( 'Singular', 'mas-addons-for-elementor' ),
 				'type'        => Controls_Manager::TEXT,
-				'placeholder' => esc_html__( 'Tag', 'mas-elementor' ),
+				'placeholder' => esc_html__( 'Tag', 'mas-addons-for-elementor' ),
 				'dynamic'     => array(
 					'active' => true,
 				),
@@ -374,9 +374,9 @@ class Product_Meta extends Base_Widget {
 		$this->add_control(
 			'tag_caption_plural',
 			array(
-				'label'       => esc_html__( 'Plural', 'mas-elementor' ),
+				'label'       => esc_html__( 'Plural', 'mas-addons-for-elementor' ),
 				'type'        => Controls_Manager::TEXT,
-				'placeholder' => esc_html__( 'Tags', 'mas-elementor' ),
+				'placeholder' => esc_html__( 'Tags', 'mas-addons-for-elementor' ),
 				'dynamic'     => array(
 					'active' => true,
 				),
@@ -386,7 +386,7 @@ class Product_Meta extends Base_Widget {
 		$this->add_control(
 			'heading_sku_caption',
 			array(
-				'label'     => esc_html__( 'SKU', 'mas-elementor' ),
+				'label'     => esc_html__( 'SKU', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::HEADING,
 				'separator' => 'before',
 			)
@@ -395,9 +395,9 @@ class Product_Meta extends Base_Widget {
 		$this->add_control(
 			'sku_caption',
 			array(
-				'label'       => esc_html__( 'SKU', 'mas-elementor' ),
+				'label'       => esc_html__( 'SKU', 'mas-addons-for-elementor' ),
 				'type'        => Controls_Manager::TEXT,
-				'placeholder' => esc_html__( 'SKU', 'mas-elementor' ),
+				'placeholder' => esc_html__( 'SKU', 'mas-addons-for-elementor' ),
 				'dynamic'     => array(
 					'active' => true,
 				),
@@ -407,9 +407,9 @@ class Product_Meta extends Base_Widget {
 		$this->add_control(
 			'sku_missing_caption',
 			array(
-				'label'       => esc_html__( 'Missing', 'mas-elementor' ),
+				'label'       => esc_html__( 'Missing', 'mas-addons-for-elementor' ),
 				'type'        => Controls_Manager::TEXT,
-				'placeholder' => esc_html__( 'N/A', 'mas-elementor' ),
+				'placeholder' => esc_html__( 'N/A', 'mas-addons-for-elementor' ),
 				'dynamic'     => array(
 					'active' => true,
 				),
@@ -445,12 +445,12 @@ class Product_Meta extends Base_Widget {
 		$sku = esc_html( $product->get_sku() );
 
 		$settings                = $this->get_settings_for_display();
-		$sku_caption             = ! empty( $settings['sku_caption'] ) ? esc_html( $settings['sku_caption'] ) : esc_html__( 'SKU', 'mas-elementor' );
-		$sku_missing             = ! empty( $settings['sku_missing_caption'] ) ? esc_html( $settings['sku_missing_caption'] ) : esc_html__( 'N/A', 'mas-elementor' );
-		$category_caption_single = ! empty( $settings['category_caption_single'] ) ? $settings['category_caption_single'] : esc_html__( 'Category', 'mas-elementor' );
-		$category_caption_plural = ! empty( $settings['category_caption_plural'] ) ? $settings['category_caption_plural'] : esc_html__( 'Categories', 'mas-elementor' );
-		$tag_caption_single      = ! empty( $settings['tag_caption_single'] ) ? $settings['tag_caption_single'] : esc_html__( 'Tag', 'mas-elementor' );
-		$tag_caption_plural      = ! empty( $settings['tag_caption_plural'] ) ? $settings['tag_caption_plural'] : esc_html__( 'Tags', 'mas-elementor' );
+		$sku_caption             = ! empty( $settings['sku_caption'] ) ? esc_html( $settings['sku_caption'] ) : esc_html__( 'SKU', 'mas-addons-for-elementor' );
+		$sku_missing             = ! empty( $settings['sku_missing_caption'] ) ? esc_html( $settings['sku_missing_caption'] ) : esc_html__( 'N/A', 'mas-addons-for-elementor' );
+		$category_caption_single = ! empty( $settings['category_caption_single'] ) ? $settings['category_caption_single'] : esc_html__( 'Category', 'mas-addons-for-elementor' );
+		$category_caption_plural = ! empty( $settings['category_caption_plural'] ) ? $settings['category_caption_plural'] : esc_html__( 'Categories', 'mas-addons-for-elementor' );
+		$tag_caption_single      = ! empty( $settings['tag_caption_single'] ) ? $settings['tag_caption_single'] : esc_html__( 'Tag', 'mas-addons-for-elementor' );
+		$tag_caption_plural      = ! empty( $settings['tag_caption_plural'] ) ? $settings['tag_caption_plural'] : esc_html__( 'Tags', 'mas-addons-for-elementor' );
 		?>
 		<div class="product_meta">
 

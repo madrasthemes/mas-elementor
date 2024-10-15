@@ -41,7 +41,7 @@ class Countdown extends Base_Widget {
 	 * @return string
 	 */
 	public function get_title() {
-		return __( 'Countdown', 'mas-elementor' );
+		return __( 'Countdown', 'mas-addons-for-elementor' );
 	}
 
 	/**
@@ -86,23 +86,23 @@ class Countdown extends Base_Widget {
 		$this->start_controls_section(
 			'section_countdown',
 			array(
-				'label' => __( 'Countdown', 'mas-elementor' ),
+				'label' => __( 'Countdown', 'mas-addons-for-elementor' ),
 			)
 		);
 
 		$this->add_control(
 			'view',
 			array(
-				'label'   => esc_html__( 'Layout', 'mas-elementor' ),
+				'label'   => esc_html__( 'Layout', 'mas-addons-for-elementor' ),
 				'type'    => Controls_Manager::CHOOSE,
 				'default' => 'inline',
 				'options' => array(
 					'traditional' => array(
-						'title' => esc_html__( 'Default', 'mas-elementor' ),
+						'title' => esc_html__( 'Default', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-editor-list-ul',
 					),
 					'inline'      => array(
-						'title' => esc_html__( 'Inline', 'mas-elementor' ),
+						'title' => esc_html__( 'Inline', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-ellipsis-h',
 					),
 				),
@@ -112,27 +112,27 @@ class Countdown extends Base_Widget {
 		$this->add_control(
 			'due_date',
 			array(
-				'label'       => __( 'Due Date', 'mas-elementor' ),
+				'label'       => __( 'Due Date', 'mas-addons-for-elementor' ),
 				'type'        => Controls_Manager::DATE_TIME,
 				'default'     => gmdate( 'Y-m-d H:i', strtotime( '+1 month' ) + ( get_option( 'gmt_offset' ) * HOUR_IN_SECONDS ) ),
 				/* translators: %s: Time zone. */
-				'description' => sprintf( __( 'Date set according to your timezone: %s.', 'mas-elementor' ), Utils::get_timezone_string() ),
+				'description' => sprintf( __( 'Date set according to your timezone: %s.', 'mas-addons-for-elementor' ), Utils::get_timezone_string() ),
 			)
 		);
 
 		$this->add_control(
 			'single_view',
 			array(
-				'label'   => esc_html__( 'Text Layout', 'mas-elementor' ),
+				'label'   => esc_html__( 'Text Layout', 'mas-addons-for-elementor' ),
 				'type'    => Controls_Manager::CHOOSE,
 				'default' => 'wrap',
 				'options' => array(
 					'wrap'   => array(
-						'title' => esc_html__( 'Default', 'mas-elementor' ),
+						'title' => esc_html__( 'Default', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-ellipsis-h',
 					),
 					'nowrap' => array(
-						'title' => esc_html__( 'Inline', 'mas-elementor' ),
+						'title' => esc_html__( 'Inline', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-editor-list-ul',
 					),
 				),
@@ -142,23 +142,23 @@ class Countdown extends Base_Widget {
 		$this->add_responsive_control(
 			'countdown_text_align',
 			array(
-				'label'     => esc_html__( 'Text Alignment', 'mas-elementor' ),
+				'label'     => esc_html__( 'Text Alignment', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::CHOOSE,
 				'options'   => array(
 					'left'    => array(
-						'title' => esc_html__( 'Left', 'mas-elementor' ),
+						'title' => esc_html__( 'Left', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-text-align-left',
 					),
 					'center'  => array(
-						'title' => esc_html__( 'Center', 'mas-elementor' ),
+						'title' => esc_html__( 'Center', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-text-align-center',
 					),
 					'right'   => array(
-						'title' => esc_html__( 'Right', 'mas-elementor' ),
+						'title' => esc_html__( 'Right', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-text-align-right',
 					),
 					'justify' => array(
-						'title' => esc_html__( 'Justified', 'mas-elementor' ),
+						'title' => esc_html__( 'Justified', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-text-align-justify',
 					),
 				),
@@ -172,10 +172,10 @@ class Countdown extends Base_Widget {
 		$this->add_control(
 			'show_separator',
 			array(
-				'label'     => __( 'Show Separator', 'mas-elementor' ),
+				'label'     => __( 'Show Separator', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::SWITCHER,
-				'label_on'  => __( 'Show', 'mas-elementor' ),
-				'label_off' => __( 'Hide', 'mas-elementor' ),
+				'label_on'  => __( 'Show', 'mas-addons-for-elementor' ),
+				'label_off' => __( 'Hide', 'mas-addons-for-elementor' ),
 				'default'   => 'no',
 				'prefix_class' => 'mas-countdown-separator-',
 			)
@@ -184,7 +184,7 @@ class Countdown extends Base_Widget {
 		$this->add_control(
 			'separator_color',
 			array(
-				'label'     => __( 'Separator Color', 'mas-elementor' ),
+				'label'     => __( 'Separator Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
 					'{{WRAPPER}}.mas-countdown-separator-yes .mas-js-countdown > .mas-elementor-countdown-item:not(:last-child):after' => 'color: {{VALUE}};',
@@ -198,7 +198,7 @@ class Countdown extends Base_Widget {
 		$this->add_responsive_control(
 			'separator_padding',
 			array(
-				'label'      => esc_html__( 'Separator Padding', 'mas-elementor' ),
+				'label'      => esc_html__( 'Separator Padding', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', 'em', '%', 'rem' ),
 				'selectors'  => array(
@@ -221,10 +221,10 @@ class Countdown extends Base_Widget {
 		$this->add_control(
 			'show_days',
 			array(
-				'label'     => __( 'Days', 'mas-elementor' ),
+				'label'     => __( 'Days', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::SWITCHER,
-				'label_on'  => __( 'Show', 'mas-elementor' ),
-				'label_off' => __( 'Hide', 'mas-elementor' ),
+				'label_on'  => __( 'Show', 'mas-addons-for-elementor' ),
+				'label_off' => __( 'Hide', 'mas-addons-for-elementor' ),
 				'default'   => 'yes',
 			)
 		);
@@ -232,10 +232,10 @@ class Countdown extends Base_Widget {
 		$this->add_control(
 			'show_hours',
 			array(
-				'label'     => __( 'Hours', 'mas-elementor' ),
+				'label'     => __( 'Hours', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::SWITCHER,
-				'label_on'  => __( 'Show', 'mas-elementor' ),
-				'label_off' => __( 'Hide', 'mas-elementor' ),
+				'label_on'  => __( 'Show', 'mas-addons-for-elementor' ),
+				'label_off' => __( 'Hide', 'mas-addons-for-elementor' ),
 				'default'   => 'yes',
 			)
 		);
@@ -243,10 +243,10 @@ class Countdown extends Base_Widget {
 		$this->add_control(
 			'show_minutes',
 			array(
-				'label'     => __( 'Minutes', 'mas-elementor' ),
+				'label'     => __( 'Minutes', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::SWITCHER,
-				'label_on'  => __( 'Show', 'mas-elementor' ),
-				'label_off' => __( 'Hide', 'mas-elementor' ),
+				'label_on'  => __( 'Show', 'mas-addons-for-elementor' ),
+				'label_off' => __( 'Hide', 'mas-addons-for-elementor' ),
 				'default'   => 'yes',
 			)
 		);
@@ -254,10 +254,10 @@ class Countdown extends Base_Widget {
 		$this->add_control(
 			'show_seconds',
 			array(
-				'label'     => __( 'Seconds', 'mas-elementor' ),
+				'label'     => __( 'Seconds', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::SWITCHER,
-				'label_on'  => __( 'Show', 'mas-elementor' ),
-				'label_off' => __( 'Hide', 'mas-elementor' ),
+				'label_on'  => __( 'Show', 'mas-addons-for-elementor' ),
+				'label_off' => __( 'Hide', 'mas-addons-for-elementor' ),
 				'default'   => 'yes',
 			)
 		);
@@ -265,10 +265,10 @@ class Countdown extends Base_Widget {
 		$this->add_control(
 			'show_labels',
 			array(
-				'label'     => __( 'Show Label', 'mas-elementor' ),
+				'label'     => __( 'Show Label', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::SWITCHER,
-				'label_on'  => __( 'Show', 'mas-elementor' ),
-				'label_off' => __( 'Hide', 'mas-elementor' ),
+				'label_on'  => __( 'Show', 'mas-addons-for-elementor' ),
+				'label_off' => __( 'Hide', 'mas-addons-for-elementor' ),
 				'default'   => 'yes',
 				'separator' => 'before',
 			)
@@ -277,7 +277,7 @@ class Countdown extends Base_Widget {
 		$this->add_control(
 			'custom_labels',
 			array(
-				'label'     => __( 'Custom Label', 'mas-elementor' ),
+				'label'     => __( 'Custom Label', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::SWITCHER,
 				'condition' => array(
 					'show_labels!' => '',
@@ -288,10 +288,10 @@ class Countdown extends Base_Widget {
 		$this->add_control(
 			'label_days',
 			array(
-				'label'       => __( 'Days', 'mas-elementor' ),
+				'label'       => __( 'Days', 'mas-addons-for-elementor' ),
 				'type'        => Controls_Manager::TEXT,
-				'default'     => __( 'Days', 'mas-elementor' ),
-				'placeholder' => __( 'Days', 'mas-elementor' ),
+				'default'     => __( 'Days', 'mas-addons-for-elementor' ),
+				'placeholder' => __( 'Days', 'mas-addons-for-elementor' ),
 				'condition'   => array(
 					'show_labels!'   => '',
 					'custom_labels!' => '',
@@ -303,10 +303,10 @@ class Countdown extends Base_Widget {
 		$this->add_control(
 			'label_hours',
 			array(
-				'label'       => __( 'Hours', 'mas-elementor' ),
+				'label'       => __( 'Hours', 'mas-addons-for-elementor' ),
 				'type'        => Controls_Manager::TEXT,
-				'default'     => __( 'Hours', 'mas-elementor' ),
-				'placeholder' => __( 'Hours', 'mas-elementor' ),
+				'default'     => __( 'Hours', 'mas-addons-for-elementor' ),
+				'placeholder' => __( 'Hours', 'mas-addons-for-elementor' ),
 				'condition'   => array(
 					'show_labels!'   => '',
 					'custom_labels!' => '',
@@ -318,10 +318,10 @@ class Countdown extends Base_Widget {
 		$this->add_control(
 			'label_minutes',
 			array(
-				'label'       => __( 'Minutes', 'mas-elementor' ),
+				'label'       => __( 'Minutes', 'mas-addons-for-elementor' ),
 				'type'        => Controls_Manager::TEXT,
-				'default'     => __( 'Minutes', 'mas-elementor' ),
-				'placeholder' => __( 'Minutes', 'mas-elementor' ),
+				'default'     => __( 'Minutes', 'mas-addons-for-elementor' ),
+				'placeholder' => __( 'Minutes', 'mas-addons-for-elementor' ),
 				'condition'   => array(
 					'show_labels!'   => '',
 					'custom_labels!' => '',
@@ -333,10 +333,10 @@ class Countdown extends Base_Widget {
 		$this->add_control(
 			'label_seconds',
 			array(
-				'label'       => __( 'Seconds', 'mas-elementor' ),
+				'label'       => __( 'Seconds', 'mas-addons-for-elementor' ),
 				'type'        => Controls_Manager::TEXT,
-				'default'     => __( 'Seconds', 'mas-elementor' ),
-				'placeholder' => __( 'Seconds', 'mas-elementor' ),
+				'default'     => __( 'Seconds', 'mas-addons-for-elementor' ),
+				'placeholder' => __( 'Seconds', 'mas-addons-for-elementor' ),
 				'condition'   => array(
 					'show_labels!'   => '',
 					'custom_labels!' => '',
@@ -348,12 +348,12 @@ class Countdown extends Base_Widget {
 		$this->add_control(
 			'expire_actions',
 			array(
-				'label'       => __( 'Actions After Expire', 'mas-elementor' ),
+				'label'       => __( 'Actions After Expire', 'mas-addons-for-elementor' ),
 				'type'        => Controls_Manager::SELECT2,
 				'options'     => array(
-					'redirect' => __( 'Redirect', 'mas-elementor' ),
-					'hide'     => __( 'Hide', 'mas-elementor' ),
-					'message'  => __( 'Show Message', 'mas-elementor' ),
+					'redirect' => __( 'Redirect', 'mas-addons-for-elementor' ),
+					'hide'     => __( 'Hide', 'mas-addons-for-elementor' ),
+					'message'  => __( 'Show Message', 'mas-addons-for-elementor' ),
 				),
 				'label_block' => true,
 				'separator'   => 'before',
@@ -365,7 +365,7 @@ class Countdown extends Base_Widget {
 		$this->add_control(
 			'message_after_expire',
 			array(
-				'label'     => __( 'Message', 'mas-elementor' ),
+				'label'     => __( 'Message', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::TEXTAREA,
 				'separator' => 'before',
 				'dynamic'   => array(
@@ -380,7 +380,7 @@ class Countdown extends Base_Widget {
 		$this->add_control(
 			'expire_redirect_url',
 			array(
-				'label'     => __( 'Redirect URL', 'mas-elementor' ),
+				'label'     => __( 'Redirect URL', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::URL,
 				'separator' => 'before',
 				'options'   => false,
@@ -398,7 +398,7 @@ class Countdown extends Base_Widget {
 		$this->start_controls_section(
 			'section_content_style',
 			array(
-				'label' => __( 'Content', 'mas-elementor' ),
+				'label' => __( 'Content', 'mas-addons-for-elementor' ),
 				'tab'   => Controls_Manager::TAB_STYLE,
 			)
 		);
@@ -406,7 +406,7 @@ class Countdown extends Base_Widget {
 		$this->add_control(
 			'heading_digits',
 			array(
-				'label' => __( 'Digits', 'mas-elementor' ),
+				'label' => __( 'Digits', 'mas-addons-for-elementor' ),
 				'type'  => Controls_Manager::HEADING,
 			)
 		);
@@ -414,7 +414,7 @@ class Countdown extends Base_Widget {
 		$this->add_control(
 			'digits_color',
 			array(
-				'label'     => __( 'Color', 'mas-elementor' ),
+				'label'     => __( 'Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
 					'{{WRAPPER}} .mas-elementor-countdown-digits' => 'color: {{VALUE}};',
@@ -467,7 +467,7 @@ class Countdown extends Base_Widget {
 		$this->add_control(
 			'heading_label',
 			array(
-				'label'     => __( 'Label', 'mas-elementor' ),
+				'label'     => __( 'Label', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::HEADING,
 				'separator' => 'before',
 			)
@@ -476,7 +476,7 @@ class Countdown extends Base_Widget {
 		$this->add_control(
 			'label_color',
 			array(
-				'label'     => __( 'Color', 'mas-elementor' ),
+				'label'     => __( 'Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
 					'{{WRAPPER}} .mas-elementor-countdown-label' => 'color: {{VALUE}};',
@@ -521,7 +521,7 @@ class Countdown extends Base_Widget {
 		$this->add_control(
 			'heading_spacing',
 			array(
-				'label'     => __( 'Spacing', 'mas-elementor' ),
+				'label'     => __( 'Spacing', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::HEADING,
 				'separator' => 'before',
 			)
@@ -530,7 +530,7 @@ class Countdown extends Base_Widget {
 		$this->add_responsive_control(
 			'mas_countdown_width',
 			array(
-				'label'          => esc_html__( 'Width', 'mas-elementor' ),
+				'label'          => esc_html__( 'Width', 'mas-addons-for-elementor' ),
 				'type'           => Controls_Manager::SLIDER,
 				'size_units'     => array( '%', 'px' ),
 				'range'          => array(
@@ -560,7 +560,7 @@ class Countdown extends Base_Widget {
 		$this->add_responsive_control(
 			'mas_countdown_space_between_label',
 			array(
-				'label'          => esc_html__( 'Label Spacing', 'mas-elementor' ),
+				'label'          => esc_html__( 'Label Spacing', 'mas-addons-for-elementor' ),
 				'type'           => Controls_Manager::SLIDER,
 				'size_units'     => array( 'px' ),
 				'range'          => array(
@@ -588,7 +588,7 @@ class Countdown extends Base_Widget {
 		$this->add_responsive_control(
 			'mas_countdwon_padding',
 			array(
-				'label'      => esc_html__( 'Padding', 'mas-elementor' ),
+				'label'      => esc_html__( 'Padding', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', 'em', '%', 'rem' ),
 				'selectors'  => array(
@@ -608,10 +608,10 @@ class Countdown extends Base_Widget {
 		$this->add_control(
 			'disable_last_child_margin',
 			array(
-				'label'     => __( 'Disable Last Item Margin', 'mas-elementor' ),
+				'label'     => __( 'Disable Last Item Margin', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::SWITCHER,
-				'label_on'  => __( 'Disabled', 'mas-elementor' ),
-				'label_off' => __( 'Disable', 'mas-elementor' ),
+				'label_on'  => __( 'Disabled', 'mas-addons-for-elementor' ),
+				'label_off' => __( 'Disable', 'mas-addons-for-elementor' ),
 				'default'   => 'no',
 			)
 		);
@@ -619,7 +619,7 @@ class Countdown extends Base_Widget {
 		$this->add_responsive_control(
 			'mas_countdwon_item_margin',
 			array(
-				'label'      => esc_html__( 'Margin', 'mas-elementor' ),
+				'label'      => esc_html__( 'Margin', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', 'em', '%', 'rem' ),
 				'selectors'  => array(
@@ -641,7 +641,7 @@ class Countdown extends Base_Widget {
 		$this->add_control(
 			'cd_bg_color',
 			array(
-				'label'     => __( 'Background Color', 'mas-elementor' ),
+				'label'     => __( 'Background Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
 					'{{WRAPPER}} .mas-elementor-countdown-item' => 'background-color: {{VALUE}};',
@@ -661,7 +661,7 @@ class Countdown extends Base_Widget {
 			'mas_countdown_border_radius',
 			array(
 				'type'       => Controls_Manager::DIMENSIONS,
-				'label'      => esc_html__( 'Border Radius', 'mas-elementor' ),
+				'label'      => esc_html__( 'Border Radius', 'mas-addons-for-elementor' ),
 				'size_units' => array( 'px', '%' ),
 				'selectors'  => array(
 					'{{WRAPPER}} .mas-elementor-countdown-item' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
@@ -674,7 +674,7 @@ class Countdown extends Base_Widget {
 		$this->start_controls_section(
 			'section_expire_message_style',
 			array(
-				'label'     => __( 'Message', 'mas-elementor' ),
+				'label'     => __( 'Message', 'mas-addons-for-elementor' ),
 				'tab'       => Controls_Manager::TAB_STYLE,
 				'condition' => array(
 					'expire_actions' => 'message',
@@ -685,19 +685,19 @@ class Countdown extends Base_Widget {
 		$this->add_responsive_control(
 			'align',
 			array(
-				'label'     => __( 'Alignment', 'mas-elementor' ),
+				'label'     => __( 'Alignment', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::CHOOSE,
 				'options'   => array(
 					'left'   => array(
-						'title' => __( 'Left', 'mas-elementor' ),
+						'title' => __( 'Left', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-text-align-left',
 					),
 					'center' => array(
-						'title' => __( 'Center', 'mas-elementor' ),
+						'title' => __( 'Center', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-text-align-center',
 					),
 					'right'  => array(
-						'title' => __( 'Right', 'mas-elementor' ),
+						'title' => __( 'Right', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-text-align-right',
 					),
 				),
@@ -710,7 +710,7 @@ class Countdown extends Base_Widget {
 		$this->add_control(
 			'text_color',
 			array(
-				'label'     => __( 'Text Color', 'mas-elementor' ),
+				'label'     => __( 'Text Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'default'   => '',
 				'selectors' => array(
@@ -736,7 +736,7 @@ class Countdown extends Base_Widget {
 		$this->add_responsive_control(
 			'message_padding',
 			array(
-				'label'      => __( 'Padding', 'mas-elementor' ),
+				'label'      => __( 'Padding', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', '%', 'em' ),
 				'selectors'  => array(
@@ -790,12 +790,12 @@ class Countdown extends Base_Widget {
 	 */
 	public function initdefault_countdown_labels() {
 		$this->default_countdown_labels = array(
-			'label_months'  => __( 'Months', 'mas-elementor' ),
-			'label_weeks'   => __( 'Weeks', 'mas-elementor' ),
-			'label_days'    => __( 'Days', 'mas-elementor' ),
-			'label_hours'   => __( 'Hours', 'mas-elementor' ),
-			'label_minutes' => __( 'Minutes', 'mas-elementor' ),
-			'label_seconds' => __( 'Seconds', 'mas-elementor' ),
+			'label_months'  => __( 'Months', 'mas-addons-for-elementor' ),
+			'label_weeks'   => __( 'Weeks', 'mas-addons-for-elementor' ),
+			'label_days'    => __( 'Days', 'mas-addons-for-elementor' ),
+			'label_hours'   => __( 'Hours', 'mas-addons-for-elementor' ),
+			'label_minutes' => __( 'Minutes', 'mas-addons-for-elementor' ),
+			'label_seconds' => __( 'Seconds', 'mas-addons-for-elementor' ),
 		);
 	}
 	/**

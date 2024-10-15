@@ -88,7 +88,7 @@ class Plugin {
 	 */
 	public function __clone() {
 		// Cloning instances of the class is forbidden.
-		_doing_it_wrong( __FUNCTION__, esc_html__( 'Something went wrong.', 'mas-elementor' ), '1.0.0' );
+		_doing_it_wrong( __FUNCTION__, esc_html__( 'Something went wrong.', 'mas-addons-for-elementor' ), '1.0.0' );
 	}
 
 	/**
@@ -99,7 +99,7 @@ class Plugin {
 	 */
 	public function __wakeup() {
 		// Unserializing instances of the class is forbidden.
-		_doing_it_wrong( __FUNCTION__, esc_html__( 'Something went wrong.', 'mas-elementor' ), '1.0.0' );
+		_doing_it_wrong( __FUNCTION__, esc_html__( 'Something went wrong.', 'mas-addons-for-elementor' ), '1.0.0' );
 	}
 
 	/**
@@ -544,7 +544,7 @@ class Plugin {
 	 * @return string
 	 */
 	final public static function get_title() {
-		return esc_html__( 'MAS Elementor', 'mas-elementor' );
+		return esc_html__( 'MAS Elementor', 'mas-addons-for-elementor' );
 	}
 }
 

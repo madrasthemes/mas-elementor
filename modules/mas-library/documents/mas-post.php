@@ -49,12 +49,12 @@ class Mas_Post extends Library_Document {
 	 * @return string Document title.
 	 */
 	public static function get_title() {
-		return esc_html__( 'MAS Post Item', 'mas-elementor' );
+		return esc_html__( 'MAS Post Item', 'mas-addons-for-elementor' );
 	}
 	/**
 	 * Get plural titles.
 	 */
 	public static function get_plural_title() {
-		return __( 'MAS Post Items', 'mas-elementor' );
+		return __( 'MAS Post Items', 'mas-addons-for-elementor' );
 	}
 }

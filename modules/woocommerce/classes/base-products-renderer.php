@@ -508,28 +508,28 @@ abstract class Base_Products_Renderer extends \WC_Shortcode_Products {
 			'mas_elementor_shop_views_args',
 			array(
 				'mas-grid'            => array(
-					'label'   => esc_html__( 'Grid View', 'mas-elementor' ),
+					'label'   => esc_html__( 'Grid View', 'mas-addons-for-elementor' ),
 					'icon'    => 'fa fa-th',
 					'enabled' => true,
 					'active'  => true,
 					// 'template'      => array( 'slug' => 'content', 'name' => 'product' ),
 				),
 				'mas-grid-extended'   => array(
-					'label'   => esc_html__( 'Grid Extended View', 'mas-elementor' ),
+					'label'   => esc_html__( 'Grid Extended View', 'mas-addons-for-elementor' ),
 					'icon'    => 'fa fa-align-justify',
 					'enabled' => true,
 					'active'  => false,
 					   // 'template'      => array( 'slug' => 'templates/contents/content', 'name' => 'product-grid-extended' ),
 				),
 				'mas-list-view'       => array(
-					'label'   => esc_html__( 'List View', 'mas-elementor' ),
+					'label'   => esc_html__( 'List View', 'mas-addons-for-elementor' ),
 					'icon'    => 'fa fa-list',
 					'enabled' => true,
 					'active'  => false,
 					   // 'template'      => array( 'slug' => 'templates/contents/content', 'name' => 'product-list-view' ),
 				),
 				'mas-list-view-small' => array(
-					'label'   => esc_html__( 'List View Small', 'mas-elementor' ),
+					'label'   => esc_html__( 'List View Small', 'mas-addons-for-elementor' ),
 					'icon'    => 'fa fa-th-list',
 					'enabled' => true,
 					'active'  => false,
@@ -586,7 +586,7 @@ abstract class Base_Products_Renderer extends \WC_Shortcode_Products {
 
 		$number_input = '<form method="post" class="form-adv-pagination"><input id="goto-page" size="2" min="1" max="' . esc_attr( $total ) . '" step="1" type="number" class="form-control" value="' . esc_attr( $current ) . '" /></form>';
 		// Translators: %1$s represents the number input, %2$s represents the total.
-		$output      .= sprintf( esc_html__( '%1$s of %2$s', 'mas-elementor' ), $number_input, $total );
+		$output      .= sprintf( esc_html__( '%1$s of %2$s', 'mas-addons-for-elementor' ), $number_input, $total );
 
 		if ( $current && ( $current < $total || -1 == $total ) ) :
 			$link    = str_replace( '%_%', $format, $base );

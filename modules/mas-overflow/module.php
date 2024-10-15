@@ -76,7 +76,7 @@ class Module extends Module_Base {
 			'enable_overflow',
 			array(
 				'type'    => Controls_Manager::SWITCHER,
-				'label'   => esc_html__( 'Enable Overflow Scroll', 'mas-elementor' ),
+				'label'   => esc_html__( 'Enable Overflow Scroll', 'mas-addons-for-elementor' ),
 				'default' => 'no',
 			)
 		);

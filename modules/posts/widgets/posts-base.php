@@ -104,7 +104,7 @@ abstract class Posts_Base extends Base_Widget {
 		$this->start_controls_section(
 			'section_mas_post_style',
 			array(
-				'label' => __( 'Posts', 'mas-elementor' ),
+				'label' => __( 'Posts', 'mas-addons-for-elementor' ),
 				'tab'   => Controls_Manager::TAB_STYLE,
 			)
 		);
@@ -112,7 +112,7 @@ abstract class Posts_Base extends Base_Widget {
 		$this->add_responsive_control(
 			'mas_post_grid_margin',
 			array(
-				'label'      => esc_html__( 'Grid Margin', 'mas-elementor' ),
+				'label'      => esc_html__( 'Grid Margin', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', 'em', '%', 'rem' ),
 				'selectors'  => array(
@@ -124,7 +124,7 @@ abstract class Posts_Base extends Base_Widget {
 		$this->add_responsive_control(
 			'posts_gap',
 			array(
-				'label'      => __( 'Gap', 'mas-elementor' ),
+				'label'      => __( 'Gap', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::SLIDER,
 				'size_units' => array( 'px', '%', 'em' ),
 				'default'    => array(
@@ -145,7 +145,7 @@ abstract class Posts_Base extends Base_Widget {
 		$this->add_responsive_control(
 			'loop_post_height',
 			array(
-				'label'      => __( 'Post Height', 'mas-elementor' ),
+				'label'      => __( 'Post Height', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::SLIDER,
 				'size_units' => array( 'px', '%', 'em', 'rem', 'vh', 'custom' ),
 				'default'    => array(
@@ -181,7 +181,7 @@ abstract class Posts_Base extends Base_Widget {
 		$this->start_controls_section(
 			'section_pagination',
 			array(
-				'label'     => __( 'Pagination', 'mas-elementor' ),
+				'label'     => __( 'Pagination', 'mas-addons-for-elementor' ),
 				'condition' => array(
 					'enable_carousel!' => 'yes',
 				),
@@ -191,17 +191,17 @@ abstract class Posts_Base extends Base_Widget {
 		$this->add_control(
 			'pagination_type',
 			array(
-				'label'              => __( 'Pagination', 'mas-elementor' ),
+				'label'              => __( 'Pagination', 'mas-addons-for-elementor' ),
 				'type'               => Controls_Manager::SELECT,
 				'default'            => '',
 				'frontend_available' => true,
 				'options'            => array(
-					''                              => __( 'None', 'mas-elementor' ),
-					'numbers'                       => __( 'Numbers', 'mas-elementor' ),
-					'prev_next'                     => __( 'Previous/Next', 'mas-elementor' ),
-					'numbers_and_prev_next'         => __( 'Numbers', 'mas-elementor' ) . ' + ' . __( 'Previous/Next', 'mas-elementor' ),
-					self::LOAD_MORE_ON_CLICK        => esc_html__( 'Load on Click', 'mas-elementor' ),
-					self::LOAD_MORE_INFINITE_SCROLL => esc_html__( 'Infinite Scroll', 'mas-elementor' ),
+					''                              => __( 'None', 'mas-addons-for-elementor' ),
+					'numbers'                       => __( 'Numbers', 'mas-addons-for-elementor' ),
+					'prev_next'                     => __( 'Previous/Next', 'mas-addons-for-elementor' ),
+					'numbers_and_prev_next'         => __( 'Numbers', 'mas-addons-for-elementor' ) . ' + ' . __( 'Previous/Next', 'mas-addons-for-elementor' ),
+					self::LOAD_MORE_ON_CLICK        => esc_html__( 'Load on Click', 'mas-addons-for-elementor' ),
+					self::LOAD_MORE_INFINITE_SCROLL => esc_html__( 'Infinite Scroll', 'mas-addons-for-elementor' ),
 				),
 			)
 		);
@@ -209,7 +209,7 @@ abstract class Posts_Base extends Base_Widget {
 		$this->add_control(
 			'pagination_page_limit',
 			array(
-				'label'     => __( 'Page Limit', 'mas-elementor' ),
+				'label'     => __( 'Page Limit', 'mas-addons-for-elementor' ),
 				'default'   => '5',
 				'condition' => array(
 					'pagination_type!' => '',
@@ -220,7 +220,7 @@ abstract class Posts_Base extends Base_Widget {
 		$this->add_control(
 			'pagination_numbers_shorten',
 			array(
-				'label'     => __( 'Shorten', 'mas-elementor' ),
+				'label'     => __( 'Shorten', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::SWITCHER,
 				'default'   => '',
 				'condition' => array(
@@ -235,8 +235,8 @@ abstract class Posts_Base extends Base_Widget {
 		$this->add_control(
 			'pagination_prev_label',
 			array(
-				'label'     => __( 'Previous Label', 'mas-elementor' ),
-				'default'   => __( '&laquo; Previous', 'mas-elementor' ),
+				'label'     => __( 'Previous Label', 'mas-addons-for-elementor' ),
+				'default'   => __( '&laquo; Previous', 'mas-addons-for-elementor' ),
 				'condition' => array(
 					'pagination_type' => array(
 						'prev_next',
@@ -249,8 +249,8 @@ abstract class Posts_Base extends Base_Widget {
 		$this->add_control(
 			'pagination_next_label',
 			array(
-				'label'     => __( 'Next Label', 'mas-elementor' ),
-				'default'   => __( 'Next &raquo;', 'mas-elementor' ),
+				'label'     => __( 'Next Label', 'mas-addons-for-elementor' ),
+				'default'   => __( 'Next &raquo;', 'mas-addons-for-elementor' ),
 				'condition' => array(
 					'pagination_type' => array(
 						'prev_next',
@@ -263,19 +263,19 @@ abstract class Posts_Base extends Base_Widget {
 		$this->add_control(
 			'pagination_align',
 			array(
-				'label'     => __( 'Alignment', 'mas-elementor' ),
+				'label'     => __( 'Alignment', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::CHOOSE,
 				'options'   => array(
 					'left'   => array(
-						'title' => __( 'Left', 'mas-elementor' ),
+						'title' => __( 'Left', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-text-align-left',
 					),
 					'center' => array(
-						'title' => __( 'Center', 'mas-elementor' ),
+						'title' => __( 'Center', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-text-align-center',
 					),
 					'right'  => array(
-						'title' => __( 'Right', 'mas-elementor' ),
+						'title' => __( 'Right', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-text-align-right',
 					),
 				),
@@ -296,7 +296,7 @@ abstract class Posts_Base extends Base_Widget {
 		$this->add_control(
 			'load_more_spinner',
 			array(
-				'label'                  => esc_html__( 'Spinner', 'mas-elementor' ),
+				'label'                  => esc_html__( 'Spinner', 'mas-addons-for-elementor' ),
 				'type'                   => Controls_Manager::ICONS,
 				'fa4compatibility'       => 'icon',
 				'default'                => array(
@@ -329,7 +329,7 @@ abstract class Posts_Base extends Base_Widget {
 		$this->add_control(
 			'heading_load_more_button',
 			array(
-				'label'     => esc_html__( 'Button', 'mas-elementor' ),
+				'label'     => esc_html__( 'Button', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::HEADING,
 				'separator' => 'before',
 				'condition' => array(
@@ -340,8 +340,8 @@ abstract class Posts_Base extends Base_Widget {
 
 		$this->load_more_register_button_content_controls(
 			array(
-				'button_text'            => esc_html__( 'Load More', 'mas-elementor' ),
-				'control_label_name'     => esc_html__( 'Button Text', 'mas-elementor' ),
+				'button_text'            => esc_html__( 'Load More', 'mas-addons-for-elementor' ),
+				'control_label_name'     => esc_html__( 'Button Text', 'mas-addons-for-elementor' ),
 				'prefix_class'           => 'load-more-align-',
 				'alignment_default'      => 'center',
 				'section_condition'      => array(
@@ -358,7 +358,7 @@ abstract class Posts_Base extends Base_Widget {
 		$this->add_control(
 			'heading_load_more_no_posts_message',
 			array(
-				'label'     => esc_html__( 'No More Posts Message', 'mas-elementor' ),
+				'label'     => esc_html__( 'No More Posts Message', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::HEADING,
 				'separator' => 'before',
 				'condition' => array(
@@ -373,23 +373,23 @@ abstract class Posts_Base extends Base_Widget {
 		$this->add_responsive_control(
 			'load_more_no_posts_message_align',
 			array(
-				'label'     => esc_html__( 'Alignment', 'mas-elementor' ),
+				'label'     => esc_html__( 'Alignment', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::CHOOSE,
 				'options'   => array(
 					'left'    => array(
-						'title' => esc_html__( 'Left', 'mas-elementor' ),
+						'title' => esc_html__( 'Left', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-text-align-left',
 					),
 					'center'  => array(
-						'title' => esc_html__( 'Center', 'mas-elementor' ),
+						'title' => esc_html__( 'Center', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-text-align-center',
 					),
 					'right'   => array(
-						'title' => esc_html__( 'Right', 'mas-elementor' ),
+						'title' => esc_html__( 'Right', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-text-align-right',
 					),
 					'justify' => array(
-						'title' => esc_html__( 'Justified', 'mas-elementor' ),
+						'title' => esc_html__( 'Justified', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-text-align-justify',
 					),
 				),
@@ -409,7 +409,7 @@ abstract class Posts_Base extends Base_Widget {
 		$this->add_control(
 			'load_more_no_posts_message_switcher',
 			array(
-				'label'     => esc_html__( 'Custom Messages', 'mas-elementor' ),
+				'label'     => esc_html__( 'Custom Messages', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::SWITCHER,
 				'default'   => '',
 				'condition' => array(
@@ -424,9 +424,9 @@ abstract class Posts_Base extends Base_Widget {
 		$this->add_control(
 			'load_more_no_posts_custom_message',
 			array(
-				'label'       => esc_html__( 'No more posts message', 'mas-elementor' ),
+				'label'       => esc_html__( 'No more posts message', 'mas-addons-for-elementor' ),
 				'type'        => Controls_Manager::TEXT,
-				'default'     => esc_html__( 'No more posts to show', 'mas-elementor' ),
+				'default'     => esc_html__( 'No more posts to show', 'mas-addons-for-elementor' ),
 				'condition'   => array(
 					'pagination_type'                     => array(
 						'load_more_on_click',
@@ -443,7 +443,7 @@ abstract class Posts_Base extends Base_Widget {
 		$this->start_controls_section(
 			'section_load_more',
 			array(
-				'label'     => __( 'Load More Button', 'mas-elementor' ),
+				'label'     => __( 'Load More Button', 'mas-addons-for-elementor' ),
 				'tab'       => Controls_Manager::TAB_STYLE,
 				'condition' => array(
 					'pagination_type' => 'load_more_on_click',
@@ -464,7 +464,7 @@ abstract class Posts_Base extends Base_Widget {
 		$this->start_controls_section(
 			'section_slide_bg',
 			array(
-				'label'     => __( 'Slide Background Image', 'mas-elementor' ),
+				'label'     => __( 'Slide Background Image', 'mas-addons-for-elementor' ),
 				'tab'       => Controls_Manager::TAB_STYLE,
 				'condition' => array(
 					'slide_bg_image'  => 'yes',
@@ -476,22 +476,22 @@ abstract class Posts_Base extends Base_Widget {
 		$this->add_responsive_control(
 			'slide_bg_position',
 			array(
-				'label'      => esc_html_x( 'Position', 'Background Control', 'mas-elementor' ),
+				'label'      => esc_html_x( 'Position', 'Background Control', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::SELECT,
 				'default'    => '',
 				'responsive' => true,
 				'options'    => array(
-					''              => esc_html_x( 'Default', 'Background Control', 'mas-elementor' ),
-					'center center' => esc_html_x( 'Center Center', 'Background Control', 'mas-elementor' ),
-					'center left'   => esc_html_x( 'Center Left', 'Background Control', 'mas-elementor' ),
-					'center right'  => esc_html_x( 'Center Right', 'Background Control', 'mas-elementor' ),
-					'top center'    => esc_html_x( 'Top Center', 'Background Control', 'mas-elementor' ),
-					'top left'      => esc_html_x( 'Top Left', 'Background Control', 'mas-elementor' ),
-					'top right'     => esc_html_x( 'Top Right', 'Background Control', 'mas-elementor' ),
-					'bottom center' => esc_html_x( 'Bottom Center', 'Background Control', 'mas-elementor' ),
-					'bottom left'   => esc_html_x( 'Bottom Left', 'Background Control', 'mas-elementor' ),
-					'bottom right'  => esc_html_x( 'Bottom Right', 'Background Control', 'mas-elementor' ),
-					'initial'       => esc_html_x( 'Custom', 'Background Control', 'mas-elementor' ),
+					''              => esc_html_x( 'Default', 'Background Control', 'mas-addons-for-elementor' ),
+					'center center' => esc_html_x( 'Center Center', 'Background Control', 'mas-addons-for-elementor' ),
+					'center left'   => esc_html_x( 'Center Left', 'Background Control', 'mas-addons-for-elementor' ),
+					'center right'  => esc_html_x( 'Center Right', 'Background Control', 'mas-addons-for-elementor' ),
+					'top center'    => esc_html_x( 'Top Center', 'Background Control', 'mas-addons-for-elementor' ),
+					'top left'      => esc_html_x( 'Top Left', 'Background Control', 'mas-addons-for-elementor' ),
+					'top right'     => esc_html_x( 'Top Right', 'Background Control', 'mas-addons-for-elementor' ),
+					'bottom center' => esc_html_x( 'Bottom Center', 'Background Control', 'mas-addons-for-elementor' ),
+					'bottom left'   => esc_html_x( 'Bottom Left', 'Background Control', 'mas-addons-for-elementor' ),
+					'bottom right'  => esc_html_x( 'Bottom Right', 'Background Control', 'mas-addons-for-elementor' ),
+					'initial'       => esc_html_x( 'Custom', 'Background Control', 'mas-addons-for-elementor' ),
 
 				),
 				'selectors'  => array(
@@ -507,7 +507,7 @@ abstract class Posts_Base extends Base_Widget {
 		$this->add_responsive_control(
 			'slide_bg_position_xpos',
 			array(
-				'label'          => esc_html_x( 'X Position', 'Background Control', 'mas-elementor' ),
+				'label'          => esc_html_x( 'X Position', 'Background Control', 'mas-addons-for-elementor' ),
 				'type'           => Controls_Manager::SLIDER,
 				'responsive'     => true,
 				'size_units'     => array( 'px', 'em', '%', 'vw' ),
@@ -556,7 +556,7 @@ abstract class Posts_Base extends Base_Widget {
 		$this->add_responsive_control(
 			'slide_bg_position_ypos',
 			array(
-				'label'          => esc_html_x( 'Y Position', 'Background Control', 'mas-elementor' ),
+				'label'          => esc_html_x( 'Y Position', 'Background Control', 'mas-addons-for-elementor' ),
 				'type'           => Controls_Manager::SLIDER,
 				'responsive'     => true,
 				'size_units'     => array( 'px', 'em', '%', 'vh' ),
@@ -605,15 +605,15 @@ abstract class Posts_Base extends Base_Widget {
 		$this->add_responsive_control(
 			'slide_bg_repeat',
 			array(
-				'label'     => esc_html_x( 'Repeat', 'Background Control', 'mas-elementor' ),
+				'label'     => esc_html_x( 'Repeat', 'Background Control', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::SELECT,
 				'default'   => '',
 				'options'   => array(
-					''          => esc_html_x( 'Default', 'Background Control', 'mas-elementor' ),
-					'no-repeat' => esc_html_x( 'No-repeat', 'Background Control', 'mas-elementor' ),
-					'repeat'    => esc_html_x( 'Repeat', 'Background Control', 'mas-elementor' ),
-					'repeat-x'  => esc_html_x( 'Repeat-x', 'Background Control', 'mas-elementor' ),
-					'repeat-y'  => esc_html_x( 'Repeat-y', 'Background Control', 'mas-elementor' ),
+					''          => esc_html_x( 'Default', 'Background Control', 'mas-addons-for-elementor' ),
+					'no-repeat' => esc_html_x( 'No-repeat', 'Background Control', 'mas-addons-for-elementor' ),
+					'repeat'    => esc_html_x( 'Repeat', 'Background Control', 'mas-addons-for-elementor' ),
+					'repeat-x'  => esc_html_x( 'Repeat-x', 'Background Control', 'mas-addons-for-elementor' ),
+					'repeat-y'  => esc_html_x( 'Repeat-y', 'Background Control', 'mas-addons-for-elementor' ),
 				),
 				'selectors' => array(
 					'{{WRAPPER}} .swiper-slide' => 'background-repeat: {{VALUE}};',
@@ -628,15 +628,15 @@ abstract class Posts_Base extends Base_Widget {
 		$this->add_responsive_control(
 			'slide_bg_size',
 			array(
-				'label'     => esc_html_x( 'Size', 'Background Control', 'mas-elementor' ),
+				'label'     => esc_html_x( 'Size', 'Background Control', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::SELECT,
 				'default'   => '',
 				'options'   => array(
-					''        => esc_html_x( 'Default', 'Background Control', 'mas-elementor' ),
-					'auto'    => esc_html_x( 'Auto', 'Background Control', 'mas-elementor' ),
-					'cover'   => esc_html_x( 'Cover', 'Background Control', 'mas-elementor' ),
-					'contain' => esc_html_x( 'Contain', 'Background Control', 'mas-elementor' ),
-					'initial' => esc_html_x( 'Custom', 'Background Control', 'mas-elementor' ),
+					''        => esc_html_x( 'Default', 'Background Control', 'mas-addons-for-elementor' ),
+					'auto'    => esc_html_x( 'Auto', 'Background Control', 'mas-addons-for-elementor' ),
+					'cover'   => esc_html_x( 'Cover', 'Background Control', 'mas-addons-for-elementor' ),
+					'contain' => esc_html_x( 'Contain', 'Background Control', 'mas-addons-for-elementor' ),
+					'initial' => esc_html_x( 'Custom', 'Background Control', 'mas-addons-for-elementor' ),
 				),
 				'selectors' => array(
 					'{{WRAPPER}} .swiper-slide' => 'background-size: {{VALUE}};',
@@ -653,7 +653,7 @@ abstract class Posts_Base extends Base_Widget {
 		$this->start_controls_section(
 			'section_pagination_style',
 			array(
-				'label'     => __( 'Pagination', 'mas-elementor' ),
+				'label'     => __( 'Pagination', 'mas-addons-for-elementor' ),
 				'tab'       => Controls_Manager::TAB_STYLE,
 				'condition' => array(
 					'pagination_type!' => array(
@@ -668,12 +668,12 @@ abstract class Posts_Base extends Base_Widget {
 		$this->add_control(
 			'pagination_position_in_out',
 			array(
-				'label'   => esc_html__( 'Pagination Position', 'mas-elementor' ),
+				'label'   => esc_html__( 'Pagination Position', 'mas-addons-for-elementor' ),
 				'type'    => Controls_Manager::SELECT,
 				'default' => 'out',
 				'options' => array(
-					'in'  => esc_html__( 'In', 'mas-elementor' ),
-					'out' => esc_html__( 'Out', 'mas-elementor' ),
+					'in'  => esc_html__( 'In', 'mas-addons-for-elementor' ),
+					'out' => esc_html__( 'Out', 'mas-addons-for-elementor' ),
 				),
 			)
 		);
@@ -706,7 +706,7 @@ abstract class Posts_Base extends Base_Widget {
 		$this->add_control(
 			'pag_heading',
 			array(
-				'label'     => __( 'Spacing', 'mas-elementor' ),
+				'label'     => __( 'Spacing', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::HEADING,
 				'separator' => 'before',
 			)
@@ -715,7 +715,7 @@ abstract class Posts_Base extends Base_Widget {
 		$this->add_control(
 			'pagination_spacing',
 			array(
-				'label'      => __( 'Top Spacing', 'mas-elementor' ),
+				'label'      => __( 'Top Spacing', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::SLIDER,
 				'size_units' => array( 'px', '%', 'em' ),
 				'default'    => array(
@@ -737,7 +737,7 @@ abstract class Posts_Base extends Base_Widget {
 		$this->add_responsive_control(
 			'product_pagination_spacing',
 			array(
-				'label'      => __( 'Space Between', 'mas-elementor' ),
+				'label'      => __( 'Space Between', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::SLIDER,
 				'size_units' => array( 'px', '%', 'em' ),
 				'default'    => array(
@@ -767,7 +767,7 @@ abstract class Posts_Base extends Base_Widget {
 			'pagination_padding',
 			array(
 				'type'       => Controls_Manager::DIMENSIONS,
-				'label'      => esc_html__( 'Padding', 'mas-elementor' ),
+				'label'      => esc_html__( 'Padding', 'mas-addons-for-elementor' ),
 				'size_units' => array( 'px', '%', 'em' ),
 				'default'    => array(
 					'top'      => 8,
@@ -794,7 +794,7 @@ abstract class Posts_Base extends Base_Widget {
 		$this->start_controls_tab(
 			'pagination_style_normal',
 			array(
-				'label' => __( 'Normal', 'mas-elementor' ),
+				'label' => __( 'Normal', 'mas-addons-for-elementor' ),
 			)
 		);
 
@@ -829,7 +829,7 @@ abstract class Posts_Base extends Base_Widget {
 		$this->add_control(
 			'pagination_link_color',
 			array(
-				'label'     => __( 'Text Color', 'mas-elementor' ),
+				'label'     => __( 'Text Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'default'   => '#576366',
 				'selectors' => array(
@@ -841,7 +841,7 @@ abstract class Posts_Base extends Base_Widget {
 		$this->add_control(
 			'pagination_link_bg_color',
 			array(
-				'label'     => __( 'Background Color', 'mas-elementor' ),
+				'label'     => __( 'Background Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'default'   => '#FFFFFF',
 				'selectors' => array(
@@ -879,7 +879,7 @@ abstract class Posts_Base extends Base_Widget {
 			'normal_single_pag_border_red',
 			array(
 				'type'       => Controls_Manager::DIMENSIONS,
-				'label'      => esc_html__( 'Border Radius', 'mas-elementor' ),
+				'label'      => esc_html__( 'Border Radius', 'mas-addons-for-elementor' ),
 				'size_units' => array( 'px', '%', 'em' ),
 				'default'    => array(
 					'top'      => 5,
@@ -900,7 +900,7 @@ abstract class Posts_Base extends Base_Widget {
 		$this->start_controls_tab(
 			'pagination_style_hover',
 			array(
-				'label' => __( 'Hover', 'mas-elementor' ),
+				'label' => __( 'Hover', 'mas-addons-for-elementor' ),
 			)
 		);
 
@@ -935,7 +935,7 @@ abstract class Posts_Base extends Base_Widget {
 		$this->add_control(
 			'pagination_link_color_hover',
 			array(
-				'label'     => __( 'Text Color', 'mas-elementor' ),
+				'label'     => __( 'Text Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'default'   => '#576366',
 				'selectors' => array(
@@ -947,7 +947,7 @@ abstract class Posts_Base extends Base_Widget {
 		$this->add_control(
 			'pagination_link_bg_color_hover',
 			array(
-				'label'     => __( 'Background Color', 'mas-elementor' ),
+				'label'     => __( 'Background Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'default'   => '#00000000',
 				'selectors' => array(
@@ -985,7 +985,7 @@ abstract class Posts_Base extends Base_Widget {
 			'hover_single_pag_border_red',
 			array(
 				'type'       => Controls_Manager::DIMENSIONS,
-				'label'      => esc_html__( 'Border Radius', 'mas-elementor' ),
+				'label'      => esc_html__( 'Border Radius', 'mas-addons-for-elementor' ),
 				'size_units' => array( 'px', '%', 'em' ),
 				'default'    => array(
 					'top'      => 5,
@@ -1006,7 +1006,7 @@ abstract class Posts_Base extends Base_Widget {
 		$this->start_controls_tab(
 			'pagination_style_active',
 			array(
-				'label' => __( 'Active', 'mas-elementor' ),
+				'label' => __( 'Active', 'mas-addons-for-elementor' ),
 			)
 		);
 
@@ -1041,7 +1041,7 @@ abstract class Posts_Base extends Base_Widget {
 		$this->add_control(
 			'pagination_link_color_active',
 			array(
-				'label'     => __( 'Text Color', 'mas-elementor' ),
+				'label'     => __( 'Text Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'default'   => '#576366',
 				'selectors' => array(
@@ -1053,7 +1053,7 @@ abstract class Posts_Base extends Base_Widget {
 		$this->add_control(
 			'pagination_link_bg_color_active',
 			array(
-				'label'     => __( 'Background Color', 'mas-elementor' ),
+				'label'     => __( 'Background Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'default'   => '#FFFFFF',
 				'selectors' => array(
@@ -1091,7 +1091,7 @@ abstract class Posts_Base extends Base_Widget {
 			'active_single_pag_border_red',
 			array(
 				'type'       => Controls_Manager::DIMENSIONS,
-				'label'      => esc_html__( 'Border Radius', 'mas-elementor' ),
+				'label'      => esc_html__( 'Border Radius', 'mas-addons-for-elementor' ),
 				'size_units' => array( 'px', '%', 'em' ),
 				'default'    => array(
 					'top'      => 5,
@@ -1128,7 +1128,7 @@ abstract class Posts_Base extends Base_Widget {
 		$this->start_controls_section(
 			'section_carousel_attributes',
 			array(
-				'label'     => __( 'Carousel', 'mas-elementor' ),
+				'label'     => __( 'Carousel', 'mas-addons-for-elementor' ),
 				'tab'       => Controls_Manager::TAB_CONTENT,
 				'condition' => array( 'enable_carousel' => 'yes' ),
 			)
@@ -1138,12 +1138,12 @@ abstract class Posts_Base extends Base_Widget {
 			'carousel_effect',
 			array(
 				'type'               => Controls_Manager::SELECT,
-				'label'              => esc_html__( 'Effect', 'mas-elementor' ),
+				'label'              => esc_html__( 'Effect', 'mas-addons-for-elementor' ),
 				'default'            => 'slide',
 				'options'            => array(
-					''      => esc_html__( 'None', 'mas-elementor' ),
-					'slide' => esc_html__( 'Slide', 'mas-elementor' ),
-					'fade'  => esc_html__( 'Fade', 'mas-elementor' ),
+					''      => esc_html__( 'None', 'mas-addons-for-elementor' ),
+					'slide' => esc_html__( 'Slide', 'mas-addons-for-elementor' ),
+					'fade'  => esc_html__( 'Fade', 'mas-addons-for-elementor' ),
 				),
 				'condition'          => array(
 					'enable_carousel' => 'yes',
@@ -1156,11 +1156,11 @@ abstract class Posts_Base extends Base_Widget {
 			'slide_bg_image',
 			array(
 				'type'        => Controls_Manager::SWITCHER,
-				'label'       => esc_html__( 'Enable Slide Background Image', 'mas-elementor' ),
-				'description' => esc_html__( 'Display featured image as slide background image', 'mas-elementor' ),
+				'label'       => esc_html__( 'Enable Slide Background Image', 'mas-addons-for-elementor' ),
+				'description' => esc_html__( 'Display featured image as slide background image', 'mas-addons-for-elementor' ),
 				'default'     => 'no',
-				'label_off'   => esc_html__( 'Hide', 'mas-elementor' ),
-				'label_on'    => esc_html__( 'Show', 'mas-elementor' ),
+				'label_off'   => esc_html__( 'Hide', 'mas-addons-for-elementor' ),
+				'label_on'    => esc_html__( 'Show', 'mas-addons-for-elementor' ),
 				'condition'   => array(
 					'enable_carousel' => 'yes',
 				),
@@ -1173,7 +1173,7 @@ abstract class Posts_Base extends Base_Widget {
 		$this->add_control(
 			'mas_posts_swiper_height',
 			array(
-				'label'                => esc_html__( 'Height', 'mas-elementor' ),
+				'label'                => esc_html__( 'Height', 'mas-addons-for-elementor' ),
 				'type'                 => Controls_Manager::SELECT,
 				'default'              => 'default',
 				'options'              => array(
@@ -1197,7 +1197,7 @@ abstract class Posts_Base extends Base_Widget {
 			'enable_grid',
 			array(
 				'type'      => Controls_Manager::SWITCHER,
-				'label'     => esc_html__( 'Enable Grid', 'mas-elementor' ),
+				'label'     => esc_html__( 'Enable Grid', 'mas-addons-for-elementor' ),
 				'default'   => 'no',
 				'condition' => array(
 					'enable_carousel' => 'yes',
@@ -1208,7 +1208,7 @@ abstract class Posts_Base extends Base_Widget {
 
 		$carousel_rows = array(
 			'type'               => Controls_Manager::NUMBER,
-			'label'              => esc_html__( 'Rows', 'mas-elementor' ),
+			'label'              => esc_html__( 'Rows', 'mas-addons-for-elementor' ),
 			'min'                => 1,
 			'max'                => 10,
 			'default'            => 1,
@@ -1227,7 +1227,7 @@ abstract class Posts_Base extends Base_Widget {
 
 		$slides_per_view = array(
 			'type'               => Controls_Manager::NUMBER,
-			'label'              => esc_html__( 'Slides Per View', 'mas-elementor' ),
+			'label'              => esc_html__( 'Slides Per View', 'mas-addons-for-elementor' ),
 			'min'                => 1,
 			'max'                => 10,
 			'default'            => 1,
@@ -1240,7 +1240,7 @@ abstract class Posts_Base extends Base_Widget {
 
 		$slides_to_scroll = array(
 			'type'               => Controls_Manager::NUMBER,
-			'label'              => esc_html__( 'Slides To Scroll', 'mas-elementor' ),
+			'label'              => esc_html__( 'Slides To Scroll', 'mas-addons-for-elementor' ),
 			'min'                => 1,
 			'max'                => 10,
 			'default'            => 1,
@@ -1255,8 +1255,8 @@ abstract class Posts_Base extends Base_Widget {
 
 		$space_between = array(
 			'type'        => Controls_Manager::NUMBER,
-			'label'       => esc_html__( 'Space Between', 'mas-elementor' ),
-			'description' => esc_html__( 'Set Space between each Slides', 'mas-elementor' ),
+			'label'       => esc_html__( 'Space Between', 'mas-addons-for-elementor' ),
+			'description' => esc_html__( 'Set Space between each Slides', 'mas-addons-for-elementor' ),
 			'min'         => 0,
 			'max'         => 100,
 			'default'     => 8,
@@ -1293,10 +1293,10 @@ abstract class Posts_Base extends Base_Widget {
 			'enable_space_between',
 			array(
 				'type'      => Controls_Manager::SWITCHER,
-				'label'     => esc_html__( 'Enable Space Between', 'mas-elementor' ),
+				'label'     => esc_html__( 'Enable Space Between', 'mas-addons-for-elementor' ),
 				'default'   => 'yes',
-				'label_off' => esc_html__( 'Hide', 'mas-elementor' ),
-				'label_on'  => esc_html__( 'Show', 'mas-elementor' ),
+				'label_off' => esc_html__( 'Hide', 'mas-addons-for-elementor' ),
+				'label_on'  => esc_html__( 'Show', 'mas-addons-for-elementor' ),
 				'condition' => array(
 					'carousel_effect' => 'slide',
 					'enable_carousel' => 'yes',
@@ -1313,10 +1313,10 @@ abstract class Posts_Base extends Base_Widget {
 			'center_slides',
 			array(
 				'type'               => Controls_Manager::SWITCHER,
-				'label'              => esc_html__( 'Center Slides', 'mas-elementor' ),
+				'label'              => esc_html__( 'Center Slides', 'mas-addons-for-elementor' ),
 				'default'            => 'no',
-				'label_off'          => esc_html__( 'Hide', 'mas-elementor' ),
-				'label_on'           => esc_html__( 'Show', 'mas-elementor' ),
+				'label_off'          => esc_html__( 'Hide', 'mas-addons-for-elementor' ),
+				'label_on'           => esc_html__( 'Show', 'mas-addons-for-elementor' ),
 				'condition'          => array(
 					'carousel_effect' => 'slide',
 					'enable_carousel' => 'yes',
@@ -1331,10 +1331,10 @@ abstract class Posts_Base extends Base_Widget {
 			'show_arrows',
 			array(
 				'type'      => Controls_Manager::SWITCHER,
-				'label'     => esc_html__( 'Arrows', 'mas-elementor' ),
+				'label'     => esc_html__( 'Arrows', 'mas-addons-for-elementor' ),
 				'default'   => 'no',
-				'label_off' => esc_html__( 'Hide', 'mas-elementor' ),
-				'label_on'  => esc_html__( 'Show', 'mas-elementor' ),
+				'label_off' => esc_html__( 'Hide', 'mas-addons-for-elementor' ),
+				'label_on'  => esc_html__( 'Show', 'mas-addons-for-elementor' ),
 				'condition' => array(
 					'enable_carousel'     => 'yes',
 					'show_custom_arrows!' => 'yes',
@@ -1347,10 +1347,10 @@ abstract class Posts_Base extends Base_Widget {
 			'hide_responsive_arrows',
 			array(
 				'type'         => Controls_Manager::SWITCHER,
-				'label'        => esc_html__( 'Hide Arrow Responsive', 'mas-elementor' ),
+				'label'        => esc_html__( 'Hide Arrow Responsive', 'mas-addons-for-elementor' ),
 				'default'      => 'no',
-				'label_off'    => esc_html__( 'Hide', 'mas-elementor' ),
-				'label_on'     => esc_html__( 'Show', 'mas-elementor' ),
+				'label_off'    => esc_html__( 'Hide', 'mas-addons-for-elementor' ),
+				'label_on'     => esc_html__( 'Show', 'mas-addons-for-elementor' ),
 				'condition'    => array(
 					'enable_carousel'     => 'yes',
 					'show_arrows'         => 'yes',
@@ -1365,10 +1365,10 @@ abstract class Posts_Base extends Base_Widget {
 			'show_custom_arrows',
 			array(
 				'type'      => Controls_Manager::SWITCHER,
-				'label'     => esc_html__( 'Custom Arrows', 'mas-elementor' ),
+				'label'     => esc_html__( 'Custom Arrows', 'mas-addons-for-elementor' ),
 				'default'   => 'no',
-				'label_off' => esc_html__( 'Hide', 'mas-elementor' ),
-				'label_on'  => esc_html__( 'Show', 'mas-elementor' ),
+				'label_off' => esc_html__( 'Hide', 'mas-addons-for-elementor' ),
+				'label_on'  => esc_html__( 'Show', 'mas-addons-for-elementor' ),
 				'condition' => array(
 					'enable_carousel' => 'yes',
 					'show_arrows!'    => 'yes',
@@ -1380,7 +1380,7 @@ abstract class Posts_Base extends Base_Widget {
 		$this->add_control(
 			'custom_prev_id',
 			array(
-				'label'     => esc_html__( 'Previous Arrow ID', 'mas-elementor' ),
+				'label'     => esc_html__( 'Previous Arrow ID', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::TEXT,
 				'condition' => array(
 					'enable_carousel'    => 'yes',
@@ -1394,7 +1394,7 @@ abstract class Posts_Base extends Base_Widget {
 		$this->add_control(
 			'custom_next_id',
 			array(
-				'label'     => __( 'Next Arrow ID', 'mas-elementor' ),
+				'label'     => __( 'Next Arrow ID', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::TEXT,
 				'condition' => array(
 					'enable_carousel'    => 'yes',
@@ -1408,7 +1408,7 @@ abstract class Posts_Base extends Base_Widget {
 		$this->add_control(
 			'speed',
 			array(
-				'label'              => esc_html__( 'Transition Duration', 'mas-elementor' ),
+				'label'              => esc_html__( 'Transition Duration', 'mas-addons-for-elementor' ),
 				'type'               => Controls_Manager::NUMBER,
 				'default'            => 500,
 				'step'               => 100,
@@ -1424,7 +1424,7 @@ abstract class Posts_Base extends Base_Widget {
 		$this->add_control(
 			'autoplay',
 			array(
-				'label'              => esc_html__( 'Autoplay', 'mas-elementor' ),
+				'label'              => esc_html__( 'Autoplay', 'mas-addons-for-elementor' ),
 				'type'               => Controls_Manager::SWITCHER,
 				'default'            => 'yes',
 				'separator'          => 'before',
@@ -1440,7 +1440,7 @@ abstract class Posts_Base extends Base_Widget {
 		$this->add_control(
 			'autoplay_speed',
 			array(
-				'label'              => esc_html__( 'Autoplay Speed', 'mas-elementor' ),
+				'label'              => esc_html__( 'Autoplay Speed', 'mas-addons-for-elementor' ),
 				'type'               => Controls_Manager::NUMBER,
 				'default'            => 5000,
 				'condition'          => array(
@@ -1456,7 +1456,7 @@ abstract class Posts_Base extends Base_Widget {
 		$this->add_control(
 			'loop',
 			array(
-				'label'              => esc_html__( 'Infinite Loop', 'mas-elementor' ),
+				'label'              => esc_html__( 'Infinite Loop', 'mas-addons-for-elementor' ),
 				'type'               => Controls_Manager::SWITCHER,
 				'default'            => 'yes',
 				'condition'          => array(
@@ -1470,7 +1470,7 @@ abstract class Posts_Base extends Base_Widget {
 		$this->add_control(
 			'pause_on_hover',
 			array(
-				'label'              => esc_html__( 'Pause on Hover', 'mas-elementor' ),
+				'label'              => esc_html__( 'Pause on Hover', 'mas-addons-for-elementor' ),
 				'type'               => Controls_Manager::SWITCHER,
 				'default'            => 'yes',
 				'condition'          => array(
@@ -1487,10 +1487,10 @@ abstract class Posts_Base extends Base_Widget {
 			'show_pagination',
 			array(
 				'type'               => Controls_Manager::SWITCHER,
-				'label'              => esc_html__( 'Enable Pagination', 'mas-elementor' ),
+				'label'              => esc_html__( 'Enable Pagination', 'mas-addons-for-elementor' ),
 				'default'            => 'yes',
-				'label_off'          => esc_html__( 'Hide', 'mas-elementor' ),
-				'label_on'           => esc_html__( 'Show', 'mas-elementor' ),
+				'label_off'          => esc_html__( 'Hide', 'mas-addons-for-elementor' ),
+				'label_on'           => esc_html__( 'Show', 'mas-addons-for-elementor' ),
 				'condition'          => array(
 					'enable_carousel' => 'yes',
 
@@ -1502,13 +1502,13 @@ abstract class Posts_Base extends Base_Widget {
 		$this->add_control(
 			'pagination',
 			array(
-				'label'     => esc_html__( 'Pagination', 'mas-elementor' ),
+				'label'     => esc_html__( 'Pagination', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::SELECT,
 				'default'   => 'bullets',
 				'options'   => array(
-					'bullets'     => esc_html__( 'Dots', 'mas-elementor' ),
-					'fraction'    => esc_html__( 'Fraction', 'mas-elementor' ),
-					'progressbar' => esc_html__( 'Progress', 'mas-elementor' ),
+					'bullets'     => esc_html__( 'Dots', 'mas-addons-for-elementor' ),
+					'fraction'    => esc_html__( 'Fraction', 'mas-addons-for-elementor' ),
+					'progressbar' => esc_html__( 'Progress', 'mas-addons-for-elementor' ),
 				),
 				'condition' => array(
 					'enable_carousel' => 'yes',
@@ -1521,12 +1521,12 @@ abstract class Posts_Base extends Base_Widget {
 		$this->add_control(
 			'pagination_style',
 			array(
-				'label'     => esc_html__( 'Pagination Style', 'mas-elementor' ),
+				'label'     => esc_html__( 'Pagination Style', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::SELECT,
 				'default'   => 'horizontal',
 				'options'   => array(
-					'horizontal' => esc_html__( 'Horizontal', 'mas-elementor' ),
-					'vertical'   => esc_html__( 'Vertical', 'mas-elementor' ),
+					'horizontal' => esc_html__( 'Horizontal', 'mas-addons-for-elementor' ),
+					'vertical'   => esc_html__( 'Vertical', 'mas-addons-for-elementor' ),
 				),
 				'condition' => array(
 					'enable_carousel' => 'yes',
@@ -1541,7 +1541,7 @@ abstract class Posts_Base extends Base_Widget {
 		$this->start_controls_section(
 			'section_thumb_attributes',
 			array(
-				'label'     => __( 'Thumbs', 'mas-elementor' ),
+				'label'     => __( 'Thumbs', 'mas-addons-for-elementor' ),
 				'tab'       => Controls_Manager::TAB_CONTENT,
 				'condition' => array(
 					'enable_thumbs'   => 'yes',
@@ -1556,7 +1556,7 @@ abstract class Posts_Base extends Base_Widget {
 
 		$thumb_slides_per_view = array(
 			'type'               => Controls_Manager::NUMBER,
-			'label'              => esc_html__( 'Slides Per View', 'mas-elementor' ),
+			'label'              => esc_html__( 'Slides Per View', 'mas-addons-for-elementor' ),
 			'min'                => 1,
 			'max'                => 10,
 			'default'            => 1,
@@ -1570,8 +1570,8 @@ abstract class Posts_Base extends Base_Widget {
 
 		$thumb_space_between = array(
 			'type'        => Controls_Manager::NUMBER,
-			'label'       => esc_html__( 'Space Between', 'mas-elementor' ),
-			'description' => esc_html__( 'Set Space between each Slides', 'mas-elementor' ),
+			'label'       => esc_html__( 'Space Between', 'mas-addons-for-elementor' ),
+			'description' => esc_html__( 'Set Space between each Slides', 'mas-addons-for-elementor' ),
 			'min'         => 0,
 			'max'         => 100,
 			'default'     => 8,
@@ -1599,12 +1599,12 @@ abstract class Posts_Base extends Base_Widget {
 		$this->add_control(
 			'thumbs_direction',
 			array(
-				'label'     => esc_html__( 'Thumbs Direction', 'mas-elementor' ),
+				'label'     => esc_html__( 'Thumbs Direction', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::SELECT,
 				'default'   => 'horizontal',
 				'options'   => array(
-					'horizontal' => esc_html__( 'Horizontal', 'mas-elementor' ),
-					'vertical'   => esc_html__( 'Vertical', 'mas-elementor' ),
+					'horizontal' => esc_html__( 'Horizontal', 'mas-addons-for-elementor' ),
+					'vertical'   => esc_html__( 'Vertical', 'mas-addons-for-elementor' ),
 				),
 				'condition' => array(
 					'enable_carousel' => 'yes',
@@ -1626,7 +1626,7 @@ abstract class Posts_Base extends Base_Widget {
 		$this->start_controls_section(
 			'masposts_swiper_button',
 			array(
-				'label'     => esc_html__( 'Button', 'mas-elementor' ),
+				'label'     => esc_html__( 'Button', 'mas-addons-for-elementor' ),
 				'tab'       => Controls_Manager::TAB_CONTENT,
 				'condition' => array(
 					'enable_carousel' => 'yes',
@@ -1643,7 +1643,7 @@ abstract class Posts_Base extends Base_Widget {
 		$this->start_controls_section(
 			'section_style_swiper_thumbs',
 			array(
-				'label'     => __( 'Swiper Thumbs', 'mas-elementor' ),
+				'label'     => __( 'Swiper Thumbs', 'mas-addons-for-elementor' ),
 				'tab'       => Controls_Manager::TAB_STYLE,
 				'condition' => array(
 					'enable_carousel' => 'yes',
@@ -1655,12 +1655,12 @@ abstract class Posts_Base extends Base_Widget {
 		$this->add_control(
 			'thumbs_pag_color',
 			array(
-				'label'     => esc_html__( 'Pagination Colors', 'mas-elementor' ),
+				'label'     => esc_html__( 'Pagination Colors', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::SELECT,
 				'default'   => 'dark',
 				'options'   => array(
-					'dark'  => esc_html__( 'Dark', 'mas-elementor' ),
-					'light' => esc_html__( 'Light', 'mas-elementor' ),
+					'dark'  => esc_html__( 'Dark', 'mas-addons-for-elementor' ),
+					'light' => esc_html__( 'Light', 'mas-addons-for-elementor' ),
 				),
 				'condition' => array(
 					'enable_carousel' => 'yes',
@@ -1673,9 +1673,9 @@ abstract class Posts_Base extends Base_Widget {
 			'thumbs_container_padding',
 			array(
 				'type'        => Controls_Manager::DIMENSIONS,
-				'label'       => esc_html__( 'Padding', 'mas-elementor' ),
+				'label'       => esc_html__( 'Padding', 'mas-addons-for-elementor' ),
 				'size_units'  => array( 'px', '%', 'em' ),
-				'description' => esc_html__( 'padding in thumbs container', 'mas-elementor' ),
+				'description' => esc_html__( 'padding in thumbs container', 'mas-addons-for-elementor' ),
 				'default'     => array(
 					'top'      => 56,
 					'right'    => 0,
@@ -1729,14 +1729,14 @@ abstract class Posts_Base extends Base_Widget {
 		$this->start_controls_tab(
 			'thumb_style_normal',
 			array(
-				'label' => __( 'Normal', 'mas-elementor' ),
+				'label' => __( 'Normal', 'mas-addons-for-elementor' ),
 			)
 		);
 
 		$this->add_control(
 			'thumb_title_color',
 			array(
-				'label'     => __( 'Text Color', 'mas-elementor' ),
+				'label'     => __( 'Text Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'default'   => '#576366',
 				'selectors' => array(
@@ -1750,7 +1750,7 @@ abstract class Posts_Base extends Base_Widget {
 		$this->add_control(
 			'thumb_progress_color',
 			array(
-				'label'     => __( 'Progress Color', 'mas-elementor' ),
+				'label'     => __( 'Progress Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'default'   => '#377dff',
 				'selectors' => array(
@@ -1767,14 +1767,14 @@ abstract class Posts_Base extends Base_Widget {
 		$this->start_controls_tab(
 			'thumb_style_active',
 			array(
-				'label' => __( 'Active', 'mas-elementor' ),
+				'label' => __( 'Active', 'mas-addons-for-elementor' ),
 			)
 		);
 
 		$this->add_control(
 			'thumb_active_title_color',
 			array(
-				'label'     => __( 'Text Color', 'mas-elementor' ),
+				'label'     => __( 'Text Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'default'   => '#576366',
 				'selectors' => array(
@@ -1787,7 +1787,7 @@ abstract class Posts_Base extends Base_Widget {
 		$this->add_control(
 			'thumb_progress_active_color',
 			array(
-				'label'     => __( 'Progress Color', 'mas-elementor' ),
+				'label'     => __( 'Progress Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'default'   => '#ffffff',
 				'selectors' => array(
@@ -1807,9 +1807,9 @@ abstract class Posts_Base extends Base_Widget {
 			'swiper_thumbs_padding',
 			array(
 				'type'        => Controls_Manager::DIMENSIONS,
-				'label'       => esc_html__( 'Padding', 'mas-elementor' ),
+				'label'       => esc_html__( 'Padding', 'mas-addons-for-elementor' ),
 				'size_units'  => array( 'px', '%', 'em' ),
-				'description' => esc_html__( 'padding between progress and title', 'mas-elementor' ),
+				'description' => esc_html__( 'padding between progress and title', 'mas-addons-for-elementor' ),
 				'default'     => array(
 					'top'      => 8,
 					'right'    => 12,
@@ -1828,7 +1828,7 @@ abstract class Posts_Base extends Base_Widget {
 		$this->add_responsive_control(
 			'thumbs_vertical_space_between',
 			array(
-				'label'      => esc_html__( 'Title Spacing', 'mas-elementor' ),
+				'label'      => esc_html__( 'Title Spacing', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::SLIDER,
 				'default'    => array(
 					'unit' => '%',
@@ -1857,7 +1857,7 @@ abstract class Posts_Base extends Base_Widget {
 		$this->add_responsive_control(
 			'swiper_thumbscustom_width',
 			array(
-				'label'      => esc_html__( 'Width', 'mas-elementor' ),
+				'label'      => esc_html__( 'Width', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::SLIDER,
 				'default'    => array(
 					'unit' => '%',
@@ -1882,13 +1882,13 @@ abstract class Posts_Base extends Base_Widget {
 		$this->add_control(
 			'thumb_position',
 			array(
-				'label'              => esc_html__( 'Position', 'mas-elementor' ),
+				'label'              => esc_html__( 'Position', 'mas-addons-for-elementor' ),
 				'type'               => Controls_Manager::SELECT,
 				'default'            => '',
 				'options'            => array(
-					''         => esc_html__( 'Default', 'mas-elementor' ),
-					'absolute' => esc_html__( 'Absolute', 'mas-elementor' ),
-					'fixed'    => esc_html__( 'Fixed', 'mas-elementor' ),
+					''         => esc_html__( 'Default', 'mas-addons-for-elementor' ),
+					'absolute' => esc_html__( 'Absolute', 'mas-addons-for-elementor' ),
+					'fixed'    => esc_html__( 'Fixed', 'mas-addons-for-elementor' ),
 				),
 				'selectors'          => array(
 					'{{WRAPPER}} .mas-posts-thumbs-wrapper' => 'position: {{VALUE}};',
@@ -1898,8 +1898,8 @@ abstract class Posts_Base extends Base_Widget {
 			)
 		);
 
-		$left  = esc_html__( 'Left', 'mas-elementor' );
-		$right = esc_html__( 'Right', 'mas-elementor' );
+		$left  = esc_html__( 'Left', 'mas-addons-for-elementor' );
+		$right = esc_html__( 'Right', 'mas-addons-for-elementor' );
 
 		$start = is_rtl() ? $right : $left;
 		$end   = ! is_rtl() ? $right : $left;
@@ -1907,7 +1907,7 @@ abstract class Posts_Base extends Base_Widget {
 		$this->add_control(
 			'thumb_offset_orientation_h',
 			array(
-				'label'       => esc_html__( 'Horizontal Orientation', 'mas-elementor' ),
+				'label'       => esc_html__( 'Horizontal Orientation', 'mas-addons-for-elementor' ),
 				'type'        => Controls_Manager::CHOOSE,
 				'toggle'      => false,
 				'default'     => 'start',
@@ -1932,7 +1932,7 @@ abstract class Posts_Base extends Base_Widget {
 		$this->add_responsive_control(
 			'thumb_offset_x',
 			array(
-				'label'      => esc_html__( 'Offset', 'mas-elementor' ),
+				'label'      => esc_html__( 'Offset', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::SLIDER,
 				'range'      => array(
 					'px' => array(
@@ -1971,7 +1971,7 @@ abstract class Posts_Base extends Base_Widget {
 		$this->add_responsive_control(
 			'thumb_offset_x_end',
 			array(
-				'label'      => esc_html__( 'Offset', 'mas-elementor' ),
+				'label'      => esc_html__( 'Offset', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::SLIDER,
 				'range'      => array(
 					'px' => array(
@@ -2010,17 +2010,17 @@ abstract class Posts_Base extends Base_Widget {
 		$this->add_control(
 			'thumb_offset_orientation_v',
 			array(
-				'label'       => esc_html__( 'Vertical Orientation', 'mas-elementor' ),
+				'label'       => esc_html__( 'Vertical Orientation', 'mas-addons-for-elementor' ),
 				'type'        => Controls_Manager::CHOOSE,
 				'toggle'      => false,
 				'default'     => 'start',
 				'options'     => array(
 					'start' => array(
-						'title' => esc_html__( 'Top', 'mas-elementor' ),
+						'title' => esc_html__( 'Top', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-v-align-top',
 					),
 					'end'   => array(
-						'title' => esc_html__( 'Bottom', 'mas-elementor' ),
+						'title' => esc_html__( 'Bottom', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-v-align-bottom',
 					),
 				),
@@ -2034,7 +2034,7 @@ abstract class Posts_Base extends Base_Widget {
 		$this->add_responsive_control(
 			'thumb_offset_y',
 			array(
-				'label'      => esc_html__( 'Offset', 'mas-elementor' ),
+				'label'      => esc_html__( 'Offset', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::SLIDER,
 				'range'      => array(
 					'px' => array(
@@ -2072,7 +2072,7 @@ abstract class Posts_Base extends Base_Widget {
 		$this->add_responsive_control(
 			'thumb_offset_y_end',
 			array(
-				'label'      => esc_html__( 'Offset', 'mas-elementor' ),
+				'label'      => esc_html__( 'Offset', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::SLIDER,
 				'range'      => array(
 					'px' => array(
@@ -2120,7 +2120,7 @@ abstract class Posts_Base extends Base_Widget {
 		$this->start_controls_section(
 			'section_query',
 			array(
-				'label' => __( 'Query', 'mas-elementor' ),
+				'label' => __( 'Query', 'mas-addons-for-elementor' ),
 				'tab'   => Controls_Manager::TAB_CONTENT,
 			)
 		);
@@ -2326,7 +2326,7 @@ abstract class Posts_Base extends Base_Widget {
 				'total'              => $page_limit,
 				'prev_next'          => false,
 				'show_all'           => 'yes' !== $parent_settings['pagination_numbers_shorten'],
-				'before_page_number' => '<span class="elementor-screen-only">' . esc_html__( 'Page', 'mas-elementor' ) . '</span>',
+				'before_page_number' => '<span class="elementor-screen-only">' . esc_html__( 'Page', 'mas-addons-for-elementor' ) . '</span>',
 			);
 
 			if ( is_singular() && ! is_front_page() ) {
@@ -2350,7 +2350,7 @@ abstract class Posts_Base extends Base_Widget {
 
 		// PHPCS - Seems that `$links` is safe.
 		?>
-		<nav class="elementor-pagination" role="navigation" aria-label="<?php esc_attr_e( 'Pagination', 'mas-elementor' ); ?>">
+		<nav class="elementor-pagination" role="navigation" aria-label="<?php esc_attr_e( 'Pagination', 'mas-addons-for-elementor' ); ?>">
 			<?php echo implode( PHP_EOL, $links ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 		</nav>
 		<?php
@@ -2419,7 +2419,7 @@ abstract class Posts_Base extends Base_Widget {
 		$this->start_controls_section(
 			'section_layout',
 			array(
-				'label' => __( 'Layout', 'mas-elementor' ),
+				'label' => __( 'Layout', 'mas-addons-for-elementor' ),
 				'tab'   => Controls_Manager::TAB_CONTENT,
 			)
 		);
@@ -2427,12 +2427,12 @@ abstract class Posts_Base extends Base_Widget {
 		$this->add_control(
 			'template_options',
 			array(
-				'label'   => __( 'Select Template By', 'mas-elementor' ),
+				'label'   => __( 'Select Template By', 'mas-addons-for-elementor' ),
 				'type'    => Controls_Manager::SELECT,
 				'default' => 'id',
 				'options' => array(
-					'id'   => esc_html__( 'ID', 'mas-elementor' ),
-					'slug' => esc_html__( 'Slug', 'mas-elementor' ),
+					'id'   => esc_html__( 'ID', 'mas-addons-for-elementor' ),
+					'slug' => esc_html__( 'Slug', 'mas-addons-for-elementor' ),
 				),
 			)
 		);
@@ -2441,7 +2441,7 @@ abstract class Posts_Base extends Base_Widget {
 		$this->add_control(
 			'select_template',
 			array(
-				'label'     => esc_html__( 'MAS Post Item', 'mas-elementor' ),
+				'label'     => esc_html__( 'MAS Post Item', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::SELECT,
 				'options'   => $templates,
 				'condition' => array(
@@ -2454,7 +2454,7 @@ abstract class Posts_Base extends Base_Widget {
 		$this->add_control(
 			'slug_select_template',
 			array(
-				'label'     => esc_html__( 'MAS Post Item', 'mas-elementor' ),
+				'label'     => esc_html__( 'MAS Post Item', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::SELECT,
 				'options'   => $slug_options,
 				'condition' => array(
@@ -2467,7 +2467,7 @@ abstract class Posts_Base extends Base_Widget {
 			'enable_post_format_selection',
 			array(
 				'type'    => Controls_Manager::SWITCHER,
-				'label'   => esc_html__( 'Enable Post Format Selection', 'mas-elementor' ),
+				'label'   => esc_html__( 'Enable Post Format Selection', 'mas-addons-for-elementor' ),
 				'default' => 'no',
 			)
 		);
@@ -2488,7 +2488,7 @@ abstract class Posts_Base extends Base_Widget {
 		$this->add_responsive_control(
 			'columns',
 			array(
-				'label'               => __( 'Columns', 'mas-elementor' ),
+				'label'               => __( 'Columns', 'mas-addons-for-elementor' ),
 				'type'                => Controls_Manager::NUMBER,
 				'prefix_class'        => 'mas-grid%s-',
 				'min'                 => 1,
@@ -2517,7 +2517,7 @@ abstract class Posts_Base extends Base_Widget {
 		$this->add_control(
 			'rows',
 			array(
-				'label'       => __( 'Rows', 'mas-elementor' ),
+				'label'       => __( 'Rows', 'mas-addons-for-elementor' ),
 				'type'        => Controls_Manager::NUMBER,
 				'default'     => 4,
 				'render_type' => 'template',
@@ -2536,7 +2536,7 @@ abstract class Posts_Base extends Base_Widget {
 			'enable_loop_selection',
 			array(
 				'type'      => Controls_Manager::SWITCHER,
-				'label'     => esc_html__( 'Enable Loop Selection', 'mas-elementor' ),
+				'label'     => esc_html__( 'Enable Loop Selection', 'mas-addons-for-elementor' ),
 				'default'   => 'no',
 				'separator' => 'before',
 				'condition' => array(
@@ -2552,8 +2552,8 @@ abstract class Posts_Base extends Base_Widget {
 			'enable_slug_loop_selection',
 			array(
 				'type'        => Controls_Manager::SWITCHER,
-				'label'       => esc_html__( 'Enable Loop Selection', 'mas-elementor' ),
-				'description' => esc_html__( 'Enable for Slug', 'mas-elementor' ),
+				'label'       => esc_html__( 'Enable Loop Selection', 'mas-addons-for-elementor' ),
+				'description' => esc_html__( 'Enable for Slug', 'mas-addons-for-elementor' ),
 				'default'     => 'no',
 				'separator'   => 'before',
 				'condition'   => array(
@@ -2571,7 +2571,7 @@ abstract class Posts_Base extends Base_Widget {
 		$this->add_control(
 			'select_loop',
 			array(
-				'label'      => esc_html__( 'Select Loop', 'mas-elementor' ),
+				'label'      => esc_html__( 'Select Loop', 'mas-addons-for-elementor' ),
 				'type'       => \Elementor\Controls_Manager::SELECT2,
 				'multiple'   => true,
 				'options'    => array() + $loop,
@@ -2614,10 +2614,10 @@ abstract class Posts_Base extends Base_Widget {
 		$this->add_control(
 			'select_loop_template',
 			array(
-				'label'       => esc_html__( 'MAS Select Templates', 'mas-elementor' ),
+				'label'       => esc_html__( 'MAS Select Templates', 'mas-addons-for-elementor' ),
 				'type'        => Controls_Manager::SELECT,
 				'options'     => $templates,
-				'description' => esc_html__( 'Select Templates for the above selected posts series', 'mas-elementor' ),
+				'description' => esc_html__( 'Select Templates for the above selected posts series', 'mas-addons-for-elementor' ),
 				'condition'   => array(
 					'enable_loop_selection' => 'yes',
 					'template_options'      => 'id',
@@ -2643,10 +2643,10 @@ abstract class Posts_Base extends Base_Widget {
 		$this->add_control(
 			'select_slug_loop_template',
 			array(
-				'label'       => esc_html__( 'MAS Select Templates', 'mas-elementor' ),
+				'label'       => esc_html__( 'MAS Select Templates', 'mas-addons-for-elementor' ),
 				'type'        => Controls_Manager::SELECT,
 				'options'     => $slug_options,
-				'description' => esc_html__( 'Select Templates for the slug selected posts series', 'mas-elementor' ),
+				'description' => esc_html__( 'Select Templates for the slug selected posts series', 'mas-addons-for-elementor' ),
 				'condition'   => array(
 					'enable_slug_loop_selection' => 'yes',
 					'template_options'           => 'slug',
@@ -2672,7 +2672,7 @@ abstract class Posts_Base extends Base_Widget {
 		$this->add_control(
 			'swiper_posts_per_page',
 			array(
-				'label'       => __( 'Posts Per Page', 'mas-elementor' ),
+				'label'       => __( 'Posts Per Page', 'mas-addons-for-elementor' ),
 				'type'        => Controls_Manager::NUMBER,
 				'default'     => 6,
 				'render_type' => 'template',
@@ -2686,7 +2686,7 @@ abstract class Posts_Base extends Base_Widget {
 			'enable_carousel',
 			array(
 				'type'    => Controls_Manager::SWITCHER,
-				'label'   => esc_html__( 'Enable Carousel', 'mas-elementor' ),
+				'label'   => esc_html__( 'Enable Carousel', 'mas-addons-for-elementor' ),
 				'default' => 'no',
 			)
 		);
@@ -2695,9 +2695,9 @@ abstract class Posts_Base extends Base_Widget {
 			'enable_thumbs',
 			array(
 				'type'         => Controls_Manager::SWITCHER,
-				'label'        => esc_html__( 'Enable Thumbs', 'mas-elementor' ),
-				'label_on'     => __( 'On', 'mas-elementor' ),
-				'label_off'    => __( 'Off', 'mas-elementor' ),
+				'label'        => esc_html__( 'Enable Thumbs', 'mas-addons-for-elementor' ),
+				'label_on'     => __( 'On', 'mas-addons-for-elementor' ),
+				'label_off'    => __( 'Off', 'mas-addons-for-elementor' ),
 				'return_value' => 'yes',
 				'default'      => 'no',
 				'condition'    => array(
@@ -2709,7 +2709,7 @@ abstract class Posts_Base extends Base_Widget {
 		$this->add_control(
 			'thumb_template',
 			array(
-				'label'     => esc_html__( 'MAS Post Item', 'mas-elementor' ),
+				'label'     => esc_html__( 'MAS Post Item', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::SELECT,
 				'options'   => $templates,
 				'condition' => array(
@@ -2724,7 +2724,7 @@ abstract class Posts_Base extends Base_Widget {
 		$this->start_controls_section(
 			'mas_thumbs_section_layout',
 			array(
-				'label'     => __( 'Thumbs Responsive', 'mas-elementor' ),
+				'label'     => __( 'Thumbs Responsive', 'mas-addons-for-elementor' ),
 				'tab'       => Controls_Manager::TAB_CONTENT,
 				'condition' => array(
 					'enable_carousel' => 'yes',
@@ -2740,7 +2740,7 @@ abstract class Posts_Base extends Base_Widget {
 		$this->start_controls_section(
 			'mas_swiper_pagination_hide',
 			array(
-				'label'     => __( 'Swiper Pagination Responsive', 'mas-elementor' ),
+				'label'     => __( 'Swiper Pagination Responsive', 'mas-addons-for-elementor' ),
 				'tab'       => Controls_Manager::TAB_CONTENT,
 				'condition' => array(
 					'enable_carousel' => 'yes',
@@ -2762,7 +2762,7 @@ abstract class Posts_Base extends Base_Widget {
 		$this->start_controls_section(
 			'section_mas_post_style_controls',
 			array(
-				'label' => __( 'Swiper Style', 'mas-elementor' ),
+				'label' => __( 'Swiper Style', 'mas-addons-for-elementor' ),
 				'tab'   => Controls_Manager::TAB_STYLE,
 			)
 		);
@@ -2770,7 +2770,7 @@ abstract class Posts_Base extends Base_Widget {
 		$this->add_responsive_control(
 			'mas_post_carousel_padding_option',
 			array(
-				'label'      => esc_html__( 'Swiper Padding', 'mas-elementor' ),
+				'label'      => esc_html__( 'Swiper Padding', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', 'em', '%', 'rem' ),
 				'selectors'  => array(
@@ -2782,7 +2782,7 @@ abstract class Posts_Base extends Base_Widget {
 		$this->add_responsive_control(
 			'mas_post_carousel_margin_option',
 			array(
-				'label'      => esc_html__( 'Swiper Margin', 'mas-elementor' ),
+				'label'      => esc_html__( 'Swiper Margin', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', 'em', '%', 'rem' ),
 				'selectors'  => array(
@@ -2802,7 +2802,7 @@ abstract class Posts_Base extends Base_Widget {
 		$this->start_controls_section(
 			'mas_section_advanced',
 			array(
-				'label' => esc_html__( 'Advanced', 'mas-elementor' ),
+				'label' => esc_html__( 'Advanced', 'mas-addons-for-elementor' ),
 				'tab'   => Controls_Manager::TAB_CONTENT,
 			)
 		);
@@ -2810,9 +2810,9 @@ abstract class Posts_Base extends Base_Widget {
 		$this->add_control(
 			'nothing_found_message',
 			array(
-				'label'   => esc_html__( 'Nothing Found Message', 'mas-elementor' ),
+				'label'   => esc_html__( 'Nothing Found Message', 'mas-addons-for-elementor' ),
 				'type'    => Controls_Manager::TEXTAREA,
-				'default' => esc_html__( 'No Posts Found', 'mas-elementor' ),
+				'default' => esc_html__( 'No Posts Found', 'mas-addons-for-elementor' ),
 			)
 		);
 
@@ -2822,7 +2822,7 @@ abstract class Posts_Base extends Base_Widget {
 			'section_nothing_found_style',
 			array(
 				'tab'       => Controls_Manager::TAB_STYLE,
-				'label'     => esc_html__( 'Nothing Found Message', 'mas-elementor' ),
+				'label'     => esc_html__( 'Nothing Found Message', 'mas-addons-for-elementor' ),
 				'condition' => array(
 					'nothing_found_message!' => '',
 				),
@@ -2832,19 +2832,19 @@ abstract class Posts_Base extends Base_Widget {
 		$this->add_control(
 			'nothing_found_align',
 			array(
-				'label'     => __( 'Alignment', 'mas-elementor' ),
+				'label'     => __( 'Alignment', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::CHOOSE,
 				'options'   => array(
 					'start'  => array(
-						'title' => __( 'Left', 'mas-elementor' ),
+						'title' => __( 'Left', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-text-align-left',
 					),
 					'center' => array(
-						'title' => __( 'Center', 'mas-elementor' ),
+						'title' => __( 'Center', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-text-align-center',
 					),
 					'end'    => array(
-						'title' => __( 'Right', 'mas-elementor' ),
+						'title' => __( 'Right', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-text-align-right',
 					),
 				),
@@ -2858,7 +2858,7 @@ abstract class Posts_Base extends Base_Widget {
 		$this->add_control(
 			'nothing_found_color',
 			array(
-				'label'     => esc_html__( 'Color', 'mas-elementor' ),
+				'label'     => esc_html__( 'Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'global'    => array(
 					'default' => Global_Colors::COLOR_TEXT,
@@ -2908,7 +2908,7 @@ abstract class Posts_Base extends Base_Widget {
 		$this->add_control(
 			'nothing_found_border_radius',
 			array(
-				'label'      => esc_html__( 'Border Radius', 'mas-elementor' ),
+				'label'      => esc_html__( 'Border Radius', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::SLIDER,
 				'size_units' => array( '%', 'px', 'em', 'rem', 'custom' ),
 				'range'      => array(
@@ -2931,7 +2931,7 @@ abstract class Posts_Base extends Base_Widget {
 		$this->add_control(
 			'nothing_found_bg_color',
 			array(
-				'label'     => __( 'Background Color', 'mas-elementor' ),
+				'label'     => __( 'Background Color', 'mas-addons-for-elementor' ),
 				'separator' => 'before',
 				'type'      => Controls_Manager::COLOR,
 				'default'   => '##f9fafa',
@@ -2944,7 +2944,7 @@ abstract class Posts_Base extends Base_Widget {
 		$this->add_responsive_control(
 			'mas_product_nothing_found_margin_option',
 			array(
-				'label'      => esc_html__( 'Margin', 'mas-elementor' ),
+				'label'      => esc_html__( 'Margin', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', 'em', '%', 'rem' ),
 				'selectors'  => array(
@@ -2956,7 +2956,7 @@ abstract class Posts_Base extends Base_Widget {
 		$this->add_responsive_control(
 			'mas_product_nothing_found_padding_option',
 			array(
-				'label'      => esc_html__( 'Padding', 'mas-elementor' ),
+				'label'      => esc_html__( 'Padding', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', 'em', '%', 'rem' ),
 				'selectors'  => array(
@@ -2979,18 +2979,18 @@ abstract class Posts_Base extends Base_Widget {
 		$active_breakpoints = Plugin::$instance->breakpoints->get_active_breakpoints();
 
 		foreach ( $active_devices as $breakpoint_key ) {
-			$label = 'desktop' === $breakpoint_key ? esc_html__( 'Desktop', 'mas-elementor' ) : $active_breakpoints[ $breakpoint_key ]->get_label();
+			$label = 'desktop' === $breakpoint_key ? esc_html__( 'Desktop', 'mas-addons-for-elementor' ) : $active_breakpoints[ $breakpoint_key ]->get_label();
 
 			$this->add_control(
 				'mas_swiper_pag_hide_' . $breakpoint_key,
 				array(
 					/* translators: %s: Device name. */
-					'label'        => sprintf( __( 'Hide On %s', 'mas-elementor' ), $label ),
+					'label'        => sprintf( __( 'Hide On %s', 'mas-addons-for-elementor' ), $label ),
 					'type'         => Controls_Manager::SWITCHER,
 					'default'      => '',
 					'prefix_class' => 'mas-swiper-pagination-',
-					'label_on'     => esc_html__( 'Hide', 'mas-elementor' ),
-					'label_off'    => esc_html__( 'Show', 'mas-elementor' ),
+					'label_on'     => esc_html__( 'Hide', 'mas-addons-for-elementor' ),
+					'label_off'    => esc_html__( 'Show', 'mas-addons-for-elementor' ),
 					'return_value' => 'hidden-' . $breakpoint_key,
 				)
 			);
@@ -3008,18 +3008,18 @@ abstract class Posts_Base extends Base_Widget {
 		$active_breakpoints = Plugin::$instance->breakpoints->get_active_breakpoints();
 
 		foreach ( $active_devices as $breakpoint_key ) {
-			$label = 'desktop' === $breakpoint_key ? esc_html__( 'Desktop', 'mas-elementor' ) : $active_breakpoints[ $breakpoint_key ]->get_label();
+			$label = 'desktop' === $breakpoint_key ? esc_html__( 'Desktop', 'mas-addons-for-elementor' ) : $active_breakpoints[ $breakpoint_key ]->get_label();
 
 			$this->add_control(
 				'mas_hide_' . $breakpoint_key,
 				array(
 					/* translators: %s: Device name. */
-					'label'        => sprintf( __( 'Hide On %s', 'mas-elementor' ), $label ),
+					'label'        => sprintf( __( 'Hide On %s', 'mas-addons-for-elementor' ), $label ),
 					'type'         => Controls_Manager::SWITCHER,
 					'default'      => '',
 					'prefix_class' => 'mas-thumbs-swiper-',
-					'label_on'     => esc_html__( 'Hide', 'mas-elementor' ),
-					'label_off'    => esc_html__( 'Show', 'mas-elementor' ),
+					'label_on'     => esc_html__( 'Hide', 'mas-addons-for-elementor' ),
+					'label_off'    => esc_html__( 'Show', 'mas-addons-for-elementor' ),
 					'return_value' => 'hidden-' . $breakpoint_key,
 				)
 			);

@@ -32,8 +32,8 @@ trait Load_Button_Widget_Trait {
 	protected function load_more_register_button_content_controls( $args = array() ) {
 		$default_args = array(
 			'section_condition'      => array(),
-			'button_text'            => esc_html__( 'Click here', 'mas-elementor' ),
-			'control_label_name'     => esc_html__( 'Text', 'mas-elementor' ),
+			'button_text'            => esc_html__( 'Click here', 'mas-addons-for-elementor' ),
+			'control_label_name'     => esc_html__( 'Text', 'mas-addons-for-elementor' ),
 			'prefix_class'           => 'elementor%s-align-',
 			'alignment_default'      => 'center',
 			'exclude_inline_options' => array(),
@@ -59,12 +59,12 @@ trait Load_Button_Widget_Trait {
 		$this->add_control(
 			'lm_link',
 			array(
-				'label'       => esc_html__( 'Link', 'mas-elementor' ),
+				'label'       => esc_html__( 'Link', 'mas-addons-for-elementor' ),
 				'type'        => Controls_Manager::URL,
 				'dynamic'     => array(
 					'active' => true,
 				),
-				'placeholder' => esc_html__( 'https://your-link.com', 'mas-elementor' ),
+				'placeholder' => esc_html__( 'https://your-link.com', 'mas-addons-for-elementor' ),
 				'default'     => array(
 					'url' => '#loadMore',
 				),
@@ -75,24 +75,24 @@ trait Load_Button_Widget_Trait {
 		$this->add_responsive_control(
 			'lm_align',
 			array(
-				'label'     => esc_html__( 'Alignment', 'mas-elementor' ),
+				'label'     => esc_html__( 'Alignment', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::CHOOSE,
 				'default'   => 'center',
 				'options'   => array(
 					'left'    => array(
-						'title' => esc_html__( 'Left', 'mas-elementor' ),
+						'title' => esc_html__( 'Left', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-text-align-left',
 					),
 					'center'  => array(
-						'title' => esc_html__( 'Center', 'mas-elementor' ),
+						'title' => esc_html__( 'Center', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-text-align-center',
 					),
 					'right'   => array(
-						'title' => esc_html__( 'Right', 'mas-elementor' ),
+						'title' => esc_html__( 'Right', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-text-align-right',
 					),
 					'justify' => array(
-						'title' => esc_html__( 'Justified', 'mas-elementor' ),
+						'title' => esc_html__( 'Justified', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-text-align-justify',
 					),
 				),
@@ -106,7 +106,7 @@ trait Load_Button_Widget_Trait {
 		$this->add_control(
 			'lm_selected_icon',
 			array(
-				'label'                  => esc_html__( 'Icon', 'mas-elementor' ),
+				'label'                  => esc_html__( 'Icon', 'mas-addons-for-elementor' ),
 				'type'                   => Controls_Manager::ICONS,
 				'fa4compatibility'       => 'icon',
 				'skin'                   => 'inline',
@@ -119,10 +119,10 @@ trait Load_Button_Widget_Trait {
 		$this->add_control(
 			'lm_button_wrapper_css',
 			array(
-				'label'       => esc_html__( 'Button Wrapper CSS', 'mas-elementor' ),
+				'label'       => esc_html__( 'Button Wrapper CSS', 'mas-addons-for-elementor' ),
 				'type'        => Controls_Manager::TEXT,
 				'default'     => '',
-				'description' => esc_html__( 'Additional CSS to be applied to .btn-wrapper element.', 'mas-elementor' ),
+				'description' => esc_html__( 'Additional CSS to be applied to .btn-wrapper element.', 'mas-addons-for-elementor' ),
 				'condition'   => $args['section_condition'],
 			)
 		);
@@ -130,10 +130,10 @@ trait Load_Button_Widget_Trait {
 		$this->add_control(
 			'lm_button_css',
 			array(
-				'label'       => esc_html__( 'Button CSS', 'mas-elementor' ),
+				'label'       => esc_html__( 'Button CSS', 'mas-addons-for-elementor' ),
 				'type'        => Controls_Manager::TEXT,
 				'default'     => '',
-				'description' => esc_html__( 'Additional CSS to be applied to .btn element.', 'mas-elementor' ),
+				'description' => esc_html__( 'Additional CSS to be applied to .btn element.', 'mas-addons-for-elementor' ),
 				'condition'   => $args['section_condition'],
 			)
 		);
@@ -197,7 +197,7 @@ trait Load_Button_Widget_Trait {
 		$this->start_controls_tab(
 			'lm_tab_button_normal',
 			array(
-				'label'     => esc_html__( 'Normal', 'mas-elementor' ),
+				'label'     => esc_html__( 'Normal', 'mas-addons-for-elementor' ),
 				'condition' => $args['section_condition'],
 			)
 		);
@@ -205,7 +205,7 @@ trait Load_Button_Widget_Trait {
 		$this->add_control(
 			'lm_button_text_color',
 			array(
-				'label'     => esc_html__( 'Text Color', 'mas-elementor' ),
+				'label'     => esc_html__( 'Text Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'default'   => '#fb236a',
 				'selectors' => array(
@@ -219,7 +219,7 @@ trait Load_Button_Widget_Trait {
 			Group_Control_Background::get_type(),
 			array(
 				'name'           => 'lm_background',
-				'label'          => esc_html__( 'Background', 'mas-elementor' ),
+				'label'          => esc_html__( 'Background', 'mas-addons-for-elementor' ),
 				'types'          => array( 'classic', 'gradient' ),
 				'exclude'        => array( 'image' ),
 				'selector'       => '{{WRAPPER}} .btn__load-more',
@@ -266,7 +266,7 @@ trait Load_Button_Widget_Trait {
 		$this->start_controls_tab(
 			'lm_tab_button_hover',
 			array(
-				'label'     => esc_html__( 'Hover', 'mas-elementor' ),
+				'label'     => esc_html__( 'Hover', 'mas-addons-for-elementor' ),
 				'condition' => $args['section_condition'],
 			)
 		);
@@ -274,7 +274,7 @@ trait Load_Button_Widget_Trait {
 		$this->add_control(
 			'lm_hover_color',
 			array(
-				'label'     => esc_html__( 'Text Color', 'mas-elementor' ),
+				'label'     => esc_html__( 'Text Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
 					'{{WRAPPER}} .btn__load-more:hover, {{WRAPPER}} .btn__load-more:focus' => 'color: {{VALUE}};',
@@ -289,7 +289,7 @@ trait Load_Button_Widget_Trait {
 			Group_Control_Background::get_type(),
 			array(
 				'name'           => 'lm_button_background_hover',
-				'label'          => esc_html__( 'Background', 'mas-elementor' ),
+				'label'          => esc_html__( 'Background', 'mas-addons-for-elementor' ),
 				'types'          => array( 'classic', 'gradient' ),
 				'exclude'        => array( 'image' ),
 				'selector'       => '{{WRAPPER}} .mas-elementor-button-link:hover, {{WRAPPER}} .mas-elementor-button-link:focus',
@@ -338,7 +338,7 @@ trait Load_Button_Widget_Trait {
 		$this->add_control(
 			'lm_border_radius',
 			array(
-				'label'      => esc_html__( 'Border Radius', 'mas-elementor' ),
+				'label'      => esc_html__( 'Border Radius', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', '%', 'em' ),
 				'selectors'  => array(
@@ -369,7 +369,7 @@ trait Load_Button_Widget_Trait {
 		$this->add_control(
 			'lm_top_spacing',
 			array(
-				'label'      => __( 'Top Spacing', 'mas-elementor' ),
+				'label'      => __( 'Top Spacing', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::SLIDER,
 				'size_units' => array( 'px', '%', 'em' ),
 				'default'    => array(
@@ -391,7 +391,7 @@ trait Load_Button_Widget_Trait {
 		$this->add_responsive_control(
 			'lm_text_padding',
 			array(
-				'label'      => esc_html__( 'Padding', 'mas-elementor' ),
+				'label'      => esc_html__( 'Padding', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', 'em', '%' ),
 				'selectors'  => array(

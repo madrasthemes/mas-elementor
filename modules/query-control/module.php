@@ -108,12 +108,12 @@ class Module extends Module_Base {
 		$widget->add_control(
 			'exclude',
 			array(
-				'label'       => __( 'Exclude', 'mas-elementor' ),
+				'label'       => __( 'Exclude', 'mas-addons-for-elementor' ),
 				'type'        => Controls_Manager::SELECT2,
 				'multiple'    => true,
 				'options'     => array(
-					'current_post'     => __( 'Current Post', 'mas-elementor' ),
-					'manual_selection' => __( 'Manual Selection', 'mas-elementor' ),
+					'current_post'     => __( 'Current Post', 'mas-addons-for-elementor' ),
+					'manual_selection' => __( 'Manual Selection', 'mas-addons-for-elementor' ),
 				),
 				'label_block' => true,
 			)
@@ -122,7 +122,7 @@ class Module extends Module_Base {
 		$widget->add_control(
 			'exclude_ids',
 			array(
-				'label'        => __( 'Search & Select', 'mas-elementor' ),
+				'label'        => __( 'Search & Select', 'mas-addons-for-elementor' ),
 				'type'         => self::QUERY_CONTROL_ID,
 				'autocomplete' => array(
 					'object' => self::QUERY_OBJECT_POST,
@@ -139,10 +139,10 @@ class Module extends Module_Base {
 		$widget->add_control(
 			'avoid_duplicates',
 			array(
-				'label'       => __( 'Avoid Duplicates', 'mas-elementor' ),
+				'label'       => __( 'Avoid Duplicates', 'mas-addons-for-elementor' ),
 				'type'        => Controls_Manager::SWITCHER,
 				'default'     => '',
-				'description' => __( 'Set to Yes to avoid duplicate posts from showing up on the page. This only affects the frontend.', 'mas-elementor' ),
+				'description' => __( 'Set to Yes to avoid duplicate posts from showing up on the page. This only affects the frontend.', 'mas-addons-for-elementor' ),
 			)
 		);
 
@@ -1185,7 +1185,7 @@ class Module extends Module_Base {
 			$settings,
 			array(
 				'i18n' => array(
-					'all' => __( 'All', 'mas-elementor' ),
+					'all' => __( 'All', 'mas-addons-for-elementor' ),
 				),
 			)
 		);

@@ -43,7 +43,7 @@ class Cart extends Base_Widget {
 	 * @return string
 	 */
 	public function get_title() {
-		return esc_html__( 'Cart', 'mas-elementor' );
+		return esc_html__( 'Cart', 'mas-addons-for-elementor' );
 	}
 
 	/**
@@ -101,18 +101,18 @@ class Cart extends Base_Widget {
 		$this->start_controls_section(
 			'section_content',
 			array(
-				'label' => esc_html__( 'General', 'mas-elementor' ),
+				'label' => esc_html__( 'General', 'mas-addons-for-elementor' ),
 			)
 		);
 
 		$this->add_control(
 			'cart_layout',
 			array(
-				'label'        => esc_html__( 'Layout', 'mas-elementor' ),
+				'label'        => esc_html__( 'Layout', 'mas-addons-for-elementor' ),
 				'type'         => Controls_Manager::SELECT,
 				'options'      => array(
-					'two-column' => esc_html__( 'Two columns', 'mas-elementor' ),
-					'one-column' => esc_html__( 'One column', 'mas-elementor' ),
+					'two-column' => esc_html__( 'Two columns', 'mas-addons-for-elementor' ),
+					'one-column' => esc_html__( 'One column', 'mas-addons-for-elementor' ),
 				),
 				'default'      => 'two-column',
 				'prefix_class' => 'e-cart-layout-',
@@ -122,11 +122,11 @@ class Cart extends Base_Widget {
 		$this->add_control(
 			'sticky_right_column',
 			array(
-				'label'              => esc_html__( 'Sticky Right Column', 'mas-elementor' ),
+				'label'              => esc_html__( 'Sticky Right Column', 'mas-addons-for-elementor' ),
 				'type'               => Controls_Manager::SWITCHER,
-				'label_on'           => esc_html__( 'Yes', 'mas-elementor' ),
-				'label_off'          => esc_html__( 'No', 'mas-elementor' ),
-				'description'        => esc_html__( 'This option will allow the right column (e.g, Cart Totals) to be sticky while scrolling.', 'mas-elementor' ),
+				'label_on'           => esc_html__( 'Yes', 'mas-addons-for-elementor' ),
+				'label_off'          => esc_html__( 'No', 'mas-addons-for-elementor' ),
+				'description'        => esc_html__( 'This option will allow the right column (e.g, Cart Totals) to be sticky while scrolling.', 'mas-addons-for-elementor' ),
 				'frontend_available' => true,
 				'render_type'        => 'none',
 				'condition'          => array(
@@ -138,7 +138,7 @@ class Cart extends Base_Widget {
 		$this->add_control(
 			'sticky_right_column_offset',
 			array(
-				'label'              => esc_html__( 'Offset', 'mas-elementor' ),
+				'label'              => esc_html__( 'Offset', 'mas-addons-for-elementor' ),
 				'type'               => Controls_Manager::NUMBER,
 				'frontend_available' => true,
 				'conditions'         => array(
@@ -164,7 +164,7 @@ class Cart extends Base_Widget {
 		$this->start_controls_section(
 			'section_order_summary',
 			array(
-				'label'     => esc_html__( 'Order Summary', 'mas-elementor' ),
+				'label'     => esc_html__( 'Order Summary', 'mas-addons-for-elementor' ),
 				'condition' => array(
 					'update_cart_automatically' => '',
 				),
@@ -175,43 +175,43 @@ class Cart extends Base_Widget {
 			'update_cart_button_heading',
 			array(
 				'type'  => Controls_Manager::HEADING,
-				'label' => esc_html__( 'Update Cart Button', 'mas-elementor' ),
+				'label' => esc_html__( 'Update Cart Button', 'mas-addons-for-elementor' ),
 			)
 		);
 
 		$this->add_control(
 			'update_cart_button_text',
 			array(
-				'label'       => esc_html__( 'Text', 'mas-elementor' ),
+				'label'       => esc_html__( 'Text', 'mas-addons-for-elementor' ),
 				'type'        => Controls_Manager::TEXT,
 				'dynamic'     => array(
 					'active' => true,
 				),
-				'placeholder' => esc_html__( 'Update Cart', 'mas-elementor' ),
-				'default'     => esc_html__( 'Update Cart', 'mas-elementor' ),
+				'placeholder' => esc_html__( 'Update Cart', 'mas-addons-for-elementor' ),
+				'default'     => esc_html__( 'Update Cart', 'mas-addons-for-elementor' ),
 			)
 		);
 
 		$this->add_responsive_control(
 			'update_cart_button_alignment',
 			array(
-				'label'                => esc_html__( 'Alignment', 'mas-elementor' ),
+				'label'                => esc_html__( 'Alignment', 'mas-addons-for-elementor' ),
 				'type'                 => Controls_Manager::CHOOSE,
 				'options'              => array(
 					'start'   => array(
-						'title' => esc_html__( 'Start', 'mas-elementor' ),
+						'title' => esc_html__( 'Start', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-text-align-left',
 					),
 					'center'  => array(
-						'title' => esc_html__( 'Center', 'mas-elementor' ),
+						'title' => esc_html__( 'Center', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-text-align-center',
 					),
 					'end'     => array(
-						'title' => esc_html__( 'End', 'mas-elementor' ),
+						'title' => esc_html__( 'End', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-text-align-right',
 					),
 					'justify' => array(
-						'title' => esc_html__( 'Justify', 'mas-elementor' ),
+						'title' => esc_html__( 'Justify', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-text-align-justify',
 					),
 				),
@@ -234,17 +234,17 @@ class Cart extends Base_Widget {
 			$this->start_controls_section(
 				'section_coupon',
 				array(
-					'label' => esc_html__( 'Coupon', 'mas-elementor' ),
+					'label' => esc_html__( 'Coupon', 'mas-addons-for-elementor' ),
 				)
 			);
 
 			$this->add_control(
 				'section_coupon_display',
 				array(
-					'label'     => esc_html__( 'Coupon', 'mas-elementor' ),
+					'label'     => esc_html__( 'Coupon', 'mas-addons-for-elementor' ),
 					'type'      => Controls_Manager::SWITCHER,
-					'label_on'  => esc_html__( 'Show', 'mas-elementor' ),
-					'label_off' => esc_html__( 'Hide', 'mas-elementor' ),
+					'label_on'  => esc_html__( 'Show', 'mas-addons-for-elementor' ),
+					'label_off' => esc_html__( 'Hide', 'mas-addons-for-elementor' ),
 					'default'   => 'yes',
 				)
 			);
@@ -253,7 +253,7 @@ class Cart extends Base_Widget {
 				'apply_coupon_heading',
 				array(
 					'type'      => Controls_Manager::HEADING,
-					'label'     => esc_html__( 'Apply Coupon Button', 'mas-elementor' ),
+					'label'     => esc_html__( 'Apply Coupon Button', 'mas-addons-for-elementor' ),
 					'condition' => array(
 						'section_coupon_display' => 'yes',
 					),
@@ -263,13 +263,13 @@ class Cart extends Base_Widget {
 			$this->add_control(
 				'apply_coupon_button_text',
 				array(
-					'label'       => esc_html__( 'Text', 'mas-elementor' ),
+					'label'       => esc_html__( 'Text', 'mas-addons-for-elementor' ),
 					'type'        => Controls_Manager::TEXT,
 					'dynamic'     => array(
 						'active' => true,
 					),
-					'placeholder' => esc_html__( 'Apply coupon', 'mas-elementor' ),
-					'default'     => esc_html__( 'Apply coupon', 'mas-elementor' ),
+					'placeholder' => esc_html__( 'Apply coupon', 'mas-addons-for-elementor' ),
+					'default'     => esc_html__( 'Apply coupon', 'mas-addons-for-elementor' ),
 					'condition'   => array(
 						'section_coupon_display' => 'yes',
 					),
@@ -279,23 +279,23 @@ class Cart extends Base_Widget {
 			$this->add_responsive_control(
 				'apply_coupon_button_alignment',
 				array(
-					'label'                => esc_html__( 'Alignment', 'mas-elementor' ),
+					'label'                => esc_html__( 'Alignment', 'mas-addons-for-elementor' ),
 					'type'                 => Controls_Manager::CHOOSE,
 					'options'              => array(
 						'start'   => array(
-							'title' => esc_html__( 'Start', 'mas-elementor' ),
+							'title' => esc_html__( 'Start', 'mas-addons-for-elementor' ),
 							'icon'  => 'eicon-text-align-left',
 						),
 						'center'  => array(
-							'title' => esc_html__( 'Center', 'mas-elementor' ),
+							'title' => esc_html__( 'Center', 'mas-addons-for-elementor' ),
 							'icon'  => 'eicon-text-align-center',
 						),
 						'end'     => array(
-							'title' => esc_html__( 'End', 'mas-elementor' ),
+							'title' => esc_html__( 'End', 'mas-addons-for-elementor' ),
 							'icon'  => 'eicon-text-align-right',
 						),
 						'justify' => array(
-							'title' => esc_html__( 'Justify', 'mas-elementor' ),
+							'title' => esc_html__( 'Justify', 'mas-addons-for-elementor' ),
 							'icon'  => 'eicon-text-align-justify',
 						),
 					),
@@ -317,7 +317,7 @@ class Cart extends Base_Widget {
 			$this->add_control(
 				'coupon_button_alignment_note',
 				array(
-					'raw'             => esc_html__( 'Note: This control will only affect screen sizes Tablet and below', 'mas-elementor' ),
+					'raw'             => esc_html__( 'Note: This control will only affect screen sizes Tablet and below', 'mas-addons-for-elementor' ),
 					'type'            => Controls_Manager::RAW_HTML,
 					'content_classes' => 'elementor-descriptor',
 					'condition'       => array(
@@ -332,39 +332,39 @@ class Cart extends Base_Widget {
 		$this->start_controls_section(
 			'section_totals',
 			array(
-				'label' => esc_html__( 'Totals', 'mas-elementor' ),
+				'label' => esc_html__( 'Totals', 'mas-addons-for-elementor' ),
 			)
 		);
 
 		$this->add_control(
 			'totals_section_title',
 			array(
-				'label'       => esc_html__( 'Section Title', 'mas-elementor' ),
+				'label'       => esc_html__( 'Section Title', 'mas-addons-for-elementor' ),
 				'type'        => Controls_Manager::TEXT,
 				'dynamic'     => array(
 					'active' => true,
 				),
-				'placeholder' => esc_html__( 'Cart Totals', 'mas-elementor' ),
-				'default'     => esc_html__( 'Cart Totals', 'mas-elementor' ),
+				'placeholder' => esc_html__( 'Cart Totals', 'mas-addons-for-elementor' ),
+				'default'     => esc_html__( 'Cart Totals', 'mas-addons-for-elementor' ),
 			)
 		);
 
 		$this->add_responsive_control(
 			'totals_section_title_alignment',
 			array(
-				'label'     => esc_html__( 'Alignment', 'mas-elementor' ),
+				'label'     => esc_html__( 'Alignment', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::CHOOSE,
 				'options'   => array(
 					'start'  => array(
-						'title' => esc_html__( 'Start', 'mas-elementor' ),
+						'title' => esc_html__( 'Start', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-text-align-left',
 					),
 					'center' => array(
-						'title' => esc_html__( 'Center', 'mas-elementor' ),
+						'title' => esc_html__( 'Center', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-text-align-center',
 					),
 					'end'    => array(
-						'title' => esc_html__( 'End', 'mas-elementor' ),
+						'title' => esc_html__( 'End', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-text-align-right',
 					),
 				),
@@ -378,7 +378,7 @@ class Cart extends Base_Widget {
 			'update_shipping_button_heading',
 			array(
 				'type'      => Controls_Manager::HEADING,
-				'label'     => esc_html__( 'Update Shipping Button', 'mas-elementor' ),
+				'label'     => esc_html__( 'Update Shipping Button', 'mas-addons-for-elementor' ),
 				'separator' => 'before',
 			)
 		);
@@ -386,36 +386,36 @@ class Cart extends Base_Widget {
 		$this->add_control(
 			'update_shipping_button_text',
 			array(
-				'label'       => esc_html__( 'Text', 'mas-elementor' ),
+				'label'       => esc_html__( 'Text', 'mas-addons-for-elementor' ),
 				'type'        => Controls_Manager::TEXT,
 				'dynamic'     => array(
 					'active' => true,
 				),
-				'placeholder' => esc_html__( 'Update', 'mas-elementor' ),
-				'default'     => esc_html__( 'Update', 'mas-elementor' ),
+				'placeholder' => esc_html__( 'Update', 'mas-addons-for-elementor' ),
+				'default'     => esc_html__( 'Update', 'mas-addons-for-elementor' ),
 			)
 		);
 
 		$this->add_responsive_control(
 			'update_shipping_button_alignment',
 			array(
-				'label'                => esc_html__( 'Alignment', 'mas-elementor' ),
+				'label'                => esc_html__( 'Alignment', 'mas-addons-for-elementor' ),
 				'type'                 => Controls_Manager::CHOOSE,
 				'options'              => array(
 					'start'   => array(
-						'title' => esc_html__( 'Start', 'mas-elementor' ),
+						'title' => esc_html__( 'Start', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-text-align-left',
 					),
 					'center'  => array(
-						'title' => esc_html__( 'Center', 'mas-elementor' ),
+						'title' => esc_html__( 'Center', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-text-align-center',
 					),
 					'end'     => array(
-						'title' => esc_html__( 'End', 'mas-elementor' ),
+						'title' => esc_html__( 'End', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-text-align-right',
 					),
 					'justify' => array(
-						'title' => esc_html__( 'Justify', 'mas-elementor' ),
+						'title' => esc_html__( 'Justify', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-text-align-justify',
 					),
 				),
@@ -435,43 +435,43 @@ class Cart extends Base_Widget {
 			'checkout_button_heading',
 			array(
 				'type'  => Controls_Manager::HEADING,
-				'label' => esc_html__( 'Checkout Button', 'mas-elementor' ),
+				'label' => esc_html__( 'Checkout Button', 'mas-addons-for-elementor' ),
 			)
 		);
 
 		$this->add_control(
 			'checkout_button_text',
 			array(
-				'label'       => esc_html__( 'Text', 'mas-elementor' ),
+				'label'       => esc_html__( 'Text', 'mas-addons-for-elementor' ),
 				'type'        => Controls_Manager::TEXT,
 				'dynamic'     => array(
 					'active' => true,
 				),
-				'placeholder' => esc_html__( 'Proceed to Checkout', 'mas-elementor' ),
-				'default'     => esc_html__( 'Proceed to Checkout', 'mas-elementor' ),
+				'placeholder' => esc_html__( 'Proceed to Checkout', 'mas-addons-for-elementor' ),
+				'default'     => esc_html__( 'Proceed to Checkout', 'mas-addons-for-elementor' ),
 			)
 		);
 
 		$this->add_responsive_control(
 			'checkout_button_alignment',
 			array(
-				'label'                => esc_html__( 'Alignment', 'mas-elementor' ),
+				'label'                => esc_html__( 'Alignment', 'mas-addons-for-elementor' ),
 				'type'                 => Controls_Manager::CHOOSE,
 				'options'              => array(
 					'start'   => array(
-						'title' => esc_html__( 'Start', 'mas-elementor' ),
+						'title' => esc_html__( 'Start', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-text-align-left',
 					),
 					'center'  => array(
-						'title' => esc_html__( 'Center', 'mas-elementor' ),
+						'title' => esc_html__( 'Center', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-text-align-center',
 					),
 					'end'     => array(
-						'title' => esc_html__( 'End', 'mas-elementor' ),
+						'title' => esc_html__( 'End', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-text-align-right',
 					),
 					'justify' => array(
-						'title' => esc_html__( 'Justify', 'mas-elementor' ),
+						'title' => esc_html__( 'Justify', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-text-align-justify',
 					),
 				),
@@ -492,17 +492,17 @@ class Cart extends Base_Widget {
 		$this->start_controls_section(
 			'section_additional_options',
 			array(
-				'label' => esc_html__( 'Additional Options', 'mas-elementor' ),
+				'label' => esc_html__( 'Additional Options', 'mas-addons-for-elementor' ),
 			)
 		);
 
 		$this->add_control(
 			'update_cart_automatically',
 			array(
-				'label'                => esc_html__( 'Update Cart Automatically', 'mas-elementor' ),
+				'label'                => esc_html__( 'Update Cart Automatically', 'mas-addons-for-elementor' ),
 				'type'                 => Controls_Manager::SWITCHER,
-				'label_on'             => esc_html__( 'Yes', 'mas-elementor' ),
-				'label_off'            => esc_html__( 'No', 'mas-elementor' ),
+				'label_on'             => esc_html__( 'Yes', 'mas-addons-for-elementor' ),
+				'label_off'            => esc_html__( 'No', 'mas-addons-for-elementor' ),
 				'selectors'            => array(
 					'{{WRAPPER}}' => '{{VALUE}};',
 				),
@@ -517,7 +517,7 @@ class Cart extends Base_Widget {
 		$this->add_control(
 			'update_cart_automatically_description',
 			array(
-				'raw'             => esc_html__( 'Changes to the cart will update automatically.', 'mas-elementor' ),
+				'raw'             => esc_html__( 'Changes to the cart will update automatically.', 'mas-addons-for-elementor' ),
 				'type'            => Controls_Manager::RAW_HTML,
 				'content_classes' => 'elementor-descriptor',
 			)
@@ -526,10 +526,10 @@ class Cart extends Base_Widget {
 		$this->add_control(
 			'additional_template_switch',
 			array(
-				'label'        => esc_html__( 'Customize empty cart', 'mas-elementor' ),
+				'label'        => esc_html__( 'Customize empty cart', 'mas-addons-for-elementor' ),
 				'type'         => Controls_Manager::SWITCHER,
-				'label_on'     => esc_html__( 'Yes', 'mas-elementor' ),
-				'label_off'    => esc_html__( 'No', 'mas-elementor' ),
+				'label_on'     => esc_html__( 'Yes', 'mas-addons-for-elementor' ),
+				'label_off'    => esc_html__( 'No', 'mas-addons-for-elementor' ),
 				'return_value' => 'active',
 				'default'      => '',
 				'render_type'  => 'template',
@@ -542,7 +542,7 @@ class Cart extends Base_Widget {
 			array(
 				'raw'             => sprintf(
 					/* translators: 1: Saved templates link opening tag, 2: Link closing tag. */
-					esc_html__( 'Replaces the default WooCommerce Empty Cart screen with a custom template. (Don’t have one? Head over to %1$sSaved Templates%2$s)', 'mas-elementor' ),
+					esc_html__( 'Replaces the default WooCommerce Empty Cart screen with a custom template. (Don’t have one? Head over to %1$sSaved Templates%2$s)', 'mas-addons-for-elementor' ),
 					sprintf( '<a href="%s" target="_blank">', admin_url( 'edit.php?post_type=elementor_library&tabs_group=library#add_new' ) ),
 					'</a>'
 				),
@@ -558,7 +558,7 @@ class Cart extends Base_Widget {
 			'additional_template_select_heading',
 			array(
 				'type'      => Controls_Manager::HEADING,
-				'label'     => esc_html__( 'Choose template', 'mas-elementor' ),
+				'label'     => esc_html__( 'Choose template', 'mas-addons-for-elementor' ),
 				'condition' => array(
 					'additional_template_switch' => 'active',
 				),
@@ -600,7 +600,7 @@ class Cart extends Base_Widget {
 		$this->add_control(
 			'edit_button',
 			array(
-				'raw'             => sprintf( '<a href="#" target="_blank" class="elementor-button elementor-edit-template" style="margin-top:0px;"><i class="eicon-pencil"> %s</i></a>', esc_html__( 'Edit Template', 'mas-elementor' ) ),
+				'raw'             => sprintf( '<a href="#" target="_blank" class="elementor-button elementor-edit-template" style="margin-top:0px;"><i class="eicon-pencil"> %s</i></a>', esc_html__( 'Edit Template', 'mas-addons-for-elementor' ) ),
 				'type'            => \Elementor\Controls_Manager::RAW_HTML,
 				'content_classes' => 'elementor-edit-template-wrapper',
 				'condition'       => array(
@@ -614,7 +614,7 @@ class Cart extends Base_Widget {
 		$this->start_controls_section(
 			'section_cart_tabs_style',
 			array(
-				'label' => esc_html__( 'Sections', 'mas-elementor' ),
+				'label' => esc_html__( 'Sections', 'mas-addons-for-elementor' ),
 				'tab'   => Controls_Manager::TAB_STYLE,
 			)
 		);
@@ -622,7 +622,7 @@ class Cart extends Base_Widget {
 		$this->add_control(
 			'sections_background_color',
 			array(
-				'label'     => esc_html__( 'Background Color', 'mas-elementor' ),
+				'label'     => esc_html__( 'Background Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
 					'{{WRAPPER}}' => '--sections-background-color: {{VALUE}};',
@@ -641,7 +641,7 @@ class Cart extends Base_Widget {
 		$this->add_control(
 			'sections_border_type',
 			array(
-				'label'     => esc_html__( 'Border Type', 'mas-elementor' ),
+				'label'     => esc_html__( 'Border Type', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::SELECT,
 				'options'   => $this->get_custom_border_type_options(),
 				'selectors' => array(
@@ -654,7 +654,7 @@ class Cart extends Base_Widget {
 		$this->add_responsive_control(
 			'sections_border_width',
 			array(
-				'label'      => esc_html__( 'Width', 'mas-elementor' ),
+				'label'      => esc_html__( 'Width', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', '%', 'em', 'rem', 'vw', 'custom' ),
 				'selectors'  => array(
@@ -669,7 +669,7 @@ class Cart extends Base_Widget {
 		$this->add_control(
 			'sections_border_color',
 			array(
-				'label'     => esc_html__( 'Color', 'mas-elementor' ),
+				'label'     => esc_html__( 'Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
 					'{{WRAPPER}}' => '--sections-border-color: {{VALUE}};',
@@ -683,7 +683,7 @@ class Cart extends Base_Widget {
 		$this->add_responsive_control(
 			'sections_border_radius',
 			array(
-				'label'      => esc_html__( 'Border Radius', 'mas-elementor' ),
+				'label'      => esc_html__( 'Border Radius', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', '%', 'em', 'rem', 'custom' ),
 				'selectors'  => array(
@@ -695,7 +695,7 @@ class Cart extends Base_Widget {
 		$this->add_responsive_control(
 			'sections_padding',
 			array(
-				'label'      => esc_html__( 'Padding', 'mas-elementor' ),
+				'label'      => esc_html__( 'Padding', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', '%', 'em', 'rem', 'vw', 'custom' ),
 				'selectors'  => array(
@@ -707,7 +707,7 @@ class Cart extends Base_Widget {
 		$this->add_responsive_control(
 			'sections_margin',
 			array(
-				'label'      => esc_html__( 'Margin', 'mas-elementor' ),
+				'label'      => esc_html__( 'Margin', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', '%', 'em', 'rem', 'vw', 'custom' ),
 				'selectors'  => array(
@@ -721,7 +721,7 @@ class Cart extends Base_Widget {
 		$this->start_controls_section(
 			'section_cart_tabs_typography',
 			array(
-				'label' => esc_html__( 'Typography', 'mas-elementor' ),
+				'label' => esc_html__( 'Typography', 'mas-addons-for-elementor' ),
 				'tab'   => Controls_Manager::TAB_STYLE,
 			)
 		);
@@ -730,14 +730,14 @@ class Cart extends Base_Widget {
 			'sections_typography',
 			array(
 				'type'  => Controls_Manager::HEADING,
-				'label' => esc_html__( 'Titles', 'mas-elementor' ),
+				'label' => esc_html__( 'Titles', 'mas-addons-for-elementor' ),
 			)
 		);
 
 		$this->add_control(
 			'sections_title_color',
 			array(
-				'label'     => esc_html__( 'Color', 'mas-elementor' ),
+				'label'     => esc_html__( 'Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
 					'{{WRAPPER}}' => '--sections-title-color: {{VALUE}};',
@@ -764,7 +764,7 @@ class Cart extends Base_Widget {
 		$this->add_responsive_control(
 			'sections_title_spacing',
 			array(
-				'label'      => esc_html__( 'Spacing', 'mas-elementor' ),
+				'label'      => esc_html__( 'Spacing', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::SLIDER,
 				'size_units' => array( 'px', 'em', 'rem', 'custom' ),
 				'range'      => array(
@@ -784,14 +784,14 @@ class Cart extends Base_Widget {
 			'sections_descriptions_title',
 			array(
 				'type'  => Controls_Manager::HEADING,
-				'label' => esc_html__( 'Descriptions', 'mas-elementor' ),
+				'label' => esc_html__( 'Descriptions', 'mas-addons-for-elementor' ),
 			)
 		);
 
 		$this->add_control(
 			'sections_descriptions_color',
 			array(
-				'label'     => esc_html__( 'Color', 'mas-elementor' ),
+				'label'     => esc_html__( 'Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
 					'{{WRAPPER}} ' => '--sections-descriptions-color: {{VALUE}};',
@@ -810,7 +810,7 @@ class Cart extends Base_Widget {
 		$this->add_responsive_control(
 			'sections_descriptions_spacing',
 			array(
-				'label'      => esc_html__( 'Spacing', 'mas-elementor' ),
+				'label'      => esc_html__( 'Spacing', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::SLIDER,
 				'size_units' => array( 'px', 'em', 'rem', 'custom' ),
 				'range'      => array(
@@ -830,18 +830,18 @@ class Cart extends Base_Widget {
 			'sections_links_title',
 			array(
 				'type'  => Controls_Manager::HEADING,
-				'label' => esc_html__( 'Links', 'mas-elementor' ),
+				'label' => esc_html__( 'Links', 'mas-addons-for-elementor' ),
 			)
 		);
 
 		$this->start_controls_tabs( 'links_colors' );
 
-		$this->start_controls_tab( 'links_normal_colors', array( 'label' => esc_html__( 'Normal', 'mas-elementor' ) ) );
+		$this->start_controls_tab( 'links_normal_colors', array( 'label' => esc_html__( 'Normal', 'mas-addons-for-elementor' ) ) );
 
 		$this->add_control(
 			'links_normal_color',
 			array(
-				'label'     => esc_html__( 'Link Color', 'mas-elementor' ),
+				'label'     => esc_html__( 'Link Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
 					'{{WRAPPER}}' => '--links-normal-color: {{VALUE}};',
@@ -851,12 +851,12 @@ class Cart extends Base_Widget {
 
 		$this->end_controls_tab();
 
-		$this->start_controls_tab( 'links_hover_colors', array( 'label' => esc_html__( 'Hover', 'mas-elementor' ) ) );
+		$this->start_controls_tab( 'links_hover_colors', array( 'label' => esc_html__( 'Hover', 'mas-addons-for-elementor' ) ) );
 
 		$this->add_control(
 			'links_hover_color',
 			array(
-				'label'     => esc_html__( 'Link Color', 'mas-elementor' ),
+				'label'     => esc_html__( 'Link Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
 					'{{WRAPPER}}' => '--links-hover-color: {{VALUE}};',
@@ -872,7 +872,7 @@ class Cart extends Base_Widget {
 			'sections_radio_buttons_title',
 			array(
 				'type'      => Controls_Manager::HEADING,
-				'label'     => esc_html__( 'Radio Buttons', 'mas-elementor' ),
+				'label'     => esc_html__( 'Radio Buttons', 'mas-addons-for-elementor' ),
 				'separator' => 'before',
 			)
 		);
@@ -880,7 +880,7 @@ class Cart extends Base_Widget {
 		$this->add_control(
 			'sections_radio_buttons_color',
 			array(
-				'label'     => esc_html__( 'Color', 'mas-elementor' ),
+				'label'     => esc_html__( 'Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
 					'{{WRAPPER}}' => '--sections-radio-buttons-color: {{VALUE}}',
@@ -901,7 +901,7 @@ class Cart extends Base_Widget {
 		$this->start_controls_section(
 			'section_cart_tabs_forms',
 			array(
-				'label' => esc_html__( 'Forms', 'mas-elementor' ),
+				'label' => esc_html__( 'Forms', 'mas-addons-for-elementor' ),
 				'tab'   => Controls_Manager::TAB_STYLE,
 			)
 		);
@@ -909,7 +909,7 @@ class Cart extends Base_Widget {
 		$this->add_responsive_control(
 			'forms_rows_gap',
 			array(
-				'label'      => esc_html__( 'Rows Gap', 'mas-elementor' ),
+				'label'      => esc_html__( 'Rows Gap', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::SLIDER,
 				'size_units' => array( 'px', 'em', 'rem', 'custom' ),
 				'range'      => array(
@@ -929,7 +929,7 @@ class Cart extends Base_Widget {
 			'forms_field_title',
 			array(
 				'type'  => Controls_Manager::HEADING,
-				'label' => esc_html__( 'Field', 'mas-elementor' ),
+				'label' => esc_html__( 'Field', 'mas-addons-for-elementor' ),
 			)
 		);
 
@@ -943,12 +943,12 @@ class Cart extends Base_Widget {
 
 		$this->start_controls_tabs( 'forms_fields_styles' );
 
-		$this->start_controls_tab( 'forms_fields_normal_styles', array( 'label' => esc_html__( 'Normal', 'mas-elementor' ) ) );
+		$this->start_controls_tab( 'forms_fields_normal_styles', array( 'label' => esc_html__( 'Normal', 'mas-addons-for-elementor' ) ) );
 
 		$this->add_control(
 			'forms_fields_normal_color',
 			array(
-				'label'     => esc_html__( 'Color', 'mas-elementor' ),
+				'label'     => esc_html__( 'Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
 					'{{WRAPPER}}' => '--forms-fields-normal-color: {{VALUE}};',
@@ -977,12 +977,12 @@ class Cart extends Base_Widget {
 
 		$this->end_controls_tab();
 
-		$this->start_controls_tab( 'forms_fields_focus_styles', array( 'label' => esc_html__( 'Focus', 'mas-elementor' ) ) );
+		$this->start_controls_tab( 'forms_fields_focus_styles', array( 'label' => esc_html__( 'Focus', 'mas-addons-for-elementor' ) ) );
 
 		$this->add_control(
 			'forms_fields_focus_color',
 			array(
-				'label'     => esc_html__( 'Color', 'mas-elementor' ),
+				'label'     => esc_html__( 'Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
 					'{{WRAPPER}}' => '--forms-fields-focus-color: {{VALUE}}',
@@ -1010,7 +1010,7 @@ class Cart extends Base_Widget {
 		$this->add_control(
 			'forms_fields_focus_border_color',
 			array(
-				'label'     => esc_html__( 'Border Color', 'mas-elementor' ),
+				'label'     => esc_html__( 'Border Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
 					'{{WRAPPER}}' => '--forms-fields-focus-border-color: {{VALUE}}',
@@ -1024,7 +1024,7 @@ class Cart extends Base_Widget {
 		$this->add_control(
 			'forms_fields_focus_transition_duration',
 			array(
-				'label'     => esc_html__( 'Transition Duration', 'mas-elementor' ) . ' (ms)',
+				'label'     => esc_html__( 'Transition Duration', 'mas-addons-for-elementor' ) . ' (ms)',
 				'type'      => Controls_Manager::SLIDER,
 				'range'     => array(
 					'px' => array(
@@ -1054,7 +1054,7 @@ class Cart extends Base_Widget {
 		$this->add_responsive_control(
 			'forms_fields_border_radius',
 			array(
-				'label'      => esc_html__( 'Border Radius', 'mas-elementor' ),
+				'label'      => esc_html__( 'Border Radius', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', '%', 'em', 'rem', 'custom' ),
 				'selectors'  => array(
@@ -1066,7 +1066,7 @@ class Cart extends Base_Widget {
 		$this->add_responsive_control(
 			'forms_fields_padding',
 			array(
-				'label'      => esc_html__( 'Padding', 'mas-elementor' ),
+				'label'      => esc_html__( 'Padding', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', '%', 'em', 'rem', 'vw', 'custom' ),
 				'selectors'  => array(
@@ -1084,7 +1084,7 @@ class Cart extends Base_Widget {
 			'forms_button_title',
 			array(
 				'type'  => Controls_Manager::HEADING,
-				'label' => esc_html__( 'Buttons', 'mas-elementor' ),
+				'label' => esc_html__( 'Buttons', 'mas-addons-for-elementor' ),
 			)
 		);
 
@@ -1106,12 +1106,12 @@ class Cart extends Base_Widget {
 
 		$this->start_controls_tabs( 'forms_buttons_styles' );
 
-		$this->start_controls_tab( 'forms_buttons_normal_styles', array( 'label' => esc_html__( 'Normal', 'mas-elementor' ) ) );
+		$this->start_controls_tab( 'forms_buttons_normal_styles', array( 'label' => esc_html__( 'Normal', 'mas-addons-for-elementor' ) ) );
 
 		$this->add_control(
 			'forms_buttons_normal_text_color',
 			array(
-				'label'     => esc_html__( 'Text Color', 'mas-elementor' ),
+				'label'     => esc_html__( 'Text Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
 					'{{WRAPPER}}' => '--forms-buttons-normal-text-color: {{VALUE}};',
@@ -1137,12 +1137,12 @@ class Cart extends Base_Widget {
 
 		$this->end_controls_tab();
 
-		$this->start_controls_tab( 'forms_buttons_hover_styles', array( 'label' => esc_html__( 'Hover', 'mas-elementor' ) ) );
+		$this->start_controls_tab( 'forms_buttons_hover_styles', array( 'label' => esc_html__( 'Hover', 'mas-addons-for-elementor' ) ) );
 
 		$this->add_control(
 			'forms_buttons_hover_text_color',
 			array(
-				'label'     => esc_html__( 'Text Color', 'mas-elementor' ),
+				'label'     => esc_html__( 'Text Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
 					'{{WRAPPER}}' => '--forms-buttons-hover-text-color: {{VALUE}};',
@@ -1169,7 +1169,7 @@ class Cart extends Base_Widget {
 		$this->add_control(
 			'forms_buttons_hover_border_color',
 			array(
-				'label'     => esc_html__( 'Border Color', 'mas-elementor' ),
+				'label'     => esc_html__( 'Border Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
 					'{{WRAPPER}}' => '--forms-buttons-hover-border-color: {{VALUE}}',
@@ -1183,7 +1183,7 @@ class Cart extends Base_Widget {
 		$this->add_control(
 			'forms_buttons_hover_transition_duration',
 			array(
-				'label'     => esc_html__( 'Transition Duration', 'mas-elementor' ) . ' (ms)',
+				'label'     => esc_html__( 'Transition Duration', 'mas-addons-for-elementor' ) . ' (ms)',
 				'type'      => Controls_Manager::SLIDER,
 				'selectors' => array(
 					'{{WRAPPER}}' => '--forms-buttons-hover-transition-duration: {{SIZE}}ms',
@@ -1200,7 +1200,7 @@ class Cart extends Base_Widget {
 		$this->add_control(
 			'forms_buttons_hover_animation',
 			array(
-				'label'              => esc_html__( 'Hover Animation', 'mas-elementor' ),
+				'label'              => esc_html__( 'Hover Animation', 'mas-addons-for-elementor' ),
 				'type'               => Controls_Manager::HOVER_ANIMATION,
 				'frontend_available' => true,
 				'render_type'        => 'template',
@@ -1214,7 +1214,7 @@ class Cart extends Base_Widget {
 		$this->add_control(
 			'forms_buttons_border_type',
 			array(
-				'label'     => esc_html__( 'Border Type', 'mas-elementor' ),
+				'label'     => esc_html__( 'Border Type', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::SELECT,
 				'options'   => $this->get_custom_border_type_options(),
 				'selectors' => array(
@@ -1227,7 +1227,7 @@ class Cart extends Base_Widget {
 		$this->add_responsive_control(
 			'forms_buttons_border_width',
 			array(
-				'label'      => esc_html__( 'Width', 'mas-elementor' ),
+				'label'      => esc_html__( 'Width', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', '%', 'em', 'rem', 'vw', 'custom' ),
 				'selectors'  => array(
@@ -1242,7 +1242,7 @@ class Cart extends Base_Widget {
 		$this->add_control(
 			'forms_buttons_border_color',
 			array(
-				'label'     => esc_html__( 'Color', 'mas-elementor' ),
+				'label'     => esc_html__( 'Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
 					'{{WRAPPER}}' => '--forms-buttons-border-color: {{VALUE}};',
@@ -1256,7 +1256,7 @@ class Cart extends Base_Widget {
 		$this->add_responsive_control(
 			'forms_buttons_border_radius',
 			array(
-				'label'      => esc_html__( 'Border Radius', 'mas-elementor' ),
+				'label'      => esc_html__( 'Border Radius', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', '%', 'em', 'rem', 'custom' ),
 				'selectors'  => array(
@@ -1268,7 +1268,7 @@ class Cart extends Base_Widget {
 		$this->add_responsive_control(
 			'forms_buttons_padding',
 			array(
-				'label'      => esc_html__( 'Padding', 'mas-elementor' ),
+				'label'      => esc_html__( 'Padding', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', '%', 'em', 'rem', 'vw', 'custom' ),
 				'selectors'  => array(
@@ -1282,7 +1282,7 @@ class Cart extends Base_Widget {
 		$this->start_controls_section(
 			'tabs_order_summary',
 			array(
-				'label' => esc_html__( 'Order Summary', 'mas-elementor' ),
+				'label' => esc_html__( 'Order Summary', 'mas-addons-for-elementor' ),
 				'tab'   => Controls_Manager::TAB_STYLE,
 			)
 		);
@@ -1290,7 +1290,7 @@ class Cart extends Base_Widget {
 		$this->add_responsive_control(
 			'order_summary_rows_gap',
 			array(
-				'label'      => esc_html__( 'Rows Gap', 'mas-elementor' ),
+				'label'      => esc_html__( 'Rows Gap', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::SLIDER,
 				'size_units' => array( 'px', 'em', 'rem', 'custom' ),
 				'range'      => array(
@@ -1311,14 +1311,14 @@ class Cart extends Base_Widget {
 			'order_summary_titles_title',
 			array(
 				'type'  => Controls_Manager::HEADING,
-				'label' => esc_html__( 'Titles', 'mas-elementor' ),
+				'label' => esc_html__( 'Titles', 'mas-addons-for-elementor' ),
 			)
 		);
 
 		$this->add_control(
 			'order_summary_title_color',
 			array(
-				'label'     => esc_html__( 'Color', 'mas-elementor' ),
+				'label'     => esc_html__( 'Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
 					'{{WRAPPER}} .woocommerce-cart-form' => '--order-summary-title-color: {{VALUE}};',
@@ -1345,7 +1345,7 @@ class Cart extends Base_Widget {
 		$this->add_responsive_control(
 			'order_summary_title_spacing',
 			array(
-				'label'      => esc_html__( 'Spacing', 'mas-elementor' ),
+				'label'      => esc_html__( 'Spacing', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::SLIDER,
 				'size_units' => array( 'px', 'em', 'rem', 'custom' ),
 				'range'      => array(
@@ -1365,14 +1365,14 @@ class Cart extends Base_Widget {
 			'order_summary_items_title',
 			array(
 				'type'  => Controls_Manager::HEADING,
-				'label' => esc_html__( 'Items', 'mas-elementor' ),
+				'label' => esc_html__( 'Items', 'mas-addons-for-elementor' ),
 			)
 		);
 
 		$this->add_control(
 			'order_summary_color',
 			array(
-				'label'     => esc_html__( 'Color', 'mas-elementor' ),
+				'label'     => esc_html__( 'Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
 					'{{WRAPPER}}' => '--order-summary-color: {{VALUE}};',
@@ -1392,14 +1392,14 @@ class Cart extends Base_Widget {
 			'order_summary_variations_title',
 			array(
 				'type'  => Controls_Manager::HEADING,
-				'label' => esc_html__( 'Variations', 'mas-elementor' ),
+				'label' => esc_html__( 'Variations', 'mas-addons-for-elementor' ),
 			)
 		);
 
 		$this->add_control(
 			'order_summary_variations_color',
 			array(
-				'label'     => esc_html__( 'Color', 'mas-elementor' ),
+				'label'     => esc_html__( 'Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
 					'{{WRAPPER}}' => '--order-summary-variations-color: {{VALUE}};',
@@ -1419,18 +1419,18 @@ class Cart extends Base_Widget {
 			'order_summary_product_link_title',
 			array(
 				'type'  => Controls_Manager::HEADING,
-				'label' => esc_html__( 'Product Link', 'mas-elementor' ),
+				'label' => esc_html__( 'Product Link', 'mas-addons-for-elementor' ),
 			)
 		);
 
 		$this->start_controls_tabs( 'order_summary' );
 
-		$this->start_controls_tab( 'order_summary_normal', array( 'label' => esc_html__( 'Normal', 'mas-elementor' ) ) );
+		$this->start_controls_tab( 'order_summary_normal', array( 'label' => esc_html__( 'Normal', 'mas-addons-for-elementor' ) ) );
 
 		$this->add_control(
 			'product_link_normal_color',
 			array(
-				'label'     => esc_html__( 'Color', 'mas-elementor' ),
+				'label'     => esc_html__( 'Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
 					'{{WRAPPER}}' => '--product-link-normal-color: {{VALUE}};',
@@ -1440,12 +1440,12 @@ class Cart extends Base_Widget {
 
 		$this->end_controls_tab();
 
-		$this->start_controls_tab( 'order_summary_hover', array( 'label' => esc_html__( 'Hover', 'mas-elementor' ) ) );
+		$this->start_controls_tab( 'order_summary_hover', array( 'label' => esc_html__( 'Hover', 'mas-addons-for-elementor' ) ) );
 
 		$this->add_control(
 			'product_link_hover_color',
 			array(
-				'label'     => esc_html__( 'Color', 'mas-elementor' ),
+				'label'     => esc_html__( 'Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
 					'{{WRAPPER}}' => '--product-link-hover-color: {{VALUE}};',
@@ -1461,7 +1461,7 @@ class Cart extends Base_Widget {
 			'order_summary_divider_title',
 			array(
 				'type'      => Controls_Manager::HEADING,
-				'label'     => esc_html__( 'Dividers', 'mas-elementor' ),
+				'label'     => esc_html__( 'Dividers', 'mas-addons-for-elementor' ),
 				'separator' => 'before',
 			)
 		);
@@ -1469,7 +1469,7 @@ class Cart extends Base_Widget {
 		$this->add_control(
 			'order_summary_items_divider_color',
 			array(
-				'label'     => esc_html__( 'Color', 'mas-elementor' ),
+				'label'     => esc_html__( 'Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
 					'{{WRAPPER}}' => '--order-summary-items-divider-color: {{VALUE}};',
@@ -1480,7 +1480,7 @@ class Cart extends Base_Widget {
 		$this->add_responsive_control(
 			'order_summary_items_divider_weight',
 			array(
-				'label'      => esc_html__( 'Weight', 'mas-elementor' ),
+				'label'      => esc_html__( 'Weight', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::SLIDER,
 				'size_units' => array( 'px' ),
 				'selectors'  => array(
@@ -1493,7 +1493,7 @@ class Cart extends Base_Widget {
 			'order_summary_quantity_border_title',
 			array(
 				'type'      => Controls_Manager::HEADING,
-				'label'     => esc_html__( 'Quantity Borders', 'mas-elementor' ),
+				'label'     => esc_html__( 'Quantity Borders', 'mas-addons-for-elementor' ),
 				'separator' => 'before',
 			)
 		);
@@ -1501,7 +1501,7 @@ class Cart extends Base_Widget {
 		$this->add_control(
 			'order_summary_quantity_border_color',
 			array(
-				'label'     => esc_html__( 'Color', 'mas-elementor' ),
+				'label'     => esc_html__( 'Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
 					'{{WRAPPER}}' => '--order-summary-quantity-border-color: {{VALUE}};',
@@ -1512,7 +1512,7 @@ class Cart extends Base_Widget {
 		$this->add_responsive_control(
 			'order_summary_quantity_border_weight',
 			array(
-				'label'      => esc_html__( 'Weight', 'mas-elementor' ),
+				'label'      => esc_html__( 'Weight', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::SLIDER,
 				'size_units' => array( 'px', 'em', 'rem', 'custom' ),
 				'selectors'  => array(
@@ -1525,19 +1525,19 @@ class Cart extends Base_Widget {
 			'order_summary_remove_icon_title',
 			array(
 				'type'      => Controls_Manager::HEADING,
-				'label'     => esc_html__( 'Remove icon', 'mas-elementor' ),
+				'label'     => esc_html__( 'Remove icon', 'mas-addons-for-elementor' ),
 				'separator' => 'before',
 			)
 		);
 
 		$this->start_controls_tabs( 'order_summary_remove_icon' );
 
-		$this->start_controls_tab( 'order_summary_remove_icon_normal', array( 'label' => esc_html__( 'Normal', 'mas-elementor' ) ) );
+		$this->start_controls_tab( 'order_summary_remove_icon_normal', array( 'label' => esc_html__( 'Normal', 'mas-addons-for-elementor' ) ) );
 
 		$this->add_control(
 			'order_summary_remove_icon_normal_color',
 			array(
-				'label'     => esc_html__( 'Color', 'mas-elementor' ),
+				'label'     => esc_html__( 'Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
 					'{{WRAPPER}}' => '--order-summary-remove-icon-normal-color: {{VALUE}}',
@@ -1547,12 +1547,12 @@ class Cart extends Base_Widget {
 
 		$this->end_controls_tab();
 
-		$this->start_controls_tab( 'order_summary_remove_icon_hover', array( 'label' => esc_html__( 'Hover', 'mas-elementor' ) ) );
+		$this->start_controls_tab( 'order_summary_remove_icon_hover', array( 'label' => esc_html__( 'Hover', 'mas-addons-for-elementor' ) ) );
 
 		$this->add_control(
 			'order_summary_remove_icon_hover_color',
 			array(
-				'label'     => esc_html__( 'Color', 'mas-elementor' ),
+				'label'     => esc_html__( 'Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
 					'{{WRAPPER}}' => '--order-summary-remove-icon-hover-color: {{VALUE}}',
@@ -1569,7 +1569,7 @@ class Cart extends Base_Widget {
 		$this->start_controls_section(
 			'section_cart_totals',
 			array(
-				'label' => esc_html__( 'Totals', 'mas-elementor' ),
+				'label' => esc_html__( 'Totals', 'mas-addons-for-elementor' ),
 				'tab'   => Controls_Manager::TAB_STYLE,
 			)
 		);
@@ -1577,7 +1577,7 @@ class Cart extends Base_Widget {
 		$this->add_responsive_control(
 			'totals_rows_gap',
 			array(
-				'label'      => esc_html__( 'Rows Gap', 'mas-elementor' ),
+				'label'      => esc_html__( 'Rows Gap', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::SLIDER,
 				'size_units' => array( 'px', 'em', 'rem', 'custom' ),
 				'range'      => array(
@@ -1598,14 +1598,14 @@ class Cart extends Base_Widget {
 			'totals_title',
 			array(
 				'type'  => Controls_Manager::HEADING,
-				'label' => esc_html__( 'Titles & Totals', 'mas-elementor' ),
+				'label' => esc_html__( 'Titles & Totals', 'mas-addons-for-elementor' ),
 			)
 		);
 
 		$this->add_control(
 			'totals_color',
 			array(
-				'label'     => esc_html__( 'Color', 'mas-elementor' ),
+				'label'     => esc_html__( 'Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
 					'{{WRAPPER}}' => '--totals-color: {{VALUE}};',
@@ -1625,14 +1625,14 @@ class Cart extends Base_Widget {
 			'totals_divider_title',
 			array(
 				'type'  => Controls_Manager::HEADING,
-				'label' => esc_html__( 'Divider Total', 'mas-elementor' ),
+				'label' => esc_html__( 'Divider Total', 'mas-addons-for-elementor' ),
 			)
 		);
 
 		$this->add_control(
 			'totals_divider_color',
 			array(
-				'label'     => esc_html__( 'Color', 'mas-elementor' ),
+				'label'     => esc_html__( 'Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
 					'{{WRAPPER}}' => '--totals-divider-color: {{VALUE}};',
@@ -1643,7 +1643,7 @@ class Cart extends Base_Widget {
 		$this->add_responsive_control(
 			'totals_divider_weight',
 			array(
-				'label'      => esc_html__( 'Weight', 'mas-elementor' ),
+				'label'      => esc_html__( 'Weight', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::SLIDER,
 				'size_units' => array( 'px', 'em', 'rem', 'custom' ),
 				'selectors'  => array(
@@ -1657,7 +1657,7 @@ class Cart extends Base_Widget {
 		$this->start_controls_section(
 			'section_cart_tabs_checkout_button',
 			array(
-				'label' => esc_html__( 'Checkout Button', 'mas-elementor' ),
+				'label' => esc_html__( 'Checkout Button', 'mas-addons-for-elementor' ),
 				'tab'   => Controls_Manager::TAB_STYLE,
 			)
 		);
@@ -1680,12 +1680,12 @@ class Cart extends Base_Widget {
 
 		$this->start_controls_tabs( 'checkout_button_styles' );
 
-		$this->start_controls_tab( 'checkout_button_normal_styles', array( 'label' => esc_html__( 'Normal', 'mas-elementor' ) ) );
+		$this->start_controls_tab( 'checkout_button_normal_styles', array( 'label' => esc_html__( 'Normal', 'mas-addons-for-elementor' ) ) );
 
 		$this->add_control(
 			'checkout_button_normal_text_color',
 			array(
-				'label'     => esc_html__( 'Text Color', 'mas-elementor' ),
+				'label'     => esc_html__( 'Text Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
 					'{{WRAPPER}}' => '--checkout-button-normal-text-color: {{VALUE}};',
@@ -1711,12 +1711,12 @@ class Cart extends Base_Widget {
 
 		$this->end_controls_tab();
 
-		$this->start_controls_tab( 'checkout_button_hover_styles', array( 'label' => esc_html__( 'Hover', 'mas-elementor' ) ) );
+		$this->start_controls_tab( 'checkout_button_hover_styles', array( 'label' => esc_html__( 'Hover', 'mas-addons-for-elementor' ) ) );
 
 		$this->add_control(
 			'checkout_button_hover_text_color',
 			array(
-				'label'     => esc_html__( 'Text Color', 'mas-elementor' ),
+				'label'     => esc_html__( 'Text Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
 					'{{WRAPPER}}' => '--checkout-button-hover-text-color: {{VALUE}};',
@@ -1743,7 +1743,7 @@ class Cart extends Base_Widget {
 		$this->add_control(
 			'checkout_button_hover_border_color',
 			array(
-				'label'     => esc_html__( 'Border Color', 'mas-elementor' ),
+				'label'     => esc_html__( 'Border Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
 					'{{WRAPPER}}' => '--checkout-button-hover-border-color: {{VALUE}}',
@@ -1757,7 +1757,7 @@ class Cart extends Base_Widget {
 		$this->add_control(
 			'checkout_button_hover_transition_duration',
 			array(
-				'label'     => esc_html__( 'Transition Duration', 'mas-elementor' ) . ' (ms)',
+				'label'     => esc_html__( 'Transition Duration', 'mas-addons-for-elementor' ) . ' (ms)',
 				'type'      => Controls_Manager::SLIDER,
 				'selectors' => array(
 					'{{WRAPPER}}' => '--checkout-button-hover-transition-duration: {{SIZE}}ms',
@@ -1774,7 +1774,7 @@ class Cart extends Base_Widget {
 		$this->add_control(
 			'checkout_button_hover_animation',
 			array(
-				'label'              => esc_html__( 'Hover Animation', 'mas-elementor' ),
+				'label'              => esc_html__( 'Hover Animation', 'mas-addons-for-elementor' ),
 				'type'               => Controls_Manager::HOVER_ANIMATION,
 				'frontend_available' => true,
 				'render_type'        => 'template',
@@ -1797,7 +1797,7 @@ class Cart extends Base_Widget {
 		$this->add_responsive_control(
 			'checkout_button_border_radius',
 			array(
-				'label'      => esc_html__( 'Border Radius', 'mas-elementor' ),
+				'label'      => esc_html__( 'Border Radius', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', '%', 'em', 'rem', 'custom' ),
 				'selectors'  => array(
@@ -1809,7 +1809,7 @@ class Cart extends Base_Widget {
 		$this->add_responsive_control(
 			'checkout_button_padding',
 			array(
-				'label'      => esc_html__( 'Padding', 'mas-elementor' ),
+				'label'      => esc_html__( 'Padding', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', '%', 'em', 'rem', 'vw', 'custom' ),
 				'selectors'  => array(
@@ -1823,7 +1823,7 @@ class Cart extends Base_Widget {
 		$this->start_controls_section(
 			'section_cart_tabs_customize',
 			array(
-				'label' => esc_html__( 'Customize', 'mas-elementor' ),
+				'label' => esc_html__( 'Customize', 'mas-addons-for-elementor' ),
 				'tab'   => Controls_Manager::TAB_STYLE,
 			)
 		);
@@ -1831,23 +1831,23 @@ class Cart extends Base_Widget {
 		$customize_options = array();
 
 		$customize_options += array(
-			'customize_order_summary' => esc_html__( 'Order Summary', 'mas-elementor' ),
+			'customize_order_summary' => esc_html__( 'Order Summary', 'mas-addons-for-elementor' ),
 		);
 
 		if ( $this->is_wc_feature_active( 'coupons' ) ) {
 			$customize_options += array(
-				'customize_coupon' => esc_html__( 'Coupon', 'mas-elementor' ),
+				'customize_coupon' => esc_html__( 'Coupon', 'mas-addons-for-elementor' ),
 			);
 		}
 
 		$customize_options += array(
-			'customize_totals' => esc_html__( 'Totals', 'mas-elementor' ),
+			'customize_totals' => esc_html__( 'Totals', 'mas-addons-for-elementor' ),
 		);
 
 		$this->add_control(
 			'section_cart_show_customize_elements',
 			array(
-				'label'       => esc_html__( 'Select sections of the cart to customize:', 'mas-elementor' ),
+				'label'       => esc_html__( 'Select sections of the cart to customize:', 'mas-addons-for-elementor' ),
 				'type'        => Controls_Manager::SELECT2,
 				'multiple'    => true,
 				'options'     => $customize_options,
@@ -1861,7 +1861,7 @@ class Cart extends Base_Widget {
 		$this->start_controls_section(
 			'section_cart_tabs_customize_order_summary',
 			array(
-				'label'     => esc_html__( 'Customize: Order Summary', 'mas-elementor' ),
+				'label'     => esc_html__( 'Customize: Order Summary', 'mas-addons-for-elementor' ),
 				'tab'       => Controls_Manager::TAB_STYLE,
 				'condition' => array(
 					'section_cart_show_customize_elements' => 'customize_order_summary',
@@ -1873,14 +1873,14 @@ class Cart extends Base_Widget {
 			'order_summary_section_title',
 			array(
 				'type'  => Controls_Manager::HEADING,
-				'label' => esc_html__( 'Section', 'mas-elementor' ),
+				'label' => esc_html__( 'Section', 'mas-addons-for-elementor' ),
 			)
 		);
 
 		$this->add_control(
 			'order_summary_section_background_color',
 			array(
-				'label'     => esc_html__( 'Background Color', 'mas-elementor' ),
+				'label'     => esc_html__( 'Background Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
 					'{{WRAPPER}} .e-shop-table' => '--sections-background-color: {{VALUE}};',
@@ -1900,7 +1900,7 @@ class Cart extends Base_Widget {
 		$this->add_control(
 			'order_summary_section_border_type',
 			array(
-				'label'     => esc_html__( 'Border Type', 'mas-elementor' ),
+				'label'     => esc_html__( 'Border Type', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::SELECT,
 				'options'   => $this->get_custom_border_type_options(),
 				'selectors' => array(
@@ -1913,7 +1913,7 @@ class Cart extends Base_Widget {
 		$this->add_responsive_control(
 			'order_summary_section_border_width',
 			array(
-				'label'      => esc_html__( 'Border Width', 'mas-elementor' ),
+				'label'      => esc_html__( 'Border Width', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', '%', 'em', 'rem', 'vw', 'custom' ),
 				'selectors'  => array(
@@ -1928,7 +1928,7 @@ class Cart extends Base_Widget {
 		$this->add_control(
 			'order_summary_section_border_color',
 			array(
-				'label'     => esc_html__( 'Color', 'mas-elementor' ),
+				'label'     => esc_html__( 'Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
 					'{{WRAPPER}} .e-shop-table' => '--sections-border-color: {{VALUE}};',
@@ -1942,7 +1942,7 @@ class Cart extends Base_Widget {
 		$this->add_responsive_control(
 			'order_summary_section_border_radius',
 			array(
-				'label'      => esc_html__( 'Border Radius', 'mas-elementor' ),
+				'label'      => esc_html__( 'Border Radius', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', '%', 'em', 'rem', 'custom' ),
 				'selectors'  => array(
@@ -1954,7 +1954,7 @@ class Cart extends Base_Widget {
 		$this->add_responsive_control(
 			'order_summary_section_padding',
 			array(
-				'label'      => esc_html__( 'Padding', 'mas-elementor' ),
+				'label'      => esc_html__( 'Padding', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', '%', 'em', 'rem', 'vw', 'custom' ),
 				'selectors'  => array(
@@ -1966,7 +1966,7 @@ class Cart extends Base_Widget {
 		$this->add_responsive_control(
 			'order_summary_section_margin',
 			array(
-				'label'      => esc_html__( 'Margin', 'mas-elementor' ),
+				'label'      => esc_html__( 'Margin', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', '%', 'em', 'rem', 'vw', 'custom' ),
 				'selectors'  => array(
@@ -1981,7 +1981,7 @@ class Cart extends Base_Widget {
 		$this->start_controls_section(
 			'section_cart_tabs_customize_totals',
 			array(
-				'label'     => esc_html__( 'Customize: Totals', 'mas-elementor' ),
+				'label'     => esc_html__( 'Customize: Totals', 'mas-addons-for-elementor' ),
 				'tab'       => Controls_Manager::TAB_STYLE,
 				'condition' => array(
 					'section_cart_show_customize_elements' => 'customize_totals',
@@ -1993,14 +1993,14 @@ class Cart extends Base_Widget {
 			'customize_totals_section_title',
 			array(
 				'type'  => Controls_Manager::HEADING,
-				'label' => esc_html__( 'Section', 'mas-elementor' ),
+				'label' => esc_html__( 'Section', 'mas-addons-for-elementor' ),
 			)
 		);
 
 		$this->add_control(
 			'sections_totals_background_color',
 			array(
-				'label'     => esc_html__( 'Background Color', 'mas-elementor' ),
+				'label'     => esc_html__( 'Background Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
 					'{{WRAPPER}} .e-cart-totals' => '--sections-background-color: {{VALUE}};',
@@ -2019,7 +2019,7 @@ class Cart extends Base_Widget {
 		$this->add_control(
 			'totals_section_border_type',
 			array(
-				'label'     => esc_html__( 'Border Type', 'mas-elementor' ),
+				'label'     => esc_html__( 'Border Type', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::SELECT,
 				'options'   => $this->get_custom_border_type_options(),
 				'selectors' => array(
@@ -2032,7 +2032,7 @@ class Cart extends Base_Widget {
 		$this->add_responsive_control(
 			'totals_section_border_width',
 			array(
-				'label'      => esc_html__( 'Border Width', 'mas-elementor' ),
+				'label'      => esc_html__( 'Border Width', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', '%', 'em', 'rem', 'vw', 'custom' ),
 				'selectors'  => array(
@@ -2047,7 +2047,7 @@ class Cart extends Base_Widget {
 		$this->add_control(
 			'totals_section_border_color',
 			array(
-				'label'     => esc_html__( 'Color', 'mas-elementor' ),
+				'label'     => esc_html__( 'Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
 					'{{WRAPPER}} .e-cart-totals' => '--sections-border-color: {{VALUE}};',
@@ -2061,7 +2061,7 @@ class Cart extends Base_Widget {
 		$this->add_responsive_control(
 			'totals_section_border_radius',
 			array(
-				'label'      => esc_html__( 'Border Radius', 'mas-elementor' ),
+				'label'      => esc_html__( 'Border Radius', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', '%', 'em', 'rem', 'custom' ),
 				'selectors'  => array(
@@ -2073,7 +2073,7 @@ class Cart extends Base_Widget {
 		$this->add_responsive_control(
 			'checkout_sections_padding',
 			array(
-				'label'      => esc_html__( 'Padding', 'mas-elementor' ),
+				'label'      => esc_html__( 'Padding', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', '%', 'em', 'rem', 'vw', 'custom' ),
 				'selectors'  => array(
@@ -2085,7 +2085,7 @@ class Cart extends Base_Widget {
 		$this->add_responsive_control(
 			'totals_section_margin',
 			array(
-				'label'      => esc_html__( 'Margin', 'mas-elementor' ),
+				'label'      => esc_html__( 'Margin', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', '%', 'em', 'rem', 'vw', 'custom' ),
 				'selectors'  => array(
@@ -2099,14 +2099,14 @@ class Cart extends Base_Widget {
 			'totals_section_titles_title',
 			array(
 				'type'  => Controls_Manager::HEADING,
-				'label' => esc_html__( 'Title', 'mas-elementor' ),
+				'label' => esc_html__( 'Title', 'mas-addons-for-elementor' ),
 			)
 		);
 
 		$this->add_control(
 			'totals_section_titles_color',
 			array(
-				'label'     => esc_html__( 'Color', 'mas-elementor' ),
+				'label'     => esc_html__( 'Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
 					'{{WRAPPER}} .cart_totals' => '--sections-title-color: {{VALUE}};',
@@ -2135,14 +2135,14 @@ class Cart extends Base_Widget {
 			'totals_section_content_title',
 			array(
 				'type'  => Controls_Manager::HEADING,
-				'label' => esc_html__( 'Description', 'mas-elementor' ),
+				'label' => esc_html__( 'Description', 'mas-addons-for-elementor' ),
 			)
 		);
 
 		$this->add_control(
 			'totals_section_content_color',
 			array(
-				'label'     => esc_html__( 'Color', 'mas-elementor' ),
+				'label'     => esc_html__( 'Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
 					'{{WRAPPER}} .e-cart-totals' => '--sections-descriptions-color: {{VALUE}};',
@@ -2162,18 +2162,18 @@ class Cart extends Base_Widget {
 			'totals_section_link_title',
 			array(
 				'type'  => Controls_Manager::HEADING,
-				'label' => esc_html__( 'Link', 'mas-elementor' ),
+				'label' => esc_html__( 'Link', 'mas-addons-for-elementor' ),
 			)
 		);
 
 		$this->start_controls_tabs( 'totals_section_links_colors' );
 
-		$this->start_controls_tab( 'totals_section_links_normal_colors', array( 'label' => esc_html__( 'Normal', 'mas-elementor' ) ) );
+		$this->start_controls_tab( 'totals_section_links_normal_colors', array( 'label' => esc_html__( 'Normal', 'mas-addons-for-elementor' ) ) );
 
 		$this->add_control(
 			'totals_section_links_normal_color',
 			array(
-				'label'     => esc_html__( 'Link Color', 'mas-elementor' ),
+				'label'     => esc_html__( 'Link Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
 					'{{WRAPPER}} .e-cart-totals' => '--links-normal-color: {{VALUE}} !important;',
@@ -2183,12 +2183,12 @@ class Cart extends Base_Widget {
 
 		$this->end_controls_tab();
 
-		$this->start_controls_tab( 'totals_section_links_hover_colors', array( 'label' => esc_html__( 'Hover', 'mas-elementor' ) ) );
+		$this->start_controls_tab( 'totals_section_links_hover_colors', array( 'label' => esc_html__( 'Hover', 'mas-addons-for-elementor' ) ) );
 
 		$this->add_control(
 			'totals_section_links_hover_color',
 			array(
-				'label'     => esc_html__( 'Color', 'mas-elementor' ),
+				'label'     => esc_html__( 'Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
 					'{{WRAPPER}} .e-cart-totals' => '--links-hover-color: {{VALUE}} !important;',
@@ -2205,7 +2205,7 @@ class Cart extends Base_Widget {
 		$this->start_controls_section(
 			'section_cart_tabs_customize_coupon',
 			array(
-				'label'     => esc_html__( 'Customize: Coupon', 'mas-elementor' ),
+				'label'     => esc_html__( 'Customize: Coupon', 'mas-addons-for-elementor' ),
 				'tab'       => Controls_Manager::TAB_STYLE,
 				'condition' => array(
 					'section_cart_show_customize_elements' => 'customize_coupon',
@@ -2217,14 +2217,14 @@ class Cart extends Base_Widget {
 			'coupon_section_title',
 			array(
 				'type'  => Controls_Manager::HEADING,
-				'label' => esc_html__( 'Section', 'mas-elementor' ),
+				'label' => esc_html__( 'Section', 'mas-addons-for-elementor' ),
 			)
 		);
 
 		$this->add_control(
 			'customize_coupon_background_color',
 			array(
-				'label'     => esc_html__( 'Background Color', 'mas-elementor' ),
+				'label'     => esc_html__( 'Background Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
 					'{{WRAPPER}} .coupon' => '--sections-background-color: {{VALUE}};',
@@ -2243,7 +2243,7 @@ class Cart extends Base_Widget {
 		$this->add_control(
 			'customize_coupon_section_border_type',
 			array(
-				'label'     => esc_html__( 'Border Type', 'mas-elementor' ),
+				'label'     => esc_html__( 'Border Type', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::SELECT,
 				'options'   => $this->get_custom_border_type_options(),
 				'selectors' => array(
@@ -2256,7 +2256,7 @@ class Cart extends Base_Widget {
 		$this->add_responsive_control(
 			'customize_coupon_section_border_width',
 			array(
-				'label'      => esc_html__( 'Border Width', 'mas-elementor' ),
+				'label'      => esc_html__( 'Border Width', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', '%', 'em', 'rem', 'vw', 'custom' ),
 				'selectors'  => array(
@@ -2271,7 +2271,7 @@ class Cart extends Base_Widget {
 		$this->add_control(
 			'customize_coupon_section_border_color',
 			array(
-				'label'     => esc_html__( 'Color', 'mas-elementor' ),
+				'label'     => esc_html__( 'Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
 					'{{WRAPPER}} .coupon' => '--sections-border-color: {{VALUE}};',
@@ -2285,7 +2285,7 @@ class Cart extends Base_Widget {
 		$this->add_responsive_control(
 			'customize_coupon_section_border_radius',
 			array(
-				'label'      => esc_html__( 'Border Radius', 'mas-elementor' ),
+				'label'      => esc_html__( 'Border Radius', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', '%', 'em', 'rem', 'custom' ),
 				'selectors'  => array(
@@ -2297,7 +2297,7 @@ class Cart extends Base_Widget {
 		$this->add_responsive_control(
 			'customize_coupon_section_padding',
 			array(
-				'label'      => esc_html__( 'Padding', 'mas-elementor' ),
+				'label'      => esc_html__( 'Padding', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', '%', 'em', 'rem', 'vw', 'custom' ),
 				'selectors'  => array(
@@ -2309,7 +2309,7 @@ class Cart extends Base_Widget {
 		$this->add_responsive_control(
 			'customize_coupon_section_margin',
 			array(
-				'label'      => esc_html__( 'Margin', 'mas-elementor' ),
+				'label'      => esc_html__( 'Margin', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', '%', 'em', 'rem', 'vw', 'custom' ),
 				'selectors'  => array(
@@ -2381,10 +2381,10 @@ class Cart extends Base_Widget {
 		<div class="coupon e-cart-section shop_table">
 			<div class="form-row coupon-col">
 				<div class="coupon-col-start">
-					<input type="text" name="coupon_code" class="input-text" id="coupon_code" value="" placeholder="<?php esc_attr_e( 'Coupon code', 'mas-elementor' ); ?>" />
+					<input type="text" name="coupon_code" class="input-text" id="coupon_code" value="" placeholder="<?php esc_attr_e( 'Coupon code', 'mas-addons-for-elementor' ); ?>" />
 				</div>
 				<div class="coupon-col-end">
-					<button <?php $this->print_render_attribute_string( 'button_coupon' ); ?> value="<?php esc_attr_e( 'Apply coupon', 'mas-elementor' ); ?>"><?php esc_attr_e( 'Apply coupon', 'mas-elementor' ); ?></button>
+					<button <?php $this->print_render_attribute_string( 'button_coupon' ); ?> value="<?php esc_attr_e( 'Apply coupon', 'mas-addons-for-elementor' ); ?>"><?php esc_attr_e( 'Apply coupon', 'mas-addons-for-elementor' ); ?></button>
 				</div>
 				<?php do_action( 'woocommerce_cart_coupon' ); ?>
 			</div>

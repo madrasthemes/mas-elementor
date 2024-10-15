@@ -46,7 +46,7 @@ class Signin extends Base_Widget {
 	 * @return string
 	 */
 	public function get_title() {
-		return esc_html__( 'User Account Forms', 'mas-elementor' );
+		return esc_html__( 'User Account Forms', 'mas-addons-for-elementor' );
 	}
 
 	/**
@@ -86,21 +86,21 @@ class Signin extends Base_Widget {
 		$this->start_controls_section(
 			'section_general',
 			array(
-				'label' => esc_html__( 'General', 'mas-elementor' ),
+				'label' => esc_html__( 'General', 'mas-addons-for-elementor' ),
 			)
 		);
 
 		$this->add_control(
 			'display',
 			array(
-				'label'       => esc_html__( 'Display', 'mas-elementor' ),
-				'description' => esc_html__( 'Choose which forms you want to display. Please note that the register form is available only if registration is enabled from Settings > General > Membership.', 'mas-elementor' ),
+				'label'       => esc_html__( 'Display', 'mas-addons-for-elementor' ),
+				'description' => esc_html__( 'Choose which forms you want to display. Please note that the register form is available only if registration is enabled from Settings > General > Membership.', 'mas-addons-for-elementor' ),
 				'type'        => Controls_Manager::SELECT,
 				'options'     => array(
-					'all'      => esc_html__( 'All', 'mas-elementor' ),
-					'login'    => esc_html__( 'Login', 'mas-elementor' ),
-					'register' => esc_html__( 'Register', 'mas-elementor' ),
-					'forgot'   => esc_html__( 'Password Reset', 'mas-elementor' ),
+					'all'      => esc_html__( 'All', 'mas-addons-for-elementor' ),
+					'login'    => esc_html__( 'Login', 'mas-addons-for-elementor' ),
+					'register' => esc_html__( 'Register', 'mas-addons-for-elementor' ),
+					'forgot'   => esc_html__( 'Password Reset', 'mas-addons-for-elementor' ),
 				),
 				'default'     => 'all',
 			)
@@ -121,7 +121,7 @@ class Signin extends Base_Widget {
 		$this->start_controls_section(
 			'section_heading_style',
 			array(
-				'label' => esc_html__( 'Form', 'mas-elementor' ),
+				'label' => esc_html__( 'Form', 'mas-addons-for-elementor' ),
 				'tab'   => Controls_Manager::TAB_STYLE,
 			)
 		);
@@ -129,7 +129,7 @@ class Signin extends Base_Widget {
 		$this->add_control(
 			'form_title_heading',
 			array(
-				'label'     => __( 'Form Title', 'mas-elementor' ),
+				'label'     => __( 'Form Title', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::HEADING,
 				'condition' => array( 'show_form_title' => 'yes' ),
 			)
@@ -138,7 +138,7 @@ class Signin extends Base_Widget {
 		$this->add_control(
 			'form_title_color',
 			array(
-				'label'     => esc_html__( 'Color', 'mas-elementor' ),
+				'label'     => esc_html__( 'Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
 					'{{WRAPPER}} .form-header__title' => 'color: {{VALUE}};',
@@ -159,19 +159,19 @@ class Signin extends Base_Widget {
 		$this->add_control(
 			'form_title_alignment',
 			array(
-				'label'     => esc_html__( 'Alignment', 'mas-elementor' ),
+				'label'     => esc_html__( 'Alignment', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::CHOOSE,
 				'options'   => array(
 					'left'   => array(
-						'title' => esc_html__( 'Left', 'mas-elementor' ),
+						'title' => esc_html__( 'Left', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-text-align-left',
 					),
 					'center' => array(
-						'title' => esc_html__( 'Center', 'mas-elementor' ),
+						'title' => esc_html__( 'Center', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-text-align-center',
 					),
 					'right'  => array(
-						'title' => esc_html__( 'Right', 'mas-elementor' ),
+						'title' => esc_html__( 'Right', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-text-align-right',
 					),
 				),
@@ -186,7 +186,7 @@ class Signin extends Base_Widget {
 		$this->add_control(
 			'login_form_title_spacing',
 			array(
-				'label'      => esc_html__( 'Title Spacing', 'mas-elementor' ),
+				'label'      => esc_html__( 'Title Spacing', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::SLIDER,
 				'size_units' => array( 'px', '%', 'em', 'rem', 'custom' ),
 				'default'    => array(
@@ -208,9 +208,9 @@ class Signin extends Base_Widget {
 		$this->add_control(
 			'title_css',
 			array(
-				'label'     => esc_html__( 'CSS Classes', 'mas-elementor' ),
+				'label'     => esc_html__( 'CSS Classes', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::TEXT,
-				'title'     => esc_html__( 'Add your custom class for text without the dot. e.g: my-class', 'mas-elementor' ),
+				'title'     => esc_html__( 'Add your custom class for text without the dot. e.g: my-class', 'mas-addons-for-elementor' ),
 				'condition' => array( 'show_form_title' => 'yes' ),
 			)
 		);
@@ -218,7 +218,7 @@ class Signin extends Base_Widget {
 		$this->add_control(
 			'form_description_heading',
 			array(
-				'label'     => __( 'Form Description', 'mas-elementor' ),
+				'label'     => __( 'Form Description', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::HEADING,
 				'separator' => 'before',
 				'condition' => array( 'show_form_description' => 'yes' ),
@@ -228,7 +228,7 @@ class Signin extends Base_Widget {
 		$this->add_control(
 			'form_description_color',
 			array(
-				'label'     => esc_html__( 'Color', 'mas-elementor' ),
+				'label'     => esc_html__( 'Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
 					'{{WRAPPER}} .form-header__desc' => 'color: {{VALUE}};',
@@ -249,19 +249,19 @@ class Signin extends Base_Widget {
 		$this->add_control(
 			'description_alignment',
 			array(
-				'label'     => esc_html__( 'Description Alignment', 'mas-elementor' ),
+				'label'     => esc_html__( 'Description Alignment', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::CHOOSE,
 				'options'   => array(
 					'left'   => array(
-						'title' => esc_html__( 'Left', 'mas-elementor' ),
+						'title' => esc_html__( 'Left', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-text-align-left',
 					),
 					'center' => array(
-						'title' => esc_html__( 'Center', 'mas-elementor' ),
+						'title' => esc_html__( 'Center', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-text-align-center',
 					),
 					'right'  => array(
-						'title' => esc_html__( 'Right', 'mas-elementor' ),
+						'title' => esc_html__( 'Right', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-text-align-right',
 					),
 				),
@@ -276,7 +276,7 @@ class Signin extends Base_Widget {
 		$this->add_control(
 			'login_form_desc_spacing',
 			array(
-				'label'      => esc_html__( 'Description Spacing', 'mas-elementor' ),
+				'label'      => esc_html__( 'Description Spacing', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::SLIDER,
 				'size_units' => array( 'px', '%', 'em', 'rem', 'custom' ),
 				'default'    => array(
@@ -298,9 +298,9 @@ class Signin extends Base_Widget {
 		$this->add_control(
 			'description_css',
 			array(
-				'label'     => esc_html__( 'CSS Classes', 'mas-elementor' ),
+				'label'     => esc_html__( 'CSS Classes', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::TEXT,
-				'title'     => esc_html__( 'Add your custom class for text without the dot. e.g: my-class', 'mas-elementor' ),
+				'title'     => esc_html__( 'Add your custom class for text without the dot. e.g: my-class', 'mas-addons-for-elementor' ),
 				'condition' => array(
 					'show_form_description' => 'yes',
 				),
@@ -310,19 +310,19 @@ class Signin extends Base_Widget {
 		$this->add_control(
 			'form_footer_alignment',
 			array(
-				'label'     => esc_html__( 'Form Footer Alignment', 'mas-elementor' ),
+				'label'     => esc_html__( 'Form Footer Alignment', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::CHOOSE,
 				'options'   => array(
 					'left'   => array(
-						'title' => esc_html__( 'Left', 'mas-elementor' ),
+						'title' => esc_html__( 'Left', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-text-align-left',
 					),
 					'center' => array(
-						'title' => esc_html__( 'Center', 'mas-elementor' ),
+						'title' => esc_html__( 'Center', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-text-align-center',
 					),
 					'right'  => array(
-						'title' => esc_html__( 'Right', 'mas-elementor' ),
+						'title' => esc_html__( 'Right', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-text-align-right',
 					),
 				),
@@ -346,7 +346,7 @@ class Signin extends Base_Widget {
 		$this->start_controls_section(
 			'section_login_style',
 			array(
-				'label' => esc_html__( 'Login Form', 'mas-elementor' ),
+				'label' => esc_html__( 'Login Form', 'mas-addons-for-elementor' ),
 				'tab'   => Controls_Manager::TAB_STYLE,
 			)
 		);
@@ -354,19 +354,19 @@ class Signin extends Base_Widget {
 		$this->add_control(
 			'form_alignment',
 			array(
-				'label'     => esc_html__( 'Alignment', 'mas-elementor' ),
+				'label'     => esc_html__( 'Alignment', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::CHOOSE,
 				'options'   => array(
 					'left'   => array(
-						'title' => esc_html__( 'Left', 'mas-elementor' ),
+						'title' => esc_html__( 'Left', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-text-align-left',
 					),
 					'center' => array(
-						'title' => esc_html__( 'Center', 'mas-elementor' ),
+						'title' => esc_html__( 'Center', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-text-align-center',
 					),
 					'right'  => array(
-						'title' => esc_html__( 'Right', 'mas-elementor' ),
+						'title' => esc_html__( 'Right', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-text-align-right',
 					),
 				),
@@ -382,7 +382,7 @@ class Signin extends Base_Widget {
 		$this->add_control(
 			'login_form_heading',
 			array(
-				'label'     => esc_html__( 'Form', 'mas-elementor' ),
+				'label'     => esc_html__( 'Form', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::HEADING,
 				'separator' => 'none',
 			)
@@ -407,7 +407,7 @@ class Signin extends Base_Widget {
 		$this->add_control(
 			'login_label_color',
 			array(
-				'label'     => esc_html__( 'Label Color', 'mas-elementor' ),
+				'label'     => esc_html__( 'Label Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
 					'{{WRAPPER}} .mas-form-fields-wrapper .elementor-field-type-text label' => 'color: {{VALUE}};',
@@ -418,7 +418,7 @@ class Signin extends Base_Widget {
 		$this->add_control(
 			'login_form_spacebetween',
 			array(
-				'label'      => esc_html__( 'Form Spacing', 'mas-elementor' ),
+				'label'      => esc_html__( 'Form Spacing', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::SLIDER,
 				'size_units' => array( 'px', '%', 'em', 'rem', 'custom' ),
 				'default'    => array(
@@ -439,7 +439,7 @@ class Signin extends Base_Widget {
 		$this->add_control(
 			'login_label_width',
 			array(
-				'label'      => esc_html__( 'Label Width', 'mas-elementor' ),
+				'label'      => esc_html__( 'Label Width', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::SLIDER,
 				'size_units' => array( 'px', '%', 'em', 'rem', 'custom' ),
 				'default'    => array(
@@ -461,7 +461,7 @@ class Signin extends Base_Widget {
 		$this->add_control(
 			'login_label_margin',
 			array(
-				'label'      => esc_html__( 'Form Label Margin', 'mas-elementor' ),
+				'label'      => esc_html__( 'Form Label Margin', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', 'em', '%', 'rem' ),
 				'selectors'  => array(
@@ -473,7 +473,7 @@ class Signin extends Base_Widget {
 		$this->add_control(
 			'login_form_width',
 			array(
-				'label'      => esc_html__( 'Form Width', 'mas-elementor' ),
+				'label'      => esc_html__( 'Form Width', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::SLIDER,
 				'size_units' => array( 'px', '%', 'em', 'rem', 'custom' ),
 				'default'    => array(
@@ -495,7 +495,7 @@ class Signin extends Base_Widget {
 		$this->add_control(
 			'login_form_spacing',
 			array(
-				'label'      => esc_html__( 'Spacing', 'mas-elementor' ),
+				'label'      => esc_html__( 'Spacing', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::SLIDER,
 				'size_units' => array( 'px', '%', 'em', 'rem', 'custom' ),
 				'default'    => array(
@@ -517,7 +517,7 @@ class Signin extends Base_Widget {
 		$this->add_control(
 			'login_form_input_heading',
 			array(
-				'label'     => esc_html__( 'Form Input', 'mas-elementor' ),
+				'label'     => esc_html__( 'Form Input', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::HEADING,
 				'separator' => 'before',
 			)
@@ -550,7 +550,7 @@ class Signin extends Base_Widget {
 		$this->add_control(
 			'form_input_padding',
 			array(
-				'label'      => esc_html__( 'Padding', 'mas-elementor' ),
+				'label'      => esc_html__( 'Padding', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', '%', 'em' ),
 				'selectors'  => array(
@@ -567,7 +567,7 @@ class Signin extends Base_Widget {
 		$this->add_control(
 			'form_input_border_radius',
 			array(
-				'label'      => esc_html__( 'Border Radius', 'mas-elementor' ),
+				'label'      => esc_html__( 'Border Radius', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', '%', 'em' ),
 				'selectors'  => array(
@@ -584,7 +584,7 @@ class Signin extends Base_Widget {
 		$this->add_control(
 			'input_icon_margin',
 			array(
-				'label'      => esc_html__( 'Input Icon Margin', 'mas-elementor' ),
+				'label'      => esc_html__( 'Input Icon Margin', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'default'    => array(
 					'top'      => '0',
@@ -605,14 +605,14 @@ class Signin extends Base_Widget {
 		$this->start_controls_tab(
 			'form_input_controls_normal',
 			array(
-				'label' => esc_html__( 'Normal', 'mas-elementor' ),
+				'label' => esc_html__( 'Normal', 'mas-addons-for-elementor' ),
 			)
 		);
 
 		$this->add_control(
 			'login_input_color',
 			array(
-				'label'     => esc_html__( 'Input Text Color', 'mas-elementor' ),
+				'label'     => esc_html__( 'Input Text Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
 					'{{WRAPPER}} .mas-form-fields-wrapper .elementor-field-type-text input[type="email"]' => 'color: {{VALUE}};',
@@ -625,7 +625,7 @@ class Signin extends Base_Widget {
 		$this->add_control(
 			'login_input_bg_color',
 			array(
-				'label'     => esc_html__( 'Input BG Color', 'mas-elementor' ),
+				'label'     => esc_html__( 'Input BG Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
 					'{{WRAPPER}} .mas-form-fields-wrapper .elementor-field-type-text input[type="email"]' => 'background-color: {{VALUE}};',
@@ -638,7 +638,7 @@ class Signin extends Base_Widget {
 		$this->add_control(
 			'login_input_border_color',
 			array(
-				'label'     => esc_html__( 'Input Border Color', 'mas-elementor' ),
+				'label'     => esc_html__( 'Input Border Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
 					'{{WRAPPER}} .mas-form-fields-wrapper .elementor-field-type-text input[type="email"]' => 'border-color: {{VALUE}};',
@@ -656,14 +656,14 @@ class Signin extends Base_Widget {
 		$this->start_controls_tab(
 			'form_input_controls_hover',
 			array(
-				'label' => esc_html__( 'Hover', 'mas-elementor' ),
+				'label' => esc_html__( 'Hover', 'mas-addons-for-elementor' ),
 			)
 		);
 
 		$this->add_control(
 			'login_input_hover_color',
 			array(
-				'label'     => esc_html__( 'Input Text Color', 'mas-elementor' ),
+				'label'     => esc_html__( 'Input Text Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
 					'{{WRAPPER}} .mas-form-fields-wrapper .elementor-field-type-text input[type="email"]:hover' => 'color: {{VALUE}};',
@@ -676,7 +676,7 @@ class Signin extends Base_Widget {
 		$this->add_control(
 			'login_input_bg_hover_color',
 			array(
-				'label'     => esc_html__( 'Input BG Color', 'mas-elementor' ),
+				'label'     => esc_html__( 'Input BG Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
 					'{{WRAPPER}} .mas-form-fields-wrapper .elementor-field-type-text input[type="email"]:hover' => 'background-color: {{VALUE}};',
@@ -689,7 +689,7 @@ class Signin extends Base_Widget {
 		$this->add_control(
 			'login_input_border_hover_color',
 			array(
-				'label'     => esc_html__( 'Input Border Color', 'mas-elementor' ),
+				'label'     => esc_html__( 'Input Border Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
 					'{{WRAPPER}} .mas-form-fields-wrapper .elementor-field-type-text input[type="email"]:hover' => 'border-color: {{VALUE}};',
@@ -708,7 +708,7 @@ class Signin extends Base_Widget {
 		$this->add_control(
 			'login_button_heading',
 			array(
-				'label'     => esc_html__( 'Signin Button', 'mas-elementor' ),
+				'label'     => esc_html__( 'Signin Button', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::HEADING,
 				'separator' => 'before',
 			)
@@ -725,7 +725,7 @@ class Signin extends Base_Widget {
 		$this->add_control(
 			'login_button_color',
 			array(
-				'label'     => esc_html__( 'Color', 'mas-elementor' ),
+				'label'     => esc_html__( 'Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
 					'{{WRAPPER}} .mas-signin-btn button' => 'color: {{VALUE}};',
@@ -736,7 +736,7 @@ class Signin extends Base_Widget {
 		$this->add_control(
 			'login_button_bg_color',
 			array(
-				'label'     => esc_html__( 'Color', 'mas-elementor' ),
+				'label'     => esc_html__( 'Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'default'   => '#20D756',
 				'selectors' => array(
@@ -748,7 +748,7 @@ class Signin extends Base_Widget {
 		$this->add_control(
 			'login_button_padding',
 			array(
-				'label'      => esc_html__( 'Padding', 'mas-elementor' ),
+				'label'      => esc_html__( 'Padding', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', '%', 'em' ),
 				'selectors'  => array(
@@ -794,7 +794,7 @@ class Signin extends Base_Widget {
 		$this->add_control(
 			'button_border_radius',
 			array(
-				'label'      => esc_html__( 'Border Radius', 'mas-elementor' ),
+				'label'      => esc_html__( 'Border Radius', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::DIMENSIONS,
 				'size_units' => array( 'px', '%', 'em' ),
 				'selectors'  => array(
@@ -806,19 +806,19 @@ class Signin extends Base_Widget {
 		$this->add_responsive_control(
 			'button_width_alignment',
 			array(
-				'label'     => esc_html__( 'Button Alignment', 'mas-elementor' ),
+				'label'     => esc_html__( 'Button Alignment', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::CHOOSE,
 				'options'   => array(
 					'start'  => array(
-						'title' => esc_html__( 'Left', 'mas-elementor' ),
+						'title' => esc_html__( 'Left', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-text-align-left',
 					),
 					'center' => array(
-						'title' => esc_html__( 'Center', 'mas-elementor' ),
+						'title' => esc_html__( 'Center', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-text-align-center',
 					),
 					'end'    => array(
-						'title' => esc_html__( 'Right', 'mas-elementor' ),
+						'title' => esc_html__( 'Right', 'mas-addons-for-elementor' ),
 						'icon'  => 'eicon-text-align-right',
 					),
 				),
@@ -832,7 +832,7 @@ class Signin extends Base_Widget {
 		$this->add_responsive_control(
 			'signin_button_width',
 			array(
-				'label'      => esc_html__( 'Sign in Button Width', 'mas-elementor' ),
+				'label'      => esc_html__( 'Sign in Button Width', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::SLIDER,
 				'size_units' => array( 'px', '%', 'em', 'rem', 'custom' ),
 				'default'    => array(
@@ -854,7 +854,7 @@ class Signin extends Base_Widget {
 		$this->add_control(
 			'signin_button_spacing',
 			array(
-				'label'      => esc_html__( 'Sign in Button Spacing', 'mas-elementor' ),
+				'label'      => esc_html__( 'Sign in Button Spacing', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::SLIDER,
 				'size_units' => array( 'px', '%', 'em', 'rem', 'custom' ),
 				'default'    => array(
@@ -875,7 +875,7 @@ class Signin extends Base_Widget {
 		$this->add_control(
 			'login_signup_text_heading',
 			array(
-				'label'     => esc_html__( 'Signup Text', 'mas-elementor' ),
+				'label'     => esc_html__( 'Signup Text', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::HEADING,
 				'separator' => 'before',
 			)
@@ -894,14 +894,14 @@ class Signin extends Base_Widget {
 			array(
 				'name'        => 'signup_link_typography',
 				'selector'    => '{{WRAPPER}} .form__footer a',
-				'description' => esc_html__( 'For the sign up link', 'mas-elementor' ),
+				'description' => esc_html__( 'For the sign up link', 'mas-addons-for-elementor' ),
 			)
 		);
 
 		$this->add_control(
 			'signup_text_color',
 			array(
-				'label'     => esc_html__( 'Color', 'mas-elementor' ),
+				'label'     => esc_html__( 'Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
 					'{{WRAPPER}} .form__footer' => 'color: {{VALUE}};',
@@ -912,7 +912,7 @@ class Signin extends Base_Widget {
 		$this->add_control(
 			'signup_link_color',
 			array(
-				'label'     => esc_html__( 'Link Color', 'mas-elementor' ),
+				'label'     => esc_html__( 'Link Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'default'   => '#20D756',
 				'selectors' => array(
@@ -924,7 +924,7 @@ class Signin extends Base_Widget {
 		$this->add_control(
 			'signup_link_spacing',
 			array(
-				'label'      => esc_html__( 'Sign up link Spacing', 'mas-elementor' ),
+				'label'      => esc_html__( 'Sign up link Spacing', 'mas-addons-for-elementor' ),
 				'type'       => Controls_Manager::SLIDER,
 				'size_units' => array( 'px', '%', 'em', 'rem', 'custom' ),
 				'default'    => array(
@@ -951,25 +951,25 @@ class Signin extends Base_Widget {
 		$this->start_controls_section(
 			'section_form_controls',
 			array(
-				'label' => esc_html__( 'Form Controls', 'mas-elementor' ),
+				'label' => esc_html__( 'Form Controls', 'mas-addons-for-elementor' ),
 			)
 		);
 
 		$this->add_control(
 			'show_form_title',
 			array(
-				'label'     => esc_html__( 'Title', 'mas-elementor' ),
+				'label'     => esc_html__( 'Title', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::SWITCHER,
 				'default'   => 'yes',
-				'label_off' => esc_html__( 'Hide', 'mas-elementor' ),
-				'label_on'  => esc_html__( 'Show', 'mas-elementor' ),
+				'label_off' => esc_html__( 'Hide', 'mas-addons-for-elementor' ),
+				'label_on'  => esc_html__( 'Show', 'mas-addons-for-elementor' ),
 			)
 		);
 
 		$this->add_control(
 			'title_tag',
 			array(
-				'label'     => esc_html__( 'Title HTML Tag', 'mas-elementor' ),
+				'label'     => esc_html__( 'Title HTML Tag', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::SELECT,
 				'options'   => array(
 					'h1'   => 'H1',
@@ -992,22 +992,22 @@ class Signin extends Base_Widget {
 		$this->add_control(
 			'show_form_description',
 			array(
-				'label'     => esc_html__( 'Description', 'mas-elementor' ),
+				'label'     => esc_html__( 'Description', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::SWITCHER,
 				'default'   => 'yes',
-				'label_off' => esc_html__( 'Hide', 'mas-elementor' ),
-				'label_on'  => esc_html__( 'Show', 'mas-elementor' ),
+				'label_off' => esc_html__( 'Hide', 'mas-addons-for-elementor' ),
+				'label_on'  => esc_html__( 'Show', 'mas-addons-for-elementor' ),
 			)
 		);
 
 		$this->add_control(
 			'show_labels',
 			array(
-				'label'     => esc_html__( 'Labels', 'mas-elementor' ),
+				'label'     => esc_html__( 'Labels', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::SWITCHER,
 				'default'   => 'yes',
-				'label_off' => esc_html__( 'Hide', 'mas-elementor' ),
-				'label_on'  => esc_html__( 'Show', 'mas-elementor' ),
+				'label_off' => esc_html__( 'Hide', 'mas-addons-for-elementor' ),
+				'label_on'  => esc_html__( 'Show', 'mas-addons-for-elementor' ),
 			)
 		);
 
@@ -1212,7 +1212,7 @@ class Signin extends Base_Widget {
 		$this->start_controls_section(
 			'section_login',
 			array(
-				'label'     => esc_html__( 'Login Form', 'mas-elementor' ),
+				'label'     => esc_html__( 'Login Form', 'mas-addons-for-elementor' ),
 				'condition' => array(
 					'display' => array( 'all', 'login' ),
 				),
@@ -1222,11 +1222,11 @@ class Signin extends Base_Widget {
 		$this->add_control(
 			'login_title',
 			array(
-				'label'       => esc_html__( 'Form Title', 'mas-elementor' ),
+				'label'       => esc_html__( 'Form Title', 'mas-addons-for-elementor' ),
 				'type'        => Controls_Manager::TEXT,
 				'label_block' => true,
-				'default'     => esc_html__( 'Sign in', 'mas-elementor' ),
-				'placeholder' => esc_html__( 'Title', 'mas-elementor' ),
+				'default'     => esc_html__( 'Sign in', 'mas-addons-for-elementor' ),
+				'placeholder' => esc_html__( 'Title', 'mas-addons-for-elementor' ),
 				'condition'   => array(
 					'show_form_title' => 'yes',
 				),
@@ -1236,10 +1236,10 @@ class Signin extends Base_Widget {
 		$this->add_control(
 			'login_description',
 			array(
-				'label'       => esc_html__( 'Form Description', 'mas-elementor' ),
+				'label'       => esc_html__( 'Form Description', 'mas-addons-for-elementor' ),
 				'type'        => Controls_Manager::TEXTAREA,
-				'default'     => esc_html__( 'Simplify your workflow in minutes.', 'mas-elementor' ),
-				'placeholder' => esc_html__( 'Description', 'mas-elementor' ),
+				'default'     => esc_html__( 'Simplify your workflow in minutes.', 'mas-addons-for-elementor' ),
+				'placeholder' => esc_html__( 'Description', 'mas-addons-for-elementor' ),
 				'condition'   => array(
 					'show_form_description' => 'yes',
 				),
@@ -1249,11 +1249,11 @@ class Signin extends Base_Widget {
 		$this->add_control(
 			'user_label',
 			array(
-				'label'       => esc_html__( 'Username Label', 'mas-elementor' ),
+				'label'       => esc_html__( 'Username Label', 'mas-addons-for-elementor' ),
 				'type'        => Controls_Manager::TEXT,
 				'label_block' => true,
 				'separator'   => 'before',
-				'default'     => esc_html__( 'Email Address', 'mas-elementor' ),
+				'default'     => esc_html__( 'Email Address', 'mas-addons-for-elementor' ),
 				'condition'   => array(
 					'show_labels' => 'yes',
 				),
@@ -1263,21 +1263,21 @@ class Signin extends Base_Widget {
 		$this->add_control(
 			'user_placeholder',
 			array(
-				'label'       => esc_html__( 'Username Placeholder', 'mas-elementor' ),
+				'label'       => esc_html__( 'Username Placeholder', 'mas-addons-for-elementor' ),
 				'type'        => Controls_Manager::TEXT,
 				'label_block' => true,
-				'default'     => esc_html__( 'name@address.com', 'mas-elementor' ),
+				'default'     => esc_html__( 'name@address.com', 'mas-addons-for-elementor' ),
 			)
 		);
 
 		$this->add_control(
 			'password_label',
 			array(
-				'label'       => esc_html__( 'Password Label', 'mas-elementor' ),
+				'label'       => esc_html__( 'Password Label', 'mas-addons-for-elementor' ),
 				'type'        => Controls_Manager::TEXT,
 				'label_block' => true,
 				'separator'   => 'before',
-				'default'     => esc_html__( 'Password', 'mas-elementor' ),
+				'default'     => esc_html__( 'Password', 'mas-addons-for-elementor' ),
 				'condition'   => array(
 					'show_labels' => 'yes',
 				),
@@ -1287,34 +1287,34 @@ class Signin extends Base_Widget {
 		$this->add_control(
 			'password_placeholder',
 			array(
-				'label'       => esc_html__( 'Password Placeholder', 'mas-elementor' ),
+				'label'       => esc_html__( 'Password Placeholder', 'mas-addons-for-elementor' ),
 				'type'        => Controls_Manager::TEXT,
 				'label_block' => true,
-				'default'     => esc_html__( 'Enter your password', 'mas-elementor' ),
+				'default'     => esc_html__( 'Enter your password', 'mas-addons-for-elementor' ),
 			)
 		);
 
 		$this->add_control(
 			'show_lost_password',
 			array(
-				'label'     => esc_html__( 'Password Reset Link', 'mas-elementor' ),
+				'label'     => esc_html__( 'Password Reset Link', 'mas-addons-for-elementor' ),
 				'separator' => 'before',
 				'type'      => Controls_Manager::SWITCHER,
 				'default'   => 'yes',
-				'label_off' => esc_html__( 'Hide', 'mas-elementor' ),
-				'label_on'  => esc_html__( 'Show', 'mas-elementor' ),
+				'label_off' => esc_html__( 'Hide', 'mas-addons-for-elementor' ),
+				'label_on'  => esc_html__( 'Show', 'mas-addons-for-elementor' ),
 			)
 		);
 
 		$this->add_control(
 			'password_reset_text',
 			array(
-				'label'       => esc_html__( 'Password Reset Text', 'mas-elementor' ),
+				'label'       => esc_html__( 'Password Reset Text', 'mas-addons-for-elementor' ),
 				'type'        => Controls_Manager::TEXT,
 				'label_block' => true,
-				'default'     => esc_html__( 'Lost your password?', 'mas-elementor' ),
-				'label_off'   => esc_html__( 'Hide', 'mas-elementor' ),
-				'label_on'    => esc_html__( 'Show', 'mas-elementor' ),
+				'default'     => esc_html__( 'Lost your password?', 'mas-addons-for-elementor' ),
+				'label_off'   => esc_html__( 'Hide', 'mas-addons-for-elementor' ),
+				'label_on'    => esc_html__( 'Show', 'mas-addons-for-elementor' ),
 				'condition'   => array( 'show_lost_password' => 'yes' ),
 			)
 		);
@@ -1322,7 +1322,7 @@ class Signin extends Base_Widget {
 		$this->add_control(
 			'password_reset_link',
 			array(
-				'label'     => esc_html__( 'Password Reset Page', 'mas-elementor' ),
+				'label'     => esc_html__( 'Password Reset Page', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::URL,
 				'default'   => array( 'url' => '#' ),
 				'dynamic'   => array( 'active' => true ),
@@ -1336,23 +1336,23 @@ class Signin extends Base_Widget {
 		$this->add_control(
 			'show_remember_me',
 			array(
-				'label'     => esc_html__( 'Remember Me', 'mas-elementor' ),
+				'label'     => esc_html__( 'Remember Me', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::SWITCHER,
 				'default'   => 'no',
 				'separator' => 'before',
-				'label_off' => esc_html__( 'Hide', 'mas-elementor' ),
-				'label_on'  => esc_html__( 'Show', 'mas-elementor' ),
+				'label_off' => esc_html__( 'Hide', 'mas-addons-for-elementor' ),
+				'label_on'  => esc_html__( 'Show', 'mas-addons-for-elementor' ),
 			)
 		);
 
 		$this->add_control(
 			'button_text',
 			array(
-				'label'       => esc_html__( 'Login Button Text', 'mas-elementor' ),
+				'label'       => esc_html__( 'Login Button Text', 'mas-addons-for-elementor' ),
 				'label_block' => true,
 				'separator'   => 'before',
 				'type'        => Controls_Manager::TEXT,
-				'default'     => esc_html__( 'Sign in', 'mas-elementor' ),
+				'default'     => esc_html__( 'Sign in', 'mas-addons-for-elementor' ),
 			)
 		);
 
@@ -1361,22 +1361,22 @@ class Signin extends Base_Widget {
 			$this->add_control(
 				'show_register',
 				array(
-					'label'     => esc_html__( 'Registration Link', 'mas-elementor' ),
+					'label'     => esc_html__( 'Registration Link', 'mas-addons-for-elementor' ),
 					'type'      => Controls_Manager::SWITCHER,
 					'default'   => 'yes',
 					'separator' => 'before',
-					'label_off' => esc_html__( 'Hide', 'mas-elementor' ),
-					'label_on'  => esc_html__( 'Show', 'mas-elementor' ),
+					'label_off' => esc_html__( 'Hide', 'mas-addons-for-elementor' ),
+					'label_on'  => esc_html__( 'Show', 'mas-addons-for-elementor' ),
 				)
 			);
 
 			$this->add_control(
 				'register_link_intro',
 				array(
-					'label'       => esc_html__( 'Registration Page Intro', 'mas-elementor' ),
+					'label'       => esc_html__( 'Registration Page Intro', 'mas-addons-for-elementor' ),
 					'label_block' => true,
 					'type'        => Controls_Manager::TEXT,
-					'default'     => esc_html__( 'Don\'t have an account yet?', 'mas-elementor' ),
+					'default'     => esc_html__( 'Don\'t have an account yet?', 'mas-addons-for-elementor' ),
 					'condition'   => array( 'show_register' => 'yes' ),
 				)
 			);
@@ -1384,10 +1384,10 @@ class Signin extends Base_Widget {
 			$this->add_control(
 				'register_link_text',
 				array(
-					'label'       => esc_html__( 'Registration Link Text', 'mas-elementor' ),
+					'label'       => esc_html__( 'Registration Link Text', 'mas-addons-for-elementor' ),
 					'label_block' => true,
 					'type'        => Controls_Manager::TEXT,
-					'default'     => esc_html__( 'Sign up', 'mas-elementor' ),
+					'default'     => esc_html__( 'Sign up', 'mas-addons-for-elementor' ),
 					'condition'   => array( 'show_register' => 'yes' ),
 				)
 			);
@@ -1395,7 +1395,7 @@ class Signin extends Base_Widget {
 			$this->add_control(
 				'register_link',
 				array(
-					'label'     => esc_html__( 'Registration Page Link', 'mas-elementor' ),
+					'label'     => esc_html__( 'Registration Page Link', 'mas-addons-for-elementor' ),
 					'type'      => Controls_Manager::URL,
 					'default'   => array( 'url' => '#' ),
 					'dynamic'   => array( 'active' => true ),
@@ -1422,7 +1422,7 @@ class Signin extends Base_Widget {
 			$this->start_controls_section(
 				'section_register',
 				array(
-					'label'     => esc_html__( 'Register Form', 'mas-elementor' ),
+					'label'     => esc_html__( 'Register Form', 'mas-addons-for-elementor' ),
 					'condition' => array( 'display' => array( 'all', 'register' ) ),
 				)
 			);
@@ -1430,11 +1430,11 @@ class Signin extends Base_Widget {
 			$this->add_control(
 				'register_title',
 				array(
-					'label'       => esc_html__( 'Form Title', 'mas-elementor' ),
+					'label'       => esc_html__( 'Form Title', 'mas-addons-for-elementor' ),
 					'type'        => Controls_Manager::TEXT,
 					'label_block' => true,
-					'default'     => esc_html__( 'Sign up', 'mas-elementor' ),
-					'placeholder' => esc_html__( 'Title', 'mas-elementor' ),
+					'default'     => esc_html__( 'Sign up', 'mas-addons-for-elementor' ),
+					'placeholder' => esc_html__( 'Title', 'mas-addons-for-elementor' ),
 					'condition'   => array( 'show_form_title' => 'yes' ),
 				)
 			);
@@ -1442,10 +1442,10 @@ class Signin extends Base_Widget {
 			$this->add_control(
 				'register_description',
 				array(
-					'label'       => esc_html__( 'Form Description', 'mas-elementor' ),
+					'label'       => esc_html__( 'Form Description', 'mas-addons-for-elementor' ),
 					'type'        => Controls_Manager::TEXTAREA,
-					'default'     => esc_html__( 'Simplify your workflow in minutes.', 'mas-elementor' ),
-					'placeholder' => esc_html__( 'Description', 'mas-elementor' ),
+					'default'     => esc_html__( 'Simplify your workflow in minutes.', 'mas-addons-for-elementor' ),
+					'placeholder' => esc_html__( 'Description', 'mas-addons-for-elementor' ),
 					'condition'   => array( 'show_form_description' => 'yes' ),
 					'separator'   => 'after',
 				)
@@ -1454,10 +1454,10 @@ class Signin extends Base_Widget {
 			$this->add_control(
 				'register_name_label',
 				array(
-					'label'       => esc_html__( 'Register Name', 'mas-elementor' ),
+					'label'       => esc_html__( 'Register Name', 'mas-addons-for-elementor' ),
 					'label_block' => true,
 					'type'        => Controls_Manager::TEXT,
-					'default'     => esc_html__( 'Enter Your Name', 'mas-elementor' ),
+					'default'     => esc_html__( 'Enter Your Name', 'mas-addons-for-elementor' ),
 					'condition'   => array( 'show_labels' => 'yes' ),
 				)
 			);
@@ -1465,20 +1465,20 @@ class Signin extends Base_Widget {
 			$this->add_control(
 				'register_name_placeholder',
 				array(
-					'label'       => esc_html__( 'Register Name Placeholder', 'mas-elementor' ),
+					'label'       => esc_html__( 'Register Name Placeholder', 'mas-addons-for-elementor' ),
 					'type'        => Controls_Manager::TEXT,
 					'label_block' => true,
-					'default'     => esc_html__( 'enter your name', 'mas-elementor' ),
+					'default'     => esc_html__( 'enter your name', 'mas-addons-for-elementor' ),
 				)
 			);
 
 			$this->add_control(
 				'register_email_label',
 				array(
-					'label'       => esc_html__( 'Email Label', 'mas-elementor' ),
+					'label'       => esc_html__( 'Email Label', 'mas-addons-for-elementor' ),
 					'label_block' => true,
 					'type'        => Controls_Manager::TEXT,
-					'default'     => esc_html__( 'Email Address', 'mas-elementor' ),
+					'default'     => esc_html__( 'Email Address', 'mas-addons-for-elementor' ),
 					'condition'   => array( 'show_labels' => 'yes' ),
 				)
 			);
@@ -1486,10 +1486,10 @@ class Signin extends Base_Widget {
 			$this->add_control(
 				'register_email_placeholder',
 				array(
-					'label'       => esc_html__( 'Email Placeholder', 'mas-elementor' ),
+					'label'       => esc_html__( 'Email Placeholder', 'mas-addons-for-elementor' ),
 					'label_block' => true,
 					'type'        => Controls_Manager::TEXT,
-					'default'     => esc_html__( 'name@address.com', 'mas-elementor' ),
+					'default'     => esc_html__( 'name@address.com', 'mas-addons-for-elementor' ),
 					'separator'   => 'after',
 				)
 			);
@@ -1497,10 +1497,10 @@ class Signin extends Base_Widget {
 			$this->add_control(
 				'register_password_label',
 				array(
-					'label'       => esc_html__( 'Pasword Label', 'mas-elementor' ),
+					'label'       => esc_html__( 'Pasword Label', 'mas-addons-for-elementor' ),
 					'label_block' => true,
 					'type'        => Controls_Manager::TEXT,
-					'default'     => esc_html__( 'Password', 'mas-elementor' ),
+					'default'     => esc_html__( 'Password', 'mas-addons-for-elementor' ),
 					'condition'   => array( 'show_labels' => 'yes' ),
 				)
 			);
@@ -1508,20 +1508,20 @@ class Signin extends Base_Widget {
 			$this->add_control(
 				'register_password_placeholder',
 				array(
-					'label'       => esc_html__( 'Password Placeholder', 'mas-elementor' ),
+					'label'       => esc_html__( 'Password Placeholder', 'mas-addons-for-elementor' ),
 					'label_block' => true,
 					'type'        => Controls_Manager::TEXT,
-					'default'     => esc_html__( 'Enter your password', 'mas-elementor' ),
+					'default'     => esc_html__( 'Enter your password', 'mas-addons-for-elementor' ),
 				)
 			);
 
 			$this->add_control(
 				'register_confirm_password_label',
 				array(
-					'label'       => esc_html__( 'Confirm Password Label', 'mas-elementor' ),
+					'label'       => esc_html__( 'Confirm Password Label', 'mas-addons-for-elementor' ),
 					'label_block' => true,
 					'type'        => Controls_Manager::TEXT,
-					'default'     => esc_html__( 'Confirm Password', 'mas-elementor' ),
+					'default'     => esc_html__( 'Confirm Password', 'mas-addons-for-elementor' ),
 					'separator'   => 'none',
 				)
 			);
@@ -1529,10 +1529,10 @@ class Signin extends Base_Widget {
 			$this->add_control(
 				'register_confirm_password_placeholder',
 				array(
-					'label'       => esc_html__( 'Confirm Password Placeholder', 'mas-elementor' ),
+					'label'       => esc_html__( 'Confirm Password Placeholder', 'mas-addons-for-elementor' ),
 					'label_block' => true,
 					'type'        => Controls_Manager::TEXT,
-					'default'     => esc_html__( 'Confirm Password', 'mas-elementor' ),
+					'default'     => esc_html__( 'Confirm Password', 'mas-addons-for-elementor' ),
 					'separator'   => 'after',
 				)
 			);
@@ -1540,32 +1540,32 @@ class Signin extends Base_Widget {
 			$this->add_control(
 				'register_button_text',
 				array(
-					'label'       => esc_html__( 'Register Button Text', 'mas-elementor' ),
+					'label'       => esc_html__( 'Register Button Text', 'mas-addons-for-elementor' ),
 					'type'        => Controls_Manager::TEXT,
 					'label_block' => true,
-					'default'     => esc_html__( 'Sign up', 'mas-elementor' ),
+					'default'     => esc_html__( 'Sign up', 'mas-addons-for-elementor' ),
 				)
 			);
 
 			$this->add_control(
 				'show_login',
 				array(
-					'label'     => esc_html__( 'Login Link', 'mas-elementor' ),
+					'label'     => esc_html__( 'Login Link', 'mas-addons-for-elementor' ),
 					'type'      => Controls_Manager::SWITCHER,
 					'default'   => 'yes',
 					'separator' => 'before',
-					'label_off' => esc_html__( 'Hide', 'mas-elementor' ),
-					'label_on'  => esc_html__( 'Show', 'mas-elementor' ),
+					'label_off' => esc_html__( 'Hide', 'mas-addons-for-elementor' ),
+					'label_on'  => esc_html__( 'Show', 'mas-addons-for-elementor' ),
 				)
 			);
 
 			$this->add_control(
 				'login_link_intro',
 				array(
-					'label'       => esc_html__( 'Login Page Intro', 'mas-elementor' ),
+					'label'       => esc_html__( 'Login Page Intro', 'mas-addons-for-elementor' ),
 					'label_block' => true,
 					'type'        => Controls_Manager::TEXT,
-					'default'     => esc_html__( 'Already have an account?', 'mas-elementor' ),
+					'default'     => esc_html__( 'Already have an account?', 'mas-addons-for-elementor' ),
 					'condition'   => array( 'show_login' => 'yes' ),
 				)
 			);
@@ -1573,10 +1573,10 @@ class Signin extends Base_Widget {
 			$this->add_control(
 				'login_link_text',
 				array(
-					'label'       => esc_html__( 'Login Link Text', 'mas-elementor' ),
+					'label'       => esc_html__( 'Login Link Text', 'mas-addons-for-elementor' ),
 					'label_block' => true,
 					'type'        => Controls_Manager::TEXT,
-					'default'     => esc_html__( 'Login', 'mas-elementor' ),
+					'default'     => esc_html__( 'Login', 'mas-addons-for-elementor' ),
 					'condition'   => array( 'show_login' => 'yes' ),
 				)
 			);
@@ -1584,7 +1584,7 @@ class Signin extends Base_Widget {
 			$this->add_control(
 				'login_link',
 				array(
-					'label'     => esc_html__( 'Login Page Link', 'mas-elementor' ),
+					'label'     => esc_html__( 'Login Page Link', 'mas-addons-for-elementor' ),
 					'type'      => Controls_Manager::URL,
 					'default'   => array( 'url' => '#' ),
 					'dynamic'   => array( 'active' => true ),
@@ -1608,7 +1608,7 @@ class Signin extends Base_Widget {
 		$this->start_controls_section(
 			'section_password_reset',
 			array(
-				'label'     => esc_html__( 'Password Reset Form', 'mas-elementor' ),
+				'label'     => esc_html__( 'Password Reset Form', 'mas-addons-for-elementor' ),
 				'condition' => array( 'display' => array( 'all', 'forgot' ) ),
 			)
 		);
@@ -1616,11 +1616,11 @@ class Signin extends Base_Widget {
 		$this->add_control(
 			'password_title',
 			array(
-				'label'       => esc_html__( 'Form Title', 'mas-elementor' ),
+				'label'       => esc_html__( 'Form Title', 'mas-addons-for-elementor' ),
 				'label_block' => true,
 				'type'        => Controls_Manager::TEXT,
-				'default'     => esc_html__( 'Password Reset', 'mas-elementor' ),
-				'placeholder' => esc_html__( 'Title', 'mas-elementor' ),
+				'default'     => esc_html__( 'Password Reset', 'mas-addons-for-elementor' ),
+				'placeholder' => esc_html__( 'Title', 'mas-addons-for-elementor' ),
 				'condition'   => array( 'show_form_title' => 'yes' ),
 			)
 		);
@@ -1628,11 +1628,11 @@ class Signin extends Base_Widget {
 		$this->add_control(
 			'password_description',
 			array(
-				'label'       => esc_html__( 'Form Description', 'mas-elementor' ),
+				'label'       => esc_html__( 'Form Description', 'mas-addons-for-elementor' ),
 				'label_block' => true,
 				'type'        => Controls_Manager::TEXTAREA,
-				'default'     => esc_html__( 'Enter your email to reset your password.', 'mas-elementor' ),
-				'placeholder' => esc_html__( 'Description', 'mas-elementor' ),
+				'default'     => esc_html__( 'Enter your email to reset your password.', 'mas-addons-for-elementor' ),
+				'placeholder' => esc_html__( 'Description', 'mas-addons-for-elementor' ),
 				'condition'   => array( 'show_form_description' => 'yes' ),
 			)
 		);
@@ -1640,32 +1640,32 @@ class Signin extends Base_Widget {
 		$this->add_control(
 			'reset_pasword_button_text',
 			array(
-				'label'       => esc_html__( 'Button Text', 'mas-elementor' ),
+				'label'       => esc_html__( 'Button Text', 'mas-addons-for-elementor' ),
 				'label_block' => true,
 				'type'        => Controls_Manager::TEXT,
-				'default'     => esc_html__( 'Reset Password', 'mas-elementor' ),
+				'default'     => esc_html__( 'Reset Password', 'mas-addons-for-elementor' ),
 			)
 		);
 
 		$this->add_control(
 			'rp_show_login',
 			array(
-				'label'     => esc_html__( 'Login Link', 'mas-elementor' ),
+				'label'     => esc_html__( 'Login Link', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::SWITCHER,
 				'default'   => 'yes',
 				'separator' => 'before',
-				'label_off' => esc_html__( 'Hide', 'mas-elementor' ),
-				'label_on'  => esc_html__( 'Show', 'mas-elementor' ),
+				'label_off' => esc_html__( 'Hide', 'mas-addons-for-elementor' ),
+				'label_on'  => esc_html__( 'Show', 'mas-addons-for-elementor' ),
 			)
 		);
 
 		$this->add_control(
 			'rp_login_link_intro',
 			array(
-				'label'       => esc_html__( 'Login Page Intro', 'mas-elementor' ),
+				'label'       => esc_html__( 'Login Page Intro', 'mas-addons-for-elementor' ),
 				'label_block' => true,
 				'type'        => Controls_Manager::TEXT,
-				'default'     => esc_html__( 'Remember your password?', 'mas-elementor' ),
+				'default'     => esc_html__( 'Remember your password?', 'mas-addons-for-elementor' ),
 				'condition'   => array( 'rp_show_login' => 'yes' ),
 			)
 		);
@@ -1673,10 +1673,10 @@ class Signin extends Base_Widget {
 		$this->add_control(
 			'rp_login_link_text',
 			array(
-				'label'       => esc_html__( 'Login Link Text', 'mas-elementor' ),
+				'label'       => esc_html__( 'Login Link Text', 'mas-addons-for-elementor' ),
 				'label_block' => true,
 				'type'        => Controls_Manager::TEXT,
-				'default'     => esc_html__( 'Log in', 'mas-elementor' ),
+				'default'     => esc_html__( 'Log in', 'mas-addons-for-elementor' ),
 				'condition'   => array( 'rp_show_login' => 'yes' ),
 			)
 		);
@@ -1684,7 +1684,7 @@ class Signin extends Base_Widget {
 		$this->add_control(
 			'rp_login_link',
 			array(
-				'label'     => esc_html__( 'Login Page Link', 'mas-elementor' ),
+				'label'     => esc_html__( 'Login Page Link', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::URL,
 				'default'   => array( 'url' => '#' ),
 				'dynamic'   => array( 'active' => true ),
@@ -1705,18 +1705,18 @@ class Signin extends Base_Widget {
 		$this->start_controls_section(
 			'section_login_content',
 			array(
-				'label' => esc_html__( 'Additional Options', 'mas-elementor' ),
+				'label' => esc_html__( 'Additional Options', 'mas-addons-for-elementor' ),
 			)
 		);
 
 		$this->add_control(
 			'redirect_after_login',
 			array(
-				'label'     => esc_html__( 'Redirect After Login', 'mas-elementor' ),
+				'label'     => esc_html__( 'Redirect After Login', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::SWITCHER,
 				'default'   => '',
-				'label_off' => esc_html__( 'Off', 'mas-elementor' ),
-				'label_on'  => esc_html__( 'On', 'mas-elementor' ),
+				'label_off' => esc_html__( 'Off', 'mas-addons-for-elementor' ),
+				'label_on'  => esc_html__( 'On', 'mas-addons-for-elementor' ),
 			)
 		);
 
@@ -1727,8 +1727,8 @@ class Signin extends Base_Widget {
 				'show_label'  => false,
 				'options'     => false,
 				'separator'   => false,
-				'placeholder' => esc_html__( 'https://your-link.com', 'mas-elementor' ),
-				'description' => esc_html__( 'Note: Because of security reasons, you can ONLY use your current domain here.', 'mas-elementor' ),
+				'placeholder' => esc_html__( 'https://your-link.com', 'mas-addons-for-elementor' ),
+				'description' => esc_html__( 'Note: Because of security reasons, you can ONLY use your current domain here.', 'mas-addons-for-elementor' ),
 				'condition'   => array( 'redirect_after_login' => 'yes' ),
 				'default'     => array( 'url' => '#' ),
 			)
@@ -1737,11 +1737,11 @@ class Signin extends Base_Widget {
 		$this->add_control(
 			'redirect_after_logout',
 			array(
-				'label'     => esc_html__( 'Redirect After Logout', 'mas-elementor' ),
+				'label'     => esc_html__( 'Redirect After Logout', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::SWITCHER,
 				'default'   => '',
-				'label_off' => esc_html__( 'Off', 'mas-elementor' ),
-				'label_on'  => esc_html__( 'On', 'mas-elementor' ),
+				'label_off' => esc_html__( 'Off', 'mas-addons-for-elementor' ),
+				'label_on'  => esc_html__( 'On', 'mas-addons-for-elementor' ),
 			)
 		);
 
@@ -1752,8 +1752,8 @@ class Signin extends Base_Widget {
 				'show_label'  => false,
 				'options'     => false,
 				'separator'   => false,
-				'placeholder' => esc_html__( 'https://your-link.com', 'mas-elementor' ),
-				'description' => esc_html__( 'Note: Because of security reasons, you can ONLY use your current domain here.', 'mas-elementor' ),
+				'placeholder' => esc_html__( 'https://your-link.com', 'mas-addons-for-elementor' ),
+				'description' => esc_html__( 'Note: Because of security reasons, you can ONLY use your current domain here.', 'mas-addons-for-elementor' ),
 				'condition'   => array( 'redirect_after_logout' => 'yes' ),
 			)
 		);
@@ -1806,7 +1806,7 @@ class Signin extends Base_Widget {
 			$current_user = wp_get_current_user();
 
 			echo '<div class="elementor-login elementor-login__logged-in-message">' .
-				sprintf( __( 'You are Logged in as %1$s (<a href="%2$s">Logout</a>)', 'mas-elementor' ), $current_user->display_name, wp_logout_url( $logout_redirect ) ) . // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped, WordPress.WP.I18n.MissingTranslatorsComment
+				sprintf( __( 'You are Logged in as %1$s (<a href="%2$s">Logout</a>)', 'mas-addons-for-elementor' ), $current_user->display_name, wp_logout_url( $logout_redirect ) ) . // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped, WordPress.WP.I18n.MissingTranslatorsComment
 				'</div>';
 
 			return;
@@ -2098,7 +2098,7 @@ class Signin extends Base_Widget {
 							<div class="elementor-field-type-checkbox elementor-field-group elementor-column elementor-col-100 elementor-remember-me">
 								<label for="elementor-login-remember-me">
 									<input type="checkbox" name="rememberme" value="forever">
-									<?php echo esc_html__( 'Remember Me', 'mas-elementor' ); ?>
+									<?php echo esc_html__( 'Remember Me', 'mas-addons-for-elementor' ); ?>
 								</label>
 							</div>
 						<?php endif; ?>
@@ -2167,7 +2167,7 @@ class Signin extends Base_Widget {
 							<span class="show-password-input mas-input-icon"><i class="eicon-preview-thin"></i></span>
 						</div>
 					<?php else : ?>
-						<p><?php echo esc_html__( 'A password will be sent to your email address.', 'mas-elementor' ); ?></p>
+						<p><?php echo esc_html__( 'A password will be sent to your email address.', 'mas-addons-for-elementor' ); ?></p>
 					<?php endif; ?>
 				</div>
 				<div <?php $this->print_render_attribute_string( 'submit-group' ); ?>>

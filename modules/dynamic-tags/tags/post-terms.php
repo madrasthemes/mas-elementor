@@ -29,7 +29,7 @@ class Post_Terms extends \Elementor\Core\DynamicTags\Tag {
 	 * Get the post-term title name.
 	 */
 	public function get_title() {
-		return esc_html__( 'Post Terms', 'mas-elementor' );
+		return esc_html__( 'Post Terms', 'mas-addons-for-elementor' );
 	}
 	/**
 	 * Get the post-term group name.
@@ -73,7 +73,7 @@ class Post_Terms extends \Elementor\Core\DynamicTags\Tag {
 		$this->add_control(
 			'taxonomy',
 			array(
-				'label'   => esc_html__( 'Taxonomy', 'mas-elementor' ),
+				'label'   => esc_html__( 'Taxonomy', 'mas-addons-for-elementor' ),
 				'type'    => Controls_Manager::SELECT,
 				'options' => $options,
 				'default' => 'post_tag',
@@ -83,7 +83,7 @@ class Post_Terms extends \Elementor\Core\DynamicTags\Tag {
 		$this->add_control(
 			'separator',
 			array(
-				'label'   => esc_html__( 'Separator', 'mas-elementor' ),
+				'label'   => esc_html__( 'Separator', 'mas-addons-for-elementor' ),
 				'type'    => Controls_Manager::TEXT,
 				'default' => ', ',
 			)
@@ -92,7 +92,7 @@ class Post_Terms extends \Elementor\Core\DynamicTags\Tag {
 		$this->add_control(
 			'link',
 			array(
-				'label'   => esc_html__( 'Link', 'mas-elementor' ),
+				'label'   => esc_html__( 'Link', 'mas-addons-for-elementor' ),
 				'type'    => Controls_Manager::SWITCHER,
 				'default' => 'yes',
 			)
