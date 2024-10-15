@@ -666,7 +666,7 @@ class Module extends Module_Base {
 		$query_data = $this->autocomplete_query_data( $data );
 		if ( is_wp_error( $query_data ) ) {
 			/** Query Data @var \WP_Error $query_data query data. */
-			throw new \Exception( $query_data->get_error_code() . ':' . $query_data->get_error_message() );
+			throw new \Exception( esc_html( $query_data->get_error_code() ) . ':' . esc_html( $query_data->get_error_message() ) );
 		}
 
 		$results    = array();
