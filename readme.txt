@@ -1,4 +1,4 @@
-=== MAS Addons for Elementor ===
+=== MAS Elementor ===
 Contributors: madrasthemes
 Tags: posts, products, nav-menu, carousel, tabs
 Requires at least: 5.0
