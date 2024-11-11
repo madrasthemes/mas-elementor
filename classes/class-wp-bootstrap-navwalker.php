@@ -229,7 +229,7 @@ if ( ! class_exists( 'MAS_Bootstrap_Navwalker' ) ) :
 
 				// If the item has_children add atts to <a>.
 				if ( $this->has_children && 0 === $depth ) {
-					$atts['href']           = '#';
+					$atts['href']           = ! empty( $item->url ) ? $item->url : '#';
 					$atts['data-bs-toggle'] = 'dropdown';
 					$atts['aria-expanded']  = 'false';
 					$atts['class']          = 'dropdown-toggle nav-link';
