@@ -85,6 +85,8 @@ class Module extends BaseModule {
 				$location = 'cart';
 			} elseif ( function_exists( 'is_checkout' ) && is_checkout() ) {
 				$location = 'checkout';
+			} elseif ( function_exists( 'is_search' ) && is_search() ) {
+				$location = 'archive-post';
 			}
 			if ( 'post' !== $post_type ) {
 				$taxonomies = array_merge( get_object_taxonomies( $post_type ), $taxonomies );
