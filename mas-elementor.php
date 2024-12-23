@@ -185,6 +185,20 @@ if ( ! function_exists( 'mas_elementor_is_elementor_installed' ) ) {
 	}
 }
 
+if ( ! function_exists( 'mas_elementor_is_elementor_activated' ) ) {
+
+	/**
+	 * Elementor Install Check.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @return string
+	 */
+	function mas_elementor_is_elementor_activated() {
+		return is_plugin_active( 'elementor/elementor.php' );
+	}
+}
+
 /**
  * Get other templates (e.g. product attributes) passing attributes and including the file.
  *
@@ -238,7 +252,7 @@ function mas_elementor_get_template( $template_name, $args = array(), $template_
 			);
 			unset( $args['action_args'] );
 		}
-		extract( $args ); // @codingStandardsIgnoreLine
+        extract( $args ); // @codingStandardsIgnoreLine
 	}
 
 	do_action( 'mas_elementor_before_template_part', $action_args['template_name'], $action_args['template_path'], $action_args['located'], $action_args['args'] );
@@ -462,7 +476,7 @@ if ( ! function_exists( 'mas_template_slug_options' ) ) {
 		if ( ! empty( $mas_templates ) ) {
 			$options = array( '' => esc_html__( '— None —', 'mas-addons-for-elementor' ) );
 			foreach ( $mas_templates as $mas_template ) {
-				$template                 = get_page_by_path( $mas_template->post_name, OBJECT, $args['post_type'] );
+				$template                        = get_page_by_path( $mas_template->post_name, OBJECT, $args['post_type'] );
 				$options[ $template->post_name ] = $mas_template->post_title;
 			}
 		} else {
@@ -785,4 +799,9 @@ if ( ! function_exists( 'mas_elementor_get_field' ) ) {
 		return false;
 	}
 }
+
+if ( ! function_exists( 'is_plugin_active' ) ) {
+	require_once ABSPATH . 'wp-admin/includes/plugin.php';
+}
+
 

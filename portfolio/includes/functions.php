@@ -13,17 +13,19 @@ if ( ! function_exists( 'mas_cc_mime_types' ) ) {
 	 * @return array
 	 */
 	function mas_cc_mime_types( $mimes ) {
-		if ( mas_elementor_is_elementor_installed() ) {
-			$mimes['svg'] = 'image/svg+xml';
-			return $mimes;
+		// Ensure $mimes is an array.
+		if ( ! is_array( $mimes ) ) {
+			$mimes = array();
 		}
+		$mimes['svg'] = 'image/svg+xml';
+		return $mimes;
 	}
 }
 
-add_filter( 'upload_mimes', 'mas_cc_mime_types' );
-add_filter( 'wp_handle_upload_prefilter', 'handle_mas_elementor_wp_media_upload' );
-
-
+if ( mas_elementor_is_elementor_activated() ) {
+	add_filter( 'upload_mimes', 'mas_cc_mime_types' );
+	add_filter( 'wp_handle_upload_prefilter', 'handle_mas_elementor_wp_media_upload' );
+}
 
 add_filter( 'mas_single_post_show_content_title', '__return_true' );
 
@@ -38,7 +40,7 @@ if ( ! function_exists( 'handle_mas_elementor_wp_media_upload' ) ) {
 	 * @return array
 	 */
 	function handle_mas_elementor_wp_media_upload( $file ) {
-		if ( ! mas_elementor_is_elementor_installed() ) {
+		if ( ! mas_elementor_is_elementor_activated() ) {
 			return;
 		}
 		$result = svg_validate_file( $file );
@@ -59,6 +61,9 @@ if ( ! function_exists( 'svg_validate_file' ) ) {
 	 * @return bool|\WP_Error
 	 */
 	function svg_validate_file( array $file ) {
+		if ( ! mas_elementor_is_elementor_activated() ) {
+			return;
+		}
 		$uploaded_file_name = isset( $file['name'] ) ? $file['name'] : $file['tmp_name'];
 
 		$file_extension = pathinfo( $uploaded_file_name, PATHINFO_EXTENSION );
@@ -71,3 +76,4 @@ if ( ! function_exists( 'svg_validate_file' ) ) {
 		return ( new \Elementor\Core\Files\File_Types\Svg() )->validate_file( $file );
 	}
 }
+
