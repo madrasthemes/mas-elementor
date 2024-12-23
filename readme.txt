@@ -4,7 +4,7 @@ Tags: posts, products, nav-menu, carousel, tabs
 Requires at least: 6.3
 Tested up to: 6.6
 Requires PHP: 7.4
-Stable tag: 1.1.7
+Stable tag: 1.1.8
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -67,6 +67,10 @@ All of our online documentation can be found on [our documentation site](https:/
 
 
 == Changelog ==
+
+= 1.1.8 - 2024-12-23 =
+* Fixed MAS NavMenu parent link issue
+* Fixed svg sanitization issue issue
 
 = 1.1.7 - 2024-10-16 =
 * Fixed translators and text domain issues
