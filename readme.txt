@@ -68,7 +68,7 @@ All of our online documentation can be found on [our documentation site](https:/
 
 == Changelog ==
 
-= 1.1.8 - 2024-12-23 =
+= 1.1.8 - 2024-12-24 =
 * Fixed MAS NavMenu parent link issue
 * Fixed svg sanitization issue issue
 
