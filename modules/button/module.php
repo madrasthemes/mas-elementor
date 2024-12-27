@@ -148,7 +148,21 @@ class Module extends Module_Base {
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
 					'{{WRAPPER}} .elementor-button-icon i'   => 'color: {{VALUE}};',
-					'{{WRAPPER}} .elementor-button-icon svg' => 'fill: {{VALUE}};',
+					'{{WRAPPER}} .elementor-button-icon svg' => 'fill: {{VALUE}};color: {{VALUE}};',
+					'{{WRAPPER}} .elementor-button-icon svg path' => 'fill: {{VALUE}};color: {{VALUE}};',
+				),
+			)
+		);
+
+		$element->add_control(
+			'mas_button_hover_icon_color',
+			array(
+				'label'     => esc_html__( 'Icon Hover Color', 'mas-addons-for-elementor' ),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => array(
+					'{{WRAPPER}} .elementor-button:hover .elementor-button-icon i'   => 'color: {{VALUE}};',
+					'{{WRAPPER}} .elementor-button:hover .elementor-button-icon svg' => 'fill: {{VALUE}};color: {{VALUE}};',
+					'{{WRAPPER}} .elementor-button:hover .elementor-button-icon svg path' => 'fill: {{VALUE}};color: {{VALUE}};',
 				),
 			)
 		);
