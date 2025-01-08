@@ -143,6 +143,27 @@ abstract class Posts_Base extends Base_Widget {
 		);
 
 		$this->add_responsive_control(
+			'posts_row_gap',
+			array(
+				'label'      => __( 'Row Gap', 'mas-addons-for-elementor' ),
+				'type'       => Controls_Manager::SLIDER,
+				'size_units' => array( 'px', '%', 'em' ),
+				'default'    => array(
+					'size' => 13,
+				),
+				'range'      => array(
+					'px' => array(
+						'min' => 0,
+						'max' => 200,
+					),
+				),
+				'selectors'  => array(
+					'{{WRAPPER}} .mas-posts.mas-grid' => 'row-gap: {{SIZE}}{{UNIT}}',
+				),
+			)
+		);
+
+		$this->add_responsive_control(
 			'loop_post_height',
 			array(
 				'label'      => __( 'Post Height', 'mas-addons-for-elementor' ),

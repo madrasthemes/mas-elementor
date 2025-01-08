@@ -73,6 +73,7 @@ final class Modules_Manager {
 			'blockquote',
 			'add-to-wishlist',
 			'shortcode',
+			'icon-box',
 		);
 
 		foreach ( $modules as $module_name ) {
