@@ -562,6 +562,10 @@
     position: static !important;
 }
 
+.mas-position-relative {
+    position: relative !important;
+}
+
 .v-hidden {
     visibility: hidden;
     opacity: 0;
