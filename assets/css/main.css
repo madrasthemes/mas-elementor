@@ -603,3 +603,7 @@ a:hover ~ .cart-count {
 	transition-timing-function: ease-in-out;
     transition-duration: .3s;
 }
+
+.cart-count-btn {
+    display: none !important;
+}

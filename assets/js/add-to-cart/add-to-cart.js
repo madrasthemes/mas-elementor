@@ -36,6 +36,53 @@
             }
         });
     });
+
+    let lastClickedButton = null; // To track the last clicked button
+
+    // Listen for the button click
+    $(document.body).on('click', '.mas-count-in-btn-yes .ajax_add_to_cart', function(event) {
+        lastClickedButton = $(this); // Save the reference to the clicked button
+    });
+
+    // Listen for the added_to_cart event only once
+    $(document.body).on('added_to_cart', function(event, fragments, cart_hash, $button) {
+        if (lastClickedButton && $button.get(0) === lastClickedButton.get(0)) {
+            // Locate the `.cart-count-btn` within the same `.elementor-button-wrapper`
+            const cartCountElement = $button.closest('.elementor-button-wrapper').find('.cart-count-btn');
+
+            // Ensure the `.cart-count-btn` exists
+            if (cartCountElement.length) {
+                // Extract the current cart count from `.cart-count-btn`
+                const currentCartCountText = cartCountElement.text().match(/\d+/); // Match numbers in the text
+                const currentCartCount = currentCartCountText ? parseInt(currentCartCountText[0]) : 0; // Default to 0 if not found
+
+                // Get the quantity from the button's data-quantity
+                const quantity = parseInt(lastClickedButton.data('quantity')) || 1;
+
+                // Calculate the new cart count
+                const newCartCount = currentCartCount + quantity;
+
+                let prefix = cartCountElement.data('prefix');
+                let suffix = cartCountElement.data('suffix');
+                if ( ! prefix ) {
+                    prefix = "";
+                }
+                if ( ! suffix ) {
+                    suffix = "";
+                }
+
+                // Update the `.cart-count-btn` text
+                cartCountElement.text(prefix + newCartCount + suffix);
+
+                // Update the button inner text to match `.cart-count-btn` text
+                $button.find('.add-cart-btn').text(prefix + newCartCount + suffix);
+
+                // Clear the last clicked button to avoid duplication
+                lastClickedButton = null;
+            }
+        }
+    });
+
 } )( jQuery, window );
 
 // $('.added_to_cart').each(function() {
