@@ -1654,6 +1654,32 @@ class Add_To_Cart extends Widget_Button {
 			)
 		);
 
+		$this->add_responsive_control(
+			'view_cart_text_align',
+			array(
+				'label'       => esc_html__( 'View Cart Text Align', 'mas-addons-for-elementor' ),
+				'type'        => Controls_Manager::CHOOSE,
+				'options'     => array(
+					'left'   => array(
+						'title' => esc_html__( 'Left', 'mas-addons-for-elementor' ),
+						'icon'  => 'eicon-h-align-left',
+					),
+					'center' => array(
+						'title' => esc_html__( 'Center', 'mas-addons-for-elementor' ),
+						'icon'  => 'eicon-h-align-center',
+					),
+					'right'  => array(
+						'title' => esc_html__( 'Right', 'mas-addons-for-elementor' ),
+						'icon'  => 'eicon-h-align-right',
+					),
+				),
+				'selectors'   => array(
+					'{{WRAPPER}} .added_to_cart' => 'text-align: {{VALUE}};',
+				),
+				'description' => esc_html__( 'For view cart button text alignment', 'mas-addons-for-elementor' ),
+			)
+		);
+
 		$this->end_injection();
 
 		$this->update_control(
