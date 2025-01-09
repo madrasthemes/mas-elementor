@@ -2096,7 +2096,8 @@ class Add_To_Cart extends Widget_Button {
 		$settings       = $this->get_settings_for_display();
 		$product_values = array();
 
-		$cart_count = '';
+		$cart_count  = '';
+		$cart_number = '';
 
 		if ( $product ) {
 			if ( version_compare( WC()->version, '3.0.0', '>=' ) ) {
@@ -2195,11 +2196,11 @@ class Add_To_Cart extends Widget_Button {
 		$instance->add_render_attribute( 'cart_number', 'class', 'cart-count-btn' );
 
 		if ( 'yes' === $settings['enable_cart_count'] ) {
-			if ( ! empty( $settings['cart_count_prefix'] ) ) {
-				$instance->add_render_attribute( 'cart_number', 'data-prefix', $settings['cart_count_prefix'] );
+			if ( ! empty( trim( $settings['cart_count_prefix'] ) ) ) {
+				$instance->add_render_attribute( 'cart_number', 'data-prefix', trim( $settings['cart_count_prefix'] ) );
 			}
-			if ( ! empty( $settings['cart_count_suffix'] ) ) {
-				$instance->add_render_attribute( 'cart_number', 'data-suffix', $settings['cart_count_suffix'] );
+			if ( ! empty( trim( $settings['cart_count_suffix'] ) ) ) {
+				$instance->add_render_attribute( 'cart_number', 'data-suffix', trim( $settings['cart_count_suffix'] ) );
 			}
 		}
 

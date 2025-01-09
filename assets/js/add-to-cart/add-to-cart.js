@@ -62,14 +62,16 @@
                 // Calculate the new cart count
                 const newCartCount = currentCartCount + quantity;
 
-                let prefix = cartCountElement.data('prefix');
-                let suffix = cartCountElement.data('suffix');
-                if ( ! prefix ) {
-                    prefix = "";
+                let prefix = "";
+                let suffix = "";
+                if ( cartCountElement.data('prefix') ) {
+                    prefix = cartCountElement.data('prefix') + " ";
                 }
-                if ( ! suffix ) {
-                    suffix = "";
+
+                if ( cartCountElement.data('suffix') ) {
+                    suffix = " " + cartCountElement.data('suffix');
                 }
+                
 
                 // Update the `.cart-count-btn` text
                 cartCountElement.text(prefix + newCartCount + suffix);
@@ -81,6 +83,32 @@
                 lastClickedButton = null;
             }
         }
+    });
+
+    $(document).ready(function() {
+        // Iterate through each button that needs to be updated
+        $('.elementor-button-wrapper').each(function() {
+            const cartCountElement = $(this).find('.cart-count-btn');
+
+            let prefix = "";
+                let suffix = "";
+                if ( cartCountElement.data('prefix') ) {
+                    prefix = cartCountElement.data('prefix') + " ";
+                }
+
+                if ( cartCountElement.data('suffix') ) {
+                    suffix = " " + cartCountElement.data('suffix');
+                }
+    
+            // Check if the cart count element exists and has a non-zero value
+            if (cartCountElement.length) {
+                const cartCountText = cartCountElement.text().trim();
+                if (cartCountText && parseInt(cartCountText) !== 0) {
+                    // If it's not zero, set the button text to match `.cart-count-btn`
+                    $(this).find('.add-cart-btn').text(prefix + cartCountText + suffix);
+                }
+            }
+        });
     });
 
 } )( jQuery, window );
