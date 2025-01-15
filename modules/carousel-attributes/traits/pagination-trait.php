@@ -228,6 +228,23 @@ trait Pagination_Trait {
 				);
 
 				$element->add_control(
+					'mas_swiper_pag_margin',
+					array(
+						'label'      => __( 'Margin', 'mas-addons-for-elementor' ),
+						'type'       => Controls_Manager::DIMENSIONS,
+						'size_units' => array( 'px', '%', 'custom' ),
+						'selectors'  => array(
+							'{{WRAPPER}} ' . $args['concat'] . ' .swiper-pagination .swiper-pagination-bullet' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}}',
+						),
+						'condition'  => array(
+							'enable_carousel' => 'yes',
+							'show_pagination' => 'yes',
+							'pagination'      => 'bullets',
+						),
+					)
+				);
+
+				$element->add_control(
 					'mas_swiper_border_radius',
 					array(
 						'label'      => __( 'Border Radius', 'mas-addons-for-elementor' ),
