@@ -64,15 +64,90 @@ class Module extends Module_Base {
 	 */
 	public function add_container_controls( $element, $args ) {
 
+		$element->add_responsive_control(
+			'mas_container_white_space',
+			array(
+				'label'       => esc_html__( 'White Space', 'mas-addons-for-elementor' ),
+				'type'        => Controls_Manager::CHOOSE,
+				'label_block' => true,
+				'default'     => '',
+				'options'     => array(
+					'normal'       => array(
+						'title' => esc_html__( 'Normal', 'mas-addons-for-elementor' ),
+						'icon'  => 'eicon-flex eicon-wrap',
+					),
+					'nowrap'       => array(
+						'title' => esc_html__( 'No wrap', 'mas-addons-for-elementor' ),
+						'icon'  => 'eicon-flex eicon-nowrap',
+					),
+					'pre'          => array(
+						'title' => esc_html__( 'Pre', 'mas-addons-for-elementor' ),
+						'icon'  => 'eicon-code',
+					),
+					'pre-wrap'     => array(
+						'title' => esc_html__( 'Pre wrap', 'mas-addons-for-elementor' ),
+						'icon'  => 'eicon-text-align-justify',
+					),
+					'pre-line'     => array(
+						'title' => esc_html__( 'Pre Line', 'mas-addons-for-elementor' ),
+						'icon'  => 'eicon-flex eicon-justify-space-between-h',
+					),
+					'break-spaces' => array(
+						'title' => esc_html__( 'Break Spaces', 'mas-addons-for-elementor' ),
+						'icon'  => 'eicon-flex eicon-justify-space-evenly-h',
+					),
+				),
+				'selectors'   => array(
+					'{{WRAPPER}}' => 'white-space: {{VALUE}};',
+				),
+				'separator'   => 'before',
+			),
+			array(
+				'position' => array(
+					'at' => 'before',
+					'of' => '_element_id',
+				),
+			)
+		);
+
+		$element->add_responsive_control(
+			'mas_container_flex_basis',
+			array(
+				'label'       => esc_html__( 'Flex Basis', 'mas-addons-for-elementor' ),
+				'type'        => Controls_Manager::SLIDER,
+				'size_units'  => array( 'px', '%', 'em', 'rem', 'vw', 'custom' ),
+				'range'       => array(
+					'px' => array(
+						'min' => 0,
+						'max' => 1600,
+					),
+				),
+				'selectors'   => array(
+					'{{WRAPPER}}' => '--flex-basis: {{SIZE}}{{UNIT}};',
+				),
+				'description' => esc_html__( 'Works only for a child container', 'mas-addons-for-elementor' ),
+				'condition'   => array(
+					'container_type' => 'flex',
+				),
+			),
+			array(
+				'position' => array(
+					'at' => 'before',
+					'of' => '_element_id',
+				),
+			)
+		);
+
 		$element->add_control(
 			'mas_nav_tab_id',
 			array(
 				'label'       => esc_html__( 'Nav Tab Id', 'mas-addons-for-elementor' ),
 				'type'        => Controls_Manager::TEXT,
 				'description' => esc_html__( 'Use for nav tab id', 'mas-addons-for-elementor' ),
-				'condition' => array(
+				'condition'   => array(
 					'_element_id' => '',
 				),
+				'separator'   => 'after',
 			),
 			array(
 				'position' => array(
@@ -92,7 +167,7 @@ class Module extends Module_Base {
 	 */
 	public function container_before_render( $element ) {
 
-		$settings        = $element->get_settings();
+		$settings = $element->get_settings();
 		if ( ! empty( $settings['mas_nav_tab_id'] ) && empty( $settings['_element_id'] ) ) {
 			$element->add_render_attribute( '_wrapper', array( 'id' => $settings['mas_nav_tab_id'] ) );
 		}
