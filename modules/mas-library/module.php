@@ -62,6 +62,8 @@ class Module extends BaseModule {
 		$this->docs_types = array(
 			'mas-post'     => Documents\Mas_Post::get_class_full_name(),
 			'mas-template' => Documents\Mas_Template::get_class_full_name(),
+			'mas-header' => Documents\MAS_Header::get_class_full_name(),
+			'mas-footer' => Documents\MAS_Footer::get_class_full_name(),
 		);
 		foreach ( $this->docs_types as $type => $class_name ) {
 			Plugin::$instance->documents
