@@ -466,6 +466,12 @@ class Plugin {
 				'fill'              => true,
 				'opacity'           => true,
 			);
+			$allowed['circle'] = array(
+				'cx'             => true,
+				'cy'                 => true,
+				'fill'              => true,
+				'r'           => true,
+			);
 			$allowed['style'] = array(
 				'type'              => true,
 			);
