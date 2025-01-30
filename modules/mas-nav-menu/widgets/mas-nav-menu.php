@@ -330,6 +330,18 @@ class Mas_Nav_Menu extends Base_Widget {
 			)
 		);
 
+		$this->add_responsive_control(
+			'main_menu_padding',
+			array(
+				'label'      => esc_html__( 'Menu Item Padding', 'mas-addons-for-elementor' ),
+				'type'       => Controls_Manager::DIMENSIONS,
+				'size_units' => array( 'px', '%', 'em', 'rem', 'custom' ),
+				'selectors'  => array(
+					'{{WRAPPER}} .header-menu > li > a' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				),
+			)
+		);
+
 		$this->add_group_control(
 			Group_Control_Typography::get_type(),
 			array(
@@ -608,6 +620,19 @@ class Mas_Nav_Menu extends Base_Widget {
 			)
 		);
 
+		$this->add_control(
+			'remove_box_shadow',
+			array(
+				'type'         => Controls_Manager::SWITCHER,
+				'label'        => esc_html__( 'Disable Box Shadow', 'mas-addons-for-elementor' ),
+				'default'      => 'no',
+				'label_off'    => esc_html__( 'Show', 'mas-addons-for-elementor' ),
+				'label_on'     => esc_html__( 'Hide', 'mas-addons-for-elementor' ),
+				'return_value' => 'hide',
+				'prefix_class' => 'mas-nav-menu-shadow-',
+			)
+		);
+
 		$this->add_group_control(
 			Group_Control_Box_Shadow::get_type(),
 			array(
@@ -627,6 +652,9 @@ class Mas_Nav_Menu extends Base_Widget {
 							'color'      => 'rgba(0, 0, 0, 0.1)',
 						),
 					),
+				),
+				'condition' => array(
+					'remove_box_shadow!'              => 'hide',
 				),
 			)
 		);

@@ -316,3 +316,7 @@ margin-top: 20px;
   top: 0;
   left: 100%;
 }
+
+.mas-nav-menu-shadow-hide .header-menu .dropdown-menu {
+  box-shadow: none;
+}
