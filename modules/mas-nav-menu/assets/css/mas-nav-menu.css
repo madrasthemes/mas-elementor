@@ -306,3 +306,13 @@ margin-top: 20px;
     padding:0;
   }
 }
+
+.mas-nav-layout-vertical .header-menu {
+  flex-direction: column;
+}
+
+
+.mas-nav-layout-vertical .header-menu .dropdown-menu {
+  top: 0;
+  left: 100%;
+}

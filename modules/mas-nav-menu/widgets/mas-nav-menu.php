@@ -244,9 +244,11 @@ class Mas_Nav_Menu extends Base_Widget {
 				'default'            => 'horizontal',
 				'options'            => array(
 					'horizontal' => esc_html__( 'Horizontal', 'mas-addons-for-elementor' ),
+					'vertical' => esc_html__( 'Vertical', 'mas-addons-for-elementor' ),
 					'dropdown'   => esc_html__( 'Dropdown', 'mas-addons-for-elementor' ),
 				),
 				'frontend_available' => true,
+				'prefix_class' => 'mas-nav-layout-',
 				'condition'          => array(
 					'walker!' => 'default',
 				),
