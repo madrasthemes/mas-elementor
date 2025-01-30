@@ -244,11 +244,11 @@ class Mas_Nav_Menu extends Base_Widget {
 				'default'            => 'horizontal',
 				'options'            => array(
 					'horizontal' => esc_html__( 'Horizontal', 'mas-addons-for-elementor' ),
-					'vertical' => esc_html__( 'Vertical', 'mas-addons-for-elementor' ),
+					'vertical'   => esc_html__( 'Vertical', 'mas-addons-for-elementor' ),
 					'dropdown'   => esc_html__( 'Dropdown', 'mas-addons-for-elementor' ),
 				),
 				'frontend_available' => true,
-				'prefix_class' => 'mas-nav-layout-',
+				'prefix_class'       => 'mas-nav-layout-',
 				'condition'          => array(
 					'walker!' => 'default',
 				),
@@ -293,7 +293,7 @@ class Mas_Nav_Menu extends Base_Widget {
 			array(
 				'label'          => esc_html__( 'Space Between', 'mas-addons-for-elementor' ),
 				'type'           => Controls_Manager::SLIDER,
-				'size_units' => array( 'px', '%', 'em', 'rem', 'custom' ),
+				'size_units'     => array( 'px', '%', 'em', 'rem', 'custom' ),
 				'range'          => array(
 					'px' => array(
 						'max' => 150,
@@ -448,6 +448,67 @@ class Mas_Nav_Menu extends Base_Widget {
 			)
 		);
 
+		$this->add_control(
+			'enable_submenu_color',
+			array(
+				'type'    => Controls_Manager::SWITCHER,
+				'label'   => esc_html__( 'Enable Submenu color', 'mas-addons-for-elementor' ),
+				'default' => 'no',
+			)
+		);
+
+		$this->start_controls_tabs(
+			'tabs_sub_menu_item_style',
+			array(
+				'condition' => array(
+					'walker!'              => 'default',
+					'enable_submenu_color' => 'yes',
+				),
+			)
+		);
+
+		$this->start_controls_tab(
+			'tab_sub_menu_item_normal',
+			array(
+				'label' => esc_html__( 'Normal', 'mas-addons-for-elementor' ),
+			)
+		);
+
+		$this->add_control(
+			'sub_menu_text_color',
+			array(
+				'label'     => esc_html__( 'Submenu Color', 'mas-addons-for-elementor' ),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => array(
+					'{{WRAPPER}} .mas-elementor-nav-menu .menu-item > .dropdown-menu > .menu-item > a' => 'color: {{VALUE}}; fill: {{VALUE}};',
+				),
+			)
+		);
+
+		$this->end_controls_tab();
+
+		$this->start_controls_tab(
+			'tab_sub_menu_item_hover',
+			array(
+				'label' => esc_html__( 'Hover', 'mas-addons-for-elementor' ),
+			)
+		);
+
+		$this->add_control(
+			'sub_menu_text_color_hover',
+			array(
+				'label'     => esc_html__( 'Submenu Color', 'mas-addons-for-elementor' ),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => array(
+					'{{WRAPPER}} .mas-elementor-nav-menu .menu-item > .dropdown-menu > .menu-item:hover > a' => 'color: {{VALUE}}; fill: {{VALUE}};',
+				),
+			)
+		);
+
+		$this->end_controls_tab();
+
+		$this->end_controls_tabs();
+
 		$this->add_group_control(
 			Group_Control_Typography::get_type(),
 			array(
@@ -598,6 +659,9 @@ class Mas_Nav_Menu extends Base_Widget {
 					'{{WRAPPER}} .sub-menu .menu-item a' => 'fill: {{VALUE}}; color: {{VALUE}};',
 					'{{WRAPPER}} .dropdown-menu .menu-item a' => 'fill: {{VALUE}}; color: {{VALUE}};',
 				),
+				'condition' => array(
+					'enable_submenu_color!' => 'yes',
+				),
 			)
 		);
 
@@ -641,6 +705,9 @@ class Mas_Nav_Menu extends Base_Widget {
 					'{{WRAPPER}} .dropdown-menu .menu-item a:hover svg, {{WRAPPER}} .dropdown-menu .menu-item a:focus svg' => 'fill: {{VALUE}};',
 				),
 				'default'   => '#16181b',
+				'condition' => array(
+					'enable_submenu_color!' => 'yes',
+				),
 			)
 		);
 
