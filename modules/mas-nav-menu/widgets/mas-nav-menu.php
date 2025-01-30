@@ -384,6 +384,7 @@ class Mas_Nav_Menu extends Base_Widget {
 				'default'   => '#000',
 				'selectors' => array(
 					'{{WRAPPER}} .mas-elementor-nav-menu .menu-item .nav-link' => 'color: {{VALUE}}; fill: {{VALUE}};',
+					'{{WRAPPER}} .mas-elementor-nav-menu > .menu-item > a' => 'color: {{VALUE}}; fill: {{VALUE}};',
 				),
 			)
 		);
@@ -407,6 +408,7 @@ class Mas_Nav_Menu extends Base_Widget {
 				),
 				'selectors' => array(
 					'{{WRAPPER}} .mas-elementor-nav-menu .menu-item .nav-link:hover' => 'color: {{VALUE}}; fill: {{VALUE}};',
+					'{{WRAPPER}} .mas-elementor-nav-menu > .menu-item:hover > a' => 'color: {{VALUE}}; fill: {{VALUE}};',
 				),
 				'default'   => '#000',
 			)
@@ -428,6 +430,7 @@ class Mas_Nav_Menu extends Base_Widget {
 				'default'   => '',
 				'selectors' => array(
 					'{{WRAPPER}} .mas-elementor-nav-menu .menu-item a:active' => 'color: {{VALUE}}',
+					'{{WRAPPER}} .mas-elementor-nav-menu > menu-item a' => 'color: {{VALUE}}',
 				),
 			)
 		);
