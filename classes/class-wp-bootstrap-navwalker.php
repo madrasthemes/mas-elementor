@@ -281,6 +281,7 @@ if ( ! class_exists( 'MAS_Bootstrap_Navwalker' ) ) :
 
 				// Set a typeflag to easily test if this is a linkmod or not.
 				$linkmod_type = $this->get_linkmod_type( $linkmod_classes );
+				$icon         = empty( $item->mas_icon ) ? '' : '<i class="' . esc_attr( $item->mas_icon ) . '"></i>';
 
 				// START appending the internal item contents to the output.
 				$item_output = isset( $args->before ) ? $args->before : '';
@@ -295,6 +296,9 @@ if ( ! class_exists( 'MAS_Bootstrap_Navwalker' ) ) :
 				} else {
 					// With no link mod type set this must be a standard <a> tag.
 					$item_output .= '<a' . $attributes . '>';
+				}
+				if ( ! empty( $item->mas_icon ) ) {
+					$item_output .= '<span class="mas-icon-wrap">';
 				}
 
 				/*
@@ -331,9 +335,14 @@ if ( ! class_exists( 'MAS_Bootstrap_Navwalker' ) ) :
 						unset( $linkmod_classes[ $k ] );
 					}
 				}
+				$item_output .= $icon;
 
 				// Put the item contents into $output.
 				$item_output .= isset( $args->link_before ) ? $args->link_before . $icon_html . $title . $args->link_after : '';
+
+				if ( ! empty( $item->mas_icon ) ) {
+					$item_output .= '</span>';
+				}
 
 				/*
 				 * This is the end of the internal nav item. We need to close the

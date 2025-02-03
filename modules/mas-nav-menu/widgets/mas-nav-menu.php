@@ -786,6 +786,58 @@ class Mas_Nav_Menu extends Base_Widget {
 
 		$this->end_controls_section();
 
+		$this->start_controls_section(
+			'section_style_menu_icon',
+			array(
+				'label' => esc_html__( 'Menu Icon', 'mas-addons-for-elementor' ),
+				'tab'   => Controls_Manager::TAB_STYLE,
+			)
+		);
+
+		$this->add_control(
+			'icon_color_menu_item',
+			array(
+				'label'     => esc_html__( 'Icon Color', 'mas-addons-for-elementor' ),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => array(
+					'{{WRAPPER}} .mas-elementor-nav-menu .menu-item .mas-icon-wrap i' => 'color: {{VALUE}}; fill: {{VALUE}};',
+				),
+			)
+		);
+
+		$this->add_control(
+			'icon_color_menu_item_hover',
+			array(
+				'label'     => esc_html__( 'Icon Hover Color', 'mas-addons-for-elementor' ),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => array(
+					'{{WRAPPER}} .mas-elementor-nav-menu .menu-item a:hover .mas-icon-wrap i' => 'color: {{VALUE}}; fill: {{VALUE}};',
+				),
+			)
+		);
+
+		$this->add_responsive_control(
+			'icon__menu_padding',
+			array(
+				'label'      => esc_html__( 'Icon Padding', 'mas-addons-for-elementor' ),
+				'type'       => Controls_Manager::DIMENSIONS,
+				'size_units' => array( 'px', '%', 'em', 'rem', 'custom' ),
+				'selectors'  => array(
+					'{{WRAPPER}} .mas-elementor-nav-menu .menu-item .mas-icon-wrap i' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				),
+				'default'    => array(
+					'top'      => '0',
+					'right'    => '6',
+					'bottom'   => '0',
+					'left'     => '0',
+					'unit'     => 'px',
+					'isLinked' => false,
+				),
+			)
+		);
+
+		$this->end_controls_section();
+
 	}
 
 	/**
