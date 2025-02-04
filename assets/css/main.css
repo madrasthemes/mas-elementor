@@ -607,3 +607,30 @@ a:hover ~ .cart-count {
 .cart-count-btn {
     display: none !important;
 }
+
+.product-btn-card:hover .elementor-widget-mas-add-to-cart {
+	opacity: 1;
+	transition: 0.3s ease-in-out;
+}
+
+.product-btn-card .elementor-widget-mas-add-to-cart {
+	opacity: 0;
+}
+
+
+.mas-overflow-hidden {
+	overflow: hidden !important;
+}
+
+.mas-overflow-y-hidden {
+	overflow-y: hidden !important;
+}
+
+.mas-overflow-widget-hidden .elementor-widget-container {
+	overflow: hidden;
+}
+
+
+.mas-widget-h-auto .elementor-widget-container {
+	height: auto !important;
+}
