@@ -120,11 +120,27 @@ class Module extends Module_Base {
 				'enable_hover',
 				array(
 					'type'        => Controls_Manager::SWITCHER,
-					'label'       => esc_html__( 'Enable Hover', 'mas-addons-for-elementor' ),
-					'default'     => 'enable',
+					'label'       => esc_html__( 'Enable Hover/Click', 'mas-addons-for-elementor' ),
 					'label_off'   => esc_html__( 'Enable', 'mas-addons-for-elementor' ),
 					'label_on'    => esc_html__( 'Disable', 'mas-addons-for-elementor' ),
 					'description' => esc_html__( 'Should have child element inside this container', 'mas-addons-for-elementor' ),
+					'render_type' => $render_type,
+				)
+			);
+
+			$element->add_control(
+				'hover_click_effect',
+				array(
+					'type'      => Controls_Manager::SELECT,
+					'label'     => esc_html__( 'Hover/Click', 'mas-addons-for-elementor' ),
+					'default'     => 'hover',
+					'options'   => array(
+						'hover'      => esc_html__( 'Hover', 'mas-addons-for-elementor' ),
+						'click' => esc_html__( 'Click', 'mas-addons-for-elementor' ),
+					),
+					'condition' => array(
+						'enable_hover' => 'yes',
+					),
 					'render_type' => $render_type,
 				)
 			);
@@ -700,6 +716,9 @@ class Module extends Module_Base {
 		if ( isset( $settings['enable_hover'] ) && 'yes' === $settings['enable_hover'] ) {
 			$element->add_render_attribute( '_wrapper', 'class', 'mas-hover-button' );
 			$element->add_render_attribute( '_wrapper', 'data-hover', $settings['data_hover'] );
+			if ( 'click' === $settings['hover_click_effect'] ) {
+				$element->add_render_attribute( '_wrapper', 'data-click', true );
+			}
 		}
 
 		if ( isset( $settings['gap'] ) ) {
