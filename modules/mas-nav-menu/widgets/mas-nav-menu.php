@@ -794,6 +794,18 @@ class Mas_Nav_Menu extends Base_Widget {
 			)
 		);
 
+		$this->add_responsive_control(
+			'icon_font_size_menu_item',
+			array(
+				'label'          => esc_html__( 'Font Size', 'mas-addons-for-elementor' ),
+				'type'           => Controls_Manager::SLIDER,
+				'size_units'     => array( 'px', '%', 'em', 'rem', 'custom' ),
+				'selectors' => array(
+					'{{WRAPPER}} .mas-elementor-nav-menu .menu-item .mas-icon-wrap i' => 'font-size: {{SIZE}}{{UNIT}};',
+				),
+			)
+		);
+
 		$this->add_control(
 			'icon_color_menu_item',
 			array(
