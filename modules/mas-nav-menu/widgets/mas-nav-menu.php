@@ -125,17 +125,6 @@ class Mas_Nav_Menu extends Base_Widget {
 	}
 
 	/**
-	 * Get widget element.
-	 *
-	 * @param array $element element.
-	 */
-	public function on_export( $element ) {
-		unset( $element['settings']['menu'] );
-
-		return $element;
-	}
-
-	/**
 	 * Get widget Nav menu index.
 	 *
 	 * Retrieve Nav Menu widget script Nav menu index.
