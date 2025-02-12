@@ -634,3 +634,16 @@ a:hover ~ .cart-count {
 .mas-widget-h-auto .elementor-widget-container {
 	height: auto !important;
 }
+
+
+.value {
+	word-break:break-word;
+}
+
+.overflow-visible {
+	overflow: visible !important;
+}
+
+.elementor:has(.ms-scroll-animation) {
+	overflow: hidden;
+}
