@@ -861,6 +861,21 @@ class Add_To_Cart extends Widget_Button {
 					)
 				);
 
+				$this->add_control(
+					'icon_normal_color',
+					array(
+						'label'     => esc_html__( 'Icon Color', 'mas-addons-for-elementor' ),
+						'type'      => Controls_Manager::COLOR,
+						'selectors' => array(
+							$wrapper . ' svg *' => 'color: {{VALUE}};fill: {{VALUE}};',
+							$wrapper . ' svg' => 'color: {{VALUE}};fill: {{VALUE}};',
+						),
+						'condition' => array(
+							'enable_size_color_options' => 'yes',
+						),
+					)
+				);
+
 				$this->add_group_control(
 					\Elementor\Group_Control_Border::get_type(),
 					array(
@@ -898,6 +913,21 @@ class Add_To_Cart extends Widget_Button {
 				)
 			);
 
+			$this->add_control(
+				'icon_hover_color',
+				array(
+					'label'     => esc_html__( 'Icon Color', 'mas-addons-for-elementor' ),
+					'type'      => Controls_Manager::COLOR,
+					'selectors' => array(
+						$hover_wrapper . ' svg *' => 'color: {{VALUE}};fill: {{VALUE}};',
+						$hover_wrapper . ' svg' => 'color: {{VALUE}};fill: {{VALUE}};',
+					),
+					'condition' => array(
+						'enable_size_color_options' => 'yes',
+					),
+				)
+			);
+
 			$this->add_group_control(
 				\Elementor\Group_Control_Border::get_type(),
 				array(
@@ -928,6 +958,21 @@ class Add_To_Cart extends Widget_Button {
 						'type'      => Controls_Manager::COLOR,
 						'selectors' => array(
 							$active_wrapper => 'background-color: {{VALUE}};',
+						),
+						'condition' => array(
+							'enable_size_color_options' => 'yes',
+						),
+					)
+				);
+
+				$this->add_control(
+					'icon_active_color',
+					array(
+						'label'     => esc_html__( 'Icon Color', 'mas-addons-for-elementor' ),
+						'type'      => Controls_Manager::COLOR,
+						'selectors' => array(
+							$active_wrapper . ' svg *' => 'color: {{VALUE}};fill: {{VALUE}};',
+							$active_wrapper . ' svg' => 'color: {{VALUE}};fill: {{VALUE}};',
 						),
 						'condition' => array(
 							'enable_size_color_options' => 'yes',
