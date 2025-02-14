@@ -921,6 +921,8 @@ class Add_To_Cart extends Widget_Button {
 					'selectors' => array(
 						$hover_wrapper . ' svg *' => 'color: {{VALUE}};fill: {{VALUE}};',
 						$hover_wrapper . ' svg' => 'color: {{VALUE}};fill: {{VALUE}};',
+						'{{WRAPPER}} .mas-add-to-cart a:hover .elementor-button-icon  svg *' => 'color: {{VALUE}};fill: {{VALUE}};',
+						'{{WRAPPER}} .mas-add-to-cart a:hover .elementor-button-icon  svg' => 'color: {{VALUE}};fill: {{VALUE}};',
 					),
 					'condition' => array(
 						'enable_size_color_options' => 'yes',
