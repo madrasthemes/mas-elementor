@@ -665,8 +665,8 @@ class Add_To_Cart extends Widget_Button {
 	 * Register button icon style controls for this widget.
 	 */
 	protected function register_button_icon_style_controls() {
-		$wrapper       = '{{WRAPPER}} .mas-add-to-cart .elementor-button-icon';
-		$hover_wrapper = '{{WRAPPER}} .mas-add-to-cart a:hover .elementor-button-icon, .mas-card-hover .mas-product:hover {{WRAPPER}} .mas-add-to-cart a .elementor-button-icon';
+		$wrapper        = '{{WRAPPER}} .mas-add-to-cart .elementor-button-icon';
+		$hover_wrapper  = '{{WRAPPER}} .mas-add-to-cart a:hover .elementor-button-icon, .mas-card-hover .mas-product:hover {{WRAPPER}} .mas-add-to-cart a .elementor-button-icon';
 		$active_wrapper = '{{WRAPPER}} .mas-add-to-cart .added_to_cart .elementor-button-icon';
 
 		$this->add_control(
@@ -711,7 +711,7 @@ class Add_To_Cart extends Widget_Button {
 				'selectors'  => array(
 					'{{WRAPPER}} .mas-add-to-cart .elementor-button-icon svg' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				),
-				'condition'    => array(
+				'condition'  => array(
 					'enable_size_color_options' => 'yes',
 				),
 			)
@@ -861,6 +861,21 @@ class Add_To_Cart extends Widget_Button {
 					)
 				);
 
+				$this->add_control(
+					'icon_normal_color',
+					array(
+						'label'     => esc_html__( 'Icon Color', 'mas-addons-for-elementor' ),
+						'type'      => Controls_Manager::COLOR,
+						'selectors' => array(
+							$wrapper . ' svg *' => 'color: {{VALUE}};fill: {{VALUE}};',
+							$wrapper . ' svg' => 'color: {{VALUE}};fill: {{VALUE}};',
+						),
+						'condition' => array(
+							'enable_size_color_options' => 'yes',
+						),
+					)
+				);
+
 				$this->add_group_control(
 					\Elementor\Group_Control_Border::get_type(),
 					array(
@@ -898,6 +913,23 @@ class Add_To_Cart extends Widget_Button {
 				)
 			);
 
+			$this->add_control(
+				'icon_hover_color',
+				array(
+					'label'     => esc_html__( 'Icon Color', 'mas-addons-for-elementor' ),
+					'type'      => Controls_Manager::COLOR,
+					'selectors' => array(
+						$hover_wrapper . ' svg *' => 'color: {{VALUE}};fill: {{VALUE}};',
+						$hover_wrapper . ' svg' => 'color: {{VALUE}};fill: {{VALUE}};',
+						'{{WRAPPER}} .mas-add-to-cart a:hover .elementor-button-icon  svg *' => 'color: {{VALUE}};fill: {{VALUE}};',
+						'{{WRAPPER}} .mas-add-to-cart a:hover .elementor-button-icon  svg' => 'color: {{VALUE}};fill: {{VALUE}};',
+					),
+					'condition' => array(
+						'enable_size_color_options' => 'yes',
+					),
+				)
+			);
+
 			$this->add_group_control(
 				\Elementor\Group_Control_Border::get_type(),
 				array(
@@ -928,6 +960,21 @@ class Add_To_Cart extends Widget_Button {
 						'type'      => Controls_Manager::COLOR,
 						'selectors' => array(
 							$active_wrapper => 'background-color: {{VALUE}};',
+						),
+						'condition' => array(
+							'enable_size_color_options' => 'yes',
+						),
+					)
+				);
+
+				$this->add_control(
+					'icon_active_color',
+					array(
+						'label'     => esc_html__( 'Icon Color', 'mas-addons-for-elementor' ),
+						'type'      => Controls_Manager::COLOR,
+						'selectors' => array(
+							$active_wrapper . ' svg *' => 'color: {{VALUE}};fill: {{VALUE}};',
+							$active_wrapper . ' svg' => 'color: {{VALUE}};fill: {{VALUE}};',
 						),
 						'condition' => array(
 							'enable_size_color_options' => 'yes',
@@ -1558,6 +1605,17 @@ class Add_To_Cart extends Widget_Button {
 		);
 
 		$this->add_control(
+			'enable_cart_count',
+			array(
+				'label'        => esc_html__( 'Enable Cart Count', 'mas-addons-for-elementor' ),
+				'type'         => Controls_Manager::SWITCHER,
+				'description'  => esc_html__( 'Show Cart Count in button', 'mas-addons-for-elementor' ),
+				'default'      => 'no',
+				'prefix_class' => 'mas-count-in-btn-',
+			)
+		);
+
+		$this->add_control(
 			'cart_count_prefix',
 			array(
 				'label'       => esc_html__( 'Prefix', 'mas-addons-for-elementor' ),
@@ -1566,8 +1624,20 @@ class Add_To_Cart extends Widget_Button {
 				'dynamic'     => array(
 					'active' => true,
 				),
-				'condition'   => array(
-					'enable_hover_transition' => 'yes',
+				'conditions'  => array(
+					'relation' => 'or',
+					'terms'    => array(
+						array(
+							'name'     => 'enable_hover_transition',
+							'operator' => '===',
+							'value'    => 'yes',
+						),
+						array(
+							'name'     => 'enable_cart_count',
+							'operator' => '===',
+							'value'    => 'yes',
+						),
+					),
 				),
 			)
 		);
@@ -1582,8 +1652,20 @@ class Add_To_Cart extends Widget_Button {
 				'dynamic'     => array(
 					'active' => true,
 				),
-				'condition'   => array(
-					'enable_hover_transition' => 'yes',
+				'conditions'  => array(
+					'relation' => 'or',
+					'terms'    => array(
+						array(
+							'name'     => 'enable_hover_transition',
+							'operator' => '===',
+							'value'    => 'yes',
+						),
+						array(
+							'name'     => 'enable_cart_count',
+							'operator' => '===',
+							'value'    => 'yes',
+						),
+					),
 				),
 			)
 		);
@@ -1616,6 +1698,32 @@ class Add_To_Cart extends Widget_Button {
 					'{{WRAPPER}} .elementor-button-text' => 'display: {{VALUE}};',
 				),
 				'description' => esc_html__( 'For Button text display styles', 'mas-addons-for-elementor' ),
+			)
+		);
+
+		$this->add_responsive_control(
+			'view_cart_text_align',
+			array(
+				'label'       => esc_html__( 'View Cart Text Align', 'mas-addons-for-elementor' ),
+				'type'        => Controls_Manager::CHOOSE,
+				'options'     => array(
+					'left'   => array(
+						'title' => esc_html__( 'Left', 'mas-addons-for-elementor' ),
+						'icon'  => 'eicon-h-align-left',
+					),
+					'center' => array(
+						'title' => esc_html__( 'Center', 'mas-addons-for-elementor' ),
+						'icon'  => 'eicon-h-align-center',
+					),
+					'right'  => array(
+						'title' => esc_html__( 'Right', 'mas-addons-for-elementor' ),
+						'icon'  => 'eicon-h-align-right',
+					),
+				),
+				'selectors'   => array(
+					'{{WRAPPER}} .added_to_cart' => 'text-align: {{VALUE}};',
+				),
+				'description' => esc_html__( 'For view cart button text alignment', 'mas-addons-for-elementor' ),
 			)
 		);
 
@@ -2061,7 +2169,8 @@ class Add_To_Cart extends Widget_Button {
 		$settings       = $this->get_settings_for_display();
 		$product_values = array();
 
-		$cart_count = '';
+		$cart_count  = '';
+		$cart_number = '';
 
 		if ( $product ) {
 			if ( version_compare( WC()->version, '3.0.0', '>=' ) ) {
@@ -2096,7 +2205,8 @@ class Add_To_Cart extends Widget_Button {
 				)
 			);
 
-			$cart_count = $this->get_cart_item_quantities_by_product_id( $product->get_id() );
+			$cart_count  = $this->get_cart_item_quantities_by_product_id( $product->get_id() );
+			$cart_number = $cart_count;
 
 			if ( empty( $cart_count ) ) {
 				$cart_count = $product->add_to_cart_text();
@@ -2108,7 +2218,7 @@ class Add_To_Cart extends Widget_Button {
 			$this->set_settings( $settings );
 		}
 
-		$this->render_button( $product_values, $this, $cart_count );
+		$this->render_button( $product_values, $this, $cart_count, $cart_number );
 	}
 
 		/**
@@ -2119,8 +2229,9 @@ class Add_To_Cart extends Widget_Button {
 		 * @param array                       $product_values product values.
 		 * @param \Elementor\Widget_Base|null $instance instance.
 		 * @param string                      $cart_count cart count.
+		 * @param string                      $cart_number cart number.
 		 */
-	protected function render_button( $product_values = array(), Widget_Base $instance = null, $cart_count = '' ) {
+	protected function render_button( $product_values = array(), Widget_Base $instance = null, $cart_count = '', $cart_number = '' ) {
 		if ( empty( $instance ) ) {
 			$instance = $this;
 		}
@@ -2155,6 +2266,17 @@ class Add_To_Cart extends Widget_Button {
 		}
 
 		$instance->add_render_attribute( 'cart_count', 'class', 'cart-count' );
+		$instance->add_render_attribute( 'cart_number', 'class', 'cart-count-btn' );
+
+		if ( 'yes' === $settings['enable_cart_count'] ) {
+			if ( ! empty( trim( $settings['cart_count_prefix'] ) ) ) {
+				$instance->add_render_attribute( 'cart_number', 'data-prefix', trim( $settings['cart_count_prefix'] ) );
+			}
+			if ( ! empty( trim( $settings['cart_count_suffix'] ) ) ) {
+				$instance->add_render_attribute( 'cart_number', 'data-suffix', trim( $settings['cart_count_suffix'] ) );
+			}
+		}
+
 		if ( 'yes' === $settings['enable_stretched_link'] ) {
 			$instance->add_render_attribute( 'cart_count', 'class', 'mas-position-static' );
 		}
@@ -2165,6 +2287,10 @@ class Add_To_Cart extends Widget_Button {
 			</a>
 			<?php if ( 'yes' === $settings['enable_hover_transition'] ) : ?>
 			<span <?php $instance->print_render_attribute_string( 'cart_count' ); ?>><?php echo esc_html( $cart_count ); ?></span>
+			<?php endif; ?>
+
+			<?php if ( 'yes' === $settings['enable_cart_count'] ) : ?>
+			<span <?php $instance->print_render_attribute_string( 'cart_number' ); ?>><?php echo esc_html( $cart_number ); ?></span>
 			<?php endif; ?>
 		</div>
 		<?php

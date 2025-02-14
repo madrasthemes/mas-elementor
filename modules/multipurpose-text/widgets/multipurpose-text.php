@@ -858,6 +858,18 @@ class Multipurpose_Text extends Base_Widget {
 			)
 		);
 
+		$this->add_responsive_control(
+			'title_tag_margin',
+			array(
+				'label'      => esc_html__( 'Title Margin', 'mas-addons-for-elementor' ),
+				'type'       => Controls_Manager::DIMENSIONS,
+				'size_units' => array( 'px', '%', 'em', 'rem', 'vw', 'custom' ),
+				'selectors'  => array(
+					'{{WRAPPER}} .mas-elementor-multipurpose-text__title' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				),
+			)
+		);
+
 	}
 
 	/**

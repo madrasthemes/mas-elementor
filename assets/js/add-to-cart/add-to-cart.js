@@ -36,6 +36,81 @@
             }
         });
     });
+
+    let lastClickedButton = null; // To track the last clicked button
+
+    // Listen for the button click
+    $(document.body).on('click', '.mas-count-in-btn-yes .ajax_add_to_cart', function(event) {
+        lastClickedButton = $(this); // Save the reference to the clicked button
+    });
+
+    // Listen for the added_to_cart event only once
+    $(document.body).on('added_to_cart', function(event, fragments, cart_hash, $button) {
+        if (lastClickedButton && $button.get(0) === lastClickedButton.get(0)) {
+            // Locate the `.cart-count-btn` within the same `.elementor-button-wrapper`
+            const cartCountElement = $button.closest('.elementor-button-wrapper').find('.cart-count-btn');
+
+            // Ensure the `.cart-count-btn` exists
+            if (cartCountElement.length) {
+                // Extract the current cart count from `.cart-count-btn`
+                const currentCartCountText = cartCountElement.text().match(/\d+/); // Match numbers in the text
+                const currentCartCount = currentCartCountText ? parseInt(currentCartCountText[0]) : 0; // Default to 0 if not found
+
+                // Get the quantity from the button's data-quantity
+                const quantity = parseInt(lastClickedButton.data('quantity')) || 1;
+
+                // Calculate the new cart count
+                const newCartCount = currentCartCount + quantity;
+
+                let prefix = "";
+                let suffix = "";
+                if ( cartCountElement.data('prefix') ) {
+                    prefix = cartCountElement.data('prefix') + " ";
+                }
+
+                if ( cartCountElement.data('suffix') ) {
+                    suffix = " " + cartCountElement.data('suffix');
+                }
+                
+
+                // Update the `.cart-count-btn` text
+                cartCountElement.text(prefix + newCartCount + suffix);
+
+                // Update the button inner text to match `.cart-count-btn` text
+                $button.find('.add-cart-btn').text(prefix + newCartCount + suffix);
+
+                // Clear the last clicked button to avoid duplication
+                lastClickedButton = null;
+            }
+        }
+    });
+
+    $(document).ready(function() {
+        // Iterate through each button that needs to be updated
+        $('.elementor-button-wrapper').each(function() {
+            const cartCountElement = $(this).find('.cart-count-btn');
+
+            let prefix = "";
+                let suffix = "";
+                if ( cartCountElement.data('prefix') ) {
+                    prefix = cartCountElement.data('prefix') + " ";
+                }
+
+                if ( cartCountElement.data('suffix') ) {
+                    suffix = " " + cartCountElement.data('suffix');
+                }
+    
+            // Check if the cart count element exists and has a non-zero value
+            if (cartCountElement.length) {
+                const cartCountText = cartCountElement.text().trim();
+                if (cartCountText && parseInt(cartCountText) !== 0) {
+                    // If it's not zero, set the button text to match `.cart-count-btn`
+                    $(this).find('.add-cart-btn').text(prefix + cartCountText + suffix);
+                }
+            }
+        });
+    });
+
 } )( jQuery, window );
 
 // $('.added_to_cart').each(function() {

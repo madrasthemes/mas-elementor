@@ -109,7 +109,7 @@ class Mini_Cart extends Base_Widget {
 				'type'    => Controls_Manager::SELECT,
 				'default' => '',
 				'options' => array(
-					''        => esc_html__( 'Default', 'mas-addons-for-elementor' ),
+					'cart'        => esc_html__( 'Default', 'mas-addons-for-elementor' ),
 					'bag'     => esc_html__( 'Bag', 'mas-addons-for-elementor' ),
 					'bag-alt' => esc_html__( 'Bag Alt', 'mas-addons-for-elementor' ),
 				),
@@ -156,7 +156,7 @@ class Mini_Cart extends Base_Widget {
 				'label'     => __( 'Icon Color', 'mas-addons-for-elementor' ),
 				'type'      => Controls_Manager::COLOR,
 				'selectors' => array(
-					'{{WRAPPER}} svg' => 'color: {{VALUE}} !important',
+					'{{WRAPPER}} svg' => 'color: {{VALUE}} !important;fill:{{VALUE}} !important;',
 				),
 				'separator' => 'after',
 			)

@@ -67,5 +67,34 @@ class Module extends Module_Base {
 			)
 		);
 
+		$element->add_control(
+			'mas_list_content_text',
+			array(
+				'label'       => __( 'Content Text', 'mas-addons-for-elementor' ),
+				'type'        => Controls_Manager::TEXT,
+				'placeholder' => __( 'Enter your content here', 'mas-addons-for-elementor' ),
+				'selectors'   => array(
+					'{{WRAPPER}} .elementor-icon-list-items.elementor-inline-items .elementor-icon-list-item:not(:last-child):after' => 'content: "{{VALUE}}"',
+				),
+				'condition'   => array(
+					'view' => 'inline',
+				),
+			)
+		);
+
+		$element->add_control(
+			'mas_list_content__color',
+			array(
+				'label'     => esc_html__( 'Content Color', 'mas-addons-for-elementor' ),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => array(
+					'{{WRAPPER}} .elementor-icon-list-items.elementor-inline-items .elementor-icon-list-item:not(:last-child):after' => 'color: {{VALUE}};',
+				),
+				'condition' => array(
+					'view' => 'inline',
+				),
+			)
+		);
+
 	}
 }

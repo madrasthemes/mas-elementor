@@ -125,17 +125,6 @@ class Mas_Nav_Menu extends Base_Widget {
 	}
 
 	/**
-	 * Get widget element.
-	 *
-	 * @param array $element element.
-	 */
-	public function on_export( $element ) {
-		unset( $element['settings']['menu'] );
-
-		return $element;
-	}
-
-	/**
 	 * Get widget Nav menu index.
 	 *
 	 * Retrieve Nav Menu widget script Nav menu index.
@@ -244,9 +233,11 @@ class Mas_Nav_Menu extends Base_Widget {
 				'default'            => 'horizontal',
 				'options'            => array(
 					'horizontal' => esc_html__( 'Horizontal', 'mas-addons-for-elementor' ),
+					'vertical'   => esc_html__( 'Vertical', 'mas-addons-for-elementor' ),
 					'dropdown'   => esc_html__( 'Dropdown', 'mas-addons-for-elementor' ),
 				),
 				'frontend_available' => true,
+				'prefix_class'       => 'mas-nav-layout-',
 				'condition'          => array(
 					'walker!' => 'default',
 				),
@@ -291,7 +282,7 @@ class Mas_Nav_Menu extends Base_Widget {
 			array(
 				'label'          => esc_html__( 'Space Between', 'mas-addons-for-elementor' ),
 				'type'           => Controls_Manager::SLIDER,
-				'size_units' => array( 'px', '%', 'em', 'rem', 'custom' ),
+				'size_units'     => array( 'px', '%', 'em', 'rem', 'custom' ),
 				'range'          => array(
 					'px' => array(
 						'max' => 150,
@@ -325,6 +316,18 @@ class Mas_Nav_Menu extends Base_Widget {
 			array(
 				'label' => esc_html__( 'Main Menu', 'mas-addons-for-elementor' ),
 				'tab'   => Controls_Manager::TAB_STYLE,
+			)
+		);
+
+		$this->add_responsive_control(
+			'main_menu_padding',
+			array(
+				'label'      => esc_html__( 'Menu Item Padding', 'mas-addons-for-elementor' ),
+				'type'       => Controls_Manager::DIMENSIONS,
+				'size_units' => array( 'px', '%', 'em', 'rem', 'custom' ),
+				'selectors'  => array(
+					'{{WRAPPER}} .header-menu > li > a' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				),
 			)
 		);
 
@@ -382,6 +385,7 @@ class Mas_Nav_Menu extends Base_Widget {
 				'default'   => '#000',
 				'selectors' => array(
 					'{{WRAPPER}} .mas-elementor-nav-menu .menu-item .nav-link' => 'color: {{VALUE}}; fill: {{VALUE}};',
+					'{{WRAPPER}} .mas-elementor-nav-menu > .menu-item > a' => 'color: {{VALUE}}; fill: {{VALUE}};',
 				),
 			)
 		);
@@ -405,6 +409,7 @@ class Mas_Nav_Menu extends Base_Widget {
 				),
 				'selectors' => array(
 					'{{WRAPPER}} .mas-elementor-nav-menu .menu-item .nav-link:hover' => 'color: {{VALUE}}; fill: {{VALUE}};',
+					'{{WRAPPER}} .mas-elementor-nav-menu > .menu-item:hover > a' => 'color: {{VALUE}}; fill: {{VALUE}};',
 				),
 				'default'   => '#000',
 			)
@@ -426,6 +431,7 @@ class Mas_Nav_Menu extends Base_Widget {
 				'default'   => '',
 				'selectors' => array(
 					'{{WRAPPER}} .mas-elementor-nav-menu .menu-item a:active' => 'color: {{VALUE}}',
+					'{{WRAPPER}} .mas-elementor-nav-menu > menu-item a' => 'color: {{VALUE}}',
 				),
 			)
 		);
@@ -442,6 +448,67 @@ class Mas_Nav_Menu extends Base_Widget {
 				'separator' => 'before',
 			)
 		);
+
+		$this->add_control(
+			'enable_submenu_color',
+			array(
+				'type'    => Controls_Manager::SWITCHER,
+				'label'   => esc_html__( 'Enable Submenu color', 'mas-addons-for-elementor' ),
+				'default' => 'no',
+			)
+		);
+
+		$this->start_controls_tabs(
+			'tabs_sub_menu_item_style',
+			array(
+				'condition' => array(
+					'walker!'              => 'default',
+					'enable_submenu_color' => 'yes',
+				),
+			)
+		);
+
+		$this->start_controls_tab(
+			'tab_sub_menu_item_normal',
+			array(
+				'label' => esc_html__( 'Normal', 'mas-addons-for-elementor' ),
+			)
+		);
+
+		$this->add_control(
+			'sub_menu_text_color',
+			array(
+				'label'     => esc_html__( 'Submenu Color', 'mas-addons-for-elementor' ),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => array(
+					'{{WRAPPER}} .mas-elementor-nav-menu .menu-item > .dropdown-menu > .menu-item > a' => 'color: {{VALUE}}; fill: {{VALUE}};',
+				),
+			)
+		);
+
+		$this->end_controls_tab();
+
+		$this->start_controls_tab(
+			'tab_sub_menu_item_hover',
+			array(
+				'label' => esc_html__( 'Hover', 'mas-addons-for-elementor' ),
+			)
+		);
+
+		$this->add_control(
+			'sub_menu_text_color_hover',
+			array(
+				'label'     => esc_html__( 'Submenu Color', 'mas-addons-for-elementor' ),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => array(
+					'{{WRAPPER}} .mas-elementor-nav-menu .menu-item > .dropdown-menu > .menu-item:hover > a' => 'color: {{VALUE}}; fill: {{VALUE}};',
+				),
+			)
+		);
+
+		$this->end_controls_tab();
+
+		$this->end_controls_tabs();
 
 		$this->add_group_control(
 			Group_Control_Typography::get_type(),
@@ -542,6 +609,19 @@ class Mas_Nav_Menu extends Base_Widget {
 			)
 		);
 
+		$this->add_control(
+			'remove_box_shadow',
+			array(
+				'type'         => Controls_Manager::SWITCHER,
+				'label'        => esc_html__( 'Disable Box Shadow', 'mas-addons-for-elementor' ),
+				'default'      => 'no',
+				'label_off'    => esc_html__( 'Show', 'mas-addons-for-elementor' ),
+				'label_on'     => esc_html__( 'Hide', 'mas-addons-for-elementor' ),
+				'return_value' => 'hide',
+				'prefix_class' => 'mas-nav-menu-shadow-',
+			)
+		);
+
 		$this->add_group_control(
 			Group_Control_Box_Shadow::get_type(),
 			array(
@@ -561,6 +641,9 @@ class Mas_Nav_Menu extends Base_Widget {
 							'color'      => 'rgba(0, 0, 0, 0.1)',
 						),
 					),
+				),
+				'condition' => array(
+					'remove_box_shadow!'              => 'hide',
 				),
 			)
 		);
@@ -592,6 +675,9 @@ class Mas_Nav_Menu extends Base_Widget {
 				'selectors' => array(
 					'{{WRAPPER}} .sub-menu .menu-item a' => 'fill: {{VALUE}}; color: {{VALUE}};',
 					'{{WRAPPER}} .dropdown-menu .menu-item a' => 'fill: {{VALUE}}; color: {{VALUE}};',
+				),
+				'condition' => array(
+					'enable_submenu_color!' => 'yes',
 				),
 			)
 		);
@@ -636,6 +722,9 @@ class Mas_Nav_Menu extends Base_Widget {
 					'{{WRAPPER}} .dropdown-menu .menu-item a:hover svg, {{WRAPPER}} .dropdown-menu .menu-item a:focus svg' => 'fill: {{VALUE}};',
 				),
 				'default'   => '#16181b',
+				'condition' => array(
+					'enable_submenu_color!' => 'yes',
+				),
 			)
 		);
 
@@ -678,6 +767,70 @@ class Mas_Nav_Menu extends Base_Widget {
 					'right'    => '30',
 					'bottom'   => '4',
 					'left'     => '30',
+					'unit'     => 'px',
+					'isLinked' => false,
+				),
+			)
+		);
+
+		$this->end_controls_section();
+
+		$this->start_controls_section(
+			'section_style_menu_icon',
+			array(
+				'label' => esc_html__( 'Menu Icon', 'mas-addons-for-elementor' ),
+				'tab'   => Controls_Manager::TAB_STYLE,
+			)
+		);
+
+		$this->add_responsive_control(
+			'icon_font_size_menu_item',
+			array(
+				'label'          => esc_html__( 'Font Size', 'mas-addons-for-elementor' ),
+				'type'           => Controls_Manager::SLIDER,
+				'size_units'     => array( 'px', '%', 'em', 'rem', 'custom' ),
+				'selectors' => array(
+					'{{WRAPPER}} .mas-elementor-nav-menu .menu-item .mas-icon-wrap i' => 'font-size: {{SIZE}}{{UNIT}};',
+				),
+			)
+		);
+
+		$this->add_control(
+			'icon_color_menu_item',
+			array(
+				'label'     => esc_html__( 'Icon Color', 'mas-addons-for-elementor' ),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => array(
+					'{{WRAPPER}} .mas-elementor-nav-menu .menu-item .mas-icon-wrap i' => 'color: {{VALUE}}; fill: {{VALUE}};',
+				),
+			)
+		);
+
+		$this->add_control(
+			'icon_color_menu_item_hover',
+			array(
+				'label'     => esc_html__( 'Icon Hover Color', 'mas-addons-for-elementor' ),
+				'type'      => Controls_Manager::COLOR,
+				'selectors' => array(
+					'{{WRAPPER}} .mas-elementor-nav-menu .menu-item a:hover .mas-icon-wrap i' => 'color: {{VALUE}}; fill: {{VALUE}};',
+				),
+			)
+		);
+
+		$this->add_responsive_control(
+			'icon__menu_padding',
+			array(
+				'label'      => esc_html__( 'Icon Padding', 'mas-addons-for-elementor' ),
+				'type'       => Controls_Manager::DIMENSIONS,
+				'size_units' => array( 'px', '%', 'em', 'rem', 'custom' ),
+				'selectors'  => array(
+					'{{WRAPPER}} .mas-elementor-nav-menu .menu-item .mas-icon-wrap i' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				),
+				'default'    => array(
+					'top'      => '0',
+					'right'    => '6',
+					'bottom'   => '0',
+					'left'     => '0',
 					'unit'     => 'px',
 					'isLinked' => false,
 				),

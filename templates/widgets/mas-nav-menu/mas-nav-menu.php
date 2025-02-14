@@ -18,6 +18,7 @@ if ( ! $available_menus ) {
 }
 
 	$settings = $widget->get_active_settings();
+	$layout_condition = 'horizontal' === $settings['layout'] || 'vertical' === $settings['layout'];
 
 if ( ! empty( $settings['menu'] ) ) {
 	$widget->add_render_attribute( 'main-menu', 'class', 'mas-elementor-mas-nav-menu' );
@@ -34,7 +35,7 @@ if ( ! empty( $settings['menu'] ) ) {
 
 	);
 
-	if ( 'horizontal' === $settings['layout'] || 'default' === $settings['walker'] ) {
+	if ( $layout_condition || 'default' === $settings['walker'] ) {
 		$args['menu_class'] .= ' header-menu mas-elementor-nav-menu--main';
 	}
 
@@ -56,7 +57,7 @@ if ( ! empty( $settings['menu'] ) ) {
 
 	$dropdown_trigger = $settings['nav_action'];
 
-	if ( ( 'horizontal' === $settings['layout'] && 'bootstrap' === $settings['walker'] ) || 'default' === $settings['walker'] ) {
+	if ( ( $layout_condition && 'bootstrap' === $settings['walker'] ) || 'default' === $settings['walker'] ) {
 		?>
 		<div class="<?php echo esc_attr( $wrap_class ); ?>">
 			<?php if ( 'click' === $dropdown_trigger ) { ?>

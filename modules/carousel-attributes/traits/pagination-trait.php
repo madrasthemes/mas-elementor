@@ -34,6 +34,9 @@ trait Pagination_Trait {
 
 		$render_type = 'container' === $element->get_name() ? 'none' : 'template';
 
+		$start = is_rtl() ? 'right' : 'left';
+		$end   = ! is_rtl() ? 'right' : 'left';
+
 		$element->start_controls_section(
 			'swiper_section_navigation',
 			array(
@@ -51,6 +54,36 @@ trait Pagination_Trait {
 					array(
 						'label'     => esc_html__( 'Pagination', 'mas-addons-for-elementor' ),
 						'type'      => Controls_Manager::HEADING,
+						'condition' => array(
+							'enable_carousel' => 'yes',
+							'show_pagination' => 'yes',
+							'pagination'      => 'bullets',
+						),
+					)
+				);
+
+				$element->add_responsive_control(
+					'mas_swiper_pagination_alignment',
+					array(
+						'label'     => esc_html__( 'Alignment', 'mas-addons-for-elementor' ),
+						'type'      => Controls_Manager::CHOOSE,
+						'options'   => array(
+							'start'  => array(
+								'title' => esc_html__( 'Start', 'mas-addons-for-elementor' ),
+								'icon'  => "eicon-text-align-$start",
+							),
+							'center' => array(
+								'title' => esc_html__( 'Center', 'mas-addons-for-elementor' ),
+								'icon'  => 'eicon-text-align-center',
+							),
+							'end'    => array(
+								'title' => esc_html__( 'End', 'mas-addons-for-elementor' ),
+								'icon'  => "eicon-text-align-$end",
+							),
+						),
+						'selectors' => array(
+							'{{WRAPPER}} ' . $args['concat'] . ' .swiper-pagination' => 'text-align: {{VALUE}};',
+						),
 						'condition' => array(
 							'enable_carousel' => 'yes',
 							'show_pagination' => 'yes',
@@ -187,6 +220,23 @@ trait Pagination_Trait {
 							),
 						),
 						'condition'      => array(
+							'enable_carousel' => 'yes',
+							'show_pagination' => 'yes',
+							'pagination'      => 'bullets',
+						),
+					)
+				);
+
+				$element->add_control(
+					'mas_swiper_pag_margin',
+					array(
+						'label'      => __( 'Margin', 'mas-addons-for-elementor' ),
+						'type'       => Controls_Manager::DIMENSIONS,
+						'size_units' => array( 'px', '%', 'custom' ),
+						'selectors'  => array(
+							'{{WRAPPER}} ' . $args['concat'] . ' .swiper-pagination .swiper-pagination-bullet' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}}',
+						),
+						'condition'  => array(
 							'enable_carousel' => 'yes',
 							'show_pagination' => 'yes',
 							'pagination'      => 'bullets',
@@ -670,7 +720,7 @@ trait Pagination_Trait {
 					array(
 						'label'     => esc_html__( 'Z-Index', 'mas-addons-for-elementor' ),
 						'type'      => Controls_Manager::NUMBER,
-						'selectors'  => array(
+						'selectors' => array(
 							'{{WRAPPER}} ' . $args['concat'] . ' .swiper-pagination' => 'z-index: {{VALUE}};',
 						),
 					)
@@ -737,14 +787,14 @@ trait Pagination_Trait {
 				$element->add_control(
 					'mas_swiper_pagination_position',
 					array(
-						'label'     => esc_html__( 'Position', 'mas-addons-for-elementor' ),
-						'type'      => Controls_Manager::SELECT,
-						'default'   => 'absolute',
-						'options'   => array(
+						'label'       => esc_html__( 'Position', 'mas-addons-for-elementor' ),
+						'type'        => Controls_Manager::SELECT,
+						'default'     => 'absolute',
+						'options'     => array(
 							'relative' => esc_html__( 'Relative', 'mas-addons-for-elementor' ),
 							'absolute' => esc_html__( 'Absolute', 'mas-addons-for-elementor' ),
 						),
-						'condition' => array(
+						'condition'   => array(
 							'enable_carousel' => 'yes',
 							'show_pagination' => 'yes',
 						),
@@ -846,8 +896,8 @@ trait Pagination_Trait {
 						),
 						'condition'  => array(
 							'pag_offset_orientation_h!' => 'end',
-							'enable_carousel'             => 'yes',
-							'show_pagination'             => 'yes',
+							'enable_carousel'           => 'yes',
+							'show_pagination'           => 'yes',
 							'mas_swiper_pagination_position' => 'absolute',
 						),
 					)
@@ -887,8 +937,8 @@ trait Pagination_Trait {
 						),
 						'condition'  => array(
 							'pag_offset_orientation_h' => 'end',
-							'enable_carousel'            => 'yes',
-							'show_pagination'            => 'yes',
+							'enable_carousel'          => 'yes',
+							'show_pagination'          => 'yes',
 							'mas_swiper_pagination_position' => 'absolute',
 						),
 					)

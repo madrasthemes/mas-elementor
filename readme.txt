@@ -4,7 +4,7 @@ Tags: posts, products, nav-menu, carousel, tabs
 Requires at least: 6.3
 Tested up to: 6.7
 Requires PHP: 7.4
-Stable tag: 1.1.8
+Stable tag: 1.1.9
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -67,6 +67,11 @@ All of our online documentation can be found on [our documentation site](https:/
 
 
 == Changelog ==
+
+= 1.1.9 - 2025-02-14 =
+* Feature : MAS NavMenu and MAS Add to cart widgets style controls added
+* Feature : MAS Header and MAS Footer added as library
+* Fix     : Fixed mini-cart default icon
 
 = 1.1.8 - 2024-12-24 =
 * Fixed MAS NavMenu parent link issue

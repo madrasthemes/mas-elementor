@@ -67,7 +67,7 @@
                 button.removeEventListener('mouseover', handleMouseOver);
                 button.removeEventListener('mouseout', handleMouseOut);
 
-                if (isTouchDevice()) {
+                if (isTouchDevice() || null !== button.getAttribute('data-click') ) {
                     // Use click for touch devices
                     button.addEventListener('click', handleClick);
                 } else {
