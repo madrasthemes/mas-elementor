@@ -79,6 +79,57 @@ class Module extends Module_Base {
 			)
 		);
 
+		$element->add_responsive_control(
+			'wishlist_icon_width',
+			array(
+				'label'     => esc_html__( 'Icon Width', 'mas-addons-for-elementor' ),
+				'size_units' => array( 'px', 'em', '%', 'rem' ),
+				'type'      => Controls_Manager::SLIDER,
+				'selectors' => array(
+					'{{WRAPPER}} .yith-wcwl-icon' => 'width: {{SIZE}}{{UNIT}};',
+				),
+			)
+		);
+
+		$element->add_responsive_control(
+			'wishlist_icon_height',
+			array(
+				'label'     => esc_html__( 'Icon Height', 'mas-addons-for-elementor' ),
+				'size_units' => array( 'px', 'em', '%', 'rem' ),
+				'type'      => Controls_Manager::SLIDER,
+				'selectors' => array(
+					'{{WRAPPER}} .yith-wcwl-icon' => 'height: {{SIZE}}{{UNIT}};',
+				),
+			)
+		);
+
+		$element->add_responsive_control(
+			'wishlist_icon_text_gap',
+			array(
+				'label'     => esc_html__( 'Icon Text Gap', 'mas-addons-for-elementor' ),
+				'size_units' => array( 'px', 'em', '%', 'rem' ),
+				'type'      => Controls_Manager::SLIDER,
+				'selectors' => array(
+					'{{WRAPPER}} .yith-wcwl-add-to-wishlist-button' => 'gap: {{SIZE}}{{UNIT}};',
+				),
+			)
+		);
+
+		$element->add_control(
+			'wishlist_icon_text_hide',
+			array(
+				'label'       => esc_html__( 'Hide Wishlist Text', 'mas-addons-for-elementor' ),
+				'type'        => Controls_Manager::SWITCHER,
+				'description' => 'Hide the wishlist text',
+				'label_off'   => esc_html__( 'Hide', 'mas-addons-for-elementor' ),
+				'label_on'    => esc_html__( 'Show', 'mas-addons-for-elementor' ),
+				'return_value' => 'none',
+				'selectors'   => array(
+					'{{WRAPPER}} .yith-wcwl-add-to-wishlist-button__label' => 'display: {{VALUE}} !important;',
+				),
+			)
+		);
+
 		$element->add_control(
 			'wishlist_icon_color',
 			array(
