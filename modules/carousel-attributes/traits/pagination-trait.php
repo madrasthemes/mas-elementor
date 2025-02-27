@@ -62,6 +62,39 @@ trait Pagination_Trait {
 					)
 				);
 
+				$element->add_control(
+					'mas_swiper_pagination_width',
+					array(
+						'label'      => esc_html__( 'Width', 'mas-addons-for-elementor' ),
+						'type'       => Controls_Manager::SLIDER,
+						'size_units' => array( 'px', '%', 'custom' ),
+						'range'      => array(
+							'%' => array(
+								'max' => 100,
+							),
+						),
+						'selectors'  => array(
+							'{{WRAPPER}} ' . $args['concat'] . ' .swiper-pagination' => 'width: {{SIZE}}{{UNIT}}!important;',
+						),
+						'condition'  => array(
+							'enable_carousel' => 'yes',
+							'show_pagination' => 'yes',
+						),
+
+					)
+				);
+
+				$element->add_responsive_control(
+					'mas_swiper_pagination_z_index',
+					array(
+						'label'     => esc_html__( 'Z-Index', 'mas-addons-for-elementor' ),
+						'type'      => Controls_Manager::NUMBER,
+						'selectors' => array(
+							'{{WRAPPER}} ' . $args['concat'] . ' .swiper-pagination' => 'z-index: {{VALUE}};',
+						),
+					)
+				);
+
 				$element->add_responsive_control(
 					'mas_swiper_pagination_alignment',
 					array(
@@ -820,6 +853,25 @@ trait Pagination_Trait {
 							'{{WRAPPER}} ' . $args['concat'] . ' .swiper-pagination.swiper-pagination-bullets' => 'top: {{SIZE}}% !important;',
 							'{{WRAPPER}} ' . $args['concat'] . ' .swiper-pagination-progressbar.swiper-pagination-horizontal' => 'top: {{SIZE}}% !important;',
 							'{{WRAPPER}} ' . $args['concat'] . ' .swiper-pagination.swiper-pagination-fraction' => 'top: {{SIZE}}% !important;',
+						),
+						'condition' => array(
+							'enable_carousel' => 'yes',
+							'show_pagination' => 'yes',
+							'mas_swiper_pagination_position' => 'absolute',
+						),
+					)
+				);
+
+				$element->add_responsive_control(
+					'vertical_bottom_pagination_position',
+					array(
+						'label'     => esc_html__( 'Bottom Position', 'mas-addons-for-elementor' ),
+						'type'      => Controls_Manager::SLIDER,
+						'size_units' => array( '%', 'px', 'rem', 'custom' ),
+						'selectors' => array(
+							'{{WRAPPER}} ' . $args['concat'] . ' .swiper-pagination.swiper-pagination-bullets' => 'bottom: {{SIZE}}{{UNIT}} !important;',
+							'{{WRAPPER}} ' . $args['concat'] . ' .swiper-pagination-progressbar.swiper-pagination-horizontal' => 'bottom: {{SIZE}}{{UNIT}} !important;',
+							'{{WRAPPER}} ' . $args['concat'] . ' .swiper-pagination.swiper-pagination-fraction' => 'bottom: {{SIZE}}{{UNIT}} !important;',
 						),
 						'condition' => array(
 							'enable_carousel' => 'yes',
