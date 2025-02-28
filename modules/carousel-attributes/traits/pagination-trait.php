@@ -534,7 +534,16 @@ trait Pagination_Trait {
 					)
 				);
 
-				$element->start_controls_tabs( 'fraction_pagination_tabs' );
+				$element->start_controls_tabs(
+					'fraction_pagination_tabs',
+					array(
+						'condition' => array(
+							'enable_carousel' => 'yes',
+							'show_pagination' => 'yes',
+							'pagination'      => 'fraction',
+						),
+					)
+				);
 
 				$element->start_controls_tab(
 					'fraction_pagination_tab',
@@ -745,6 +754,7 @@ trait Pagination_Trait {
 						'selectors' => array(
 							'{{WRAPPER}} ' . $args['concat'] . ' .swiper-pagination' => 'z-index: {{VALUE}};',
 						),
+						'separator' => 'before',
 					)
 				);
 
@@ -854,15 +864,15 @@ trait Pagination_Trait {
 				$element->add_responsive_control(
 					'vertical_bottom_pagination_position',
 					array(
-						'label'     => esc_html__( 'Bottom Position', 'mas-addons-for-elementor' ),
-						'type'      => Controls_Manager::SLIDER,
+						'label'      => esc_html__( 'Bottom Position', 'mas-addons-for-elementor' ),
+						'type'       => Controls_Manager::SLIDER,
 						'size_units' => array( '%', 'px', 'rem', 'custom' ),
-						'selectors' => array(
+						'selectors'  => array(
 							'{{WRAPPER}} ' . $args['concat'] . ' .swiper-pagination.swiper-pagination-bullets' => 'bottom: {{SIZE}}{{UNIT}} !important;',
 							'{{WRAPPER}} ' . $args['concat'] . ' .swiper-pagination-progressbar.swiper-pagination-horizontal' => 'bottom: {{SIZE}}{{UNIT}} !important;',
 							'{{WRAPPER}} ' . $args['concat'] . ' .swiper-pagination.swiper-pagination-fraction' => 'bottom: {{SIZE}}{{UNIT}} !important;',
 						),
-						'condition' => array(
+						'condition'  => array(
 							'enable_carousel' => 'yes',
 							'show_pagination' => 'yes',
 							'mas_swiper_pagination_position' => 'absolute',
