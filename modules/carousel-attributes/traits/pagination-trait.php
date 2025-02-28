@@ -85,17 +85,6 @@ trait Pagination_Trait {
 				);
 
 				$element->add_responsive_control(
-					'mas_swiper_pagination_z_index',
-					array(
-						'label'     => esc_html__( 'Z-Index', 'mas-addons-for-elementor' ),
-						'type'      => Controls_Manager::NUMBER,
-						'selectors' => array(
-							'{{WRAPPER}} ' . $args['concat'] . ' .swiper-pagination' => 'z-index: {{VALUE}};',
-						),
-					)
-				);
-
-				$element->add_responsive_control(
 					'mas_swiper_pagination_alignment',
 					array(
 						'label'     => esc_html__( 'Alignment', 'mas-addons-for-elementor' ),
