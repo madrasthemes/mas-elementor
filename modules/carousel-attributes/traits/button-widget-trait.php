@@ -276,7 +276,7 @@ trait Button_Widget_Trait {
 			array(
 				'type'            => Controls_Manager::SLIDER,
 				'label'           => esc_html__( 'Arrows Top Spacing', 'mas-addons-for-elementor' ),
-				'size_units'      => array( '%', 'px' ),
+				'size_units'      => array( '%', 'px', 'custom' ),
 				'range'           => array(
 					'%'  => array(
 						'min' => -100,
@@ -303,7 +303,7 @@ trait Button_Widget_Trait {
 			array(
 				'type'            => Controls_Manager::SLIDER,
 				'label'           => esc_html__( 'Arrows Bottom Spacing', 'mas-addons-for-elementor' ),
-				'size_units'      => array( '%', 'px' ),
+				'size_units'      => array( '%', 'px', 'custom' ),
 				'range'           => array(
 					'%'  => array(
 						'min' => -100,
