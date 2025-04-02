@@ -63,6 +63,49 @@ trait Pagination_Trait {
 				);
 
 				$element->add_control(
+					'mas_swiper_pagination_background_color',
+					array(
+						'label'     => esc_html__( 'Pagination Background Color', 'mas-addons-for-elementor' ),
+						'type'      => Controls_Manager::COLOR,
+						'default'   => '#FFFFFF',
+						'selectors' => array(
+							'{{WRAPPER}} ' . $args['concat'] . ' .swiper-pagination' => 'background-color: {{VALUE}}!important;',
+						),
+						'condition' => array(
+							'enable_carousel' => 'yes',
+							'show_pagination' => 'yes',
+							'pagination'      => 'bullets',
+						),
+					)
+				);
+
+				$element->add_responsive_control(
+					'icon_enable_flex',
+					array(
+						'label'     => esc_html__( 'Enable Flex', 'mas-addons-for-elementor' ),
+						'type'      => Controls_Manager::CHOOSE,
+						'options'   => array(
+							'block' => array(
+								'title' => esc_html__( 'Block', 'mas-addons-for-elementor' ),
+								'icon'  => 'eicon-ban',
+							),
+							'flex'  => array(
+								'title' => esc_html__( 'Flex', 'mas-addons-for-elementor' ),
+								'icon'  => 'eicon-flex eicon-wrap',
+							),
+						),
+						'selectors' => array(
+							'{{WRAPPER}} ' . $args['concat'] . ' .swiper-pagination' => 'display: {{VALUE}};',
+						),
+						'condition' => array(
+							'enable_carousel' => 'yes',
+							'show_pagination' => 'yes',
+							'pagination'      => 'bullets',
+						),
+					)
+				);
+
+				$element->add_control(
 					'mas_swiper_pagination_width',
 					array(
 						'label'      => esc_html__( 'Width', 'mas-addons-for-elementor' ),
