@@ -67,7 +67,6 @@ trait Pagination_Trait {
 					array(
 						'label'     => esc_html__( 'Pagination Background Color', 'mas-addons-for-elementor' ),
 						'type'      => Controls_Manager::COLOR,
-						'default'   => '#FFFFFF',
 						'selectors' => array(
 							'{{WRAPPER}} ' . $args['concat'] . ' .swiper-pagination' => 'background-color: {{VALUE}}!important;',
 						),
