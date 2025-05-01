@@ -309,6 +309,48 @@ class Module extends Module_Base {
 			)
 		);
 
+		$element->add_responsive_control(
+			'swiper_slide_opacity',
+			array(
+				'label'     => esc_html__( 'Slide Opacity', 'mas-addons-for-elementor' ),
+				'type'      => Controls_Manager::SLIDER,
+				'range'     => array(
+					'px' => array(
+						'max'  => 1,
+						'min'  => 0.10,
+						'step' => 0.01,
+					),
+				),
+				'selectors' => array(
+					'{{WRAPPER}} .swiper-slide' => 'opacity: {{SIZE}};',
+				),
+				'condition'            => array(
+					'enable_carousel' => 'yes',
+				),
+			)
+		);
+
+		$element->add_responsive_control(
+			'swiper_slide_active_opacity',
+			array(
+				'label'     => esc_html__( 'Active Slide Opacity', 'mas-addons-for-elementor' ),
+				'type'      => Controls_Manager::SLIDER,
+				'range'     => array(
+					'px' => array(
+						'max'  => 1,
+						'min'  => 0.10,
+						'step' => 0.01,
+					),
+				),
+				'selectors' => array(
+					'{{WRAPPER}} .swiper-slide.swiper-slide-active' => 'opacity: {{SIZE}};',
+				),
+				'condition'            => array(
+					'enable_carousel' => 'yes',
+				),
+			)
+		);
+
 		$element->add_control(
 			'center_slides',
 			array(

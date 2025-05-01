@@ -97,6 +97,57 @@ class Module extends Module_Base {
 				),
 			)
 		);
+
+		$element->add_control(
+			'enable_img_aspect_ratio',
+			array(
+				'type'    => Controls_Manager::SWITCHER,
+				'label'   => esc_html__( 'Enable Aspect Ratio', 'mas-addons-for-elementor' ),
+				'default' => 'no',
+			),
+			array(
+				'position' => array(
+					'at' => 'before',
+					'of' => 'width',
+				),
+			)
+		);
+
+		$element->add_responsive_control(
+			'img_aspect_ratio',
+			array(
+				'label' => esc_html__( 'Aspect Ratio', 'mas-addons-for-elementor' ),
+				'type' => Controls_Manager::SELECT,
+				'options' => array(
+					'169' => '16:9',
+					'219' => '21:9',
+					'43' => '4:3',
+					'32' => '3:2',
+					'11' => '1:1',
+					'916' => '9:16',
+				),
+				'selectors_dictionary' => array(
+					'169' => '1.77777', // 16 / 9
+					'219' => '2.33333', // 21 / 9
+					'43' => '1.33333', // 4 / 3
+					'32' => '1.5', // 3 / 2
+					'11' => '1', // 1 / 1
+					'916' => '0.5625', // 9 / 16
+				),
+				'selectors' => array(
+					'{{WRAPPER}} img' => 'aspect-ratio: {{VALUE}}',
+				),
+				'condition' => array(
+					'enable_img_aspect_ratio' => 'yes',
+				),
+			),
+			array(
+				'position' => array(
+					'at' => 'before',
+					'of' => 'width',
+				),
+			)
+		);
 	}
 
 }

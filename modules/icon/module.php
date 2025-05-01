@@ -126,6 +126,43 @@ class Module extends Module_Base {
 		$element->end_controls_tab();
 
 		$element->end_controls_tabs();
+
+		$element->add_control(
+			'enable_flex_options',
+			array(
+				'label'     => esc_html__( 'Enable Flex Options', 'mas-addons-for-elementor' ),
+				'type'      => Controls_Manager::SWITCHER,
+				'default'   => 'no',
+				'separator' => 'before',
+			)
+		);
+
+		$element->add_responsive_control(
+			'icon_enable_flex',
+			array(
+				'label'     => esc_html__( 'Enable Flex', 'mas-addons-for-elementor' ),
+				'type'      => Controls_Manager::CHOOSE,
+				'options'   => array(
+					'block' => array(
+						'title' => esc_html__( 'Block', 'mas-addons-for-elementor' ),
+						'icon'  => 'eicon-ban',
+					),
+					'flex'  => array(
+						'title' => esc_html__( 'Flex', 'mas-addons-for-elementor' ),
+						'icon'  => 'eicon-flex eicon-wrap',
+					),
+				),
+				'default'   => 'flex',
+				'selectors' => array(
+					'{{WRAPPER}} .elementor-icon-wrapper' => 'display: {{VALUE}};',
+				),
+				'condition' => array(
+					'enable_flex_options' => 'yes',
+				),
+
+			)
+		);
+
 	}
 
 	/**

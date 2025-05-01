@@ -271,6 +271,60 @@ trait Button_Widget_Trait {
 			)
 		);
 
+		$element->add_responsive_control(
+			'swiper_arrows_top_spacing',
+			array(
+				'type'            => Controls_Manager::SLIDER,
+				'label'           => esc_html__( 'Arrows Top Spacing', 'mas-addons-for-elementor' ),
+				'size_units'      => array( '%', 'px', 'custom' ),
+				'range'           => array(
+					'%'  => array(
+						'min' => -100,
+						'max' => 100,
+						'step' => 0.1,
+					),
+					'px' => array(
+						'min' => -1000,
+						'max' => 1000,
+						'step' => 0.1,
+					),
+				),
+				'selectors'       => array(
+					'{{WRAPPER}} ' . $args['button_concat'] . ' .mas-swiper-arrows .swiper-button-prev' => 'top:{{SIZE}}{{UNIT}} !important;',
+					'{{WRAPPER}} ' . $args['button_concat'] . ' .mas-swiper-arrows .swiper-button-next' => 'top:{{SIZE}}{{UNIT}} !important;',
+				),
+				'condition'       => array_merge( $args['section_condition'], array( 'enable_individual_arrow_spacing!' => 'yes' ) ),
+				'render_type'     => $args['render_type'],
+			)
+		);
+
+		$element->add_responsive_control(
+			'swiper_arrows_bottom_spacing',
+			array(
+				'type'            => Controls_Manager::SLIDER,
+				'label'           => esc_html__( 'Arrows Bottom Spacing', 'mas-addons-for-elementor' ),
+				'size_units'      => array( '%', 'px', 'custom' ),
+				'range'           => array(
+					'%'  => array(
+						'min' => -100,
+						'max' => 100,
+						'step' => 0.1,
+					),
+					'px' => array(
+						'min' => -1000,
+						'max' => 1000,
+						'step' => 0.1,
+					),
+				),
+				'selectors'       => array(
+					'{{WRAPPER}} ' . $args['button_concat'] . ' .mas-swiper-arrows .swiper-button-prev' => 'bottom:{{SIZE}}{{UNIT}} !important;',
+					'{{WRAPPER}} ' . $args['button_concat'] . ' .mas-swiper-arrows .swiper-button-next' => 'bottom:{{SIZE}}{{UNIT}} !important;',
+				),
+				'condition'       => array_merge( $args['section_condition'], array( 'enable_individual_arrow_spacing!' => 'yes' ) ),
+				'render_type'     => $args['render_type'],
+			)
+		);
+
 		$element->add_control(
 			'enable_individual_arrow_spacing',
 			array(
