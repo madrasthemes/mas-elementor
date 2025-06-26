@@ -173,7 +173,14 @@ class Add_To_Compare extends Widget_Button {
 		if ( ! empty( $settings['hover_animation'] ) ) {
 			$instance->add_render_attribute( 'button', 'class', 'elementor-animation-' . $settings['hover_animation'] );
 		}
-		$instance->add_render_attribute( 'button', 'href', $yith_woocompare->obj->add_product_url( $product_id ) );
+		
+		// Check if YITH WooCommerce Compare plugin is active
+		if ( class_exists( '\YITH_WooCompare_Form_handler' ) ) {
+			$instance->add_render_attribute( 'button', 'href', \YITH_WooCompare_Form_handler::get_add_action_url( $product_id ) );
+		} else {
+			$instance->add_render_attribute( 'button', 'href', '#' );
+		}
+		
 		$instance->add_render_attribute( 'button', 'class', 'add-to-compare-link' );
 		$instance->add_render_attribute( 'button', 'data-product_id', $product_id );
 
