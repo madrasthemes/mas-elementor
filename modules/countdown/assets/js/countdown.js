@@ -4,7 +4,7 @@
  * Theme core scripts
  * 
  * @author Createx Studio
- * @version 1.2.0
+ * @version 1.2.1
  */
 
 
