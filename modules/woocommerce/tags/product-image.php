@@ -75,9 +75,14 @@ class Product_Image extends Base_Data_Tag {
 
 		$src = wp_get_attachment_image_src( $image_id, 'full' );
 
+		if ( ! is_array( $src ) || empty( $src[0] ) ) {
+		    return array();
+		}
+
 		return array(
-			'id'  => $image_id,
-			'url' => $src[0],
+		    'id'  => $image_id,
+		    'url' => $src[0],
 		);
+
 	}
 }
