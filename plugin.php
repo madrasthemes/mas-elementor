@@ -189,16 +189,27 @@ class Plugin {
 	 */
 	public function enqueue_frontend_scripts() {
 		if ( ! wp_script_is( 'bootstrap-js', 'enqueued' ) ) {
-			wp_enqueue_script(
-				'mas-bootstrap-bundle',
-				MAS_ELEMENTOR_ASSETS_URL . 'js/bootstrap/bootstrap.bundle.min.js',
-				array(),
-				MAS_ELEMENTOR_VERSION,
-				true
-			);
+			wp_enqueue_script( 'mas-bootstrap-bundle' );
 		}
 
-		wp_enqueue_script(
+		wp_enqueue_script( 'mas-magnigy-popup' );
+		wp_enqueue_script( 'mas-popup-init' );
+		wp_enqueue_script( 'mas-collapse-script' );
+	}
+
+	/**
+	 * Register frontend scripts used by the plugin.
+	 */
+	public function register_frontend_scripts() {
+		wp_register_script(
+			'mas-bootstrap-bundle',
+			MAS_ELEMENTOR_ASSETS_URL . 'js/bootstrap/bootstrap.bundle.min.js',
+			array(),
+			MAS_ELEMENTOR_VERSION,
+			true
+		);
+
+		wp_register_script(
 			'mas-magnigy-popup',
 			MAS_ELEMENTOR_ASSETS_URL . 'js/popup/jquery.magnific-popup.min.js',
 			array(),
@@ -206,7 +217,7 @@ class Plugin {
 			true
 		);
 
-		wp_enqueue_script(
+		wp_register_script(
 			'mas-popup-init',
 			MAS_ELEMENTOR_ASSETS_URL . 'js/popup/popup-init.js',
 			array(),
@@ -214,7 +225,7 @@ class Plugin {
 			true
 		);
 
-		wp_enqueue_script(
+		wp_register_script(
 			'mas-collapse-script',
 			MAS_ELEMENTOR_ASSETS_URL . 'js/tabs/mas-button-toggle.js',
 			array(),
@@ -222,11 +233,6 @@ class Plugin {
 			true
 		);
 	}
-
-	/**
-	 * Register frontend scripts used by the plugin.
-	 */
-	public function register_frontend_scripts() {}
 
 	/**
 	 * Register preview scripts used by the plugin.
