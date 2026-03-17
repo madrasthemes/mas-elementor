@@ -1,10 +1,10 @@
 === MAS Elementor ===
 Contributors: madrasthemes
 Tags: posts, products, nav-menu, carousel, tabs
-Requires at least: 6.3
-Tested up to: 6.8
+Requires at least: 6.8
+Tested up to: 6.9.4
 Requires PHP: 7.4
-Stable tag: 1.2.2
+Stable tag: 1.2.3
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -66,6 +66,12 @@ All of our online documentation can be found on [our documentation site](https:/
 
 
 == Changelog ==
+
+= 1.2.3 - 2026-03-17 =
+* Feature : WooCommerce 10.6.1 compatibility
+* Feature : WordPress 6.9.4 compatibility
+* Fix     : Mini cart drawer not working
+* Fix     : Enqueued dependencies not registered warning
 
 = 1.2.2 - 2025-11-17 =
 * Updated PHP version
