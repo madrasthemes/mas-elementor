@@ -12,8 +12,8 @@ use Elementor\plugin;
  * Description: More power to your Elementor powered website with beautifully designed sections, templates, widgets, skins and extensions.
  * Plugin URI: https://github.com/madrasthemes/mas-elementor
  * Author: MadrasThemes
- * Version: 1.2.2
- * Elementor tested up to: 3.27.4
+ * Version: 1.2.3
+ * Elementor tested up to: 3.35.7
  * Author URI: https://madrasthemes.com/
  * License: GPLv3
  * License URI: https://www.gnu.org/licenses/gpl-3.0.html
@@ -24,7 +24,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
-define( 'MAS_ELEMENTOR_VERSION', '1.2.2' );
+define( 'MAS_ELEMENTOR_VERSION', '1.2.3' );
 
 define( 'MAS_ELEMENTOR__FILE__', __FILE__ );
 define( 'MAS_ELEMENTOR_BASE', plugin_basename( MAS_ELEMENTOR__FILE__ ) );
