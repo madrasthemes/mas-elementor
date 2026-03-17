@@ -27,7 +27,13 @@ if ( ! defined( 'ABSPATH' ) ) {
  * Class Cart
  */
 class Mini_Cart extends Base_Widget {
-
+	/**
+	 * Tracks whether the late script module footer fallback has been added.
+	 *
+	 * @var bool
+	 */
+	protected static $late_script_module_footer_fallback_added = false;
+	
 	/**
 	 * Get the name of the widget.
 	 *
@@ -266,6 +272,8 @@ class Mini_Cart extends Base_Widget {
 	 * Mini Cart.
 	 */
 	protected function mini_cart() {
+		$this->ensure_script_module_support();
+
 		$settings      = $this->get_settings_for_display();
 		$block_content = '<!-- wp:woocommerce/mini-cart /-->';
 		$parsed_blocks = parse_blocks( $block_content );
@@ -302,4 +310,47 @@ class Mini_Cart extends Base_Widget {
 		return $rendered_block;
 	}
 
+	/**
+	 * Ensure script module import maps are still printed when this widget is rendered
+	 * after `wp_head` on block-theme Elementor pages.
+	 *
+	 * @return void
+	 */
+	protected function ensure_script_module_support() {
+		if (
+			self::$late_script_module_footer_fallback_added ||
+			! function_exists( 'wp_script_modules' ) ||
+			! function_exists( 'wp_is_block_theme' ) ||
+			! wp_is_block_theme() ||
+			! did_action( 'wp_head' )
+		) {
+			return;
+		}
+
+		self::$late_script_module_footer_fallback_added = true;
+
+		add_action( 'wp_footer', array( __CLASS__, 'print_late_script_module_support' ), 0 );
+	}
+
+	/**
+	 * Print a late import map and preload tags for script modules that were enqueued
+	 * after `wp_head`.
+	 *
+	 * @return void
+	 */
+	public static function print_late_script_module_support() {
+		$script_modules = wp_script_modules();
+
+		if (!is_object($script_modules)) {
+			return;
+		}
+
+		if (method_exists($script_modules, 'print_import_map')) {
+			$script_modules->print_import_map();
+		}
+
+		if (method_exists($script_modules, 'print_script_module_preloads')) {
+			$script_modules->print_script_module_preloads();
+		}
+	}
 }
