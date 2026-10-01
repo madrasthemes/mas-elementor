@@ -725,8 +725,13 @@ class Module extends Module_Base {
 		$settings = $element->get_settings();
 		$json     = wp_json_encode( $this->get_swiper_carousel_options( $settings, $element ) );
 		$id       = $element->get_id();
+		// enable_thumbs is only registered on containers (see
+		// register_carousel_attributes_controls), but this also runs for legacy
+		// sections, which never carry the key. Thumbs are off there, matching the
+		// control default.
+		$enable_thumbs = isset( $settings['enable_thumbs'] ) ? $settings['enable_thumbs'] : 'no';
 		if ( 'yes' === $settings['enable_carousel'] ) {
-			if ( ! empty( $settings['thumb_swiper_widget'] ) && 'yes' !== $settings['enable_thumbs'] ) {
+			if ( ! empty( $settings['thumb_swiper_widget'] ) && 'yes' !== $enable_thumbs ) {
 				$element->add_render_attribute( '_wrapper', 'data-swiper-widget', 'thumb-' . $settings['thumb_swiper_widget'] );
 			}
 			$element->add_render_attribute( '_wrapper', 'class', 'swiper' );
@@ -739,7 +744,7 @@ class Module extends Module_Base {
 			if ( ! empty( $settings['mas_swiper_wrapper_attributes'] ) ) {
 				$element->add_render_attribute( 'section_carousel', 'style', $settings['mas_swiper_wrapper_attributes'] );
 			}
-			if ( 'yes' === $settings['enable_thumbs'] && ! empty( $settings['thumb_swiper_widget'] ) ) {
+			if ( 'yes' === $enable_thumbs && ! empty( $settings['thumb_swiper_widget'] ) ) {
 				$thumbs_json = wp_json_encode( array( 'thumbs_selector' => 'thumb-' . $settings['thumb_swiper_widget'] ) );
 				$element->add_render_attribute( '_wrapper', 'data-thumbs-options', $thumbs_json );
 				$element->add_render_attribute( '_wrapper', 'class', 'mas-js-swiper-thumbs' );
