@@ -98,11 +98,11 @@ class Module extends Module_Base {
 				$available_roles[] = 'employer';
 			}
 
-			$user_email = wp_unslash( $_POST['email'] ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+			$user_email = sanitize_email( wp_unslash( $_POST['email'] ) ); // phpcs:ignore WordPress.Security.NonceVerification.Missing
 			$user_role  = ! empty( $_POST['mas_user_role'] ) && in_array( $_POST['mas_user_role'], $available_roles, true ) ? sanitize_text_field( wp_unslash( $_POST['mas_user_role'] ) ) : $default_role;
 
 			if ( ! empty( $_POST['username'] ) ) {
-				$user_login = wp_unslash( $_POST['username'] ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+				$user_login = sanitize_user( wp_unslash( $_POST['username'] ), true ); // phpcs:ignore WordPress.Security.NonceVerification.Missing
 			} else {
 				$user_login = sanitize_user( current( explode( '@', $user_email ) ), true );
 
@@ -145,7 +145,7 @@ class Module extends Module_Base {
 				$password_generated = false;
 			}
 
-			if ( $_POST['password'] !== $_POST['confirmPassword'] ) {
+			if ( isset( $_POST['password'], $_POST['confirmPassword'] ) && wp_unslash( $_POST['password'] ) !== wp_unslash( $_POST['confirmPassword'] ) ) { // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized, WordPress.Security.NonceVerification.Missing
 				// Mismatched Password.
 				$this->mas_form_errors()->add( 'wrong_password', esc_html__( 'Password you entered is mismatched', 'mas-addons-for-elementor' ) );
 			}
@@ -325,7 +325,7 @@ class Module extends Module_Base {
 				$this->mas_form_errors()->add( 'empty_user_login', esc_html__( 'There is no account with that username or email address.', 'mas-addons-for-elementor' ) );
 			}
 
-			if ( is_multisite() && ! is_user_member_of_blog( $user_data->ID, get_current_blog_id() ) ) {
+			if ( $user_data && is_multisite() && ! is_user_member_of_blog( $user_data->ID, get_current_blog_id() ) ) {
 				$this->mas_form_errors()->add( 'empty_user_login', esc_html__( 'Invalid username or email address.', 'mas-addons-for-elementor' ) );
 
 				return false;

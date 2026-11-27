@@ -13,7 +13,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 use MASElementor\Base\Base_Widget;
 use Elementor\Controls_Manager;
-use Elementor\Core\Schemes;
 use Elementor\Group_Control_Typography;
 use Elementor\Group_Control_Box_Shadow;
 use Elementor\Plugin;

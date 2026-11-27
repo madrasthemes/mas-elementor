@@ -39,13 +39,24 @@ define( 'MAS_ELEMENTOR_TEMPLATES_PATH', MAS_ELEMENTOR_PATH . 'templates/' );
 /**
  * Load gettext translate for our text domain.
  *
+ * @since 1.2.4
+ *
+ * @return void
+ */
+function mas_elementor_load_textdomain() {
+	load_plugin_textdomain( 'mas-addons-for-elementor' );
+}
+
+add_action( 'init', 'mas_elementor_load_textdomain' );
+
+/**
+ * Load MAS Elementor plugin after Elementor is loaded.
+ *
  * @since 1.0.0
  *
  * @return void
  */
 function mas_elementor_load_plugin() {
-	load_plugin_textdomain( 'mas-addons-for-elementor' );
-
 	if ( ! did_action( 'elementor/loaded' ) ) {
 		add_action( 'admin_notices', 'mas_elementor_fail_load' );
 
@@ -440,8 +451,7 @@ if ( ! function_exists( 'mas_template_options' ) ) {
 		if ( ! empty( $mas_templates ) ) {
 			$options = array( '' => esc_html__( '— None —', 'mas-addons-for-elementor' ) );
 			foreach ( $mas_templates as $mas_template ) {
-				$template                 = get_page_by_path( $mas_template->post_name, OBJECT, $args['post_type'] );
-				$options[ $template->ID ] = $mas_template->post_title;
+				$options[ $mas_template->ID ] = $mas_template->post_title;
 			}
 		} else {
 			$options = array( '' => esc_html__( 'No Templates Found', 'mas-addons-for-elementor' ) );
@@ -476,8 +486,7 @@ if ( ! function_exists( 'mas_template_slug_options' ) ) {
 		if ( ! empty( $mas_templates ) ) {
 			$options = array( '' => esc_html__( '— None —', 'mas-addons-for-elementor' ) );
 			foreach ( $mas_templates as $mas_template ) {
-				$template                        = get_page_by_path( $mas_template->post_name, OBJECT, $args['post_type'] );
-				$options[ $template->post_name ] = $mas_template->post_title;
+				$options[ $mas_template->post_name ] = $mas_template->post_title;
 			}
 		} else {
 			$options = array( '' => esc_html__( 'No Templates Found', 'mas-addons-for-elementor' ) );

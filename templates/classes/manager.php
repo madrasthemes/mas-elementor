@@ -152,13 +152,15 @@ if ( ! class_exists( 'Premium_Templates_Manager' ) ) {
 		 */
 		public function get_templates() {
 
+			check_ajax_referer( 'mas_premium_templates_nonce', 'nonce' );
+
 			if ( ! current_user_can( 'edit_posts' ) ) {
 				wp_send_json_error();
 			}
 
-			$tab     = $_GET['tab'];
+			$tab     = isset( $_GET['tab'] ) ? sanitize_key( wp_unslash( $_GET['tab'] ) ) : '';
 			$tabs    = $this->get_template_tabs();
-			$sources = $tabs[ $tab ]['sources'];
+			$sources = isset( $tabs[ $tab ]['sources'] ) ? $tabs[ $tab ]['sources'] : array();
 
 			$result = array(
 				'templates'  => array(),
@@ -202,19 +204,22 @@ if ( ! class_exists( 'Premium_Templates_Manager' ) ) {
 		 */
 		public function insert_inner_template() {
 
+			check_ajax_referer( 'mas_premium_templates_nonce', 'nonce' );
+
 			if ( ! current_user_can( 'edit_posts' ) ) {
 				wp_send_json_error();
 			}
 
-			$template = isset( $_REQUEST['template'] ) ? $_REQUEST['template'] : false;
+			$template = isset( $_REQUEST['template'] ) && is_array( $_REQUEST['template'] ) ? wp_unslash( $_REQUEST['template'] ) : false;
 
 			if ( ! $template ) {
 				wp_send_json_error();
 			}
 
-			$template_id = isset( $template['template_id'] ) ? esc_attr( $template['template_id'] ) : false;
-			$source_name = isset( $template['source'] ) ? esc_attr( $template['source'] ) : false;
-			$source      = isset( $this->sources[ $source_name ] ) ? $this->sources[ $source_name ] : false;
+			$template_id    = isset( $template['template_id'] ) ? sanitize_text_field( $template['template_id'] ) : false;
+			$source_name    = isset( $template['source'] ) ? sanitize_key( $template['source'] ) : false;
+			$template_title = isset( $template['title'] ) ? sanitize_text_field( $template['title'] ) : '';
+			$source         = isset( $this->sources[ $source_name ] ) ? $this->sources[ $source_name ] : false;
 
 			if ( ! $source || ! $template_id ) {
 				wp_send_json_error();
@@ -226,7 +231,7 @@ if ( ! class_exists( 'Premium_Templates_Manager' ) ) {
 				wp_insert_post(
 					array(
 						'post_type'   => 'elementor_library',
-						'post_title'  => $template['title'],
+						'post_title'  => $template_title,
 						'post_status' => 'publish',
 						'meta_input'  => array(
 							'_elementor_data'          => $template_data['content'],
@@ -255,7 +260,10 @@ if ( ! class_exists( 'Premium_Templates_Manager' ) ) {
 				return;
 			}
 
-			$actions = json_decode( stripslashes( $_REQUEST['actions'] ), true );
+			$actions = json_decode( wp_unslash( $_POST['actions'] ), true ); // phpcs:ignore WordPress.Security.NonceVerification.Missing, WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+			if ( ! is_array( $actions ) ) {
+				return;
+			}
 			$data    = false;
 
 			foreach ( $actions as $id => $action_data ) {

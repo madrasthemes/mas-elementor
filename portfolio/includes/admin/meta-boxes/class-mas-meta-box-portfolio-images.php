@@ -81,7 +81,11 @@ class MAS_Meta_Box_Portfolio_Images {
 	 * @param WP_Post $post post object.
 	 */
 	public static function save( $post_id, $post ) {
-		$attachment_ids      = isset( $_POST['portfolio_image_gallery'] ) || wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['portfolio_image_gallery'] ) ), 'mas_save_data' ) ? array_filter( explode( ',', mas_clean( sanitize_text_field( wp_unslash( $_POST['portfolio_image_gallery'] ) ) ) ) ) : array();
+		if ( empty( $_POST['mas_meta_nonce'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['mas_meta_nonce'] ) ), 'mas_save_data' ) ) {
+			return;
+		}
+
+		$attachment_ids      = isset( $_POST['portfolio_image_gallery'] ) ? array_filter( explode( ',', mas_clean( sanitize_text_field( wp_unslash( $_POST['portfolio_image_gallery'] ) ) ) ) ) : array();
 		$updated_gallery_ids = implode( ',', $attachment_ids );
 		update_post_meta( $post->ID, '_portfolio_image_gallery', $updated_gallery_ids );
 	}

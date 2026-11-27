@@ -418,7 +418,7 @@ trait Load_Button_Widget_Trait {
 	 *
 	 * @param \Elementor\Widget_Base|null $instance The widget instance.
 	 */
-	protected function load_more_render_button( Widget_Base $instance = null ) {
+	protected function load_more_render_button( ?Widget_Base $instance = null ) {
 		if ( empty( $instance ) ) {
 			$instance = $this;
 		}

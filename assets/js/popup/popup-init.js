@@ -6,7 +6,7 @@
 ( function( $, window ) {
     'use strict';
 
-    $(document).on('ready', function () {
+    $(function () {
         // Magnific popup
         if ($(".mas-popup").length) {
           $(".mas-popup").magnificPopup({

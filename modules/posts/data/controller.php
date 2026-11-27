@@ -41,13 +41,22 @@ class Controller extends Controller_Base {
 	 * @return array
 	 */
 	public function get_items( $request ) {
-		$document = Plugin::elementor()->documents->get( $request->get_param( 'post_id' ) );
+		$post_id  = absint( $request->get_param( 'post_id' ) );
+		$document = Plugin::elementor()->documents->get( $post_id );
 
 		if ( ! $document ) {
 			return new \WP_Error(
 				'document_not_exist',
 				esc_html__( 'Document doesn\'t exist', 'mas-addons-for-elementor' ),
 				array( 'status' => 404 )
+			);
+		}
+
+		if ( ! is_post_publicly_viewable( $post_id ) && ! current_user_can( 'read_post', $post_id ) ) {
+			return new \WP_Error(
+				'rest_forbidden',
+				esc_html__( 'Sorry, you are not allowed to view this document.', 'mas-addons-for-elementor' ),
+				array( 'status' => 403 )
 			);
 		}
 

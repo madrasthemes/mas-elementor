@@ -212,7 +212,7 @@ class Plugin {
 		wp_register_script(
 			'mas-magnigy-popup',
 			MAS_ELEMENTOR_ASSETS_URL . 'js/popup/jquery.magnific-popup.min.js',
-			array(),
+			array( 'jquery' ),
 			MAS_ELEMENTOR_VERSION,
 			true
 		);
@@ -220,7 +220,7 @@ class Plugin {
 		wp_register_script(
 			'mas-popup-init',
 			MAS_ELEMENTOR_ASSETS_URL . 'js/popup/popup-init.js',
-			array(),
+			array( 'jquery', 'mas-magnigy-popup' ),
 			MAS_ELEMENTOR_VERSION,
 			true
 		);
@@ -228,7 +228,7 @@ class Plugin {
 		wp_register_script(
 			'mas-collapse-script',
 			MAS_ELEMENTOR_ASSETS_URL . 'js/tabs/mas-button-toggle.js',
-			array(),
+			array( 'jquery' ),
 			MAS_ELEMENTOR_VERSION,
 			true
 		);
@@ -342,6 +342,8 @@ class Plugin {
 			return $args;
 
 		}
+
+		return $args;
 	}
 
 	/**
@@ -361,7 +363,11 @@ class Plugin {
 	private function get_frontend_file( $frontend_file_name ) {
 		$template_file_path = self::get_responsive_templates_path() . $frontend_file_name;
 
-		return self::elementor()->frontend->get_frontend_file( $frontend_file_name, 'mas-custom-', $template_file_path );
+		if ( method_exists( self::elementor()->frontend, 'get_frontend_file' ) ) {
+			return self::elementor()->frontend->get_frontend_file( $frontend_file_name, 'mas-custom-', $template_file_path );
+		}
+
+		return false;
 	}
 
 	/**
@@ -376,12 +382,12 @@ class Plugin {
 		if ( $custom_file ) {
 			$frontend_file = $this->get_frontend_file( $frontend_file_name );
 
-			$frontend_file_url = $frontend_file->get_url();
-		} else {
-			$frontend_file_url = MAS_ELEMENTOR_ASSETS_URL . 'css/templates/' . $frontend_file_name;
+			if ( $frontend_file && method_exists( $frontend_file, 'get_url' ) ) {
+				return $frontend_file->get_url();
+			}
 		}
 
-		return $frontend_file_url;
+		return MAS_ELEMENTOR_ASSETS_URL . 'css/templates/' . $frontend_file_name;
 	}
 
 	/**
@@ -394,6 +400,10 @@ class Plugin {
 	public function get_responsive_stylesheet_templates( $templates ) {
 		// $templates_paths = glob( MAS_ELEMENTOR_ASSETS_PATH . 'css/main.css' );
 		$templates_paths = glob( $this->get_responsive_templates_path() . '*.css' );
+
+		if ( ! is_array( $templates_paths ) ) {
+			return $templates;
+		}
 
 		foreach ( $templates_paths as $template_path ) {
 			$file_name = 'mas-custom-' . basename( $template_path );
@@ -493,7 +503,10 @@ class Plugin {
 	 * @return bool
 	 */
 	private function is_optimized_css_mode() {
-		$is_optimized_css_loading = self::elementor()->experiments->is_feature_active( 'e_optimized_css_loading' );
+		$experiments              = self::elementor()->experiments;
+		$is_optimized_css_loading = $experiments && method_exists( $experiments, 'is_feature_active' )
+			? $experiments->is_feature_active( 'e_optimized_css_loading' )
+			: false;
 
 		return ! Utils::is_script_debug() && $is_optimized_css_loading && ! self::elementor()->preview->is_preview_mode();
 	}
