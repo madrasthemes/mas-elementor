@@ -1,6 +1,6 @@
 ( function ($, window) {
 	"use strict";
-	$(document).on('ready', function () {
+	$(function () {
 		const toggleButtons = document.querySelectorAll('.mas-toggle-button');
 
 		if ( toggleButtons ) {

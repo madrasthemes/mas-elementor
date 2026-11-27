@@ -241,7 +241,8 @@
 								data: {
 									action: 'mas_premium_inner_template',
 									template: innerTemplates[key],
-									tab: MasPremiumEditor.getTab()
+									tab: MasPremiumEditor.getTab(),
+									nonce: MasPremiumTempsData.nonce
 								}
 							});
 						}
@@ -995,7 +996,8 @@
 					dataType: 'json',
 					data: {
 						action: 'mas_premium_get_templates',
-						tab: tabName
+						tab: tabName,
+						nonce: MasPremiumTempsData.nonce
 					},
 					success: function (response) {
 						console.log("%cTemplates Retrieved Successfully!!", "color: #7a7a7a; background-color: #eee;");

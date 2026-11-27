@@ -128,15 +128,20 @@ class Module extends Module_Base {
 			$suggestions[] = $suggestion;
 		}
 		$call_back = '';
-		// JSON encode and echo.
 		if ( isset( $_GET['callback'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
-			$call_back = sanitize_text_field( wp_unslash( $_GET['callback'] ) ); // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+			$raw_callback = sanitize_text_field( wp_unslash( $_GET['callback'] ) ); // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+			if ( preg_match( '/^[a-zA-Z_$][a-zA-Z0-9_$.]*$/', $raw_callback ) ) {
+				$call_back = $raw_callback;
+			}
 		}
-		$response = $call_back . '(' . wp_json_encode( $suggestions ) . ')';
-		echo wp_kses_post( $response );
 
-		// Don't forget to exit!
-		exit;
+		if ( $call_back ) {
+			header( 'Content-Type: application/javascript; charset=utf-8' );
+			echo $call_back . '(' . wp_json_encode( $suggestions ) . ')'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			exit;
+		}
+
+		wp_send_json( $suggestions );
 	}
 
 }

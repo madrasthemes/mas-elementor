@@ -133,7 +133,7 @@ class Add_To_Compare extends Widget_Button {
 	 *
 	 * @param \Elementor\Widget_Base|null $instance instance.
 	 */
-	protected function add_to_compare_render_button( Widget_Base $instance = null ) {
+	protected function add_to_compare_render_button( ?Widget_Base $instance = null ) {
 		global $yith_woocompare;
 
 		$product = wc_get_product();

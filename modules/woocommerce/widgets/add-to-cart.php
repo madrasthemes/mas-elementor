@@ -2231,7 +2231,7 @@ class Add_To_Cart extends Widget_Button {
 		 * @param string                      $cart_count cart count.
 		 * @param string                      $cart_number cart number.
 		 */
-	protected function render_button( $product_values = array(), Widget_Base $instance = null, $cart_count = '', $cart_number = '' ) {
+	protected function render_button( $product_values = array(), ?Widget_Base $instance = null, $cart_count = '', $cart_number = '' ) {
 		if ( empty( $instance ) ) {
 			$instance = $this;
 		}
@@ -2304,7 +2304,7 @@ class Add_To_Cart extends Widget_Button {
 		 * @param \Elementor\Widget_Base|null $instance instance.
 		 * @param array                       $product_values product values.
 		 */
-	protected function render_text( Widget_Base $instance = null, $product_values = array() ) {
+	protected function render_text( ?Widget_Base $instance = null, $product_values = array() ) {
 		// The default instance should be `$this` (a Button widget), unless the Trait is being used from outside of a widget (e.g. `Skin_Base`) which should pass an `$instance`.
 		if ( empty( $instance ) ) {
 			$instance = $this;

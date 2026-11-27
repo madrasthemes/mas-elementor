@@ -112,7 +112,8 @@ if ( ! class_exists( 'Premium_Templates_Assets' ) ) {
 							'activateLink' => Templates\premium_templates()->config->get( 'license_page' ),
 							'proMessage'   => Templates\premium_templates()->config->get( 'pro_message' ),
 						),
-						'imageUrl'		   => MAS_ELEMENTOR_ASSETS_URL . 'templates/images/gradient.png',
+						'imageUrl'            => MAS_ELEMENTOR_ASSETS_URL . 'templates/images/gradient.png',
+						'nonce'               => wp_create_nonce( 'mas_premium_templates_nonce' ),
 					)
 				)
 			);
